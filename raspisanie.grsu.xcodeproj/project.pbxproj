@@ -13,6 +13,7 @@
 		2D2025A018522A0E004D35AF /* GroupServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D20259F18522A0E004D35AF /* GroupServices.m */; };
 		2D2025A318522A1D004D35AF /* WeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A218522A1D004D35AF /* WeekServices.m */; };
 		2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */; };
+		2D2025AA18523E73004D35AF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A918523E73004D35AF /* Constants.m */; };
 		4424D28216F25A390008B9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28116F25A390008B9EA /* UIKit.framework */; };
 		4424D28416F25A390008B9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28316F25A390008B9EA /* Foundation.framework */; };
 		4424D28616F25A3A0008B9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28516F25A390008B9EA /* CoreGraphics.framework */; };
@@ -68,6 +69,8 @@
 		2D2025A218522A1D004D35AF /* WeekServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekServices.m; sourceTree = "<group>"; };
 		2D2025A418522A4C004D35AF /* ScheduleWeekServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleWeekServices.h; sourceTree = "<group>"; };
 		2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleWeekServices.m; sourceTree = "<group>"; };
+		2D2025A818523E73004D35AF /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2D2025A918523E73004D35AF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		4424D27D16F25A390008B9EA /* raspisanie.grsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raspisanie.grsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4424D28116F25A390008B9EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4424D28316F25A390008B9EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,6 +155,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D2025A718523E1A004D35AF /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				2D2025A818523E73004D35AF /* Constants.h */,
+				2D2025A918523E73004D35AF /* Constants.m */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		4424D27216F25A390008B9EA = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +196,7 @@
 		4424D28716F25A3A0008B9EA /* raspisanie.grsu */ = {
 			isa = PBXGroup;
 			children = (
+				2D2025A718523E1A004D35AF /* Commons */,
 				4424D2AE16F25D350008B9EA /* ScheduleItem.h */,
 				4424D2AF16F25D350008B9EA /* ScheduleItem.m */,
 				4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */,
@@ -392,6 +405,7 @@
 				4424D29216F25A3A0008B9EA /* AppDelegate.m in Sources */,
 				2D2025A318522A1D004D35AF /* WeekServices.m in Sources */,
 				2D20259A185229C3004D35AF /* SpecializationService.m in Sources */,
+				2D2025AA18523E73004D35AF /* Constants.m in Sources */,
 				4424D29B16F25A3A0008B9EA /* ViewController.m in Sources */,
 				4424D2AA16F25A7D0008B9EA /* HTMLParser.m in Sources */,
 				4424D2AB16F25A800008B9EA /* HTMLNode.m in Sources */,

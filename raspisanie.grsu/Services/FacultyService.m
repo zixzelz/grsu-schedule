@@ -19,6 +19,16 @@
 #pragma mark -
 
 - (void)facultyItemsWithCallback:(ArrayBlock)callback {
+    NSArray *faculties = [self fetchAllFaculty];
+    
+    if (faculties.count > 0) {
+        callback(faculties, nil);
+    } else {
+        [self reloadDataWithCallback:callback];
+    }
+}
+
+- (void)reloadDataWithCallback:(ArrayBlock)callback {
     [[Backend sharedInstance] loadFacultyItemsWithCallback:^(NSArray *array, NSError *error) {
         [self removeAllFaculty];
         
@@ -45,6 +55,14 @@
     for (NSManagedObject *managedObject in faculties) {
         [managedObjectContext deleteObject:managedObject];
     }
+}
+
+- (NSArray *)fetchAllFaculty {
+    CacheManager *cacheManager = [CacheManager sharedInstance];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+    NSArray *faculties = [cacheManager sincCacheWithPredicate:nil entity:FACULTY_ENTITY_NAME sortDescriptors:sortDescriptors];
+    
+    return faculties;
 }
 
 @end

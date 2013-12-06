@@ -142,7 +142,14 @@ static CacheManager *_instance;
 #pragma mark Managed Object
 
 - (NSArray *)sincCacheWithPredicate:(NSPredicate *)predicate entity:(NSString *)entityName {
+    NSArray *array = [self sincCacheWithPredicate:predicate entity:entityName sortDescriptors:nil];
+    return array;
+}
+
+- (NSArray *)sincCacheWithPredicate:(NSPredicate *)predicate entity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    request.sortDescriptors = sortDescriptors;
+    [request setFetchBatchSize:25];
     if (predicate) {
         [request setPredicate:predicate];
     }

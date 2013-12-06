@@ -73,7 +73,6 @@ static Backend *_instance;
     NSDictionary *params = [self dictionaryWithFacultyID:nil specializationID:nil courseID:nil groupID:nil weekID:nil];
     [self performRequestWithParams:params callback:^(NSString *html, NSError *error) {
         NSArray *array = [FacultyHTMLParser parseWithHTML:html key:KEY_SELECT_FACULTY];
-//        [[CacheManager sharedInstance] insertFacultyWithItems:array];
         callback(array, error);
     }];
 }

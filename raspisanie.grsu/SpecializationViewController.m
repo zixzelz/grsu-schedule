@@ -16,18 +16,18 @@
 @property (nonatomic, strong) NSArray *specializationItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) ScheduleItem *facultyItem;
+@property (nonatomic, strong) FacultyMO *facultyItem;
 
 @end
 
 @implementation SpecializationViewController 
 
-- (id)initWithFacultyItem:(ScheduleItem *)facultyItem {
+- (id)initWithFacultyItem:(FacultyMO *)facultyItem {
     self = [super init];
     if (self) {
         self.title = @"Специальность";
         self.facultyItem = facultyItem;
-        [self loadSpecializationWithFacultyID:facultyItem.id];
+        [self loadSpecializationWithFacultyID:[facultyItem.id copy]];
     }
     return self;
 }

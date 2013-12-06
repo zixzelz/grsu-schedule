@@ -26,5 +26,6 @@
 - (void)stateWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID weekID:(NSString *)weekID callback:(StateBlock)callBack;
 
 - (NSArray *)sincCacheWithPredicate:(NSPredicate *)predicate entity:(NSString *)entityName;
+- (NSArray *)sincCacheWithPredicate:(NSPredicate *)predicate entity:(NSString *)entityName sortDescriptors:(NSArray *)sortDescriptors;
 
 @end
