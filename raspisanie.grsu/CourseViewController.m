@@ -7,7 +7,7 @@
 //
 
 #import "CourseViewController.h"
-#import "RaspisanieManager.h"
+#import "CourseServices.h"
 #import "GroupViewController.h"
 
 @interface CourseViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -16,14 +16,14 @@
 @property (nonatomic, strong) NSArray *courseItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) FacultyItem *facultyItem;
-@property (nonatomic, strong) FacultyItem *specializationItem;
+@property (nonatomic, strong) ScheduleItem *facultyItem;
+@property (nonatomic, strong) ScheduleItem *specializationItem;
 
 @end
 
 @implementation CourseViewController
 
-- (id)initWithFacultyItem:(FacultyItem *)facultyItem specializationItem:(FacultyItem *)specializationItem {
+- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem {
     self = [super init];
     if (self) {
         self.title = @"Курс";
@@ -35,7 +35,8 @@
 }
 
 - (void)loadCourseWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID {
-    [[RaspisanieManager sharedInstance] courseItemsWithFacultyID:facultyID specializationID:specializationID callback:^(NSArray *array, NSError *error) {
+    CourseServices *service = [CourseServices new];
+    [service courseItemsWithFacultyID:facultyID specializationID:specializationID callback:^(NSArray *array, NSError *error) {
         [self.loadingView hideLoading];
         self.courseItems = array;
         [self.tableView reloadData];
@@ -75,7 +76,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    FacultyItem *item = self.courseItems[indexPath.row];
+    ScheduleItem *item = self.courseItems[indexPath.row];
     
     cell.textLabel.text = item.title;
     
@@ -86,7 +87,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FacultyItem *item = self.courseItems[indexPath.row];
+    ScheduleItem *item = self.courseItems[indexPath.row];
     
     GroupViewController *controller = [[GroupViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:item];
     [self.navigationController pushViewController:controller animated:YES];

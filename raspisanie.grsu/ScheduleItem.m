@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 RYSoft. All rights reserved.
 //
 
-#import "FacultyItem.h"
+#import "ScheduleItem.h"
 
-@implementation FacultyItem
+@implementation ScheduleItem
 
-+ (FacultyItem *)faculityItemWithId:(NSString *)id_ title:(NSString *)title {
-    FacultyItem *item = [[FacultyItem alloc] init];
++ (ScheduleItem *)faculityItemWithId:(NSString *)id_ title:(NSString *)title {
+    ScheduleItem *item = [[ScheduleItem alloc] init];
     item.id = id_;
     item.title = title;
     return item;

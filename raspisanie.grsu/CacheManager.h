@@ -7,21 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "FacultyItem.h"
+#import "ScheduleItem.h"
 
 @interface CacheManager : NSObject
 
 + (CacheManager *)sharedInstance;
 
 - (void)insertFacultyWithItems:(NSArray *)items;
-- (void)insertFacultyWithItem:(FacultyItem *)item;
+- (void)insertFacultyWithItem:(ScheduleItem *)item;
 
 - (void)insertSpecializationWithItems:(NSArray *)items facultyID:(NSString *)facultyID;
-- (void)insertSpecializationWithItem:(FacultyItem *)item facultyID:(NSString *)facultyID;
+- (void)insertSpecializationWithItem:(ScheduleItem *)item facultyID:(NSString *)facultyID;
 
 - (void)facultyItemsWithCallback:(ArrayBlock)callBack;
 
 
 - (void)storeStateWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID weekID:(NSString *)weekID viewState:(NSString *)viewState eventValidation:(NSString *)eventValidation;
 - (void)stateWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID weekID:(NSString *)weekID callback:(StateBlock)callBack;
+
+- (NSArray *)sincCacheWithPredicate:(NSPredicate *)predicate entity:(NSString *)entityName;
+
 @end

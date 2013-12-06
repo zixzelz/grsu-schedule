@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FacultyItem : NSObject
+@interface ScheduleItem : NSObject
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *id;
 
-+ (FacultyItem *)faculityItemWithId:(NSString *)id_ title:(NSString *)title;
++ (ScheduleItem *)faculityItemWithId:(NSString *)id_ title:(NSString *)title;
 
 @end

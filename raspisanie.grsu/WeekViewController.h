@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "FacultyItem.h"
+#import "ScheduleItem.h"
 
 @interface WeekViewController : UIViewController
 
-- (id)initWithFacultyItem:(FacultyItem *)facultyItem specializationItem:(FacultyItem *)specializationItem courseItem:(FacultyItem *)courseItem groupItem:(FacultyItem *)groupItem;
+- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem courseItem:(ScheduleItem *)courseItem groupItem:(ScheduleItem *)groupItem;
 
 @end

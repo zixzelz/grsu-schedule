@@ -7,7 +7,7 @@
 //
 
 #import "SpecializationViewController.h"
-#import "RaspisanieManager.h"
+#import "SpecializationService.h"
 #import "CourseViewController.h"
 
 @interface SpecializationViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -16,13 +16,13 @@
 @property (nonatomic, strong) NSArray *specializationItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) FacultyItem *facultyItem;
+@property (nonatomic, strong) ScheduleItem *facultyItem;
 
 @end
 
 @implementation SpecializationViewController 
 
-- (id)initWithFacultyItem:(FacultyItem *)facultyItem {
+- (id)initWithFacultyItem:(ScheduleItem *)facultyItem {
     self = [super init];
     if (self) {
         self.title = @"Специальность";
@@ -33,7 +33,8 @@
 }
 
 - (void)loadSpecializationWithFacultyID:(NSString *)facultyID {
-    [[RaspisanieManager sharedInstance] specializationItemsWithFacultyID:facultyID callback:^(NSArray *array, NSError *error) {
+    SpecializationService *service = [SpecializationService new];
+    [service specializationItemsWithFacultyID:facultyID callback:^(NSArray *array, NSError *error) {
         [self.loadingView hideLoading];
         self.specializationItems = array;
         [self.tableView reloadData];
@@ -73,7 +74,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    FacultyItem *item = self.specializationItems[indexPath.row];
+    ScheduleItem *item = self.specializationItems[indexPath.row];
     
     cell.textLabel.text = item.title;
     
@@ -84,7 +85,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FacultyItem *item = self.specializationItems[indexPath.row];
+    ScheduleItem *item = self.specializationItems[indexPath.row];
     
     CourseViewController *controller = [[CourseViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:item];
     [self.navigationController pushViewController:controller animated:YES];

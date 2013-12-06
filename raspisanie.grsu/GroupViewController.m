@@ -7,7 +7,7 @@
 //
 
 #import "GroupViewController.h"
-#import "RaspisanieManager.h"
+#import "GroupServices.h"
 #import "WeekViewController.h"
 
 @interface GroupViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -16,15 +16,15 @@
 @property (nonatomic, strong) NSArray *groupItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) FacultyItem *facultyItem;
-@property (nonatomic, strong) FacultyItem *specializationItem;
-@property (nonatomic, strong) FacultyItem *courseItem;
+@property (nonatomic, strong) ScheduleItem *facultyItem;
+@property (nonatomic, strong) ScheduleItem *specializationItem;
+@property (nonatomic, strong) ScheduleItem *courseItem;
 
 @end
 
 @implementation GroupViewController
 
-- (id)initWithFacultyItem:(FacultyItem *)facultyItem specializationItem:(FacultyItem *)specializationItem courseItem:(FacultyItem *)courseItem {
+- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem courseItem:(ScheduleItem *)courseItem {
     self = [super init];
     if (self) {
         self.title = @"Группа";
@@ -37,7 +37,8 @@
 }
 
 - (void)loadCourseWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID {
-    [[RaspisanieManager sharedInstance] groupItemsWithFacultyID:facultyID specializationID:specializationID courseID:courseID callback:^(NSArray *array, NSError *error) {
+    GroupServices *service = [GroupServices new];
+    [service groupItemsWithFacultyID:facultyID specializationID:specializationID courseID:courseID callback:^(NSArray *array, NSError *error) {
         [self.loadingView hideLoading];
         self.groupItems = array;
         [self.tableView reloadData];
@@ -77,7 +78,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    FacultyItem *item = self.groupItems[indexPath.row];
+    ScheduleItem *item = self.groupItems[indexPath.row];
     
     cell.textLabel.text = item.title;
     
@@ -88,7 +89,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FacultyItem *item = self.groupItems[indexPath.row];
+    ScheduleItem *item = self.groupItems[indexPath.row];
     
     WeekViewController *controller = [[WeekViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:self.courseItem groupItem:item];
     [self.navigationController pushViewController:controller animated:YES];

@@ -33,19 +33,37 @@ static CacheManager *_instance;
 #pragma mark -
 #pragma mark insert Faculty
 
+- (void)facultyItemsWithCallback:(ArrayBlock)callBack {
+    [self cacheManagedObjectsWithPredicate:nil entity:FACULTY_ENTITY_NAME callBack:^(NSArray *array, NSError *error) {
+        array = [self cacheWithCacheManagedObjects:array];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            callBack(array, error);
+        });
+    }];
+}
+
+- (void)removeAllFaculty {
+    NSManagedObjectContext *managedObjectContext = [[CoreDataConnection sharedInstance] managedObjectContext];
+    [self cacheManagedObjectsWithPredicate:nil entity:FACULTY_ENTITY_NAME callBack:^(NSArray *array, NSError *error) {
+        for (NSManagedObject *managedObject in array) {
+            [managedObjectContext deleteObject:managedObject];
+        }
+    }];
+}
+
 - (void)insertFacultyWithItems:(NSArray *)items {
-    for (FacultyItem *item in items) {
+    for (ScheduleItem *item in items) {
         [self insertFacultyNoSaveWithItem:item];
     }
     [[CoreDataConnection sharedInstance] saveContext];
 }
 
-- (void)insertFacultyWithItem:(FacultyItem *)item {
+- (void)insertFacultyWithItem:(ScheduleItem *)item {
     [self insertFacultyNoSaveWithItem:item];
     [[CoreDataConnection sharedInstance] saveContext];
 }
 
-- (void)insertFacultyNoSaveWithItem:(FacultyItem *)item {
+- (void)insertFacultyNoSaveWithItem:(ScheduleItem *)item {
     FacultyMO *cache;
     cache = [NSEntityDescription insertNewObjectForEntityForName:FACULTY_ENTITY_NAME inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
     cache.title = item.title;
@@ -56,35 +74,23 @@ static CacheManager *_instance;
 #pragma mark insert Specialization
 
 - (void)insertSpecializationWithItems:(NSArray *)items facultyID:(NSString *)facultyID {
-    for (FacultyItem *item in items) {
+    for (ScheduleItem *item in items) {
         [self insertSpecializationNoSaveWithItem:item facultyID:facultyID];
     }
     [[CoreDataConnection sharedInstance] saveContext];
 }
 
-- (void)insertSpecializationWithItem:(FacultyItem *)item facultyID:(NSString *)facultyID {
+- (void)insertSpecializationWithItem:(ScheduleItem *)item facultyID:(NSString *)facultyID {
     [self insertSpecializationNoSaveWithItem:item facultyID:facultyID];
     [[CoreDataConnection sharedInstance] saveContext];
 }
 
-- (void)insertSpecializationNoSaveWithItem:(FacultyItem *)item facultyID:(NSString *)facultyID {
+- (void)insertSpecializationNoSaveWithItem:(ScheduleItem *)item facultyID:(NSString *)facultyID {
     SpecializationMO *cache;
     cache = [NSEntityDescription insertNewObjectForEntityForName:SPECIALIZATION_ENTITY_NAME inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
     cache.title = item.title;
     cache.id = item.id;
     cache.facultyID = facultyID;
-}
-
-#pragma mark -
-#pragma mark get Faculty
-
-- (void)facultyItemsWithCallback:(ArrayBlock)callBack {
-    [self cacheManagedObjectsWithPredicate:nil entity:FACULTY_ENTITY_NAME callBack:^(NSArray *array, NSError *error) {
-        array = [self cacheWithCacheManagedObjects:array];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            callBack(array, error);
-        });
-    }];
 }
 
 #pragma mark -
@@ -181,7 +187,7 @@ static CacheManager *_instance;
 - (NSArray *)cacheWithCacheManagedObjects:(NSArray *)cacheManagedObjects {
     NSMutableArray *items = [NSMutableArray array];
     for (FacultyMO *itemMO in cacheManagedObjects) {
-        FacultyItem *item = [[FacultyItem alloc] init];
+        ScheduleItem *item = [[ScheduleItem alloc] init];
         item.id = itemMO.id;
         item.title = itemMO.title;
         [items addObject:item];

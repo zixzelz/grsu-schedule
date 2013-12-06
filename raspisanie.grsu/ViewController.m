@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "RaspisanieManager.h"
-#import "FacultyItem.h"
+#import "FacultyService.h"
 #import "SpecializationViewController.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -27,8 +26,8 @@
     LoadingView *loadingView = [[LoadingView alloc] initWithView:self.view];
     [loadingView showLoading];
     
-    RaspisanieManager *raspisanieManager = [RaspisanieManager sharedInstance];
-    [raspisanieManager facultyItemsWithCallback:^(NSArray *array, NSError *error) {
+    FacultyService *facultyService = [FacultyService new];
+    [facultyService facultyItemsWithCallback:^(NSArray *array, NSError *error) {
         [loadingView hideLoading];
         self.facultyItems = array;
         [self.tableView reloadData];
@@ -52,7 +51,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    FacultyItem *item = self.facultyItems[indexPath.row];
+    ScheduleItem *item = self.facultyItems[indexPath.row];
     
     cell.textLabel.text = item.title;
     
@@ -63,7 +62,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FacultyItem *item = self.facultyItems[indexPath.row];
+    ScheduleItem *item = self.facultyItems[indexPath.row];
 
     SpecializationViewController *controller = [[SpecializationViewController alloc] initWithFacultyItem:item];
     [self.navigationController pushViewController:controller animated:YES];

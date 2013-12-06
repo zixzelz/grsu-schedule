@@ -8,7 +8,7 @@
 
 #import "FacultyHTMLParser.h"
 #import "HTMLParser.h"
-#import "FacultyItem.h"
+#import "ScheduleItem.h"
 #import "DaySchedule.h"
 
 @implementation FacultyHTMLParser
@@ -22,7 +22,7 @@
     NSArray *optionNodes = [selectNode findChildTags:@"option"];
     NSMutableArray *facultyItems = [NSMutableArray arrayWithCapacity:optionNodes.count];
     for (HTMLNode *optionNode in optionNodes) {
-        FacultyItem *item = [FacultyItem faculityItemWithId:[optionNode getAttributeNamed:@"value"]
+        ScheduleItem *item = [ScheduleItem faculityItemWithId:[optionNode getAttributeNamed:@"value"]
                                                       title:[optionNode contents]];
         
         [facultyItems addObject:item];

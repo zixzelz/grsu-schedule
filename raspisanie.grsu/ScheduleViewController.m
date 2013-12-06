@@ -7,7 +7,7 @@
 //
 
 #import "ScheduleViewController.h"
-#import "RaspisanieManager.h"
+#import "ScheduleWeekServices.h"
 #import "DaySchedule.h"
 #import "LessonScheduleCell.h"
 
@@ -17,17 +17,17 @@
 @property (nonatomic, strong) NSArray *scheduleDays;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) FacultyItem *facultyItem;
-@property (nonatomic, strong) FacultyItem *specializationItem;
-@property (nonatomic, strong) FacultyItem *courseItem;
-@property (nonatomic, strong) FacultyItem *groupItem;
-@property (nonatomic, strong) FacultyItem *weekItem;
+@property (nonatomic, strong) ScheduleItem *facultyItem;
+@property (nonatomic, strong) ScheduleItem *specializationItem;
+@property (nonatomic, strong) ScheduleItem *courseItem;
+@property (nonatomic, strong) ScheduleItem *groupItem;
+@property (nonatomic, strong) ScheduleItem *weekItem;
 
 @end
 
 @implementation ScheduleViewController
 
-- (id)initWithFacultyItem:(FacultyItem *)facultyItem specializationItem:(FacultyItem *)specializationItem courseItem:(FacultyItem *)courseItem groupItem:(FacultyItem *)groupItem weekItem:(FacultyItem *)weekItem {
+- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem courseItem:(ScheduleItem *)courseItem groupItem:(ScheduleItem *)groupItem weekItem:(ScheduleItem *)weekItem {
     self = [super init];
     if (self) {
         self.title = @"Расписание";
@@ -42,7 +42,8 @@
 }
 
 - (void)loadCourseWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID weekID:(NSString *)weekID {
-    [[RaspisanieManager sharedInstance] scheduleWeekWithFacultyID:facultyID specializationID:specializationID courseID:courseID groupID:groupID weekID:weekID callback:^(NSArray *array, NSError *error) {
+    ScheduleWeekServices *service = [ScheduleWeekServices new];
+    [service scheduleWeekWithFacultyID:facultyID specializationID:specializationID courseID:courseID groupID:groupID weekID:weekID callback:^(NSArray *array, NSError *error) {
         [self.loadingView hideLoading];
         self.scheduleDays = array;
         [self.tableView reloadData];

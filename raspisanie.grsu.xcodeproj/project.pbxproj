@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D2025971852292E004D35AF /* BaseServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025961852292E004D35AF /* BaseServices.m */; };
+		2D20259A185229C3004D35AF /* SpecializationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D202599185229C3004D35AF /* SpecializationService.m */; };
+		2D20259D185229FA004D35AF /* CourseServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D20259C185229FA004D35AF /* CourseServices.m */; };
+		2D2025A018522A0E004D35AF /* GroupServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D20259F18522A0E004D35AF /* GroupServices.m */; };
+		2D2025A318522A1D004D35AF /* WeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A218522A1D004D35AF /* WeekServices.m */; };
+		2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */; };
 		4424D28216F25A390008B9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28116F25A390008B9EA /* UIKit.framework */; };
 		4424D28416F25A390008B9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28316F25A390008B9EA /* Foundation.framework */; };
 		4424D28616F25A3A0008B9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28516F25A390008B9EA /* CoreGraphics.framework */; };
@@ -21,8 +27,8 @@
 		4424D2AA16F25A7D0008B9EA /* HTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2A816F25A720008B9EA /* HTMLParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4424D2AB16F25A800008B9EA /* HTMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2A616F25A720008B9EA /* HTMLNode.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4424D2AD16F25BCA0008B9EA /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D2AC16F25BCA0008B9EA /* libxml2.dylib */; };
-		4424D2B016F25D350008B9EA /* FacultyItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2AF16F25D350008B9EA /* FacultyItem.m */; };
-		4424D2B316F25DF20008B9EA /* RaspisanieManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2B216F25DF20008B9EA /* RaspisanieManager.m */; };
+		4424D2B016F25D350008B9EA /* ScheduleItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2AF16F25D350008B9EA /* ScheduleItem.m */; };
+		4424D2B316F25DF20008B9EA /* FacultyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2B216F25DF20008B9EA /* FacultyService.m */; };
 		4424D2BE16F262430008B9EA /* FacultyHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */; };
 		442B999C16FF98B400417A33 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442B999A16FF98B400417A33 /* CoreData.xcdatamodeld */; };
 		442B99A116FF99A100417A33 /* FacultyMO.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B99A016FF99A100417A33 /* FacultyMO.m */; };
@@ -50,6 +56,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D2025951852292E004D35AF /* BaseServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseServices.h; sourceTree = "<group>"; };
+		2D2025961852292E004D35AF /* BaseServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseServices.m; sourceTree = "<group>"; };
+		2D202598185229C3004D35AF /* SpecializationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecializationService.h; sourceTree = "<group>"; };
+		2D202599185229C3004D35AF /* SpecializationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecializationService.m; sourceTree = "<group>"; };
+		2D20259B185229FA004D35AF /* CourseServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseServices.h; sourceTree = "<group>"; };
+		2D20259C185229FA004D35AF /* CourseServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseServices.m; sourceTree = "<group>"; };
+		2D20259E18522A0E004D35AF /* GroupServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupServices.h; sourceTree = "<group>"; };
+		2D20259F18522A0E004D35AF /* GroupServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupServices.m; sourceTree = "<group>"; };
+		2D2025A118522A1D004D35AF /* WeekServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekServices.h; sourceTree = "<group>"; };
+		2D2025A218522A1D004D35AF /* WeekServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekServices.m; sourceTree = "<group>"; };
+		2D2025A418522A4C004D35AF /* ScheduleWeekServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleWeekServices.h; sourceTree = "<group>"; };
+		2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleWeekServices.m; sourceTree = "<group>"; };
 		4424D27D16F25A390008B9EA /* raspisanie.grsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raspisanie.grsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4424D28116F25A390008B9EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4424D28316F25A390008B9EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -72,10 +90,10 @@
 		4424D2A816F25A720008B9EA /* HTMLParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLParser.m; sourceTree = "<group>"; };
 		4424D2A916F25A720008B9EA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		4424D2AC16F25BCA0008B9EA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
-		4424D2AE16F25D350008B9EA /* FacultyItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacultyItem.h; sourceTree = "<group>"; };
-		4424D2AF16F25D350008B9EA /* FacultyItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacultyItem.m; sourceTree = "<group>"; };
-		4424D2B116F25DF20008B9EA /* RaspisanieManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RaspisanieManager.h; sourceTree = "<group>"; };
-		4424D2B216F25DF20008B9EA /* RaspisanieManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RaspisanieManager.m; sourceTree = "<group>"; };
+		4424D2AE16F25D350008B9EA /* ScheduleItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleItem.h; sourceTree = "<group>"; };
+		4424D2AF16F25D350008B9EA /* ScheduleItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleItem.m; sourceTree = "<group>"; };
+		4424D2B116F25DF20008B9EA /* FacultyService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacultyService.h; sourceTree = "<group>"; };
+		4424D2B216F25DF20008B9EA /* FacultyService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacultyService.m; sourceTree = "<group>"; };
 		4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacultyHTMLParser.h; sourceTree = "<group>"; };
 		4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacultyHTMLParser.m; sourceTree = "<group>"; };
 		442B999B16FF98B400417A33 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
@@ -166,10 +184,16 @@
 		4424D28716F25A3A0008B9EA /* raspisanie.grsu */ = {
 			isa = PBXGroup;
 			children = (
+				4424D2AE16F25D350008B9EA /* ScheduleItem.h */,
+				4424D2AF16F25D350008B9EA /* ScheduleItem.m */,
+				4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */,
+				4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */,
+				44DD069A1700EA20001DB0D0 /* Backend.h */,
+				44DD069B1700EA20001DB0D0 /* Backend.m */,
 				44A2B57916F63D9800200762 /* Loading View */,
 				4424D2A416F25A550008B9EA /* HTML Parser */,
 				442B999E16FF98BF00417A33 /* CoreData */,
-				446FEE8616F510DF00BC4430 /* UI */,
+				446FEE8616F510DF00BC4430 /* Services */,
 				44A2B56416F601B800200762 /* Schedule */,
 				449E10A316F8C31600376D35 /* Custom Cell */,
 				4424D29016F25A3A0008B9EA /* AppDelegate.h */,
@@ -241,19 +265,25 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		446FEE8616F510DF00BC4430 /* UI */ = {
+		446FEE8616F510DF00BC4430 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				4424D2AE16F25D350008B9EA /* FacultyItem.h */,
-				4424D2AF16F25D350008B9EA /* FacultyItem.m */,
-				4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */,
-				4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */,
-				44DD069A1700EA20001DB0D0 /* Backend.h */,
-				44DD069B1700EA20001DB0D0 /* Backend.m */,
-				4424D2B116F25DF20008B9EA /* RaspisanieManager.h */,
-				4424D2B216F25DF20008B9EA /* RaspisanieManager.m */,
+				2D2025951852292E004D35AF /* BaseServices.h */,
+				2D2025961852292E004D35AF /* BaseServices.m */,
+				4424D2B116F25DF20008B9EA /* FacultyService.h */,
+				4424D2B216F25DF20008B9EA /* FacultyService.m */,
+				2D202598185229C3004D35AF /* SpecializationService.h */,
+				2D202599185229C3004D35AF /* SpecializationService.m */,
+				2D20259B185229FA004D35AF /* CourseServices.h */,
+				2D20259C185229FA004D35AF /* CourseServices.m */,
+				2D20259E18522A0E004D35AF /* GroupServices.h */,
+				2D20259F18522A0E004D35AF /* GroupServices.m */,
+				2D2025A118522A1D004D35AF /* WeekServices.h */,
+				2D2025A218522A1D004D35AF /* WeekServices.m */,
+				2D2025A418522A4C004D35AF /* ScheduleWeekServices.h */,
+				2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */,
 			);
-			name = UI;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		449E10A316F8C31600376D35 /* Custom Cell */ = {
@@ -360,11 +390,13 @@
 			files = (
 				4424D28E16F25A3A0008B9EA /* main.m in Sources */,
 				4424D29216F25A3A0008B9EA /* AppDelegate.m in Sources */,
+				2D2025A318522A1D004D35AF /* WeekServices.m in Sources */,
+				2D20259A185229C3004D35AF /* SpecializationService.m in Sources */,
 				4424D29B16F25A3A0008B9EA /* ViewController.m in Sources */,
 				4424D2AA16F25A7D0008B9EA /* HTMLParser.m in Sources */,
 				4424D2AB16F25A800008B9EA /* HTMLNode.m in Sources */,
-				4424D2B016F25D350008B9EA /* FacultyItem.m in Sources */,
-				4424D2B316F25DF20008B9EA /* RaspisanieManager.m in Sources */,
+				4424D2B016F25D350008B9EA /* ScheduleItem.m in Sources */,
+				4424D2B316F25DF20008B9EA /* FacultyService.m in Sources */,
 				4424D2BE16F262430008B9EA /* FacultyHTMLParser.m in Sources */,
 				446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */,
 				446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */,
@@ -376,12 +408,16 @@
 				44A2B57816F63D8E00200762 /* LoadingView.m in Sources */,
 				449E10A716F8C37800376D35 /* LessonScheduleCell.m in Sources */,
 				442B999C16FF98B400417A33 /* CoreData.xcdatamodeld in Sources */,
+				2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */,
+				2D2025971852292E004D35AF /* BaseServices.m in Sources */,
 				442B99A116FF99A100417A33 /* FacultyMO.m in Sources */,
 				442B99AC16FF9A2B00417A33 /* CoreDataConnection.m in Sources */,
 				442B99AF16FF9AF200417A33 /* CacheManager.m in Sources */,
 				4434253216FFA4D8003E4116 /* SpecializationMO.m in Sources */,
 				44DD069C1700EA20001DB0D0 /* Backend.m in Sources */,
 				44FCE6BF1826734400FBF377 /* ReqState.m in Sources */,
+				2D20259D185229FA004D35AF /* CourseServices.m in Sources */,
+				2D2025A018522A0E004D35AF /* GroupServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
