@@ -34,7 +34,7 @@
         
         NSMutableArray *result = [NSMutableArray array];
         for (ScheduleItem *item in array) {
-            FacultyMO *faculty;
+            Faculty *faculty;
             faculty = [NSEntityDescription insertNewObjectForEntityForName:FACULTY_ENTITY_NAME inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
             faculty.title = item.title;
             faculty.id = item.id;

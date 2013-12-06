@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G56" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Faculty" representedClassName="Faculty" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,10 +17,11 @@
         <attribute name="facultyID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="faculty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Faculty" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Faculty" positionX="151" positionY="144" width="128" height="75"/>
-        <element name="Specialization" positionX="306" positionY="144" width="128" height="90"/>
+        <element name="Faculty" positionX="135" positionY="81" width="128" height="73"/>
         <element name="ReqState" positionX="-18" positionY="144" width="128" height="150"/>
+        <element name="Specialization" positionX="333" positionY="180" width="128" height="103"/>
     </elements>
 </model>

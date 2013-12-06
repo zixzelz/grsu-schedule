@@ -8,8 +8,8 @@
 
 #import "CacheManager.h"
 #import "CoreDataConnection.h"
-#import "FacultyMO.h"
-#import "SpecializationMO.h"
+#import "Faculty.h"
+#import "Specialization.h"
 #import "ReqState.h"
 
 #define FACULTY_ENTITY_NAME @"Faculty"
@@ -64,7 +64,7 @@ static CacheManager *_instance;
 }
 
 - (void)insertFacultyNoSaveWithItem:(ScheduleItem *)item {
-    FacultyMO *cache;
+    Faculty *cache;
     cache = [NSEntityDescription insertNewObjectForEntityForName:FACULTY_ENTITY_NAME inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
     cache.title = item.title;
     cache.id = item.id;
@@ -86,7 +86,7 @@ static CacheManager *_instance;
 }
 
 - (void)insertSpecializationNoSaveWithItem:(ScheduleItem *)item facultyID:(NSString *)facultyID {
-    SpecializationMO *cache;
+    Specialization *cache;
     cache = [NSEntityDescription insertNewObjectForEntityForName:SPECIALIZATION_ENTITY_NAME inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
     cache.title = item.title;
     cache.id = item.id;
@@ -193,7 +193,7 @@ static CacheManager *_instance;
 
 - (NSArray *)cacheWithCacheManagedObjects:(NSArray *)cacheManagedObjects {
     NSMutableArray *items = [NSMutableArray array];
-    for (FacultyMO *itemMO in cacheManagedObjects) {
+    for (Faculty *itemMO in cacheManagedObjects) {
         ScheduleItem *item = [[ScheduleItem alloc] init];
         item.id = itemMO.id;
         item.title = itemMO.title;

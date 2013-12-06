@@ -14,6 +14,8 @@
 		2D2025A318522A1D004D35AF /* WeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A218522A1D004D35AF /* WeekServices.m */; };
 		2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */; };
 		2D2025AA18523E73004D35AF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A918523E73004D35AF /* Constants.m */; };
+		2D2025AD18524889004D35AF /* Specialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025AC18524889004D35AF /* Specialization.m */; };
+		2D2025B0185248D8004D35AF /* Faculty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025AF185248D8004D35AF /* Faculty.m */; };
 		4424D28216F25A390008B9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28116F25A390008B9EA /* UIKit.framework */; };
 		4424D28416F25A390008B9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28316F25A390008B9EA /* Foundation.framework */; };
 		4424D28616F25A3A0008B9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28516F25A390008B9EA /* CoreGraphics.framework */; };
@@ -32,11 +34,9 @@
 		4424D2B316F25DF20008B9EA /* FacultyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2B216F25DF20008B9EA /* FacultyService.m */; };
 		4424D2BE16F262430008B9EA /* FacultyHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */; };
 		442B999C16FF98B400417A33 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 442B999A16FF98B400417A33 /* CoreData.xcdatamodeld */; };
-		442B99A116FF99A100417A33 /* FacultyMO.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B99A016FF99A100417A33 /* FacultyMO.m */; };
 		442B99AC16FF9A2B00417A33 /* CoreDataConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B99AB16FF9A2B00417A33 /* CoreDataConnection.m */; };
 		442B99AF16FF9AF200417A33 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B99AE16FF9AF200417A33 /* CacheManager.m */; };
 		442B99B116FF9CBF00417A33 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442B99B016FF9CBF00417A33 /* CoreData.framework */; };
-		4434253216FFA4D8003E4116 /* SpecializationMO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4434253116FFA4D8003E4116 /* SpecializationMO.m */; };
 		446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8216F510C600BC4430 /* SpecializationViewController.m */; };
 		446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446FEE8316F510C600BC4430 /* SpecializationViewController.xib */; };
 		446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8816F51E7000BC4430 /* CourseViewController.m */; };
@@ -71,6 +71,10 @@
 		2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleWeekServices.m; sourceTree = "<group>"; };
 		2D2025A818523E73004D35AF /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		2D2025A918523E73004D35AF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		2D2025AB18524889004D35AF /* Specialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specialization.h; sourceTree = "<group>"; };
+		2D2025AC18524889004D35AF /* Specialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Specialization.m; sourceTree = "<group>"; };
+		2D2025AE185248D8004D35AF /* Faculty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faculty.h; sourceTree = "<group>"; };
+		2D2025AF185248D8004D35AF /* Faculty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Faculty.m; sourceTree = "<group>"; };
 		4424D27D16F25A390008B9EA /* raspisanie.grsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raspisanie.grsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4424D28116F25A390008B9EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4424D28316F25A390008B9EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,15 +104,11 @@
 		4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacultyHTMLParser.h; sourceTree = "<group>"; };
 		4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacultyHTMLParser.m; sourceTree = "<group>"; };
 		442B999B16FF98B400417A33 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
-		442B999F16FF99A100417A33 /* FacultyMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacultyMO.h; sourceTree = "<group>"; };
-		442B99A016FF99A100417A33 /* FacultyMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacultyMO.m; sourceTree = "<group>"; };
 		442B99AA16FF9A2B00417A33 /* CoreDataConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataConnection.h; sourceTree = "<group>"; };
 		442B99AB16FF9A2B00417A33 /* CoreDataConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataConnection.m; sourceTree = "<group>"; };
 		442B99AD16FF9AF200417A33 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		442B99AE16FF9AF200417A33 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		442B99B016FF9CBF00417A33 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		4434253016FFA4D8003E4116 /* SpecializationMO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecializationMO.h; sourceTree = "<group>"; };
-		4434253116FFA4D8003E4116 /* SpecializationMO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecializationMO.m; sourceTree = "<group>"; };
 		446FEE8116F510C600BC4430 /* SpecializationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecializationViewController.h; sourceTree = "<group>"; };
 		446FEE8216F510C600BC4430 /* SpecializationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecializationViewController.m; sourceTree = "<group>"; };
 		446FEE8316F510C600BC4430 /* SpecializationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecializationViewController.xib; sourceTree = "<group>"; };
@@ -266,12 +266,12 @@
 				442B99AA16FF9A2B00417A33 /* CoreDataConnection.h */,
 				442B99AB16FF9A2B00417A33 /* CoreDataConnection.m */,
 				442B999A16FF98B400417A33 /* CoreData.xcdatamodeld */,
+				2D2025AE185248D8004D35AF /* Faculty.h */,
+				2D2025AF185248D8004D35AF /* Faculty.m */,
+				2D2025AB18524889004D35AF /* Specialization.h */,
+				2D2025AC18524889004D35AF /* Specialization.m */,
 				44FCE6BD1826734400FBF377 /* ReqState.h */,
 				44FCE6BE1826734400FBF377 /* ReqState.m */,
-				4434253016FFA4D8003E4116 /* SpecializationMO.h */,
-				4434253116FFA4D8003E4116 /* SpecializationMO.m */,
-				442B999F16FF99A100417A33 /* FacultyMO.h */,
-				442B99A016FF99A100417A33 /* FacultyMO.m */,
 				442B99AD16FF9AF200417A33 /* CacheManager.h */,
 				442B99AE16FF9AF200417A33 /* CacheManager.m */,
 			);
@@ -411,6 +411,7 @@
 				4424D2AB16F25A800008B9EA /* HTMLNode.m in Sources */,
 				4424D2B016F25D350008B9EA /* ScheduleItem.m in Sources */,
 				4424D2B316F25DF20008B9EA /* FacultyService.m in Sources */,
+				2D2025AD18524889004D35AF /* Specialization.m in Sources */,
 				4424D2BE16F262430008B9EA /* FacultyHTMLParser.m in Sources */,
 				446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */,
 				446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */,
@@ -419,15 +420,14 @@
 				44A2B56216F5FF9D00200762 /* ScheduleViewController.m in Sources */,
 				44A2B56A16F6021800200762 /* DaySchedule.m in Sources */,
 				44A2B56D16F6028500200762 /* LessonSchedule.m in Sources */,
+				2D2025B0185248D8004D35AF /* Faculty.m in Sources */,
 				44A2B57816F63D8E00200762 /* LoadingView.m in Sources */,
 				449E10A716F8C37800376D35 /* LessonScheduleCell.m in Sources */,
 				442B999C16FF98B400417A33 /* CoreData.xcdatamodeld in Sources */,
 				2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */,
 				2D2025971852292E004D35AF /* BaseServices.m in Sources */,
-				442B99A116FF99A100417A33 /* FacultyMO.m in Sources */,
 				442B99AC16FF9A2B00417A33 /* CoreDataConnection.m in Sources */,
 				442B99AF16FF9AF200417A33 /* CacheManager.m in Sources */,
-				4434253216FFA4D8003E4116 /* SpecializationMO.m in Sources */,
 				44DD069C1700EA20001DB0D0 /* Backend.m in Sources */,
 				44FCE6BF1826734400FBF377 /* ReqState.m in Sources */,
 				2D20259D185229FA004D35AF /* CourseServices.m in Sources */,

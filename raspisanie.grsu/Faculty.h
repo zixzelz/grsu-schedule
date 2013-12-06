@@ -2,7 +2,7 @@
 //  Faculty.h
 //  raspisanie.grsu
 //
-//  Created by Ruslan on 24.03.13.
+//  Created by Ruslan Maslouski on 12/6/13.
 //  Copyright (c) 2013 RYSoft. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface FacultyMO : NSManagedObject
+@interface Faculty : NSManagedObject
 
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * title;

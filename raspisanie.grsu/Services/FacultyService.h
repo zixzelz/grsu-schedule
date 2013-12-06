@@ -7,7 +7,7 @@
 //
 
 #import "BaseServices.h"
-#import "FacultyMO.h"
+#import "Faculty.h"
 
 @interface FacultyService : BaseServices
 

@@ -2,14 +2,14 @@
 //  Faculty.m
 //  raspisanie.grsu
 //
-//  Created by Ruslan on 24.03.13.
+//  Created by Ruslan Maslouski on 12/6/13.
 //  Copyright (c) 2013 RYSoft. All rights reserved.
 //
 
-#import "FacultyMO.h"
+#import "Faculty.h"
 
 
-@implementation FacultyMO
+@implementation Faculty
 
 @dynamic id;
 @dynamic title;

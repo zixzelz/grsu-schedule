@@ -16,13 +16,13 @@
 @property (nonatomic, strong) NSArray *specializationItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) FacultyMO *facultyItem;
+@property (nonatomic, strong) Faculty *facultyItem;
 
 @end
 
 @implementation SpecializationViewController 
 
-- (id)initWithFacultyItem:(FacultyMO *)facultyItem {
+- (id)initWithFacultyItem:(Faculty *)facultyItem {
     self = [super init];
     if (self) {
         self.title = @"Специальность";

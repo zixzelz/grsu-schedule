@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "FacultyService.h"
 #import "SpecializationViewController.h"
-#import "FacultyMO.h"
+#import "Faculty.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -63,7 +63,7 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    FacultyMO *item = self.facultyItems[indexPath.row];
+    Faculty *item = self.facultyItems[indexPath.row];
 
     SpecializationViewController *controller = [[SpecializationViewController alloc] initWithFacultyItem:item];
     [self.navigationController pushViewController:controller animated:YES];
