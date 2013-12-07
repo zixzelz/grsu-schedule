@@ -7,9 +7,10 @@
 //
 
 #import "BaseServices.h"
+#import "Course.h"
 
 @interface GroupServices : BaseServices
 
-- (void)groupItemsWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID callback:(ArrayBlock)callback;
+- (void)groupItemsWithCourse:(Course *)course;
 
 @end

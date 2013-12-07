@@ -10,8 +10,6 @@
 #import "Faculty.h"
 #import "Course.h"
 
-#define COURSE_ENTITY_NAME @"Course"
-
 @implementation CourseServices
 
 - (void)courseItemsWithSpecialization:(Specialization *)specialization {
@@ -53,7 +51,7 @@
 }
 
 - (NSString *)entityName {
-    return COURSE_ENTITY_NAME;
+    return @"Course";
 }
 
 @end

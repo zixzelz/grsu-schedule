@@ -9,49 +9,52 @@
 #import "GroupViewController.h"
 #import "GroupServices.h"
 #import "WeekViewController.h"
+#import "Group.h"
 
-@interface GroupViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface GroupViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) GroupServices *service;
+
 @property (nonatomic, strong) NSArray *groupItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) ScheduleItem *facultyItem;
-@property (nonatomic, strong) ScheduleItem *specializationItem;
-@property (nonatomic, strong) ScheduleItem *courseItem;
+@property (nonatomic, strong) Course *courseItem;
 
 @end
 
 @implementation GroupViewController
 
-- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem courseItem:(ScheduleItem *)courseItem {
+- (id)initWithCourseItem:(Course *)courseItem {
     self = [super init];
     if (self) {
         self.title = @"Группа";
-        self.facultyItem = facultyItem;
-        self.specializationItem = specializationItem;
         self.courseItem = courseItem;
-        [self loadCourseWithFacultyID:facultyItem.id specializationID:specializationItem.id courseID:courseItem.id];
+        [self setupRefreshControl];
+        [self setupService];
     }
     return self;
 }
 
-- (void)loadCourseWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID {
-    GroupServices *service = [GroupServices new];
-    [service groupItemsWithFacultyID:facultyID specializationID:specializationID courseID:courseID callback:^(NSArray *array, NSError *error) {
-        [self.loadingView hideLoading];
-        self.groupItems = array;
-        [self.tableView reloadData];
-    }];
+- (void)setupService {
+    self.service = [GroupServices new];
+    self.service.delegate = self;
+}
+
+- (void)setupRefreshControl {
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self
+                action:@selector(refreshView:)
+      forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (!self.groupItems) {
-        self.loadingView = [[LoadingView alloc] initWithView:self.view];
-        [self.loadingView showLoading];
-    }
+    [self fetchData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -60,6 +63,25 @@
     if (path) {
         [self.tableView deselectRowAtIndexPath:path animated:YES]; // Hide selected
     }
+}
+
+#pragma mark CourseServices
+
+- (void)fetchData {
+    [self.loadingView showLoading];
+    [self.service groupItemsWithCourse:self.courseItem];
+}
+
+- (void)reloadData {
+    [self.loadingView showLoading];
+    [self.service reloadDataWithItem:self.courseItem];
+}
+
+#pragma mark -
+
+- (void)refreshView:(UIRefreshControl *)refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    [self reloadData];
 }
 
 #pragma mark -
@@ -89,10 +111,19 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleItem *item = self.groupItems[indexPath.row];
-    
-    WeekViewController *controller = [[WeekViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:self.courseItem groupItem:item];
-    [self.navigationController pushViewController:controller animated:YES];
+//    ScheduleItem *item = self.groupItems[indexPath.row];
+//    
+//    WeekViewController *controller = [[WeekViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:self.courseItem groupItem:item];
+//    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - BaseServicesDelegate
+
+- (void)didLoadData:(NSArray *)items error:(NSError *)error {
+    [self.loadingView hideLoading];
+    [self.refreshControl endRefreshing];
+    self.groupItems = items;
+    [self.tableView reloadData];
 }
 
 @end

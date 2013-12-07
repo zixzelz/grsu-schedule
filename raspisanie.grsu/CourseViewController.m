@@ -111,10 +111,10 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleItem *item = self.courseItems[indexPath.row];
+    Course *item = self.courseItems[indexPath.row];
     
-//    GroupViewController *controller = [[GroupViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:item];
-//    [self.navigationController pushViewController:controller animated:YES];
+    GroupViewController *controller = [[GroupViewController alloc] initWithCourseItem:item];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - BaseServicesDelegate
