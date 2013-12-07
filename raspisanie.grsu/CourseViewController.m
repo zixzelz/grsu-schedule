@@ -16,19 +16,17 @@
 @property (nonatomic, strong) NSArray *courseItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) ScheduleItem *facultyItem;
-@property (nonatomic, strong) ScheduleItem *specializationItem;
+@property (nonatomic, strong) Specialization *specializationItem;
 
 @end
 
 @implementation CourseViewController
 
-- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem {
+- (id)initWithSpecializationItem:(Specialization *)specialization {
     self = [super init];
     if (self) {
         self.title = @"Курс";
-        self.facultyItem = facultyItem;
-        self.specializationItem = specializationItem;
+        self.specializationItem = specialization;
         [self loadCourseWithFacultyID:facultyItem.id specializationID:specializationItem.id];
     }
     return self;

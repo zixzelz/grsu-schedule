@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ScheduleItem.h"
+#import "Specialization.h"
 
 @interface CourseViewController : UIViewController
 
-- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem;
+- (id)initWithSpecializationItem:(Specialization *)specialization;
 
 @end

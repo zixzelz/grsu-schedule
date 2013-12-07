@@ -11,6 +11,18 @@
 #import "CoreDataConnection.h"
 #import "CacheManager.h"
 
+@protocol BaseServicesDelegate;
+
+
 @interface BaseServices : NSObject
+
+@property (nonatomic, weak) id<BaseServicesDelegate> delegate;
+
+@end
+
+
+@protocol BaseServicesDelegate <NSObject>
+
+- (void)didLoadData:(NSArray *)items error:(NSError *)error;
 
 @end

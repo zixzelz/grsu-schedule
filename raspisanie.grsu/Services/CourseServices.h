@@ -10,6 +10,6 @@
 
 @interface CourseServices : BaseServices
 
-- (void)courseItemsWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID callback:(ArrayBlock)callback;
+- (void)courseItemsWithSpecialization:(NSString *)specializationID callback:(ArrayBlock)callback;
 
 @end
