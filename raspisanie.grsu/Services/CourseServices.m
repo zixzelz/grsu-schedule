@@ -36,7 +36,7 @@
             course.id = item.id;
             course.specialization = specialization;
             
-            [result addObject:specialization];
+            [result addObject:course];
         }
         [[CoreDataConnection sharedInstance] saveContext];
         

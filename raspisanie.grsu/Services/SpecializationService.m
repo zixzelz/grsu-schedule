@@ -9,12 +9,10 @@
 #import "SpecializationService.h"
 #import "Specialization.h"
 
-#define SPECIALIZATION_ENTITY_NAME @"Specialization"
-
 @implementation SpecializationService
 
 - (void)specializationItemsWithFaculty:(Faculty *)faculty {
-    NSArray *items = [self fetchSpecializationWithFaculty:faculty];
+    NSArray *items = [self fetchDataWithItem:faculty];
     
     if (items.count > 0) {
         [self.delegate didLoadData:items error:nil];
@@ -25,19 +23,12 @@
     }
 }
 
-- (void)reloadDataWithFaculty:(Faculty *)faculty {
-    [self removeSpecializationWithFaculty:faculty];
-    [self loadDataWithFaculty:faculty callback:^(NSArray *array, NSError *error) {
-        [self.delegate didLoadData:array error:error];
-    }];
-}
-
 - (void)loadDataWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
     [[Backend sharedInstance] loadSpecializationItemsWithFacultyID:faculty.id callback:^(NSArray *array, NSError *error) {
         NSMutableArray *result = [NSMutableArray array];
         for (ScheduleItem *item in array) {
             Specialization *specialization;
-            specialization = [NSEntityDescription insertNewObjectForEntityForName:SPECIALIZATION_ENTITY_NAME inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
+            specialization = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
             specialization.title = item.title;
             specialization.id = item.id;
             specialization.faculty = faculty;
@@ -50,22 +41,14 @@
     }];
 }
 
-- (void)removeSpecializationWithFaculty:(Faculty *)faculty {
-    NSArray *items = [self fetchSpecializationWithFaculty:faculty];
-    
-    NSManagedObjectContext *managedObjectContext = [[CoreDataConnection sharedInstance] managedObjectContext];
-    for (NSManagedObject *managedObject in items) {
-        [managedObjectContext deleteObject:managedObject];
-    }
+#pragma mark - Override
+
+- (NSString *)rootFieldName {
+    return @"faculty";
 }
 
-- (NSArray *)fetchSpecializationWithFaculty:(Faculty *)faculty {
-    CacheManager *cacheManager = [CacheManager sharedInstance];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(faculty == %@)", faculty];
-    NSArray *items = [cacheManager sincCacheWithPredicate:predicate entity:SPECIALIZATION_ENTITY_NAME sortDescriptors:sortDescriptors];
-    
-    return items;
+- (NSString *)entityName {
+    return @"Specialization";
 }
 
 @end

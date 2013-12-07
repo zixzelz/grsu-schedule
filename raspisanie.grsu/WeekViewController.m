@@ -9,51 +9,54 @@
 #import "WeekViewController.h"
 #import "WeekServices.h"
 #import "ScheduleViewController.h"
+#import "Week.h"
 
-@interface WeekViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface WeekViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) WeekServices *service;
+
 @property (nonatomic, strong) NSArray *weekItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) ScheduleItem *facultyItem;
-@property (nonatomic, strong) ScheduleItem *specializationItem;
-@property (nonatomic, strong) ScheduleItem *courseItem;
-@property (nonatomic, strong) ScheduleItem *groupItem;
+@property (nonatomic, strong) Group *groupItem;
 
 @end
 
 @implementation WeekViewController
 
-- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem courseItem:(ScheduleItem *)courseItem groupItem:(ScheduleItem *)groupItem {
+- (id)initWithGroupItem:(Group *)groupItem {
     self = [super init];
     if (self) {
         self.title = @"Неделя с";
-        self.facultyItem = facultyItem;
-        self.specializationItem = specializationItem;
-        self.courseItem = courseItem;
         self.groupItem = groupItem;
-        [self loadCourseWithFacultyID:facultyItem.id specializationID:specializationItem.id courseID:courseItem.id groupID:groupItem.id];
+        [self setupRefreshControl];
+        [self setupService];
     }
     return self;
 }
 
-- (void)loadCourseWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID {
-    WeekServices *service = [WeekServices new];
-    [service weekItemsWithFacultyID:facultyID specializationID:specializationID courseID:courseID groupID:groupID callback:^(NSArray *array, NSError *error) {
-        [self.loadingView hideLoading];
-        self.weekItems = array;
-        [self.tableView reloadData];
-    }];
+
+- (void)setupService {
+    self.service = [WeekServices new];
+    self.service.delegate = self;
+}
+
+- (void)setupRefreshControl {
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self
+                action:@selector(refreshView:)
+      forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loadingView = [[LoadingView alloc] initWithView:self.view];
     
-    if (!self.weekItems) {
-        self.loadingView = [[LoadingView alloc] initWithView:self.view];
-        [self.loadingView showLoading];
-    }
+    [self fetchData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,6 +65,25 @@
     if (path) {
         [self.tableView deselectRowAtIndexPath:path animated:YES]; // Hide selected
     }
+}
+
+#pragma mark CourseServices
+
+- (void)fetchData {
+    [self.loadingView showLoading];
+    [self.service weekItemsWithGroup:self.groupItem];
+}
+
+- (void)reloadData {
+    [self.loadingView showLoading];
+    [self.service reloadDataWithItem:self.groupItem];
+}
+
+#pragma mark -
+
+- (void)refreshView:(UIRefreshControl *)refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    [self reloadData];
 }
 
 #pragma mark -
@@ -90,10 +112,19 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleItem *item = self.weekItems[indexPath.row];
-    
-    ScheduleViewController *controller = [[ScheduleViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:self.courseItem groupItem:self.groupItem weekItem:item];
-    [self.navigationController pushViewController:controller animated:YES];
+//    ScheduleItem *item = self.weekItems[indexPath.row];
+//    
+//    ScheduleViewController *controller = [[ScheduleViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:self.courseItem groupItem:self.groupItem weekItem:item];
+//    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - BaseServicesDelegate
+
+- (void)didLoadData:(NSArray *)items error:(NSError *)error {
+    [self.loadingView hideLoading];
+    [self.refreshControl endRefreshing];
+    self.weekItems = items;
+    [self.tableView reloadData];
 }
 
 @end

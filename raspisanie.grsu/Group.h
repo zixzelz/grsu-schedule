@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Course;
 
 @interface Group : NSManagedObject
 
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSManagedObject *course;
+@property (nonatomic, retain) Course *course;
 
 @end

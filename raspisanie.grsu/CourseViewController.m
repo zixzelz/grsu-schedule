@@ -53,6 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loadingView = [[LoadingView alloc] initWithView:self.view];
     
     [self fetchData];
 }

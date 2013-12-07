@@ -39,7 +39,7 @@
             group.id = item.id;
             group.course = course;
             
-            [result addObject:specialization];
+            [result addObject:group];
         }
         [[CoreDataConnection sharedInstance] saveContext];
         

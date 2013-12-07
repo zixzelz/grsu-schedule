@@ -53,6 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loadingView = [[LoadingView alloc] initWithView:self.view];
     
     [self fetchData];
 }
@@ -100,7 +101,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    ScheduleItem *item = self.groupItems[indexPath.row];
+    Group *item = self.groupItems[indexPath.row];
     
     cell.textLabel.text = item.title;
     
@@ -111,10 +112,10 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    ScheduleItem *item = self.groupItems[indexPath.row];
-//    
-//    WeekViewController *controller = [[WeekViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:self.courseItem groupItem:item];
-//    [self.navigationController pushViewController:controller animated:YES];
+    Group *item = self.groupItems[indexPath.row];
+    
+    WeekViewController *controller = [[WeekViewController alloc] initWithGroupItem:item];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - BaseServicesDelegate

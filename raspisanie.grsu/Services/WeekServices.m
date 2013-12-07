@@ -7,15 +7,55 @@
 //
 
 #import "WeekServices.h"
+#import "Faculty.h"
+#import "Specialization.h"
+#import "Course.h"
+#import "Week.h"
 
 @implementation WeekServices
 
-- (void)weekItemsWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID callback:(ArrayBlock)callback {
-    [[Backend sharedInstance] loadWeekItemsWithFacultyID:facultyID specializationID:specializationID courseID:courseID groupID:groupID callback:callback];
-    //    [self performRequestWithFacultyID:facultyID specializationID:specializationID courseID:courseID groupID:groupID weekID:nil callback:^(NSString *html, NSError *error) {
-    //        NSArray *array = [FacultyHTMLParser parseWithHTML:html key:KEY_SELECT_WEEK];
-    //        callback(array, error);
-    //    }];
+- (void)weekItemsWithGroup:(Group *)group {
+    NSArray *items = [self fetchDataWithItem:group];
+    
+    if (items.count > 0) {
+        [self.delegate didLoadData:items error:nil];
+    } else {
+        [self loadDataWithItem:group callback:^(NSArray *array, NSError *error) {
+            [self.delegate didLoadData:array error:error];
+        }];
+    }
+}
+
+- (void)loadDataWithItem:(Group *)group callback:(ArrayBlock)callback {
+    Course *course = [group course];
+    Specialization *specialization = [course specialization];
+    Faculty *faculty = [specialization faculty];
+    
+    [[Backend sharedInstance] loadWeekItemsWithFacultyID:faculty.id specializationID:specialization.id courseID:course.id groupID:group.id callback:^(NSArray *array, NSError *error) {
+        NSMutableArray *result = [NSMutableArray array];
+        for (ScheduleItem *item in array) {
+            Week *week;
+            week = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
+            week.title = item.title;
+            week.id = item.id;
+            week.group = group;
+            
+            [result addObject:week];
+        }
+        [[CoreDataConnection sharedInstance] saveContext];
+        
+        callback(result, error);
+    }];
+}
+
+#pragma mark - Override
+
+- (NSString *)rootFieldName {
+    return @"group";
+}
+
+- (NSString *)entityName {
+    return @"Week";
 }
 
 @end

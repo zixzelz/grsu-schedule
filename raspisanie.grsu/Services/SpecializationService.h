@@ -12,6 +12,5 @@
 @interface SpecializationService : BaseServices
 
 - (void)specializationItemsWithFaculty:(Faculty *)faculty;
-- (void)reloadDataWithFaculty:(Faculty *)faculty;
 
 @end

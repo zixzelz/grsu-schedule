@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScheduleItem.h"
 #import "Specialization.h"
 
 @interface CourseViewController : UIViewController

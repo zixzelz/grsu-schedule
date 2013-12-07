@@ -76,7 +76,7 @@
 
 - (void)reloadData {
     [self.loadingView showLoading];
-    [self.service reloadDataWithFaculty:self.facultyItem];
+    [self.service reloadDataWithItem:self.facultyItem];
 }
 
 #pragma mark -
