@@ -1,5 +1,5 @@
 //
-//  Faculty.h
+//  Course.h
 //  raspisanie.grsu
 //
 //  Created by Ruslan on 07.12.13.
@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Specialization;
 
-@interface Faculty : NSManagedObject
+@interface Course : NSManagedObject
 
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) Specialization *specialization;
 
 @end

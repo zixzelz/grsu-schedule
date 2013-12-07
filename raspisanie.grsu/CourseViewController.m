@@ -9,10 +9,14 @@
 #import "CourseViewController.h"
 #import "CourseServices.h"
 #import "GroupViewController.h"
+#import "Course.h"
 
-@interface CourseViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface CourseViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) CourseServices *service;
+
 @property (nonatomic, strong) NSArray *courseItems;
 @property (nonatomic, strong) LoadingView *loadingView;
 
@@ -27,27 +31,30 @@
     if (self) {
         self.title = @"Курс";
         self.specializationItem = specialization;
-        [self loadCourseWithFacultyID:facultyItem.id specializationID:specializationItem.id];
+        [self setupService];
+        [self setupRefreshControl];
     }
     return self;
 }
 
-- (void)loadCourseWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID {
-    CourseServices *service = [CourseServices new];
-    [service courseItemsWithFacultyID:facultyID specializationID:specializationID callback:^(NSArray *array, NSError *error) {
-        [self.loadingView hideLoading];
-        self.courseItems = array;
-        [self.tableView reloadData];
-    }];
+- (void)setupService {
+    self.service = [CourseServices new];
+    self.service.delegate = self;
+}
+
+- (void)setupRefreshControl {
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self
+                action:@selector(refreshView:)
+      forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (!self.courseItems) {
-        self.loadingView = [[LoadingView alloc] initWithView:self.view];
-        [self.loadingView showLoading];
-    }
+    [self fetchData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -56,6 +63,25 @@
     if (path) {
         [self.tableView deselectRowAtIndexPath:path animated:YES]; // Hide selected
     }
+}
+
+#pragma mark CourseServices
+
+- (void)fetchData {
+    [self.loadingView showLoading];
+    [self.service courseItemsWithSpecialization:self.specializationItem];
+}
+
+- (void)reloadData {
+    [self.loadingView showLoading];
+    [self.service reloadDataWithItem:self.specializationItem];
+}
+
+#pragma mark -
+
+- (void)refreshView:(UIRefreshControl *)refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    [self reloadData];
 }
 
 #pragma mark -
@@ -87,8 +113,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ScheduleItem *item = self.courseItems[indexPath.row];
     
-    GroupViewController *controller = [[GroupViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:item];
-    [self.navigationController pushViewController:controller animated:YES];
+//    GroupViewController *controller = [[GroupViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:item];
+//    [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - BaseServicesDelegate
+
+- (void)didLoadData:(NSArray *)items error:(NSError *)error {
+    [self.loadingView hideLoading];
+    [self.refreshControl endRefreshing];
+    self.courseItems = items;
+    [self.tableView reloadData];
 }
 
 @end

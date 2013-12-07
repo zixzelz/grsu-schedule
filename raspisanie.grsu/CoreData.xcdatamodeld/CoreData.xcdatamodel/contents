@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G56" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Course" representedClassName="Course" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="specialization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Specialization" syncable="YES"/>
+    </entity>
     <entity name="Faculty" representedClassName="Faculty" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Course" syncable="YES"/>
     </entity>
     <entity name="ReqState" representedClassName="ReqState" syncable="YES">
         <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,9 +29,17 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="faculty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Faculty" syncable="YES"/>
     </entity>
+    <entity name="Week" representedClassName="Week" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Group" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Faculty" positionX="135" positionY="81" width="128" height="73"/>
-        <element name="ReqState" positionX="-18" positionY="144" width="128" height="150"/>
-        <element name="Specialization" positionX="333" positionY="180" width="128" height="103"/>
+        <element name="Faculty" positionX="-155" positionY="126" width="128" height="75"/>
+        <element name="ReqState" positionX="-135" positionY="381" width="128" height="150"/>
+        <element name="Specialization" positionX="-20" positionY="207" width="128" height="103"/>
+        <element name="Course" positionX="108" positionY="315" width="128" height="90"/>
+        <element name="Group" positionX="234" positionY="405" width="128" height="90"/>
+        <element name="Week" positionX="358" positionY="495" width="128" height="90"/>
     </elements>
 </model>

@@ -18,6 +18,10 @@
 
 @property (nonatomic, weak) id<BaseServicesDelegate> delegate;
 
+- (void)reloadDataWithItem:(id)item;
+- (void)removeDataWithItem:(id)item;
+- (NSArray *)fetchDataWithItem:(id)item;
+
 @end
 
 

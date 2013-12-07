@@ -15,7 +15,6 @@
 		2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */; };
 		2D2025AA18523E73004D35AF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A918523E73004D35AF /* Constants.m */; };
 		2D2025AD18524889004D35AF /* Specialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025AC18524889004D35AF /* Specialization.m */; };
-		2D2025B0185248D8004D35AF /* Faculty.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025AF185248D8004D35AF /* Faculty.m */; };
 		4424D28216F25A390008B9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28116F25A390008B9EA /* UIKit.framework */; };
 		4424D28416F25A390008B9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28316F25A390008B9EA /* Foundation.framework */; };
 		4424D28616F25A3A0008B9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28516F25A390008B9EA /* CoreGraphics.framework */; };
@@ -37,6 +36,10 @@
 		442B99AC16FF9A2B00417A33 /* CoreDataConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B99AB16FF9A2B00417A33 /* CoreDataConnection.m */; };
 		442B99AF16FF9AF200417A33 /* CacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B99AE16FF9AF200417A33 /* CacheManager.m */; };
 		442B99B116FF9CBF00417A33 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 442B99B016FF9CBF00417A33 /* CoreData.framework */; };
+		445764C0185392F40094BD70 /* Week.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764BF185392F40094BD70 /* Week.m */; };
+		445764C4185393270094BD70 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C3185393270094BD70 /* Group.m */; };
+		445764C7185393280094BD70 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C6185393280094BD70 /* Course.m */; };
+		445764CA185393290094BD70 /* Faculty.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C9185393280094BD70 /* Faculty.m */; };
 		446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8216F510C600BC4430 /* SpecializationViewController.m */; };
 		446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446FEE8316F510C600BC4430 /* SpecializationViewController.xib */; };
 		446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8816F51E7000BC4430 /* CourseViewController.m */; };
@@ -73,8 +76,6 @@
 		2D2025A918523E73004D35AF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2D2025AB18524889004D35AF /* Specialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specialization.h; sourceTree = "<group>"; };
 		2D2025AC18524889004D35AF /* Specialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Specialization.m; sourceTree = "<group>"; };
-		2D2025AE185248D8004D35AF /* Faculty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faculty.h; sourceTree = "<group>"; };
-		2D2025AF185248D8004D35AF /* Faculty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Faculty.m; sourceTree = "<group>"; };
 		4424D27D16F25A390008B9EA /* raspisanie.grsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raspisanie.grsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4424D28116F25A390008B9EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4424D28316F25A390008B9EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -109,6 +110,14 @@
 		442B99AD16FF9AF200417A33 /* CacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheManager.h; sourceTree = "<group>"; };
 		442B99AE16FF9AF200417A33 /* CacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheManager.m; sourceTree = "<group>"; };
 		442B99B016FF9CBF00417A33 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		445764BE185392F30094BD70 /* Week.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Week.h; sourceTree = "<group>"; };
+		445764BF185392F40094BD70 /* Week.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Week.m; sourceTree = "<group>"; };
+		445764C2185393270094BD70 /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		445764C3185393270094BD70 /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		445764C5185393280094BD70 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Course.h; sourceTree = "<group>"; };
+		445764C6185393280094BD70 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
+		445764C8185393280094BD70 /* Faculty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faculty.h; sourceTree = "<group>"; };
+		445764C9185393280094BD70 /* Faculty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Faculty.m; sourceTree = "<group>"; };
 		446FEE8116F510C600BC4430 /* SpecializationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecializationViewController.h; sourceTree = "<group>"; };
 		446FEE8216F510C600BC4430 /* SpecializationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecializationViewController.m; sourceTree = "<group>"; };
 		446FEE8316F510C600BC4430 /* SpecializationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecializationViewController.xib; sourceTree = "<group>"; };
@@ -266,10 +275,16 @@
 				442B99AA16FF9A2B00417A33 /* CoreDataConnection.h */,
 				442B99AB16FF9A2B00417A33 /* CoreDataConnection.m */,
 				442B999A16FF98B400417A33 /* CoreData.xcdatamodeld */,
-				2D2025AE185248D8004D35AF /* Faculty.h */,
-				2D2025AF185248D8004D35AF /* Faculty.m */,
+				445764C8185393280094BD70 /* Faculty.h */,
+				445764C9185393280094BD70 /* Faculty.m */,
 				2D2025AB18524889004D35AF /* Specialization.h */,
 				2D2025AC18524889004D35AF /* Specialization.m */,
+				445764C5185393280094BD70 /* Course.h */,
+				445764C6185393280094BD70 /* Course.m */,
+				445764C2185393270094BD70 /* Group.h */,
+				445764C3185393270094BD70 /* Group.m */,
+				445764BE185392F30094BD70 /* Week.h */,
+				445764BF185392F40094BD70 /* Week.m */,
 				44FCE6BD1826734400FBF377 /* ReqState.h */,
 				44FCE6BE1826734400FBF377 /* ReqState.m */,
 				442B99AD16FF9AF200417A33 /* CacheManager.h */,
@@ -420,7 +435,6 @@
 				44A2B56216F5FF9D00200762 /* ScheduleViewController.m in Sources */,
 				44A2B56A16F6021800200762 /* DaySchedule.m in Sources */,
 				44A2B56D16F6028500200762 /* LessonSchedule.m in Sources */,
-				2D2025B0185248D8004D35AF /* Faculty.m in Sources */,
 				44A2B57816F63D8E00200762 /* LoadingView.m in Sources */,
 				449E10A716F8C37800376D35 /* LessonScheduleCell.m in Sources */,
 				442B999C16FF98B400417A33 /* CoreData.xcdatamodeld in Sources */,
@@ -432,6 +446,10 @@
 				44FCE6BF1826734400FBF377 /* ReqState.m in Sources */,
 				2D20259D185229FA004D35AF /* CourseServices.m in Sources */,
 				2D2025A018522A0E004D35AF /* GroupServices.m in Sources */,
+				445764C0185392F40094BD70 /* Week.m in Sources */,
+				445764C4185393270094BD70 /* Group.m in Sources */,
+				445764C7185393280094BD70 /* Course.m in Sources */,
+				445764CA185393290094BD70 /* Faculty.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

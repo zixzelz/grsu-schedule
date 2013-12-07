@@ -1,17 +1,18 @@
 //
-//  Faculty.m
+//  Week.m
 //  raspisanie.grsu
 //
 //  Created by Ruslan on 07.12.13.
 //  Copyright (c) 2013 RYSoft. All rights reserved.
 //
 
-#import "Faculty.h"
+#import "Week.h"
 
 
-@implementation Faculty
+@implementation Week
 
-@dynamic id;
 @dynamic title;
+@dynamic id;
+@dynamic group;
 
 @end

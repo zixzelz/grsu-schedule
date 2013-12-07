@@ -1,5 +1,5 @@
 //
-//  Faculty.h
+//  Group.h
 //  raspisanie.grsu
 //
 //  Created by Ruslan on 07.12.13.
@@ -10,9 +10,10 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Faculty : NSManagedObject
+@interface Group : NSManagedObject
 
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSManagedObject *course;
 
 @end

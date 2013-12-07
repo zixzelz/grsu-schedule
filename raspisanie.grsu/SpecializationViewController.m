@@ -118,9 +118,9 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleItem *item = self.specializationItems[indexPath.row];
+    Specialization *item = self.specializationItems[indexPath.row];
     
-    CourseViewController *controller = [[CourseViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:item];
+    CourseViewController *controller = [[CourseViewController alloc] initWithSpecializationItem:item];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
