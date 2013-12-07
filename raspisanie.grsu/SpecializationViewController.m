@@ -27,14 +27,14 @@
     if (self) {
         self.title = @"Специальность";
         self.facultyItem = facultyItem;
-        [self loadSpecializationWithFacultyID:[facultyItem.id copy]];
+        [self loadSpecializationWithFaculty:facultyItem];
     }
     return self;
 }
 
-- (void)loadSpecializationWithFacultyID:(NSString *)facultyID {
+- (void)loadSpecializationWithFaculty:(Faculty *)faculty {
     SpecializationService *service = [SpecializationService new];
-    [service specializationItemsWithFacultyID:facultyID callback:^(NSArray *array, NSError *error) {
+    [service specializationItemsWithFaculty:faculty callback:^(NSArray *array, NSError *error) {
         [self.loadingView hideLoading];
         self.specializationItems = array;
         [self.tableView reloadData];

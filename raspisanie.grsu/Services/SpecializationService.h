@@ -7,9 +7,10 @@
 //
 
 #import "BaseServices.h"
+#import "Faculty.h"
 
 @interface SpecializationService : BaseServices
 
-- (void)specializationItemsWithFacultyID:(NSString *)facultyID callback:(ArrayBlock)callback;
+- (void)specializationItemsWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback;
 
 @end

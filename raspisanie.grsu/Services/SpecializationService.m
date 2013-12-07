@@ -13,13 +13,19 @@
 
 @implementation SpecializationService
 
-- (void)specializationItemsWithFacultyID:(NSString *)facultyID callback:(ArrayBlock)callback {
-//    [[Backend sharedInstance] loadSpecializationItemsWithFacultyID:facultyID callback:callback];
-    [self reloadDataWithFacultyID:facultyID callback:callback];
+- (void)specializationItemsWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
+    NSArray *items = [self fetchSpecializationWithFaculty:faculty];
+    
+    if (items.count > 0) {
+        callback(items, nil);
+    } else {
+        [self reloadDataWithFaculty:faculty callback:callback];
+    }
+
 }
 
-- (void)reloadDataWithFacultyID:(NSString *)facultyID callback:(ArrayBlock)callback {
-    [[Backend sharedInstance] loadSpecializationItemsWithFacultyID:facultyID callback:^(NSArray *array, NSError *error) {
+- (void)reloadDataWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
+    [[Backend sharedInstance] loadSpecializationItemsWithFacultyID:faculty.id callback:^(NSArray *array, NSError *error) {
 //        [self removeAllFaculty];
         
         NSMutableArray *result = [NSMutableArray array];
@@ -28,6 +34,7 @@
             specialization = [NSEntityDescription insertNewObjectForEntityForName:SPECIALIZATION_ENTITY_NAME inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
             specialization.title = item.title;
             specialization.id = item.id;
+            specialization.faculty = faculty;
             
             [result addObject:specialization];
         }
@@ -47,12 +54,13 @@
 //    }
 //}
 
-//- (NSArray *)fetchAllFaculty {
-//    CacheManager *cacheManager = [CacheManager sharedInstance];
-//    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-//    NSArray *faculties = [cacheManager sincCacheWithPredicate:nil entity:FACULTY_ENTITY_NAME sortDescriptors:sortDescriptors];
-//    
-//    return faculties;
-//}
+- (NSArray *)fetchSpecializationWithFaculty:(Faculty *)faculty {
+    CacheManager *cacheManager = [CacheManager sharedInstance];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(faculty == %@)", faculty];
+    NSArray *items = [cacheManager sincCacheWithPredicate:predicate entity:SPECIALIZATION_ENTITY_NAME sortDescriptors:sortDescriptors];
+    
+    return items;
+}
 
 @end
