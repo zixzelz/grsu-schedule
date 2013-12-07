@@ -11,6 +11,7 @@
 
 @interface SpecializationService : BaseServices
 
-- (void)specializationItemsWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback;
+- (void)specializationItemsWithFaculty:(Faculty *)faculty;
+- (void)reloadDataWithFaculty:(Faculty *)faculty;
 
 @end

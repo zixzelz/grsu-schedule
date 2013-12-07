@@ -13,20 +13,23 @@
 
 @implementation SpecializationService
 
-- (void)specializationItemsWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
+- (void)specializationItemsWithFaculty:(Faculty *)faculty {
     NSArray *items = [self fetchSpecializationWithFaculty:faculty];
     
     if (items.count > 0) {
-        callback(items, nil);
+        [self.delegate didLoadData:items error:nil];
     } else {
-        [self loadDataWithFaculty:faculty callback:callback];
+        [self loadDataWithFaculty:faculty callback:^(NSArray *array, NSError *error) {
+            [self.delegate didLoadData:array error:error];
+        }];
     }
-
 }
 
-- (void)reloadDataWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
+- (void)reloadDataWithFaculty:(Faculty *)faculty {
     [self removeSpecializationWithFaculty:faculty];
-    [self loadDataWithFaculty:faculty callback:callback];
+    [self loadDataWithFaculty:faculty callback:^(NSArray *array, NSError *error) {
+        [self.delegate didLoadData:array error:error];
+    }];
 }
 
 - (void)loadDataWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
