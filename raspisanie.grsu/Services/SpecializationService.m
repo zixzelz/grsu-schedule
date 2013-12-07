@@ -19,15 +19,18 @@
     if (items.count > 0) {
         callback(items, nil);
     } else {
-        [self reloadDataWithFaculty:faculty callback:callback];
+        [self loadDataWithFaculty:faculty callback:callback];
     }
 
 }
 
 - (void)reloadDataWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
+    [self removeSpecializationWithFaculty:faculty];
+    [self loadDataWithFaculty:faculty callback:callback];
+}
+
+- (void)loadDataWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
     [[Backend sharedInstance] loadSpecializationItemsWithFacultyID:faculty.id callback:^(NSArray *array, NSError *error) {
-//        [self removeAllFaculty];
-        
         NSMutableArray *result = [NSMutableArray array];
         for (ScheduleItem *item in array) {
             Specialization *specialization;
@@ -44,15 +47,14 @@
     }];
 }
 
-//- (void)removeAllFaculty {
-//    CacheManager *cacheManager = [CacheManager sharedInstance];
-//    NSArray *faculties = [cacheManager sincCacheWithPredicate:nil entity:FACULTY_ENTITY_NAME];
-//    
-//    NSManagedObjectContext *managedObjectContext = [[CoreDataConnection sharedInstance] managedObjectContext];
-//    for (NSManagedObject *managedObject in faculties) {
-//        [managedObjectContext deleteObject:managedObject];
-//    }
-//}
+- (void)removeSpecializationWithFaculty:(Faculty *)faculty {
+    NSArray *items = [self fetchSpecializationWithFaculty:faculty];
+    
+    NSManagedObjectContext *managedObjectContext = [[CoreDataConnection sharedInstance] managedObjectContext];
+    for (NSManagedObject *managedObject in items) {
+        [managedObjectContext deleteObject:managedObject];
+    }
+}
 
 - (NSArray *)fetchSpecializationWithFaculty:(Faculty *)faculty {
     CacheManager *cacheManager = [CacheManager sharedInstance];
