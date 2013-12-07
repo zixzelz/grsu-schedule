@@ -2,17 +2,18 @@
 //  DaySchedule.h
 //  raspisanie.grsu
 //
-//  Created by Ruslan on 17.03.13.
+//  Created by Ruslan on 07.12.13.
 //  Copyright (c) 2013 RYSoft. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "LessonSchedule.h"
+#import <CoreData/CoreData.h>
 
-@interface DaySchedule : NSObject
+@class Week;
 
-@property (nonatomic, strong) NSString *date;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSArray *lessons;
+@interface DaySchedule : NSManagedObject
+
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) Week *week;
 
 @end

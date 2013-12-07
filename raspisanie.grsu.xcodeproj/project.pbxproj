@@ -40,6 +40,8 @@
 		445764C4185393270094BD70 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C3185393270094BD70 /* Group.m */; };
 		445764C7185393280094BD70 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C6185393280094BD70 /* Course.m */; };
 		445764CA185393290094BD70 /* Faculty.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C9185393280094BD70 /* Faculty.m */; };
+		445764CD1853B8CE0094BD70 /* DaySchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764CC1853B8CD0094BD70 /* DaySchedule.m */; };
+		445764D01853B8CF0094BD70 /* LessonSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764CF1853B8CF0094BD70 /* LessonSchedule.m */; };
 		446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8216F510C600BC4430 /* SpecializationViewController.m */; };
 		446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446FEE8316F510C600BC4430 /* SpecializationViewController.xib */; };
 		446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8816F51E7000BC4430 /* CourseViewController.m */; };
@@ -52,8 +54,6 @@
 		44A2B55E16F5F94B00200762 /* WeekViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44A2B55C16F5F94A00200762 /* WeekViewController.xib */; };
 		44A2B56216F5FF9D00200762 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A2B56016F5FF9C00200762 /* ScheduleViewController.m */; };
 		44A2B56316F5FF9D00200762 /* ScheduleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44A2B56116F5FF9D00200762 /* ScheduleViewController.xib */; };
-		44A2B56A16F6021800200762 /* DaySchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A2B56916F6021800200762 /* DaySchedule.m */; };
-		44A2B56D16F6028500200762 /* LessonSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A2B56C16F6028500200762 /* LessonSchedule.m */; };
 		44A2B57816F63D8E00200762 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A2B57716F63D8D00200762 /* LoadingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		44DD069C1700EA20001DB0D0 /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DD069B1700EA20001DB0D0 /* Backend.m */; };
 		44FCE6BF1826734400FBF377 /* ReqState.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FCE6BE1826734400FBF377 /* ReqState.m */; };
@@ -118,6 +118,10 @@
 		445764C6185393280094BD70 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		445764C8185393280094BD70 /* Faculty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faculty.h; sourceTree = "<group>"; };
 		445764C9185393280094BD70 /* Faculty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Faculty.m; sourceTree = "<group>"; };
+		445764CB1853B8CC0094BD70 /* DaySchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySchedule.h; sourceTree = "<group>"; };
+		445764CC1853B8CD0094BD70 /* DaySchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySchedule.m; sourceTree = "<group>"; };
+		445764CE1853B8CE0094BD70 /* LessonSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonSchedule.h; sourceTree = "<group>"; };
+		445764CF1853B8CF0094BD70 /* LessonSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonSchedule.m; sourceTree = "<group>"; };
 		446FEE8116F510C600BC4430 /* SpecializationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecializationViewController.h; sourceTree = "<group>"; };
 		446FEE8216F510C600BC4430 /* SpecializationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecializationViewController.m; sourceTree = "<group>"; };
 		446FEE8316F510C600BC4430 /* SpecializationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecializationViewController.xib; sourceTree = "<group>"; };
@@ -136,10 +140,6 @@
 		44A2B55F16F5FF9C00200762 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		44A2B56016F5FF9C00200762 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
 		44A2B56116F5FF9D00200762 /* ScheduleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleViewController.xib; sourceTree = "<group>"; };
-		44A2B56816F6021800200762 /* DaySchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySchedule.h; sourceTree = "<group>"; };
-		44A2B56916F6021800200762 /* DaySchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySchedule.m; sourceTree = "<group>"; };
-		44A2B56B16F6028500200762 /* LessonSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonSchedule.h; sourceTree = "<group>"; };
-		44A2B56C16F6028500200762 /* LessonSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonSchedule.m; sourceTree = "<group>"; };
 		44A2B57616F63D8C00200762 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingView.h; sourceTree = "<group>"; };
 		44A2B57716F63D8D00200762 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadingView.m; sourceTree = "<group>"; };
 		44DD069A1700EA20001DB0D0 /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
@@ -216,7 +216,6 @@
 				4424D2A416F25A550008B9EA /* HTML Parser */,
 				442B999E16FF98BF00417A33 /* CoreData */,
 				446FEE8616F510DF00BC4430 /* Services */,
-				44A2B56416F601B800200762 /* Schedule */,
 				449E10A316F8C31600376D35 /* Custom Cell */,
 				4424D29016F25A3A0008B9EA /* AppDelegate.h */,
 				4424D29116F25A3A0008B9EA /* AppDelegate.m */,
@@ -275,6 +274,10 @@
 				442B99AA16FF9A2B00417A33 /* CoreDataConnection.h */,
 				442B99AB16FF9A2B00417A33 /* CoreDataConnection.m */,
 				442B999A16FF98B400417A33 /* CoreData.xcdatamodeld */,
+				445764CE1853B8CE0094BD70 /* LessonSchedule.h */,
+				445764CF1853B8CF0094BD70 /* LessonSchedule.m */,
+				445764CB1853B8CC0094BD70 /* DaySchedule.h */,
+				445764CC1853B8CD0094BD70 /* DaySchedule.m */,
 				445764C8185393280094BD70 /* Faculty.h */,
 				445764C9185393280094BD70 /* Faculty.m */,
 				2D2025AB18524889004D35AF /* Specialization.h */,
@@ -322,17 +325,6 @@
 				449E10A616F8C37800376D35 /* LessonScheduleCell.m */,
 			);
 			name = "Custom Cell";
-			sourceTree = "<group>";
-		};
-		44A2B56416F601B800200762 /* Schedule */ = {
-			isa = PBXGroup;
-			children = (
-				44A2B56B16F6028500200762 /* LessonSchedule.h */,
-				44A2B56C16F6028500200762 /* LessonSchedule.m */,
-				44A2B56816F6021800200762 /* DaySchedule.h */,
-				44A2B56916F6021800200762 /* DaySchedule.m */,
-			);
-			name = Schedule;
 			sourceTree = "<group>";
 		};
 		44A2B57916F63D9800200762 /* Loading View */ = {
@@ -433,8 +425,6 @@
 				44A2B55716F5F6C600200762 /* GroupViewController.m in Sources */,
 				44A2B55D16F5F94B00200762 /* WeekViewController.m in Sources */,
 				44A2B56216F5FF9D00200762 /* ScheduleViewController.m in Sources */,
-				44A2B56A16F6021800200762 /* DaySchedule.m in Sources */,
-				44A2B56D16F6028500200762 /* LessonSchedule.m in Sources */,
 				44A2B57816F63D8E00200762 /* LoadingView.m in Sources */,
 				449E10A716F8C37800376D35 /* LessonScheduleCell.m in Sources */,
 				442B999C16FF98B400417A33 /* CoreData.xcdatamodeld in Sources */,
@@ -450,6 +440,8 @@
 				445764C4185393270094BD70 /* Group.m in Sources */,
 				445764C7185393280094BD70 /* Course.m in Sources */,
 				445764CA185393290094BD70 /* Faculty.m in Sources */,
+				445764CD1853B8CE0094BD70 /* DaySchedule.m in Sources */,
+				445764D01853B8CF0094BD70 /* LessonSchedule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
