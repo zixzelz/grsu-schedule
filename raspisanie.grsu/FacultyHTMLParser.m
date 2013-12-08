@@ -9,7 +9,8 @@
 #import "FacultyHTMLParser.h"
 #import "HTMLParser.h"
 #import "ScheduleItem.h"
-#import "DaySchedule.h"
+#import "DayScheduleParse.h"
+#import "LessonScheduleParse.h"
 
 @implementation FacultyHTMLParser
 
@@ -39,7 +40,7 @@
     
     NSMutableArray *days = [NSMutableArray array];
     NSMutableArray *lessons = [NSMutableArray array];
-    DaySchedule *thisDay = [[DaySchedule alloc] init];
+    DayScheduleParse *thisDay = [[DayScheduleParse alloc] init];
     for (HTMLNode *trNode in trNodes) {
         NSString *trClass = [trNode getAttributeNamed:@"class"];
         
@@ -52,7 +53,7 @@
                 thisDay.title = [day[0] allContents];
                 thisDay.date  = [day[3] allContents];
             }
-            LessonSchedule *lesson = [[LessonSchedule alloc] init];
+            LessonScheduleParse *lesson = [[LessonScheduleParse alloc] init];
             lesson.time     = [tdNodes[i++] contents];
             lesson.group    = [tdNodes[i++] contents];
             lesson.disc     = [self allContentWithNode:tdNodes[i++]];
@@ -67,7 +68,7 @@
             [days addObject:thisDay];
             
             lessons = [NSMutableArray array];
-            thisDay = [[DaySchedule alloc] init];
+            thisDay = [[DayScheduleParse alloc] init];
         }
     }
     return [NSArray arrayWithArray:days];
