@@ -7,9 +7,10 @@
 //
 
 #import "BaseServices.h"
+#import "Week.h"
 
 @interface ScheduleWeekServices : BaseServices
 
-- (void)scheduleWeekWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID weekID:(NSString *)weekID callback:(ArrayBlock)callback;
+- (void)scheduleWeekWithWeek:(Week *)week;
 
 @end

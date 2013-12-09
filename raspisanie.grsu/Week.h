@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Group;
 
 @interface Week : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * id;
-@property (nonatomic, retain) NSManagedObject *group;
+@property (nonatomic, retain) Group *group;
 
 @end
