@@ -7,10 +7,15 @@
 //
 
 #import "ScheduleWeekServices.h"
+#import "DayScheduleParse.h"
+#import "LessonScheduleParse.h"
+#import "DaySchedule.h"
+#import "LessonSchedule.h"
 #import "Faculty.h"
 #import "Specialization.h"
 #import "Course.h"
 #import "Group.h"
+#import "DateUtils.h"
 
 @implementation ScheduleWeekServices
 
@@ -34,14 +39,23 @@
     
     [[Backend sharedInstance] loadScheduleWeekWithFacultyID:faculty.id specializationID:specialization.id courseID:course.id groupID:group.id weekID:week.id callback:^(NSArray *array, NSError *error) {
         NSMutableArray *result = [NSMutableArray array];
-        for (ScheduleItem *item in array) {
-            Week *week;
-            week = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
-            week.title = item.title;
-            week.id = item.id;
-            week.group = group;
-            
-            [result addObject:week];
+        for (DayScheduleParse *item in array) {
+            DaySchedule *daySchedule;
+            daySchedule = [NSEntityDescription insertNewObjectForEntityForName:[self entityDayName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
+            daySchedule.date = [DateUtils dateFromString:item.date format:@"dd.MM.yyyy"];
+            daySchedule.week = week;
+            [result addObject:daySchedule];
+            for (LessonScheduleParse *lessonP in item.lessons) {
+                LessonSchedule *lessonSchedule = [NSEntityDescription insertNewObjectForEntityForName:[self entityLessonScheduleName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
+                lessonSchedule.groupTitle = lessonP.group;
+                lessonSchedule.location = lessonP.group;
+                lessonSchedule.room = @([lessonP.aud integerValue]);
+                lessonSchedule.startTime = @(5);//lessonP.group;
+                lessonSchedule.stopTime = @(5);//lessonP.group;
+                lessonSchedule.studyName = lessonP.disc;
+                lessonSchedule.teacher = lessonP.teacher;
+                lessonSchedule.daySchedule = daySchedule;
+            }
         }
         [[CoreDataConnection sharedInstance] saveContext];
         
@@ -53,14 +67,18 @@
     CacheManager *cacheManager = [CacheManager sharedInstance];
     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"day" ascending:YES]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(%K == %@)", @"week", item];
-    NSArray *items = [cacheManager sincCacheWithPredicate:predicate entity:[self entityName] sortDescriptors:sortDescriptors];
+    NSArray *items = [cacheManager sincCacheWithPredicate:predicate entity:[self entityDayName] sortDescriptors:sortDescriptors];
     
     return items;
 }
 
 #pragma mark - Override
 
-- (NSString *)entityName {
+- (NSString *)entityDayName {
+    return @"DaySchedule";
+}
+
+- (NSString *)entityLessonScheduleName {
     return @"LessonSchedule";
 }
 

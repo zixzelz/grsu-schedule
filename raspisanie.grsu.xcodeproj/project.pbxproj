@@ -15,6 +15,10 @@
 		2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A518522A4D004D35AF /* ScheduleWeekServices.m */; };
 		2D2025AA18523E73004D35AF /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025A918523E73004D35AF /* Constants.m */; };
 		2D2025AD18524889004D35AF /* Specialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D2025AC18524889004D35AF /* Specialization.m */; };
+		2D79B665185B5F9C00AF7670 /* DayScheduleParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79B662185B5F9C00AF7670 /* DayScheduleParse.m */; };
+		2D79B666185B5F9C00AF7670 /* LessonScheduleParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79B664185B5F9C00AF7670 /* LessonScheduleParse.m */; };
+		2D79B669185B621400AF7670 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79B668185B621400AF7670 /* DateUtils.m */; };
+		2D79B66C185B631A00AF7670 /* NSString+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79B66B185B631A00AF7670 /* NSString+Expanded.m */; };
 		4424D28216F25A390008B9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28116F25A390008B9EA /* UIKit.framework */; };
 		4424D28416F25A390008B9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28316F25A390008B9EA /* Foundation.framework */; };
 		4424D28616F25A3A0008B9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28516F25A390008B9EA /* CoreGraphics.framework */; };
@@ -44,8 +48,6 @@
 		446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446FEE8316F510C600BC4430 /* SpecializationViewController.xib */; };
 		446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8816F51E7000BC4430 /* CourseViewController.m */; };
 		446FEE8B16F51E7000BC4430 /* CourseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446FEE8916F51E7000BC4430 /* CourseViewController.xib */; };
-		4498C0241855126E009BCCEC /* LessonScheduleParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498C0231855126E009BCCEC /* LessonScheduleParse.m */; };
-		4498C02818551288009BCCEC /* DayScheduleParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498C02718551288009BCCEC /* DayScheduleParse.m */; };
 		4498C02B18551505009BCCEC /* DaySchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498C02A18551505009BCCEC /* DaySchedule.m */; };
 		4498C02E18551506009BCCEC /* LessonSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 4498C02D18551506009BCCEC /* LessonSchedule.m */; };
 		449E10A716F8C37800376D35 /* LessonScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 449E10A616F8C37800376D35 /* LessonScheduleCell.m */; };
@@ -78,6 +80,14 @@
 		2D2025A918523E73004D35AF /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		2D2025AB18524889004D35AF /* Specialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Specialization.h; sourceTree = "<group>"; };
 		2D2025AC18524889004D35AF /* Specialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Specialization.m; sourceTree = "<group>"; };
+		2D79B661185B5F9C00AF7670 /* DayScheduleParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayScheduleParse.h; sourceTree = "<group>"; };
+		2D79B662185B5F9C00AF7670 /* DayScheduleParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayScheduleParse.m; sourceTree = "<group>"; };
+		2D79B663185B5F9C00AF7670 /* LessonScheduleParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonScheduleParse.h; sourceTree = "<group>"; };
+		2D79B664185B5F9C00AF7670 /* LessonScheduleParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonScheduleParse.m; sourceTree = "<group>"; };
+		2D79B667185B621400AF7670 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
+		2D79B668185B621400AF7670 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
+		2D79B66A185B631A00AF7670 /* NSString+Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Expanded.h"; sourceTree = "<group>"; };
+		2D79B66B185B631A00AF7670 /* NSString+Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Expanded.m"; sourceTree = "<group>"; };
 		4424D27D16F25A390008B9EA /* raspisanie.grsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raspisanie.grsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4424D28116F25A390008B9EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4424D28316F25A390008B9EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -126,10 +136,6 @@
 		446FEE8716F51E7000BC4430 /* CourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseViewController.h; sourceTree = "<group>"; };
 		446FEE8816F51E7000BC4430 /* CourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseViewController.m; sourceTree = "<group>"; };
 		446FEE8916F51E7000BC4430 /* CourseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourseViewController.xib; sourceTree = "<group>"; };
-		4498C0221855126E009BCCEC /* LessonScheduleParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonScheduleParse.h; sourceTree = "<group>"; };
-		4498C0231855126E009BCCEC /* LessonScheduleParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LessonScheduleParse.m; sourceTree = "<group>"; };
-		4498C02618551288009BCCEC /* DayScheduleParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayScheduleParse.h; sourceTree = "<group>"; };
-		4498C02718551288009BCCEC /* DayScheduleParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayScheduleParse.m; sourceTree = "<group>"; };
 		4498C02918551505009BCCEC /* DaySchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySchedule.h; sourceTree = "<group>"; };
 		4498C02A18551505009BCCEC /* DaySchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySchedule.m; sourceTree = "<group>"; };
 		4498C02C18551506009BCCEC /* LessonSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LessonSchedule.h; sourceTree = "<group>"; };
@@ -173,10 +179,25 @@
 		2D2025A718523E1A004D35AF /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				2D79B66A185B631A00AF7670 /* NSString+Expanded.h */,
+				2D79B66B185B631A00AF7670 /* NSString+Expanded.m */,
+				2D79B667185B621400AF7670 /* DateUtils.h */,
+				2D79B668185B621400AF7670 /* DateUtils.m */,
 				2D2025A818523E73004D35AF /* Constants.h */,
 				2D2025A918523E73004D35AF /* Constants.m */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		2D79B660185B5F9C00AF7670 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D79B661185B5F9C00AF7670 /* DayScheduleParse.h */,
+				2D79B662185B5F9C00AF7670 /* DayScheduleParse.m */,
+				2D79B663185B5F9C00AF7670 /* LessonScheduleParse.h */,
+				2D79B664185B5F9C00AF7670 /* LessonScheduleParse.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4424D27216F25A390008B9EA = {
@@ -211,15 +232,12 @@
 		4424D28716F25A3A0008B9EA /* raspisanie.grsu */ = {
 			isa = PBXGroup;
 			children = (
+				2D79B660185B5F9C00AF7670 /* Model */,
 				2D2025A718523E1A004D35AF /* Commons */,
 				4424D2AE16F25D350008B9EA /* ScheduleItem.h */,
 				4424D2AF16F25D350008B9EA /* ScheduleItem.m */,
 				4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */,
 				4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */,
-				4498C02618551288009BCCEC /* DayScheduleParse.h */,
-				4498C02718551288009BCCEC /* DayScheduleParse.m */,
-				4498C0221855126E009BCCEC /* LessonScheduleParse.h */,
-				4498C0231855126E009BCCEC /* LessonScheduleParse.m */,
 				44DD069A1700EA20001DB0D0 /* Backend.h */,
 				44DD069B1700EA20001DB0D0 /* Backend.m */,
 				44A2B57916F63D9800200762 /* Loading View */,
@@ -426,8 +444,11 @@
 				4424D29B16F25A3A0008B9EA /* ViewController.m in Sources */,
 				4424D2AA16F25A7D0008B9EA /* HTMLParser.m in Sources */,
 				4424D2AB16F25A800008B9EA /* HTMLNode.m in Sources */,
+				2D79B669185B621400AF7670 /* DateUtils.m in Sources */,
 				4424D2B016F25D350008B9EA /* ScheduleItem.m in Sources */,
+				2D79B665185B5F9C00AF7670 /* DayScheduleParse.m in Sources */,
 				4424D2B316F25DF20008B9EA /* FacultyService.m in Sources */,
+				2D79B66C185B631A00AF7670 /* NSString+Expanded.m in Sources */,
 				2D2025AD18524889004D35AF /* Specialization.m in Sources */,
 				4424D2BE16F262430008B9EA /* FacultyHTMLParser.m in Sources */,
 				446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */,
@@ -437,6 +458,7 @@
 				44A2B56216F5FF9D00200762 /* ScheduleViewController.m in Sources */,
 				44A2B57816F63D8E00200762 /* LoadingView.m in Sources */,
 				449E10A716F8C37800376D35 /* LessonScheduleCell.m in Sources */,
+				2D79B666185B5F9C00AF7670 /* LessonScheduleParse.m in Sources */,
 				442B999C16FF98B400417A33 /* CoreData.xcdatamodeld in Sources */,
 				2D2025A618522A4D004D35AF /* ScheduleWeekServices.m in Sources */,
 				2D2025971852292E004D35AF /* BaseServices.m in Sources */,
@@ -450,8 +472,6 @@
 				445764C4185393270094BD70 /* Group.m in Sources */,
 				445764C7185393280094BD70 /* Course.m in Sources */,
 				445764CA185393290094BD70 /* Faculty.m in Sources */,
-				4498C0241855126E009BCCEC /* LessonScheduleParse.m in Sources */,
-				4498C02818551288009BCCEC /* DayScheduleParse.m in Sources */,
 				4498C02B18551505009BCCEC /* DaySchedule.m in Sources */,
 				4498C02E18551506009BCCEC /* LessonSchedule.m in Sources */,
 			);
