@@ -17,25 +17,15 @@
 
 @interface LessonScheduleCell ()
 
-@property (nonatomic, strong) IBOutlet UILabel *timeLabel;
-@property (nonatomic, strong) IBOutlet UILabel *audLabel;
-@property (nonatomic, strong) IBOutlet UILabel *discLabel;
+@property (nonatomic, weak) IBOutlet UILabel* location;
+@property (nonatomic, weak) IBOutlet UILabel* startTime;
+@property (nonatomic, weak) IBOutlet UILabel* stopTime;
+@property (nonatomic, weak) IBOutlet UILabel* studyName;
+@property (nonatomic, weak) IBOutlet UILabel* teacher;
 
 @end
 
 @implementation LessonScheduleCell
-
-- (void)setTimeText:(NSString *)text {
-    self.timeLabel.text = text;
-}
-
-- (void)setAudText:(NSString *)text {
-    self.audLabel.text = text;
-}
-
-- (void)setDiscText:(NSString *)text {
-    self.discLabel.text = text;
-}
 
 + (CGFloat)heightForSmallCellWithText:(NSString *)text tableWidth:(CGFloat)tableWidth {
     CGFloat cellHeight;

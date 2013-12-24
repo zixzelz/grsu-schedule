@@ -10,9 +10,11 @@
 
 @interface LessonScheduleCell : UITableViewCell
 
-- (void)setTimeText:(NSString *)text;
-- (void)setAudText:(NSString *)text;
-- (void)setDiscText:(NSString *)text;
+@property (nonatomic, weak, readonly) UILabel* location;
+@property (nonatomic, weak, readonly) UILabel* startTime;
+@property (nonatomic, weak, readonly) UILabel* stopTime;
+@property (nonatomic, weak, readonly) UILabel* studyName;
+@property (nonatomic, weak, readonly) UILabel* teacher;
 
 + (CGFloat)heightForSmallCellWithText:(NSString *)text tableWidth:(CGFloat)tableWidth;
 

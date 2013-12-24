@@ -116,10 +116,12 @@
     DaySchedule *day = self.scheduleDays[indexPath.section];
     LessonSchedule *lesson = [day.lessons allObjects][indexPath.row];
     
-    [cell setTimeText:[NSString stringWithFormat:@"%@", lesson.startTime]];
-    [cell setAudText:[NSString stringWithFormat:@"%@", lesson.room]];
-    [cell setDiscText:lesson.studyName];
-    
+    cell.startTime.text = [NSString stringWithFormat:@"%@", lesson.startTime];
+    cell.stopTime.text = [NSString stringWithFormat:@"%@", lesson.stopTime];
+    cell.studyName.text = lesson.studyName;
+    cell.teacher.text = lesson.teacher;
+    cell.location.text = [NSString stringWithFormat:@"%@; %@", lesson.location, lesson.room];
+
     return cell;
 }
 
