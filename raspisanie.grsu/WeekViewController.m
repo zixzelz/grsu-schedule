@@ -10,6 +10,7 @@
 #import "WeekServices.h"
 #import "ScheduleViewController.h"
 #import "Week.h"
+#import "DateUtils.h"
 
 @interface WeekViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
@@ -36,7 +37,6 @@
     }
     return self;
 }
-
 
 - (void)setupService {
     self.service = [WeekServices new];
@@ -101,9 +101,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    ScheduleItem *item = self.weekItems[indexPath.row];
-    
-    cell.textLabel.text = item.title;
+    Week *item = self.weekItems[indexPath.row];
+    cell.textLabel.text = [DateUtils formatDate:item.title withFormat:DateFormatDayMonthYear];
     
     return cell;
 }
@@ -112,10 +111,10 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    ScheduleItem *item = self.weekItems[indexPath.row];
-//    
-//    ScheduleViewController *controller = [[ScheduleViewController alloc] initWithFacultyItem:self.facultyItem specializationItem:self.specializationItem courseItem:self.courseItem groupItem:self.groupItem weekItem:item];
-//    [self.navigationController pushViewController:controller animated:YES];
+    Week *item = self.weekItems[indexPath.row];
+    
+    ScheduleViewController *controller = [[ScheduleViewController alloc] initWithWeekItem:item];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - BaseServicesDelegate

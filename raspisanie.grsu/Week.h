@@ -13,7 +13,7 @@
 
 @interface Week : NSManagedObject
 
-@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSDate * title;
 @property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) Group *group;
 

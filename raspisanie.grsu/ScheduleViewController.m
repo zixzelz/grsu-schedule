@@ -9,54 +9,55 @@
 #import "ScheduleViewController.h"
 #import "ScheduleWeekServices.h"
 #import "DaySchedule.h"
+#import "LessonSchedule.h"
 #import "LessonScheduleCell.h"
+#import "DateUtils.h"
 
-@interface ScheduleViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ScheduleViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) NSArray *scheduleDays;
-@property (nonatomic, strong) LoadingView *loadingView;
 
-@property (nonatomic, strong) ScheduleItem *facultyItem;
-@property (nonatomic, strong) ScheduleItem *specializationItem;
-@property (nonatomic, strong) ScheduleItem *courseItem;
-@property (nonatomic, strong) ScheduleItem *groupItem;
-@property (nonatomic, strong) ScheduleItem *weekItem;
+@property (nonatomic, strong) LoadingView *loadingView;
+@property (nonatomic, strong) ScheduleWeekServices *service;
+
+@property (nonatomic, strong) Week *weekItem;
 
 @end
 
 @implementation ScheduleViewController
 
-- (id)initWithFacultyItem:(ScheduleItem *)facultyItem specializationItem:(ScheduleItem *)specializationItem courseItem:(ScheduleItem *)courseItem groupItem:(ScheduleItem *)groupItem weekItem:(ScheduleItem *)weekItem {
+- (id)initWithWeekItem:(Week *)weekItem {
     self = [super init];
     if (self) {
         self.title = @"Расписание";
-        self.facultyItem = facultyItem;
-        self.specializationItem = specializationItem;
-        self.courseItem = courseItem;
-        self.groupItem = groupItem;
         self.weekItem = weekItem;
-        [self loadCourseWithFacultyID:facultyItem.id specializationID:specializationItem.id courseID:courseItem.id groupID:groupItem.id weekID:weekItem.id];
+        [self setupRefreshControl];
+        [self setupService];
     }
     return self;
 }
 
-- (void)loadCourseWithFacultyID:(NSString *)facultyID specializationID:(NSString *)specializationID courseID:(NSString *)courseID groupID:(NSString *)groupID weekID:(NSString *)weekID {
-    ScheduleWeekServices *service = [ScheduleWeekServices new];
-    [service scheduleWeekWithFacultyID:facultyID specializationID:specializationID courseID:courseID groupID:groupID weekID:weekID callback:^(NSArray *array, NSError *error) {
-        [self.loadingView hideLoading];
-        self.scheduleDays = array;
-        [self.tableView reloadData];
-    }];
+- (void)setupService {
+    self.service = [ScheduleWeekServices new];
+    self.service.delegate = self;
+}
+
+- (void)setupRefreshControl {
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self
+                action:@selector(refreshView:)
+      forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loadingView = [[LoadingView alloc] initWithView:self.view];
     
-    if (!self.scheduleDays) {
-        self.loadingView = [[LoadingView alloc] initWithView:self.view];
-        [self.loadingView showLoading];
-    }
+    [self fetchData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,6 +66,25 @@
     if (path) {
         [self.tableView deselectRowAtIndexPath:path animated:YES]; // Hide selected
     }
+}
+
+#pragma mark CourseServices
+
+- (void)fetchData {
+    [self.loadingView showLoading];
+    [self.service scheduleWeekWithWeek:self.weekItem];
+}
+
+- (void)reloadData {
+    [self.loadingView showLoading];
+    [self.service reloadDataWithItem:self.weekItem];
+}
+
+#pragma mark -
+
+- (void)refreshView:(UIRefreshControl *)refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    [self reloadData];
 }
 
 #pragma mark -
@@ -81,7 +101,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     DaySchedule *day = self.scheduleDays[section];
-    return day.title;
+    return [DateUtils formatDate:day.date withFormat:DateFormatDayMonthYear];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,11 +114,11 @@
     }
     
     DaySchedule *day = self.scheduleDays[indexPath.section];
-    LessonSchedule *lesson = day.lessons[indexPath.row];
+    LessonSchedule *lesson = [day.lessons allObjects][indexPath.row];
     
-    [cell setTimeText:lesson.time];
-    [cell setAudText:lesson.aud];
-    [cell setDiscText:lesson.disc];
+    [cell setTimeText:[NSString stringWithFormat:@"%@", lesson.startTime]];
+    [cell setAudText:[NSString stringWithFormat:@"%@", lesson.room]];
+    [cell setDiscText:lesson.studyName];
     
     return cell;
 }
@@ -109,11 +129,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    DaySchedule *day = self.scheduleDays[indexPath.section];
-    LessonSchedule *lesson = day.lessons[indexPath.row];
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    DaySchedule *day = self.scheduleDays[indexPath.section];
+//    LessonSchedule *lesson = day.lessons[indexPath.row];
+//
+//    return [LessonScheduleCell heightForSmallCellWithText:lesson.disc tableWidth:self.tableView.bounds.size.width];
+//}
 
-    return [LessonScheduleCell heightForSmallCellWithText:lesson.disc tableWidth:self.tableView.bounds.size.width];
+#pragma mark - BaseServicesDelegate
+
+- (void)didLoadData:(NSArray *)items error:(NSError *)error {
+    [self.loadingView hideLoading];
+    [self.refreshControl endRefreshing];
+    self.scheduleDays = items;
+    [self.tableView reloadData];
 }
 
 @end

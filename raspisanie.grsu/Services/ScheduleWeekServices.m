@@ -65,7 +65,7 @@
 
 - (NSArray *)fetchDataWithItem:(id)item {
     CacheManager *cacheManager = [CacheManager sharedInstance];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"day" ascending:YES]];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(%K == %@)", @"week", item];
     NSArray *items = [cacheManager sincCacheWithPredicate:predicate entity:[self entityDayName] sortDescriptors:sortDescriptors];
     

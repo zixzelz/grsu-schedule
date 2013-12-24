@@ -11,6 +11,7 @@
 #import "Specialization.h"
 #import "Course.h"
 #import "Week.h"
+#import "DateUtils.h"
 
 @implementation WeekServices
 
@@ -36,7 +37,7 @@
         for (ScheduleItem *item in array) {
             Week *week;
             week = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
-            week.title = item.title;
+            week.title = [DateUtils dateFromString:item.title format:@"dd.MM.yyyy"];
             week.id = item.id;
             week.group = group;
             
