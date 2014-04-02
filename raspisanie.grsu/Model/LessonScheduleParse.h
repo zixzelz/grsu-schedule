@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *group;
 @property (nonatomic, strong) NSString *disc;
 @property (nonatomic, strong) NSString *aud;
+@property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *teacher;
 
 @end

@@ -79,7 +79,7 @@
     [self.service reloadDataWithItem:self.facultyItem];
 }
 
-#pragma mark -
+#pragma mark - UIRefreshControl
 
 - (void)refreshView:(UIRefreshControl *)refresh {
     refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];

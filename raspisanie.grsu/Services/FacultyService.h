@@ -11,6 +11,6 @@
 
 @interface FacultyService : BaseServices
 
-- (void)facultyItemsWithCallback:(ArrayBlock)callback;
+- (void)facultyItems;
 
 @end

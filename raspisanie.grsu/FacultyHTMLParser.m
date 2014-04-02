@@ -57,7 +57,9 @@
             lesson.time     = [tdNodes[i++] contents];
             lesson.group    = [tdNodes[i++] contents];
             lesson.disc     = [self allContentWithNode:tdNodes[i++]];
-            lesson.aud      = [tdNodes[i++] contents];
+            NSArray *aud = [tdNodes[i++] children];
+            lesson.aud      = [aud[0] allContents];
+            lesson.location = [aud[2] allContents];
             lesson.teacher  = [tdNodes[i++] contents];
                         
             [lessons addObject:lesson];

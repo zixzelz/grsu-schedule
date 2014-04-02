@@ -11,28 +11,76 @@
 #import "SpecializationViewController.h"
 #import "Faculty.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) LoadingView *loadingView;
+
+@property (nonatomic, strong) FacultyService *service;
 @property (nonatomic, strong) NSArray *facultyItems;
 
 @end
 
+
 @implementation ViewController
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self setupService];
+        [self setupRefreshControl];
+    }
+    return self;
+}
+
+- (void)setupService {
+    self.service = [FacultyService new];
+    self.service.delegate = self;
+}
+
+- (void)setupRefreshControl {
+    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
+    [refresh addTarget:self
+                action:@selector(refreshView:)
+      forControlEvents:UIControlEventValueChanged];
+    self.refreshControl = refresh;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.tableView addSubview:self.refreshControl];
+    self.loadingView = [[LoadingView alloc] initWithView:self.view];
     self.title = @"Факультет (отделение)";
     
-    LoadingView *loadingView = [[LoadingView alloc] initWithView:self.view];
-    [loadingView showLoading];
+    [self fetchData];
+}
+
+#pragma mark SpecializationService
+
+- (void)fetchData {
+    [self.loadingView showLoading];
+    [self.service facultyItems];
+}
+
+- (void)reloadData {
+    [self.loadingView showLoading];
+    [self.service reloadDataWithItem:nil];
+}
+
+#pragma mark - UIRefreshControl
+
+- (void)refreshView:(UIRefreshControl *)refresh {
+    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
+    [self reloadData];
     
-    FacultyService *facultyService = [FacultyService new];
-    [facultyService facultyItemsWithCallback:^(NSArray *array, NSError *error) {
-        [loadingView hideLoading];
-        self.facultyItems = array;
-        [self.tableView reloadData];
-    }];
+    // custom refresh logic would be placed here...
+    //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //    [formatter setDateFormat:@"MMM d, h:mm a"];
+    //    NSString *lastUpdated = [NSString stringWithFormat:@"Last updated on %@",
+    //                             [formatter stringFromDate:[NSDate date]]];
+    //    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:lastUpdated];
 }
 
 #pragma mark -
@@ -69,8 +117,16 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
-@end
+#pragma mark - BaseServicesDelegate
 
+- (void)didLoadData:(NSArray *)items error:(NSError *)error {
+    [self.loadingView hideLoading];
+    [self.refreshControl endRefreshing];
+    self.facultyItems = items;
+    [self.tableView reloadData];
+}
+
+@end
 
 
 

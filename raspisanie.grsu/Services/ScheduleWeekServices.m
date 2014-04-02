@@ -46,10 +46,13 @@
             daySchedule.week = week;
             [result addObject:daySchedule];
             for (LessonScheduleParse *lessonP in item.lessons) {
+                NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+                [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+
                 LessonSchedule *lessonSchedule = [NSEntityDescription insertNewObjectForEntityForName:[self entityLessonScheduleName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
                 lessonSchedule.groupTitle = lessonP.group;
-                lessonSchedule.location = lessonP.group;
-                lessonSchedule.room = @([lessonP.aud integerValue]);
+                lessonSchedule.room = [numberFormatter numberFromString:lessonP.aud];
+                lessonSchedule.location = lessonP.location;
                 lessonSchedule.startTime = @(5);//lessonP.group;
                 lessonSchedule.stopTime = @(5);//lessonP.group;
                 lessonSchedule.studyName = lessonP.disc;

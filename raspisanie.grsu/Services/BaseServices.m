@@ -29,15 +29,20 @@
 
 - (NSArray *)fetchDataWithItem:(id)item {
     CacheManager *cacheManager = [CacheManager sharedInstance];
+
+    NSPredicate *predicate;
+    if (item) {
+        predicate = [NSPredicate predicateWithFormat:@"(%K == %@)", [self rootFieldName], item];
+    }
+    
     NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(%K == %@)", [self rootFieldName], item];
     NSArray *items = [cacheManager sincCacheWithPredicate:predicate entity:[self entityName] sortDescriptors:sortDescriptors];
     
     return items;
 }
 
-- (void)loadDataWithItem:(id)specialization callback:(ArrayBlock)callback {
-    
+- (void)loadDataWithItem:(id)item callback:(ArrayBlock)callback {
+    // Need override
 }
 
 - (NSString *)rootFieldName {

@@ -17,13 +17,13 @@
     if (items.count > 0) {
         [self.delegate didLoadData:items error:nil];
     } else {
-        [self loadDataWithFaculty:faculty callback:^(NSArray *array, NSError *error) {
+        [self loadDataWithItem:faculty callback:^(NSArray *array, NSError *error) {
             [self.delegate didLoadData:array error:error];
         }];
     }
 }
 
-- (void)loadDataWithFaculty:(Faculty *)faculty callback:(ArrayBlock)callback {
+- (void)loadDataWithItem:(Faculty *)faculty callback:(ArrayBlock)callback {
     [[Backend sharedInstance] loadSpecializationItemsWithFacultyID:faculty.id callback:^(NSArray *array, NSError *error) {
         NSMutableArray *result = [NSMutableArray array];
         for (ScheduleItem *item in array) {
