@@ -2,8 +2,8 @@
 //  DaySchedule.m
 //  raspisanie.grsu
 //
-//  Created by Ruslan on 08.12.13.
-//  Copyright (c) 2013 RYSoft. All rights reserved.
+//  Created by Ruslan Maslouski on 4/3/14.
+//  Copyright (c) 2014 RYSoft. All rights reserved.
 //
 
 #import "DaySchedule.h"
@@ -14,7 +14,7 @@
 @implementation DaySchedule
 
 @dynamic date;
-@dynamic week;
 @dynamic lessons;
+@dynamic week;
 
 @end

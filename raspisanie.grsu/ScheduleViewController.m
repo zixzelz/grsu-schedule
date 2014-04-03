@@ -114,7 +114,7 @@
     }
     
     DaySchedule *day = self.scheduleDays[indexPath.section];
-    LessonSchedule *lesson = [day.lessons allObjects][indexPath.row];
+    LessonSchedule *lesson = [day.lessons objectAtIndex:indexPath.row];
     
     cell.startTime.text = [NSString stringWithFormat:@"%@", lesson.startTime];
     cell.stopTime.text = [NSString stringWithFormat:@"%@", lesson.stopTime];
