@@ -12,6 +12,7 @@
 #import "LessonSchedule.h"
 #import "LessonScheduleCell.h"
 #import "DateUtils.h"
+#import "ColorUtils.h"
 
 @interface ScheduleViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
@@ -114,10 +115,10 @@
     }
     
     DaySchedule *day = self.scheduleDays[indexPath.section];
-    LessonSchedule *lesson = [day.lessons allObjects][indexPath.row];
+    LessonSchedule *lesson = day.lessons[indexPath.row];
     
-    cell.startTime.text = [NSString stringWithFormat:@"%@", lesson.startTime];
-    cell.stopTime.text = [NSString stringWithFormat:@"%@", lesson.stopTime];
+    cell.startTime.text = [DateUtils formatDate:lesson.startTime withFormat:DateFormatTimeOnly];
+    cell.stopTime.text = [DateUtils formatDate:lesson.stopTime withFormat:DateFormatTimeOnly];
     cell.studyName.text = lesson.studyName;
     cell.teacher.text = lesson.teacher;
     cell.location.text = [NSString stringWithFormat:@"%@; %@", lesson.location, lesson.room];
@@ -128,7 +129,15 @@
 #pragma mark -
 #pragma mark UITableViewDelegate
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UITableViewHeaderFooterView *header = [[UITableViewHeaderFooterView alloc] init];
+    header.contentView.backgroundColor = UIColorFromRGB(0x2A303B);
+    header.textLabel.textColor = [UIColor whiteColor];
+    return header;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

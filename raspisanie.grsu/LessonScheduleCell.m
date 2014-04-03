@@ -37,7 +37,7 @@
 + (CGFloat)heightWithString:(NSString *)string constrainedToWidth:(CGFloat)constrainedToWidth {
     UIFont *cellFont = [UIFont fontWithName:CELL_FONT_NAME size:CELL_FONT_SIZE];
     CGSize constraintSize = CGSizeMake(constrainedToWidth, MAXFLOAT);
-    CGSize labelSize = [string sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelSize = [string sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     return labelSize.height;
 }
 

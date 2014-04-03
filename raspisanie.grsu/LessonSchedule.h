@@ -16,8 +16,8 @@
 @property (nonatomic, retain) NSString * groupTitle;
 @property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSNumber * room;
-@property (nonatomic, retain) NSNumber * startTime;
-@property (nonatomic, retain) NSNumber * stopTime;
+@property (nonatomic, retain) NSDate * startTime;
+@property (nonatomic, retain) NSDate * stopTime;
 @property (nonatomic, retain) NSString * studyName;
 @property (nonatomic, retain) NSString * teacher;
 @property (nonatomic, retain) DaySchedule *daySchedule;

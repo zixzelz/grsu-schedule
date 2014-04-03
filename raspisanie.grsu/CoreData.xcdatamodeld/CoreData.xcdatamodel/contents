@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="12E55" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5059" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Course" representedClassName="Course" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="specialization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Specialization" syncable="YES"/>
     </entity>
     <entity name="DaySchedule" representedClassName="DaySchedule" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonSchedule" inverseName="daySchedule" inverseEntity="LessonSchedule" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="LessonSchedule" inverseName="daySchedule" inverseEntity="LessonSchedule" syncable="YES"/>
         <relationship name="week" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Week" syncable="YES"/>
     </entity>
     <entity name="Faculty" representedClassName="Faculty" syncable="YES">
@@ -23,8 +23,8 @@
         <attribute name="groupTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="room" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="startTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="stopTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="stopTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="studyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="teacher" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="daySchedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DaySchedule" inverseName="lessons" inverseEntity="DaySchedule" syncable="YES"/>

@@ -48,13 +48,16 @@
             for (LessonScheduleParse *lessonP in item.lessons) {
                 NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
                 [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+                
+                NSString *startTime = [[lessonP.time componentsSeparatedByString:@" - "] objectAtIndex:0];
+                NSString *stopTime = [[lessonP.time componentsSeparatedByString:@" - "] objectAtIndex:1];
 
                 LessonSchedule *lessonSchedule = [NSEntityDescription insertNewObjectForEntityForName:[self entityLessonScheduleName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
                 lessonSchedule.groupTitle = lessonP.group;
                 lessonSchedule.room = [numberFormatter numberFromString:lessonP.aud];
                 lessonSchedule.location = lessonP.location;
-                lessonSchedule.startTime = @(5);//lessonP.group;
-                lessonSchedule.stopTime = @(5);//lessonP.group;
+                lessonSchedule.startTime = [DateUtils dateFromString:startTime format:@"HH:mm"];
+                lessonSchedule.stopTime = [DateUtils dateFromString:stopTime format:@"HH:mm"];
                 lessonSchedule.studyName = lessonP.disc;
                 lessonSchedule.teacher = lessonP.teacher;
                 lessonSchedule.daySchedule = daySchedule;
@@ -68,7 +71,7 @@
 
 - (NSArray *)fetchDataWithItem:(id)item {
     CacheManager *cacheManager = [CacheManager sharedInstance];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
+    NSArray *sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(%K == %@)", @"week", item];
     NSArray *items = [cacheManager sincCacheWithPredicate:predicate entity:[self entityDayName] sortDescriptors:sortDescriptors];
     
