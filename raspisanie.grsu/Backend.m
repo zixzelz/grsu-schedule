@@ -10,7 +10,8 @@
 #import "FacultyHTMLParser.h"
 #import "CacheManager.h"
 
-#define URL_RASPISANIE @"http://raspisanie.grsu.by/TimeTable/UMU.aspx"
+//#define URL_RASPISANIE @"http://raspisanie.grsu.by/TimeTable/UMU.aspx"
+#define URL_RASPISANIE @"http://data.mf.grsu.by/TimeTable/ZaochnikiSchedule1.aspx"
 
 #define SELECT_OPTION_SCRIPT1 @" \
 $obj = document.getElementById(\"%@\"); \
@@ -121,7 +122,7 @@ static Backend *_instance;
     NSURL *url = [NSURL URLWithString:URL_RASPISANIE];
     NSMutableURLRequest *theRequest=[NSMutableURLRequest requestWithURL:url
                                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                        timeoutInterval:60.0f];
+                                                        timeoutInterval:20.0f];
     [theRequest setHTTPMethod:@"POST"];
     
     [theRequest setHTTPBody:[self encodeDictionary:params]];

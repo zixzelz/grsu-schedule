@@ -12,6 +12,8 @@
 #import "Week.h"
 #import "DateUtils.h"
 
+#import "DaySchedulePageViewController.h"
+
 @interface WeekViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
@@ -113,7 +115,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Week *item = self.weekItems[indexPath.row];
     
-    ScheduleViewController *controller = [[ScheduleViewController alloc] initWithWeekItem:item];
+//    ScheduleViewController *controller = [[ScheduleViewController alloc] initWithWeekItem:item];
+    DaySchedulePageViewController *controller = [[DaySchedulePageViewController alloc] initWithWeekItem:item];
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 

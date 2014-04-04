@@ -27,10 +27,17 @@
 @implementation SpecializationViewController 
 
 - (id)initWithFacultyItem:(Faculty *)facultyItem {
+    self = [self init];
+    if (self) {
+        self.facultyItem = facultyItem;
+    }
+    return self;
+}
+
+- (instancetype)init {
     self = [super init];
     if (self) {
         self.title = @"Специальность";
-        self.facultyItem = facultyItem;
         [self setupService];
         [self setupRefreshControl];
     }

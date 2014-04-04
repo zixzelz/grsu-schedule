@@ -88,11 +88,15 @@ static NSMutableDictionary *dateFormats_ = nil;
     return dateFormatter;
 }
 
++(NSDateFormatter *)dateFormatter:(NSString *)format withTimeZone:(NSString *)timeZone {
+    return [DateUtils dateFormatter:format formatBehavior:NSDateFormatterBehaviorDefault withTimeZone:timeZone withDefauleLocale:NO];
+}
+
 +(NSDateFormatter *)dateFormatter:(NSString *)format {
     return [self dateFormatter:format withDefauleLocale:NO];
 }
 
-+(NSDateFormatter *)dateFormatter:(NSString *)format  withDefauleLocale:(BOOL)defaultLocale  {
++(NSDateFormatter *)dateFormatter:(NSString *)format withDefauleLocale:(BOOL)defaultLocale  {
     return [DateUtils dateFormatter:format formatBehavior:NSDateFormatterBehaviorDefault withTimeZone:nil withDefauleLocale:defaultLocale];
 }
 
@@ -103,6 +107,10 @@ static NSMutableDictionary *dateFormats_ = nil;
         result = [DateUtils formatDate:date withFormat:format];
     }
     return result;
+}
+
++ (NSDate *)dateFromString:(NSString *)strDate format:(NSString *)format withTimeZone:(NSString *)timeZone {
+    return [[DateUtils dateFormatter:format formatBehavior:NSDateFormatterBehaviorDefault withTimeZone:timeZone withDefauleLocale:NO] dateFromString:strDate];
 }
 
 + (NSDate *)dateFromString:(NSString *)strDate format:(NSString *)format {

@@ -47,6 +47,7 @@ typedef enum {
 + (NSDateFormatter *)dateFormatter:(NSString *)format;
 + (NSDate *)dateFromString:(NSString *)strDate format:(NSString *)format;
 + (NSDate *)dateFromString:(NSString *)strDate format:(NSString *)format withDefauleLocale:(BOOL)defaultLocale;
++ (NSDate *)dateFromString:(NSString *)strDate format:(NSString *)format withTimeZone:(NSString *)timeZone;
 + (NSDate *)dateTimeNow;
 
 + (BOOL)is24HourFormat;

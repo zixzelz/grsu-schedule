@@ -49,15 +49,16 @@
                 NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
                 [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
                 
-                NSString *startTime = [[lessonP.time componentsSeparatedByString:@" - "] objectAtIndex:0];
-                NSString *stopTime = [[lessonP.time componentsSeparatedByString:@" - "] objectAtIndex:1];
+                NSArray *times = [lessonP.time componentsSeparatedByString:@" - "];
+                NSString *startTime = [times[0] stringByAppendingFormat:@" %@", item.date];
+                NSString *stopTime = [times[1] stringByAppendingFormat:@" %@", item.date];
 
                 LessonSchedule *lessonSchedule = [NSEntityDescription insertNewObjectForEntityForName:[self entityLessonScheduleName] inManagedObjectContext:[[CoreDataConnection sharedInstance] managedObjectContext]];
                 lessonSchedule.groupTitle = lessonP.group;
                 lessonSchedule.room = [numberFormatter numberFromString:lessonP.aud];
                 lessonSchedule.location = lessonP.location;
-                lessonSchedule.startTime = [DateUtils dateFromString:startTime format:@"HH:mm"];
-                lessonSchedule.stopTime = [DateUtils dateFromString:stopTime format:@"HH:mm"];
+                lessonSchedule.startTime = [DateUtils dateFromString:startTime format:@"HH:mm dd.MM.yyyy"];
+                lessonSchedule.stopTime = [DateUtils dateFromString:stopTime format:@"HH:mm dd.MM.yyyy"];
                 lessonSchedule.studyName = lessonP.disc;
                 lessonSchedule.teacher = lessonP.teacher;
                 lessonSchedule.daySchedule = daySchedule;

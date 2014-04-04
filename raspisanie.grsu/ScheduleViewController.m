@@ -14,51 +14,33 @@
 #import "DateUtils.h"
 #import "ColorUtils.h"
 
-@interface ScheduleViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
+@interface ScheduleViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) NSArray *scheduleDays;
 
-@property (nonatomic, strong) LoadingView *loadingView;
-@property (nonatomic, strong) ScheduleWeekServices *service;
-
-@property (nonatomic, strong) Week *weekItem;
+@property (nonatomic, strong) DaySchedule *daySchedule;
 
 @end
 
 @implementation ScheduleViewController
 
-- (id)initWithWeekItem:(Week *)weekItem {
+- (id)initWithDaySchedule:(DaySchedule *)daySchedule {
     self = [super init];
     if (self) {
-        self.title = @"Расписание";
-        self.weekItem = weekItem;
-        [self setupRefreshControl];
-        [self setupService];
+        self.title = @"Расписаниеqqq";
+        self.daySchedule = daySchedule;
     }
     return self;
 }
 
-- (void)setupService {
-    self.service = [ScheduleWeekServices new];
-    self.service.delegate = self;
-}
-
-- (void)setupRefreshControl {
-    UIRefreshControl *refresh = [[UIRefreshControl alloc] init];
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Pull to Refresh"];
-    [refresh addTarget:self
-                action:@selector(refreshView:)
-      forControlEvents:UIControlEventValueChanged];
-    self.refreshControl = refresh;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loadingView = [[LoadingView alloc] initWithView:self.view];
     
-    [self fetchData];
+    UIEdgeInsets inset = UIEdgeInsetsMake(64, 0, 0, 0);
+    
+    [self.tableView setContentInset:inset];
+    [self.tableView setScrollIndicatorInsets:inset];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,39 +51,16 @@
     }
 }
 
-#pragma mark CourseServices
-
-- (void)fetchData {
-    [self.loadingView showLoading];
-    [self.service scheduleWeekWithWeek:self.weekItem];
-}
-
-- (void)reloadData {
-    [self.loadingView showLoading];
-    [self.service reloadDataWithItem:self.weekItem];
-}
-
-#pragma mark -
-
-- (void)refreshView:(UIRefreshControl *)refresh {
-    refresh.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing data..."];
-    [self reloadData];
-}
-
 #pragma mark -
 #pragma mark UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.scheduleDays.count;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    DaySchedule *day = self.scheduleDays[section];
+    DaySchedule *day = self.daySchedule;
     return day.lessons.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    DaySchedule *day = self.scheduleDays[section];
+    DaySchedule *day = self.daySchedule;
     return [DateUtils formatDate:day.date withFormat:DateFormatDayMonthYear];
 }
 
@@ -114,7 +73,7 @@
         cell = [nib objectAtIndex:0];
     }
     
-    DaySchedule *day = self.scheduleDays[indexPath.section];
+    DaySchedule *day = self.daySchedule;
     LessonSchedule *lesson = day.lessons[indexPath.row];
     
     cell.startTime.text = [DateUtils formatDate:lesson.startTime withFormat:DateFormatTimeOnly];
@@ -146,14 +105,5 @@
 //
 //    return [LessonScheduleCell heightForSmallCellWithText:lesson.disc tableWidth:self.tableView.bounds.size.width];
 //}
-
-#pragma mark - BaseServicesDelegate
-
-- (void)didLoadData:(NSArray *)items error:(NSError *)error {
-    [self.loadingView hideLoading];
-    [self.refreshControl endRefreshing];
-    self.scheduleDays = items;
-    [self.tableView reloadData];
-}
 
 @end

@@ -22,7 +22,7 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="location, room" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                        <rect key="frame" x="91" y="105" width="89" height="17"/>
+                        <rect key="frame" x="91" y="105" width="221" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="NxE-om-3gG"/>
@@ -54,7 +54,7 @@
                         <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="teacher" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCz-nZ-HfU">
-                        <rect key="frame" x="91" y="80" width="48" height="17"/>
+                        <rect key="frame" x="91" y="80" width="221" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="2D4-hl-mzy"/>
@@ -68,6 +68,7 @@
                     <constraint firstItem="hCz-nZ-HfU" firstAttribute="leading" secondItem="Tsd-xD-7pW" secondAttribute="trailing" constant="16" id="46w-7l-mKp"/>
                     <constraint firstItem="3" firstAttribute="top" secondItem="scL-5L-nG5" secondAttribute="top" constant="8" id="6cG-XU-QgR"/>
                     <constraint firstItem="rbs-FP-aHG" firstAttribute="leading" secondItem="scL-5L-nG5" secondAttribute="leading" id="96k-04-gLM"/>
+                    <constraint firstAttribute="trailing" secondItem="7" secondAttribute="trailing" constant="8" id="Bnw-rE-Qvu"/>
                     <constraint firstItem="12" firstAttribute="leading" secondItem="Tsd-xD-7pW" secondAttribute="trailing" constant="16" id="Lyw-qg-q60"/>
                     <constraint firstAttribute="bottom" secondItem="Tsd-xD-7pW" secondAttribute="bottom" id="OPF-vB-8Vy"/>
                     <constraint firstItem="Tsd-xD-7pW" firstAttribute="top" secondItem="scL-5L-nG5" secondAttribute="top" id="U5T-RZ-fAI"/>
@@ -76,6 +77,7 @@
                     <constraint firstAttribute="trailing" secondItem="12" secondAttribute="trailing" constant="8" id="dRE-6o-pS8"/>
                     <constraint firstAttribute="bottom" secondItem="rbs-FP-aHG" secondAttribute="bottom" constant="8" id="eZl-fA-4mw"/>
                     <constraint firstItem="Tsd-xD-7pW" firstAttribute="leading" secondItem="3" secondAttribute="trailing" id="gBf-Gd-Xqn"/>
+                    <constraint firstAttribute="trailing" secondItem="hCz-nZ-HfU" secondAttribute="trailing" constant="8" id="iD8-em-W0c"/>
                     <constraint firstAttribute="bottom" secondItem="7" secondAttribute="bottom" constant="8" id="jJJ-w0-CZJ"/>
                     <constraint firstItem="7" firstAttribute="top" secondItem="hCz-nZ-HfU" secondAttribute="bottom" constant="8" id="oUZ-lQ-SMH"/>
                     <constraint firstItem="Tsd-xD-7pW" firstAttribute="leading" secondItem="rbs-FP-aHG" secondAttribute="trailing" id="uzN-jR-3bj"/>

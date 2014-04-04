@@ -44,6 +44,8 @@
 		445764C4185393270094BD70 /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C3185393270094BD70 /* Group.m */; };
 		445764C7185393280094BD70 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C6185393280094BD70 /* Course.m */; };
 		445764CA185393290094BD70 /* Faculty.m in Sources */ = {isa = PBXBuildFile; fileRef = 445764C9185393280094BD70 /* Faculty.m */; };
+		445FFC7F18EDEB1500D5E3FD /* DaySchedulePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445FFC7D18EDEB1500D5E3FD /* DaySchedulePageViewController.m */; };
+		445FFC8018EDEB1500D5E3FD /* DaySchedulePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 445FFC7E18EDEB1500D5E3FD /* DaySchedulePageViewController.xib */; };
 		446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8216F510C600BC4430 /* SpecializationViewController.m */; };
 		446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 446FEE8316F510C600BC4430 /* SpecializationViewController.xib */; };
 		446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 446FEE8816F51E7000BC4430 /* CourseViewController.m */; };
@@ -131,6 +133,9 @@
 		445764C6185393280094BD70 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Course.m; sourceTree = "<group>"; };
 		445764C8185393280094BD70 /* Faculty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Faculty.h; sourceTree = "<group>"; };
 		445764C9185393280094BD70 /* Faculty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Faculty.m; sourceTree = "<group>"; };
+		445FFC7C18EDEB1500D5E3FD /* DaySchedulePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaySchedulePageViewController.h; sourceTree = "<group>"; };
+		445FFC7D18EDEB1500D5E3FD /* DaySchedulePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySchedulePageViewController.m; sourceTree = "<group>"; };
+		445FFC7E18EDEB1500D5E3FD /* DaySchedulePageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DaySchedulePageViewController.xib; sourceTree = "<group>"; };
 		446FEE8116F510C600BC4430 /* SpecializationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpecializationViewController.h; sourceTree = "<group>"; };
 		446FEE8216F510C600BC4430 /* SpecializationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpecializationViewController.m; sourceTree = "<group>"; };
 		446FEE8316F510C600BC4430 /* SpecializationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SpecializationViewController.xib; sourceTree = "<group>"; };
@@ -237,6 +242,8 @@
 		4424D28716F25A3A0008B9EA /* raspisanie.grsu */ = {
 			isa = PBXGroup;
 			children = (
+				4424D29016F25A3A0008B9EA /* AppDelegate.h */,
+				4424D29116F25A3A0008B9EA /* AppDelegate.m */,
 				2D79B660185B5F9C00AF7670 /* Model */,
 				2D2025A718523E1A004D35AF /* Commons */,
 				4424D2AE16F25D350008B9EA /* ScheduleItem.h */,
@@ -250,8 +257,7 @@
 				442B999E16FF98BF00417A33 /* CoreData */,
 				446FEE8616F510DF00BC4430 /* Services */,
 				449E10A316F8C31600376D35 /* Custom Cell */,
-				4424D29016F25A3A0008B9EA /* AppDelegate.h */,
-				4424D29116F25A3A0008B9EA /* AppDelegate.m */,
+				445FFC7B18EDEA1F00D5E3FD /* DaySchedulePageViewController */,
 				4424D29C16F25A3A0008B9EA /* ViewController.xib */,
 				4424D29916F25A3A0008B9EA /* ViewController.h */,
 				4424D29A16F25A3A0008B9EA /* ViewController.m */,
@@ -327,6 +333,16 @@
 				442B99AE16FF9AF200417A33 /* CacheManager.m */,
 			);
 			name = CoreData;
+			sourceTree = "<group>";
+		};
+		445FFC7B18EDEA1F00D5E3FD /* DaySchedulePageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				445FFC7C18EDEB1500D5E3FD /* DaySchedulePageViewController.h */,
+				445FFC7D18EDEB1500D5E3FD /* DaySchedulePageViewController.m */,
+				445FFC7E18EDEB1500D5E3FD /* DaySchedulePageViewController.xib */,
+			);
+			path = DaySchedulePageViewController;
 			sourceTree = "<group>";
 		};
 		446FEE8616F510DF00BC4430 /* Services */ = {
@@ -427,6 +443,7 @@
 				4424D29E16F25A3A0008B9EA /* ViewController.xib in Resources */,
 				446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */,
 				446FEE8B16F51E7000BC4430 /* CourseViewController.xib in Resources */,
+				445FFC8018EDEB1500D5E3FD /* DaySchedulePageViewController.xib in Resources */,
 				44A2B55816F5F6C600200762 /* GroupViewController.xib in Resources */,
 				44A2B55E16F5F94B00200762 /* WeekViewController.xib in Resources */,
 				44A2B56316F5FF9D00200762 /* ScheduleViewController.xib in Resources */,
@@ -474,6 +491,7 @@
 				44DD069C1700EA20001DB0D0 /* Backend.m in Sources */,
 				44FCE6BF1826734400FBF377 /* ReqState.m in Sources */,
 				2D20259D185229FA004D35AF /* CourseServices.m in Sources */,
+				445FFC7F18EDEB1500D5E3FD /* DaySchedulePageViewController.m in Sources */,
 				2D2025A018522A0E004D35AF /* GroupServices.m in Sources */,
 				445764C0185392F40094BD70 /* Week.m in Sources */,
 				445764C4185393270094BD70 /* Group.m in Sources */,
