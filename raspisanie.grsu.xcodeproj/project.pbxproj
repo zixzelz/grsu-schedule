@@ -62,6 +62,7 @@
 		44A2B57816F63D8E00200762 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A2B57716F63D8D00200762 /* LoadingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		44ABA9FA18EDAED3004B6C02 /* DaySchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABA9F918EDAED3004B6C02 /* DaySchedule.m */; };
 		44ABA9FD18EDB8BD004B6C02 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABA9FC18EDB8BD004B6C02 /* ColorUtils.m */; };
+		44ABE54E18F0700F00D5D41C /* ActiveLessonScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABE54D18F0700F00D5D41C /* ActiveLessonScheduleCell.m */; };
 		44B9A2BB18F02D570094EF76 /* ActiveLessonScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */; };
 		44DD069C1700EA20001DB0D0 /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DD069B1700EA20001DB0D0 /* Backend.m */; };
 		44FCE6BF1826734400FBF377 /* ReqState.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FCE6BE1826734400FBF377 /* ReqState.m */; };
@@ -163,6 +164,8 @@
 		44ABA9F918EDAED3004B6C02 /* DaySchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySchedule.m; sourceTree = "<group>"; };
 		44ABA9FB18EDB8BD004B6C02 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		44ABA9FC18EDB8BD004B6C02 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
+		44ABE54C18F0700F00D5D41C /* ActiveLessonScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveLessonScheduleCell.h; sourceTree = "<group>"; };
+		44ABE54D18F0700F00D5D41C /* ActiveLessonScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveLessonScheduleCell.m; sourceTree = "<group>"; };
 		44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveLessonScheduleCell.xib; sourceTree = "<group>"; };
 		44DD069A1700EA20001DB0D0 /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
 		44DD069B1700EA20001DB0D0 /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
@@ -189,6 +192,10 @@
 		2D2025A718523E1A004D35AF /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				44DD069A1700EA20001DB0D0 /* Backend.h */,
+				44DD069B1700EA20001DB0D0 /* Backend.m */,
+				4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */,
+				4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */,
 				2D79B66A185B631A00AF7670 /* NSString+Expanded.h */,
 				2D79B66B185B631A00AF7670 /* NSString+Expanded.m */,
 				2D79B667185B621400AF7670 /* DateUtils.h */,
@@ -204,6 +211,8 @@
 		2D79B660185B5F9C00AF7670 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4424D2AE16F25D350008B9EA /* ScheduleItem.h */,
+				4424D2AF16F25D350008B9EA /* ScheduleItem.m */,
 				2D79B661185B5F9C00AF7670 /* DayScheduleParse.h */,
 				2D79B662185B5F9C00AF7670 /* DayScheduleParse.m */,
 				2D79B663185B5F9C00AF7670 /* LessonScheduleParse.h */,
@@ -248,17 +257,11 @@
 				4424D29116F25A3A0008B9EA /* AppDelegate.m */,
 				2D79B660185B5F9C00AF7670 /* Model */,
 				2D2025A718523E1A004D35AF /* Commons */,
-				4424D2AE16F25D350008B9EA /* ScheduleItem.h */,
-				4424D2AF16F25D350008B9EA /* ScheduleItem.m */,
-				4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */,
-				4424D2BD16F262430008B9EA /* FacultyHTMLParser.m */,
-				44DD069A1700EA20001DB0D0 /* Backend.h */,
-				44DD069B1700EA20001DB0D0 /* Backend.m */,
 				44A2B57916F63D9800200762 /* Loading View */,
-				4424D2A416F25A550008B9EA /* HTML Parser */,
+				4424D2A416F25A550008B9EA /* HTMLParser */,
 				442B999E16FF98BF00417A33 /* CoreData */,
 				446FEE8616F510DF00BC4430 /* Services */,
-				449E10A316F8C31600376D35 /* Custom Cell */,
+				449E10A316F8C31600376D35 /* CustomCell */,
 				445FFC7B18EDEA1F00D5E3FD /* DaySchedulePageViewController */,
 				4424D29C16F25A3A0008B9EA /* ViewController.xib */,
 				4424D29916F25A3A0008B9EA /* ViewController.h */,
@@ -297,7 +300,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4424D2A416F25A550008B9EA /* HTML Parser */ = {
+		4424D2A416F25A550008B9EA /* HTMLParser */ = {
 			isa = PBXGroup;
 			children = (
 				4424D2A516F25A720008B9EA /* HTMLNode.h */,
@@ -306,7 +309,7 @@
 				4424D2A816F25A720008B9EA /* HTMLParser.m */,
 				4424D2A916F25A720008B9EA /* README.md */,
 			);
-			name = "HTML Parser";
+			path = HTMLParser;
 			sourceTree = "<group>";
 		};
 		442B999E16FF98BF00417A33 /* CoreData */ = {
@@ -334,7 +337,7 @@
 				442B99AD16FF9AF200417A33 /* CacheManager.h */,
 				442B99AE16FF9AF200417A33 /* CacheManager.m */,
 			);
-			name = CoreData;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		445FFC7B18EDEA1F00D5E3FD /* DaySchedulePageViewController */ = {
@@ -368,15 +371,17 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		449E10A316F8C31600376D35 /* Custom Cell */ = {
+		449E10A316F8C31600376D35 /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
 				449E10A816F8C39200376D35 /* LessonScheduleCell.xib */,
-				44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */,
 				449E10A516F8C37800376D35 /* LessonScheduleCell.h */,
 				449E10A616F8C37800376D35 /* LessonScheduleCell.m */,
+				44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */,
+				44ABE54C18F0700F00D5D41C /* ActiveLessonScheduleCell.h */,
+				44ABE54D18F0700F00D5D41C /* ActiveLessonScheduleCell.m */,
 			);
-			name = "Custom Cell";
+			path = CustomCell;
 			sourceTree = "<group>";
 		};
 		44A2B57916F63D9800200762 /* Loading View */ = {
@@ -480,6 +485,7 @@
 				2D2025AD18524889004D35AF /* Specialization.m in Sources */,
 				4424D2BE16F262430008B9EA /* FacultyHTMLParser.m in Sources */,
 				446FEE8416F510C600BC4430 /* SpecializationViewController.m in Sources */,
+				44ABE54E18F0700F00D5D41C /* ActiveLessonScheduleCell.m in Sources */,
 				446FEE8A16F51E7000BC4430 /* CourseViewController.m in Sources */,
 				44A2B55716F5F6C600200762 /* GroupViewController.m in Sources */,
 				44A2B55D16F5F94B00200762 /* WeekViewController.m in Sources */,
