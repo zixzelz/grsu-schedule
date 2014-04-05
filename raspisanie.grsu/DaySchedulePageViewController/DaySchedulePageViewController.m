@@ -11,11 +11,13 @@
 #import "LessonSchedule.h"
 #import "ScheduleViewController.h"
 #import "Week.h"
+#import "WeekServices.h"
 #import "ScheduleWeekServices.h"
 #import "ColorUtils.h"
 
 @interface DaySchedulePageViewController () <UIPageViewControllerDataSource, BaseServicesDelegate>
 
+@property (nonatomic, strong) Group *groupItem;
 @property (nonatomic, strong) Week *weekItem;
 
 @property (nonatomic, assign) NSInteger pageIndex;
@@ -28,12 +30,12 @@
 
 @implementation DaySchedulePageViewController
 
-- (id)initWithWeekItem:(Week *)weekItem {
+- (id)initWithGroupItem:(Group *)groupItem {
     self = [super initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
                                   options:@{UIPageViewControllerOptionInterPageSpacingKey:@(20)}];
     if (self) {
-        self.weekItem = weekItem;
+        self.groupItem = groupItem;
 
         self.title = @"Расписание";
         self.dataSource = self;
@@ -46,10 +48,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = UIColorFromRGB(0x2A303B);;
+    self.view.backgroundColor = UIColorFromRGB(0x2A303B);
     self.loadingView = [[LoadingView alloc] initWithView:self.view];
-    [self fetchData];
+    
+    [self fetchWeekData];
 }
 
 #pragma mark - Service
@@ -59,9 +61,21 @@
     self.service.delegate = self;
 }
 
-- (void)fetchData {
+- (void)fetchWeekData {
     [self.loadingView showLoading];
-    [self.service scheduleWeekWithWeek:self.weekItem];
+    
+    WeekServices *service = [WeekServices new];
+    [service setResponseCallback:^(NSArray *array, NSError *error) {
+        Week *weak = array[0];
+        [self fetchScheduleDataWithWeak:weak];
+    }];
+    
+    [service weekItemsWithGroup:self.groupItem];
+}
+
+- (void)fetchScheduleDataWithWeak:(Week *)week {
+    [self.loadingView showLoading];
+    [self.service scheduleWeekWithWeek:week];
 }
 
 #pragma mark - UIPageViewControllerDataSource
@@ -102,6 +116,14 @@
     [self.loadingView hideLoading];
     
     self.scheduleDays = items;
+    NSDate *toDay = [self startDayWithDate:[NSDate date]];
+    for (DaySchedule *daySchedule in items) {
+        if ([daySchedule.date compare:toDay] == NSOrderedSame) {
+            self.pageIndex = [items indexOfObject:daySchedule];
+            break;
+        }
+    }
+    
     [self reloadInputViews];
     UIViewController *vc = [self scheduleViewControllerWithDaySchedule:items[self.pageIndex]];
     [self setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -112,6 +134,14 @@
 - (UIViewController *)scheduleViewControllerWithDaySchedule:(DaySchedule *)daySchedule {
     ScheduleViewController *controller = [[ScheduleViewController alloc] initWithDaySchedule:daySchedule];
     return controller;
+}
+
+- (NSDate *)startDayWithDate:(NSDate *)date {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [calendar components:kCFCalendarUnitYear | kCFCalendarUnitMonth | kCFCalendarUnitDay fromDate:date];
+    NSDate *startDay = [calendar dateFromComponents:components];
+    
+    return startDay;
 }
 
 @end

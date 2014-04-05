@@ -61,20 +61,29 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     DaySchedule *day = self.daySchedule;
-    return [DateUtils formatDate:day.date withFormat:DateFormatDayMonthYear];
+    return [DateUtils formatDate:day.date withFormat:DateFormatDayMonthYearWeak];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"LessonScheduleCell";
-    
-    LessonScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
+    static NSString *ActiveCellIdentifier = @"ActiveLessonScheduleCell";
+
     
     DaySchedule *day = self.daySchedule;
     LessonSchedule *lesson = day.lessons[indexPath.row];
+
+    LessonScheduleCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        NSString *nibName = CellIdentifier;
+        NSDate *currentTime = [NSDate date];
+        if ([lesson.startTime compare:currentTime] == NSOrderedAscending &&
+            [lesson.stopTime compare:currentTime] == NSOrderedDescending) {
+            nibName = ActiveCellIdentifier;
+        }
+        
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:nibName owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
     
     cell.startTime.text = [DateUtils formatDate:lesson.startTime withFormat:DateFormatTimeOnly];
     cell.stopTime.text = [DateUtils formatDate:lesson.stopTime withFormat:DateFormatTimeOnly];

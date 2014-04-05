@@ -8,7 +8,7 @@
 
 #import "GroupViewController.h"
 #import "GroupServices.h"
-#import "WeekViewController.h"
+#import "DaySchedulePageViewController.h"
 #import "Group.h"
 
 @interface GroupViewController () <UITableViewDataSource, UITableViewDelegate, BaseServicesDelegate>
@@ -114,7 +114,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Group *item = self.groupItems[indexPath.row];
     
-    WeekViewController *controller = [[WeekViewController alloc] initWithGroupItem:item];
+    DaySchedulePageViewController *controller = [[DaySchedulePageViewController alloc] initWithGroupItem:item];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

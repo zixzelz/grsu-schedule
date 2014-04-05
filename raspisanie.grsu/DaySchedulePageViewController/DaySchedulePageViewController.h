@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class Week;
+@class Group;
 
 @interface DaySchedulePageViewController : UIPageViewController
 
-- (id)initWithWeekItem:(Week *)weekItem;
+- (id)initWithGroupItem:(Group *)groupItem;
 
 @end

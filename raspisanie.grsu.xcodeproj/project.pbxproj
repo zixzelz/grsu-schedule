@@ -62,6 +62,7 @@
 		44A2B57816F63D8E00200762 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44A2B57716F63D8D00200762 /* LoadingView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		44ABA9FA18EDAED3004B6C02 /* DaySchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABA9F918EDAED3004B6C02 /* DaySchedule.m */; };
 		44ABA9FD18EDB8BD004B6C02 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABA9FC18EDB8BD004B6C02 /* ColorUtils.m */; };
+		44B9A2BB18F02D570094EF76 /* ActiveLessonScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */; };
 		44DD069C1700EA20001DB0D0 /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DD069B1700EA20001DB0D0 /* Backend.m */; };
 		44FCE6BF1826734400FBF377 /* ReqState.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FCE6BE1826734400FBF377 /* ReqState.m */; };
 /* End PBXBuildFile section */
@@ -162,6 +163,7 @@
 		44ABA9F918EDAED3004B6C02 /* DaySchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaySchedule.m; sourceTree = "<group>"; };
 		44ABA9FB18EDB8BD004B6C02 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		44ABA9FC18EDB8BD004B6C02 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
+		44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveLessonScheduleCell.xib; sourceTree = "<group>"; };
 		44DD069A1700EA20001DB0D0 /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
 		44DD069B1700EA20001DB0D0 /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
 		44FCE6BD1826734400FBF377 /* ReqState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReqState.h; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 			isa = PBXGroup;
 			children = (
 				449E10A816F8C39200376D35 /* LessonScheduleCell.xib */,
+				44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */,
 				449E10A516F8C37800376D35 /* LessonScheduleCell.h */,
 				449E10A616F8C37800376D35 /* LessonScheduleCell.m */,
 			);
@@ -439,6 +442,7 @@
 				4424D28C16F25A3A0008B9EA /* InfoPlist.strings in Resources */,
 				4424D29416F25A3A0008B9EA /* Default.png in Resources */,
 				4424D29616F25A3A0008B9EA /* Default@2x.png in Resources */,
+				44B9A2BB18F02D570094EF76 /* ActiveLessonScheduleCell.xib in Resources */,
 				4424D29816F25A3A0008B9EA /* Default-568h@2x.png in Resources */,
 				4424D29E16F25A3A0008B9EA /* ViewController.xib in Resources */,
 				446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */,

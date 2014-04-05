@@ -104,7 +104,7 @@
     }
     
     Week *item = self.weekItems[indexPath.row];
-    cell.textLabel.text = [DateUtils formatDate:item.title withFormat:DateFormatDayMonthYear];
+    cell.textLabel.text = [DateUtils formatDate:item.title withFormat:DateFormatMonthYear];
     
     return cell;
 }
@@ -113,10 +113,10 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Week *item = self.weekItems[indexPath.row];
+//    Week *item = self.weekItems[indexPath.row];
     
 //    ScheduleViewController *controller = [[ScheduleViewController alloc] initWithWeekItem:item];
-    DaySchedulePageViewController *controller = [[DaySchedulePageViewController alloc] initWithWeekItem:item];
+    DaySchedulePageViewController *controller = [[DaySchedulePageViewController alloc] initWithGroupItem:nil];
     
     [self.navigationController pushViewController:controller animated:YES];
 }

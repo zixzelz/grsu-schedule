@@ -175,8 +175,8 @@ static NSMutableDictionary *dateFormats_ = nil;
         case DateFormatDateWithTimeStoryDateWithTimeZone:
             dateFormat = @"d-MMM-yyyy hh:mm ZZ";
             break;
-        case DateFormatDayMonthYear:
-            dateFormat = @"dd-MMM-yyyy";
+        case DateFormatDayMonthYearWeak:
+            dateFormat = @"dd-MMM-yyyy EEEE";
             break;
             
         case DateFormatDayMonthShortYear:

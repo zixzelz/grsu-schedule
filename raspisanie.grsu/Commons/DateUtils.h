@@ -14,7 +14,7 @@ typedef enum {
     DateFormatNewsHeadlines,
     DateFormatShortDate,
     DateFormatShortDateWithTime,
-    DateFormatDayMonthYear,
+    DateFormatDayMonthYearWeak,
     DateFormatDayMonth,
     DateFormatOnlyTime12,
     DateFormatDayMonthShortYear,

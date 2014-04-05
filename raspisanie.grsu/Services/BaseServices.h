@@ -17,6 +17,7 @@
 @interface BaseServices : NSObject
 
 @property (nonatomic, weak) id<BaseServicesDelegate> delegate;
+- (void)setResponseCallback:(ArrayBlock)callback;
 
 - (void)reloadDataWithItem:(id)item;
 - (void)removeDataWithItem:(id)item;

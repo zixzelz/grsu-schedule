@@ -8,8 +8,13 @@
 
 #import "BaseServices.h"
 
-@implementation BaseServices
+@interface BaseServices () <BaseServicesDelegate>
 
+@property (nonatomic, copy) ArrayBlock callback;
+
+@end
+
+@implementation BaseServices
 
 - (void)reloadDataWithItem:(id)item {
     [self removeDataWithItem:item];
@@ -51,6 +56,22 @@
 
 - (NSString *)entityName {
     return @"";
+}
+
+#pragma mark - Callback
+
+- (void)setResponseCallback:(ArrayBlock)callback {
+    self.callback = callback;
+    self.delegate = self;
+}
+
+#pragma mark - BaseServicesDelegate
+
+- (void)didLoadData:(NSArray *)items error:(NSError *)error {
+    if (self.callback) {
+        self.callback(items, error);
+        self.callback = nil;
+    }
 }
 
 @end
