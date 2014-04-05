@@ -3,21 +3,24 @@
     <entity name="Course" representedClassName="Course" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="specialization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Specialization" syncable="YES"/>
+        <relationship name="group" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group" syncable="YES"/>
+        <relationship name="specialization" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Specialization" inverseName="course" inverseEntity="Specialization" syncable="YES"/>
     </entity>
     <entity name="DaySchedule" representedClassName="DaySchedule" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="LessonSchedule" inverseName="daySchedule" inverseEntity="LessonSchedule" syncable="YES"/>
-        <relationship name="week" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Week" syncable="YES"/>
+        <relationship name="week" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Week" inverseName="dayschedule" inverseEntity="Week" syncable="YES"/>
     </entity>
     <entity name="Faculty" representedClassName="Faculty" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="specialization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Specialization" inverseName="faculty" inverseEntity="Specialization" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="course" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Course" syncable="YES"/>
+        <relationship name="course" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="group" inverseEntity="Course" syncable="YES"/>
+        <relationship name="week" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Week" inverseName="group" inverseEntity="Week" syncable="YES"/>
     </entity>
     <entity name="LessonSchedule" representedClassName="LessonSchedule" syncable="YES">
         <attribute name="groupTitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,21 +45,23 @@
         <attribute name="facultyID" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="faculty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Faculty" syncable="YES"/>
+        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="specialization" inverseEntity="Course" syncable="YES"/>
+        <relationship name="faculty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Faculty" inverseName="specialization" inverseEntity="Faculty" syncable="YES"/>
     </entity>
     <entity name="Week" representedClassName="Week" syncable="YES">
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Group" syncable="YES"/>
+        <relationship name="dayschedule" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DaySchedule" inverseName="week" inverseEntity="DaySchedule" syncable="YES"/>
+        <relationship name="group" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="week" inverseEntity="Group" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Course" positionX="108" positionY="315" width="128" height="90"/>
-        <element name="DaySchedule" positionX="529" positionY="420" width="128" height="90"/>
-        <element name="Faculty" positionX="-155" positionY="126" width="128" height="75"/>
-        <element name="Group" positionX="234" positionY="405" width="128" height="90"/>
+        <element name="Course" positionX="108" positionY="315" width="128" height="30"/>
+        <element name="DaySchedule" positionX="529" positionY="420" width="128" height="30"/>
+        <element name="Faculty" positionX="-155" positionY="126" width="128" height="30"/>
+        <element name="Group" positionX="234" positionY="405" width="128" height="30"/>
         <element name="LessonSchedule" positionX="727" positionY="234" width="128" height="165"/>
         <element name="ReqState" positionX="-135" positionY="381" width="128" height="150"/>
-        <element name="Specialization" positionX="-20" positionY="207" width="128" height="103"/>
-        <element name="Week" positionX="358" positionY="495" width="128" height="88"/>
+        <element name="Specialization" positionX="-20" positionY="207" width="128" height="30"/>
+        <element name="Week" positionX="439" positionY="546" width="128" height="30"/>
     </elements>
 </model>

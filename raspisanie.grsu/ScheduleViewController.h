@@ -12,6 +12,8 @@
 
 @interface ScheduleViewController : UIViewController
 
+@property (nonatomic, strong, readonly) DaySchedule *daySchedule;
+
 - (id)initWithDaySchedule:(DaySchedule *)daySchedule;
 
 @end

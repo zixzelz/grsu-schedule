@@ -64,44 +64,47 @@
     [self.service scheduleWeekWithWeek:self.weekItem];
 }
 
-#pragma mark - BaseServicesDelegate
-
-- (void)didLoadData:(NSArray *)items error:(NSError *)error {
-    [self.loadingView hideLoading];
-    self.scheduleDays = items;
-    
-    UIViewController *vc = [self scheduleViewControllerWithDaySchedule:items[self.pageIndex]];
-    [self setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-}
-
 #pragma mark - UIPageViewControllerDataSource
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
-    if (self.pageIndex == 0) {
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(ScheduleViewController *)viewController {
+    NSInteger pageIndex = [self.scheduleDays indexOfObject:viewController.daySchedule];
+    if (pageIndex == 0) {
         return nil;
     }
-    self.pageIndex--;
-    DaySchedule *daySchedule = self.scheduleDays[self.pageIndex];
+    pageIndex--;
+    DaySchedule *daySchedule = self.scheduleDays[pageIndex];
     UIViewController *vc = [self scheduleViewControllerWithDaySchedule:daySchedule];
     return vc;
 }
 
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
-    if (self.pageIndex == self.scheduleDays.count - 1) {
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(ScheduleViewController *)viewController {
+    NSInteger pageIndex = [self.scheduleDays indexOfObject:viewController.daySchedule];
+    if (pageIndex == self.scheduleDays.count - 1) {
         return nil;
     }
-    self.pageIndex++;
-    DaySchedule *daySchedule = self.scheduleDays[self.pageIndex];
+    pageIndex++;
+    DaySchedule *daySchedule = self.scheduleDays[pageIndex];
     UIViewController *vc = [self scheduleViewControllerWithDaySchedule:daySchedule];
     return vc;
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    return 7;
+    return self.scheduleDays.count;
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    return 0;
+    return self.pageIndex;
+}
+
+#pragma mark - BaseServicesDelegate
+
+- (void)didLoadData:(NSArray *)items error:(NSError *)error {
+    [self.loadingView hideLoading];
+    
+    self.scheduleDays = items;
+    [self reloadInputViews];
+    UIViewController *vc = [self scheduleViewControllerWithDaySchedule:items[self.pageIndex]];
+    [self setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
 #pragma mark - Utils

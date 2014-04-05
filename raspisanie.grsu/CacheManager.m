@@ -158,7 +158,7 @@ static CacheManager *_instance;
     NSError *error = nil;
     NSArray *mutableFetchResults = nil;
     mutableFetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-    NSLog(@"recived sinc rows: %d", mutableFetchResults.count);
+    NSLog(@"recived sinc rows: %lu", (unsigned long)mutableFetchResults.count);
     if (mutableFetchResults == nil) {
         // Error
         NSLog(@"cacheWithURL error %@, %@", error, [error userInfo]);
@@ -180,7 +180,7 @@ static CacheManager *_instance;
         NSError *error = nil;
         NSArray *mutableFetchResults = nil;
         mutableFetchResults = [managedObjectContext executeFetchRequest:request error:&error];
-        NSLog(@"recived rows: %d", mutableFetchResults.count);
+        NSLog(@"recived rows: %lu", (unsigned long)mutableFetchResults.count);
         if (mutableFetchResults == nil) {
             // Error
             NSLog(@"cacheWithURL error %@, %@", error, [error userInfo]);
