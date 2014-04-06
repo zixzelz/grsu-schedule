@@ -91,7 +91,7 @@
                 <outlet property="startTimeLabel" destination="3" id="MaR-iT-KGu"/>
                 <outlet property="stopTimeLabel" destination="rbs-FP-aHG" id="i5K-LT-xJm"/>
                 <outlet property="studyNameLabel" destination="12" id="JCu-KJ-Rs3"/>
-                <outlet property="teacherLabel" destination="12" id="gqM-HE-Tvi"/>
+                <outlet property="teacherLabel" destination="hCz-nZ-HfU" id="GY0-6A-BTF"/>
             </connections>
         </tableViewCell>
     </objects>
