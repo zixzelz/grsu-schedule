@@ -7,7 +7,6 @@
 //
 
 #import "BaseSidebarController.h"
-#import "BaseNavigationController.h"
 
 @interface BaseSidebarController () <HBSidebarDelegate>
 
@@ -25,7 +24,7 @@
 }
 
 - (UINavigationController *)navigationControllerForRoot:(UIViewController *)viewController {
-    BaseNavigationController *navigationController = [[BaseNavigationController alloc] initWithRootViewController:viewController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
     [self setupNavigationItem:viewController.navigationItem];
     
     // styling
@@ -43,9 +42,9 @@
 }
 
 - (void)setupNavigationItem:(UINavigationItem *)navigationItem {
-    UIImage *img = [UIImage imageNamed:@"HBIcoSidebarMenu"];
-    UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithImage:img style:UIBarButtonItemStylePlain target:self action:@selector(leftSidebarButtonClicked:)];
-    [navigationItem setLeftBarButtonItem:barButton];
+    UIImage *imgLeft = [UIImage imageNamed:@"HBIcoSidebarMenu"];
+    UIBarButtonItem* barButtonLeft = [[UIBarButtonItem alloc] initWithImage:imgLeft style:UIBarButtonItemStylePlain target:self action:@selector(leftSidebarButtonClicked:)];
+    [navigationItem setLeftBarButtonItem:barButtonLeft];
 }
 
 - (void)leftSidebarButtonClicked:(id)sender {

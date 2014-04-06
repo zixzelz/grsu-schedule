@@ -64,6 +64,13 @@
 		44ABA9FD18EDB8BD004B6C02 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABA9FC18EDB8BD004B6C02 /* ColorUtils.m */; };
 		44ABE54E18F0700F00D5D41C /* ActiveLessonScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABE54D18F0700F00D5D41C /* ActiveLessonScheduleCell.m */; };
 		44ACB4D418F1D34900C707E0 /* BaseSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ACB4D318F1D34900C707E0 /* BaseSidebarController.m */; };
+		44ACB4D818F1DA3700C707E0 /* MainSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ACB4D718F1DA3700C707E0 /* MainSidebarController.m */; };
+		44ACB4DD18F1DC2700C707E0 /* HBSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ACB4DA18F1DC2700C707E0 /* HBSidebarController.m */; };
+		44ACB4DE18F1DC2700C707E0 /* UIViewController+HBSidebarControllerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ACB4DC18F1DC2700C707E0 /* UIViewController+HBSidebarControllerItem.m */; };
+		44ACB4E018F1DC7600C707E0 /* HBIcoSidebarMenu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44ACB4DF18F1DC7600C707E0 /* HBIcoSidebarMenu@2x.png */; };
+		44ACB4E418F1E76300C707E0 /* CalendarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44ACB4E318F1E76300C707E0 /* CalendarIcon@2x.png */; };
+		44ACB4E918F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ACB4E718F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.m */; };
+		44ACB4EA18F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44ACB4E818F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.xib */; };
 		44B9A2BB18F02D570094EF76 /* ActiveLessonScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */; };
 		44DD069C1700EA20001DB0D0 /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DD069B1700EA20001DB0D0 /* Backend.m */; };
 		44FCE6BF1826734400FBF377 /* ReqState.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FCE6BE1826734400FBF377 /* ReqState.m */; };
@@ -169,6 +176,17 @@
 		44ABE54D18F0700F00D5D41C /* ActiveLessonScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveLessonScheduleCell.m; sourceTree = "<group>"; };
 		44ACB4D218F1D34900C707E0 /* BaseSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSidebarController.h; sourceTree = "<group>"; };
 		44ACB4D318F1D34900C707E0 /* BaseSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSidebarController.m; sourceTree = "<group>"; };
+		44ACB4D618F1DA3700C707E0 /* MainSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSidebarController.h; sourceTree = "<group>"; };
+		44ACB4D718F1DA3700C707E0 /* MainSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainSidebarController.m; sourceTree = "<group>"; };
+		44ACB4D918F1DC2700C707E0 /* HBSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBSidebarController.h; sourceTree = "<group>"; };
+		44ACB4DA18F1DC2700C707E0 /* HBSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBSidebarController.m; sourceTree = "<group>"; };
+		44ACB4DB18F1DC2700C707E0 /* UIViewController+HBSidebarControllerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HBSidebarControllerItem.h"; sourceTree = "<group>"; };
+		44ACB4DC18F1DC2700C707E0 /* UIViewController+HBSidebarControllerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HBSidebarControllerItem.m"; sourceTree = "<group>"; };
+		44ACB4DF18F1DC7600C707E0 /* HBIcoSidebarMenu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HBIcoSidebarMenu@2x.png"; sourceTree = "<group>"; };
+		44ACB4E318F1E76300C707E0 /* CalendarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CalendarIcon@2x.png"; sourceTree = "<group>"; };
+		44ACB4E618F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeekScheduleSidebarMenuViewController.h; sourceTree = "<group>"; };
+		44ACB4E718F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeekScheduleSidebarMenuViewController.m; sourceTree = "<group>"; };
+		44ACB4E818F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekScheduleSidebarMenuViewController.xib; sourceTree = "<group>"; };
 		44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveLessonScheduleCell.xib; sourceTree = "<group>"; };
 		44DD069A1700EA20001DB0D0 /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
 		44DD069B1700EA20001DB0D0 /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
@@ -266,6 +284,8 @@
 				442B999E16FF98BF00417A33 /* CoreData */,
 				446FEE8616F510DF00BC4430 /* Services */,
 				449E10A316F8C31600376D35 /* CustomCell */,
+				44ACB4D518F1DA1300C707E0 /* MainSidebarController */,
+				44ACB4E518F1F37300C707E0 /* WeekScheduleSidebarMenu */,
 				445FFC7B18EDEA1F00D5E3FD /* DaySchedulePageViewController */,
 				4424D29C16F25A3A0008B9EA /* ViewController.xib */,
 				4424D29916F25A3A0008B9EA /* ViewController.h */,
@@ -400,10 +420,51 @@
 		44ACB4D118F1D34900C707E0 /* BaseSidebarController */ = {
 			isa = PBXGroup;
 			children = (
+				44ACB4DF18F1DC7600C707E0 /* HBIcoSidebarMenu@2x.png */,
+				44ACB4E318F1E76300C707E0 /* CalendarIcon@2x.png */,
+				44ACB4D918F1DC2700C707E0 /* HBSidebarController.h */,
+				44ACB4DA18F1DC2700C707E0 /* HBSidebarController.m */,
+				44ACB4DB18F1DC2700C707E0 /* UIViewController+HBSidebarControllerItem.h */,
+				44ACB4DC18F1DC2700C707E0 /* UIViewController+HBSidebarControllerItem.m */,
 				44ACB4D218F1D34900C707E0 /* BaseSidebarController.h */,
 				44ACB4D318F1D34900C707E0 /* BaseSidebarController.m */,
 			);
 			path = BaseSidebarController;
+			sourceTree = "<group>";
+		};
+		44ACB4D518F1DA1300C707E0 /* MainSidebarController */ = {
+			isa = PBXGroup;
+			children = (
+				44ACB4E118F1E51900C707E0 /* LeftSidebarMenu */,
+				44ACB4E218F1E51900C707E0 /* RightSidebarMenu */,
+				44ACB4D618F1DA3700C707E0 /* MainSidebarController.h */,
+				44ACB4D718F1DA3700C707E0 /* MainSidebarController.m */,
+			);
+			path = MainSidebarController;
+			sourceTree = "<group>";
+		};
+		44ACB4E118F1E51900C707E0 /* LeftSidebarMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = LeftSidebarMenu;
+			sourceTree = "<group>";
+		};
+		44ACB4E218F1E51900C707E0 /* RightSidebarMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RightSidebarMenu;
+			sourceTree = "<group>";
+		};
+		44ACB4E518F1F37300C707E0 /* WeekScheduleSidebarMenu */ = {
+			isa = PBXGroup;
+			children = (
+				44ACB4E618F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.h */,
+				44ACB4E718F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.m */,
+				44ACB4E818F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.xib */,
+			);
+			path = WeekScheduleSidebarMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,13 +519,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				4424D28C16F25A3A0008B9EA /* InfoPlist.strings in Resources */,
+				44ACB4EA18F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.xib in Resources */,
 				4424D29416F25A3A0008B9EA /* Default.png in Resources */,
 				4424D29616F25A3A0008B9EA /* Default@2x.png in Resources */,
+				44ACB4E418F1E76300C707E0 /* CalendarIcon@2x.png in Resources */,
 				44B9A2BB18F02D570094EF76 /* ActiveLessonScheduleCell.xib in Resources */,
 				4424D29816F25A3A0008B9EA /* Default-568h@2x.png in Resources */,
 				4424D29E16F25A3A0008B9EA /* ViewController.xib in Resources */,
 				446FEE8516F510C600BC4430 /* SpecializationViewController.xib in Resources */,
 				446FEE8B16F51E7000BC4430 /* CourseViewController.xib in Resources */,
+				44ACB4E018F1DC7600C707E0 /* HBIcoSidebarMenu@2x.png in Resources */,
 				445FFC8018EDEB1500D5E3FD /* DaySchedulePageViewController.xib in Resources */,
 				44A2B55816F5F6C600200762 /* GroupViewController.xib in Resources */,
 				44A2B55E16F5F94B00200762 /* WeekViewController.xib in Resources */,
@@ -481,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4424D28E16F25A3A0008B9EA /* main.m in Sources */,
+				44ACB4D818F1DA3700C707E0 /* MainSidebarController.m in Sources */,
 				4424D29216F25A3A0008B9EA /* AppDelegate.m in Sources */,
 				2D2025A318522A1D004D35AF /* WeekServices.m in Sources */,
 				44ABA9FD18EDB8BD004B6C02 /* ColorUtils.m in Sources */,
@@ -488,6 +553,7 @@
 				2D2025AA18523E73004D35AF /* Constants.m in Sources */,
 				4424D29B16F25A3A0008B9EA /* ViewController.m in Sources */,
 				4424D2AA16F25A7D0008B9EA /* HTMLParser.m in Sources */,
+				44ACB4E918F1F3A000C707E0 /* WeekScheduleSidebarMenuViewController.m in Sources */,
 				4424D2AB16F25A800008B9EA /* HTMLNode.m in Sources */,
 				2D79B669185B621400AF7670 /* DateUtils.m in Sources */,
 				44ABA9FA18EDAED3004B6C02 /* DaySchedule.m in Sources */,
@@ -511,6 +577,7 @@
 				2D2025971852292E004D35AF /* BaseServices.m in Sources */,
 				442B99AC16FF9A2B00417A33 /* CoreDataConnection.m in Sources */,
 				442B99AF16FF9AF200417A33 /* CacheManager.m in Sources */,
+				44ACB4DD18F1DC2700C707E0 /* HBSidebarController.m in Sources */,
 				44DD069C1700EA20001DB0D0 /* Backend.m in Sources */,
 				44FCE6BF1826734400FBF377 /* ReqState.m in Sources */,
 				44ACB4D418F1D34900C707E0 /* BaseSidebarController.m in Sources */,
@@ -522,6 +589,7 @@
 				445764C7185393280094BD70 /* Course.m in Sources */,
 				445764CA185393290094BD70 /* Faculty.m in Sources */,
 				4498C02E18551506009BCCEC /* LessonSchedule.m in Sources */,
+				44ACB4DE18F1DC2700C707E0 /* UIViewController+HBSidebarControllerItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

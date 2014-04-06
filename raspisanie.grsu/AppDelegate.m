@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "SpecializationViewController.h"
 #import "CoreDataConnection.h"
 
 @implementation AppDelegate
@@ -17,12 +16,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = (id)[[SpecializationViewController alloc] init];
+    self.viewController = [[MainSidebarController alloc] init];
     
-    UINavigationController *navController = [UINavigationController new];
-    [navController pushViewController:self.viewController animated:NO];
-    
-    self.window.rootViewController = navController;
+    self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
 }

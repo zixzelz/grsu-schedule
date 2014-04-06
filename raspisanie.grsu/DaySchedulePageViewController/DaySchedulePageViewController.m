@@ -14,6 +14,8 @@
 #import "WeekServices.h"
 #import "ScheduleWeekServices.h"
 #import "ColorUtils.h"
+#import "MainSidebarController.h"
+#import "WeekScheduleSidebarMenuViewController.h"
 
 @interface DaySchedulePageViewController () <UIPageViewControllerDataSource, BaseServicesDelegate>
 
@@ -48,10 +50,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupWeekSidebarMenu];
     self.view.backgroundColor = UIColorFromRGB(0x2A303B);
     self.loadingView = [[LoadingView alloc] initWithView:self.view];
     
     [self fetchWeekData];
+}
+
+- (void)setupWeekSidebarMenu {
+    WeekScheduleSidebarMenuViewController *rightVC = [WeekScheduleSidebarMenuViewController new];
+    MainSidebarController *sidebarController = (id)[self sidebarController];
+    [sidebarController setRightViewController:rightVC];
+    
+    UIImage *imgRight = [UIImage imageNamed:@"CalendarIcon"];
+    UIBarButtonItem* barButtonRight = [[UIBarButtonItem alloc] initWithImage:imgRight style:UIBarButtonItemStylePlain target:self action:@selector(rightSidebarButtonClicked:)];
+    [self.navigationItem setRightBarButtonItem:barButtonRight];
+}
+
+- (void)rightSidebarButtonClicked:(UIBarButtonItem *)barButtonItem {
+    MainSidebarController *sidebarController = (id)[self sidebarController];
+    if (sidebarController.currentVisibleSubPage != SubPageTypeRight) {
+        [sidebarController showRightViewControllerAnimated:YES];
+    } else {
+        [sidebarController hideCurrentViewControllerAnimated:YES];
+    }
 }
 
 #pragma mark - Service
