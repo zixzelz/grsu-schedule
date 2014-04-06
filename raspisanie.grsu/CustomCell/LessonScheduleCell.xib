@@ -87,11 +87,11 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="location" destination="7" id="UuA-b4-p9l"/>
-                <outlet property="startTime" destination="3" id="Opl-fS-0Qk"/>
-                <outlet property="stopTime" destination="rbs-FP-aHG" id="dAR-Qr-xQC"/>
-                <outlet property="studyName" destination="12" id="WWq-nb-XOS"/>
-                <outlet property="teacher" destination="hCz-nZ-HfU" id="0wo-Xz-Qhh"/>
+                <outlet property="locationLabel" destination="7" id="ja2-Od-iuu"/>
+                <outlet property="startTimeLabel" destination="3" id="MaR-iT-KGu"/>
+                <outlet property="stopTimeLabel" destination="rbs-FP-aHG" id="i5K-LT-xJm"/>
+                <outlet property="studyNameLabel" destination="12" id="JCu-KJ-Rs3"/>
+                <outlet property="teacherLabel" destination="12" id="gqM-HE-Tvi"/>
             </connections>
         </tableViewCell>
     </objects>

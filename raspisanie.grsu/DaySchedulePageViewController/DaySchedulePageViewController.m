@@ -85,6 +85,7 @@
     if (pageIndex == 0) {
         return nil;
     }
+    NSLog(@"load Before view %ld", (long)pageIndex);
     pageIndex--;
     DaySchedule *daySchedule = self.scheduleDays[pageIndex];
     UIViewController *vc = [self scheduleViewControllerWithDaySchedule:daySchedule];
@@ -96,6 +97,7 @@
     if (pageIndex == self.scheduleDays.count - 1) {
         return nil;
     }
+    NSLog(@"load After view %ld", (long)pageIndex);
     pageIndex++;
     DaySchedule *daySchedule = self.scheduleDays[pageIndex];
     UIViewController *vc = [self scheduleViewControllerWithDaySchedule:daySchedule];

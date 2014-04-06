@@ -63,6 +63,7 @@
 		44ABA9FA18EDAED3004B6C02 /* DaySchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABA9F918EDAED3004B6C02 /* DaySchedule.m */; };
 		44ABA9FD18EDB8BD004B6C02 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABA9FC18EDB8BD004B6C02 /* ColorUtils.m */; };
 		44ABE54E18F0700F00D5D41C /* ActiveLessonScheduleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ABE54D18F0700F00D5D41C /* ActiveLessonScheduleCell.m */; };
+		44ACB4D418F1D34900C707E0 /* BaseSidebarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44ACB4D318F1D34900C707E0 /* BaseSidebarController.m */; };
 		44B9A2BB18F02D570094EF76 /* ActiveLessonScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */; };
 		44DD069C1700EA20001DB0D0 /* Backend.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DD069B1700EA20001DB0D0 /* Backend.m */; };
 		44FCE6BF1826734400FBF377 /* ReqState.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FCE6BE1826734400FBF377 /* ReqState.m */; };
@@ -166,6 +167,8 @@
 		44ABA9FC18EDB8BD004B6C02 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		44ABE54C18F0700F00D5D41C /* ActiveLessonScheduleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveLessonScheduleCell.h; sourceTree = "<group>"; };
 		44ABE54D18F0700F00D5D41C /* ActiveLessonScheduleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveLessonScheduleCell.m; sourceTree = "<group>"; };
+		44ACB4D218F1D34900C707E0 /* BaseSidebarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSidebarController.h; sourceTree = "<group>"; };
+		44ACB4D318F1D34900C707E0 /* BaseSidebarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSidebarController.m; sourceTree = "<group>"; };
 		44B9A2BA18F02D570094EF76 /* ActiveLessonScheduleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveLessonScheduleCell.xib; sourceTree = "<group>"; };
 		44DD069A1700EA20001DB0D0 /* Backend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backend.h; sourceTree = "<group>"; };
 		44DD069B1700EA20001DB0D0 /* Backend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backend.m; sourceTree = "<group>"; };
@@ -192,6 +195,7 @@
 		2D2025A718523E1A004D35AF /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				44ACB4D118F1D34900C707E0 /* BaseSidebarController */,
 				44DD069A1700EA20001DB0D0 /* Backend.h */,
 				44DD069B1700EA20001DB0D0 /* Backend.m */,
 				4424D2BC16F262430008B9EA /* FacultyHTMLParser.h */,
@@ -393,6 +397,15 @@
 			name = "Loading View";
 			sourceTree = "<group>";
 		};
+		44ACB4D118F1D34900C707E0 /* BaseSidebarController */ = {
+			isa = PBXGroup;
+			children = (
+				44ACB4D218F1D34900C707E0 /* BaseSidebarController.h */,
+				44ACB4D318F1D34900C707E0 /* BaseSidebarController.m */,
+			);
+			path = BaseSidebarController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -500,6 +513,7 @@
 				442B99AF16FF9AF200417A33 /* CacheManager.m in Sources */,
 				44DD069C1700EA20001DB0D0 /* Backend.m in Sources */,
 				44FCE6BF1826734400FBF377 /* ReqState.m in Sources */,
+				44ACB4D418F1D34900C707E0 /* BaseSidebarController.m in Sources */,
 				2D20259D185229FA004D35AF /* CourseServices.m in Sources */,
 				445FFC7F18EDEB1500D5E3FD /* DaySchedulePageViewController.m in Sources */,
 				2D2025A018522A0E004D35AF /* GroupServices.m in Sources */,

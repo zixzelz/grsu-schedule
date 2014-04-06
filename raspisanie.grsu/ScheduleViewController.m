@@ -11,6 +11,7 @@
 #import "DaySchedule.h"
 #import "LessonSchedule.h"
 #import "LessonScheduleCell.h"
+#import "ActiveLessonScheduleCell.h"
 #import "DateUtils.h"
 #import "ColorUtils.h"
 
@@ -45,9 +46,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     if (path) {
-        [self.tableView deselectRowAtIndexPath:path animated:YES]; // Hide selected
+        [self.tableView deselectRowAtIndexPath:path animated:YES];
     }
 }
 
@@ -85,12 +88,15 @@
         cell = [nib objectAtIndex:0];
     }
     
-    cell.startTime.text = [DateUtils formatDate:lesson.startTime withFormat:DateFormatTimeOnly];
-    cell.stopTime.text = [DateUtils formatDate:lesson.stopTime withFormat:DateFormatTimeOnly];
-    cell.studyName.text = lesson.studyName;
-    cell.teacher.text = lesson.teacher;
-    cell.location.text = [NSString stringWithFormat:@"%@; %@", lesson.location, lesson.room];
-
+    cell.startTime = lesson.startTime;
+    cell.stopTime = lesson.stopTime;
+    cell.studyNameLabel.text = lesson.studyName;
+    cell.teacherLabel.text = lesson.teacher;
+    cell.locationLabel.text = [NSString stringWithFormat:@"%@; %@", lesson.location, lesson.room];
+    if ([cell isKindOfClass:[ActiveLessonScheduleCell class]]) {
+        [((ActiveLessonScheduleCell *)cell) updateLessonProgress];
+    }
+    
     return cell;
 }
 

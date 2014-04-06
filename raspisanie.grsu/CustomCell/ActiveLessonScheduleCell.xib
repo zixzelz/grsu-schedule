@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-X3-zkv">
+                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-X3-zkv">
                         <rect key="frame" x="74" y="128" width="246" height="2"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </progressView>
@@ -107,11 +107,12 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="location" destination="7" id="UuA-b4-p9l"/>
-                <outlet property="startTime" destination="3" id="Opl-fS-0Qk"/>
-                <outlet property="stopTime" destination="rbs-FP-aHG" id="dAR-Qr-xQC"/>
-                <outlet property="studyName" destination="12" id="WWq-nb-XOS"/>
-                <outlet property="teacher" destination="hCz-nZ-HfU" id="0wo-Xz-Qhh"/>
+                <outlet property="lessonProgressView" destination="MfV-X3-zkv" id="H0u-hg-5Dh"/>
+                <outlet property="locationLabel" destination="7" id="GY1-ze-hG0"/>
+                <outlet property="startTimeLabel" destination="3" id="Dta-aB-m1x"/>
+                <outlet property="stopTimeLabel" destination="rbs-FP-aHG" id="pSa-gL-AG3"/>
+                <outlet property="studyNameLabel" destination="12" id="hwB-vZ-c8x"/>
+                <outlet property="teacherLabel" destination="hCz-nZ-HfU" id="DYH-9S-c8E"/>
             </connections>
         </tableViewCell>
     </objects>

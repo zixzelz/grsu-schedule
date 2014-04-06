@@ -10,11 +10,11 @@
 
 @interface LessonScheduleCell : UITableViewCell
 
-@property (nonatomic, weak, readonly) UILabel* location;
-@property (nonatomic, weak, readonly) UILabel* startTime;
-@property (nonatomic, weak, readonly) UILabel* stopTime;
-@property (nonatomic, weak, readonly) UILabel* studyName;
-@property (nonatomic, weak, readonly) UILabel* teacher;
+@property (nonatomic, weak, readonly) UILabel *locationLabel;
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSDate *stopTime;
+@property (nonatomic, weak, readonly) UILabel *studyNameLabel;
+@property (nonatomic, weak, readonly) UILabel *teacherLabel;
 
 + (CGFloat)heightForSmallCellWithText:(NSString *)text tableWidth:(CGFloat)tableWidth;
 

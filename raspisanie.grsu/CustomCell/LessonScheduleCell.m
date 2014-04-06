@@ -7,6 +7,7 @@
 //
 
 #import "LessonScheduleCell.h"
+#import "DateUtils.h"
 
 #define CELL_FONT_NAME @"Helvetica"
 #define CELL_FONT_SIZE 17
@@ -17,15 +18,29 @@
 
 @interface LessonScheduleCell ()
 
-@property (nonatomic, weak) IBOutlet UILabel* location;
-@property (nonatomic, weak) IBOutlet UILabel* startTime;
-@property (nonatomic, weak) IBOutlet UILabel* stopTime;
-@property (nonatomic, weak) IBOutlet UILabel* studyName;
-@property (nonatomic, weak) IBOutlet UILabel* teacher;
+@property (nonatomic, weak) IBOutlet UILabel* locationLabel;
+@property (nonatomic, weak) IBOutlet UILabel* startTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel* stopTimeLabel;
+@property (nonatomic, weak) IBOutlet UILabel* studyNameLabel;
+@property (nonatomic, weak) IBOutlet UILabel* teacherLabel;
 
 @end
 
 @implementation LessonScheduleCell
+
+- (void)setStartTime:(NSDate *)startTime {
+    if (_startTime != startTime) {
+        _startTime = startTime;
+        self.startTimeLabel.text = [DateUtils formatDate:startTime withFormat:DateFormatTimeOnly];
+    }
+}
+
+- (void)setStopTime:(NSDate *)stopTime {
+    if (_stopTime != stopTime) {
+        _stopTime = stopTime;
+        self.stopTimeLabel.text = [DateUtils formatDate:stopTime withFormat:DateFormatTimeOnly];
+    }
+}
 
 + (CGFloat)heightForSmallCellWithText:(NSString *)text tableWidth:(CGFloat)tableWidth {
     CGFloat cellHeight;

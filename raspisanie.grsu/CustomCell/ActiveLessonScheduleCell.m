@@ -8,27 +8,20 @@
 
 #import "ActiveLessonScheduleCell.h"
 
+@interface ActiveLessonScheduleCell ()
+
+@property (nonatomic, weak) IBOutlet UIProgressView *lessonProgressView;
+
+@end
+
 @implementation ActiveLessonScheduleCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (void)awakeFromNib
-{
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+- (void)updateLessonProgress {
+    CGFloat start = [self.startTime timeIntervalSinceReferenceDate];
+    CGFloat stop = [self.stopTime timeIntervalSinceReferenceDate];
+    CGFloat now = [NSDate timeIntervalSinceReferenceDate] - start;
+    CGFloat value = now / (stop - start);
+    self.lessonProgressView.progress = value;
 }
 
 @end

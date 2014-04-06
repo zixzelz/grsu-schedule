@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 RYSoft. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LessonScheduleCell.h"
 
-@interface ActiveLessonScheduleCell : UITableViewCell
+@interface ActiveLessonScheduleCell : LessonScheduleCell
+
+- (void)updateLessonProgress;
 
 @end
