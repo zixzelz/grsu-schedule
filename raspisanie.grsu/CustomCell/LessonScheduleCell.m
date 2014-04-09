@@ -12,9 +12,9 @@
 #define CELL_FONT_NAME @"Helvetica"
 #define CELL_FONT_SIZE 17
 
-#define SMALL_CELL_DEAFAUL_HEIGHT 50.0f
-#define SMALL_CELL_TEXT_TOP_LOWER_FIELD 26.0f
-#define SMALL_CELL_TEXT_LEFT_RIGHT_FIELD 20 * 2
+#define SMALL_CELL_DEAFAUL_HEIGHT 86.0f
+#define SMALL_CELL_TEXT_TOP_LOWER_FIELD 66.0f
+#define SMALL_CELL_TEXT_LEFT_RIGHT_FIELD 99.0f
 
 @interface LessonScheduleCell ()
 
@@ -52,8 +52,11 @@
 + (CGFloat)heightWithString:(NSString *)string constrainedToWidth:(CGFloat)constrainedToWidth {
     UIFont *cellFont = [UIFont fontWithName:CELL_FONT_NAME size:CELL_FONT_SIZE];
     CGSize constraintSize = CGSizeMake(constrainedToWidth, MAXFLOAT);
-    CGSize labelSize = [string sizeWithFont:cellFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    return labelSize.height;
+    CGRect textRect = [string boundingRectWithSize:constraintSize
+                                             options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                          attributes:@{NSFontAttributeName:cellFont}
+                                             context:nil];
+    return CGRectGetHeight(textRect);
 }
 
 @end

@@ -41,7 +41,7 @@
     }
     
     Week *item = self.weeks[indexPath.row];
-    cell.textLabel.text = [DateUtils formatDate:item.title withFormat:DateFormatDayMonthYearWeak];
+    cell.textLabel.text = [DateUtils formatDate:item.title withFormat:DateFormatDayMonth];
     
     return cell;
 }

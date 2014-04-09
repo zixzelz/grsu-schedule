@@ -92,7 +92,9 @@
     cell.stopTime = lesson.stopTime;
     cell.studyNameLabel.text = lesson.studyName;
     cell.teacherLabel.text = lesson.teacher;
-    cell.locationLabel.text = [NSString stringWithFormat:@"%@; %@", lesson.location, lesson.room];
+    
+    NSString *room = lesson.room ? [NSString stringWithFormat:@"; %@", lesson.room] : @"";
+    cell.locationLabel.text = [NSString stringWithFormat:@"%@%@", lesson.location, room ];
     if ([cell isKindOfClass:[ActiveLessonScheduleCell class]]) {
         [((ActiveLessonScheduleCell *)cell) updateLessonProgress];
     }
@@ -114,11 +116,11 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    DaySchedule *day = self.scheduleDays[indexPath.section];
-//    LessonSchedule *lesson = day.lessons[indexPath.row];
-//
-//    return [LessonScheduleCell heightForSmallCellWithText:lesson.disc tableWidth:self.tableView.bounds.size.width];
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DaySchedule *day = self.daySchedule;
+    LessonSchedule *lesson = day.lessons[indexPath.row];
+
+    return [LessonScheduleCell heightForSmallCellWithText:lesson.studyName tableWidth:self.tableView.bounds.size.width];
+}
 
 @end

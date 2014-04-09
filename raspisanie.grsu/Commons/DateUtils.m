@@ -192,7 +192,7 @@ static NSMutableDictionary *dateFormats_ = nil;
             break;
             
         case DateFormatDayMonth:
-            dateFormat = @"dd MMM";
+            dateFormat = @"dd MMMM";
             break;
             
         case DateFormatOnlyTime12:
