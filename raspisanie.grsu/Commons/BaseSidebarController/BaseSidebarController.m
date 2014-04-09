@@ -18,6 +18,13 @@
 - (id)initWithRootViewController:(UIViewController *)rootViewController {
     self = [super initWithRootViewController:rootViewController];
     if (self) {
+    }
+    return self;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
         self.delegate = self;
     }
     return self;
@@ -25,7 +32,7 @@
 
 - (UINavigationController *)navigationControllerForRoot:(UIViewController *)viewController {
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [self setupNavigationItem:viewController.navigationItem];
+//    [self setupNavigationItem:viewController.navigationItem];
     
     // styling
     navigationController.view.layer.masksToBounds = NO;
@@ -34,7 +41,7 @@
     navigationController.view.layer.shadowOpacity = 0.2f;
     navigationController.view.layer.shadowRadius = 3.0f;
     
-    CGRect pathRect = CGRectMake(-3.0f, 0.0f, 6.0f, CGRectGetHeight(navigationController.view.bounds));
+    CGRect pathRect = CGRectMake(CGRectGetWidth(navigationController.view.bounds) - 3, 0.0f, 6.0f, CGRectGetHeight(navigationController.view.bounds));
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:pathRect];
     [navigationController.view.layer setShadowPath:[path CGPath]];
     

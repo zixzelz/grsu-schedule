@@ -7,32 +7,50 @@
 //
 
 #import "WeekScheduleSidebarMenuViewController.h"
+#import "Week.h"
+#import "DateUtils.h"
+#import "BaseSidebarController.h"
 
 @interface WeekScheduleSidebarMenuViewController ()
 
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
+
 @end
+
 
 @implementation WeekScheduleSidebarMenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.weeks.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"WeekScheduleCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] init];
+        cell.backgroundColor = self.view.backgroundColor;
+        cell.textLabel.textColor = [UIColor whiteColor];
     }
-    return self;
+    
+    Week *item = self.weeks[indexPath.row];
+    cell.textLabel.text = [DateUtils formatDate:item.title withFormat:DateFormatDayMonthYearWeak];
+    
+    return cell;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
+#pragma mark - UITableViewDelegate
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [[self sidebarController] hideCurrentViewControllerAnimated:YES];
+    [self.delegate weekScheduleSidebarMenu:self didSelectWeek:self.weeks[indexPath.row]];
 }
 
 @end

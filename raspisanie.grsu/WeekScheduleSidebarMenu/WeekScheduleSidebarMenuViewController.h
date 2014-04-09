@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol WeekScheduleSidebarMenuDelegate;
+@class Week;
+
 @interface WeekScheduleSidebarMenuViewController : UIViewController
+
+@property (nonatomic, weak) id<WeekScheduleSidebarMenuDelegate> delegate;
+@property (nonatomic, strong) NSArray *weeks;
+
+@end
+
+
+@protocol WeekScheduleSidebarMenuDelegate <NSObject>
+
+- (void)weekScheduleSidebarMenu:(WeekScheduleSidebarMenuViewController *)vc didSelectWeek:(Week *)week;
 
 @end

@@ -19,6 +19,7 @@
 		2D79B666185B5F9C00AF7670 /* LessonScheduleParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79B664185B5F9C00AF7670 /* LessonScheduleParse.m */; };
 		2D79B669185B621400AF7670 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79B668185B621400AF7670 /* DateUtils.m */; };
 		2D79B66C185B631A00AF7670 /* NSString+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D79B66B185B631A00AF7670 /* NSString+Expanded.m */; };
+		4416C5DC18F4AE8B00503F20 /* ScheduleNotFoundViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4416C5DB18F4AE8B00503F20 /* ScheduleNotFoundViewController.xib */; };
 		4424D28216F25A390008B9EA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28116F25A390008B9EA /* UIKit.framework */; };
 		4424D28416F25A390008B9EA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28316F25A390008B9EA /* Foundation.framework */; };
 		4424D28616F25A3A0008B9EA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4424D28516F25A390008B9EA /* CoreGraphics.framework */; };
@@ -101,6 +102,7 @@
 		2D79B668185B621400AF7670 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
 		2D79B66A185B631A00AF7670 /* NSString+Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Expanded.h"; sourceTree = "<group>"; };
 		2D79B66B185B631A00AF7670 /* NSString+Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Expanded.m"; sourceTree = "<group>"; };
+		4416C5DB18F4AE8B00503F20 /* ScheduleNotFoundViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScheduleNotFoundViewController.xib; sourceTree = "<group>"; };
 		4424D27D16F25A390008B9EA /* raspisanie.grsu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = raspisanie.grsu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4424D28116F25A390008B9EA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4424D28316F25A390008B9EA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -305,6 +307,7 @@
 				44A2B56116F5FF9D00200762 /* ScheduleViewController.xib */,
 				44A2B55F16F5FF9C00200762 /* ScheduleViewController.h */,
 				44A2B56016F5FF9C00200762 /* ScheduleViewController.m */,
+				4416C5DB18F4AE8B00503F20 /* ScheduleNotFoundViewController.xib */,
 				4424D28816F25A3A0008B9EA /* Supporting Files */,
 			);
 			path = raspisanie.grsu;
@@ -436,7 +439,6 @@
 			isa = PBXGroup;
 			children = (
 				44ACB4E118F1E51900C707E0 /* LeftSidebarMenu */,
-				44ACB4E218F1E51900C707E0 /* RightSidebarMenu */,
 				44ACB4D618F1DA3700C707E0 /* MainSidebarController.h */,
 				44ACB4D718F1DA3700C707E0 /* MainSidebarController.m */,
 			);
@@ -448,13 +450,6 @@
 			children = (
 			);
 			path = LeftSidebarMenu;
-			sourceTree = "<group>";
-		};
-		44ACB4E218F1E51900C707E0 /* RightSidebarMenu */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = RightSidebarMenu;
 			sourceTree = "<group>";
 		};
 		44ACB4E518F1F37300C707E0 /* WeekScheduleSidebarMenu */ = {
@@ -531,6 +526,7 @@
 				44ACB4E018F1DC7600C707E0 /* HBIcoSidebarMenu@2x.png in Resources */,
 				445FFC8018EDEB1500D5E3FD /* DaySchedulePageViewController.xib in Resources */,
 				44A2B55816F5F6C600200762 /* GroupViewController.xib in Resources */,
+				4416C5DC18F4AE8B00503F20 /* ScheduleNotFoundViewController.xib in Resources */,
 				44A2B55E16F5F94B00200762 /* WeekViewController.xib in Resources */,
 				44A2B56316F5FF9D00200762 /* ScheduleViewController.xib in Resources */,
 				449E10A916F8C39200376D35 /* LessonScheduleCell.xib in Resources */,

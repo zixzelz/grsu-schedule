@@ -64,7 +64,9 @@
                 lessonSchedule.daySchedule = daySchedule;
             }
         }
-        [[CoreDataConnection sharedInstance] saveContext];
+        if (array.count > 0) {
+            [[CoreDataConnection sharedInstance] saveContext];
+        }
         
         callback(result, error);
     }];

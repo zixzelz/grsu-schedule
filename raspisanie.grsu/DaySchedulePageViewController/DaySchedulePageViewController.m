@@ -17,7 +17,7 @@
 #import "MainSidebarController.h"
 #import "WeekScheduleSidebarMenuViewController.h"
 
-@interface DaySchedulePageViewController () <UIPageViewControllerDataSource, BaseServicesDelegate>
+@interface DaySchedulePageViewController () <UIPageViewControllerDataSource, BaseServicesDelegate, WeekScheduleSidebarMenuDelegate>
 
 @property (nonatomic, strong) Group *groupItem;
 @property (nonatomic, strong) Week *weekItem;
@@ -57,8 +57,19 @@
     [self fetchWeekData];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+}
+
 - (void)setupWeekSidebarMenu {
     WeekScheduleSidebarMenuViewController *rightVC = [WeekScheduleSidebarMenuViewController new];
+    rightVC.delegate = self;
     MainSidebarController *sidebarController = (id)[self sidebarController];
     [sidebarController setRightViewController:rightVC];
     
@@ -76,6 +87,10 @@
     }
 }
 
+- (void)dealloc {
+    [[self sidebarController] setRightViewController:nil];
+}
+
 #pragma mark - Service
 
 - (void)setupService {
@@ -88,8 +103,11 @@
     
     WeekServices *service = [WeekServices new];
     [service setResponseCallback:^(NSArray *array, NSError *error) {
-        Week *weak = array[0];
-        [self fetchScheduleDataWithWeak:weak];
+        WeekScheduleSidebarMenuViewController *vc = (id)[[self sidebarController] rightViewController];
+        vc.weeks = array;
+        
+        Week *week = array[0];
+        [self fetchScheduleDataWithWeak:week];
     }];
     
     [service weekItemsWithGroup:self.groupItem];
@@ -103,6 +121,9 @@
 #pragma mark - UIPageViewControllerDataSource
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(ScheduleViewController *)viewController {
+    if (![viewController isKindOfClass:[ScheduleViewController class]]) {
+        return nil;
+    }
     NSInteger pageIndex = [self.scheduleDays indexOfObject:viewController.daySchedule];
     if (pageIndex == 0) {
         return nil;
@@ -115,6 +136,9 @@
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(ScheduleViewController *)viewController {
+    if (![viewController isKindOfClass:[ScheduleViewController class]]) {
+        return nil;
+    }
     NSInteger pageIndex = [self.scheduleDays indexOfObject:viewController.daySchedule];
     if (pageIndex == self.scheduleDays.count - 1) {
         return nil;
@@ -127,29 +151,42 @@
 }
 
 - (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    return self.scheduleDays.count;
+    NSInteger count = self.scheduleDays.count;
+    return MAX(count, 1);
 }
 
 - (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
     return self.pageIndex;
 }
 
+#pragma mark - WeekScheduleSidebarMenuDelegate
+
+- (void)weekScheduleSidebarMenu:(WeekScheduleSidebarMenuViewController *)vc didSelectWeek:(Week *)week {
+    [self fetchScheduleDataWithWeak:week];
+}
+
 #pragma mark - BaseServicesDelegate
 
 - (void)didLoadData:(NSArray *)items error:(NSError *)error {
     [self.loadingView hideLoading];
-    
     self.scheduleDays = items;
-    NSDate *toDay = [self startDayWithDate:[NSDate date]];
-    for (DaySchedule *daySchedule in items) {
-        if ([daySchedule.date compare:toDay] == NSOrderedSame) {
-            self.pageIndex = [items indexOfObject:daySchedule];
-            break;
+    
+    UIViewController *vc;
+    self.pageIndex = 0;
+    if (items.count > 0) {
+        NSDate *toDay = [self startDayWithDate:[NSDate date]];
+        for (DaySchedule *daySchedule in items) {
+            if ([daySchedule.date compare:toDay] == NSOrderedSame) {
+                self.pageIndex = [items indexOfObject:daySchedule];
+                break;
+            }
         }
+        vc = [self scheduleViewControllerWithDaySchedule:items[self.pageIndex]];
+    } else {
+        vc = [[UIViewController alloc] initWithNibName:@"ScheduleNotFoundViewController" bundle:[NSBundle mainBundle]];
     }
     
     [self reloadInputViews];
-    UIViewController *vc = [self scheduleViewControllerWithDaySchedule:items[self.pageIndex]];
     [self setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 

@@ -145,15 +145,17 @@ static Backend *_instance;
     
     __block NSString *viewState_;
     __block NSString *eventValidation_;
-    [[CacheManager sharedInstance] stateWithFacultyID:specializationID ? facultyID : nil
-                                     specializationID:courseID ? specializationID : nil
-                                             courseID:groupID ? courseID : nil
-                                              groupID:weekID ? groupID : nil
-                                               weekID:nil
-                                             callback:^(NSString *viewState, NSString *eventValidation) {
-                                                 viewState_ = viewState;
-                                                 eventValidation_ = eventValidation;
-                                             }];
+    if (facultyID || specializationID || courseID || groupID || weekID) {
+        [[CacheManager sharedInstance] stateWithFacultyID:specializationID ? facultyID : nil
+                                         specializationID:courseID ? specializationID : nil
+                                                 courseID:groupID ? courseID : nil
+                                                  groupID:weekID ? groupID : nil
+                                                   weekID:nil
+                                                 callback:^(NSString *viewState, NSString *eventValidation) {
+                                                     viewState_ = viewState;
+                                                     eventValidation_ = eventValidation;
+                                                 }];
+    }
     
     NSMutableDictionary *someDict = [NSMutableDictionary dictionary];
     if (viewState_ && eventValidation_) {
