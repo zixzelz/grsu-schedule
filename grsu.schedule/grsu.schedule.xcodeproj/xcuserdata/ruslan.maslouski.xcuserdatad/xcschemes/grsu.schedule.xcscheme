@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D84D9421A12074D001F6A28"
+               BlueprintIdentifier = "2D0825E71A152913008B504E"
                BuildableName = "grsu.schedule.app"
                BlueprintName = "grsu.schedule"
                ReferencedContainer = "container:grsu.schedule.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D84D9571A12074D001F6A28"
+               BlueprintIdentifier = "2D0825FC1A152913008B504E"
                BuildableName = "grsu.scheduleTests.xctest"
                BlueprintName = "grsu.scheduleTests"
                ReferencedContainer = "container:grsu.schedule.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2D84D9571A12074D001F6A28"
+               BlueprintIdentifier = "2D0825FC1A152913008B504E"
                BuildableName = "grsu.scheduleTests.xctest"
                BlueprintName = "grsu.scheduleTests"
                ReferencedContainer = "container:grsu.schedule.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D84D9421A12074D001F6A28"
+            BlueprintIdentifier = "2D0825E71A152913008B504E"
             BuildableName = "grsu.schedule.app"
             BlueprintName = "grsu.schedule"
             ReferencedContainer = "container:grsu.schedule.xcodeproj">
@@ -75,7 +75,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D84D9421A12074D001F6A28"
+            BlueprintIdentifier = "2D0825E71A152913008B504E"
             BuildableName = "grsu.schedule.app"
             BlueprintName = "grsu.schedule"
             ReferencedContainer = "container:grsu.schedule.xcodeproj">
@@ -93,7 +93,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2D84D9421A12074D001F6A28"
+            BlueprintIdentifier = "2D0825E71A152913008B504E"
             BuildableName = "grsu.schedule.app"
             BlueprintName = "grsu.schedule"
             ReferencedContainer = "container:grsu.schedule.xcodeproj">

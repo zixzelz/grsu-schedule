@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--Sidebar Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="RMSidebarController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="GPP-As-VMC" kind="custom" identifier="root" customClass="RMSidebarInitRootViewControllerSegue" customModule="grsu_schedule" id="b3P-IR-DQ5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="270" y="475"/>
+        </scene>
+        <!--Select Schedule Options View Controller-->
+        <scene sceneID="Sbv-x0-LQ2">
+            <objects>
+                <tableViewController id="VP5-YR-5pJ" customClass="SelectScheduleOptionsViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uXK-zE-g01">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="8pB-YC-GFY">
+                            <rect key="frame" x="0.0" y="1364" width="320" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <sections>
+                            <tableViewSection id="fJj-Ky-fuR">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Sy5-Nk-Sqp" detailTextLabel="WdW-Gw-cqM" style="IBUITableViewCellStyleValue1" id="qqR-Ko-iaW">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qqR-Ko-iaW" id="kvV-XA-Zwm">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Форма обучения" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sy5-Nk-Sqp">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WdW-Gw-cqM">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="vM1-hq-fsF" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vM1-hq-fsF" id="JWh-x4-A9P">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXJ-s4-tRx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="vM1-hq-fsF" id="R2B-Yd-kAb"/>
+                                                        <outlet property="delegate" destination="vM1-hq-fsF" id="gIX-4j-l2a"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iXJ-s4-tRx" firstAttribute="leading" secondItem="JWh-x4-A9P" secondAttribute="leading" id="80t-0f-wgf"/>
+                                                <constraint firstAttribute="trailing" secondItem="iXJ-s4-tRx" secondAttribute="trailing" id="XbQ-a1-Zz1"/>
+                                                <constraint firstItem="iXJ-s4-tRx" firstAttribute="top" secondItem="JWh-x4-A9P" secondAttribute="top" id="nrt-Ue-AtB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headerCell" destination="qqR-Ko-iaW" id="nKS-24-GCq"/>
+                                            <outlet property="pickerView" destination="iXJ-s4-tRx" id="bja-r4-gIg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="vGd-6B-aRJ" detailTextLabel="4OY-VW-rDa" style="IBUITableViewCellStyleValue1" id="PSZ-7U-Jn5">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PSZ-7U-Jn5" id="DIq-Fs-amC">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Факультет" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vGd-6B-aRJ">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4OY-VW-rDa">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="D0L-YK-RZU" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D0L-YK-RZU" id="Qws-LU-a4I">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bzb-tw-NZG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="D0L-YK-RZU" id="SfG-kY-c6T"/>
+                                                        <outlet property="delegate" destination="D0L-YK-RZU" id="iRe-Cx-zac"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Bzb-tw-NZG" secondAttribute="trailing" id="2ZX-mi-0yO"/>
+                                                <constraint firstItem="Bzb-tw-NZG" firstAttribute="leading" secondItem="Qws-LU-a4I" secondAttribute="leading" id="OL3-ha-Akx"/>
+                                                <constraint firstItem="Bzb-tw-NZG" firstAttribute="top" secondItem="Qws-LU-a4I" secondAttribute="top" id="yfu-Ko-R7j"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headerCell" destination="PSZ-7U-Jn5" id="oZX-Y9-y4s"/>
+                                            <outlet property="pickerView" destination="Bzb-tw-NZG" id="037-Rp-Mo4"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="2Wd-dm-QiU" detailTextLabel="wSm-3j-3um" style="IBUITableViewCellStyleValue1" id="zlY-Sg-ANp">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zlY-Sg-ANp" id="Qll-df-aoS">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Курс" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Wd-dm-QiU">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wSm-3j-3um">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="ORM-Ue-zgL" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ORM-Ue-zgL" id="Jea-cS-5UA">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hF-uV-V4w">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="ORM-Ue-zgL" id="AM8-N4-juA"/>
+                                                        <outlet property="delegate" destination="ORM-Ue-zgL" id="VX1-1I-Ymk"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1hF-uV-V4w" firstAttribute="top" secondItem="Jea-cS-5UA" secondAttribute="top" id="A5c-K0-oKI"/>
+                                                <constraint firstAttribute="trailing" secondItem="1hF-uV-V4w" secondAttribute="trailing" id="gUw-50-GoL"/>
+                                                <constraint firstItem="1hF-uV-V4w" firstAttribute="leading" secondItem="Jea-cS-5UA" secondAttribute="leading" id="xg0-9u-FNo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headerCell" destination="zlY-Sg-ANp" id="HEu-lL-SS6"/>
+                                            <outlet property="pickerView" destination="1hF-uV-V4w" id="eNt-5Y-1iC"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ECs-aH-4VN" detailTextLabel="QO8-iH-xvQ" style="IBUITableViewCellStyleValue1" id="KEs-FM-Auf">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KEs-FM-Auf" id="Rba-6W-n0F">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Группа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ECs-aH-4VN">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QO8-iH-xvQ">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="Wjy-a1-pcA" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wjy-a1-pcA" id="aMl-rI-FSH">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKC-dL-3Jo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="Wjy-a1-pcA" id="rt2-Vb-H0H"/>
+                                                        <outlet property="delegate" destination="Wjy-a1-pcA" id="ee5-0L-EHi"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="PKC-dL-3Jo" firstAttribute="leading" secondItem="aMl-rI-FSH" secondAttribute="leading" id="PJl-xh-dtF"/>
+                                                <constraint firstAttribute="trailing" secondItem="PKC-dL-3Jo" secondAttribute="trailing" id="SG9-Zx-OuH"/>
+                                                <constraint firstItem="PKC-dL-3Jo" firstAttribute="top" secondItem="aMl-rI-FSH" secondAttribute="top" id="wSm-nt-ogE"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headerCell" destination="KEs-FM-Auf" id="Yvb-IP-eAo"/>
+                                            <outlet property="pickerView" destination="PKC-dL-3Jo" id="Dnk-GO-mIs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="uM8-rk-vuh" detailTextLabel="VPi-nz-HTR" style="IBUITableViewCellStyleValue1" id="CUf-UR-jdI">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CUf-UR-jdI" id="xlg-wD-J45">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Неделя" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uM8-rk-vuh">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VPi-nz-HTR">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="taF-jd-LbV" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="taF-jd-LbV" id="ZSS-lj-vH4">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyT-EO-Sj6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="taF-jd-LbV" id="eKi-fj-Rus"/>
+                                                        <outlet property="delegate" destination="taF-jd-LbV" id="UIX-Ua-clO"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="eyT-EO-Sj6" firstAttribute="top" secondItem="ZSS-lj-vH4" secondAttribute="top" id="HUT-4k-p9v"/>
+                                                <constraint firstAttribute="trailing" secondItem="eyT-EO-Sj6" secondAttribute="trailing" id="rMe-eT-lJk"/>
+                                                <constraint firstItem="eyT-EO-Sj6" firstAttribute="leading" secondItem="ZSS-lj-vH4" secondAttribute="leading" id="sV2-Jq-miL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="headerCell" destination="CUf-UR-jdI" id="BPU-9s-od3"/>
+                                            <outlet property="pickerView" destination="eyT-EO-Sj6" id="Ixb-7U-b9a"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="VP5-YR-5pJ" id="7Fc-ry-Pmv"/>
+                            <outlet property="delegate" destination="VP5-YR-5pJ" id="WX4-Ce-S1v"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="qHL-gl-Y86"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="1400"/>
+                    <connections>
+                        <outlet property="coursePickerTableViewCell" destination="ORM-Ue-zgL" id="6TC-el-mBW"/>
+                        <outlet property="courseTableViewCell" destination="zlY-Sg-ANp" id="CYX-7m-Qx1"/>
+                        <outlet property="departmentPickerTableViewCell" destination="vM1-hq-fsF" id="dis-zZ-ExL"/>
+                        <outlet property="departmentTableViewCell" destination="qqR-Ko-iaW" id="Lsf-go-bxS"/>
+                        <outlet property="facultyPickerTableViewCell" destination="D0L-YK-RZU" id="uYn-J0-Hza"/>
+                        <outlet property="facultyTableViewCell" destination="PSZ-7U-Jn5" id="e1h-ud-zLM"/>
+                        <outlet property="groupPickerTableViewCell" destination="Wjy-a1-pcA" id="lch-3n-72Q"/>
+                        <outlet property="groupTableViewCell" destination="KEs-FM-Auf" id="ccj-9b-ndh"/>
+                        <outlet property="timePickerTableViewCell" destination="taF-jd-LbV" id="ueS-Pf-bMv"/>
+                        <outlet property="timeTableViewCell" destination="CUf-UR-jdI" id="9t1-JI-IFx"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c9F-0H-qOm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1134" y="475"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="57d-AK-5Yo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GPP-As-VMC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hwq-Ao-cBa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VP5-YR-5pJ" kind="relationship" relationship="rootViewController" id="ZvQ-dD-Gv1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9qF-iV-nk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="691" y="475"/>
+        </scene>
+    </scenes>
+</document>
