@@ -14,10 +14,10 @@ import UIKit
 
 class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    @IBOutlet weak var headerCell : UITableViewCell!
-    @IBOutlet weak var pickerView : UIPickerView!
+    @IBOutlet private weak var headerCell : UITableViewCell!
+    @IBOutlet private weak var pickerView : UIPickerView!
     
-    @IBOutlet weak var delegate : PickerTableViewCellDelegate?
+    @IBOutlet private weak var delegate : PickerTableViewCellDelegate?
     
     var items : NSArray? {
         didSet {
@@ -35,6 +35,15 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
             pickerView.selectRow(index!, inComponent: 0, animated: true)
             updateHeader(index!)
         }
+    }
+    
+    func selectedRow() -> String {
+        let index = pickerView.selectedRowInComponent(0)
+        return items![index] as String
+    }
+    
+    func selectedRow() -> Int {
+        return pickerView.selectedRowInComponent(0)
     }
     
     private func didSelectRow(row: Int) {
