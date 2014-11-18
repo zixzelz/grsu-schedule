@@ -82,6 +82,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="delegate" destination="VP5-YR-5pJ" id="F7k-Ch-jMm"/>
                                             <outlet property="headerCell" destination="qqR-Ko-iaW" id="nKS-24-GCq"/>
                                             <outlet property="pickerView" destination="iXJ-s4-tRx" id="bja-r4-gIg"/>
                                         </connections>
@@ -126,6 +127,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="delegate" destination="VP5-YR-5pJ" id="BMc-vq-NQW"/>
                                             <outlet property="headerCell" destination="PSZ-7U-Jn5" id="oZX-Y9-y4s"/>
                                             <outlet property="pickerView" destination="Bzb-tw-NZG" id="037-Rp-Mo4"/>
                                         </connections>
@@ -170,6 +172,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="delegate" destination="VP5-YR-5pJ" id="FR6-fW-Gda"/>
                                             <outlet property="headerCell" destination="zlY-Sg-ANp" id="HEu-lL-SS6"/>
                                             <outlet property="pickerView" destination="1hF-uV-V4w" id="eNt-5Y-1iC"/>
                                         </connections>
@@ -214,6 +217,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="delegate" destination="VP5-YR-5pJ" id="W0z-3T-ta8"/>
                                             <outlet property="headerCell" destination="KEs-FM-Auf" id="Yvb-IP-eAo"/>
                                             <outlet property="pickerView" destination="PKC-dL-3Jo" id="Dnk-GO-mIs"/>
                                         </connections>
@@ -258,6 +262,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="delegate" destination="VP5-YR-5pJ" id="Xx1-9p-NOV"/>
                                             <outlet property="headerCell" destination="CUf-UR-jdI" id="BPU-9s-od3"/>
                                             <outlet property="pickerView" destination="eyT-EO-Sj6" id="Ixb-7U-b9a"/>
                                         </connections>
@@ -282,8 +287,8 @@
                         <outlet property="facultyTableViewCell" destination="PSZ-7U-Jn5" id="e1h-ud-zLM"/>
                         <outlet property="groupPickerTableViewCell" destination="Wjy-a1-pcA" id="lch-3n-72Q"/>
                         <outlet property="groupTableViewCell" destination="KEs-FM-Auf" id="ccj-9b-ndh"/>
-                        <outlet property="timePickerTableViewCell" destination="taF-jd-LbV" id="ueS-Pf-bMv"/>
                         <outlet property="timeTableViewCell" destination="CUf-UR-jdI" id="9t1-JI-IFx"/>
+                        <outlet property="weekPickerTableViewCell" destination="taF-jd-LbV" id="4Tj-pY-LEo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9F-0H-qOm" userLabel="First Responder" sceneMemberID="firstResponder"/>

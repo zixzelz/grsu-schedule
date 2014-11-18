@@ -25,6 +25,7 @@
 		2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261D1A15299D008B504E /* SlideAnimatedTransitioning.swift */; };
 		2D08262A1A15299D008B504E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D08261E1A15299D008B504E /* Main.storyboard */; };
 		2D08262B1A15299D008B504E /* SelectScheduleOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261F1A15299D008B504E /* SelectScheduleOptionsViewController.swift */; };
+		2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		2D08261D1A15299D008B504E /* SlideAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		2D08261E1A15299D008B504E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2D08261F1A15299D008B504E /* SelectScheduleOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScheduleOptionsViewController.swift; sourceTree = "<group>"; };
+		2D0A70401A1BB5F900A2A08D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,7 @@
 		2D0825EA1A152913008B504E /* grsu.schedule */ = {
 			isa = PBXGroup;
 			children = (
+				2D96AA631A1BB09F00EDD9E2 /* Commons */,
 				2D0505C71A1660C200171A2E /* ServiceLayer */,
 				2D08260D1A15299D008B504E /* GUI */,
 				2D0825ED1A152913008B504E /* AppDelegate.swift */,
@@ -124,6 +128,7 @@
 		2D0825EB1A152913008B504E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2D0A70401A1BB5F900A2A08D /* Foundation.framework */,
 				2D0825EC1A152913008B504E /* Info.plist */,
 				2D0505CC1A1676CD00171A2E /* MyPlayground.playground */,
 			);
@@ -212,6 +217,14 @@
 				2D08261D1A15299D008B504E /* SlideAnimatedTransitioning.swift */,
 			);
 			path = Slide;
+			sourceTree = "<group>";
+		};
+		2D96AA631A1BB09F00EDD9E2 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */,
+			);
+			path = Commons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +332,7 @@
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
 				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
 				2D0826241A15299D008B504E /* RMSidebarController.swift in Sources */,
+				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
 				2D0825EE1A152913008B504E /* AppDelegate.swift in Sources */,
 				2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentRootViewControllerSegue.swift in Sources */,

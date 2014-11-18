@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectScheduleOptionsViewController: UITableViewController {
+class SelectScheduleOptionsViewController: UITableViewController, PickerTableViewCellDelegate {
 
     @IBOutlet weak var departmentTableViewCell : UITableViewCell!
     @IBOutlet weak var facultyTableViewCell : UITableViewCell!
@@ -20,7 +20,7 @@ class SelectScheduleOptionsViewController: UITableViewController {
     @IBOutlet weak var facultyPickerTableViewCell : PickerTableViewCell!
     @IBOutlet weak var coursePickerTableViewCell : PickerTableViewCell!
     @IBOutlet weak var groupPickerTableViewCell : PickerTableViewCell!
-    @IBOutlet weak var timePickerTableViewCell : PickerTableViewCell!
+    @IBOutlet weak var weekPickerTableViewCell : PickerTableViewCell!
 
     var selectedCell : NSInteger = -1
     
@@ -36,16 +36,23 @@ class SelectScheduleOptionsViewController: UITableViewController {
     func setupPickerCells() {
         featchData()
         
+        let userDef = NSUserDefaults.standardUserDefaults()
+
         coursePickerTableViewCell.items = ["1", "2", "3", "4", "5", "6"]
         coursePickerTableViewCell.reloadData()
-        timePickerTableViewCell.items = scheduleWeeks()
-        timePickerTableViewCell.reloadData()
+        coursePickerTableViewCell.selectRow(userDef.objectForKey(NSUserDefaultsCourseCell) as String)
+        
+        weekPickerTableViewCell.items = scheduleWeeks()
+        weekPickerTableViewCell.reloadData()
+        weekPickerTableViewCell.selectRow(userDef.objectForKey(NSUserDefaultsWeekCell) as String)
     }
     
     func featchData() {
         GetDepartmentsService.getDepartments { (items: NSArray?, error: NSError?) -> Void in
             self.departmentPickerTableViewCell.items = items
             self.departmentPickerTableViewCell.reloadData()
+            let userDef = NSUserDefaults.standardUserDefaults()
+            self.departmentPickerTableViewCell.selectRow(userDef.objectForKey(NSUserDefaultsDepartmentCell) as String)
         }
     }
     
@@ -109,4 +116,24 @@ class SelectScheduleOptionsViewController: UITableViewController {
         return items
     }
     
+    // pragma mark - PickerTableViewCelldelegate
+    
+    func pickerTableViewCell(cell: PickerTableViewCell, didSelectRow row: Int, withText text: String) {
+        var key : String?
+        
+        switch cell {
+        case departmentPickerTableViewCell : key = NSUserDefaultsDepartmentCell; break
+        case facultyPickerTableViewCell : key = NSUserDefaultsFacultyCell; break
+        case coursePickerTableViewCell : key = NSUserDefaultsCourseCell; break
+        case groupPickerTableViewCell : key = NSUserDefaultsGroupCell; break
+        case weekPickerTableViewCell : key = NSUserDefaultsWeekCell; break
+        default : break
+        }
+        
+        if key != nil {
+            let userDef = NSUserDefaults.standardUserDefaults()
+            userDef.setObject(text, forKey: key!)
+        }
+
+    }
 }
