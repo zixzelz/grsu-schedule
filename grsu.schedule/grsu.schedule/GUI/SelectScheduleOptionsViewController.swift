@@ -8,12 +8,18 @@
 
 import UIKit
 
-class SelectScheduleOptionsViewController: UIViewController {
+class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTableViewControllerDelegate, ScheduleOptionsTableViewControllerDataSource {
     
     var scheduleOptions : ScheduleOptionsTableViewController {
         get {
             return self.childViewControllers[0] as ScheduleOptionsTableViewController
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        scheduleOptions.scheduleDelegate = self
+        scheduleOptions.scheduleDataSource = self
     }
     
     @IBAction func showScheduleButtonPressed(sender: AnyObject) {

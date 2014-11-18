@@ -8,6 +8,15 @@
 
 import UIKit
 
+protocol ScheduleOptionsTableViewControllerDelegate : NSObjectProtocol {
+    
+}
+
+protocol ScheduleOptionsTableViewControllerDataSource : NSObjectProtocol {
+    
+}
+
+
 class ScheduleOptionsTableViewController: UITableViewController, PickerTableViewCellDelegate {
 
     @IBOutlet private weak var departmentTableViewCell : UITableViewCell!
@@ -22,11 +31,13 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     @IBOutlet private weak var groupPickerTableViewCell : PickerTableViewCell!
     @IBOutlet private weak var weekPickerTableViewCell : PickerTableViewCell!
 
+    var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
+    var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
     var selectedCell : NSInteger = -1
     
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         dispatch_after(1, dispatch_get_main_queue()) { () -> Void in
             self.setupPickerCells()
