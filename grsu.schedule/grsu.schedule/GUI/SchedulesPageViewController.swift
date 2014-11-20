@@ -8,23 +8,31 @@
 
 import UIKit
 
-class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDataSource {
 
+    var scheduleQuery : StudentScheduleQuery?
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.delegate = self
         self.dataSource = self
         
-        self.reloadInputViews()
+        let vc = weekScheduleController()
+        self.setViewControllers([vc], direction: .Forward, animated: false, completion: nil)
     }
 
+    func weekScheduleController(query : StudentScheduleQuery? = nil) -> WeekSchedulesViewController {
+        let q = query ?? scheduleQuery
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewControllerWithIdentifier("WeekSchedulesViewController") as WeekSchedulesViewController
+        vc.scheduleQuery = q
+        
+        return vc
+    }
     
     // pragma mark - UIPageViewControllerDataSource
 
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 1;
-    }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         return nil
