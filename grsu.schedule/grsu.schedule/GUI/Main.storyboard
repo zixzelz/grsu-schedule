@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
     </dependencies>
     <scenes>
         <!--Sidebar Controller-->
@@ -49,7 +49,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Форма обучения" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sy5-Nk-Sqp">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WdW-Gw-cqM">
@@ -94,7 +94,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Факультет" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vGd-6B-aRJ">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4OY-VW-rDa">
@@ -139,7 +139,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Курс" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2Wd-dm-QiU">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wSm-3j-3um">
@@ -184,7 +184,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Группа" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ECs-aH-4VN">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QO8-iH-xvQ">
@@ -229,7 +229,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Неделя" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uM8-rk-vuh">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VPi-nz-HTR">
@@ -313,7 +313,7 @@
             </objects>
             <point key="canvasLocation" x="691" y="475"/>
         </scene>
-        <!--Select Schedule Options View Controller-->
+        <!--Опции-->
         <scene sceneID="ePF-oU-xAK">
             <objects>
                 <viewController id="fjK-ZB-MlV" customClass="SelectScheduleOptionsViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
@@ -343,6 +343,7 @@
                                 </state>
                                 <connections>
                                     <action selector="showScheduleButtonPressed:" destination="fjK-ZB-MlV" eventType="touchUpInside" id="tmG-0X-QbF"/>
+                                    <segue destination="mEg-GV-wU8" kind="push" id="MBi-ch-BHc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -359,11 +360,40 @@
                             <constraint firstItem="pD2-Jd-lSc" firstAttribute="top" secondItem="5ye-uu-VaJ" secondAttribute="top" id="tSB-Cg-Wy7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nLQ-r9-nhW"/>
+                    <navigationItem key="navigationItem" title="Опции" id="nLQ-r9-nhW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIp-Ec-MzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1111" y="475"/>
+        </scene>
+        <!--Schedules Page View Controller-->
+        <scene sceneID="wuw-l9-xBs">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="mEg-GV-wU8" customClass="SchedulesPageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6JS-Le-i3f"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BEJ-ce-jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1535" y="475"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="yBd-Am-2qC">
+            <objects>
+                <viewController id="hYN-cX-jJf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JA1-Zn-n4u"/>
+                        <viewControllerLayoutGuide type="bottom" id="SdL-eB-GrC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xv0-5l-EwS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjq-Oy-mbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1936" y="475"/>
         </scene>
     </scenes>
 </document>

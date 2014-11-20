@@ -18,8 +18,6 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        scheduleOptions.scheduleDelegate = self
-        scheduleOptions.scheduleDataSource = self
     }
     
     @IBAction func showScheduleButtonPressed(sender: AnyObject) {

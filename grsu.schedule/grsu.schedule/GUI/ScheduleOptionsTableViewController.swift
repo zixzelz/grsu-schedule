@@ -31,8 +31,8 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     @IBOutlet private weak var groupPickerTableViewCell : PickerTableViewCell!
     @IBOutlet private weak var weekPickerTableViewCell : PickerTableViewCell!
 
-    var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
-    var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
+//    var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
+//    var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
     var selectedCell : NSInteger = -1
     
     
@@ -51,11 +51,15 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
         coursePickerTableViewCell.items = ["1", "2", "3", "4", "5", "6"]
         coursePickerTableViewCell.reloadData()
-        coursePickerTableViewCell.selectRow(userDef.objectForKey(NSUserDefaultsCourseCell) as String)
+        if let item = userDef.objectForKey(NSUserDefaultsCourseCell) as? String {
+            coursePickerTableViewCell.selectRow(item)
+        }
         
         weekPickerTableViewCell.items = scheduleWeeks()
         weekPickerTableViewCell.reloadData()
-        weekPickerTableViewCell.selectRow(userDef.objectForKey(NSUserDefaultsWeekCell) as String)
+        if let item = userDef.objectForKey(NSUserDefaultsWeekCell) as? String {
+            weekPickerTableViewCell.selectRow(item)
+        }
     }
     
     func featchData() {
@@ -63,7 +67,9 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             self.departmentPickerTableViewCell.items = items
             self.departmentPickerTableViewCell.reloadData()
             let userDef = NSUserDefaults.standardUserDefaults()
-            self.departmentPickerTableViewCell.selectRow(userDef.objectForKey(NSUserDefaultsDepartmentCell) as String)
+            if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
+                self.departmentPickerTableViewCell.selectRow(item)
+            }
         }
     }
 
