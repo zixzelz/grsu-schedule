@@ -15,3 +15,15 @@ endOfWeek = startOfTheWeek?.dateByAddingTimeInterval(interval-1)
 startOfTheWeek
 endOfWeek
 interval
+
+
+typealias Point = (x:String, y:String)
+
+var points:Array<Point> = [("1","1"), ("1","2"), ("1","3"), ("1","4")]
+
+println (points)
+
+var distances = points.map {
+    (x,y) -> String in y
+}
+println (distances)

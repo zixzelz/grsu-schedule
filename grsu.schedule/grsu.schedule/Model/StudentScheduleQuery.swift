@@ -10,4 +10,9 @@ import UIKit
 
 class StudentScheduleQuery: NSObject {
 
+    var departmentId : String!
+    var facultyId : String!
+    var groupId : String!
+    var course : String!
+    var week : String!
 }

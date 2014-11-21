@@ -23,6 +23,11 @@ class SelectScheduleOptionsViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "SchedulePageIdentifier") {
             let scheduleQuery = StudentScheduleQuery()
+            scheduleQuery.departmentId = scheduleOptions.selectedDepartmentId()
+            scheduleQuery.facultyId = scheduleOptions.selectedFacultyId()
+            scheduleQuery.groupId = scheduleOptions.selectedGroupId()
+            scheduleQuery.course = scheduleOptions.selectedCourse()
+            scheduleQuery.week = scheduleOptions.selectedWeek()
             
             let viewController = segue.destinationViewController as SchedulesPageViewController
             viewController.scheduleQuery = scheduleQuery

@@ -67,23 +67,29 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     }
     
     func featchData() {
-        GetDepartmentsService.getDepartments { [weak self](items: Array<GSItem>?, error: NSError?) -> Void in
+        GetDepartmentsService.getDepartments { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
             if let wSelf = self {
-                wSelf.departmentPickerTableViewCell.items = []
-                wSelf.departmentPickerTableViewCell.reloadData()
-                let userDef = NSUserDefaults.standardUserDefaults()
-                if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
-                    wSelf.departmentPickerTableViewCell.selectRow(item)
+                if let items = array {
+                    wSelf.departments = items
+                    wSelf.departmentPickerTableViewCell.items = items.map { $1 }
+                    wSelf.departmentPickerTableViewCell.reloadData()
+                    let userDef = NSUserDefaults.standardUserDefaults()
+                    if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
+                        wSelf.departmentPickerTableViewCell.selectRow(item)
+                    }
                 }
             }
         }
-        GetFacultyService.getFaculties { [weak self](items: Array<GSItem>?, error: NSError?) -> Void in
+        GetFacultyService.getFaculties { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
             if let wSelf = self {
-                wSelf.facultyPickerTableViewCell.items = []
-                wSelf.facultyPickerTableViewCell.reloadData()
-                let userDef = NSUserDefaults.standardUserDefaults()
-                if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
-                    wSelf.facultyPickerTableViewCell.selectRow(item)
+                if let items = array {
+                    wSelf.faculties = items
+                    wSelf.facultyPickerTableViewCell.items = items.map { $1 }
+                    wSelf.facultyPickerTableViewCell.reloadData()
+                    let userDef = NSUserDefaults.standardUserDefaults()
+                    if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
+                        wSelf.facultyPickerTableViewCell.selectRow(item)
+                    }
                 }
             }
         }
@@ -94,13 +100,16 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         let departmantId = selectedDepartmentId()
         let course = selectedCourse()
         
-        GetGroupsService.getGroups(facultyId, departmantId: departmantId, course: course, completionHandler: { [weak self](items: Array<GSItem>?, error: NSError?) -> Void in
+        GetGroupsService.getGroups(facultyId, departmantId: departmantId, course: course, completionHandler: { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
             if let wSelf = self {
-                wSelf.groupPickerTableViewCell.items = []
-                wSelf.groupPickerTableViewCell.reloadData()
-                let userDef = NSUserDefaults.standardUserDefaults()
-                if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
-                    wSelf.groupPickerTableViewCell.selectRow(item)
+                if let items = array {
+                    wSelf.groups = items
+                    wSelf.groupPickerTableViewCell.items = items.map { $1 }
+                    wSelf.groupPickerTableViewCell.reloadData()
+                    let userDef = NSUserDefaults.standardUserDefaults()
+                    if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
+                        wSelf.groupPickerTableViewCell.selectRow(item)
+                    }
                 }
             }
         })
@@ -159,7 +168,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         
         selectedCell = (selectedCell != indexPath.row + 1) ? indexPath.row + 1 : -1
         
-        if (selectedCell == 9) {
+        if (selectedCell == 7) {
             featchGroups()
         }
         
