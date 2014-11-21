@@ -13,14 +13,15 @@ let UrlHost = "api.grsu.by/1.x/app1"
 
 class BaseDataService: NSObject {
    
-    class func resumeRequest(request: NSURLRequest!, completionHandler: ((NSDictionary?, NSError?) -> Void)!) -> NSURLSessionDataTask {
-        let queue = NSOperationQueue();
-        queue.name = "com.schedule.queue"
+    class func resumeRequest(path: String, queryItems: [AnyObject]?, completionHandler: ((NSDictionary?, NSError?) -> Void)!) -> NSURLSessionDataTask {
+        let session = URLSession()
         
-        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-        sessionConfig.timeoutIntervalForRequest = 30
+        let url = NSURL(scheme: UrlScheme, host: UrlHost, path: path)
+        let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: true)
+        components?.queryItems = queryItems
         
-        let session = NSURLSession(configuration: sessionConfig)
+        let request = NSURLRequest(URL: components!.URL!)
+        
         let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -30,6 +31,17 @@ class BaseDataService: NSObject {
         
         task.resume()
         return task
+    }
+    
+    
+    class func URLSession() -> NSURLSession {
+        let queue = NSOperationQueue();
+        queue.name = "com.schedule.queue"
+        
+        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        sessionConfig.timeoutIntervalForRequest = 30
+        
+        return NSURLSession(configuration: sessionConfig)
     }
     
 }

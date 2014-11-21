@@ -10,14 +10,12 @@ import UIKit
 
 class GetDepartmentsService: BaseDataService {
    
-    class func getDepartments(completionHandler: ((NSArray?, NSError?) -> Void)!) {
-    
-        let url = NSURL(scheme: UrlScheme, host: UrlHost, path: "/getDepartments")
-        let urlRequest = NSURLRequest(URL: url!)
+    class func getDepartments(completionHandler: ((Array<GSItem>?, NSError?) -> Void)!) {
+        let path = "/getDepartments"
         
-        resumeRequest(urlRequest, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
+        resumeRequest(path, queryItems: nil, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
             
-            completionHandler(["Den", "Zao"], nil)
+            completionHandler([GSItem("0", "Den"), GSItem("0", "Zao")], nil)
         })
     }
     

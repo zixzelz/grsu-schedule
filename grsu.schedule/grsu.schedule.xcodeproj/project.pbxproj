@@ -29,6 +29,8 @@
 		2D6000E31A1E7DF0005CB141 /* LessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E21A1E7DF0005CB141 /* LessonScheduleCell.swift */; };
 		2D6000E51A1E7E13005CB141 /* ActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E41A1E7E13005CB141 /* ActiveLessonScheduleCell.swift */; };
 		2D6000E81A1E825D005CB141 /* StudentScheduleQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E71A1E825D005CB141 /* StudentScheduleQuery.swift */; };
+		2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */; };
+		2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000F11A1F9453005CB141 /* GetGroupsService.swift */; };
 		2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */; };
 		2DADE4331A1E584400895608 /* SchedulesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADE4321A1E584400895608 /* SchedulesPageViewController.swift */; };
 		2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */; };
@@ -73,6 +75,8 @@
 		2D6000E21A1E7DF0005CB141 /* LessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonScheduleCell.swift; sourceTree = "<group>"; };
 		2D6000E41A1E7E13005CB141 /* ActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
 		2D6000E71A1E825D005CB141 /* StudentScheduleQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentScheduleQuery.swift; sourceTree = "<group>"; };
+		2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFacultyService.swift; sourceTree = "<group>"; };
+		2D6000F11A1F9453005CB141 /* GetGroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupsService.swift; sourceTree = "<group>"; };
 		2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DADE4321A1E584400895608 /* SchedulesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulesPageViewController.swift; sourceTree = "<group>"; };
 		2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScheduleOptionsViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 			children = (
 				2D0505CA1A1662DC00171A2E /* BaseDataService.swift */,
 				2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */,
+				2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */,
+				2D6000F11A1F9453005CB141 /* GetGroupsService.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -366,10 +372,12 @@
 				2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentRootViewControllerSegue.swift in Sources */,
 				2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */,
+				2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */,
 				2D0826221A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift in Sources */,
 				2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */,
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
 				2D6000E11A1E6BAF005CB141 /* WeekSchedulesViewController.swift in Sources */,
+				2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
 				2DADE4331A1E584400895608 /* SchedulesPageViewController.swift in Sources */,

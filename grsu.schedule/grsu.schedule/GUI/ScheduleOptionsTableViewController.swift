@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol ScheduleOptionsTableViewControllerDelegate : NSObjectProtocol {
-    
-}
-
-protocol ScheduleOptionsTableViewControllerDataSource : NSObjectProtocol {
-    
-}
+//protocol ScheduleOptionsTableViewControllerDelegate : NSObjectProtocol {
+//    
+//}
+//
+//protocol ScheduleOptionsTableViewControllerDataSource : NSObjectProtocol {
+//    
+//}
 
 
 class ScheduleOptionsTableViewController: UITableViewController, PickerTableViewCellDelegate {
@@ -31,6 +31,10 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     @IBOutlet private weak var groupPickerTableViewCell : PickerTableViewCell!
     @IBOutlet private weak var weekPickerTableViewCell : PickerTableViewCell!
 
+    var departments : Array<GSItem>?
+    var faculties : Array<GSItem>?
+    var groups : Array<GSItem>?
+    
 //    var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
 //    var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
     var selectedCell : NSInteger = -1
@@ -63,32 +67,67 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     }
     
     func featchData() {
-        GetDepartmentsService.getDepartments { (items: NSArray?, error: NSError?) -> Void in
-            self.departmentPickerTableViewCell.items = items
-            self.departmentPickerTableViewCell.reloadData()
-            let userDef = NSUserDefaults.standardUserDefaults()
-            if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
-                self.departmentPickerTableViewCell.selectRow(item)
+        GetDepartmentsService.getDepartments { [weak self](items: Array<GSItem>?, error: NSError?) -> Void in
+            if let wSelf = self {
+                wSelf.departmentPickerTableViewCell.items = []
+                wSelf.departmentPickerTableViewCell.reloadData()
+                let userDef = NSUserDefaults.standardUserDefaults()
+                if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
+                    wSelf.departmentPickerTableViewCell.selectRow(item)
+                }
+            }
+        }
+        GetFacultyService.getFaculties { [weak self](items: Array<GSItem>?, error: NSError?) -> Void in
+            if let wSelf = self {
+                wSelf.facultyPickerTableViewCell.items = []
+                wSelf.facultyPickerTableViewCell.reloadData()
+                let userDef = NSUserDefaults.standardUserDefaults()
+                if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
+                    wSelf.facultyPickerTableViewCell.selectRow(item)
+                }
             }
         }
     }
 
+    func featchGroups() {
+        let facultyId = selectedFacultyId()
+        let departmantId = selectedDepartmentId()
+        let course = selectedCourse()
+        
+        GetGroupsService.getGroups(facultyId, departmantId: departmantId, course: course, completionHandler: { [weak self](items: Array<GSItem>?, error: NSError?) -> Void in
+            if let wSelf = self {
+                wSelf.groupPickerTableViewCell.items = []
+                wSelf.groupPickerTableViewCell.reloadData()
+                let userDef = NSUserDefaults.standardUserDefaults()
+                if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
+                    wSelf.groupPickerTableViewCell.selectRow(item)
+                }
+            }
+        })
+    }
+    
     // pragma mark - Interface
 
-    func selectedDepartment() -> Int {
+    func selectedDepartmentId() -> String {
+        let selectedRow = departmentPickerTableViewCell.selectedRow() as Int
+        let item = departments![selectedRow] as GSItem
+        return item.id
+    }
+    
+    func selectedFacultyId() -> String {
+        let selectedRow = facultyPickerTableViewCell.selectedRow() as Int
+        let item = faculties![selectedRow] as GSItem
+        return item.id
+    }
+    
+    func selectedCourse() -> String {
         return departmentPickerTableViewCell.selectedRow()
     }
     
-    func selectedFaculty() -> Int {
-        return departmentPickerTableViewCell.selectedRow()
-    }
-    
-    func selectedCourse() -> Int {
-        return departmentPickerTableViewCell.selectedRow()
-    }
-    
-    func selectedGroup() -> Int {
-        return departmentPickerTableViewCell.selectedRow()
+    func selectedGroupId() -> String {
+        let selectedRow = groupPickerTableViewCell.selectedRow() as Int
+        let item = groups![selectedRow] as GSItem
+        return item.id
     }
     
     func selectedWeek() -> String {
@@ -119,6 +158,10 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         selectedCell = (selectedCell != indexPath.row + 1) ? indexPath.row + 1 : -1
+        
+        if (selectedCell == 9) {
+            featchGroups()
+        }
         
         tableView.beginUpdates()
         tableView.endUpdates()

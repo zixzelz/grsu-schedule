@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTableViewControllerDelegate, ScheduleOptionsTableViewControllerDataSource {
+class SelectScheduleOptionsViewController: UIViewController {
     
     var scheduleOptions : ScheduleOptionsTableViewController {
         get {
@@ -20,8 +20,12 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         super.viewDidLoad()
     }
     
-    @IBAction func showScheduleButtonPressed(sender: AnyObject) {
-        
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "SchedulePageIdentifier") {
+            let scheduleQuery = StudentScheduleQuery()
+            
+            let viewController = segue.destinationViewController as SchedulesPageViewController
+            viewController.scheduleQuery = scheduleQuery
+        }
     }
-    
 }

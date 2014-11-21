@@ -343,8 +343,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="showScheduleButtonPressed:" destination="fjK-ZB-MlV" eventType="touchUpInside" id="tmG-0X-QbF"/>
-                                    <segue destination="mEg-GV-wU8" kind="push" id="MBi-ch-BHc"/>
+                                    <segue destination="mEg-GV-wU8" kind="push" identifier="SchedulePageIdentifier" id="MBi-ch-BHc"/>
                                 </connections>
                             </button>
                         </subviews>

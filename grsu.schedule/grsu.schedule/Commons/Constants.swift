@@ -13,3 +13,6 @@ let NSUserDefaultsFacultyCell = "DefaultFacultyCell"
 let NSUserDefaultsCourseCell = "DefaultCourseCell"
 let NSUserDefaultsGroupCell = "DefaultGroupCell"
 let NSUserDefaultsWeekCell = "DefaultWeekCell"
+
+
+typealias GSItem = (id: String, value: String)
