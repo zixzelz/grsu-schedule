@@ -176,8 +176,8 @@
 			children = (
 				2D08260E1A15299D008B504E /* Commons */,
 				2D08261E1A15299D008B504E /* Main.storyboard */,
-				2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */,
 				2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */,
+				2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */,
 				2DADE4321A1E584400895608 /* SchedulesPageViewController.swift */,
 				2D6000E01A1E6BAF005CB141 /* WeekSchedulesViewController.swift */,
 			);

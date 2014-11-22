@@ -8,14 +8,21 @@
 
 import UIKit
 
-//protocol ScheduleOptionsTableViewControllerDelegate : NSObjectProtocol {
-//    
-//}
-//
-//protocol ScheduleOptionsTableViewControllerDataSource : NSObjectProtocol {
-//    
-//}
+protocol ScheduleOptionsTableViewControllerDelegate : NSObjectProtocol {
+    func didSelectDepartment(departmentId : String)
+    func didSelectFaculty(facultyId : String)
+    func didSelectCourse(course : String)
+    func didSelectGroup(groupId : String)
+    func didSelectWeek(weekId : String)
+}
 
+protocol ScheduleOptionsTableViewControllerDataSource : NSObjectProtocol {
+    func defaultDepartmentID() -> String?
+    func defaultFacultyID() -> String?
+    func defaultCourse() -> String?
+    func defaultGroupID() -> String?
+    func defaultWeekID() -> String?
+}
 
 class ScheduleOptionsTableViewController: UITableViewController, PickerTableViewCellDelegate {
 
@@ -31,13 +38,14 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     @IBOutlet private weak var groupPickerTableViewCell : PickerTableViewCell!
     @IBOutlet private weak var weekPickerTableViewCell : PickerTableViewCell!
 
-    var departments : Array<GSItem>?
-    var faculties : Array<GSItem>?
-    var groups : Array<GSItem>?
+    private var departments : Array<GSItem>?
+    private var faculties : Array<GSItem>?
+    private var groups : Array<GSItem>?
+    private(set) var weeks : Array<GSItem>?
     
-//    var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
-//    var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
-    var selectedCell : NSInteger = -1
+    weak var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
+    weak var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
+    private var selectedCell : NSInteger = -1
     
     
     override func viewDidLoad() {
@@ -50,19 +58,21 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     
     func setupPickerCells() {
         featchData()
-        
-        let userDef = NSUserDefaults.standardUserDefaults()
 
         coursePickerTableViewCell.items = ["1", "2", "3", "4", "5", "6"]
         coursePickerTableViewCell.reloadData()
-        if let item = userDef.objectForKey(NSUserDefaultsCourseCell) as? String {
+        if let item = scheduleDataSource?.defaultCourse() {
             coursePickerTableViewCell.selectRow(item)
         }
         
-        weekPickerTableViewCell.items = scheduleWeeks()
+        weeks = scheduleWeeks()
+        weekPickerTableViewCell.items = weeks!.map { $1 }
         weekPickerTableViewCell.reloadData()
-        if let item = userDef.objectForKey(NSUserDefaultsWeekCell) as? String {
-            weekPickerTableViewCell.selectRow(item)
+        if let itemId = scheduleDataSource?.defaultWeekID() {
+            let item = weeks!.filter { $0.id == itemId }.first
+            if let value = item?.value {
+                weekPickerTableViewCell.selectRow(value)
+            }
         }
     }
     
@@ -73,9 +83,11 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                     wSelf.departments = items
                     wSelf.departmentPickerTableViewCell.items = items.map { $1 }
                     wSelf.departmentPickerTableViewCell.reloadData()
-                    let userDef = NSUserDefaults.standardUserDefaults()
-                    if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
-                        wSelf.departmentPickerTableViewCell.selectRow(item)
+                    if let itemId = wSelf.scheduleDataSource?.defaultDepartmentID() {
+                        let item = items.filter { $0.id == itemId }.first
+                        if let value = item?.value {
+                            wSelf.departmentPickerTableViewCell.selectRow(value)
+                        }
                     }
                 }
             }
@@ -86,61 +98,68 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                     wSelf.faculties = items
                     wSelf.facultyPickerTableViewCell.items = items.map { $1 }
                     wSelf.facultyPickerTableViewCell.reloadData()
-                    let userDef = NSUserDefaults.standardUserDefaults()
-                    if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
-                        wSelf.facultyPickerTableViewCell.selectRow(item)
+                    if let itemId = wSelf.scheduleDataSource?.defaultFacultyID() {
+                        let item = items.filter { $0.id == itemId }.first
+                        if let value = item?.value {
+                            wSelf.facultyPickerTableViewCell.selectRow(value)
+                        }
                     }
                 }
             }
         }
     }
 
-    func featchGroups() {
+    func featchGroups(fromCacheOnly : Bool = false) {
         let facultyId = selectedFacultyId()
         let departmantId = selectedDepartmentId()
         let course = selectedCourse()
         
-        GetGroupsService.getGroups(facultyId, departmantId: departmantId, course: course, completionHandler: { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
-            if let wSelf = self {
-                if let items = array {
-                    wSelf.groups = items
-                    wSelf.groupPickerTableViewCell.items = items.map { $1 }
-                    wSelf.groupPickerTableViewCell.reloadData()
-                    let userDef = NSUserDefaults.standardUserDefaults()
-                    if let item = userDef.objectForKey(NSUserDefaultsDepartmentCell) as? String {
-                        wSelf.groupPickerTableViewCell.selectRow(item)
+        if (facultyId != nil && departmantId != nil && course != nil) {
+            GetGroupsService.getGroups(facultyId!, departmantId: departmantId!, course: course!, completionHandler: { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
+                if let wSelf = self {
+                    if let items = array {
+                        wSelf.groups = items
+                        wSelf.groupPickerTableViewCell.items = items.map { $1 }
+                        wSelf.groupPickerTableViewCell.reloadData()
+                        if let itemId = wSelf.scheduleDataSource?.defaultGroupID() {
+                            let item = items.filter { $0.id == itemId }.first
+                            if let value = item?.value {
+                                wSelf.groupPickerTableViewCell.selectRow(value)
+                            }
+                        }
                     }
                 }
-            }
-        })
+            })
+        }
     }
     
     // pragma mark - Interface
 
-    func selectedDepartmentId() -> String {
+    func selectedDepartmentId() -> String? {
         let selectedRow = departmentPickerTableViewCell.selectedRow() as Int
-        let item = departments![selectedRow] as GSItem
-        return item.id
+        let item = departments?[selectedRow] as GSItem?
+        return item?.id
     }
     
-    func selectedFacultyId() -> String {
+    func selectedFacultyId() -> String? {
         let selectedRow = facultyPickerTableViewCell.selectedRow() as Int
-        let item = faculties![selectedRow] as GSItem
-        return item.id
+        let item = faculties?[selectedRow] as GSItem?
+        return item?.id
     }
     
-    func selectedCourse() -> String {
-        return departmentPickerTableViewCell.selectedRow()
+    func selectedCourse() -> String? {
+        let selectedRow = coursePickerTableViewCell.selectedRow() as String?
+        return selectedRow
     }
     
-    func selectedGroupId() -> String {
+    func selectedGroupId() -> String? {
         let selectedRow = groupPickerTableViewCell.selectedRow() as Int
-        let item = groups![selectedRow] as GSItem
-        return item.id
+        let item = groups?[selectedRow] as GSItem?
+        return item?.id
     }
     
-    func selectedWeek() -> String {
-        let week = departmentPickerTableViewCell.items
+    func selectedWeek() -> String? {
+        let week = weekPickerTableViewCell.items
         return departmentPickerTableViewCell.selectedRow()
     }
     
@@ -182,7 +201,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     
     // pragma mark - Utils
     
-    func scheduleWeeks() -> NSArray! {
+    func scheduleWeeks() -> Array<GSItem>! {
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let formatterDate = NSDateFormatter()
@@ -194,15 +213,17 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         
         calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, startDate: &startOfTheWeek, interval: &interval, forDate: date)
         
-        let items = NSMutableArray()
+        var items  = Array<GSItem>()
         for (var i = 0; i < 4; i++) {
             let endOfWeek = startOfTheWeek?.dateByAddingTimeInterval(interval-1)
             
             let dateStartString = formatterDate.stringFromDate(startOfTheWeek!)
             let dateEndString = formatterDate.stringFromDate(endOfWeek!)
-            let week = dateStartString + " - " + dateEndString
             
-            items.addObject(week)
+            let value = dateStartString + " - " + dateEndString
+            let gsItem = GSItem(dateStartString, value)
+            
+            items.append(gsItem)
             startOfTheWeek = startOfTheWeek?.dateByAddingTimeInterval(interval)
         }
         return items
@@ -211,20 +232,14 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     // pragma mark - PickerTableViewCelldelegate
     
     func pickerTableViewCell(cell: PickerTableViewCell, didSelectRow row: Int, withText text: String) {
-        var key : String?
         
         switch cell {
-        case departmentPickerTableViewCell : key = NSUserDefaultsDepartmentCell; break
-        case facultyPickerTableViewCell : key = NSUserDefaultsFacultyCell; break
-        case coursePickerTableViewCell : key = NSUserDefaultsCourseCell; break
-        case groupPickerTableViewCell : key = NSUserDefaultsGroupCell; break
-        case weekPickerTableViewCell : key = NSUserDefaultsWeekCell; break
+        case departmentPickerTableViewCell : scheduleDelegate?.didSelectDepartment(departments![row].id); featchGroups(fromCacheOnly: false); break
+        case facultyPickerTableViewCell : scheduleDelegate?.didSelectFaculty(faculties![row].id); featchGroups(fromCacheOnly: false); break
+        case coursePickerTableViewCell : scheduleDelegate?.didSelectCourse(text); featchGroups(fromCacheOnly: false); break
+        case groupPickerTableViewCell : scheduleDelegate?.didSelectGroup(groups![row].id); break
+        case weekPickerTableViewCell : scheduleDelegate?.didSelectWeek(weeks![row].id); break
         default : break
-        }
-        
-        if key != nil {
-            let userDef = NSUserDefaults.standardUserDefaults()
-            userDef.setObject(text, forKey: key!)
         }
 
     }

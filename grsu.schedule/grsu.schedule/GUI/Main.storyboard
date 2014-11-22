@@ -361,6 +361,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Опции" id="nLQ-r9-nhW"/>
+                    <connections>
+                        <outlet property="scheduleButton" destination="LOf-qf-Oua" id="en6-OJ-EqM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIp-Ec-MzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -370,12 +373,42 @@
         <scene sceneID="wuw-l9-xBs">
             <objects>
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="20" navigationOrientation="horizontal" spineLocation="none" id="mEg-GV-wU8" customClass="SchedulesPageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="6JS-Le-i3f"/>
+                    <navigationItem key="navigationItem" id="6JS-Le-i3f">
+                        <view key="titleView" contentMode="scaleToFill" id="emZ-lQ-gnS">
+                            <rect key="frame" x="88" y="0.0" width="144" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-gF-cey">
+                                    <rect key="frame" x="32" y="8" width="81" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="20c-bt-Vcl">
+                                    <rect key="frame" x="21" y="17" width="103" height="37"/>
+                                    <color key="pageIndicatorTintColor" red="0.22352941179999999" green="0.22352941179999999" blue="0.22352941179999999" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="currentPageIndicatorTintColor" red="0.43529411759999997" green="0.74509803919999995" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </pageControl>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="20c-bt-Vcl" secondAttribute="bottom" constant="-10" id="0wG-Rr-ja9"/>
+                                <constraint firstAttribute="centerX" secondItem="20c-bt-Vcl" secondAttribute="centerX" id="DTl-jl-ct0"/>
+                                <constraint firstItem="jeo-gF-cey" firstAttribute="top" secondItem="emZ-lQ-gnS" secondAttribute="top" constant="8" id="FL8-Dy-w2g"/>
+                                <constraint firstAttribute="centerX" secondItem="jeo-gF-cey" secondAttribute="centerX" id="OMY-NG-fI7"/>
+                            </constraints>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="pXF-3k-Qsh"/>
+                    </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navigationTitle" destination="jeo-gF-cey" id="5Be-LL-4T3"/>
+                        <outlet property="pageControl" destination="20c-bt-Vcl" id="Te8-uT-ALK"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BEJ-ce-jm3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1535" y="475"/>
+            <point key="canvasLocation" x="1509" y="475"/>
         </scene>
         <!--Week Schedules View Controller-->
         <scene sceneID="yBd-Am-2qC">
@@ -580,7 +613,6 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3HM-qm-2ia" firstAttribute="leading" secondItem="Xv0-5l-EwS" secondAttribute="leading" id="2ut-Zs-d6D"/>
                             <constraint firstAttribute="trailing" secondItem="3HM-qm-2ia" secondAttribute="trailing" id="NmP-vG-ucr"/>

@@ -21,7 +21,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     var items : NSArray? {
         didSet {
-            updateHeader(0)
+            didSelectRow(pickerView.selectedRowInComponent(0))
         }
     }
     
@@ -31,15 +31,15 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     func selectRow(text: String) {
         let index = items?.indexOfObject(text)
-        if (index != NSNotFound) {
+        if (index != NSNotFound && index != pickerView.selectedRowInComponent(0)) {
             pickerView.selectRow(index!, inComponent: 0, animated: true)
-            updateHeader(index!)
+            didSelectRow(index!)
         }
     }
     
-    func selectedRow() -> String {
+    func selectedRow() -> String? {
         let index = pickerView.selectedRowInComponent(0)
-        return items![index] as String
+        return items?[index] as String?
     }
     
     func selectedRow() -> Int {

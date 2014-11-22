@@ -12,7 +12,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource {
 
     var scheduleQuery : StudentScheduleQuery?
     
-    @IBOutlet var tableView : UITableView!
+    @IBOutlet private var tableView : UITableView!
     
     // pragma mark - UITableViewDataSource
     

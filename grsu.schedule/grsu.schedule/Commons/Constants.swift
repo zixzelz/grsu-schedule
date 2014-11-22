@@ -8,11 +8,12 @@
 
 import Foundation
 
-let NSUserDefaultsDepartmentCell = "DefaultDepartmentCell"
-let NSUserDefaultsFacultyCell = "DefaultFacultyCell"
-let NSUserDefaultsCourseCell = "DefaultCourseCell"
-let NSUserDefaultsGroupCell = "DefaultGroupCell"
-let NSUserDefaultsWeekCell = "DefaultWeekCell"
-
+enum ScheduleOption : String {
+    case Departmen = "DefaultDepartmentCell"
+    case Faculty = "DefaultFacultyCell"
+    case Group = "DefaultGroupCell"
+    case Course = "DefaultCourseCell"
+    case Week = "DefaultWeekCell"
+}
 
 typealias GSItem = (id: String, value: String)

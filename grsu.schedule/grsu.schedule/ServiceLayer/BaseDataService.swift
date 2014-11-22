@@ -24,12 +24,13 @@ class BaseDataService: NSObject {
         
         let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completionHandler(nil, nil)
-            })
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                completionHandler(nil, nil)
+//            })
         })
-        
-        task.resume()
+        completionHandler(nil, nil)
+
+//        task.resume()
         return task
     }
     
