@@ -10,6 +10,8 @@ import UIKit
 
 class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
+    @IBInspectable var backgroundColor : UIColor = UIColor.whiteColor()
+    
     @IBOutlet private var navigationTitle : UILabel!
     @IBOutlet private var pageControl : UIPageControl!
     
@@ -21,12 +23,12 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         
         self.dataSource = self
         self.delegate = self
-        
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = backgroundColor
         setupPageController()
     }
     
@@ -82,9 +84,14 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
         if (completed) {
-            println(pageViewController.viewControllers)
             if let vc = pageViewController.viewControllers.last as? WeekSchedulesViewController {
-                pageControl.currentPage = indexOfViewController(vc)
+                let index = indexOfViewController(vc)
+                pageControl.currentPage = index
+                UIView.animateWithDuration(1.0, animations: { () -> Void in
+                    self.navigationTitle.alpha = 0.0
+                    self.navigationTitle.text = self.possibleWeeks[index].value
+                    self.navigationTitle.alpha = 1.0
+                })
             }
         }
     }

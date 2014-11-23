@@ -16,7 +16,22 @@ class LessonScheduleCell: UITableViewCell {
     @IBOutlet private weak var startTimeLabel : UILabel!
     @IBOutlet private weak var stopTimeLabel : UILabel!
 
-    var startTime : NSDate?
-    var stopTime : NSDate?
+    var startTime : Int? {
+        didSet {
+            startTimeLabel.text = timeTextWithTimeInterval(startTime!)
+        }
+    }
+    var stopTime : Int? {
+        didSet {
+            stopTimeLabel.text = timeTextWithTimeInterval(stopTime!)
+        }
+    }
+    
+    func timeTextWithTimeInterval(interval : Int) -> String {
+        let h : Int = interval / 60
+        let m : Int = interval % 60
+        
+        return "\(h):\(m)"
+    }
     
 }
