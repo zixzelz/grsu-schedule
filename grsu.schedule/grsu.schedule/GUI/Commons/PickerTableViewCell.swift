@@ -21,19 +21,16 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     var items : NSArray? {
         didSet {
-            didSelectRow(pickerView.selectedRowInComponent(0))
+            self.pickerView?.reloadAllComponents()
+            updateHeader(0)
         }
-    }
-    
-    func reloadData() {
-        self.pickerView?.reloadAllComponents()
     }
     
     func selectRow(text: String) {
         let index = items?.indexOfObject(text)
         if (index != NSNotFound && index != pickerView.selectedRowInComponent(0)) {
             pickerView.selectRow(index!, inComponent: 0, animated: true)
-            didSelectRow(index!)
+            updateHeader(index!)
         }
     }
     

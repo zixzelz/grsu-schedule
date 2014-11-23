@@ -25,7 +25,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         
         scheduleOptions.scheduleDelegate = self
         scheduleOptions.scheduleDataSource = self
-        scheduleButton.enabled = false
+        updateShowScheduleButtonState()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -39,29 +39,38 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     
     func updateShowScheduleButtonState() {
         let enabled = scheduleQuery.departmentId != nil && scheduleQuery.facultyId != nil && scheduleQuery.course != nil && scheduleQuery.groupId != nil && scheduleQuery.week != nil
+        
+        var backgroundColor = enabled ? UIColor(red: 0.43529409170150757, green: 0.7450980544090271, blue: 0.21176469326019287, alpha: 1) : UIColor.lightGrayColor()
+        
         scheduleButton.enabled = enabled
+        scheduleButton.backgroundColor = backgroundColor
     }
     
     // pragma mark - ScheduleOptionsTableViewControllerDataSource
 
     func defaultDepartmentID() -> String? {
-        return fetchDefaultValue(.Departmen)
+        scheduleQuery.departmentId = fetchDefaultValue(.Departmen)
+        return scheduleQuery.departmentId
     }
     
     func defaultFacultyID() -> String? {
-        return fetchDefaultValue(.Faculty)
+        scheduleQuery.facultyId = fetchDefaultValue(.Faculty)
+        return scheduleQuery.facultyId
     }
     
     func defaultCourse() -> String? {
-        return fetchDefaultValue(.Course)
+        scheduleQuery.course = fetchDefaultValue(.Course)
+        return scheduleQuery.course
     }
     
     func defaultGroupID() -> String? {
-        return fetchDefaultValue(.Group)
+        scheduleQuery.groupId = fetchDefaultValue(.Group)
+        return scheduleQuery.groupId
     }
     
     func defaultWeekID() -> String? {
-        return fetchDefaultValue(.Week)
+        scheduleQuery.week = fetchDefaultValue(.Week)
+        return scheduleQuery.week
     }
     
     // pragma mark - ScheduleOptionsTableViewControllerDelegate

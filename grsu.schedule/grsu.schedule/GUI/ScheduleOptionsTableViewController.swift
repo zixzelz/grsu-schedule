@@ -41,7 +41,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     private var departments : Array<GSItem>?
     private var faculties : Array<GSItem>?
     private var groups : Array<GSItem>?
-    private(set) var weeks : Array<GSItem>?
+    private(set) var weeks : Array<GSItem>!
     
     weak var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
     weak var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
@@ -57,24 +57,26 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     }
     
     func setupPickerCells() {
-        featchData()
 
-        coursePickerTableViewCell.items = ["1", "2", "3", "4", "5", "6"]
-        coursePickerTableViewCell.reloadData()
+        let courses = ["1", "2", "3", "4", "5", "6"]
+        coursePickerTableViewCell.items = courses
         if let item = scheduleDataSource?.defaultCourse() {
             coursePickerTableViewCell.selectRow(item)
+        } else {
+            self.scheduleDelegate?.didSelectCourse(courses.first!);
         }
         
         weeks = scheduleWeeks()
         weekPickerTableViewCell.items = weeks!.map { $1 }
-        weekPickerTableViewCell.reloadData()
-        if let itemId = scheduleDataSource?.defaultWeekID() {
-            let item = weeks!.filter { $0.id == itemId }.first
-            if let value = item?.value {
-                weekPickerTableViewCell.selectRow(value)
-            }
+        let itemId = scheduleDataSource?.defaultWeekID()
+        if let value = self.valueById(weeks!, itemId: itemId) {
+            weekPickerTableViewCell.selectRow(value)
+        } else {
+            self.scheduleDelegate?.didSelectWeek(weeks.first!.id);
         }
-    }
+
+        featchData()
+}
     
     func featchData() {
         GetDepartmentsService.getDepartments { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
@@ -82,12 +84,13 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                 if let items = array {
                     wSelf.departments = items
                     wSelf.departmentPickerTableViewCell.items = items.map { $1 }
-                    wSelf.departmentPickerTableViewCell.reloadData()
                     if let itemId = wSelf.scheduleDataSource?.defaultDepartmentID() {
-                        let item = items.filter { $0.id == itemId }.first
-                        if let value = item?.value {
+                        if let value = wSelf.valueById(items, itemId: itemId) {
                             wSelf.departmentPickerTableViewCell.selectRow(value)
+                        } else {
+                            wSelf.scheduleDelegate?.didSelectDepartment(items.first!.id);
                         }
+                        wSelf.featchGroups(fromCacheOnly: true);
                     }
                 }
             }
@@ -97,12 +100,13 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                 if let items = array {
                     wSelf.faculties = items
                     wSelf.facultyPickerTableViewCell.items = items.map { $1 }
-                    wSelf.facultyPickerTableViewCell.reloadData()
                     if let itemId = wSelf.scheduleDataSource?.defaultFacultyID() {
-                        let item = items.filter { $0.id == itemId }.first
-                        if let value = item?.value {
+                        if let value = wSelf.valueById(items, itemId: itemId) {
                             wSelf.facultyPickerTableViewCell.selectRow(value)
+                        } else {
+                            wSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
                         }
+                        wSelf.featchGroups(fromCacheOnly: true);
                     }
                 }
             }
@@ -120,12 +124,12 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                     if let items = array {
                         wSelf.groups = items
                         wSelf.groupPickerTableViewCell.items = items.map { $1 }
-                        wSelf.groupPickerTableViewCell.reloadData()
-                        if let itemId = wSelf.scheduleDataSource?.defaultGroupID() {
-                            let item = items.filter { $0.id == itemId }.first
-                            if let value = item?.value {
-                                wSelf.groupPickerTableViewCell.selectRow(value)
-                            }
+                        
+                        let itemId = wSelf.scheduleDataSource?.defaultGroupID()
+                        if let value = wSelf.valueById(items, itemId: itemId) {
+                            wSelf.groupPickerTableViewCell.selectRow(value)
+                        } else {
+                            wSelf.scheduleDelegate?.didSelectGroup(items.first!.id);
                         }
                     }
                 }
@@ -229,14 +233,22 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         return items
     }
     
+    func valueById(items: [GSItem], itemId: String?) -> String? {
+        if let itemId_ = itemId {
+            let item = items.filter { $0.id == itemId_ }.first
+            return item?.value
+        }
+        return nil
+    }
+    
     // pragma mark - PickerTableViewCelldelegate
     
     func pickerTableViewCell(cell: PickerTableViewCell, didSelectRow row: Int, withText text: String) {
         
         switch cell {
-        case departmentPickerTableViewCell : scheduleDelegate?.didSelectDepartment(departments![row].id); featchGroups(fromCacheOnly: false); break
-        case facultyPickerTableViewCell : scheduleDelegate?.didSelectFaculty(faculties![row].id); featchGroups(fromCacheOnly: false); break
-        case coursePickerTableViewCell : scheduleDelegate?.didSelectCourse(text); featchGroups(fromCacheOnly: false); break
+        case departmentPickerTableViewCell : scheduleDelegate?.didSelectDepartment(departments![row].id); featchGroups(fromCacheOnly: true); break
+        case facultyPickerTableViewCell : scheduleDelegate?.didSelectFaculty(faculties![row].id); featchGroups(fromCacheOnly: true); break
+        case coursePickerTableViewCell : scheduleDelegate?.didSelectCourse(text); featchGroups(fromCacheOnly: true); break
         case groupPickerTableViewCell : scheduleDelegate?.didSelectGroup(groups![row].id); break
         case weekPickerTableViewCell : scheduleDelegate?.didSelectWeek(weeks![row].id); break
         default : break
