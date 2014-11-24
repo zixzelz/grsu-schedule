@@ -197,6 +197,9 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         
         tableView.beginUpdates()
         tableView.endUpdates()
+        
+        let scrollIndexPath = NSIndexPath(forRow: min(indexPath.row + 2, tableView.numberOfRowsInSection(indexPath.section)-1) , inSection: indexPath.section)
+        tableView.scrollToRowAtIndexPath(scrollIndexPath, atScrollPosition: .Bottom, animated: true)
     }
     
     override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {

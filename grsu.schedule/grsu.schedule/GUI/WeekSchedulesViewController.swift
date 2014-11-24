@@ -69,8 +69,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let date = schedules![section].date
-        return date?.description
+        let date = schedules![section].date!
+        return DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
     }
     
 }

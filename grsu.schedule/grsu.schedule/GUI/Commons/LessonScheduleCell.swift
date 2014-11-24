@@ -31,7 +31,10 @@ class LessonScheduleCell: UITableViewCell {
         let h : Int = interval / 60
         let m : Int = interval % 60
         
-        return "\(h):\(m)"
+        let formatter = NSNumberFormatter()
+        formatter.minimumIntegerDigits = 2
+        
+        return formatter.stringFromNumber(h)! + ":" + formatter.stringFromNumber(m)!
     }
     
 }
