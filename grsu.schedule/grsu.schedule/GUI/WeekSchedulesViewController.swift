@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeekSchedulesViewController: UIViewController, UITableViewDataSource {
+class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var scheduleQuery : StudentScheduleQuery?
     var schedules: Array<StudentDaySchedule>?
@@ -68,9 +68,19 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let CellIdentifier = "SectionHeader"
+
+        let headerView = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell
         let date = schedules![section].date!
-        return DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
+
+        headerView.textLabel?.text = DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
+        
+        return headerView as UIView
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 38
     }
     
 }

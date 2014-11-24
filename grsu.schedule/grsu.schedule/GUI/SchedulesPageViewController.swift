@@ -37,6 +37,7 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
 
         pageControl.numberOfPages = possibleWeeks.count
         pageControl.currentPage = find(weeks, scheduleQuery.week!)!
+        updateNavigationTitle()
         
         let vc = weekScheduleController()
         self.setViewControllers([vc], direction: .Forward, animated: false, completion: nil)
@@ -54,6 +55,16 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         vc.scheduleQuery = query
         
         return vc
+    }
+    
+    func updateNavigationTitle() {
+        let index = pageControl.currentPage
+
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            self.navigationTitle.alpha = 0.0
+            self.navigationTitle.text = self.possibleWeeks[index].value
+            self.navigationTitle.alpha = 1.0
+        })
     }
     
     // pragma mark - UIPageViewControllerDataSource
@@ -87,11 +98,7 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
             if let vc = pageViewController.viewControllers.last as? WeekSchedulesViewController {
                 let index = indexOfViewController(vc)
                 pageControl.currentPage = index
-                UIView.animateWithDuration(1.0, animations: { () -> Void in
-                    self.navigationTitle.alpha = 0.0
-                    self.navigationTitle.text = self.possibleWeeks[index].value
-                    self.navigationTitle.alpha = 1.0
-                })
+                updateNavigationTitle()
             }
         }
     }
