@@ -175,7 +175,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         if (indexPath.row % 2 == 0) {
             height = super.tableView(tableView, heightForRowAtIndexPath: indexPath);
         } else if (selectedCell == indexPath.row) {
-            height = 216
+            height = 176
         }
         return height
     }

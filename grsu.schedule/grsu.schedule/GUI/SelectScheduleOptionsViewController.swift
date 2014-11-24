@@ -26,6 +26,10 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         scheduleOptions.scheduleDelegate = self
         scheduleOptions.scheduleDataSource = self
         updateShowScheduleButtonState()
+        
+        let inset = UIEdgeInsetsMake(0, 0, CGRectGetHeight(scheduleButton.frame), 0)
+        scheduleOptions.tableView.contentInset = inset
+        scheduleOptions.tableView.scrollIndicatorInsets = inset
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
