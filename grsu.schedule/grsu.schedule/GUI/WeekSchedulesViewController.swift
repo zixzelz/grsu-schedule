@@ -8,16 +8,23 @@
 
 import UIKit
 
+let SectionHeaderIdentifier = "SectionHeaderIdentifier"
+
 class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var scheduleQuery : StudentScheduleQuery?
     var schedules: Array<StudentDaySchedule>?
+    
+    var menuCellIndexPath: NSIndexPath?
     
     @IBOutlet private var tableView : UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
+        
         fetchData()
     }
     
@@ -52,35 +59,85 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return schedules![section].lessons?.count ?? 0
+        let number = schedules![section].lessons?.count ?? 0
+        return menuCellIndexPath?.section == section ? number+1 : number
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var lesson = schedules![indexPath.section].lessons![indexPath.row]
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("LessonCellIdentifier") as LessonScheduleCell
-        cell.locationLabel.text = lesson.location
-        cell.studyNameLabel.text = lesson.studyName
-        cell.teacherLabel.text = lesson.teacher
-        cell.startTime = lesson.startTime
-        cell.stopTime = lesson.stopTime
+        var cell : UITableViewCell
+
+        if (indexPath.isEqual(menuCellIndexPath)) {
+            cell = tableView.dequeueReusableCellWithIdentifier("MenuCellIdentifier") as UITableViewCell
+            
+        } else {
+            
+            var fixIndexPath = indexPath
+            if (menuCellIndexPath != nil && menuCellIndexPath?.section == indexPath.section && indexPath.row > menuCellIndexPath?.row) {
+                fixIndexPath = NSIndexPath(forRow: indexPath.row-1, inSection: indexPath.section)
+            }
+            
+            var lesson = schedules![fixIndexPath.section].lessons![fixIndexPath.row]
+            
+            var identifier : String
+            if (indexPath.row == 0) {
+                identifier = "ActiveLessonCellIdentifier"
+            } else {
+                identifier = "LessonCellIdentifier"
+            }
+            let lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as LessonScheduleCell
+            
+            lCell.locationLabel.text = lesson.location
+            lCell.studyNameLabel.text = lesson.studyName
+            lCell.teacherLabel.text = lesson.teacher
+            lCell.startTime = lesson.startTime
+            lCell.stopTime = lesson.stopTime
+            
+            cell = lCell
+        }
         
         return cell
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let CellIdentifier = "SectionHeader"
 
-        let headerView = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as UITableViewCell
+        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SectionHeaderIdentifier) as UITableViewHeaderFooterView
         let date = schedules![section].date!
 
-        headerView.textLabel?.text = DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
+        headerView.textLabel.text = DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
         
-        return headerView as UIView
+        return headerView
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return indexPath.isEqual(menuCellIndexPath) ? 50 : 130
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 38
     }
     
+    // pragma mark - UITableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var menuIndexPath = NSIndexPath(forRow: indexPath.row+1, inSection: indexPath.section)
+        
+        if (menuIndexPath.isEqual(menuCellIndexPath)) {
+            menuCellIndexPath = nil
+            tableView.deleteRowsAtIndexPaths([menuIndexPath], withRowAnimation: .Middle)
+        } else {
+            tableView.beginUpdates()
+            if (menuCellIndexPath != nil) {
+                tableView.deleteRowsAtIndexPaths([menuCellIndexPath!], withRowAnimation: .Middle)
+                
+                if (menuCellIndexPath?.section == menuIndexPath.section && menuCellIndexPath?.row < menuIndexPath.row) {
+                    menuIndexPath = indexPath
+                }
+            }
+            tableView.insertRowsAtIndexPaths([menuIndexPath], withRowAnimation: .Middle)
+            menuCellIndexPath = menuIndexPath
+            tableView.endUpdates()
+        }
+    }
 }

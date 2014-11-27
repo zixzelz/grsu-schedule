@@ -39,6 +39,8 @@
 		2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */; };
 		2DADE4331A1E584400895608 /* SchedulesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADE4321A1E584400895608 /* SchedulesPageViewController.swift */; };
 		2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */; };
+		2DD1BB541A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */; };
+		2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DADE4321A1E584400895608 /* SchedulesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SchedulesPageViewController.swift; sourceTree = "<group>"; };
 		2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScheduleOptionsViewController.swift; sourceTree = "<group>"; };
+		2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekSchedulesHeaderFooterView.xib; sourceTree = "<group>"; };
+		2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekSchedulesHeaderFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +209,8 @@
 				2D08260F1A15299D008B504E /* PickerTableViewCell.swift */,
 				2D6000E21A1E7DF0005CB141 /* LessonScheduleCell.swift */,
 				2D6000E41A1E7E13005CB141 /* ActiveLessonScheduleCell.swift */,
+				2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */,
+				2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				2D08262A1A15299D008B504E /* Main.storyboard in Resources */,
 				2D0825F81A152913008B504E /* LaunchScreen.xib in Resources */,
 				2D0825F51A152913008B504E /* Images.xcassets in Resources */,
+				2DD1BB541A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +394,7 @@
 				2D0826231A15299D008B504E /* ViewController+RMSidebarController.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
 				2D75CF4E1A222FB5006F2A9D /* LessonSchedule.swift in Sources */,
+				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
 				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
 				2D6000E81A1E825D005CB141 /* StudentScheduleQuery.swift in Sources */,
 				2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */,
@@ -523,10 +531,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ruslan Maslouski (WC89CHBCZA)";
 				INFOPLIST_FILE = grsu.schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -537,10 +547,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ruslan Maslouski (WC89CHBCZA)";
 				INFOPLIST_FILE = grsu.schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 			};
 			name = Release;

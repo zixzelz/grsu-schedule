@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
@@ -433,7 +433,7 @@
                                 <color key="separatorColor" red="0.75686274509803919" green="0.80000000000000004" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ActiveLessonCellIdentifier" rowHeight="131" id="YVN-px-wdx" customClass="ActiveLessonScheduleCell" customModule="grsu_schedule" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActiveLessonCellIdentifier" rowHeight="131" id="YVN-px-wdx" customClass="ActiveLessonScheduleCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="175" width="320" height="131"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YVN-px-wdx" id="tOj-mB-Kdi">
@@ -506,6 +506,7 @@
                                                 <constraint firstItem="PVj-FJ-EID" firstAttribute="leading" secondItem="b1J-X0-boo" secondAttribute="leading" id="3ld-lI-DCk"/>
                                                 <constraint firstAttribute="trailing" secondItem="vfN-Sk-xSW" secondAttribute="trailing" constant="8" id="83a-zt-hlt"/>
                                                 <constraint firstItem="JCo-j7-3Iv" firstAttribute="leading" secondItem="tOj-mB-Kdi" secondAttribute="leading" id="Drl-pO-ii2"/>
+                                                <constraint firstAttribute="bottom" secondItem="PVj-FJ-EID" secondAttribute="bottom" id="G0m-G3-rU5"/>
                                                 <constraint firstAttribute="trailing" secondItem="oIZ-0F-AUp" secondAttribute="trailing" constant="8" id="Gse-l2-Ngz"/>
                                                 <constraint firstAttribute="trailing" secondItem="cZB-bh-NaH" secondAttribute="trailing" constant="8" id="IdE-4Q-HvK"/>
                                                 <constraint firstItem="cZB-bh-NaH" firstAttribute="leading" secondItem="b1J-X0-boo" secondAttribute="trailing" constant="16" id="Ljx-Ad-B92"/>
@@ -514,7 +515,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="vfN-Sk-xSW" secondAttribute="bottom" constant="8" id="SkV-eH-pwC"/>
                                                 <constraint firstItem="cZB-bh-NaH" firstAttribute="top" secondItem="tOj-mB-Kdi" secondAttribute="top" constant="8" id="TXi-hp-a3Z"/>
                                                 <constraint firstAttribute="trailing" secondItem="PVj-FJ-EID" secondAttribute="trailing" id="bEg-lm-eL8"/>
-                                                <constraint firstAttribute="bottom" secondItem="PVj-FJ-EID" secondAttribute="bottom" id="ckZ-dh-qJh"/>
                                                 <constraint firstAttribute="bottom" secondItem="JCo-j7-3Iv" secondAttribute="bottom" id="fJ5-5T-oGA"/>
                                                 <constraint firstAttribute="bottom" secondItem="b1J-X0-boo" secondAttribute="bottom" id="fwb-e3-KN0"/>
                                                 <constraint firstItem="b1J-X0-boo" firstAttribute="top" secondItem="tOj-mB-Kdi" secondAttribute="top" id="oJT-No-aad"/>
@@ -533,7 +533,7 @@
                                             <outlet property="teacherLabel" destination="oIZ-0F-AUp" id="Spr-dU-zJP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="LessonCellIdentifier" rowHeight="131" id="GE7-Ba-XdH" customClass="LessonScheduleCell" customModule="grsu_schedule" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LessonCellIdentifier" rowHeight="131" id="GE7-Ba-XdH" customClass="LessonScheduleCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="175" width="320" height="131"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GE7-Ba-XdH" id="CsJ-1g-VYO">
@@ -614,19 +614,27 @@
                                             <outlet property="teacherLabel" destination="VDF-YZ-BCH" id="geo-UQ-9xM"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SectionHeader" textLabel="ctl-10-f2k" rowHeight="38" style="IBUITableViewCellStyleDefault" id="49h-is-lQz">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCellIdentifier" rowHeight="50" id="bSX-7y-whF">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="49h-is-lQz" id="P3i-TI-Cdw">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSX-7y-whF" id="A0k-Wq-c4J">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ctl-10-f2k">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.46274509803921571" green="0.52941176470588236" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gz-eM-Aat">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                                    <items>
+                                                        <tabBarItem title="Аудитория" image="LessonLocation" id="3nF-Fb-nud"/>
+                                                        <tabBarItem title="Расписание преп." id="P65-Kv-HRs"/>
+                                                        <tabBarItem systemItem="more" id="kfL-N4-pJV"/>
+                                                    </items>
+                                                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                </tabBar>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0gz-eM-Aat" firstAttribute="leading" secondItem="A0k-Wq-c4J" secondAttribute="leading" id="HaO-Ex-Xa6"/>
+                                                <constraint firstItem="0gz-eM-Aat" firstAttribute="top" secondItem="A0k-Wq-c4J" secondAttribute="top" id="Pp4-RZ-fkS"/>
+                                                <constraint firstAttribute="trailing" secondItem="0gz-eM-Aat" secondAttribute="trailing" id="sTa-Br-Yv8"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -652,8 +660,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjq-Oy-mbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="XYj-x5-le0">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="1509" y="1079"/>
+            <point key="canvasLocation" x="1509" y="1076"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LessonLocation" width="29" height="25"/>
+    </resources>
 </document>

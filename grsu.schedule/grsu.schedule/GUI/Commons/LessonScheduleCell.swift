@@ -15,7 +15,7 @@ class LessonScheduleCell: UITableViewCell {
     @IBOutlet private(set) weak var teacherLabel : UILabel!
     @IBOutlet private weak var startTimeLabel : UILabel!
     @IBOutlet private weak var stopTimeLabel : UILabel!
-
+    
     var startTime : Int? {
         didSet {
             startTimeLabel.text = timeTextWithTimeInterval(startTime!)
