@@ -41,6 +41,15 @@
 		2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */; };
 		2DD1BB541A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */; };
 		2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */; };
+		2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */; };
+		2DDC78961A2A2CF000C1D966 /* DepartmentsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78951A2A2CF000C1D966 /* DepartmentsEntity.swift */; };
+		2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */; };
+		2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */; };
+		2DDC789C1A2A2CF100C1D966 /* LessonScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC789B1A2A2CF100C1D966 /* LessonScheduleEntity.swift */; };
+		2DDC789E1A2A2CF100C1D966 /* FacultiesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC789D1A2A2CF100C1D966 /* FacultiesEntity.swift */; };
+		2DDC78A61A2A30A100C1D966 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDC78A41A2A308200C1D966 /* CoreData.framework */; };
+		2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */; };
+		2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +106,15 @@
 		2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScheduleOptionsViewController.swift; sourceTree = "<group>"; };
 		2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekSchedulesHeaderFooterView.xib; sourceTree = "<group>"; };
 		2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekSchedulesHeaderFooterView.swift; sourceTree = "<group>"; };
+		2DDC78891A2A1D7000C1D966 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
+		2DDC78951A2A2CF000C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
+		2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsEntity.swift; sourceTree = "<group>"; };
+		2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDayScheduleEntity.swift; sourceTree = "<group>"; };
+		2DDC789B1A2A2CF100C1D966 /* LessonScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonScheduleEntity.swift; sourceTree = "<group>"; };
+		2DDC789D1A2A2CF100C1D966 /* FacultiesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultiesEntity.swift; sourceTree = "<group>"; };
+		2DDC78A41A2A308200C1D966 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2DDC78A61A2A30A100C1D966 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +172,7 @@
 				2D6000E61A1E8229005CB141 /* Model */,
 				2D96AA631A1BB09F00EDD9E2 /* Commons */,
 				2D0505C71A1660C200171A2E /* ServiceLayer */,
+				2DDC78841A2A1C9A00C1D966 /* CoreData */,
 				2D08260D1A15299D008B504E /* GUI */,
 				2D0825ED1A152913008B504E /* AppDelegate.swift */,
 				2D0825F41A152913008B504E /* Images.xcassets */,
@@ -165,6 +185,7 @@
 		2D0825EB1A152913008B504E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2DDC78A41A2A308200C1D966 /* CoreData.framework */,
 				2D0A70401A1BB5F900A2A08D /* Foundation.framework */,
 				2D0825EC1A152913008B504E /* Info.plist */,
 				2D0505CC1A1676CD00171A2E /* MyPlayground.playground */,
@@ -286,6 +307,21 @@
 			path = Commons;
 			sourceTree = "<group>";
 		};
+		2DDC78841A2A1C9A00C1D966 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */,
+				2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */,
+				2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */,
+				2DDC789D1A2A2CF100C1D966 /* FacultiesEntity.swift */,
+				2DDC789B1A2A2CF100C1D966 /* LessonScheduleEntity.swift */,
+				2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */,
+				2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */,
+				2DDC78951A2A2CF000C1D966 /* DepartmentsEntity.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -389,14 +425,20 @@
 			files = (
 				2D6000E31A1E7DF0005CB141 /* LessonScheduleCell.swift in Sources */,
 				2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */,
+				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
+				2DDC789C1A2A2CF100C1D966 /* LessonScheduleEntity.swift in Sources */,
 				2D6000E51A1E7E13005CB141 /* ActiveLessonScheduleCell.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* StudentDaySchedule.swift in Sources */,
 				2D0826231A15299D008B504E /* ViewController+RMSidebarController.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
 				2D75CF4E1A222FB5006F2A9D /* LessonSchedule.swift in Sources */,
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
+				2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */,
+				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
 				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
+				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,
 				2D6000E81A1E825D005CB141 /* StudentScheduleQuery.swift in Sources */,
+				2DDC789E1A2A2CF100C1D966 /* FacultiesEntity.swift in Sources */,
 				2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */,
 				2D0826241A15299D008B504E /* RMSidebarController.swift in Sources */,
 				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
@@ -414,7 +456,9 @@
 				2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
+				2DDC78961A2A2CF000C1D966 /* DepartmentsEntity.swift in Sources */,
 				2DADE4331A1E584400895608 /* SchedulesPageViewController.swift in Sources */,
+				2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */,
 				2D0826281A15299D008B504E /* RMSidebarInteractiveTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -531,12 +575,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ruslan Maslouski (WC89CHBCZA)";
+				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = grsu.schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "41822bd4-b7a2-4114-8bc0-d5c50998e3c0";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -547,12 +591,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ruslan Maslouski (WC89CHBCZA)";
+				CODE_SIGN_IDENTITY = "";
 				INFOPLIST_FILE = grsu.schedule/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "41822bd4-b7a2-4114-8bc0-d5c50998e3c0";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 			};
 			name = Release;
@@ -622,6 +666,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2DDC78891A2A1D7000C1D966 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 2DDC78891A2A1D7000C1D966 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2D0825E01A152913008B504E /* Project object */;
 }
