@@ -17,3 +17,7 @@ enum ScheduleOption : String {
 }
 
 typealias GSItem = (id: String, value: String)
+
+let DepartmentsCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
+
+let DepartmentsEntityName = "DepartmentsEntity"

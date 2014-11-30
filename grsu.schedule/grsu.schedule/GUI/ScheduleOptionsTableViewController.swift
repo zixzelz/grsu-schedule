@@ -38,7 +38,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     @IBOutlet private weak var groupPickerTableViewCell : PickerTableViewCell!
     @IBOutlet private weak var weekPickerTableViewCell : PickerTableViewCell!
 
-    private var departments : Array<GSItem>?
+    private var departments : Array<DepartmentsEntity>?
     private var faculties : Array<GSItem>?
     private var groups : Array<GSItem>?
     private(set) var weeks : Array<GSItem>!
@@ -69,21 +69,22 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         weeks = scheduleWeeks()
         weekPickerTableViewCell.items = weeks!.map { $1 }
         let itemId = scheduleDataSource?.defaultWeekID()
-        if let value = self.valueById(weeks!, itemId: itemId) {
-            weekPickerTableViewCell.selectRow(value)
-        } else {
-            self.scheduleDelegate?.didSelectWeek(weeks.first!.id);
-        }
+//        if let value = self.valueById(weeks!, itemId: itemId) {
+//            weekPickerTableViewCell.selectRow(value)
+//        } else {
+//            self.scheduleDelegate?.didSelectWeek(weeks.first!.id);
+//        }
 
         featchData()
-}
+    }
     
-    func featchData() {
-        GetDepartmentsService.getDepartments { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
+    func featchData() {        
+        
+        GetDepartmentsService.getDepartments { [weak self](array: Array<DepartmentsEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
                 if let items = array {
                     wSelf.departments = items
-                    wSelf.departmentPickerTableViewCell.items = items.map { $1 }
+                    wSelf.departmentPickerTableViewCell.items = items.map { $0.title }
                     if let itemId = wSelf.scheduleDataSource?.defaultDepartmentID() {
                         if let value = wSelf.valueById(items, itemId: itemId) {
                             wSelf.departmentPickerTableViewCell.selectRow(value)
@@ -101,11 +102,11 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                     wSelf.faculties = items
                     wSelf.facultyPickerTableViewCell.items = items.map { $1 }
                     if let itemId = wSelf.scheduleDataSource?.defaultFacultyID() {
-                        if let value = wSelf.valueById(items, itemId: itemId) {
-                            wSelf.facultyPickerTableViewCell.selectRow(value)
-                        } else {
-                            wSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
-                        }
+//                        if let value = wSelf.valueById(items, itemId: itemId) {
+//                            wSelf.facultyPickerTableViewCell.selectRow(value)
+//                        } else {
+//                            wSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
+//                        }
                         wSelf.featchGroups(fromCacheOnly: true);
                     }
                 }
@@ -126,11 +127,11 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                         wSelf.groupPickerTableViewCell.items = items.map { $1 }
                         
                         let itemId = wSelf.scheduleDataSource?.defaultGroupID()
-                        if let value = wSelf.valueById(items, itemId: itemId) {
-                            wSelf.groupPickerTableViewCell.selectRow(value)
-                        } else {
-                            wSelf.scheduleDelegate?.didSelectGroup(items.first!.id);
-                        }
+//                        if let value = wSelf.valueById(items, itemId: itemId) {
+//                            wSelf.groupPickerTableViewCell.selectRow(value)
+//                        } else {
+//                            wSelf.scheduleDelegate?.didSelectGroup(items.first!.id);
+//                        }
                     }
                 }
             })
@@ -141,7 +142,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     func selectedDepartmentId() -> String? {
         let selectedRow = departmentPickerTableViewCell.selectedRow() as Int
-        let item = departments?[selectedRow] as GSItem?
+        let item = departments?[selectedRow]
         return item?.id
     }
     
@@ -236,10 +237,10 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         return items
     }
     
-    func valueById(items: [GSItem], itemId: String?) -> String? {
+    func valueById(items: [AnyObject], itemId: String?) -> String? {
         if let itemId_ = itemId {
-            let item = items.filter { $0.id == itemId_ }.first
-            return item?.value
+            let item: AnyObject? = items.filter { $0.id == itemId_ }.first
+            return item?.title
         }
         return nil
     }
@@ -247,7 +248,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     // pragma mark - PickerTableViewCelldelegate
     
     func pickerTableViewCell(cell: PickerTableViewCell, didSelectRow row: Int, withText text: String) {
-        
+
         switch cell {
         case departmentPickerTableViewCell : scheduleDelegate?.didSelectDepartment(departments![row].id); featchGroups(fromCacheOnly: true); break
         case facultyPickerTableViewCell : scheduleDelegate?.didSelectFaculty(faculties![row].id); featchGroups(fromCacheOnly: true); break

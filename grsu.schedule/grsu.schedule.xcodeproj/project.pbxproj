@@ -42,14 +42,14 @@
 		2DD1BB541A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */; };
 		2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */; };
 		2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */; };
-		2DDC78961A2A2CF000C1D966 /* DepartmentsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78951A2A2CF000C1D966 /* DepartmentsEntity.swift */; };
 		2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */; };
 		2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */; };
 		2DDC789C1A2A2CF100C1D966 /* LessonScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC789B1A2A2CF100C1D966 /* LessonScheduleEntity.swift */; };
-		2DDC789E1A2A2CF100C1D966 /* FacultiesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC789D1A2A2CF100C1D966 /* FacultiesEntity.swift */; };
 		2DDC78A61A2A30A100C1D966 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DDC78A41A2A308200C1D966 /* CoreData.framework */; };
 		2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */; };
 		2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */; };
+		2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78AF1A2B6DA800C1D966 /* FacultiesEntity.swift */; };
+		2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,14 +107,14 @@
 		2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeekSchedulesHeaderFooterView.xib; sourceTree = "<group>"; };
 		2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekSchedulesHeaderFooterView.swift; sourceTree = "<group>"; };
 		2DDC78891A2A1D7000C1D966 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
-		2DDC78951A2A2CF000C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
 		2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsEntity.swift; sourceTree = "<group>"; };
 		2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDayScheduleEntity.swift; sourceTree = "<group>"; };
 		2DDC789B1A2A2CF100C1D966 /* LessonScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonScheduleEntity.swift; sourceTree = "<group>"; };
-		2DDC789D1A2A2CF100C1D966 /* FacultiesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultiesEntity.swift; sourceTree = "<group>"; };
 		2DDC78A41A2A308200C1D966 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		2DDC78AF1A2B6DA800C1D966 /* FacultiesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultiesEntity.swift; sourceTree = "<group>"; };
+		2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -313,11 +313,11 @@
 				2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */,
 				2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */,
 				2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */,
-				2DDC789D1A2A2CF100C1D966 /* FacultiesEntity.swift */,
 				2DDC789B1A2A2CF100C1D966 /* LessonScheduleEntity.swift */,
 				2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */,
 				2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */,
-				2DDC78951A2A2CF000C1D966 /* DepartmentsEntity.swift */,
+				2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */,
+				2DDC78AF1A2B6DA800C1D966 /* FacultiesEntity.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -427,7 +427,9 @@
 				2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
 				2DDC789C1A2A2CF100C1D966 /* LessonScheduleEntity.swift in Sources */,
+				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2D6000E51A1E7E13005CB141 /* ActiveLessonScheduleCell.swift in Sources */,
+				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* StudentDaySchedule.swift in Sources */,
 				2D0826231A15299D008B504E /* ViewController+RMSidebarController.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
@@ -438,7 +440,6 @@
 				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,
 				2D6000E81A1E825D005CB141 /* StudentScheduleQuery.swift in Sources */,
-				2DDC789E1A2A2CF100C1D966 /* FacultiesEntity.swift in Sources */,
 				2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */,
 				2D0826241A15299D008B504E /* RMSidebarController.swift in Sources */,
 				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
@@ -456,7 +457,6 @@
 				2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
-				2DDC78961A2A2CF000C1D966 /* DepartmentsEntity.swift in Sources */,
 				2DADE4331A1E584400895608 /* SchedulesPageViewController.swift in Sources */,
 				2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */,
 				2D0826281A15299D008B504E /* RMSidebarInteractiveTransition.swift in Sources */,

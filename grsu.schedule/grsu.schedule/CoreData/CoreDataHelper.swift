@@ -78,6 +78,17 @@ class CoreDataHelper: NSObject{
         self.saveContext( self.backgroundContext! )
     }
     
+    func convertToMainQueue(itemIds: [NSManagedObjectID]) -> [AnyObject] {
+        let mainContext = managedObjectContext
+        
+        var items = [AnyObject]()
+        for objId in itemIds {
+            let obj = mainContext?.objectWithID(objId)
+            items.append(obj!)
+        }
+        return items
+    }
+    
     // call back function by saveContext, support multi-thread
     func contextDidSaveContext(notification: NSNotification) {
         let sender = notification.object as NSManagedObjectContext

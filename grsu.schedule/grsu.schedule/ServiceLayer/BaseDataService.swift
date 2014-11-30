@@ -24,13 +24,18 @@ class BaseDataService: NSObject {
         
         let task = session.dataTaskWithRequest(request, completionHandler: { (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
             
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                completionHandler(nil, nil)
-//            })
+            var responseDict : NSDictionary?
+            
+            if (error == nil) {
+                var jsonError: NSError?
+                responseDict = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: &jsonError) as? NSDictionary
+            }
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                completionHandler(responseDict, error)
+            })
         })
-        completionHandler(nil, nil)
 
-//        task.resume()
+        task.resume()
         return task
     }
     
