@@ -23,8 +23,8 @@ class GetDepartmentsService: BaseDataService {
         
         if (useCache == false || expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending ) {
             featchDepartments({ (items: Array<GSItem>?, error: NSError?) -> Void in
-                if let items = items {
-                    self.storeDepartments(items, completionHandler: { () -> Void in
+                if (items?.count > 0) {
+                    self.storeDepartments(items!, completionHandler: { () -> Void in
                         userDefaults.setObject(NSDate(), forKey: "DepartmentsKey")
                         self.featchDepartmentsFromCache(completionHandler)
                     })
@@ -105,7 +105,7 @@ class GetDepartmentsService: BaseDataService {
                     var oldItem = cacheItems.filter { $0.id == item.id }.first as DepartmentsEntity?
                     
                     if (oldItem == nil) {
-                        var newItem : DepartmentsEntity = NSEntityDescription.insertNewObjectForEntityForName(DepartmentsEntityName, inManagedObjectContext: context) as DepartmentsEntity
+                        var newItem  = NSEntityDescription.insertNewObjectForEntityForName(DepartmentsEntityName, inManagedObjectContext: context) as DepartmentsEntity
                         
                         newItem.id = item.id
                         newItem.title = item.value

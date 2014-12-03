@@ -39,8 +39,8 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     @IBOutlet private weak var weekPickerTableViewCell : PickerTableViewCell!
 
     private var departments : Array<DepartmentsEntity>?
-    private var faculties : Array<GSItem>?
-    private var groups : Array<GSItem>?
+    private var faculties : Array<FacultiesEntity>?
+    private var groups : Array<GroupsEntity>?
     private(set) var weeks : Array<GSItem>!
     
     weak var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
@@ -96,17 +96,17 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                 }
             }
         }
-        GetFacultyService.getFaculties { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
+        GetFacultyService.getFaculties { [weak self](array: Array<FacultiesEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
                 if let items = array {
                     wSelf.faculties = items
-                    wSelf.facultyPickerTableViewCell.items = items.map { $1 }
+                    wSelf.facultyPickerTableViewCell.items = items.map { $0.title }
                     if let itemId = wSelf.scheduleDataSource?.defaultFacultyID() {
-//                        if let value = wSelf.valueById(items, itemId: itemId) {
-//                            wSelf.facultyPickerTableViewCell.selectRow(value)
-//                        } else {
-//                            wSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
-//                        }
+                        if let value = wSelf.valueById(items, itemId: itemId) {
+                            wSelf.facultyPickerTableViewCell.selectRow(value)
+                        } else {
+                            wSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
+                        }
                         wSelf.featchGroups(fromCacheOnly: true);
                     }
                 }
@@ -115,16 +115,16 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     }
 
     func featchGroups(fromCacheOnly : Bool = false) {
-        let facultyId = selectedFacultyId()
-        let departmantId = selectedDepartmentId()
+        let faculty = selectedFaculty()
+        let departmant = selectedDepartment()
         let course = selectedCourse()
         
-        if (facultyId != nil && departmantId != nil && course != nil) {
-            GetGroupsService.getGroups(facultyId!, departmantId: departmantId!, course: course!, completionHandler: { [weak self](array: Array<GSItem>?, error: NSError?) -> Void in
+        if (faculty != nil && departmant != nil && course != nil) {
+            GetGroupsService.getGroups(faculty!, department: departmant!, course: course!, completionHandler: { [weak self](array: Array<GroupsEntity>?, error: NSError?) -> Void in
                 if let wSelf = self {
                     if let items = array {
                         wSelf.groups = items
-                        wSelf.groupPickerTableViewCell.items = items.map { $1 }
+                        wSelf.groupPickerTableViewCell.items = items.map { $0.title }
                         
                         let itemId = wSelf.scheduleDataSource?.defaultGroupID()
 //                        if let value = wSelf.valueById(items, itemId: itemId) {
@@ -140,16 +140,16 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     
     // pragma mark - Interface
 
-    func selectedDepartmentId() -> String? {
+    func selectedDepartment() -> DepartmentsEntity? {
         let selectedRow = departmentPickerTableViewCell.selectedRow() as Int
         let item = departments?[selectedRow]
-        return item?.id
+        return item
     }
     
-    func selectedFacultyId() -> String? {
+    func selectedFaculty() -> FacultiesEntity? {
         let selectedRow = facultyPickerTableViewCell.selectedRow() as Int
-        let item = faculties?[selectedRow] as GSItem?
-        return item?.id
+        let item = faculties?[selectedRow]
+        return item
     }
     
     func selectedCourse() -> String? {
@@ -159,7 +159,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     
     func selectedGroupId() -> String? {
         let selectedRow = groupPickerTableViewCell.selectedRow() as Int
-        let item = groups?[selectedRow] as GSItem?
+        let item = groups?[selectedRow]
         return item?.id
     }
     

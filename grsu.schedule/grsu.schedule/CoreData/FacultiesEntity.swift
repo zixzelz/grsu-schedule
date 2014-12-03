@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(FacultiesEntity)
 class FacultiesEntity: NSManagedObject {
 
     @NSManaged var title: String

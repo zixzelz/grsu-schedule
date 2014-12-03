@@ -51,7 +51,11 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     }
 
     private func updateHeader(row: Int) {
-        headerCell.detailTextLabel?.text = items![row] as? String
+        var text : String?
+        if (items?.count > row) {
+            text = items![row] as? String
+        }
+        headerCell.detailTextLabel?.text = text ?? " "
     }
     
     // Pragma mark - UIPickerViewDataSource

@@ -9,10 +9,12 @@
 import Foundation
 import CoreData
 
+@objc(GroupsEntity)
 class GroupsEntity: NSManagedObject {
 
     @NSManaged var title: String
     @NSManaged var id: String
+    @NSManaged var course: String
     @NSManaged var scheduleDays: NSSet
     @NSManaged var department: DepartmentsEntity
     @NSManaged var faculty: FacultiesEntity

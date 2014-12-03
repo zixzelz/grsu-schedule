@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(StudentDayScheduleEntity)
 class StudentDayScheduleEntity: NSManagedObject {
 
     @NSManaged var date: NSDate

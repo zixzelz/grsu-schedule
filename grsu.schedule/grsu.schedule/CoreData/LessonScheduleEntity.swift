@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+@objc(LessonScheduleEntity)
 class LessonScheduleEntity: NSManagedObject {
 
     @NSManaged var groupTitle: String

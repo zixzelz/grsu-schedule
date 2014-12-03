@@ -27,6 +27,8 @@ class BaseDataService: NSObject {
             var responseDict : NSDictionary?
             
             if (error == nil) {
+                NSLog("response: %@", NSString(data: data, encoding: NSUTF8StringEncoding)!)
+
                 var jsonError: NSError?
                 responseDict = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: &jsonError) as? NSDictionary
             }
