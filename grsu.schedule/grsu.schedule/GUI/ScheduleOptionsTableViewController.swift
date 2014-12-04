@@ -13,7 +13,7 @@ protocol ScheduleOptionsTableViewControllerDelegate : NSObjectProtocol {
     func didSelectFaculty(facultyId : String)
     func didSelectCourse(course : String)
     func didSelectGroup(groupId : String)
-    func didSelectWeek(weekId : String)
+    func didSelectWeek(startDate : NSDate)
 }
 
 protocol ScheduleOptionsTableViewControllerDataSource : NSObjectProtocol {
@@ -21,7 +21,7 @@ protocol ScheduleOptionsTableViewControllerDataSource : NSObjectProtocol {
     func defaultFacultyID() -> String?
     func defaultCourse() -> String?
     func defaultGroupID() -> String?
-    func defaultWeekID() -> String?
+    func defaultWeek() -> NSDate?
 }
 
 class ScheduleOptionsTableViewController: UITableViewController, PickerTableViewCellDelegate {
@@ -41,7 +41,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     private var departments : Array<DepartmentsEntity>?
     private var faculties : Array<FacultiesEntity>?
     private var groups : Array<GroupsEntity>?
-    private(set) var weeks : Array<GSItem>!
+    private(set) var weeks : Array<GSWeekItem>!
     
     weak var scheduleDelegate : ScheduleOptionsTableViewControllerDelegate?
     weak var scheduleDataSource : ScheduleOptionsTableViewControllerDataSource?
@@ -67,8 +67,8 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         }
         
         weeks = scheduleWeeks()
-        weekPickerTableViewCell.items = weeks!.map { $1 }
-        let itemId = scheduleDataSource?.defaultWeekID()
+        weekPickerTableViewCell.items = weeks!.map { $0.value }
+        let startWeekDate = scheduleDataSource?.defaultWeek()
 //        if let value = self.valueById(weeks!, itemId: itemId) {
 //            weekPickerTableViewCell.selectRow(value)
 //        } else {
@@ -127,11 +127,11 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                         wSelf.groupPickerTableViewCell.items = items.map { $0.title }
                         
                         let itemId = wSelf.scheduleDataSource?.defaultGroupID()
-//                        if let value = wSelf.valueById(items, itemId: itemId) {
-//                            wSelf.groupPickerTableViewCell.selectRow(value)
-//                        } else {
-//                            wSelf.scheduleDelegate?.didSelectGroup(items.first!.id);
-//                        }
+                        if let value = wSelf.valueById(items, itemId: itemId) {
+                            wSelf.groupPickerTableViewCell.selectRow(value)
+                        } else {
+                            wSelf.scheduleDelegate?.didSelectGroup(items.first!.id);
+                        }
                     }
                 }
             })
@@ -163,9 +163,12 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         return item?.id
     }
     
-    func selectedWeek() -> String? {
-        let week = weekPickerTableViewCell.items
-        return departmentPickerTableViewCell.selectedRow()
+    func selectedWeek() -> (startDate: NSDate, endDate: NSDate)? {
+        let selectedRow = weekPickerTableViewCell.selectedRow() as Int
+        if let week = weeks?[selectedRow] {
+             return (week.startDate, week.endDate)
+        }
+       return nil
     }
     
     // pragma mark - UITableViewDataSource
@@ -209,7 +212,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     
     // pragma mark - Utils
     
-    func scheduleWeeks() -> Array<GSItem>! {
+    func scheduleWeeks() -> Array<GSWeekItem>! {
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let formatterDate = NSDateFormatter()
@@ -221,7 +224,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         
         calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, startDate: &startOfTheWeek, interval: &interval, forDate: date)
         
-        var items  = Array<GSItem>()
+        var items  = Array<GSWeekItem>()
         for (var i = 0; i < 4; i++) {
             let endOfWeek = startOfTheWeek?.dateByAddingTimeInterval(interval-1)
             
@@ -229,7 +232,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             let dateEndString = formatterDate.stringFromDate(endOfWeek!)
             
             let value = dateStartString + " - " + dateEndString
-            let gsItem = GSItem(dateStartString, value)
+            let gsItem = GSWeekItem(startOfTheWeek!, endOfWeek!, value)
             
             items.append(gsItem)
             startOfTheWeek = startOfTheWeek?.dateByAddingTimeInterval(interval)
@@ -254,7 +257,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         case facultyPickerTableViewCell : scheduleDelegate?.didSelectFaculty(faculties![row].id); featchGroups(fromCacheOnly: true); break
         case coursePickerTableViewCell : scheduleDelegate?.didSelectCourse(text); featchGroups(fromCacheOnly: true); break
         case groupPickerTableViewCell : scheduleDelegate?.didSelectGroup(groups![row].id); break
-        case weekPickerTableViewCell : scheduleDelegate?.didSelectWeek(weeks![row].id); break
+        case weekPickerTableViewCell : scheduleDelegate?.didSelectWeek(weeks![row].startDate); break
         default : break
         }
 

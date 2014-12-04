@@ -48,3 +48,4 @@ typedef enum {
 
 NSString *const DateFormatKeyDateAndTimeInDefaultFormat;
 NSString *const DateFormatKeyDayOfWeekAndMonth;
+NSString *const DateFormatKeyDateInDefaultFormat;

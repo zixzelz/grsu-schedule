@@ -10,8 +10,8 @@ import UIKit
 
 class LessonSchedule: NSObject {
    
-    var groupTitle : String?
-    var location : String?
+    var type : String?
+    var address : String?
     var room : Int?
     var startTime : Int?
     var stopTime : Int?

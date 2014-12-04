@@ -73,7 +73,7 @@ class GetGroupsService: BaseDataService {
                 
                 let request = NSFetchRequest(entityName: GroupsEntityName)
                 var sorter: NSSortDescriptor = NSSortDescriptor(key: "id" , ascending: true)
-                let predicate = NSPredicate(format: "(faculty.id == %@) && (department.id == %@) && (course == %@)", faculty.id, department.id, course)
+                let predicate = NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@)", faculty, department, course)
                 
                 request.resultType = .ManagedObjectIDResultType
                 request.sortDescriptors = [sorter]
@@ -109,7 +109,7 @@ class GetGroupsService: BaseDataService {
                 let department_ = context.objectWithID(department.objectID) as DepartmentsEntity
                 
                 let request = NSFetchRequest(entityName: GroupsEntityName)
-                let predicate = NSPredicate(format: "(faculty.id == %@) && (department.id == %@) && (course == %@)", faculty.id, department.id, course)
+                let predicate = NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@)", faculty, department, course)
                 request.predicate = predicate
                 
                 var error : NSError?

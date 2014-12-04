@@ -128,7 +128,7 @@ static NSMutableDictionary *dateFormats_ = nil;
             break;
             
         case DateFormatDayMonthYear2:
-            dateFormat = @"dd MMM, yyyy";
+            dateFormat = @"dd.MM.yyyy";
             break;
             
         case DateFormatDayMonth:
@@ -281,3 +281,4 @@ static NSMutableDictionary *dateFormats_ = nil;
 
 NSString *const DateFormatKeyDateAndTimeInDefaultFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
 NSString *const DateFormatKeyDayOfWeekAndMonthAndDay = @"cccc, LLLL d";
+NSString *const DateFormatKeyDateInDefaultFormat = @"yyyy-MM-dd";

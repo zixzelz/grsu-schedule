@@ -35,6 +35,9 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSUserDefaults.standardUserDefaults().synchronize()
         if (segue.identifier == "SchedulePageIdentifier") {
+            let week = scheduleOptions.selectedWeek()
+            scheduleQuery.endWeekDate = week!.endDate
+
             let viewController = segue.destinationViewController as SchedulesPageViewController
             viewController.scheduleQuery = scheduleQuery
             viewController.possibleWeeks = scheduleOptions.weeks
@@ -42,7 +45,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
     
     func updateShowScheduleButtonState() {
-        let enabled = scheduleQuery.departmentId != nil && scheduleQuery.facultyId != nil && scheduleQuery.course != nil && scheduleQuery.groupId != nil && scheduleQuery.week != nil
+        let enabled = scheduleQuery.groupId != nil && scheduleQuery.startWeekDate != nil
         
         var backgroundColor = enabled ? UIColor(red: 0.43529409170150757, green: 0.7450980544090271, blue: 0.21176469326019287, alpha: 1) : UIColor.lightGrayColor()
         
@@ -53,46 +56,40 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     // pragma mark - ScheduleOptionsTableViewControllerDataSource
 
     func defaultDepartmentID() -> String? {
-        scheduleQuery.departmentId = fetchDefaultValue(.Departmen)
-        return scheduleQuery.departmentId
+        return fetchDefaultValue(.Departmen) as? String
     }
     
     func defaultFacultyID() -> String? {
-        scheduleQuery.facultyId = fetchDefaultValue(.Faculty)
-        return scheduleQuery.facultyId
+        return fetchDefaultValue(.Faculty) as? String
     }
     
     func defaultCourse() -> String? {
-        scheduleQuery.course = fetchDefaultValue(.Course)
-        return scheduleQuery.course
+        return fetchDefaultValue(.Course) as? String
     }
     
     func defaultGroupID() -> String? {
-        scheduleQuery.groupId = fetchDefaultValue(.Group)
+        scheduleQuery.groupId = fetchDefaultValue(.Group) as? String
         return scheduleQuery.groupId
     }
     
-    func defaultWeekID() -> String? {
-        scheduleQuery.week = fetchDefaultValue(.Week)
-        return scheduleQuery.week
+    func defaultWeek() -> NSDate? {
+        scheduleQuery.startWeekDate = fetchDefaultValue(.Week) as? NSDate
+        return scheduleQuery.startWeekDate
     }
     
     // pragma mark - ScheduleOptionsTableViewControllerDelegate
     
     func didSelectDepartment(departmentId : String) {
-        scheduleQuery.departmentId = departmentId
         storeDefaultValue(.Departmen, value: departmentId)
         updateShowScheduleButtonState()
     }
     
     func didSelectFaculty(facultyId : String) {
-        scheduleQuery.facultyId = facultyId
         storeDefaultValue(.Faculty, value: facultyId)
         updateShowScheduleButtonState()
     }
     
     func didSelectCourse(course : String) {
-        scheduleQuery.course = course
         storeDefaultValue(.Group, value: course)
         updateShowScheduleButtonState()
     }
@@ -103,20 +100,20 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         updateShowScheduleButtonState()
     }
     
-    func didSelectWeek(weekId : String) {
-        scheduleQuery.week = weekId
-        storeDefaultValue(.Week, value: weekId)
+    func didSelectWeek(startWeekDate : NSDate) {
+        scheduleQuery.startWeekDate = startWeekDate
+        storeDefaultValue(.Week, value: startWeekDate)
         updateShowScheduleButtonState()
     }
     
     // pragma mark - Utils
     
-    func storeDefaultValue(key: ScheduleOption, value: String) {
+    func storeDefaultValue(key: ScheduleOption, value: AnyObject) {
         let userDef = NSUserDefaults.standardUserDefaults()
         userDef.setObject(value, forKey: key.rawValue)
     }
 
-    func fetchDefaultValue(key: ScheduleOption) -> String? {
+    func fetchDefaultValue(key: ScheduleOption) -> AnyObject? {
         let userDef = NSUserDefaults.standardUserDefaults()
         return userDef.objectForKey(key.rawValue) as? String
     }

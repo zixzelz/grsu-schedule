@@ -44,7 +44,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func fetchData() {
-        GetStudentScheduleService.getSchedule(scheduleQuery!.groupId!, week: scheduleQuery!.week!, completionHandler: { [weak self](array: Array<StudentDaySchedule>?, error: NSError?) -> Void in
+        GetStudentScheduleService.getSchedule(scheduleQuery!.groupId!, dateStart: scheduleQuery!.startWeekDate!, dateEnd: scheduleQuery!.endWeekDate!, completionHandler: { [weak self](array: Array<StudentDaySchedule>?, error: NSError?) -> Void in
             if let wSelf = self {
                 wSelf.schedules = array
                 wSelf.tableView.reloadData()

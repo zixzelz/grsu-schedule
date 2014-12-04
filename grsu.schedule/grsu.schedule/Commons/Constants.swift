@@ -17,6 +17,7 @@ enum ScheduleOption : String {
 }
 
 typealias GSItem = (id: String, value: String)
+typealias GSWeekItem = (startDate: NSDate, endDate: NSDate, value: String)
 
 let DepartmentsCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
 let FacultiesCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
