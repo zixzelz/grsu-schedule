@@ -38,4 +38,11 @@ if myString.rangeOfString("easy") != nil {
     
 }
 
+var schedules : Array<Int>?
 
+var title: String
+if (schedules == nil || schedules?.count == 0) {
+    title = "Нет расписания на данную неделю"
+} else {
+    title = "неделю"
+}

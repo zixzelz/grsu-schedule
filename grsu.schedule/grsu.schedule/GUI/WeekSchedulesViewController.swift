@@ -18,6 +18,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     var menuCellIndexPath: NSIndexPath?
     
     @IBOutlet private var tableView : UITableView!
+    var refreshControl:UIRefreshControl!
     
     
     override func viewDidLoad() {
@@ -25,49 +26,81 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         
         tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
         
+        self.updatedTableViewInset()
+        setupRefreshControl()
         fetchData()
+    }
+    
+    func setupRefreshControl() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.updatedTableViewInset()
     }
-
+    
     func updatedTableViewInset() {
         if let navigationBar = self.navigationController?.navigationBar {
             let top = CGRectGetMaxY(navigationBar.frame)
             let inset = UIEdgeInsetsMake(top, 0, 0, 0)
             self.tableView.contentInset = inset
             self.tableView.scrollIndicatorInsets = inset
-            self.tableView.contentOffset = CGPointMake(0, -top)
         }
+        scrollToTop()
     }
     
-    func fetchData() {
-        GetStudentScheduleService.getSchedule(scheduleQuery!.group!, dateStart: scheduleQuery!.startWeekDate!, dateEnd: scheduleQuery!.endWeekDate!) { [weak self] (items: Array<StudentDayScheduleEntity>?, error: NSError?) -> Void in
+    func scrollToTop() {
+        let top = self.tableView.contentInset.top
+        self.tableView.contentOffset = CGPointMake(0, -top)
+    }
+    
+    func fetchData(useCache: Bool = true) {
+        if (!self.refreshControl.refreshing) {
+            self.refreshControl.beginRefreshing()
+            scrollToTop()
+        }
+        
+        GetStudentScheduleService.getSchedule(scheduleQuery!.group!, dateStart: scheduleQuery!.startWeekDate!, dateEnd: scheduleQuery!.endWeekDate!, useCache: useCache) { [weak self] (items: Array<StudentDayScheduleEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
+                wSelf.refreshControl.endRefreshing()
                 wSelf.schedules = items
                 wSelf.tableView.reloadData()
             }
         }
     }
     
+    func refresh(sender:AnyObject) {
+        fetchData(useCache: false)
+    }
+    
     // pragma mark - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return schedules?.count ?? 0
+        if (schedules != nil && schedules?.count > 0) {
+            return schedules!.count
+        }
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let number = schedules![section].lessons.count
-        return menuCellIndexPath?.section == section ? number+1 : number
+        var count = 1
+        if (schedules != nil && schedules?.count > 0) {
+            let number = schedules![section].lessons.count
+            count = menuCellIndexPath?.section == section ? number+1 : number
+        }
+        return count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell : UITableViewCell
 
-        if (indexPath.isEqual(menuCellIndexPath)) {
+        if (schedules == nil || schedules?.count == 0) {
+            cell = tableView.dequeueReusableCellWithIdentifier("EmptyCellIdentifier") as UITableViewCell
+            
+        } else if (indexPath.isEqual(menuCellIndexPath)) {
             cell = tableView.dequeueReusableCellWithIdentifier("MenuCellIdentifier") as UITableViewCell
             
         } else {
@@ -102,9 +135,16 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SectionHeaderIdentifier) as UITableViewHeaderFooterView
-        let date = schedules![section].date
 
-        headerView.textLabel.text = DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
+        var title: String
+        if (schedules == nil || schedules?.count == 0) {
+            title = ""
+        } else {
+            let date = schedules![section].date
+            title = DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
+        }
+        
+        headerView.textLabel.text = title
         
         return headerView
     }

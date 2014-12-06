@@ -424,11 +424,11 @@
                         <viewControllerLayoutGuide type="bottom" id="SdL-eB-GrC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xv0-5l-EwS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="456"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="3HM-qm-2ia">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="456"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.97254901960784312" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.75686274509803919" green="0.80000000000000004" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -637,6 +637,27 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="h8e-n2-31d">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h8e-n2-31d" id="WZN-wl-Ctr">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFc-DI-fBl">
+                                                    <rect key="frame" x="78" y="-1" width="166" height="45"/>
+                                                    <string key="text">Нет расписания
+на данную неделю</string>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                                    <color key="textColor" red="0.27043202519416809" green="0.31408891081809998" blue="0.35603061318397522" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="aFc-DI-fBl" secondAttribute="centerY" id="QeQ-5L-jhy"/>
+                                                <constraint firstAttribute="centerX" secondItem="aFc-DI-fBl" secondAttribute="centerX" id="pdM-eD-1eI"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="hYN-cX-jJf" id="tgD-jp-qQ3"/>
@@ -654,7 +675,8 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="520"/>
                     <connections>
                         <outlet property="tableView" destination="3HM-qm-2ia" id="J9f-4c-HZy"/>
                     </connections>
@@ -666,7 +688,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1509" y="1076"/>
+            <point key="canvasLocation" x="1532" y="1079"/>
         </scene>
     </scenes>
     <resources>
