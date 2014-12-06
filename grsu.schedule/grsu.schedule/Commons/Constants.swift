@@ -22,7 +22,11 @@ typealias GSWeekItem = (startDate: NSDate, endDate: NSDate, value: String)
 let DepartmentsCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
 let FacultiesCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
 let GroupsCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
+let ScheduleCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
 
 let DepartmentsEntityName = "DepartmentsEntity"
 let FacultiesEntityName =  "FacultiesEntity"
 let GroupsEntityName = "GroupsEntity"
+let LessonScheduleEntityName = "LessonScheduleEntity"
+let StudentDayScheduleEntityName = "StudentDayScheduleEntity"
+let TeacherInfoEntityName = "TeacherInfoEntity"

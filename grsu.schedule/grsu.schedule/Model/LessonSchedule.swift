@@ -16,7 +16,6 @@ class LessonSchedule: NSObject {
     var startTime : Int?
     var stopTime : Int?
     var studyName : String?
-    var teacher : String?
-    var daySchedule : String?
+    var teacher : BaseTeacherInfo?
     
 }

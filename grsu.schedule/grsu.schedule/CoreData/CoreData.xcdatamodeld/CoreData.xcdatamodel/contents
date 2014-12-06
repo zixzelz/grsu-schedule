@@ -19,25 +19,31 @@
         <relationship name="scheduleDays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StudentDayScheduleEntity" inverseName="group" inverseEntity="StudentDayScheduleEntity" syncable="YES"/>
     </entity>
     <entity name="LessonScheduleEntity" representedClassName="LessonScheduleEntity" syncable="YES">
-        <attribute name="groupTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="room" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="stopTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="studyName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="teacher" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="studentDaySchedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="StudentDayScheduleEntity" inverseName="lessons" inverseEntity="StudentDayScheduleEntity" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="studentDaySchedule" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="StudentDayScheduleEntity" inverseName="lessons" inverseEntity="StudentDayScheduleEntity" syncable="YES"/>
+        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherInfoEntity" inverseName="lessons" inverseEntity="TeacherInfoEntity" syncable="YES"/>
     </entity>
     <entity name="StudentDayScheduleEntity" representedClassName="StudentDayScheduleEntity" syncable="YES">
         <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupsEntity" inverseName="scheduleDays" inverseEntity="GroupsEntity" syncable="YES"/>
-        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="LessonScheduleEntity" inverseName="studentDaySchedule" inverseEntity="LessonScheduleEntity" syncable="YES"/>
+        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LessonScheduleEntity" inverseName="studentDaySchedule" inverseEntity="LessonScheduleEntity" syncable="YES"/>
+    </entity>
+    <entity name="TeacherInfoEntity" representedClassName="TeacherInfoEntity" syncable="YES">
+        <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonScheduleEntity" inverseName="teacher" inverseEntity="LessonScheduleEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="DepartmentsEntity" positionX="-387" positionY="8" width="128" height="88"/>
         <element name="FacultiesEntity" positionX="-389" positionY="162" width="128" height="88"/>
         <element name="GroupsEntity" positionX="-182" positionY="27" width="128" height="133"/>
-        <element name="LessonScheduleEntity" positionX="252" positionY="-46" width="128" height="163"/>
+        <element name="LessonScheduleEntity" positionX="241" positionY="-0" width="128" height="163"/>
         <element name="StudentDayScheduleEntity" positionX="9" positionY="29" width="128" height="88"/>
+        <element name="TeacherInfoEntity" positionX="9" positionY="153" width="128" height="88"/>
     </elements>
 </model>

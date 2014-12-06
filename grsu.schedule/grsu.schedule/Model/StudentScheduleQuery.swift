@@ -10,7 +10,7 @@ import UIKit
 
 class StudentScheduleQuery: NSObject {
 
-    var groupId : String?
+    var group : GroupsEntity?
     var startWeekDate : NSDate?
     var endWeekDate : NSDate?
     
@@ -19,7 +19,7 @@ class StudentScheduleQuery: NSObject {
     }
     
     init(q: StudentScheduleQuery) {
-        self.groupId = q.groupId
+        self.group = q.group
         self.startWeekDate = q.startWeekDate
         self.endWeekDate = q.endWeekDate
     }

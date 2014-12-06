@@ -13,7 +13,7 @@ let SectionHeaderIdentifier = "SectionHeaderIdentifier"
 class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var scheduleQuery : StudentScheduleQuery?
-    var schedules: Array<StudentDaySchedule>?
+    var schedules: Array<StudentDayScheduleEntity>?
     
     var menuCellIndexPath: NSIndexPath?
     
@@ -44,12 +44,12 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func fetchData() {
-        GetStudentScheduleService.getSchedule(scheduleQuery!.groupId!, dateStart: scheduleQuery!.startWeekDate!, dateEnd: scheduleQuery!.endWeekDate!, completionHandler: { [weak self](array: Array<StudentDaySchedule>?, error: NSError?) -> Void in
+        GetStudentScheduleService.getSchedule(scheduleQuery!.group!, dateStart: scheduleQuery!.startWeekDate!, dateEnd: scheduleQuery!.endWeekDate!) { [weak self] (items: Array<StudentDayScheduleEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
-                wSelf.schedules = array
+                wSelf.schedules = items
                 wSelf.tableView.reloadData()
             }
-        })
+        }
     }
     
     // pragma mark - UITableViewDataSource
@@ -59,7 +59,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let number = schedules![section].lessons?.count ?? 0
+        let number = schedules![section].lessons.count
         return menuCellIndexPath?.section == section ? number+1 : number
     }
     
@@ -77,7 +77,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
                 fixIndexPath = NSIndexPath(forRow: indexPath.row-1, inSection: indexPath.section)
             }
             
-            var lesson = schedules![fixIndexPath.section].lessons![fixIndexPath.row]
+            var lesson = schedules![fixIndexPath.section].lessons[fixIndexPath.row] as LessonScheduleEntity
             
             var identifier : String
             if (indexPath.row == 0) {
@@ -87,11 +87,11 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             }
             let lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as LessonScheduleCell
             
-            lCell.locationLabel.text = lesson.location
+            lCell.locationLabel.text = lesson.address
             lCell.studyNameLabel.text = lesson.studyName
-            lCell.teacherLabel.text = lesson.teacher
-            lCell.startTime = lesson.startTime
-            lCell.stopTime = lesson.stopTime
+            lCell.teacherLabel.text = lesson.teacher.title
+            lCell.startTime = lesson.startTime.integerValue
+            lCell.stopTime = lesson.stopTime.integerValue
             
             cell = lCell
         }
@@ -102,7 +102,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SectionHeaderIdentifier) as UITableViewHeaderFooterView
-        let date = schedules![section].date!
+        let date = schedules![section].date
 
         headerView.textLabel.text = DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
         

@@ -45,7 +45,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
     
     func updateShowScheduleButtonState() {
-        let enabled = scheduleQuery.groupId != nil && scheduleQuery.startWeekDate != nil
+        let enabled = scheduleQuery.group != nil && scheduleQuery.startWeekDate != nil
         
         var backgroundColor = enabled ? UIColor(red: 0.43529409170150757, green: 0.7450980544090271, blue: 0.21176469326019287, alpha: 1) : UIColor.lightGrayColor()
         
@@ -68,8 +68,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
     
     func defaultGroupID() -> String? {
-        scheduleQuery.groupId = fetchDefaultValue(.Group) as? String
-        return scheduleQuery.groupId
+        return fetchDefaultValue(.Group) as? String
     }
     
     func defaultWeek() -> NSDate? {
@@ -94,8 +93,8 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         updateShowScheduleButtonState()
     }
     
-    func didSelectGroup(groupId : String) {
-        scheduleQuery.groupId = groupId
+    func didSelectGroup(groupId : String?) {
+        scheduleQuery.group = scheduleOptions.selectedGroup()
         storeDefaultValue(.Course, value: groupId)
         updateShowScheduleButtonState()
     }
@@ -108,7 +107,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     
     // pragma mark - Utils
     
-    func storeDefaultValue(key: ScheduleOption, value: AnyObject) {
+    func storeDefaultValue(key: ScheduleOption, value: AnyObject?) {
         let userDef = NSUserDefaults.standardUserDefaults()
         userDef.setObject(value, forKey: key.rawValue)
     }

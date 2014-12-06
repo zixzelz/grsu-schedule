@@ -19,7 +19,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     @IBOutlet private weak var delegate : PickerTableViewCellDelegate?
     
-    var items : NSArray? {
+    var items : Array<String>? {
         didSet {
             self.pickerView?.reloadAllComponents()
             updateHeader(0)
@@ -27,8 +27,8 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     }
     
     func selectRow(text: String) {
-        let index = items?.indexOfObject(text)
-        if (index != NSNotFound && index != pickerView.selectedRowInComponent(0)) {
+        let index = find(items!, text)
+        if (index != nil && index != pickerView.selectedRowInComponent(0)) {
             pickerView.selectRow(index!, inComponent: 0, animated: true)
             updateHeader(index!)
         }
@@ -36,11 +36,23 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     func selectedRow() -> String? {
         let index = pickerView.selectedRowInComponent(0)
-        return items?[index] as String?
+        
+        var text : String?
+        if let index = selectedRow() as Int? {
+            text = items?[index]
+        }
+        
+        return text
     }
     
-    func selectedRow() -> Int {
-        return pickerView.selectedRowInComponent(0)
+    func selectedRow() -> Int? {
+        var index : Int? = nil
+        
+        if (items?.count > 0) {
+            index = pickerView.selectedRowInComponent(0)
+        }
+        
+        return index
     }
     
     private func didSelectRow(row: Int) {
@@ -53,7 +65,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     private func updateHeader(row: Int) {
         var text : String?
         if (items?.count > row) {
-            text = items![row] as? String
+            text = items![row]
         }
         headerCell.detailTextLabel?.text = text ?? " "
     }

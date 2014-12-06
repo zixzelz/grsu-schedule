@@ -12,7 +12,7 @@ protocol ScheduleOptionsTableViewControllerDelegate : NSObjectProtocol {
     func didSelectDepartment(departmentId : String)
     func didSelectFaculty(facultyId : String)
     func didSelectCourse(course : String)
-    func didSelectGroup(groupId : String)
+    func didSelectGroup(groupId : String?)
     func didSelectWeek(startDate : NSDate)
 }
 
@@ -130,7 +130,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                         if let value = wSelf.valueById(items, itemId: itemId) {
                             wSelf.groupPickerTableViewCell.selectRow(value)
                         } else {
-                            wSelf.scheduleDelegate?.didSelectGroup(items.first!.id);
+                            wSelf.scheduleDelegate?.didSelectGroup(items.first?.id);
                         }
                     }
                 }
@@ -141,14 +141,14 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     // pragma mark - Interface
 
     func selectedDepartment() -> DepartmentsEntity? {
-        let selectedRow = departmentPickerTableViewCell.selectedRow() as Int
-        let item = departments?[selectedRow]
+        let selectedRow = departmentPickerTableViewCell.selectedRow() as Int?
+        let item = (selectedRow != nil) ? departments?[selectedRow!] : nil
         return item
     }
     
     func selectedFaculty() -> FacultiesEntity? {
-        let selectedRow = facultyPickerTableViewCell.selectedRow() as Int
-        let item = faculties?[selectedRow]
+        let selectedRow = facultyPickerTableViewCell.selectedRow() as Int?
+        let item = (selectedRow != nil) ? faculties?[selectedRow!] : nil
         return item
     }
     
@@ -157,16 +157,18 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         return selectedRow
     }
     
-    func selectedGroupId() -> String? {
-        let selectedRow = groupPickerTableViewCell.selectedRow() as Int
-        let item = groups?[selectedRow]
-        return item?.id
+    func selectedGroup() -> GroupsEntity? {
+        let selectedRow = groupPickerTableViewCell.selectedRow() as Int?
+        let item = (selectedRow != nil) ? groups?[selectedRow!] : nil
+        return item
     }
     
     func selectedWeek() -> (startDate: NSDate, endDate: NSDate)? {
-        let selectedRow = weekPickerTableViewCell.selectedRow() as Int
-        if let week = weeks?[selectedRow] {
-             return (week.startDate, week.endDate)
+        let selectedRow = weekPickerTableViewCell.selectedRow() as Int?
+        if (selectedRow != nil) {
+            if let week = weeks?[selectedRow!] {
+                return (week.startDate, week.endDate)
+            }
         }
        return nil
     }
