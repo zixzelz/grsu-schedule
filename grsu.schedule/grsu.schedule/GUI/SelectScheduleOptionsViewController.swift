@@ -89,13 +89,13 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
     
     func didSelectCourse(course : String) {
-        storeDefaultValue(.Group, value: course)
+        storeDefaultValue(.Course, value: course)
         updateShowScheduleButtonState()
     }
     
     func didSelectGroup(groupId : String?) {
         scheduleQuery.group = scheduleOptions.selectedGroup()
-        storeDefaultValue(.Course, value: groupId)
+        storeDefaultValue(.Group, value: groupId)
         updateShowScheduleButtonState()
     }
     

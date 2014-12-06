@@ -69,11 +69,14 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         weeks = scheduleWeeks()
         weekPickerTableViewCell.items = weeks!.map { $0.value }
         let startWeekDate = scheduleDataSource?.defaultWeek()
-//        if let value = self.valueById(weeks!, itemId: itemId) {
-//            weekPickerTableViewCell.selectRow(value)
-//        } else {
-//            self.scheduleDelegate?.didSelectWeek(weeks.first!.id);
-//        }
+        
+        let item = weeks.filter { $0.startDate == startWeekDate }.first
+
+        if item != nil {
+            weekPickerTableViewCell.selectRow(item!.value)
+        } else {
+            self.scheduleDelegate?.didSelectWeek(weeks.first!.startDate);
+        }
 
         featchData()
     }
@@ -126,12 +129,13 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                         wSelf.groups = items
                         wSelf.groupPickerTableViewCell.items = items.map { $0.title }
                         
-                        let itemId = wSelf.scheduleDataSource?.defaultGroupID()
+                        var itemId = wSelf.scheduleDataSource?.defaultGroupID()
                         if let value = wSelf.valueById(items, itemId: itemId) {
                             wSelf.groupPickerTableViewCell.selectRow(value)
                         } else {
-                            wSelf.scheduleDelegate?.didSelectGroup(items.first?.id);
+                            itemId = items.first?.id
                         }
+                        wSelf.scheduleDelegate?.didSelectGroup(itemId);
                     }
                 }
             })
