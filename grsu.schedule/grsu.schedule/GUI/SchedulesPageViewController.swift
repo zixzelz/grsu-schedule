@@ -44,6 +44,21 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
 
     }
     
+    @IBAction func starBarButtonItemPressed(sender: UIBarButtonItem) {
+        self.sidebarController?.addLeftSidebarButton(self)
+    }
+    
+    
+    func updateNavigationTitle() {
+        let index = pageControl.currentPage
+
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            self.navigationTitle.alpha = 0.0
+            self.navigationTitle.text = self.possibleWeeks[index].value
+            self.navigationTitle.alpha = 1.0
+        })
+    }
+    
     func weekScheduleController(weekIndex : Int? = nil) -> WeekSchedulesViewController {
         let query = StudentScheduleQuery(q: scheduleQuery)
         if (weekIndex != nil) {
@@ -57,17 +72,7 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         
         return vc
     }
-    
-    func updateNavigationTitle() {
-        let index = pageControl.currentPage
 
-        UIView.animateWithDuration(1.0, animations: { () -> Void in
-            self.navigationTitle.alpha = 0.0
-            self.navigationTitle.text = self.possibleWeeks[index].value
-            self.navigationTitle.alpha = 1.0
-        })
-    }
-    
     // pragma mark - UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {

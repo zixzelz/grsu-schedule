@@ -46,3 +46,9 @@ if (schedules == nil || schedules?.count == 0) {
 } else {
     title = "неделю"
 }
+
+var c1 : NSObject? 
+let c2 : NSObject? = NSObject()
+let c3 : NSObject? = NSObject()
+
+let c = (c1 is NSDate ? c1 : nil) ?? c2 ?? c1

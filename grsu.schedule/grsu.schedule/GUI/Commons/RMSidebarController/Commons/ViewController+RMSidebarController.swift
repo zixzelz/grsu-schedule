@@ -13,11 +13,14 @@ extension UIViewController {
     var sidebarController: RMSidebarController? { get {
         var parent = self.parentViewController
         
-        return nil;
+        var c1 : NSObject? = parent
+        let c2 = self.navigationController
+        let c3 : NSObject? = NSObject()
         
-//        return (parent? is RMSidebarController ? parent : nil) ??
-//            (self.navigationController ? self.navigationController?.sidebarController : nil) ??
-//            (self.presentingViewController? is RMSidebarController ? self.presentingViewController : nil);
+        let res = (parent is RMSidebarController ? parent : nil) ??
+            (self.navigationController != nil ? self.navigationController?.sidebarController : nil) ??
+            (self.presentingViewController? is RMSidebarController ? self.presentingViewController : nil);
+        return res as RMSidebarController?
         }
     }
 }

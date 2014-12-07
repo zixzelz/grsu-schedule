@@ -89,11 +89,18 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
         if ((leftSidebarViewController) != nil) {
             let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "leftRootBarButtonItemPressed:")
             rootNavigationController.topViewController.navigationItem.leftBarButtonItem = item
+            addLeftSidebarButton(rootNavigationController.topViewController)
         }
         if ((rightSidebarViewController) != nil) {
             let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "rightRootBarButtonItemPressed:")
             rootNavigationController.topViewController.navigationItem.rightBarButtonItem = item
         }
+    }
+    
+    func addLeftSidebarButton(vc: UIViewController) {
+        
+        let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "leftRootBarButtonItemPressed:")
+        vc.navigationItem.leftBarButtonItem = item
     }
     
     func leftRootBarButtonItemPressed(sender: AnyObject) {

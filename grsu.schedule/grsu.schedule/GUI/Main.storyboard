@@ -437,7 +437,11 @@
                                 <constraint firstAttribute="centerX" secondItem="jeo-gF-cey" secondAttribute="centerX" id="OMY-NG-fI7"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" image="NavigationBarEmptyStar" style="plain" id="pXF-3k-Qsh"/>
+                        <barButtonItem key="rightBarButtonItem" image="NavigationBarEmptyStar" style="plain" id="pXF-3k-Qsh">
+                            <connections>
+                                <action selector="starBarButtonItemPressed:" destination="mEg-GV-wU8" id="MpI-BR-P8W"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
@@ -676,10 +680,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="h8e-n2-31d">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="h8e-n2-31d">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h8e-n2-31d" id="WZN-wl-Ctr">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="h8e-n2-31d" id="WZN-wl-Ctr">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFc-DI-fBl">
