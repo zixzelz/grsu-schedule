@@ -60,7 +60,7 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     }
 
     func setupWithStoryboard() {
-        for identifier in [/*"left", */"root"] {
+        for identifier in ["left", "root"] {
             self.performSegueWithIdentifier(identifier, sender: self);
         }
     }
