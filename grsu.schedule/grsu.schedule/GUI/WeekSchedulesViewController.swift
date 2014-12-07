@@ -78,10 +78,12 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     // pragma mark - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if (schedules != nil && schedules?.count > 0) {
-            return schedules!.count
+        if (schedules != nil && schedules?.count == 0) {
+            return 1
+        } else if (schedules == nil) {
+            return 0
         }
-        return 1
+        return schedules!.count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
