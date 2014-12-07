@@ -24,6 +24,7 @@
                             <real key="value" value="45"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="panOnlyRootView" value="YES"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="sidebarNavigationIco" value="NavigationBarSidebarMenu"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="GPP-As-VMC" kind="custom" identifier="root" customClass="RMSidebarInitRootViewControllerSegue" customModule="grsu_schedule" id="b3P-IR-DQ5"/>
@@ -436,7 +437,7 @@
                                 <constraint firstAttribute="centerX" secondItem="jeo-gF-cey" secondAttribute="centerX" id="OMY-NG-fI7"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="pXF-3k-Qsh"/>
+                        <barButtonItem key="rightBarButtonItem" image="NavigationBarEmptyStar" style="plain" id="pXF-3k-Qsh"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
@@ -731,5 +732,7 @@
     </scenes>
     <resources>
         <image name="LessonLocation" width="29" height="25"/>
+        <image name="NavigationBarEmptyStar" width="22" height="22"/>
+        <image name="NavigationBarSidebarMenu" width="20" height="18"/>
     </resources>
 </document>

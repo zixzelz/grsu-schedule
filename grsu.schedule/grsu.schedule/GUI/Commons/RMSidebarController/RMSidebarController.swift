@@ -32,7 +32,9 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     
     @IBInspectable var panRootView : Bool = true
 //    @IBInspectable var bezelPanRootView : Bool = true
-    
+
+    @IBInspectable var sidebarNavigationIco : UIImage?
+
     override init() {
         super.init()
         setup();
@@ -85,11 +87,11 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
         let rootNavigationController = vc as UINavigationController
         
         if ((leftSidebarViewController) != nil) {
-            let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "leftRootBarButtonItemPressed:")
+            let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "leftRootBarButtonItemPressed:")
             rootNavigationController.topViewController.navigationItem.leftBarButtonItem = item
         }
         if ((rightSidebarViewController) != nil) {
-            let item = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Pause, target: self, action: "rightRootBarButtonItemPressed:")
+            let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "rightRootBarButtonItemPressed:")
             rootNavigationController.topViewController.navigationItem.rightBarButtonItem = item
         }
     }
