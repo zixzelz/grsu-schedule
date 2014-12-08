@@ -10,12 +10,17 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupsEntity" inverseName="faculty" inverseEntity="GroupsEntity" syncable="YES"/>
     </entity>
+    <entity name="FavoriteEntity" representedClassName="FavoriteEntity" syncable="YES">
+        <attribute name="synchronizeCalendar" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupsEntity" inverseName="favorite" inverseEntity="GroupsEntity" syncable="YES"/>
+    </entity>
     <entity name="GroupsEntity" representedClassName="GroupsEntity" syncable="YES">
         <attribute name="course" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DepartmentsEntity" inverseName="groups" inverseEntity="DepartmentsEntity" syncable="YES"/>
         <relationship name="faculty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FacultiesEntity" inverseName="groups" inverseEntity="FacultiesEntity" syncable="YES"/>
+        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoriteEntity" inverseName="group" inverseEntity="FavoriteEntity" syncable="YES"/>
         <relationship name="scheduleDays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StudentDayScheduleEntity" inverseName="group" inverseEntity="StudentDayScheduleEntity" syncable="YES"/>
     </entity>
     <entity name="LessonScheduleEntity" representedClassName="LessonScheduleEntity" syncable="YES">
@@ -39,11 +44,12 @@
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonScheduleEntity" inverseName="teacher" inverseEntity="LessonScheduleEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DepartmentsEntity" positionX="-387" positionY="8" width="128" height="88"/>
-        <element name="FacultiesEntity" positionX="-389" positionY="162" width="128" height="88"/>
-        <element name="GroupsEntity" positionX="-182" positionY="27" width="128" height="133"/>
+        <element name="DepartmentsEntity" positionX="-414" positionY="-91" width="128" height="88"/>
+        <element name="FacultiesEntity" positionX="-416" positionY="63" width="128" height="88"/>
+        <element name="GroupsEntity" positionX="-209" positionY="-72" width="128" height="148"/>
         <element name="LessonScheduleEntity" positionX="241" positionY="-0" width="128" height="163"/>
         <element name="StudentDayScheduleEntity" positionX="9" positionY="29" width="128" height="88"/>
         <element name="TeacherInfoEntity" positionX="9" positionY="153" width="128" height="88"/>
+        <element name="FavoriteEntity" positionX="9" positionY="-72" width="128" height="73"/>
     </elements>
 </model>

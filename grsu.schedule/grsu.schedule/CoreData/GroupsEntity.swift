@@ -18,5 +18,6 @@ class GroupsEntity: NSManagedObject {
     @NSManaged var scheduleDays: NSSet
     @NSManaged var department: DepartmentsEntity
     @NSManaged var faculty: FacultiesEntity
+    @NSManaged var favorite: FavoriteEntity
 
 }

@@ -14,6 +14,7 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
     
     @IBOutlet private var navigationTitle : UILabel!
     @IBOutlet private var pageControl : UIPageControl!
+    @IBOutlet private var favoriteBarButtonItem : UIButton!
     
     var scheduleQuery : StudentScheduleQuery!
     var possibleWeeks : Array<GSWeekItem>!
@@ -27,6 +28,10 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if ( scheduleQuery.group?.favorite != nil ) {
+            self.favoriteBarButtonItem.selected = true
+        }
         
         self.view.backgroundColor = backgroundColor
         setupPageController()
@@ -44,10 +49,18 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
 
     }
     
-    @IBAction func starBarButtonItemPressed(sender: UIBarButtonItem) {
+    @IBAction func favoriteButtonPressed(sender: UIButton) {
+        sender.selected = !sender.selected
+        
+        let manager = FavoriteManager()
+        if (sender.selected) {
+            manager.addFavorite(scheduleQuery.group!)
+        } else {
+            manager.removeFavorite(scheduleQuery.group!.favorite)
+        }
+        
         self.sidebarController?.addLeftSidebarButton(self)
     }
-    
     
     func updateNavigationTitle() {
         let index = pageControl.currentPage
