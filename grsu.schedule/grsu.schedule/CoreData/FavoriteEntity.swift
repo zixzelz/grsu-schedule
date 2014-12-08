@@ -14,5 +14,6 @@ class FavoriteEntity: NSManagedObject {
 
     @NSManaged var synchronizeCalendar: NSNumber
     @NSManaged var group: GroupsEntity
+    @NSManaged var order: NSNumber
 
 }

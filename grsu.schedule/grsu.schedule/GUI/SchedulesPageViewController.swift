@@ -35,6 +35,8 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         
         self.view.backgroundColor = backgroundColor
         setupPageController()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "favoritWillRemoveNotification:", name: GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil)
     }
     
     func setupPageController() {
@@ -86,6 +88,16 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         return vc
     }
 
+    func favoritWillRemoveNotification(notification: NSNotification){
+        let item = notification.userInfo?[GSFavoriteManagerFavoriteObjectKey] as? FavoriteEntity
+        
+        if (item?.group == scheduleQuery.group) {
+            favoriteBarButtonItem.selected = false
+        }
+        
+        //Action take on Notification
+    }
+    
     // pragma mark - UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {

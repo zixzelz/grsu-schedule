@@ -25,6 +25,7 @@
 		2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261D1A15299D008B504E /* SlideAnimatedTransitioning.swift */; };
 		2D08262A1A15299D008B504E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D08261E1A15299D008B504E /* Main.storyboard */; };
 		2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */; };
+		2D18E8E41A35FE5D0076F2A7 /* LeftSubpageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */; };
 		2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B61A23B8AC001BA278 /* DateUtils.m */; };
 		2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */; };
 		2D6000E11A1E6BAF005CB141 /* WeekSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E01A1E6BAF005CB141 /* WeekSchedulesViewController.swift */; };
@@ -91,6 +92,7 @@
 		2D08261E1A15299D008B504E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOptionsTableViewController.swift; sourceTree = "<group>"; };
 		2D0A70401A1BB5F900A2A08D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSubpageViewController.swift; sourceTree = "<group>"; };
 		2D3FF2B41A23B8AC001BA278 /* grsu.schedule-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "grsu.schedule-Bridging-Header.h"; sourceTree = "<group>"; };
 		2D3FF2B51A23B8AC001BA278 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
 		2D3FF2B61A23B8AC001BA278 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */,
 				2DADE4321A1E584400895608 /* SchedulesPageViewController.swift */,
 				2D6000E01A1E6BAF005CB141 /* WeekSchedulesViewController.swift */,
+				2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
 				2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */,
 				2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */,
+				2D18E8E41A35FE5D0076F2A7 /* LeftSubpageViewController.swift in Sources */,
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
 				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,

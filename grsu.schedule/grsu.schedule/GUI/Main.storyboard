@@ -21,7 +21,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="leftOffset">
-                            <real key="value" value="45"/>
+                            <real key="value" value="48"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="panOnlyRootView" value="YES"/>
                         <userDefinedRuntimeAttribute type="image" keyPath="sidebarNavigationIco" value="NavigationBarSidebarMenu"/>
@@ -35,10 +35,10 @@
             </objects>
             <point key="canvasLocation" x="270" y="475"/>
         </scene>
-        <!--View Controller-->
+        <!--Left Subpage View Controller-->
         <scene sceneID="wIU-Lh-2QQ">
             <objects>
-                <viewController id="CEG-CG-dQB" sceneMemberID="viewController">
+                <viewController id="CEG-CG-dQB" customClass="LeftSubpageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="czb-Ts-EjG"/>
                         <viewControllerLayoutGuide type="bottom" id="Apu-7C-Qkl"/>
@@ -48,23 +48,83 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ew-L4-qbM">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCellIdentifier" textLabel="wyf-bV-lcf" style="IBUITableViewCellStyleDefault" id="Gh2-us-z1k">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gh2-us-z1k" id="zmt-rY-hNY">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wyf-bV-lcf">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="CEG-CG-dQB" id="828-2u-wdx"/>
+                                    <outlet property="delegate" destination="CEG-CG-dQB" id="Cis-Pr-leX"/>
+                                </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eem-i5-CtH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaG-TA-yM9">
+                                        <rect key="frame" x="187" y="26" width="113" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="113" id="aXS-bJ-sL5"/>
+                                        </constraints>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Изменить" image="EditIcon">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" title="Готово">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editButtonPressed:" destination="CEG-CG-dQB" eventType="touchUpInside" id="zFP-Dg-K3H"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="IaG-TA-yM9" secondAttribute="bottom" constant="8" id="lsa-uH-FZG"/>
+                                    <constraint firstAttribute="height" constant="64" id="pX9-Fd-sRp"/>
+                                    <constraint firstAttribute="trailing" secondItem="IaG-TA-yM9" secondAttribute="trailing" constant="20" id="ziA-Ua-62f"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="eem-i5-CtH" firstAttribute="leading" secondItem="ctI-7W-iKO" secondAttribute="leading" id="0ny-hb-hVE"/>
+                            <constraint firstItem="eem-i5-CtH" firstAttribute="top" secondItem="ctI-7W-iKO" secondAttribute="top" id="Qnm-5m-HNL"/>
                             <constraint firstItem="Apu-7C-Qkl" firstAttribute="top" secondItem="0ew-L4-qbM" secondAttribute="bottom" id="WXx-9W-YOV"/>
                             <constraint firstAttribute="trailing" secondItem="0ew-L4-qbM" secondAttribute="trailing" id="c7l-d1-b3P"/>
-                            <constraint firstItem="0ew-L4-qbM" firstAttribute="top" secondItem="ctI-7W-iKO" secondAttribute="top" id="j4G-Qc-9Mw"/>
+                            <constraint firstItem="0ew-L4-qbM" firstAttribute="top" secondItem="eem-i5-CtH" secondAttribute="bottom" id="cwM-ee-KWP"/>
+                            <constraint firstAttribute="trailing" secondItem="eem-i5-CtH" secondAttribute="trailing" id="gwC-GK-b8s"/>
                             <constraint firstItem="0ew-L4-qbM" firstAttribute="leading" secondItem="ctI-7W-iKO" secondAttribute="leading" id="pc9-WD-NLh"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="0ew-L4-qbM" id="3rO-xn-hjs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLL-CZ-Pi7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="691" y="-65"/>
+            <point key="canvasLocation" x="691" y="-61"/>
         </scene>
         <!--Schedule Options Table View Controller-->
         <scene sceneID="Sbv-x0-LQ2">
@@ -344,7 +404,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.28235294119999998" green="0.61960784310000006" blue="0.90980392160000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.28235294117647058" green="0.61960784313725492" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -442,7 +502,7 @@
                                 <constraint firstAttribute="centerX" secondItem="jeo-gF-cey" secondAttribute="centerX" id="OMY-NG-fI7"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="7m3-8E-ve7">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="7m3-8E-ve7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LHe-ff-yK0">
                                 <rect key="frame" x="281" y="11" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -750,6 +810,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="EditIcon" width="30" height="30"/>
         <image name="LessonLocation" width="29" height="25"/>
         <image name="NavigationBarEmptyStar" width="22" height="22"/>
         <image name="NavigationBarFillStar" width="22" height="22"/>

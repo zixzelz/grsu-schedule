@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+let GSFavoriteManagerFavoritWillRemoveNotificationKey = "GSFavoriteManagerFavoritWillRemoveNotificationKey" // userInfo contains FavoriteEntity
+let GSFavoriteManagerFavoriteObjectKey = "GSFavoriteManagerFavoriteObjectKey"
+
 class FavoriteManager: NSObject {
    
     func getFavoriteStudentGroup(completionHandler: ((Array<FavoriteEntity>) -> Void)!) {
@@ -18,8 +21,10 @@ class FavoriteManager: NSObject {
         if let context = cdHelper.backgroundContext {
             context.performBlock({ _ in
                 
+                var sorter: NSSortDescriptor = NSSortDescriptor(key: "order" , ascending: true)
+                
                 let request = NSFetchRequest(entityName: FavoriteEntityName)
-                var sorter: NSSortDescriptor = NSSortDescriptor(key: "date" , ascending: true)
+                request.resultType = .ManagedObjectIDResultType
                 request.sortDescriptors = [sorter]
                 request.predicate = NSPredicate(format: "(group != nil)")
                 
@@ -47,11 +52,21 @@ class FavoriteManager: NSObject {
         if let context = cdHelper.backgroundContext {
             context.performBlock({ _ in
                 
+                let request = NSFetchRequest(entityName: FavoriteEntityName)
+                var sorter: NSSortDescriptor = NSSortDescriptor(key: "order" , ascending: true)
+                request.sortDescriptors = [sorter]
+                request.predicate = NSPredicate(format: "(group != nil)")
+
+                var error : NSError?
+                let items = context.executeFetchRequest(request, error: &error) as [FavoriteEntity]
+                let lastOrder = items.last?.order.integerValue ?? -1
+                
                 let group_ = context.objectWithID(group.objectID) as GroupsEntity
                 
                 var newItem = NSEntityDescription.insertNewObjectForEntityForName(FavoriteEntityName, inManagedObjectContext: context) as FavoriteEntity
                 newItem.group = group_;
                 newItem.synchronizeCalendar = false
+                newItem.order = lastOrder+1
 
                 cdHelper.saveContext(context)
             })
@@ -59,6 +74,9 @@ class FavoriteManager: NSObject {
     }
     
     func removeFavorite(item: FavoriteEntity) {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil, userInfo: ["GSFavoriteManagerFavoriteObjectKey": item])
+        
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let cdHelper = delegate.cdh
         if let context = cdHelper.backgroundContext {
