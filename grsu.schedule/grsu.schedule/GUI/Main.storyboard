@@ -49,8 +49,8 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ew-L4-qbM">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.4517534077167511" green="0.61047118902206421" blue="0.84104228019714355" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.47010672092437744" green="0.65347045660018921" blue="0.8723984956741333" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCellIdentifier" textLabel="wyf-bV-lcf" style="IBUITableViewCellStyleDefault" id="Gh2-us-z1k">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -61,14 +61,57 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wyf-bV-lcf">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="Bg8-52-oo4" kind="custom" identifier="SchedulePageIdentifier" customClass="RMSidebarPresentSlideRootViewControllerSegue" customModule="grsu_schedule" customModuleProvider="target" id="SBF-et-hzg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentCellIdentifier" textLabel="40b-bH-mry" style="IBUITableViewCellStyleDefault" id="atC-gM-9JN">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="atC-gM-9JN" id="kAn-Z0-ZQQ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Студент" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="40b-bH-mry">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="GPP-As-VMC" kind="custom" customClass="RMSidebarPresentSlideRootViewControllerSegue" customModule="grsu_schedule" customModuleProvider="target" id="Nv5-F0-siH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeacherCellIdentifier" textLabel="KzT-rG-vQP" style="IBUITableViewCellStyleDefault" id="Mub-9p-xdC">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mub-9p-xdC" id="kxl-cz-QbD">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Преподаватель" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KzT-rG-vQP">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="Sn6-5F-xOW" kind="custom" customClass="RMSidebarPresentSlideRootViewControllerSegue" customModule="grsu_schedule" customModuleProvider="target" id="eQ8-je-2eB"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -80,17 +123,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaG-TA-yM9">
-                                        <rect key="frame" x="187" y="26" width="113" height="30"/>
+                                        <rect key="frame" x="12" y="28" width="26" height="26"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="113" id="aXS-bJ-sL5"/>
-                                        </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Изменить" image="EditIcon">
+                                        <state key="normal" image="EditIcon">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" title="Готово">
+                                        <state key="selected">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -98,11 +138,11 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.34509803921568627" green="0.60784313725490191" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="IaG-TA-yM9" secondAttribute="bottom" constant="8" id="lsa-uH-FZG"/>
+                                    <constraint firstItem="IaG-TA-yM9" firstAttribute="leading" secondItem="eem-i5-CtH" secondAttribute="leading" constant="12" id="gCU-ky-0ea"/>
+                                    <constraint firstAttribute="bottom" secondItem="IaG-TA-yM9" secondAttribute="bottom" constant="10" id="lsa-uH-FZG"/>
                                     <constraint firstAttribute="height" constant="64" id="pX9-Fd-sRp"/>
-                                    <constraint firstAttribute="trailing" secondItem="IaG-TA-yM9" secondAttribute="trailing" constant="20" id="ziA-Ua-62f"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -124,7 +164,80 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLL-CZ-Pi7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="691" y="-61"/>
+            <point key="canvasLocation" x="691" y="-134"/>
+        </scene>
+        <!--Преподаватели-->
+        <scene sceneID="VwY-52-ibk">
+            <objects>
+                <tableViewController id="6sE-Pw-9ND" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="rfC-GE-yO4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qiw-83-LHU">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qiw-83-LHU" id="qM9-75-9Fd">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6sE-Pw-9ND" id="y0l-c1-srR"/>
+                            <outlet property="delegate" destination="6sE-Pw-9ND" id="ofj-ZI-Yj4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Преподаватели" id="UaQ-Zd-WKr"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dms-Sg-xuF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1543" y="-703"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kTL-Lq-RhL">
+            <objects>
+                <navigationController id="Sn6-5F-xOW" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jz0-Iu-9Qd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.28235294117647058" green="0.61568627450980395" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6sE-Pw-9ND" kind="relationship" relationship="rootViewController" id="rQC-0P-r0w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rY0-LH-TXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111" y="-703"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mbh-AW-hcD">
+            <objects>
+                <navigationController id="Bg8-52-oo4" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="yz0-Dx-OW4"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="20z-cO-Gnk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.28235294117647058" green="0.61568627450980395" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="mEg-GV-wU8" kind="relationship" relationship="rootViewController" id="zPg-hm-1wA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ymy-XR-kEF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111" y="-134"/>
         </scene>
         <!--Schedule Options Table View Controller-->
         <scene sceneID="Sbv-x0-LQ2">
@@ -810,10 +923,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="EditIcon" width="30" height="30"/>
+        <image name="EditIcon" width="26" height="26"/>
         <image name="LessonLocation" width="29" height="25"/>
         <image name="NavigationBarEmptyStar" width="22" height="22"/>
         <image name="NavigationBarFillStar" width="22" height="22"/>
         <image name="NavigationBarSidebarMenu" width="20" height="18"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Nv5-F0-siH"/>
+        <segue reference="zPg-hm-1wA"/>
+    </inferredMetricsTieBreakers>
 </document>

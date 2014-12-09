@@ -34,6 +34,7 @@
 		2D6000E81A1E825D005CB141 /* StudentScheduleQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E71A1E825D005CB141 /* StudentScheduleQuery.swift */; };
 		2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */; };
 		2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000F11A1F9453005CB141 /* GetGroupsService.swift */; };
+		2D6B07F01A3637F30064DD39 /* WeekManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B07EF1A3637F30064DD39 /* WeekManager.swift */; };
 		2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */; };
 		2D75CF4E1A222FB5006F2A9D /* LessonSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4D1A222FB5006F2A9D /* LessonSchedule.swift */; };
 		2D75CF501A22342C006F2A9D /* StudentDaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4F1A22342C006F2A9D /* StudentDaySchedule.swift */; };
@@ -104,6 +105,7 @@
 		2D6000E71A1E825D005CB141 /* StudentScheduleQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentScheduleQuery.swift; sourceTree = "<group>"; };
 		2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFacultyService.swift; sourceTree = "<group>"; };
 		2D6000F11A1F9453005CB141 /* GetGroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupsService.swift; sourceTree = "<group>"; };
+		2D6B07EF1A3637F30064DD39 /* WeekManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekManager.swift; sourceTree = "<group>"; };
 		2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentScheduleService.swift; sourceTree = "<group>"; };
 		2D75CF4D1A222FB5006F2A9D /* LessonSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonSchedule.swift; sourceTree = "<group>"; };
 		2D75CF4F1A22342C006F2A9D /* StudentDaySchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDaySchedule.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				2D3FF2B51A23B8AC001BA278 /* DateUtils.h */,
 				2D3FF2B61A23B8AC001BA278 /* DateUtils.m */,
 				2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */,
+				2D6B07EF1A3637F30064DD39 /* WeekManager.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
 				2DADE4331A1E584400895608 /* SchedulesPageViewController.swift in Sources */,
+				2D6B07F01A3637F30064DD39 /* WeekManager.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
 				2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */,
