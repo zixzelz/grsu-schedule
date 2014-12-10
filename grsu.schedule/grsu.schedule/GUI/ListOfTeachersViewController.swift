@@ -51,10 +51,11 @@ class ListOfTeachersViewController: UIViewController {
     // pragma mark - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if (teachers != nil && teachers?.count == 0) {
-            return 1
+        var count = 1
+        if (teachers == nil) {
+            count = 0
         }
-        return 0
+        return count
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -75,7 +76,7 @@ class ListOfTeachersViewController: UIViewController {
             
             var teacher = teachers![indexPath.row]
 
-            cell = tableView.dequeueReusableCellWithIdentifier("TeacherCellIdentifier") as LessonScheduleCell
+            cell = tableView.dequeueReusableCellWithIdentifier("TeacherCellIdentifier") as UITableViewCell
             cell.textLabel?.text = teacher.title
         }
         
