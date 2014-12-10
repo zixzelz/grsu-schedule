@@ -40,8 +40,17 @@
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LessonScheduleEntity" inverseName="studentDaySchedule" inverseEntity="LessonScheduleEntity" syncable="YES"/>
     </entity>
     <entity name="TeacherInfoEntity" representedClassName="TeacherInfoEntity" syncable="YES">
+        <attribute name="descr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="patronym" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="post" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="skype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonScheduleEntity" inverseName="teacher" inverseEntity="LessonScheduleEntity" syncable="YES"/>
     </entity>
     <elements>
@@ -51,6 +60,6 @@
         <element name="GroupsEntity" positionX="-209" positionY="-72" width="128" height="148"/>
         <element name="LessonScheduleEntity" positionX="241" positionY="-0" width="128" height="163"/>
         <element name="StudentDayScheduleEntity" positionX="9" positionY="29" width="128" height="88"/>
-        <element name="TeacherInfoEntity" positionX="9" positionY="153" width="128" height="88"/>
+        <element name="TeacherInfoEntity" positionX="9" positionY="153" width="128" height="225"/>
     </elements>
 </model>

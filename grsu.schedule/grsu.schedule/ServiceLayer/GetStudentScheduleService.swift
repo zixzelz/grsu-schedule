@@ -211,6 +211,5 @@ class GetStudentScheduleService: BaseDataService {
         
         return h * 60 + m
     }
-
     
 }

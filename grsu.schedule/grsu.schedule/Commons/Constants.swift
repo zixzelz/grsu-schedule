@@ -23,6 +23,8 @@ let DepartmentsCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
 let FacultiesCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
 let GroupsCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
 let ScheduleCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
+let TeacherCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
+let TeachersCacheTimeInterval : NSTimeInterval = 60 * 60 * 24 * 7
 
 let DepartmentsEntityName = "DepartmentsEntity"
 let FacultiesEntityName =  "FacultiesEntity"

@@ -35,11 +35,13 @@
 		2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */; };
 		2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000F11A1F9453005CB141 /* GetGroupsService.swift */; };
 		2D6B07F01A3637F30064DD39 /* WeekManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B07EF1A3637F30064DD39 /* WeekManager.swift */; };
+		2D716C381A3830EE00CE7F27 /* GetTeachersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */; };
+		2D716C3C1A38B97C00CE7F27 /* TeacherInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C3B1A38B97C00CE7F27 /* TeacherInfoEntity.swift */; };
+		2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */; };
 		2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */; };
 		2D75CF4E1A222FB5006F2A9D /* LessonSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4D1A222FB5006F2A9D /* LessonSchedule.swift */; };
 		2D75CF501A22342C006F2A9D /* StudentDaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4F1A22342C006F2A9D /* StudentDaySchedule.swift */; };
 		2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D78712C1A3214160062DCFE /* BaseTeacherInfo.swift */; };
-		2D78712F1A32172F0062DCFE /* TeacherInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D78712E1A32172F0062DCFE /* TeacherInfoEntity.swift */; };
 		2D7871311A32172F0062DCFE /* LessonScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7871301A32172F0062DCFE /* LessonScheduleEntity.swift */; };
 		2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7871321A34ABDA0062DCFE /* FavoriteEntity.swift */; };
 		2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7871341A34AF050062DCFE /* FavoriteManager.swift */; };
@@ -106,11 +108,13 @@
 		2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFacultyService.swift; sourceTree = "<group>"; };
 		2D6000F11A1F9453005CB141 /* GetGroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupsService.swift; sourceTree = "<group>"; };
 		2D6B07EF1A3637F30064DD39 /* WeekManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekManager.swift; sourceTree = "<group>"; };
+		2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTeachersService.swift; sourceTree = "<group>"; };
+		2D716C3B1A38B97C00CE7F27 /* TeacherInfoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoEntity.swift; sourceTree = "<group>"; };
+		2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersViewController.swift; sourceTree = "<group>"; };
 		2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentScheduleService.swift; sourceTree = "<group>"; };
 		2D75CF4D1A222FB5006F2A9D /* LessonSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonSchedule.swift; sourceTree = "<group>"; };
 		2D75CF4F1A22342C006F2A9D /* StudentDaySchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDaySchedule.swift; sourceTree = "<group>"; };
 		2D78712C1A3214160062DCFE /* BaseTeacherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTeacherInfo.swift; sourceTree = "<group>"; };
-		2D78712E1A32172F0062DCFE /* TeacherInfoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoEntity.swift; sourceTree = "<group>"; };
 		2D7871301A32172F0062DCFE /* LessonScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonScheduleEntity.swift; sourceTree = "<group>"; };
 		2D7871321A34ABDA0062DCFE /* FavoriteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteEntity.swift; sourceTree = "<group>"; };
 		2D7871341A34AF050062DCFE /* FavoriteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */,
 				2D6000F11A1F9453005CB141 /* GetGroupsService.swift */,
 				2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */,
+				2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				2DADE4321A1E584400895608 /* SchedulesPageViewController.swift */,
 				2D6000E01A1E6BAF005CB141 /* WeekSchedulesViewController.swift */,
 				2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */,
+				2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -328,9 +334,9 @@
 				2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */,
 				2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */,
 				2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */,
+				2D716C3B1A38B97C00CE7F27 /* TeacherInfoEntity.swift */,
 				2D7871321A34ABDA0062DCFE /* FavoriteEntity.swift */,
 				2D7871301A32172F0062DCFE /* LessonScheduleEntity.swift */,
-				2D78712E1A32172F0062DCFE /* TeacherInfoEntity.swift */,
 				2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */,
 				2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */,
 				2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */,
@@ -444,14 +450,15 @@
 				2D6000E31A1E7DF0005CB141 /* LessonScheduleCell.swift in Sources */,
 				2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
-				2D78712F1A32172F0062DCFE /* TeacherInfoEntity.swift in Sources */,
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2D6000E51A1E7E13005CB141 /* ActiveLessonScheduleCell.swift in Sources */,
 				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
+				2D716C381A3830EE00CE7F27 /* GetTeachersService.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* StudentDaySchedule.swift in Sources */,
 				2D7871311A32172F0062DCFE /* LessonScheduleEntity.swift in Sources */,
 				2D0826231A15299D008B504E /* ViewController+RMSidebarController.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
+				2D716C3C1A38B97C00CE7F27 /* TeacherInfoEntity.swift in Sources */,
 				2D75CF4E1A222FB5006F2A9D /* LessonSchedule.swift in Sources */,
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
 				2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */,
@@ -475,6 +482,7 @@
 				2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */,
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
 				2D6000E11A1E6BAF005CB141 /* WeekSchedulesViewController.swift in Sources */,
+				2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */,
 				2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
