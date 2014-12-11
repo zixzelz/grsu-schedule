@@ -49,7 +49,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func updateFavoriteOrder() {
-        for i in (0...favorites!.count-1) {
+        for var i = 0; i < favorites!.count; i++ {
             favorites![i].order = i
         }
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
@@ -49,8 +49,8 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ew-L4-qbM">
                                 <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                                <color key="backgroundColor" red="0.4517534077167511" green="0.61047118902206421" blue="0.84104228019714355" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.47010672092437744" green="0.65347045660018921" blue="0.8723984956741333" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCellIdentifier" textLabel="wyf-bV-lcf" style="IBUITableViewCellStyleDefault" id="Gh2-us-z1k">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -122,9 +122,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eem-i5-CtH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaG-TA-yM9">
-                                        <rect key="frame" x="12" y="28" width="26" height="26"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IaG-TA-yM9">
+                                        <rect key="frame" x="10" y="22" width="34" height="34"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="JlA-ZV-FgU"/>
+                                            <constraint firstAttribute="width" constant="34" id="gQd-Q3-Pda"/>
+                                        </constraints>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <state key="normal" image="EditIcon">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -140,8 +144,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.34509803921568627" green="0.60784313725490191" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="IaG-TA-yM9" firstAttribute="leading" secondItem="eem-i5-CtH" secondAttribute="leading" constant="12" id="gCU-ky-0ea"/>
-                                    <constraint firstAttribute="bottom" secondItem="IaG-TA-yM9" secondAttribute="bottom" constant="10" id="lsa-uH-FZG"/>
+                                    <constraint firstItem="IaG-TA-yM9" firstAttribute="leading" secondItem="eem-i5-CtH" secondAttribute="leading" constant="10" id="gCU-ky-0ea"/>
+                                    <constraint firstAttribute="bottom" secondItem="IaG-TA-yM9" secondAttribute="bottom" constant="8" id="lsa-uH-FZG"/>
                                     <constraint firstAttribute="height" constant="64" id="pX9-Fd-sRp"/>
                                 </constraints>
                             </view>
