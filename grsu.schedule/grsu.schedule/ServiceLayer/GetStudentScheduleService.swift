@@ -202,7 +202,7 @@ class GetStudentScheduleService: BaseDataService {
         return cacheItems.first
     }
     
-    // pragma mark - Utils
+    // MARK: - Utils
     
     class func timeIntervalWithTimeText(time: String) -> Int {
         let arr = time.componentsSeparatedByString(":")

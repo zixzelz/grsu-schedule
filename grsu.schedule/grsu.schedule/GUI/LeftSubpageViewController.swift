@@ -49,7 +49,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func updateFavoriteOrder() {
-        for var i = 0; i < favorites!.count; i++ {
+        for i in 0..<favorites!.count {
             favorites![i].order = i
         }
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -77,7 +77,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
-    // pragma mark - UITableViewDataSource
+    // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
@@ -160,7 +160,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
         return indexPath.section == FavoriteTableSection
     }
 
-    // pragma mark - UITableViewDelegate
+    // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
         if (proposedDestinationIndexPath.section != FavoriteTableSection) {

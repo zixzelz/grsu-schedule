@@ -53,7 +53,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         scheduleButton.backgroundColor = backgroundColor
     }
     
-    // pragma mark - ScheduleOptionsTableViewControllerDataSource
+    // MARK: - ScheduleOptionsTableViewControllerDataSource
 
     func defaultDepartmentID() -> String? {
         return fetchDefaultValue(.Departmen) as? String
@@ -76,7 +76,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         return scheduleQuery.startWeekDate
     }
     
-    // pragma mark - ScheduleOptionsTableViewControllerDelegate
+    // MARK: - ScheduleOptionsTableViewControllerDelegate
     
     func didSelectDepartment(departmentId : String) {
         storeDefaultValue(.Departmen, value: departmentId)
@@ -105,7 +105,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         updateShowScheduleButtonState()
     }
     
-    // pragma mark - Utils
+    // MARK: - Utils
     
     func storeDefaultValue(key: ScheduleOption, value: AnyObject?) {
         let userDef = NSUserDefaults.standardUserDefaults()

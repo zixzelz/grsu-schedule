@@ -98,7 +98,7 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         //Action take on Notification
     }
     
-    // pragma mark - UIPageViewControllerDataSource
+    // MARK: - UIPageViewControllerDataSource
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         var vc : UIViewController?
@@ -122,7 +122,7 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         return vc
     }
     
-    // pragma mark - UIPageViewControllerDelegate
+    // MARK: - UIPageViewControllerDelegate
     
     func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
         if (completed) {
@@ -134,7 +134,7 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         }
     }
 
-    // pragma mark - Utils
+    // MARK: - Utils
 
     func indexOfViewController(vc: WeekSchedulesViewController) -> Int {
         let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!

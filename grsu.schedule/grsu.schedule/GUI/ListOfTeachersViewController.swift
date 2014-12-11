@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListOfTeachersViewController: UIViewController {
+class ListOfTeachersViewController: UIViewController, UITableViewDataSource {
 
     var teachers: Array<TeacherInfoEntity>?
     
@@ -48,7 +48,20 @@ class ListOfTeachersViewController: UIViewController {
         fetchData(useCache: false)
     }
     
-    // pragma mark - UITableViewDataSource
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        NSUserDefaults.standardUserDefaults().synchronize()
+        if (segue.identifier == "TeacherInfoIdentifier") {
+            
+            let cell = sender as UITableViewCell!
+            let indexPath = tableView.indexPathForCell(cell)
+            var teacher = teachers![indexPath!.row]
+            
+            let viewController = segue.destinationViewController as TeacherInfoViewController
+            viewController.teacherInfo = teacher
+        }
+    }
+
+    // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         var count = 1

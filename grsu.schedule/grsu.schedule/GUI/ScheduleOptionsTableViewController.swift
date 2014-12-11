@@ -142,7 +142,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         }
     }
     
-    // pragma mark - Interface
+    // MARK: - Interface
 
     func selectedDepartment() -> DepartmentsEntity? {
         let selectedRow = departmentPickerTableViewCell.selectedRow() as Int?
@@ -177,7 +177,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
        return nil
     }
     
-    // pragma mark - UITableViewDataSource
+    // MARK: - UITableViewDataSource
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         var height : CGFloat = 0
@@ -194,7 +194,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         return 10
     }
     
-    // pragma mark - UITableViewDelegate
+    // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -216,7 +216,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         
     }
     
-    // pragma mark - Utils
+    // MARK: - Utils
         
     func valueById(items: [AnyObject], itemId: String?) -> String? {
         if let itemId_ = itemId {
@@ -226,7 +226,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         return nil
     }
     
-    // pragma mark - PickerTableViewCelldelegate
+    // MARK: - PickerTableViewCelldelegate
     
     func pickerTableViewCell(cell: PickerTableViewCell, didSelectRow row: Int, withText text: String) {
 

@@ -70,7 +70,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
         headerCell.detailTextLabel?.text = text ?? " "
     }
     
-    // Pragma mark - UIPickerViewDataSource
+    // MARK: - UIPickerViewDataSource
 
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1;
@@ -80,7 +80,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
         return items?.count ?? 0
     }
     
-    // Pragma mark - UIPickerViewDelegate
+    // MARK: - UIPickerViewDelegate
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return items![row] as String

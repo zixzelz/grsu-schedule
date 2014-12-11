@@ -11,7 +11,7 @@ import CoreData
 
 class GetTeachersService: BaseDataService {
    
-    // pragma mark - Teacher
+    // MARK: - Teacher
     
     class func getTeacher(teacherId : String, completionHandler: ((TeacherInfoEntity?, NSError?) -> Void)!) {
         getTeacher(teacherId, useCache: true, completionHandler: completionHandler)
@@ -39,7 +39,7 @@ class GetTeachersService: BaseDataService {
         
     }
     
-    // pragma mark - Teachers
+    // MARK: - Teachers
     
     class func getTeachers(completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
         getTeachers(true, completionHandler: completionHandler)
@@ -62,7 +62,7 @@ class GetTeachersService: BaseDataService {
         }
     }
 
-    // pragma mark - Private
+    // MARK: - Private
     
     private class func featchTeacherFromCache(teacherId : String?, completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate

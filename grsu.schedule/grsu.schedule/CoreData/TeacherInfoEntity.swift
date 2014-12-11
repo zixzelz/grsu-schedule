@@ -18,7 +18,7 @@ class TeacherInfoEntity: NSManagedObject {
     @NSManaged var surname: String
     @NSManaged var patronym: String
     @NSManaged var post: String
-    @NSManaged var phone: String
+    @NSManaged var phone: String?
     @NSManaged var descr: String
     @NSManaged var email: String
     @NSManaged var skype: String

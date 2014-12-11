@@ -75,7 +75,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         fetchData(useCache: false)
     }
     
-    // pragma mark - UITableViewDataSource
+    // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if (schedules != nil && schedules?.count == 0) {
@@ -159,7 +159,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         return 38
     }
     
-    // pragma mark - UITableViewDelegate
+    // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
