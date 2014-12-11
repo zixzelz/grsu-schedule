@@ -57,8 +57,15 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
     
     // MARK: - UITableViewDataSource
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 4
+        var count = 1
+        if (section == 1) {
+            count = teacherInfoFields.count
+        }
         return count
     }
     
@@ -66,14 +73,14 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
         
         var cell : UITableViewCell
         
-        if (indexPath.row == 0) {
+        if (indexPath.section == 0) {
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherPhotoCellIdentifier") as TeacherPhotoTableViewCell
             cell.imageView?.image = UIImage(named: "UserPlaceholderIcon")
             cell.textLabel?.text = teacherInfo.title
         } else {
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherFieldCellIdentifier") as UITableViewCell
-            cell.textLabel?.text = teacherInfo.phone
-            cell.detailTextLabel?.text = teacherInfo.phone
+            cell.textLabel?.text = teacherInfoFields[indexPath.row]
+            cell.detailTextLabel?.text = teacherInfo.phone ?? "+375 29 882 65 15"
         }
         
         return cell
