@@ -12,6 +12,7 @@ class TeacherPhotoTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var photoImageView : UIImageView!
     @IBOutlet private weak var fullNameLabel : UILabel!
+    @IBOutlet private weak var jobTitle : UILabel!
     
     override var imageView: UIImageView? { get {
         return photoImageView
@@ -21,5 +22,8 @@ class TeacherPhotoTableViewCell: UITableViewCell {
         return fullNameLabel
         }}
     
-    
+    override var detailTextLabel: UILabel? { get {
+        return jobTitle
+        }}
+
 }

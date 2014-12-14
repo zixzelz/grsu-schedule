@@ -14,14 +14,14 @@ class TeacherInfoEntity: NSManagedObject {
 
     @NSManaged var id: String
     @NSManaged var title: String
-    @NSManaged var name: String
-    @NSManaged var surname: String
-    @NSManaged var patronym: String
-    @NSManaged var post: String
+    @NSManaged var name: String?
+    @NSManaged var surname: String?
+    @NSManaged var patronym: String?
+    @NSManaged var post: String?
     @NSManaged var phone: String?
-    @NSManaged var descr: String
-    @NSManaged var email: String
-    @NSManaged var skype: String
+    @NSManaged var descr: String?
+    @NSManaged var email: String?
+    @NSManaged var skype: String?
     @NSManaged var updatedDate: NSDate
     @NSManaged var lessons: NSSet
 

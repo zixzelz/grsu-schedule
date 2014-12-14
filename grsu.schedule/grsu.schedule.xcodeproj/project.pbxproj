@@ -26,6 +26,8 @@
 		2D08262A1A15299D008B504E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D08261E1A15299D008B504E /* Main.storyboard */; };
 		2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */; };
 		2D18E8E41A35FE5D0076F2A7 /* LeftSubpageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */; };
+		2D3744FB1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3744FA1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift */; };
+		2D3744FD1A3DE35F00B60B3A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3744FC1A3DE35F00B60B3A /* MessageUI.framework */; };
 		2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B61A23B8AC001BA278 /* DateUtils.m */; };
 		2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */; };
 		2D6000E11A1E6BAF005CB141 /* WeekSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E01A1E6BAF005CB141 /* WeekSchedulesViewController.swift */; };
@@ -98,6 +100,8 @@
 		2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOptionsTableViewController.swift; sourceTree = "<group>"; };
 		2D0A70401A1BB5F900A2A08D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSubpageViewController.swift; sourceTree = "<group>"; };
+		2D3744FA1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSubtitleTableViewCell.swift; sourceTree = "<group>"; };
+		2D3744FC1A3DE35F00B60B3A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		2D3FF2B41A23B8AC001BA278 /* grsu.schedule-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "grsu.schedule-Bridging-Header.h"; sourceTree = "<group>"; };
 		2D3FF2B51A23B8AC001BA278 /* DateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtils.h; sourceTree = "<group>"; };
 		2D3FF2B61A23B8AC001BA278 /* DateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtils.m; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D3744FD1A3DE35F00B60B3A /* MessageUI.framework in Frameworks */,
 				2DDC78A61A2A30A100C1D966 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +211,7 @@
 		2D0825EB1A152913008B504E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2D3744FC1A3DE35F00B60B3A /* MessageUI.framework */,
 				2DDC78A41A2A308200C1D966 /* CoreData.framework */,
 				2D0A70401A1BB5F900A2A08D /* Foundation.framework */,
 				2D0825EC1A152913008B504E /* Info.plist */,
@@ -257,6 +263,7 @@
 				2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */,
 				2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */,
 				2D7B6E851A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift */,
+				2D3744FA1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -455,6 +462,7 @@
 			files = (
 				2D6000E31A1E7DF0005CB141 /* LessonScheduleCell.swift in Sources */,
 				2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */,
+				2D3744FB1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2D6000E51A1E7E13005CB141 /* ActiveLessonScheduleCell.swift in Sources */,

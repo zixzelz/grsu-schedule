@@ -35,13 +35,13 @@ class ListOfTeachersViewController: UIViewController, UITableViewDataSource {
             self.refreshControl.beginRefreshing()
         }
         
-        GetTeachersService.getTeachers { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
+        GetTeachersService.getTeachers(useCache, completionHandler: { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
                 wSelf.refreshControl.endRefreshing()
                 wSelf.teachers = items
                 wSelf.tableView.reloadData()
             }
-        }
+        })
     }
     
     func refresh(sender:AnyObject) {

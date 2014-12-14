@@ -8,20 +8,37 @@
 //
 
 import UIKit
+import MessageUI
 
-class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+enum GSTeacherFieldType : String {
+    case Skype = "TeacherSkypeFieldCellIdentifier"
+    case Email = "TeacherEmailFieldCellIdentifier"
+    case Phone = "TeacherPhoneFieldCellIdentifier"
+}
 
-    var teacherInfo: TeacherInfoEntity!
-    let teacherInfoFields: [String]
+typealias GSTeacherField = (title: String, type: GSTeacherFieldType, value: String?)
+
+class TeacherInfoViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet private var tableView : UITableView!
     var refreshControl:UIRefreshControl!
 
-    
-    required init(coder aDecoder: NSCoder) {
-        teacherInfoFields = ["Сотовый", "Email", "Skype"]
-        
-        super.init(coder: aDecoder)
+    var teacherInfoFields: [GSTeacherField]!
+    var teacherInfo: TeacherInfoEntity! {
+        didSet {
+            teacherInfoFields = [];
+            teacherInfoFields.append(("Сотовый", .Phone, "+375 29 882 6515"))
+//            if !NSString.isNilOrEmpty(teacherInfo.phone) {
+//                teacherInfoFields.append(("Сотовый", .Phone, teacherInfo.phone))
+//            }
+            if !NSString.isNilOrEmpty(teacherInfo.email) {
+                teacherInfoFields.append(("Email", .Email, teacherInfo.email))
+            }
+            teacherInfoFields.append(("Skype", .Skype, "zixzelz"))
+//            if !NSString.isNilOrEmpty(teacherInfo.skype) {
+//                teacherInfoFields.append(("Skype", .Skype, teacherInfo.skype))
+//            }
+        }
     }
 
     override func viewDidLoad() {
@@ -38,21 +55,66 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func fetchData(useCache: Bool = true) {
-//        if (!self.refreshControl.refreshing) {
-//            self.refreshControl.beginRefreshing()
-//        }
+        if (!self.refreshControl.refreshing) {
+            self.refreshControl.beginRefreshing()
+        }
         
-//        GetTeachersService.getTeachers { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
-//            if let wSelf = self {
-//                wSelf.refreshControl.endRefreshing()
-//                wSelf.teacherInfo = items
-//                wSelf.tableView.reloadData()
-//            }
-//        }
+        GetTeachersService.getTeacher(teacherInfo.id, useCache: useCache) { [weak self](teacherInfo: TeacherInfoEntity?, error: NSError?) -> Void in
+            if let wSelf = self {
+                wSelf.refreshControl.endRefreshing()
+                wSelf.teacherInfo = teacherInfo
+                wSelf.tableView.reloadData()
+            }
+        }
     }
     
     func refreshTeacherInfo(sender:AnyObject) {
         fetchData(useCache: false)
+    }
+
+    // MARK: - TeacherFieldAction
+
+    @IBAction func emailButtonPressed(sender: AnyObject) {
+        
+        let compose = MFMailComposeViewController()
+        compose.mailComposeDelegate = self
+        compose.setToRecipients([teacherInfo.email!])
+        
+        self.presentViewController(compose, animated: true, completion: nil)
+    }
+    
+    @IBAction func phoneButtonPressed(sender: AnyObject) {
+        let phoneNumber = NSString(format: "telprompt:%@", "+375 29 882 65 15".stringByReplacingOccurrencesOfString(" ", withString: ""))
+        let url = NSURL(string: phoneNumber)
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    
+    @IBAction func messageButtonPressed(sender: AnyObject) {
+        if !MFMessageComposeViewController.canSendText() {
+            return
+        }
+        
+        let compose = MFMessageComposeViewController()
+        compose.messageComposeDelegate = self
+        compose.recipients = [teacherInfo.phone!]
+        
+        self.presentViewController(compose, animated: true, completion: nil)
+    }
+    
+    @IBAction func skypeButtonPressed(sender: AnyObject) {
+        
+    }
+
+    // MARK: - MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // MARK: - MFMessageComposeViewControllerDelegate
+    
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - UITableViewDataSource
@@ -77,10 +139,13 @@ class TeacherInfoViewController: UIViewController, UITableViewDataSource, UITabl
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherPhotoCellIdentifier") as TeacherPhotoTableViewCell
             cell.imageView?.image = UIImage(named: "UserPlaceholderIcon")
             cell.textLabel?.text = teacherInfo.title
+            cell.detailTextLabel?.text = teacherInfo.post
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier("TeacherFieldCellIdentifier") as UITableViewCell
-            cell.textLabel?.text = teacherInfoFields[indexPath.row]
-            cell.detailTextLabel?.text = teacherInfo.phone ?? "+375 29 882 65 15"
+            let cellIdentifier = teacherInfoFields[indexPath.row].type.rawValue
+            
+            cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as CustomSubtitleTableViewCell
+            cell.textLabel?.text = teacherInfoFields[indexPath.row].title
+            cell.detailTextLabel?.text = teacherInfoFields[indexPath.row].value ?? "  "
         }
         
         return cell

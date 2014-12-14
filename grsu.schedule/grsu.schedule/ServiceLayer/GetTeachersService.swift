@@ -176,14 +176,14 @@ class GetTeachersService: BaseDataService {
                             teacher = NSEntityDescription.insertNewObjectForEntityForName(TeacherInfoEntityName, inManagedObjectContext: context) as? TeacherInfoEntity
                             teacher!.id = item["id"] as String
                         }
-                        teacher!.name = item["title"] as String
-                        teacher!.surname = item["surname"] as String
-                        teacher!.patronym = item["patronym"] as String
-                        teacher!.post = item["post"] as String
-                        teacher!.phone = item["phone"] as String
-                        teacher!.descr = item["descr"] as String
-                        teacher!.email = item["email"] as String
-                        teacher!.skype = item["skype"] as String
+                        teacher!.name = item["name"] as? String
+                        teacher!.surname = item["surname"] as? String
+                        teacher!.patronym = item["patronym"] as? String
+                        teacher!.post = item["post"] as? String
+                        teacher!.phone = item["phone"] as? String
+                        teacher!.descr = item["descr"] as? String
+                        teacher!.email = item["email"] as? String
+                        teacher!.skype = item["skype"] as? String
                         teacher!.updatedDate = NSDate()
                         
                         cdHelper.saveContext(context)
