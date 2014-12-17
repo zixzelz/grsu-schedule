@@ -18,10 +18,7 @@ enum GSTeacherFieldType : String {
 
 typealias GSTeacherField = (title: String, type: GSTeacherFieldType, value: String?)
 
-class TeacherInfoViewController: UIViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
-    
-    @IBOutlet private var tableView : UITableView!
-    var refreshControl:UIRefreshControl!
+class TeacherInfoViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
     var teacherInfoFields: [GSTeacherField]!
     var teacherInfo: TeacherInfoEntity! {
@@ -49,19 +46,17 @@ class TeacherInfoViewController: UIViewController, MFMailComposeViewControllerDe
     }
     
     func setupRefreshControl() {
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.addTarget(self, action: "refreshTeacherInfo:", forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControl)
+        self.refreshControl!.addTarget(self, action: "refreshTeacherInfo:", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     func fetchData(useCache: Bool = true) {
-        if (!self.refreshControl.refreshing) {
-            self.refreshControl.beginRefreshing()
+        if (!self.refreshControl!.refreshing) {
+            self.refreshControl!.beginRefreshing()
         }
         
         GetTeachersService.getTeacher(teacherInfo.id, useCache: useCache) { [weak self](teacherInfo: TeacherInfoEntity?, error: NSError?) -> Void in
             if let wSelf = self {
-                wSelf.refreshControl.endRefreshing()
+                wSelf.refreshControl!.endRefreshing()
                 wSelf.teacherInfo = teacherInfo
                 wSelf.tableView.reloadData()
             }
@@ -119,11 +114,11 @@ class TeacherInfoViewController: UIViewController, MFMailComposeViewControllerDe
     
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 1
         if (section == 1) {
             count = teacherInfoFields.count
@@ -131,7 +126,7 @@ class TeacherInfoViewController: UIViewController, MFMailComposeViewControllerDe
         return count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell : UITableViewCell
         
@@ -149,6 +144,10 @@ class TeacherInfoViewController: UIViewController, MFMailComposeViewControllerDe
         }
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 83 : 56
     }
 
 }

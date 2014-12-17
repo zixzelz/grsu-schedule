@@ -54,11 +54,12 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
         super.viewDidLoad()
         interactionController = RMSidebarInteractiveTransition(view: view)
         interactionController?.delegate = self
-    }
+
+        self.setupWithStoryboard();
+}
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
-        self.setupWithStoryboard();
     }
 
     func setupWithStoryboard() {

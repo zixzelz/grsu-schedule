@@ -8,37 +8,34 @@
 
 import UIKit
 
-class ListOfTeachersViewController: UIViewController, UITableViewDataSource {
+class ListOfTeachersViewController: UITableViewController {
 
-    var teachers: Array<TeacherInfoEntity>?
-    
-    @IBOutlet private var tableView : UITableView!
-    var refreshControl:UIRefreshControl!
+    @IBOutlet weak var searchDataSource: ListOfTeachersSearchDataSource!
+    var teacherSections: [[TeacherInfoEntity]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
+        self.refreshControl!.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
         
-        setupRefreshControl()
         fetchData()
     }
     
-    func setupRefreshControl() {
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControl)
-    }
-    
     func fetchData(useCache: Bool = true) {
-        if (!self.refreshControl.refreshing) {
-            self.refreshControl.beginRefreshing()
+        if (!self.refreshControl!.refreshing) {
+            self.refreshControl!.beginRefreshing()
         }
         
         GetTeachersService.getTeachers(useCache, completionHandler: { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
-                wSelf.refreshControl.endRefreshing()
-                wSelf.teachers = items
+                wSelf.refreshControl!.endRefreshing()
+                wSelf.searchDataSource.items = items
+                if let items = items {
+                    wSelf.teacherSections = wSelf.prepareDataWithTeachers(items)
+                } else {
+                    wSelf.teacherSections = [[TeacherInfoEntity]]()
+                }
                 wSelf.tableView.reloadData()
             }
         })
@@ -48,13 +45,32 @@ class ListOfTeachersViewController: UIViewController, UITableViewDataSource {
         fetchData(useCache: false)
     }
     
+    func prepareDataWithTeachers(items: Array<TeacherInfoEntity>) -> [[TeacherInfoEntity]] {
+        let theCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation
+        
+        let highSection = theCollation.sectionIndexTitles.count
+        var sections = [[TeacherInfoEntity]](count: highSection, repeatedValue: [TeacherInfoEntity]())
+        
+        for item in items {
+            let sectionIndex = theCollation.sectionForObject(item, collationStringSelector: "title")
+            sections[sectionIndex].append(item)
+        }
+        return sections
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        NSUserDefaults.standardUserDefaults().synchronize()
         if (segue.identifier == "TeacherInfoIdentifier") {
             
             let cell = sender as UITableViewCell!
-            let indexPath = tableView.indexPathForCell(cell)
-            var teacher = teachers![indexPath!.row]
+            var teacher: TeacherInfoEntity?
+            
+            if let indexPath = tableView.indexPathForCell(cell) {
+                teacher = teacherSections![indexPath.section][indexPath.row]
+            } else {
+                if let indexPath = searchDataSource.searchDisplayController.searchResultsTableView.indexPathForCell(cell) {
+                    teacher = searchDataSource.searcheArray![indexPath.row]
+                }
+            }
             
             let viewController = segue.destinationViewController as TeacherInfoViewController
             viewController.teacherInfo = teacher
@@ -63,31 +79,33 @@ class ListOfTeachersViewController: UIViewController, UITableViewDataSource {
 
     // MARK: - UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         var count = 1
-        if (teachers == nil) {
+        if (teacherSections == nil) {
             count = 0
+        } else if (teacherSections!.count > 0) {
+            count = teacherSections!.count
         }
         return count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 1
-        if (teachers != nil && teachers?.count > 0) {
-            count = teachers!.count
+        if (teacherSections != nil && teacherSections?.count > 0) {
+            count = teacherSections![section].count
         }
         return count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell : UITableViewCell
         
-        if (teachers == nil || teachers?.count == 0) {
+        if (teacherSections != nil && teacherSections?.count == 0) {
             cell = tableView.dequeueReusableCellWithIdentifier("EmptyCellIdentifier") as UITableViewCell
         } else {
             
-            var teacher = teachers![indexPath.row]
+            var teacher = teacherSections![indexPath.section][indexPath.row]
 
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherCellIdentifier") as UITableViewCell
             cell.textLabel?.text = teacher.title
@@ -96,4 +114,18 @@ class ListOfTeachersViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
+        return UILocalizedIndexedCollation.currentCollation().sectionIndexTitles
+    }
+    
+    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        return UILocalizedIndexedCollation.currentCollation().sectionForSectionIndexTitleAtIndex(index)
+    }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (teacherSections?[section].count > 0) {
+            return UILocalizedIndexedCollation.currentCollation().sectionIndexTitles[section] as? String
+        }
+        return nil
+    }
 }

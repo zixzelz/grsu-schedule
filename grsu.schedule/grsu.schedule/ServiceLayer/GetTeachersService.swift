@@ -53,7 +53,7 @@ class GetTeachersService: BaseDataService {
         let expiryDate = date?.dateByAddingTimeInterval(TeachersCacheTimeInterval)
         
         if (useCache == false || expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending) {
-            featchTeachers({ (items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
+            featchTeachers({ (error: NSError?) -> Void in
                 self.featchTeacherFromCache(nil, completionHandler: completionHandler)
                 userDefaults.setObject(NSDate(), forKey: userDefaultsTeachersKey)
             })
@@ -98,7 +98,7 @@ class GetTeachersService: BaseDataService {
         }
     }
     
-    private class func featchTeachers(completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
+    private class func featchTeachers(completionHandler: ((NSError?) -> Void)!) {
         
         let path = "/getTeachers"
         
@@ -114,31 +114,34 @@ class GetTeachersService: BaseDataService {
                         
                         let request = NSFetchRequest(entityName: TeacherInfoEntityName)
                         var error : NSError?
-                        let cachedTeachers = context.executeFetchRequest(request, error: &error) as [TeacherInfoEntity]
                         
                         var res : [TeacherInfoEntity] = Array()
                         for item in items {
                             var id = item["id"] as String
-                            var teacher = cachedTeachers.filter { $0.id == id }.first as TeacherInfoEntity?
+                            
+                            request.predicate = NSPredicate(format: "(id == %@)", id)
+                            let cachedTeachers = context.executeFetchRequest(request, error: &error) as [TeacherInfoEntity]
+                            var teacher = cachedTeachers.first
                             
                             if (teacher == nil) {
                                 teacher = NSEntityDescription.insertNewObjectForEntityForName(TeacherInfoEntityName, inManagedObjectContext: context) as? TeacherInfoEntity
                                 teacher!.id = item["id"] as String
                             }
-                            teacher!.title = item["fullname"] as String
                             
-                            res.append(teacher!)
+                            if (teacher!.title != item["fullname"] as? String) {
+                                teacher!.title = item["fullname"] as? String
+                            }
                         }
                         
                         cdHelper.saveContext(context)
 
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            completionHandler(res, error)
+                            completionHandler(error)
                         })
                     })
                 }
             } else {
-                completionHandler([], error)
+                completionHandler(error)
             }
             
         })

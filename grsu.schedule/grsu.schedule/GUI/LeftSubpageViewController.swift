@@ -169,22 +169,4 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
         return proposedDestinationIndexPath
     }
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let item = favorites![indexPath.row]
-//
-//        let week = WeekManager.scheduleWeeks()
-//        
-//        let scheduleQuery = StudentScheduleQuery()
-//        scheduleQuery.group = item.group
-//        scheduleQuery.startWeekDate = week.first!.startDate
-//        scheduleQuery.endWeekDate = week.first!.endDate
-//        
-//        let viewController = SchedulesPageViewController()
-//        viewController.possibleWeeks = week
-//        viewController.scheduleQuery = scheduleQuery
-//
-//
-//    }
-    
 }

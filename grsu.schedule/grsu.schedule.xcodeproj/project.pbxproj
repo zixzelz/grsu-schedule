@@ -62,6 +62,7 @@
 		2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */; };
 		2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78AF1A2B6DA800C1D966 /* FacultiesEntity.swift */; };
 		2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */; };
+		2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +140,7 @@
 		2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		2DDC78AF1A2B6DA800C1D966 /* FacultiesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultiesEntity.swift; sourceTree = "<group>"; };
 		2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
+		2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersSearchDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 				2D6000E01A1E6BAF005CB141 /* WeekSchedulesViewController.swift */,
 				2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */,
 				2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */,
+				2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */,
 				2D7B6E831A39F2CE002BC208 /* TeacherInfoViewController.swift */,
 			);
 			path = GUI;
@@ -506,6 +509,7 @@
 				2D6B07F01A3637F30064DD39 /* WeekManager.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
+				2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */,
 				2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */,
 				2D0826281A15299D008B504E /* RMSidebarInteractiveTransition.swift in Sources */,
 			);
