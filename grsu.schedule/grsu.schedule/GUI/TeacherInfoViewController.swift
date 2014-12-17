@@ -147,7 +147,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 83 : 56
+        return indexPath.section == 0 ? 84 : 56
     }
 
 }

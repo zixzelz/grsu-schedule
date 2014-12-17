@@ -63,6 +63,7 @@
 		2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78AF1A2B6DA800C1D966 /* FacultiesEntity.swift */; };
 		2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */; };
 		2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */; };
+		2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,6 +142,7 @@
 		2DDC78AF1A2B6DA800C1D966 /* FacultiesEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultiesEntity.swift; sourceTree = "<group>"; };
 		2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
 		2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersSearchDataSource.swift; sourceTree = "<group>"; };
+		2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */,
 				2D7B6E851A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift */,
 				2D3744FA1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift */,
+				2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				2DADE4331A1E584400895608 /* SchedulesPageViewController.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* WeekManager.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
+				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
 				2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */,
 				2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */,
