@@ -23,32 +23,13 @@ var points:Array<Point> = [("1","1"), ("1","2"), ("1","3"), ("1","4")]
 
 println (points)
 
+let arr = Array(count: 1001, repeatedValue: 50)
 
-var myString : String = "Swift is Swift really easy!"
+let n = NSDate().timeIntervalSinceReferenceDate
 
-let str = myString.stringByReplacingOccurrencesOfString("^Swift ", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
-
-
-let nsRange = Range<String.Index>(start: advance(str.startIndex, 0), end: advance(str.startIndex, 1))
-let z = str.stringByReplacingCharactersInRange(nsRange, withString:str.substringToIndex(advance(str.startIndex, 1)).capitalizedString)
-
-if myString.rangeOfString("easy") != nil {
-    
-    println("Exists!")
-    
+for _ in [0...1000] {
+    let n = arr.filter { $0 == 0 }
 }
 
-var schedules : Array<Int>?
+let v = NSDate().timeIntervalSinceReferenceDate - n
 
-var title: String
-if (schedules == nil || schedules?.count == 0) {
-    title = "Нет расписания на данную неделю"
-} else {
-    title = "неделю"
-}
-
-var c1 : NSObject? 
-let c2 : NSObject? = NSObject()
-let c3 : NSObject? = NSObject()
-
-let c = (c1 is NSDate ? c1 : nil) ?? c2 ?? c1

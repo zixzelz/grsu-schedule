@@ -22,12 +22,18 @@ class ListOfTeachersViewController: UITableViewController {
         fetchData()
     }
     
+    func scrollToTop() {
+        let top = self.tableView.contentInset.top
+        self.tableView.contentOffset = CGPointMake(0, -top)
+    }
+    
     func fetchData(useCache: Bool = true) {
         if (!self.refreshControl!.refreshing) {
             self.refreshControl!.beginRefreshing()
+            scrollToTop()
         }
         
-        GetTeachersService.getTeachers(useCache, completionHandler: { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
+        GetTeachersService.getTeachers(false, completionHandler: { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
                 wSelf.refreshControl!.endRefreshing()
                 wSelf.searchDataSource.items = items
