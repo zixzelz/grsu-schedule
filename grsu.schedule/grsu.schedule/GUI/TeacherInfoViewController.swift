@@ -97,7 +97,8 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
     
     @IBAction func skypeButtonPressed(sender: AnyObject) {
-        
+        let url = NSURL(string: "skype:zixzelz?call")
+        UIApplication.sharedApplication().openURL(url!)
     }
 
     // MARK: - MFMailComposeViewControllerDelegate
@@ -146,8 +147,22 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return indexPath.section == 0 ? 84 : 56
     }
 
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let field = teacherInfoFields[indexPath.row]
+        
+        switch (field.type) {
+        case .Email: emailButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
+        case .Phone: phoneButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
+        case .Skype: skypeButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
+        }
+    }
+    
 }
