@@ -13,6 +13,8 @@ class LessonScheduleCell: UITableViewCell {
     @IBOutlet private(set) weak var locationLabel : UILabel!
     @IBOutlet private(set) weak var studyNameLabel : UILabel!
     @IBOutlet private(set) weak var teacherLabel : UILabel!
+    @IBOutlet private(set) weak var studyTypeLabel : UILabel!
+    @IBOutlet private(set) weak var subgroupTitleLabel : UILabel!
     @IBOutlet private weak var startTimeLabel : UILabel!
     @IBOutlet private weak var stopTimeLabel : UILabel!
     

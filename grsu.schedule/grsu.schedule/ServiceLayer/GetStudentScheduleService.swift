@@ -67,7 +67,10 @@ class GetStudentScheduleService: BaseDataService {
                             
                             let teacherInfo = BaseTeacherInfo()
                             teacherInfo.id = teacher["id"] as? String
-                            teacherInfo.title = teacher["title"] as? String
+                            teacherInfo.fullname = teacher["fullname"] as? String
+                            teacherInfo.post = teacher["post"] as? String
+                            
+                            let subGroup = lesson["subgroup"] as NSDictionary?
                             
                             let scheduLelesson = LessonSchedule()
                             scheduLelesson.studyName = lesson["title"] as? String
@@ -77,6 +80,10 @@ class GetStudentScheduleService: BaseDataService {
                             scheduLelesson.startTime = self.timeIntervalWithTimeText(timeStart)
                             scheduLelesson.stopTime = self.timeIntervalWithTimeText(timeEnd)
                             scheduLelesson.teacher = teacherInfo
+                            
+                            if let subGroup = subGroup {
+                                scheduLelesson.subgroupTitle = subGroup["title"] as? String
+                            }
                             
                             scheduLelessons.append(scheduLelesson)
                         }
@@ -128,7 +135,6 @@ class GetStudentScheduleService: BaseDataService {
         } else {
             completionHandler(nil, NSError())
         }
-        
     }
     
     class func storeSchedule(group : GroupsEntity, dateStart: NSDate, dateEnd: NSDate, items: Array<StudentDaySchedule>, completionHandler: ( () -> Void)!) {
@@ -166,13 +172,15 @@ class GetStudentScheduleService: BaseDataService {
                         newlesson.room = lessonSchedule.room ?? 0
                         newlesson.startTime = lessonSchedule.startTime ?? 0
                         newlesson.stopTime = lessonSchedule.stopTime ?? 0
+                        newlesson.subgroupTitle = lessonSchedule.subgroupTitle ?? ""
                         
                         if let teacher = lessonSchedule.teacher {
                             var newTeacher = self.featchTeacher(teacher.id!, context:context)
                             if (newTeacher == nil) {
                                 newTeacher = NSEntityDescription.insertNewObjectForEntityForName(TeacherInfoEntityName, inManagedObjectContext: context) as? TeacherInfoEntity
                                 newTeacher?.id = teacher.id!
-                                newTeacher?.title = teacher.title!
+                                newTeacher?.title = teacher.fullname
+                                newTeacher?.post = teacher.post
                             }
                             newlesson.teacher = newTeacher!
                         }

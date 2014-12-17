@@ -18,6 +18,7 @@ class LessonScheduleEntity: NSManagedObject {
     @NSManaged var startTime: NSNumber
     @NSManaged var stopTime: NSNumber
     @NSManaged var studyName: String
+    @NSManaged var subgroupTitle: String?
     @NSManaged var studentDaySchedule: StudentDayScheduleEntity
     @NSManaged var teacher: TeacherInfoEntity
 

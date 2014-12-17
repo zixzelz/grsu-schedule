@@ -122,7 +122,9 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             }
             let lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as LessonScheduleCell
             
-            lCell.locationLabel.text = lesson.address
+            lCell.locationLabel.text = NSString(format: "%@; к.%@", lesson.address, lesson.room )
+            lCell.subgroupTitleLabel.text = lesson.subgroupTitle != nil ? NSString(format: "Подгруппа: %@", lesson.subgroupTitle! ) : ""
+            lCell.studyTypeLabel.text = lesson.type
             lCell.studyNameLabel.text = lesson.studyName
             lCell.teacherLabel.text = lesson.teacher.title
             lCell.startTime = lesson.startTime.integerValue

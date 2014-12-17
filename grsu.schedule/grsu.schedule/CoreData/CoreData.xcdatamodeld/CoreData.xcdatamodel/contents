@@ -30,6 +30,7 @@
         <attribute name="startTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="stopTime" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="studyName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subgroupTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="studentDaySchedule" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="StudentDayScheduleEntity" inverseName="lessons" inverseEntity="StudentDayScheduleEntity" syncable="YES"/>
         <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherInfoEntity" inverseName="lessons" inverseEntity="TeacherInfoEntity" syncable="YES"/>
@@ -58,7 +59,7 @@
         <element name="FacultiesEntity" positionX="-416" positionY="63" width="128" height="88"/>
         <element name="FavoriteEntity" positionX="9" positionY="-72" width="128" height="88"/>
         <element name="GroupsEntity" positionX="-209" positionY="-72" width="128" height="148"/>
-        <element name="LessonScheduleEntity" positionX="241" positionY="-0" width="128" height="163"/>
+        <element name="LessonScheduleEntity" positionX="241" positionY="-0" width="128" height="180"/>
         <element name="StudentDayScheduleEntity" positionX="9" positionY="29" width="128" height="88"/>
         <element name="TeacherInfoEntity" positionX="9" positionY="153" width="128" height="225"/>
     </elements>

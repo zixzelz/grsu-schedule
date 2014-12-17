@@ -11,6 +11,7 @@ import UIKit
 class BaseTeacherInfo: NSObject {
    
     var id : String?
-    var title : String?
+    var fullname : String?
+    var post : String?
 
 }
