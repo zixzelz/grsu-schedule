@@ -27,9 +27,13 @@ let arr = Array(count: 1001, repeatedValue: 50)
 
 let n = NSDate().timeIntervalSinceReferenceDate
 
-for _ in [0...1000] {
-    let n = arr.filter { $0 == 0 }
-}
 
 let v = NSDate().timeIntervalSinceReferenceDate - n
+
+let d = NSDate().dateByAddingTimeInterval(5000)
+
+let z: Double = 50
+let x: Double = 5.2
+
+d.timeIntervalSinceDate(NSDate()) / ( z - x)
 

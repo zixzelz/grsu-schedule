@@ -32,17 +32,22 @@ class ListOfTeachersViewController: UITableViewController {
             self.refreshControl!.beginRefreshing()
             scrollToTop()
         }
-        
-        GetTeachersService.getTeachers(false, completionHandler: { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
+        GetTeachersService.getTeachers(useCache, completionHandler: { [weak self](items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
             if let wSelf = self {
-                wSelf.refreshControl!.endRefreshing()
                 wSelf.searchDataSource.items = items
-                if let items = items {
-                    wSelf.teacherSections = wSelf.prepareDataWithTeachers(items)
-                } else {
-                    wSelf.teacherSections = [[TeacherInfoEntity]]()
-                }
-                wSelf.tableView.reloadData()
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
+                    
+                    if let items = items {
+                        wSelf.teacherSections = wSelf.prepareDataWithTeachers(items)
+                    } else {
+                        wSelf.teacherSections = [[TeacherInfoEntity]]()
+                    }
+
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        wSelf.refreshControl!.endRefreshing()
+                        wSelf.tableView.reloadData()
+                    })
+                })// dispatch_async
             }
         })
     }

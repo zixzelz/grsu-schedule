@@ -10,6 +10,6 @@ import UIKit
 
 class ActiveLessonScheduleCell: LessonScheduleCell {
 
-    @IBOutlet private weak var lessonProgressView : UIProgressView!
+    @IBOutlet private(set) weak var lessonProgressView : UIProgressView!
 
 }

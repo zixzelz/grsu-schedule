@@ -114,14 +114,16 @@ class GetTeachersService: BaseDataService {
                         
                         let request = NSFetchRequest(entityName: TeacherInfoEntityName)
                         var error : NSError?
+                        let cachedTeachers = context.executeFetchRequest(request, error: &error) as [TeacherInfoEntity]
+                        
+                        var cachedTeachersDictionary = Dictionary<String, TeacherInfoEntity>(minimumCapacity: cachedTeachers.count)
+                        cachedTeachers.map { cachedTeachersDictionary[$0.id] = $0 }
                         
                         var res : [TeacherInfoEntity] = Array()
                         for item in items {
-                            var id = item["id"] as String
                             
-                            request.predicate = NSPredicate(format: "(id == %@)", id)
-                            let cachedTeachers = context.executeFetchRequest(request, error: &error) as [TeacherInfoEntity]
-                            var teacher = cachedTeachers.first
+                            var id = item["id"] as String
+                            var teacher: TeacherInfoEntity? = cachedTeachersDictionary[id]
                             
                             if (teacher == nil) {
                                 teacher = NSEntityDescription.insertNewObjectForEntityForName(TeacherInfoEntityName, inManagedObjectContext: context) as? TeacherInfoEntity

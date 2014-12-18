@@ -115,15 +115,24 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             var lesson = schedules![fixIndexPath.section].lessons[fixIndexPath.row] as LessonScheduleEntity
             
             var identifier : String
-            if (indexPath.row == 0) {
+            
+            let startLessonTime = lesson.studentDaySchedule.date.dateByAddingTimeInterval(lesson.startTime.doubleValue * 60) as NSDate
+            let endLessonTime = lesson.studentDaySchedule.date.dateByAddingTimeInterval(lesson.stopTime.doubleValue * 60) as NSDate
+            
+            var lCell: LessonScheduleCell
+            if (NSDate().compare(startLessonTime) == NSComparisonResult.OrderedDescending && NSDate().compare(endLessonTime) == NSComparisonResult.OrderedAscending) {
                 identifier = "ActiveLessonCellIdentifier"
+                let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as ActiveLessonScheduleCell
+                cell.lessonProgressView.progress = Float(( NSDate().timeIntervalSinceDate(startLessonTime) / 60 ) / (lesson.stopTime.doubleValue - lesson.startTime.doubleValue))
+                
+                lCell = cell
             } else {
                 identifier = "LessonCellIdentifier"
+                lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as LessonScheduleCell
             }
-            let lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as LessonScheduleCell
             
             lCell.locationLabel.text = NSString(format: "%@; к.%@", lesson.address, lesson.room )
-            lCell.subgroupTitleLabel.text = lesson.subgroupTitle != nil ? NSString(format: "Подгруппа: %@", lesson.subgroupTitle! ) : ""
+            lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? NSString(format: "Подгруппа: %@", lesson.subgroupTitle! ) : ""
             lCell.studyTypeLabel.text = lesson.type
             lCell.studyNameLabel.text = lesson.studyName
             lCell.teacherLabel.text = lesson.teacher.title
