@@ -66,7 +66,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             self.scheduleDelegate?.didSelectCourse(courses.first!);
         }
         
-        weeks = WeekManager.scheduleWeeks()
+        weeks = DateManager.scheduleWeeks()
         weekPickerTableViewCell.items = weeks!.map { $0.value }
         let startWeekDate = scheduleDataSource?.defaultWeek()
         

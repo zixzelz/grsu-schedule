@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WeekManager: NSObject {
+class DateManager: NSObject {
  
     class func scheduleWeeks() -> Array<GSWeekItem>! {
         let date = NSDate()
@@ -38,5 +38,18 @@ class WeekManager: NSObject {
         return items
     }
 
+    class func daysBetweenDate(fromDateTime: NSDate, toDateTime: NSDate) -> Int {
+        var fromDate: NSDate?
+        var toDate: NSDate?
+    
+        let calendar = NSCalendar.currentCalendar();
+    
+        calendar.rangeOfUnit(.CalendarUnitDay, startDate: &fromDate, interval: nil, forDate: fromDateTime)
+        calendar.rangeOfUnit(.CalendarUnitDay, startDate: &toDate, interval: nil, forDate: toDateTime)
+        
+        let difference = calendar.components(.CalendarUnitDay, fromDate: fromDate!, toDate: toDate!, options: nil)
+        
+        return difference.day;
+    }
     
 }

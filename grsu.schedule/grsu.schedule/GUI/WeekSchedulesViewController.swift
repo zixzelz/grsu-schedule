@@ -56,6 +56,21 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         self.tableView.contentOffset = CGPointMake(0, -top)
     }
     
+    func scrollToActiveLesson() {
+        let days = schedules?.filter { DateManager.daysBetweenDate($0.date, toDateTime: NSDate()) == 0 }
+        let day = days?.first
+        
+        var startDate: NSDate?
+        let calendar = NSCalendar.currentCalendar();
+        calendar.rangeOfUnit(.CalendarUnitDay, startDate: &startDate, interval: nil, forDate: NSDate())
+        
+        let minToday = NSDate().timeIntervalSinceDate(startDate!) / 60
+        
+        var lessons = day!.lessons.array as [LessonScheduleEntity]
+        
+        
+    }
+    
     func fetchData(useCache: Bool = true) {
         if (!self.refreshControl.refreshing) {
             self.refreshControl.beginRefreshing()
@@ -67,6 +82,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
                 wSelf.refreshControl.endRefreshing()
                 wSelf.schedules = items
                 wSelf.tableView.reloadData()
+                wSelf.scrollToActiveLesson()
             }
         }
     }

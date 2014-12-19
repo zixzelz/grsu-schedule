@@ -37,3 +37,11 @@ let x: Double = 5.2
 
 d.timeIntervalSinceDate(NSDate()) / ( z - x)
 
+var fromDate: NSDate?
+var toDate: NSDate?
+
+calendar.rangeOfUnit(.CalendarUnitDay, startDate: &fromDate, interval: nil, forDate: NSDate())
+calendar.rangeOfUnit(.CalendarUnitDay, startDate: &toDate, interval: nil, forDate: NSDate().dateByAddingTimeInterval(500000))
+
+let difference = calendar.components(.CalendarUnitDay, fromDate: fromDate!, toDate: toDate!, options: nil)
+difference.day

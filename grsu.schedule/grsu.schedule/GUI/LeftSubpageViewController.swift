@@ -63,7 +63,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
             
             let item = favorites![tableView.indexPathForSelectedRow()!.row]
             
-            let week = WeekManager.scheduleWeeks()
+            let week = DateManager.scheduleWeeks()
             
             let scheduleQuery = StudentScheduleQuery()
             scheduleQuery.group = item.group
