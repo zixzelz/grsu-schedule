@@ -60,15 +60,26 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         let days = schedules?.filter { DateManager.daysBetweenDate($0.date, toDateTime: NSDate()) == 0 }
         let day = days?.first
         
-        var startDate: NSDate?
-        let calendar = NSCalendar.currentCalendar();
-        calendar.rangeOfUnit(.CalendarUnitDay, startDate: &startDate, interval: nil, forDate: NSDate())
-        
-        let minToday = NSDate().timeIntervalSinceDate(startDate!) / 60
-        
-        var lessons = day!.lessons.array as [LessonScheduleEntity]
-        
-        
+        if let day = day {
+            var startDate: NSDate?
+            let calendar = NSCalendar.currentCalendar();
+            calendar.rangeOfUnit(.CalendarUnitDay, startDate: &startDate, interval: nil, forDate: NSDate())
+            
+            let minToday = Int(NSDate().timeIntervalSinceDate(startDate!) / 60)
+            
+            var lessons = day.lessons.array as [LessonScheduleEntity]
+            
+            lessons = lessons.filter { ($0.stopTime.integerValue >= minToday) }
+            let lesson = lessons.first
+            
+            if let lesson = lesson {
+                let indexPath = NSIndexPath(forRow: day.lessons.indexOfObject(lesson), inSection: find(schedules!, day)!)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: false)
+            } else {
+                let indexPath = NSIndexPath(forRow: 0, inSection: find(schedules!, day)!)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
+            }
+        }
     }
     
     func fetchData(useCache: Bool = true) {

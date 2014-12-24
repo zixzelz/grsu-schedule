@@ -19,9 +19,10 @@ interval
 
 typealias Point = (x:String, y:String)
 
-var points:Array<Point> = [("1","1"), ("1","2"), ("1","3"), ("1","4")]
+var points:Array = [1,2,3,4,5,6]
 
-println (points)
+points.filter({ return $0 == 3})
+
 
 let arr = Array(count: 1001, repeatedValue: 50)
 
