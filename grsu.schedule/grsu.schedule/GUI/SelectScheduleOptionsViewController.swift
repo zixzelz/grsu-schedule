@@ -11,6 +11,7 @@ import UIKit
 class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTableViewControllerDataSource, ScheduleOptionsTableViewControllerDelegate {
     
     @IBOutlet weak var scheduleButton : UIButton!
+    let locationManager = CLLocationManager()
     
     var scheduleOptions : ScheduleOptionsTableViewController {
         get {
@@ -22,7 +23,9 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        locationManager.requestWhenInUseAuthorization()
+
         scheduleOptions.scheduleDelegate = self
         scheduleOptions.scheduleDataSource = self
         updateShowScheduleButtonState()
@@ -33,6 +36,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
         NSUserDefaults.standardUserDefaults().synchronize()
         if (segue.identifier == "SchedulePageIdentifier") {
             let week = scheduleOptions.selectedWeek()

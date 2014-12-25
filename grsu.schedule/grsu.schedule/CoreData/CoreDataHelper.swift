@@ -104,12 +104,6 @@ class CoreDataHelper: NSObject{
             }
         } else {
             NSLog("******** Saved Context in other thread")
-            self.backgroundContext!.performBlock {
-                self.backgroundContext!.mergeChangesFromContextDidSaveNotification(notification)
-            }
-            self.managedObjectContext!.performBlock {
-                self.managedObjectContext!.mergeChangesFromContextDidSaveNotification(notification)
-            }
         }
     }
 }

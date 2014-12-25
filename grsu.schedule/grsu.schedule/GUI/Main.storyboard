@@ -1312,10 +1312,10 @@
             </objects>
             <point key="canvasLocation" x="1212" y="1125"/>
         </scene>
-        <!--View Controller-->
+        <!--Карта-->
         <scene sceneID="t6M-le-azm">
             <objects>
-                <viewController id="6Qw-zL-iII" sceneMemberID="viewController">
+                <viewController id="6Qw-zL-iII" customClass="LessonLocationMapViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kaH-BR-VFl"/>
                         <viewControllerLayoutGuide type="bottom" id="Bkq-Fe-SY2"/>
@@ -1323,14 +1323,26 @@
                     <view key="view" contentMode="scaleToFill" id="DvF-yP-ANK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0r-1K-PAQ" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Bkq-Fe-SY2" firstAttribute="top" secondItem="J0r-1K-PAQ" secondAttribute="bottom" id="5bF-bj-vqO"/>
+                            <constraint firstAttribute="trailing" secondItem="J0r-1K-PAQ" secondAttribute="trailing" id="fn7-GQ-uk6"/>
+                            <constraint firstItem="J0r-1K-PAQ" firstAttribute="top" secondItem="DvF-yP-ANK" secondAttribute="top" id="ych-hK-WQr"/>
+                            <constraint firstItem="J0r-1K-PAQ" firstAttribute="leading" secondItem="DvF-yP-ANK" secondAttribute="leading" id="zpe-Pe-dw9"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Shs-mF-lcG"/>
+                    <navigationItem key="navigationItem" title="Карта" id="Shs-mF-lcG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qse-Se-xi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1976" y="1105"/>
+            <point key="canvasLocation" x="1654" y="1105"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hAr-WS-CtI">
