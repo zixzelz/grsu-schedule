@@ -86,7 +86,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
     
     @IBAction func phoneButtonPressed(sender: AnyObject) {
-        let phoneNumber = NSString(format: "telprompt:%@", "+375 29 882 65 15".stringByReplacingOccurrencesOfString(" ", withString: ""))
+        let phoneNumber = NSString(format: "telprompt:%@", teacherInfo!.phone!.stringByReplacingOccurrencesOfString(" ", withString: ""))
         let url = NSURL(string: phoneNumber)
         UIApplication.sharedApplication().openURL(url!)
     }
@@ -104,17 +104,10 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
     
     @IBAction func skypeButtonPressed(sender: AnyObject) {
-//        let url = NSURL(string: "skype:zixzelz?call")
-//        UIApplication.sharedApplication().openURL(url!)
-        
-//        let menuItem = UIMenuItem(title: "Custom Action", action: "messageButtonPressed:")
-//        
-//        let theMenu = UIMenuController.sharedMenuController()
-//        let selectionRect = CGRectMake(100, 100, 200, 200)
-//        theMenu.menuItems = [menuItem]
-//        theMenu.setTargetRect(selectionRect, inView: view)
-//        theMenu.setMenuVisible(true, animated: false)
-//        
+        let url = NSURL(string: "skype:\(teacherInfo.skype)")
+        if UIApplication.sharedApplication().canOpenURL(url!) {
+            UIApplication.sharedApplication().openURL(url!)
+        }
     }
 
     // MARK: - MFMailComposeViewControllerDelegate
@@ -190,11 +183,15 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
     
     override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+        return (indexPath.section == 1)
+    }
+    
+    override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject) -> Bool {
+        return (action == "copy:")
     }
     
     override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
-        
+        UIPasteboard.generalPasteboard().string = teacherInfoFields[indexPath.row].value
     }
     
 }
