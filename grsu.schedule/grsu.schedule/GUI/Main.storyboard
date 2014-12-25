@@ -197,7 +197,7 @@
             <objects>
                 <tableViewController id="tcl-fs-2hA" customClass="TeacherInfoViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aqn-vI-Ee5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ANG-wX-PEg">
@@ -211,7 +211,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vUG-KE-22D" id="CBh-qx-6gK">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserPlaceholderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="b7Z-Kv-NLo" customClass="RoundImageView" customModule="grsu_schedule" customModuleProvider="target">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserPlaceholderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="b7Z-Kv-NLo" customClass="RoundImageView" customModule="grsu_schedule" customModuleProvider="target">
                                             <rect key="frame" x="15" y="15" width="54" height="55"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="54" id="dkO-Sl-6kl"/>
@@ -430,7 +430,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IjU-8g-bRm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1624" y="-666"/>
+            <point key="canvasLocation" x="1976" y="-127"/>
         </scene>
         <!--Преподаватели-->
         <scene sceneID="AET-Hv-zvN">
@@ -484,6 +484,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="tcl-fs-2hA" kind="push" identifier="TeacherInfoIdentifier" trigger="accessoryAction" id="vpV-t6-0WE"/>
+                                    <segue destination="J8g-kP-rPA" kind="push" id="Afs-9X-skk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1199,20 +1200,62 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSX-7y-whF" id="A0k-Wq-c4J">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gz-eM-Aat">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FaK-8y-33W" userLabel="Menu">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
-                                                    <items>
-                                                        <tabBarItem title="Аудитория" image="LessonLocation" id="3nF-Fb-nud"/>
-                                                        <tabBarItem title="Расписание преп." id="P65-Kv-HRs"/>
-                                                        <tabBarItem systemItem="more" id="kfL-N4-pJV"/>
-                                                    </items>
-                                                    <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                </tabBar>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFa-5N-RPv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="107" height="49"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <inset key="titleEdgeInsets" minX="-4" minY="0.0" maxX="25" maxY="-28"/>
+                                                            <inset key="imageEdgeInsets" minX="39" minY="-16" maxX="39" maxY="0.0"/>
+                                                            <state key="normal" title="Аудитория" image="LessonLocation"/>
+                                                            <connections>
+                                                                <segue destination="6Qw-zL-iII" kind="push" id="5hu-zp-bdB"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZv-Ze-KcQ">
+                                                            <rect key="frame" x="107" y="0.0" width="106" height="49"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <inset key="titleEdgeInsets" minX="-28" minY="0.0" maxX="0.0" maxY="-28"/>
+                                                            <inset key="imageEdgeInsets" minX="38" minY="-13" maxX="37" maxY="0.0"/>
+                                                            <state key="normal" title="Расписание преп." image="LecturerSchedule"/>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vm5-PN-Yqt">
+                                                            <rect key="frame" x="213" y="0.0" width="107" height="49"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <inset key="titleEdgeInsets" minX="-29" minY="0.0" maxX="0.0" maxY="-28"/>
+                                                            <inset key="imageEdgeInsets" minX="38" minY="-13" maxX="37" maxY="0.0"/>
+                                                            <state key="normal" title="Преподаватель" image="Lecturer"/>
+                                                            <connections>
+                                                                <segue destination="tcl-fs-2hA" kind="push" identifier="TeacherInfoIdentifier" id="IlV-GR-mxt"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="ZZv-Ze-KcQ" secondAttribute="bottom" id="64l-PR-Dvh"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vm5-PN-Yqt" secondAttribute="trailing" id="8ll-FX-25w"/>
+                                                        <constraint firstItem="vm5-PN-Yqt" firstAttribute="leading" secondItem="ZZv-Ze-KcQ" secondAttribute="trailing" id="LdS-CV-Mtt"/>
+                                                        <constraint firstItem="rFa-5N-RPv" firstAttribute="width" secondItem="ZZv-Ze-KcQ" secondAttribute="width" id="T7g-qK-Jcg"/>
+                                                        <constraint firstItem="rFa-5N-RPv" firstAttribute="width" secondItem="vm5-PN-Yqt" secondAttribute="width" id="X6z-g9-r09"/>
+                                                        <constraint firstItem="ZZv-Ze-KcQ" firstAttribute="leading" secondItem="rFa-5N-RPv" secondAttribute="trailing" id="cz5-pu-dm4"/>
+                                                        <constraint firstItem="ZZv-Ze-KcQ" firstAttribute="top" secondItem="FaK-8y-33W" secondAttribute="top" id="dpi-gD-6Db"/>
+                                                        <constraint firstItem="vm5-PN-Yqt" firstAttribute="top" secondItem="FaK-8y-33W" secondAttribute="top" id="eZa-BM-mLE"/>
+                                                        <constraint firstAttribute="bottom" secondItem="vm5-PN-Yqt" secondAttribute="bottom" id="hDV-mi-qNv"/>
+                                                        <constraint firstItem="rFa-5N-RPv" firstAttribute="top" secondItem="FaK-8y-33W" secondAttribute="top" id="nwf-AD-T8H"/>
+                                                        <constraint firstItem="rFa-5N-RPv" firstAttribute="leading" secondItem="FaK-8y-33W" secondAttribute="leading" id="qDu-ae-vyk"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rFa-5N-RPv" secondAttribute="bottom" id="zEW-gC-bRU"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="0gz-eM-Aat" firstAttribute="leading" secondItem="A0k-Wq-c4J" secondAttribute="leading" id="HaO-Ex-Xa6"/>
-                                                <constraint firstItem="0gz-eM-Aat" firstAttribute="top" secondItem="A0k-Wq-c4J" secondAttribute="top" id="Pp4-RZ-fkS"/>
-                                                <constraint firstAttribute="trailing" secondItem="0gz-eM-Aat" secondAttribute="trailing" id="sTa-Br-Yv8"/>
+                                                <constraint firstAttribute="bottom" secondItem="FaK-8y-33W" secondAttribute="bottom" id="9F8-N8-lg5"/>
+                                                <constraint firstItem="FaK-8y-33W" firstAttribute="top" secondItem="A0k-Wq-c4J" secondAttribute="top" id="9tX-SR-pCJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="FaK-8y-33W" secondAttribute="trailing" id="RwV-a6-us1"/>
+                                                <constraint firstItem="FaK-8y-33W" firstAttribute="leading" secondItem="A0k-Wq-c4J" secondAttribute="leading" id="bm6-Fa-sf8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1267,13 +1310,55 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1212" y="1119"/>
+            <point key="canvasLocation" x="1212" y="1125"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="t6M-le-azm">
+            <objects>
+                <viewController id="6Qw-zL-iII" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kaH-BR-VFl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bkq-Fe-SY2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DvF-yP-ANK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Shs-mF-lcG"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qse-Se-xi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1976" y="1105"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hAr-WS-CtI">
+            <objects>
+                <viewController id="J8g-kP-rPA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ctX-dA-7LZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="YS0-k1-dlO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wvh-6K-1Yd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uvr-NO-MOU"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YpJ-LD-e8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1624" y="-127"/>
         </scene>
     </scenes>
     <resources>
         <image name="EditIcon" width="26" height="26"/>
         <image name="EditIconOk" width="26" height="26"/>
         <image name="EmailIcon" width="30" height="30"/>
+        <image name="Lecturer" width="30" height="30"/>
+        <image name="LecturerSchedule" width="30" height="30"/>
         <image name="LessonLocation" width="29" height="25"/>
         <image name="MessageIcon" width="24" height="30"/>
         <image name="NavigationBarEmptyStar" width="22" height="22"/>
@@ -1291,5 +1376,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="Nv5-F0-siH"/>
         <segue reference="MBi-ch-BHc"/>
+        <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>
 </document>

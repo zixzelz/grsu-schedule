@@ -101,6 +101,16 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     func refresh(sender:AnyObject) {
         fetchData(useCache: false)
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "TeacherInfoIdentifier") {
+            
+            var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
+            
+            let viewController = segue.destinationViewController as TeacherInfoViewController
+            viewController.teacherInfo = lesson.teacher
+        }
+    }
     
     // MARK: - UITableViewDataSource
     

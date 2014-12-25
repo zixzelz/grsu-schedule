@@ -23,24 +23,21 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     var teacherInfoFields: [GSTeacherField]!
     var teacherInfo: TeacherInfoEntity! {
         didSet {
+            if (teacherInfo.id == "20200") {
+                teacherInfo.phone = "+375 29 320 9908"
+                teacherInfo.skype = "a.karkanica"
+            }
+
+            
             teacherInfoFields = [];
             if !NSString.isNilOrEmpty(teacherInfo.phone) {
                 teacherInfoFields.append(("Сотовый", .Phone, teacherInfo.phone))
-            } else {
-                if (teacherInfo.id == "20200") {
-                    teacherInfoFields.append(("Сотовый", .Phone, "+375 29 320 9908"))
-                }
             }
             if !NSString.isNilOrEmpty(teacherInfo.email) {
                 teacherInfoFields.append(("Email", .Email, teacherInfo.email))
             }
-//            teacherInfoFields.append(("Skype", .Skype, "zixzelz"))
             if !NSString.isNilOrEmpty(teacherInfo.skype) {
                 teacherInfoFields.append(("Skype", .Skype, teacherInfo.skype))
-            } else {
-                if (teacherInfo.id == "20200") {
-                    teacherInfoFields.append(("Skype", .Skype, "a.karkanica"))
-                }
             }
         }
     }
@@ -104,7 +101,8 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
     
     @IBAction func skypeButtonPressed(sender: AnyObject) {
-        let url = NSURL(string: "skype:\(teacherInfo.skype)")
+        let skype = NSString(format: "skype:%@", teacherInfo.skype!)
+        let url = NSURL(string: skype)
         if UIApplication.sharedApplication().canOpenURL(url!) {
             UIApplication.sharedApplication().openURL(url!)
         }
