@@ -24,17 +24,24 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     var teacherInfo: TeacherInfoEntity! {
         didSet {
             teacherInfoFields = [];
-            teacherInfoFields.append(("Сотовый", .Phone, "+375 29 882 6515"))
-//            if !NSString.isNilOrEmpty(teacherInfo.phone) {
-//                teacherInfoFields.append(("Сотовый", .Phone, teacherInfo.phone))
-//            }
+            if !NSString.isNilOrEmpty(teacherInfo.phone) {
+                teacherInfoFields.append(("Сотовый", .Phone, teacherInfo.phone))
+            } else {
+                if (teacherInfo.id == "20200") {
+                    teacherInfoFields.append(("Сотовый", .Phone, "+375 29 320 9908"))
+                }
+            }
             if !NSString.isNilOrEmpty(teacherInfo.email) {
                 teacherInfoFields.append(("Email", .Email, teacherInfo.email))
             }
-            teacherInfoFields.append(("Skype", .Skype, "zixzelz"))
-//            if !NSString.isNilOrEmpty(teacherInfo.skype) {
-//                teacherInfoFields.append(("Skype", .Skype, teacherInfo.skype))
-//            }
+//            teacherInfoFields.append(("Skype", .Skype, "zixzelz"))
+            if !NSString.isNilOrEmpty(teacherInfo.skype) {
+                teacherInfoFields.append(("Skype", .Skype, teacherInfo.skype))
+            } else {
+                if (teacherInfo.id == "20200") {
+                    teacherInfoFields.append(("Skype", .Skype, "a.karkanica"))
+                }
+            }
         }
     }
 
@@ -97,8 +104,17 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
     
     @IBAction func skypeButtonPressed(sender: AnyObject) {
-        let url = NSURL(string: "skype:zixzelz?call")
-        UIApplication.sharedApplication().openURL(url!)
+//        let url = NSURL(string: "skype:zixzelz?call")
+//        UIApplication.sharedApplication().openURL(url!)
+        
+//        let menuItem = UIMenuItem(title: "Custom Action", action: "messageButtonPressed:")
+//        
+//        let theMenu = UIMenuController.sharedMenuController()
+//        let selectionRect = CGRectMake(100, 100, 200, 200)
+//        theMenu.menuItems = [menuItem]
+//        theMenu.setTargetRect(selectionRect, inView: view)
+//        theMenu.setMenuVisible(true, animated: false)
+//        
     }
 
     // MARK: - MFMailComposeViewControllerDelegate
@@ -133,7 +149,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         
         if (indexPath.section == 0) {
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherPhotoCellIdentifier") as TeacherPhotoTableViewCell
-            cell.imageView?.image = UIImage(named: "UserPlaceholderIcon")
+            cell.imageView?.image = photoById(teacherInfo.id)
             cell.textLabel?.text = teacherInfo.title
             cell.detailTextLabel?.text = teacherInfo.post
         } else {
@@ -145,6 +161,14 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         }
         
         return cell
+    }
+    
+    func photoById(id: String) -> UIImage {
+        var photo = UIImage(named: "Photo_\(id)")
+        if photo == nil {
+            photo = UIImage(named: "UserPlaceholderIcon")
+        }
+        return photo!
     }
     
     // MARK: - UITableViewDelegate
@@ -163,6 +187,14 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         case .Phone: phoneButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
         case .Skype: skypeButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
         }
+    }
+    
+    override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+        
     }
     
 }
