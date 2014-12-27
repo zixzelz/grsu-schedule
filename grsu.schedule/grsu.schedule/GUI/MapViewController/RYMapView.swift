@@ -15,7 +15,7 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
     @IBOutlet weak var hostingMapView: UIView!
     var mapView: GMSMapView!
     var markers: [GMSMarker]?
-    var calloutView: UIView?
+    var calloutView_: UIView?
     
     
     override func awakeFromNib() {
@@ -74,7 +74,7 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
     }
     
     func showCalloutView(view: UIView, forMarker: GMSMarker) {
-        calloutView = view
+        calloutView_ = view
         updateCalloutViewPodition(forMarker)
         
         view.alpha = 0.0
@@ -89,12 +89,12 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
         
         UIView.animateWithDuration(0.3, animations: { [weak self] _ in
             if let wself = self {
-                wself.calloutView?.alpha = 0.0
+                wself.calloutView_?.alpha = 0.0
             }
         }) { [weak self] _ in
             if let wself = self {
-                wself.calloutView?.removeFromSuperview()
-                wself.calloutView = nil
+                wself.calloutView_?.removeFromSuperview()
+                wself.calloutView_ = nil
             }
         }
     }
@@ -106,7 +106,7 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
         let offset = bottomOffsetForCalloutView()
         anchorPoint.y -= offset
         
-        calloutView?.center = anchorPoint
+        calloutView_?.center = anchorPoint
     }
 
     // MARK: - RYBaseMapViewProtocol
@@ -140,7 +140,7 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
     }
 
     func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
-        if calloutView != nil && mapView.selectedMarker != nil {
+        if calloutView_ != nil && mapView.selectedMarker != nil {
             updateCalloutViewPodition(mapView.selectedMarker)
         }
     }

@@ -28,5 +28,11 @@ class RoundImageView: UIImageView {
             self.layer.borderColor = borderColor.CGColor
         }
     }
-    
+
+    @IBInspectable var angle: Double = 0{
+        didSet {
+            self.transform = CGAffineTransformMakeRotation(CGFloat((angle) * M_PI / 180.0));
+        }
+    }
+
 }

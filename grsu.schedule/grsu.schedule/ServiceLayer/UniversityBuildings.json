@@ -3,7 +3,7 @@
  "type": "Educational",
  "lat": "53.71174",
  "lng": "23.8259",
- "photo": "8",
+ "photo": "EducationalBuilding_8",
  "address": "улица Максима Горького, 95, Гродно, Беларусь",
  "faculties": [ {"title": "Факультет экономики и управления", "site": "http://fem.grsu.by/"} ]
  },
@@ -11,7 +11,7 @@
  "type": "Educational",
  "lat": "53.70951",
  "lng": "23.81184",
- "photo": "12",
+ "photo": "EducationalBuilding_12",
  "address": "улица Комарова, 3, Гродно, Беларусь",
  "faculties": [ {"title": "Факультет инновационных технологий машиностроения", "site": "http://fit.grsu.by/"} ]
  },
@@ -19,7 +19,7 @@
  "type": "Educational",
  "lat": "53.706348",
  "lng": "23.824561",
- "photo": "11",
+ "photo": "EducationalBuilding_11",
  "address": "улица Курчатова, 1а, Гродно, Беларусь",
  "faculties": [ {"title": "Инженерно-строительный факультет", "site": "http://fbt.grsu.by/"} ]
  },
@@ -27,7 +27,7 @@
  "type": "Educational",
  "lat": "53.7042",
  "lng": "23.80766",
- "photo": "3",
+ "photo": "EducationalBuilding_3",
  "address": "улица Врублевского, 33, Гродно, Беларусь",
  "faculties": [ {"title": "Физико-технический факультет", "site": "http://ftf.grsu.by/"} ]
  },
@@ -35,7 +35,7 @@
  "type": "Educational",
  "lat": "53.701313",
  "lng": "23.812121",
- "photo": "7",
+ "photo": "EducationalBuilding_7",
  "address": "Бульвар Ленинского Комсомола, 21, Гродно, Беларусь",
  "faculties": [ {"title": "Факультет психологии", "site": "http://psf.grsu.by/"} ]
  },
@@ -43,7 +43,7 @@
  "type": "Educational",
  "lat": "53.69569",
  "lng": "23.82636",
- "photo": "4",
+ "photo": "EducationalBuilding_4",
  "address": "переулок Доватора, 3/1, Гродно, Беларусь",
  "faculties": [ {"title": "Факультет биологии и экологии", "site": "http://fbe.grsu.by/"}, {"title": "Юридический факультет", "site": "http://lf.grsu.by/"} ]
  },
@@ -51,7 +51,7 @@
  "type": "Educational",
  "lat": "53.688702",
  "lng": "23.83508",
- "photo": "10",
+ "photo": "EducationalBuilding_10",
  "address": "улица Дзержинского, 28, Гродно, Беларусь",
  "faculties": [ {"title": "Факультет искусств и дизайна", "site": "http://art.grsu.by/"} ]
  },
@@ -59,7 +59,7 @@
  "type": "Educational",
  "lat": "53.684914",
  "lng": "23.839661",
- "photo": "1",
+ "photo": "EducationalBuilding_1",
  "address": "улица Ожешко, 22, Гродно, Беларусь",
  "faculties": [ {"title": "Факультет математики и информатики", "site": "http://mf.grsu.by/"} ]
  },
@@ -67,7 +67,7 @@
  "type": "Educational",
  "lat": "53.68336",
  "lng": "23.83954",
- "photo": "2",
+ "photo": "EducationalBuilding_2",
  "address": "улица Ленина, 32, Гродно, Беларусь",
  "faculties": [ {"title": "Филологический факультет", "site": "http://phf.grsu.by/"} ]
  },
@@ -75,7 +75,7 @@
  "type": "Educational",
  "lat": "53.68012",
  "lng": "23.82804",
- "photo": "6",
+ "photo": "EducationalBuilding_6",
  "address": "Октябрьская улица, 5, Гродно, Беларусь",
  "faculties": [ {"title": "Факультет истории, коммуникации и туризма", "site": "http://fh.grsu.by/"}, {"title": "Факультет довузовской подготовки", "site": "http://ctest.grsu.by/"} ]
  },
@@ -83,7 +83,7 @@
  "type": "Educational",
  "lat": "53.67883",
  "lng": "23.84685",
- "photo": "5",
+ "photo": "EducationalBuilding_5",
  "address": "улица Захарова, 32, Гродно, Беларусь ",
  "faculties": [ {"title": "Педагогический факультет", "site": "http://fp.grsu.by/"}, {"title": "Факультет физической культуры", "site": "http://ffc.grsu.by/"} ]
  },
@@ -91,7 +91,7 @@
  "type": "Educational",
  "lat": "53.666317",
  "lng": "23.776501",
- "photo": "9",
+ "photo": "EducationalBuilding_9",
  "address": "улица Фолюш, 15/189, Гродно, Беларусь",
  "faculties": [ {"title": "Военный факультет", "site": "http://mil.grsu.by/"} ]
  },
@@ -99,7 +99,7 @@
  "type": "Hostel",
  "lat": "53.709912",
  "lng": "23.851855",
- "photo": "o5",
+ "photo": "HostelBuilding_5",
  "address": "улица Лиможа, 27/1, Гродно, Беларусь",
  "number": "5"
  },
@@ -107,7 +107,7 @@
  "type": "Hostel",
  "lat": "53.700103",
  "lng": "23.815752",
- "photo": "o1",
+ "photo": "HostelBuilding_3",
  "address": "Бульвар Ленинского Комсомола, 3, Гродно, Беларусь",
  "number": "3"
  },
@@ -115,7 +115,7 @@
  "type": "Hostel",
  "lat": "53.694411",
  "lng": "23.826803",
- "photo": "o2",
+ "photo": "HostelBuilding_2",
  "address": "улица Доватора, 27, Гродно, Беларусь",
  "number": "2"
  },
@@ -123,7 +123,7 @@
  "type": "Hostel",
  "lat": "53.68149",
  "lng": "23.85449",
- "photo": "o4",
+ "photo": "HostelBuilding_4",
  "address": "улица Пролетарская, 16, Гродно, Беларусь",
  "number": "4"
  }

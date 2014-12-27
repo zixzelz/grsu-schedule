@@ -1338,6 +1338,7 @@
                         </constraints>
                         <connections>
                             <outlet property="hostingMapView" destination="J0r-1K-PAQ" id="KkD-Xc-iEj"/>
+                            <outlet property="lessonLocationDataSource" destination="6Qw-zL-iII" id="yqw-gr-XUm"/>
                             <outlet property="mapViewDataSource" destination="6Qw-zL-iII" id="qil-nT-cT3"/>
                         </connections>
                     </view>
