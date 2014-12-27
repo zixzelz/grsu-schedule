@@ -113,6 +113,26 @@
                                             <segue destination="Sn6-5F-xOW" kind="custom" customClass="RMSidebarPresentSlideRootViewControllerSegue" customModule="grsu_schedule" customModuleProvider="target" id="eQ8-je-2eB"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapCellIdentifier" textLabel="I2Z-t7-FLG" style="IBUITableViewCellStyleDefault" id="NG7-p8-quB">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NG7-p8-quB" id="1vU-nD-8WV">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Схема корпусов" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I2Z-t7-FLG">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="6Qw-zL-iII" kind="custom" customClass="DefaultPresentRootViewControllerSegue" customModule="grsu_schedule" id="hOF-R1-qwA"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="CEG-CG-dQB" id="828-2u-wdx"/>
@@ -1391,8 +1411,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="hOF-R1-qwA"/>
         <segue reference="Nv5-F0-siH"/>
-        <segue reference="MBi-ch-BHc"/>
+        <segue reference="zPg-hm-1wA"/>
         <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>
 </document>

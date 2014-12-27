@@ -86,7 +86,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count : Int
         switch (section) {
-        case 0: count = 2
+        case 0: count = 3
         case FavoriteTableSection: count = favorites?.count ?? 0
         default: count = 0
         }
@@ -111,6 +111,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
         switch (row) {
         case 0: cell = tableView.dequeueReusableCellWithIdentifier("StudentCellIdentifier") as? UITableViewCell
         case 1: cell = tableView.dequeueReusableCellWithIdentifier("TeacherCellIdentifier") as? UITableViewCell
+        case 2: cell = tableView.dequeueReusableCellWithIdentifier("MapCellIdentifier") as? UITableViewCell
         default: ()
         }
         
@@ -129,7 +130,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
         var title : String?
         switch (section) {
         case 0: title = "Расписание"
-        case FavoriteTableSection: title = "Favorites"
+        case FavoriteTableSection: title = "Избранное"
         default: ()
         }
         return title
