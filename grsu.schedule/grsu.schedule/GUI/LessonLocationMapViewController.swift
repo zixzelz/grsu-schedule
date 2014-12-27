@@ -8,22 +8,42 @@
 
 import UIKit
 
-class LessonLocationMapViewController: UIViewController {
+class LessonLocationMapViewController: RYMapViewController {
 
-    @IBOutlet weak var mapView : GMSMapView!
+    var universityBuildings : [UniversityBuilding]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var camera = GMSCameraPosition.cameraWithLatitude(-33.868,
-            longitude:151.2086, zoom:6)
         
-//        mapView.camera = camera
-        
-        var marker = GMSMarker()
-        marker.position = camera.target
-        marker.snippet = "Hello World"
-        marker.appearAnimation = kGMSMarkerAnimationPop
-        marker.map = mapView
-        
+        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(5 * Double(NSEC_PER_SEC)))
+        dispatch_after(delayTime, dispatch_get_main_queue()) {
+            self.fetchData()
+        }
     }
+    
+    func fetchData() {
+        GetUniversityBuildings.getBuildings() { [weak self](universityBuildings: [UniversityBuilding]?, error: NSError?) -> Void in
+            if let wSelf = self {
+                if let universityBuildings = universityBuildings {
+                    wSelf.universityBuildings = universityBuildings
+                    wSelf.ownView().reloadMarkersList()
+                }
+            }
+        }
+    }
+    
+    func ownView() -> RYBaseMapViewProtocol {
+        return self.view as RYBaseMapViewProtocol
+    }
+
+    // MARK: - RYBaseMapViewDataSource
+    
+    override func numberOfMarkers() -> Int {
+        return universityBuildings != nil ? universityBuildings!.count : 0
+    }
+    
+    override func locationForMarker(index: Int) -> CLLocationCoordinate2D {
+        return universityBuildings![index].location!
+    }
+
 }

@@ -1320,11 +1320,11 @@
                         <viewControllerLayoutGuide type="top" id="kaH-BR-VFl"/>
                         <viewControllerLayoutGuide type="bottom" id="Bkq-Fe-SY2"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DvF-yP-ANK">
+                    <view key="view" contentMode="scaleToFill" id="DvF-yP-ANK" customClass="LessonLocationMapView" customModule="grsu_schedule" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0r-1K-PAQ" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0r-1K-PAQ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -1336,6 +1336,10 @@
                             <constraint firstItem="J0r-1K-PAQ" firstAttribute="top" secondItem="DvF-yP-ANK" secondAttribute="top" id="ych-hK-WQr"/>
                             <constraint firstItem="J0r-1K-PAQ" firstAttribute="leading" secondItem="DvF-yP-ANK" secondAttribute="leading" id="zpe-Pe-dw9"/>
                         </constraints>
+                        <connections>
+                            <outlet property="hostingMapView" destination="J0r-1K-PAQ" id="KkD-Xc-iEj"/>
+                            <outlet property="mapViewDataSource" destination="6Qw-zL-iII" id="qil-nT-cT3"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Карта" id="Shs-mF-lcG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
