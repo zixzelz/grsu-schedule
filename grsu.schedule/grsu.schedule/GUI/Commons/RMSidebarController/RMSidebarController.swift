@@ -34,6 +34,7 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
 //    @IBInspectable var bezelPanRootView : Bool = true
 
     @IBInspectable var sidebarNavigationIco : UIImage?
+    @IBInspectable var tintColorSidebarNavigationIco : UIColor = UIColor.blackColor()
 
     override init() {
         super.init()
@@ -80,7 +81,7 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     
     // MARK: - RootViewController Navigation Bar
     
-    func setupRootNavigationController(vc: UIViewController) {
+    private func setupRootNavigationController(vc: UIViewController) {
         if ((vc.isKindOfClass(UINavigationController.classForCoder())) != true) {
             return;
         }
@@ -88,20 +89,23 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
         let rootNavigationController = vc as UINavigationController
         
         if ((leftSidebarViewController) != nil) {
-            let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "leftRootBarButtonItemPressed:")
-            rootNavigationController.topViewController.navigationItem.leftBarButtonItem = item
             addLeftSidebarButton(rootNavigationController.topViewController)
         }
         if ((rightSidebarViewController) != nil) {
-            let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "rightRootBarButtonItemPressed:")
-            rootNavigationController.topViewController.navigationItem.rightBarButtonItem = item
+            addRightSidebarButton(rootNavigationController.topViewController)
         }
     }
     
     func addLeftSidebarButton(vc: UIViewController) {
-        
         let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "leftRootBarButtonItemPressed:")
+        item.tintColor = tintColorSidebarNavigationIco
         vc.navigationItem.leftBarButtonItem = item
+    }
+    
+    func addRightSidebarButton(vc: UIViewController) {
+        let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "rightRootBarButtonItemPressed:")
+        item.tintColor = tintColorSidebarNavigationIco
+        vc.navigationItem.rightBarButtonItem = item
     }
     
     func leftRootBarButtonItemPressed(sender: AnyObject) {
@@ -113,7 +117,7 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     }
     
     func rightRootBarButtonItemPressed(sender: AnyObject) {
-        
+        // TODO
     }
     
     // MARK: - RootViewController
