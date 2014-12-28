@@ -87,15 +87,17 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
     func hideCalloutView() {
         mapView.selectedMarker = nil
         
-        UIView.animateWithDuration(0.3, animations: { [weak self] _ in
-            if let wself = self {
-                wself.calloutView_?.alpha = 0.0
+        if let calloutView = calloutView_ {
+            UIView.animateWithDuration(0.3, animations: { [weak self] _ in
+                if let wself = self {
+                    calloutView.alpha = 0.0
+                }
+            }) { [weak self] (animated: Bool) -> Void in
+                if let wself = self {
+                    calloutView.removeFromSuperview()
+                }
             }
-        }) { [weak self] _ in
-            if let wself = self {
-                wself.calloutView_?.removeFromSuperview()
-                wself.calloutView_ = nil
-            }
+            calloutView_ = nil
         }
     }
     
@@ -129,6 +131,16 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
         }
         markers = tempMarkers
         applyZoomForMarkers()
+    }
+    
+    func selectMarker(index: Int) {
+        if let markers = markers {
+            let marker = markers[index]
+            mapView.selectedMarker = marker
+            
+            let camera = GMSCameraUpdate.setTarget(marker.position)
+            mapView.animateWithCameraUpdate(camera)
+        }
     }
     
     // MARK: - GMSMapViewDelegate

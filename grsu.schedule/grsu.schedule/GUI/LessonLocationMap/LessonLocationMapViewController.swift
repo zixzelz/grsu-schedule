@@ -11,6 +11,23 @@ import UIKit
 class LessonLocationMapViewController: RYMapViewController, LessonLocationMapViewDataSource {
 
     var universityBuildings : [UniversityBuilding]?
+    var initAddress_: String?
+    
+    var initAddress: String? {
+        get { return initAddress_ }
+        set (aNewValue) {
+            if let val = aNewValue {
+                initAddress_ = AddressUtils.restoreAddress(val)
+            } else {
+                initAddress_ = nil
+            }
+        }
+    }
+    
+//    init(initAddress: String) {
+//        super.init()
+//        self.initAddress = AddressUtils.restoreAddress(initAddress)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +45,28 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
                     wSelf.universityBuildings = universityBuildings
                     wSelf.ownView().reloadMarkersList()
                 }
+                if let address = wSelf.initAddress {
+                    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
+                    dispatch_after(delayTime, dispatch_get_main_queue()) {
+                        wSelf.selectMarker(address)
+                    }
+                }
             }
+        }
+    }
+    
+    func selectMarker(address: String) {
+        if let universityBuildings = universityBuildings {
+            let foundItems = universityBuildings.filter { $0.address?.rangeOfString(address, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil }
+            let foundItem = foundItems.first
+            
+            if let universityBuilding = foundItem {
+                let index = find(universityBuildings, universityBuilding)!
+                ownView().selectMarker(index)
+            } else {
+                //TODO find location via google services
+            }
+            
         }
     }
     

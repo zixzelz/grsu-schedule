@@ -12,7 +12,7 @@ import UIKit
 protocol RYBaseMapViewProtocol: NSObjectProtocol {
    
     func reloadMarkersList()
-    
+    func selectMarker(index: Int)
 }
 
 @objc(RYBaseMapViewDataSource)

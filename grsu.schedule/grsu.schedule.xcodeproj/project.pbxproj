@@ -65,6 +65,7 @@
 		2DBD4EA21A4EEA390055EA3A /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */; };
 		2DBD4EA41A4F14640055EA3A /* LessonLocationMapViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA31A4F14640055EA3A /* LessonLocationMapViewProtocol.swift */; };
 		2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA51A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift */; };
+		2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */; };
 		2DCF59A41A4C613A00D9F3FA /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCF59A31A4C613A00D9F3FA /* GoogleMaps.framework */; };
 		2DCF59A61A4C616100D9F3FA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DCF59A51A4C616100D9F3FA /* GoogleMaps.bundle */; };
 		2DCF59A81A4C62B500D9F3FA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCF59A71A4C62B500D9F3FA /* AVFoundation.framework */; };
@@ -170,6 +171,7 @@
 		2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalloutView.xib; sourceTree = "<group>"; };
 		2DBD4EA31A4F14640055EA3A /* LessonLocationMapViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonLocationMapViewProtocol.swift; sourceTree = "<group>"; };
 		2DBD4EA51A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPresentRootViewControllerSegue.swift; sourceTree = "<group>"; };
+		2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressUtils.swift; sourceTree = "<group>"; };
 		2DCF59A31A4C613A00D9F3FA /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2DCF59A51A4C616100D9F3FA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		2DCF59A71A4C62B500D9F3FA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -427,6 +429,7 @@
 				2D3FF2B61A23B8AC001BA278 /* DateUtils.m */,
 				2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */,
 				2D6B07EF1A3637F30064DD39 /* DateManager.swift */,
+				2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				2D12012D1A4D84380065079E /* UniversityBuilding.swift in Sources */,
 				2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */,
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
+				2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */,
 				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,
 				2D6000E81A1E825D005CB141 /* StudentScheduleQuery.swift in Sources */,

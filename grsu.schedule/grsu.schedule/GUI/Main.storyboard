@@ -1234,7 +1234,7 @@
                                                             <inset key="imageEdgeInsets" minX="39" minY="-16" maxX="39" maxY="0.0"/>
                                                             <state key="normal" title="Аудитория" image="LessonLocation"/>
                                                             <connections>
-                                                                <segue destination="6Qw-zL-iII" kind="push" id="5hu-zp-bdB"/>
+                                                                <segue destination="6Qw-zL-iII" kind="push" identifier="LessonLocationIdentifier" id="5hu-zp-bdB"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZv-Ze-KcQ">

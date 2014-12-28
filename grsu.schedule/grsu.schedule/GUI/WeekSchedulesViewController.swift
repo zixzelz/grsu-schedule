@@ -109,6 +109,11 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             
             let viewController = segue.destinationViewController as TeacherInfoViewController
             viewController.teacherInfo = lesson.teacher
+        } else if (segue.identifier == "LessonLocationIdentifier") {
+            var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
+
+            let viewController = segue.destinationViewController as LessonLocationMapViewController
+            viewController.initAddress = lesson.address
         }
     }
     
