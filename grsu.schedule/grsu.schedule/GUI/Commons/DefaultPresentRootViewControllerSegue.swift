@@ -12,8 +12,8 @@ class DefaultPresentRootViewControllerSegue: RMSidebarPresentSlideNavigationRoot
    
     override func navigationController() -> UINavigationController {
         let nc = super.navigationController()
-        nc.navigationBar.tintColor = UIColor(red: 72 / 255.0, green: 157 / 255.0, blue: 232 / 255.0, alpha: 1.0)
-        nc.navigationBar.tintColor = UIColor.whiteColor()
+        nc.navigationBar.barTintColor = UIColor(red: 58 / 255.0, green: 137 / 255.0, blue: 226 / 255.0, alpha: 1.0)
+        nc.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         return nc
     }
