@@ -8,16 +8,15 @@
 
 import UIKit
 
-class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     @IBInspectable var backgroundColor : UIColor = UIColor.whiteColor()
     
     @IBOutlet private var navigationTitle : UILabel!
     @IBOutlet private var pageControl : UIPageControl!
-    @IBOutlet private var favoriteBarButtonItem : UIButton!
     
-    var scheduleQuery : StudentScheduleQuery!
     var possibleWeeks : Array<GSWeekItem>!
+    var scheduleQuery : BaseScheduleQuery!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -27,11 +26,6 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
     }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if ( scheduleQuery.group?.favorite != nil ) {
-            self.favoriteBarButtonItem.selected = true
-        }
         
         self.view.backgroundColor = backgroundColor
         setupPageController()
@@ -48,20 +42,6 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         
         let vc = weekScheduleController()
         self.setViewControllers([vc], direction: .Forward, animated: false, completion: nil)
-
-    }
-    
-    @IBAction func favoriteButtonPressed(sender: UIButton) {
-        sender.selected = !sender.selected
-        
-        let manager = FavoriteManager()
-        if (sender.selected) {
-            manager.addFavorite(scheduleQuery.group!)
-        } else {
-            manager.removeFavorite(scheduleQuery.group!.favorite)
-        }
-        
-        self.sidebarController?.addLeftSidebarButton(self)
     }
     
     func updateNavigationTitle() {
@@ -74,28 +54,12 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         })
     }
     
-    func weekScheduleController(weekIndex : Int? = nil) -> WeekSchedulesViewController {
-        let query = StudentScheduleQuery(q: scheduleQuery)
-        if (weekIndex != nil) {
-            query.startWeekDate = possibleWeeks[weekIndex!].startDate
-            query.endWeekDate = possibleWeeks[weekIndex!].endDate
-        }
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("WeekSchedulesViewController") as WeekSchedulesViewController
-        vc.scheduleQuery = query
-        
+    func weekScheduleController(weekIndex : Int? = nil) -> UIViewController {
+        let vc = UIViewController()
         return vc
     }
 
     func favoritWillRemoveNotification(notification: NSNotification){
-        let item = notification.userInfo?[GSFavoriteManagerFavoriteObjectKey] as? FavoriteEntity
-        
-        if (item?.group == scheduleQuery.group) {
-            favoriteBarButtonItem.selected = false
-        }
-        
-        //Action take on Notification
     }
     
     // MARK: - UIPageViewControllerDataSource
@@ -104,8 +68,6 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         var vc : UIViewController?
         if (pageControl.currentPage > 0) {
             let index = pageControl.currentPage - 1
-//            let week = possibleWeeks[index]
-            
             vc = weekScheduleController(weekIndex: index)
         }
         return vc
@@ -115,8 +77,6 @@ class SchedulesPageViewController: UIPageViewController, UIPageViewControllerDat
         var vc : UIViewController?
         if (pageControl.currentPage < pageControl.numberOfPages - 1) {
             let index = pageControl.currentPage + 1
-//            let week = possibleWeeks[index]
-            
             vc = weekScheduleController(weekIndex: index)
         }
         return vc

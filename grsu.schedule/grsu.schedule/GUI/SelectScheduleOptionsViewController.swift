@@ -42,7 +42,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
             let week = scheduleOptions.selectedWeek()
             scheduleQuery.endWeekDate = week!.endDate
 
-            let viewController = segue.destinationViewController as SchedulesPageViewController
+            let viewController = segue.destinationViewController as StudentSchedulesPageViewController
             viewController.scheduleQuery = scheduleQuery
             viewController.possibleWeeks = scheduleOptions.weeks
         }

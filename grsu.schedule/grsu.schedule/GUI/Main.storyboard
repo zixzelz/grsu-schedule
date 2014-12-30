@@ -912,10 +912,10 @@
             </objects>
             <point key="canvasLocation" x="819" y="497"/>
         </scene>
-        <!--Schedules Page View Controller-->
+        <!--Student Schedules Page View Controller-->
         <scene sceneID="wuw-l9-xBs">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="20" navigationOrientation="horizontal" spineLocation="none" id="mEg-GV-wU8" customClass="SchedulesPageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="20" navigationOrientation="horizontal" spineLocation="none" id="mEg-GV-wU8" customClass="StudentSchedulesPageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6JS-Le-i3f">
                         <view key="titleView" contentMode="scaleToFill" id="emZ-lQ-gnS">
                             <rect key="frame" x="88" y="0.0" width="144" height="44"/>

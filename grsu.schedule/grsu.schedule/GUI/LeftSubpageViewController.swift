@@ -71,7 +71,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
             scheduleQuery.endWeekDate = week.first!.endDate
             
             let navigationController = segue.destinationViewController as UINavigationController
-            let viewController = navigationController.topViewController as SchedulesPageViewController
+            let viewController = navigationController.topViewController as StudentSchedulesPageViewController
             viewController.possibleWeeks = week
             viewController.scheduleQuery = scheduleQuery
         }
