@@ -38,10 +38,13 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
     
     
     override func weekScheduleController(weekIndex : Int? = nil) -> UIViewController {
-        let query = dateScheduleQuery
+        let query = DateScheduleQuery()
         if (weekIndex != nil) {
             query.startWeekDate = possibleWeeks[weekIndex!].startDate
             query.endWeekDate = possibleWeeks[weekIndex!].endDate
+        } else {
+            query.startWeekDate = dateScheduleQuery.startWeekDate
+            query.endWeekDate = dateScheduleQuery.endWeekDate
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

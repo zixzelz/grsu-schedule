@@ -2,8 +2,8 @@
 //  TeacherInfoEntity.swift
 //  grsu.schedule
 //
-//  Created by Ruslan Maslouski on 12/10/14.
-//  Copyright (c) 2014 Ruslan Maslouski. All rights reserved.
+//  Created by Ruslan Maslouski on 1/5/15.
+//  Copyright (c) 2015 Ruslan Maslouski. All rights reserved.
 //
 
 import Foundation
@@ -24,6 +24,7 @@ class TeacherInfoEntity: NSManagedObject {
     @NSManaged var skype: String?
     @NSManaged var updatedDate: NSDate
     @NSManaged var lessons: NSSet
-
     @NSManaged var favorite: FavoriteEntity
+    @NSManaged var scheduleDays: TeacherDayScheduleEntity
+
 }

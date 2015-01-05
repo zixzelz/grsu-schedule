@@ -10,10 +10,8 @@ import Foundation
 import CoreData
 
 @objc(StudentDayScheduleEntity)
-class StudentDayScheduleEntity: NSManagedObject {
+class StudentDayScheduleEntity: DayScheduleEntity {
 
-    @NSManaged var date: NSDate
-    @NSManaged var lessons: NSOrderedSet
     @NSManaged var group: GroupsEntity
 
 }

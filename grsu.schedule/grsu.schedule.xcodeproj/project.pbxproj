@@ -41,13 +41,11 @@
 		2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000F11A1F9453005CB141 /* GetGroupsService.swift */; };
 		2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B07EF1A3637F30064DD39 /* DateManager.swift */; };
 		2D716C381A3830EE00CE7F27 /* GetTeachersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */; };
-		2D716C3C1A38B97C00CE7F27 /* TeacherInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C3B1A38B97C00CE7F27 /* TeacherInfoEntity.swift */; };
 		2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */; };
 		2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */; };
 		2D75CF4E1A222FB5006F2A9D /* LessonSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4D1A222FB5006F2A9D /* LessonSchedule.swift */; };
 		2D75CF501A22342C006F2A9D /* StudentDaySchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D75CF4F1A22342C006F2A9D /* StudentDaySchedule.swift */; };
 		2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D78712C1A3214160062DCFE /* BaseTeacherInfo.swift */; };
-		2D7871311A32172F0062DCFE /* LessonScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7871301A32172F0062DCFE /* LessonScheduleEntity.swift */; };
 		2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7871321A34ABDA0062DCFE /* FavoriteEntity.swift */; };
 		2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7871341A34AF050062DCFE /* FavoriteManager.swift */; };
 		2D7B6E841A39F2CE002BC208 /* TeacherInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B6E831A39F2CE002BC208 /* TeacherInfoViewController.swift */; };
@@ -70,6 +68,10 @@
 		2DBD4EC11A5AF9660055EA3A /* WeekSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EC01A5AF9660055EA3A /* WeekSchedulesViewController.swift */; };
 		2DBD4EC31A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EC21A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift */; };
 		2DBD4EC51A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EC41A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift */; };
+		2DBD4EC71A5B119E0055EA3A /* TeacherDayScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EC61A5B119E0055EA3A /* TeacherDayScheduleEntity.swift */; };
+		2DBD4EC91A5B119E0055EA3A /* DayScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EC81A5B119E0055EA3A /* DayScheduleEntity.swift */; };
+		2DBD4ECB1A5B124C0055EA3A /* LessonScheduleEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4ECA1A5B124C0055EA3A /* LessonScheduleEntity.swift */; };
+		2DBD4ECD1A5B12770055EA3A /* TeacherInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4ECC1A5B12770055EA3A /* TeacherInfoEntity.swift */; };
 		2DCF59A41A4C613A00D9F3FA /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCF59A31A4C613A00D9F3FA /* GoogleMaps.framework */; };
 		2DCF59A61A4C616100D9F3FA /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2DCF59A51A4C616100D9F3FA /* GoogleMaps.bundle */; };
 		2DCF59A81A4C62B500D9F3FA /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DCF59A71A4C62B500D9F3FA /* AVFoundation.framework */; };
@@ -151,13 +153,11 @@
 		2D6000F11A1F9453005CB141 /* GetGroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupsService.swift; sourceTree = "<group>"; };
 		2D6B07EF1A3637F30064DD39 /* DateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTeachersService.swift; sourceTree = "<group>"; };
-		2D716C3B1A38B97C00CE7F27 /* TeacherInfoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoEntity.swift; sourceTree = "<group>"; };
 		2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersViewController.swift; sourceTree = "<group>"; };
 		2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStudentScheduleService.swift; sourceTree = "<group>"; };
 		2D75CF4D1A222FB5006F2A9D /* LessonSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonSchedule.swift; sourceTree = "<group>"; };
 		2D75CF4F1A22342C006F2A9D /* StudentDaySchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentDaySchedule.swift; sourceTree = "<group>"; };
 		2D78712C1A3214160062DCFE /* BaseTeacherInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTeacherInfo.swift; sourceTree = "<group>"; };
-		2D7871301A32172F0062DCFE /* LessonScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonScheduleEntity.swift; sourceTree = "<group>"; };
 		2D7871321A34ABDA0062DCFE /* FavoriteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteEntity.swift; sourceTree = "<group>"; };
 		2D7871341A34AF050062DCFE /* FavoriteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
 		2D7B6E831A39F2CE002BC208 /* TeacherInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +180,10 @@
 		2DBD4EC01A5AF9660055EA3A /* WeekSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekSchedulesViewController.swift; sourceTree = "<group>"; };
 		2DBD4EC21A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentWeekSchedulesViewController.swift; sourceTree = "<group>"; };
 		2DBD4EC41A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherWeekSchedulesViewController.swift; sourceTree = "<group>"; };
+		2DBD4EC61A5B119E0055EA3A /* TeacherDayScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDayScheduleEntity.swift; sourceTree = "<group>"; };
+		2DBD4EC81A5B119E0055EA3A /* DayScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayScheduleEntity.swift; sourceTree = "<group>"; };
+		2DBD4ECA1A5B124C0055EA3A /* LessonScheduleEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonScheduleEntity.swift; sourceTree = "<group>"; };
+		2DBD4ECC1A5B12770055EA3A /* TeacherInfoEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoEntity.swift; sourceTree = "<group>"; };
 		2DCF59A31A4C613A00D9F3FA /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
 		2DCF59A51A4C616100D9F3FA /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		2DCF59A71A4C62B500D9F3FA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -490,9 +494,11 @@
 				2DDC78A71A2A359700C1D966 /* CoreDataHelper.swift */,
 				2DDC78A81A2A359700C1D966 /* CoreDataStore.swift */,
 				2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */,
-				2D716C3B1A38B97C00CE7F27 /* TeacherInfoEntity.swift */,
+				2DBD4ECC1A5B12770055EA3A /* TeacherInfoEntity.swift */,
+				2DBD4ECA1A5B124C0055EA3A /* LessonScheduleEntity.swift */,
+				2DBD4EC81A5B119E0055EA3A /* DayScheduleEntity.swift */,
+				2DBD4EC61A5B119E0055EA3A /* TeacherDayScheduleEntity.swift */,
 				2D7871321A34ABDA0062DCFE /* FavoriteEntity.swift */,
-				2D7871301A32172F0062DCFE /* LessonScheduleEntity.swift */,
 				2DDC78991A2A2CF100C1D966 /* StudentDayScheduleEntity.swift */,
 				2DDC78971A2A2CF100C1D966 /* GroupsEntity.swift */,
 				2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */,
@@ -609,16 +615,15 @@
 				2D6000E31A1E7DF0005CB141 /* LessonScheduleCell.swift in Sources */,
 				2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */,
 				2D3744FB1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift in Sources */,
+				2DBD4ECB1A5B124C0055EA3A /* LessonScheduleEntity.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2D6000E51A1E7E13005CB141 /* ActiveLessonScheduleCell.swift in Sources */,
 				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
 				2D716C381A3830EE00CE7F27 /* GetTeachersService.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* StudentDaySchedule.swift in Sources */,
-				2D7871311A32172F0062DCFE /* LessonScheduleEntity.swift in Sources */,
 				2D0826231A15299D008B504E /* ViewController+RMSidebarController.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
-				2D716C3C1A38B97C00CE7F27 /* TeacherInfoEntity.swift in Sources */,
 				2D75CF4E1A222FB5006F2A9D /* LessonSchedule.swift in Sources */,
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
 				2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */,
@@ -664,14 +669,17 @@
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
+				2DBD4EC71A5B119E0055EA3A /* TeacherDayScheduleEntity.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
+				2DBD4EC91A5B119E0055EA3A /* DayScheduleEntity.swift in Sources */,
 				2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */,
 				2DDC789A1A2A2CF100C1D966 /* StudentDayScheduleEntity.swift in Sources */,
 				2D0826281A15299D008B504E /* RMSidebarInteractiveTransition.swift in Sources */,
 				2DBD4EB31A52D0EE0055EA3A /* StudentSchedulesPageViewController.swift in Sources */,
 				2DBD4E9D1A4EE97D0055EA3A /* LessonLocationMapView.swift in Sources */,
+				2DBD4ECD1A5B12770055EA3A /* TeacherInfoEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

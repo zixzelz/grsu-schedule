@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6735" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DayScheduleEntity" representedClassName="DayScheduleEntity" isAbstract="YES" syncable="YES">
+        <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
+        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LessonScheduleEntity" inverseName="studentDaySchedule" inverseEntity="LessonScheduleEntity" syncable="YES"/>
+    </entity>
     <entity name="DepartmentsEntity" representedClassName="DepartmentsEntity" syncable="YES">
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -33,13 +37,14 @@
         <attribute name="studyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subgroupTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="studentDaySchedule" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="StudentDayScheduleEntity" inverseName="lessons" inverseEntity="StudentDayScheduleEntity" syncable="YES"/>
+        <relationship name="studentDaySchedule" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DayScheduleEntity" inverseName="lessons" inverseEntity="DayScheduleEntity" syncable="YES"/>
         <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherInfoEntity" inverseName="lessons" inverseEntity="TeacherInfoEntity" syncable="YES"/>
     </entity>
-    <entity name="StudentDayScheduleEntity" representedClassName="StudentDayScheduleEntity" syncable="YES">
-        <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
+    <entity name="StudentDayScheduleEntity" representedClassName="StudentDayScheduleEntity" parentEntity="DayScheduleEntity" syncable="YES">
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupsEntity" inverseName="scheduleDays" inverseEntity="GroupsEntity" syncable="YES"/>
-        <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="LessonScheduleEntity" inverseName="studentDaySchedule" inverseEntity="LessonScheduleEntity" syncable="YES"/>
+    </entity>
+    <entity name="TeacherDayScheduleEntity" representedClassName="TeacherDayScheduleEntity" parentEntity="DayScheduleEntity" syncable="YES">
+        <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherInfoEntity" inverseName="scheduleDays" inverseEntity="TeacherInfoEntity" syncable="YES"/>
     </entity>
     <entity name="TeacherInfoEntity" representedClassName="TeacherInfoEntity" syncable="YES">
         <attribute name="descr" optional="YES" attributeType="String" syncable="YES"/>
@@ -55,14 +60,17 @@
         <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoriteEntity" inverseName="teacher" inverseEntity="FavoriteEntity" syncable="YES"/>
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonScheduleEntity" inverseName="teacher" inverseEntity="LessonScheduleEntity" syncable="YES"/>
+        <relationship name="scheduleDays" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherDayScheduleEntity" inverseName="teacher" inverseEntity="TeacherDayScheduleEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="DepartmentsEntity" positionX="-414" positionY="-91" width="128" height="88"/>
         <element name="FacultiesEntity" positionX="-416" positionY="63" width="128" height="88"/>
-        <element name="FavoriteEntity" positionX="9" positionY="-81" width="128" height="105"/>
+        <element name="FavoriteEntity" positionX="9" positionY="-126" width="128" height="105"/>
         <element name="GroupsEntity" positionX="-209" positionY="-72" width="128" height="148"/>
-        <element name="LessonScheduleEntity" positionX="241" positionY="-0" width="128" height="180"/>
-        <element name="StudentDayScheduleEntity" positionX="9" positionY="45" width="128" height="88"/>
-        <element name="TeacherInfoEntity" positionX="-173" positionY="122" width="128" height="238"/>
+        <element name="LessonScheduleEntity" positionX="171" positionY="146" width="128" height="178"/>
+        <element name="StudentDayScheduleEntity" positionX="9" positionY="18" width="128" height="58"/>
+        <element name="TeacherInfoEntity" positionX="-180" positionY="99" width="128" height="253"/>
+        <element name="TeacherDayScheduleEntity" positionX="18" positionY="189" width="128" height="58"/>
+        <element name="DayScheduleEntity" positionX="7" positionY="99" width="128" height="73"/>
     </elements>
 </model>
