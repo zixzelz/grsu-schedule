@@ -52,15 +52,7 @@ class FavoriteManager: NSObject {
         if let context = cdHelper.backgroundContext {
             context.performBlock({ _ in
                 
-                let request = NSFetchRequest(entityName: FavoriteEntityName)
-                var sorter: NSSortDescriptor = NSSortDescriptor(key: "order" , ascending: true)
-                request.sortDescriptors = [sorter]
-                request.predicate = NSPredicate(format: "(group != nil)")
-
-                var error : NSError?
-                let items = context.executeFetchRequest(request, error: &error) as [FavoriteEntity]
-                let lastOrder = items.last?.order.integerValue ?? -1
-                
+                let lastOrder = self.getMaxOrder(context)
                 let group_ = context.objectWithID(group.objectID) as GroupsEntity
                 
                 var newItem = NSEntityDescription.insertNewObjectForEntityForName(FavoriteEntityName, inManagedObjectContext: context) as FavoriteEntity
@@ -73,6 +65,25 @@ class FavoriteManager: NSObject {
         }
     }
     
+    func addFavorite(teacher: TeacherInfoEntity) {
+        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+        let cdHelper = delegate.cdh
+        if let context = cdHelper.backgroundContext {
+            context.performBlock({ _ in
+                
+                let lastOrder = self.getMaxOrder(context)
+                let teacher_ = context.objectWithID(teacher.objectID) as TeacherInfoEntity
+                
+                var newItem = NSEntityDescription.insertNewObjectForEntityForName(FavoriteEntityName, inManagedObjectContext: context) as FavoriteEntity
+                newItem.teacher = teacher_;
+                newItem.synchronizeCalendar = false
+                newItem.order = lastOrder+1
+                
+                cdHelper.saveContext(context)
+            })
+        }
+    }
+
     func removeFavorite(item: FavoriteEntity) {
         
         NSNotificationCenter.defaultCenter().postNotificationName(GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil, userInfo: ["GSFavoriteManagerFavoriteObjectKey": item])
@@ -88,6 +99,21 @@ class FavoriteManager: NSObject {
                  cdHelper.saveContext(context)
             })
         }
+    }
+    
+    // MARK: - Utils
+
+    func getMaxOrder(context: NSManagedObjectContext) -> Int {
+        let request = NSFetchRequest(entityName: FavoriteEntityName)
+        var sorter: NSSortDescriptor = NSSortDescriptor(key: "order" , ascending: false)
+        request.sortDescriptors = [sorter]
+        request.fetchLimit = 1;
+        
+        var error : NSError?
+        let items = context.executeFetchRequest(request, error: &error) as [FavoriteEntity]
+        let lastOrder = items.last?.order.integerValue ?? -1
+
+        return lastOrder
     }
     
 }

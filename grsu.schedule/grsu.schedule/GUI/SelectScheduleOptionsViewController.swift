@@ -19,7 +19,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         }
     }
     
-    var scheduleQuery : StudentScheduleQuery = StudentScheduleQuery()
+    var dateScheduleQuery : DateScheduleQuery = DateScheduleQuery()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,17 +39,20 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
         NSUserDefaults.standardUserDefaults().synchronize()
         if (segue.identifier == "SchedulePageIdentifier") {
+            let group = scheduleOptions.selectedGroup()
             let week = scheduleOptions.selectedWeek()
-            scheduleQuery.endWeekDate = week!.endDate
+            dateScheduleQuery.endWeekDate = week!.endDate
 
             let viewController = segue.destinationViewController as StudentSchedulesPageViewController
-            viewController.scheduleQuery = scheduleQuery
+            viewController.dateScheduleQuery = dateScheduleQuery
             viewController.possibleWeeks = scheduleOptions.weeks
+            viewController.group = group
         }
     }
     
     func updateShowScheduleButtonState() {
-        let enabled = scheduleQuery.group != nil && scheduleQuery.startWeekDate != nil
+        let group = scheduleOptions.selectedGroup()
+        let enabled = group != nil && dateScheduleQuery.startWeekDate != nil
         
         var backgroundColor = enabled ? UIColor(red: 0.43529409170150757, green: 0.7450980544090271, blue: 0.21176469326019287, alpha: 1) : UIColor.lightGrayColor()
         
@@ -76,8 +79,8 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
     
     func defaultWeek() -> NSDate? {
-        scheduleQuery.startWeekDate = fetchDefaultValue(.Week) as? NSDate
-        return scheduleQuery.startWeekDate
+        dateScheduleQuery.startWeekDate = fetchDefaultValue(.Week) as? NSDate
+        return dateScheduleQuery.startWeekDate
     }
     
     // MARK: - ScheduleOptionsTableViewControllerDelegate
@@ -98,13 +101,12 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
     
     func didSelectGroup(groupId : String?) {
-        scheduleQuery.group = scheduleOptions.selectedGroup()
         storeDefaultValue(.Group, value: groupId)
         updateShowScheduleButtonState()
     }
     
     func didSelectWeek(startWeekDate : NSDate) {
-        scheduleQuery.startWeekDate = startWeekDate
+        dateScheduleQuery.startWeekDate = startWeekDate
         storeDefaultValue(.Week, value: startWeekDate)
         updateShowScheduleButtonState()
     }

@@ -25,4 +25,5 @@ class TeacherInfoEntity: NSManagedObject {
     @NSManaged var updatedDate: NSDate
     @NSManaged var lessons: NSSet
 
+    @NSManaged var favorite: FavoriteEntity
 }

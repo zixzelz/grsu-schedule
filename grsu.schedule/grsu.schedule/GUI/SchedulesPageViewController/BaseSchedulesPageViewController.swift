@@ -16,7 +16,7 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     @IBOutlet private var pageControl : UIPageControl!
     
     var possibleWeeks : Array<GSWeekItem>!
-    var scheduleQuery : BaseScheduleQuery!
+    var dateScheduleQuery : DateScheduleQuery!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,7 +37,7 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
         let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!
 
         pageControl.numberOfPages = possibleWeeks.count
-        pageControl.currentPage = find(weeks, scheduleQuery.startWeekDate!)!
+        pageControl.currentPage = find(weeks, dateScheduleQuery.startWeekDate!)!
         updateNavigationTitle()
         
         let vc = weekScheduleController()
@@ -98,7 +98,7 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
 
     func indexOfViewController(vc: WeekSchedulesViewController) -> Int {
         let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!
-        return find(weeks, vc.scheduleQuery!.startWeekDate!)!
+        return find(weeks, vc.dateScheduleQuery!.startWeekDate!)!
     }
     
 }

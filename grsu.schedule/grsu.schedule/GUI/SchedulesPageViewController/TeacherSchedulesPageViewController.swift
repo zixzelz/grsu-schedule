@@ -1,41 +1,41 @@
 //
-//  StudentSchedulesPageViewController.swift
+//  TeacherSchedulesPageViewController.swift
 //  grsu.schedule
 //
-//  Created by Ruslan Maslouski on 12/30/14.
-//  Copyright (c) 2014 Ruslan Maslouski. All rights reserved.
+//  Created by Ruslan Maslouski on 1/5/15.
+//  Copyright (c) 2015 Ruslan Maslouski. All rights reserved.
 //
 
 import UIKit
 
-class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
- 
+class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
+
     @IBOutlet private var favoriteBarButtonItem : UIButton!
-    var group : GroupsEntity?
+    var teacher : TeacherInfoEntity?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if ( group?.favorite != nil ) {
+        if ( teacher?.favorite != nil ) {
             self.favoriteBarButtonItem.selected = true
         }
     }
-
+    
     
     @IBAction func favoriteButtonPressed(sender: UIButton) {
         sender.selected = !sender.selected
         
         let manager = FavoriteManager()
         if (sender.selected) {
-            manager.addFavorite(group!)
+            manager.addFavorite(teacher!)
         } else {
-            manager.removeFavorite(group!.favorite)
+            manager.removeFavorite(teacher!.favorite)
         }
         
         self.sidebarController?.addLeftSidebarButton(self)
     }
-
+    
     
     override func weekScheduleController(weekIndex : Int? = nil) -> UIViewController {
         let query = dateScheduleQuery
@@ -45,19 +45,19 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("StudentWeekSchedulesViewController") as StudentWeekSchedulesViewController
+        let vc = storyboard.instantiateViewControllerWithIdentifier("TeacherWeekSchedulesViewController") as TeacherWeekSchedulesViewController
         vc.dateScheduleQuery = query
-        vc.group = group
+        vc.teacher = teacher
         
         return vc
     }
-
+    
     override func favoritWillRemoveNotification(notification: NSNotification) {
         let item = notification.userInfo?[GSFavoriteManagerFavoriteObjectKey] as? FavoriteEntity
         
-        if (item?.group == group) {
+        if (item?.teacher == teacher) {
             favoriteBarButtonItem.selected = false
         }
     }
-
+    
 }

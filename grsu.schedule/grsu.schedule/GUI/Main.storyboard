@@ -972,10 +972,10 @@
             </objects>
             <point key="canvasLocation" x="1212" y="497"/>
         </scene>
-        <!--Week Schedules View Controller-->
+        <!--Student Week Schedules View Controller-->
         <scene sceneID="yBd-Am-2qC">
             <objects>
-                <viewController storyboardIdentifier="WeekSchedulesViewController" automaticallyAdjustsScrollViewInsets="NO" id="hYN-cX-jJf" customClass="WeekSchedulesViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StudentWeekSchedulesViewController" automaticallyAdjustsScrollViewInsets="NO" id="hYN-cX-jJf" customClass="StudentWeekSchedulesViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JA1-Zn-n4u"/>
                         <viewControllerLayoutGuide type="bottom" id="SdL-eB-GrC"/>
@@ -1370,7 +1370,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qse-Se-xi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="1105"/>
+            <point key="canvasLocation" x="1428" y="1775"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hAr-WS-CtI">
@@ -1414,8 +1414,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zPg-hm-1wA"/>
         <segue reference="b3P-IR-DQ5"/>
+        <segue reference="zPg-hm-1wA"/>
         <segue reference="IlV-GR-mxt"/>
         <segue reference="5hu-zp-bdB"/>
     </inferredMetricsTieBreakers>

@@ -8,24 +8,8 @@
 
 import UIKit
 
-class BaseScheduleQuery: NSObject {
+class DateScheduleQuery: NSObject {
 
     var startWeekDate : NSDate?
     var endWeekDate : NSDate?
-}
-
-class StudentScheduleQuery: BaseScheduleQuery {
-    
-    var group : GroupsEntity?
-    
-    override init() {
-        
-    }
-    
-    init(studentQuery: StudentScheduleQuery) {
-        super.init()
-        self.startWeekDate = studentQuery.startWeekDate
-        self.endWeekDate = studentQuery.endWeekDate
-        self.group = studentQuery.group
-    }
 }

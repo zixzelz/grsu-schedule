@@ -12,7 +12,7 @@ let SectionHeaderIdentifier = "SectionHeaderIdentifier"
 
 class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var scheduleQuery : StudentScheduleQuery?
+    var dateScheduleQuery : DateScheduleQuery!
     var schedules: Array<StudentDayScheduleEntity>?
     
     var menuCellIndexPath: NSIndexPath?
@@ -87,15 +87,12 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             self.refreshControl.beginRefreshing()
             scrollToTop()
         }
-        
-        GetStudentScheduleService.getSchedule(scheduleQuery!.group!, dateStart: scheduleQuery!.startWeekDate!, dateEnd: scheduleQuery!.endWeekDate!, useCache: useCache) { [weak self] (items: Array<StudentDayScheduleEntity>?, error: NSError?) -> Void in
-            if let wSelf = self {
-                wSelf.refreshControl.endRefreshing()
-                wSelf.schedules = items
-                wSelf.tableView.reloadData()
-                wSelf.scrollToActiveLesson()
-            }
-        }
+    }
+    
+    func reloadData() {
+        self.refreshControl.endRefreshing()
+        self.tableView.reloadData()
+        self.scrollToActiveLesson()
     }
     
     func refresh(sender:AnyObject) {
