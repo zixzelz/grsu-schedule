@@ -18,9 +18,14 @@ class StudentScheduleQuery: BaseScheduleQuery {
     
     var group : GroupsEntity?
     
-//    init(studentQuery: StudentScheduleQuery) {
-//        self.startWeekDate = studentQuery.startWeekDate
-//        self.endWeekDate = studentQuery.endWeekDate
-//        self.group = studentQuery.group
-//    }
+    override init() {
+        
+    }
+    
+    init(studentQuery: StudentScheduleQuery) {
+        super.init()
+        self.startWeekDate = studentQuery.startWeekDate
+        self.endWeekDate = studentQuery.endWeekDate
+        self.group = studentQuery.group
+    }
 }

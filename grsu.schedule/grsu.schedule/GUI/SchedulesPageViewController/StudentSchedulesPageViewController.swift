@@ -11,24 +11,15 @@ import UIKit
 class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
  
     @IBOutlet private var favoriteBarButtonItem : UIButton!
+    private var studentScheduleQuery : StudentScheduleQuery { get { return self.scheduleQuery as StudentScheduleQuery } }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if ( scheduleQuery.group?.favorite != nil ) {
+        if ( studentScheduleQuery.group?.favorite != nil ) {
             self.favoriteBarButtonItem.selected = true
         }
-    }
-    
-    override func setupPageController() {
-        let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!
-        
-        pageControl.numberOfPages = possibleWeeks.count
-        pageControl.currentPage = find(weeks, scheduleQuery.startWeekDate!)!
-        updateNavigationTitle()
-        
-        let vc = weekScheduleController()
-        self.setViewControllers([vc], direction: .Forward, animated: false, completion: nil)
     }
 
     
@@ -37,9 +28,9 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         
         let manager = FavoriteManager()
         if (sender.selected) {
-            manager.addFavorite(scheduleQuery.group!)
+            manager.addFavorite(studentScheduleQuery.group!)
         } else {
-            manager.removeFavorite(scheduleQuery.group!.favorite)
+            manager.removeFavorite(studentScheduleQuery.group!.favorite)
         }
         
         self.sidebarController?.addLeftSidebarButton(self)
@@ -47,7 +38,7 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
 
     
     override func weekScheduleController(weekIndex : Int? = nil) -> UIViewController {
-        let query = StudentScheduleQuery(q: scheduleQuery)
+        let query = StudentScheduleQuery(studentQuery: studentScheduleQuery)
         if (weekIndex != nil) {
             query.startWeekDate = possibleWeeks[weekIndex!].startDate
             query.endWeekDate = possibleWeeks[weekIndex!].endDate
@@ -60,10 +51,10 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         return vc
     }
 
-    override func favoritWillRemoveNotification(notification: NSNotification){
+    override func favoritWillRemoveNotification(notification: NSNotification) {
         let item = notification.userInfo?[GSFavoriteManagerFavoriteObjectKey] as? FavoriteEntity
         
-        if (item?.group == scheduleQuery.group) {
+        if (item?.group == studentScheduleQuery.group) {
             favoriteBarButtonItem.selected = false
         }
     }
