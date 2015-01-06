@@ -13,13 +13,30 @@ let SectionHeaderIdentifier = "SectionHeaderIdentifier"
 class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var dateScheduleQuery : DateScheduleQuery!
-    var schedules: Array<StudentDayScheduleEntity>?
+    var schedules: Array<DaySchedule>?
     
     var menuCellIndexPath: NSIndexPath?
     
     @IBOutlet private var tableView : UITableView!
     var refreshControl:UIRefreshControl!
     
+    func setLessonSchedule(lessons: [LessonScheduleEntity]) {
+        var daySchedule = [DaySchedule]()
+        
+        for lesson in lessons {
+            let days = daySchedule.filter { $0.date!.isEqualToDate(lesson.date) }
+            var day = days.first
+            
+            if (day == nil) {
+                day = DaySchedule()
+                day?.date = lesson.date
+                daySchedule.append(day!)
+            }
+            day?.lessons.append(lesson)
+        }
+        
+        schedules = daySchedule
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,13 +84,11 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             
             let minToday = Int(NSDate().timeIntervalSinceDate(startDate!) / 60)
             
-            var lessons = day.lessons.array as [LessonScheduleEntity]
-            
-            lessons = lessons.filter { ($0.stopTime.integerValue >= minToday) }
+            let lessons = day.lessons.filter { ($0.stopTime.integerValue >= minToday) }
             let lesson = lessons.first
             
             if let lesson = lesson {
-                let indexPath = NSIndexPath(forRow: day.lessons.indexOfObject(lesson), inSection: find(schedules!, day)!)
+                let indexPath = NSIndexPath(forRow: find(day.lessons, lesson)!, inSection: find(schedules!, day)!)
                 self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: false)
             } else {
                 let indexPath = NSIndexPath(forRow: 0, inSection: find(schedules!, day)!)
@@ -155,8 +170,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             
             var identifier : String
             
-            let startLessonTime = lesson.studentDaySchedule.date.dateByAddingTimeInterval(lesson.startTime.doubleValue * 60) as NSDate
-            let endLessonTime = lesson.studentDaySchedule.date.dateByAddingTimeInterval(lesson.stopTime.doubleValue * 60) as NSDate
+            let startLessonTime = lesson.date.dateByAddingTimeInterval(lesson.startTime.doubleValue * 60) as NSDate
+            let endLessonTime = lesson.date.dateByAddingTimeInterval(lesson.stopTime.doubleValue * 60) as NSDate
             
             var lCell: LessonScheduleCell
             if (NSDate().compare(startLessonTime) == NSComparisonResult.OrderedDescending && NSDate().compare(endLessonTime) == NSComparisonResult.OrderedAscending) {

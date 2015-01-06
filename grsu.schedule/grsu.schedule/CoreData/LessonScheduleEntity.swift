@@ -12,14 +12,16 @@ import CoreData
 @objc(LessonScheduleEntity)
 class LessonScheduleEntity: NSManagedObject {
 
+    @NSManaged var date: NSDate
     @NSManaged var address: String
-    @NSManaged var room: NSNumber
+    @NSManaged var room: String
     @NSManaged var startTime: NSNumber
     @NSManaged var stopTime: NSNumber
     @NSManaged var studyName: String
     @NSManaged var subgroupTitle: String?
     @NSManaged var type: String
-    @NSManaged var studentDaySchedule: DayScheduleEntity
+    @NSManaged var groups: NSSet
     @NSManaged var teacher: TeacherInfoEntity
 
+    @NSManaged var isTeacherSchedule: NSNumber
 }

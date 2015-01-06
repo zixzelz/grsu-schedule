@@ -16,10 +16,14 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
     override func fetchData(useCache: Bool = true) {
         super.fetchData(useCache: useCache)
         
-        GetStudentScheduleService.getSchedule(group!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: useCache) { [weak self] (items: Array<StudentDayScheduleEntity>?, error: NSError?) -> Void in
-            if let wSelf = self {
-                wSelf.schedules = items
-                wSelf.reloadData()
+        GetStudentScheduleService.getSchedule(group!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: useCache) { [weak self] (items: [LessonScheduleEntity]?, error: NSError?) -> Void in
+            if (error == nil) {
+                if let wSelf = self {
+                    wSelf.setLessonSchedule(items!)
+                    wSelf.reloadData()
+                }
+            } else {
+                NSLog("GetStudentScheduleService error: \(error)")
             }
         }
     }

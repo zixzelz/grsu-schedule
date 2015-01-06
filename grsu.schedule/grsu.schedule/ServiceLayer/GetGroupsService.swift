@@ -72,7 +72,7 @@ class GetGroupsService: BaseDataService {
             context.performBlock({ () -> Void in
                 
                 let request = NSFetchRequest(entityName: GroupsEntityName)
-                var sorter: NSSortDescriptor = NSSortDescriptor(key: "id" , ascending: true)
+                var sorter: NSSortDescriptor = NSSortDescriptor(key: "title" , ascending: true)
                 let predicate = NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@)", faculty, department, course)
                 
                 request.resultType = .ManagedObjectIDResultType

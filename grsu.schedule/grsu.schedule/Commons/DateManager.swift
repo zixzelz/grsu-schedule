@@ -52,4 +52,12 @@ class DateManager: NSObject {
         return difference.day;
     }
     
+    class func timeIntervalWithTimeText(time: String) -> Int {
+        let arr = time.componentsSeparatedByString(":")
+        let h : Int = arr[0].toInt()!
+        let m : Int = arr[1].toInt()!
+        
+        return h * 60 + m
+    }
+
 }

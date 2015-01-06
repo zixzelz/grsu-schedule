@@ -8,9 +8,9 @@
 
 import UIKit
 
-class StudentDaySchedule: NSObject {
+class DaySchedule: NSObject {
     
-    var date : NSDate?
-    var lessons : Array<LessonSchedule>?
+    var date : NSDate!
+    var lessons : Array<LessonScheduleEntity> = []
 
 }
