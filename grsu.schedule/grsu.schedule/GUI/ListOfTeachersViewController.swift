@@ -70,22 +70,31 @@ class ListOfTeachersViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "TeacherInfoIdentifier") {
-            
-            let cell = sender as UITableViewCell!
-            var teacher: TeacherInfoEntity?
-            
-            if let indexPath = tableView.indexPathForCell(cell) {
-                teacher = teacherSections![indexPath.section][indexPath.row]
-            } else {
-                if let indexPath = searchDataSource.searchDisplayController.searchResultsTableView.indexPathForCell(cell) {
-                    teacher = searchDataSource.searcheArray![indexPath.row]
-                }
+        
+        var teacher: TeacherInfoEntity?
+        let cell = sender as UITableViewCell!
+        if let indexPath = tableView.indexPathForCell(cell) {
+            teacher = teacherSections![indexPath.section][indexPath.row]
+        } else {
+            if let indexPath = searchDataSource.searchDisplayController.searchResultsTableView.indexPathForCell(cell) {
+                teacher = searchDataSource.searcheArray![indexPath.row]
             }
-            
+        }
+
+        
+        if (segue.identifier == "TeacherInfoIdentifier") {
             let viewController = segue.destinationViewController as TeacherInfoViewController
             viewController.teacherInfo = teacher
+            
+        } else if (segue.identifier == "SchedulePageIdentifier") {
+            let weeks = DateManager.scheduleWeeks()
+            
+            let viewController = segue.destinationViewController as TeacherSchedulesPageViewController
+            viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
+            viewController.possibleWeeks = weeks
+            viewController.teacher = teacher
         }
+
     }
 
     // MARK: - UITableViewDataSource

@@ -8,13 +8,11 @@
 
 import UIKit
 
-class LessonScheduleCell: UITableViewCell {
+class BaseLessonScheduleCell: UITableViewCell {
 
     @IBOutlet private(set) weak var locationLabel : UILabel!
     @IBOutlet private(set) weak var studyNameLabel : UILabel!
-    @IBOutlet private(set) weak var teacherLabel : UILabel!
     @IBOutlet private(set) weak var studyTypeLabel : UILabel!
-    @IBOutlet private(set) weak var subgroupTitleLabel : UILabel!
     @IBOutlet private weak var startTimeLabel : UILabel!
     @IBOutlet private weak var stopTimeLabel : UILabel!
     
@@ -29,7 +27,7 @@ class LessonScheduleCell: UITableViewCell {
         }
     }
     
-    func timeTextWithTimeInterval(interval : Int) -> String {
+    private func timeTextWithTimeInterval(interval : Int) -> String {
         let h : Int = interval / 60
         let m : Int = interval % 60
         
@@ -39,4 +37,9 @@ class LessonScheduleCell: UITableViewCell {
         return formatter.stringFromNumber(h)! + ":" + formatter.stringFromNumber(m)!
     }
     
+}
+
+@objc
+protocol ActiveLessonScheduleCell : NSObjectProtocol {
+    var lessonProgressView : UIProgressView! { get }
 }

@@ -17,7 +17,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     
     var menuCellIndexPath: NSIndexPath?
     
-    @IBOutlet private var tableView : UITableView!
+    @IBOutlet var tableView : UITableView!
     var refreshControl:UIRefreshControl!
     
     func setLessonSchedule(lessons: [LessonScheduleEntity]) {
@@ -115,13 +115,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "TeacherInfoIdentifier") {
-            
-            var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
-            
-            let viewController = segue.destinationViewController as TeacherInfoViewController
-            viewController.teacherInfo = lesson.teacher
-        } else if (segue.identifier == "LessonLocationIdentifier") {
+        if (segue.identifier == "LessonLocationIdentifier") {
             var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
 
             let viewController = segue.destinationViewController as LessonLocationMapViewController
@@ -173,23 +167,19 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             let startLessonTime = lesson.date.dateByAddingTimeInterval(lesson.startTime.doubleValue * 60) as NSDate
             let endLessonTime = lesson.date.dateByAddingTimeInterval(lesson.stopTime.doubleValue * 60) as NSDate
             
-            var lCell: LessonScheduleCell
+            var lCell: BaseLessonScheduleCell
             if (NSDate().compare(startLessonTime) == NSComparisonResult.OrderedDescending && NSDate().compare(endLessonTime) == NSComparisonResult.OrderedAscending) {
-                identifier = "ActiveLessonCellIdentifier"
-                let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as ActiveLessonScheduleCell
-                cell.lessonProgressView.progress = Float(( NSDate().timeIntervalSinceDate(startLessonTime) / 60 ) / (lesson.stopTime.doubleValue - lesson.startTime.doubleValue))
+                lCell = cellForLesson(lesson, isActive: true) as BaseLessonScheduleCell
                 
-                lCell = cell
+                let acell = lCell as ActiveLessonScheduleCell
+                acell.lessonProgressView.progress = Float(( NSDate().timeIntervalSinceDate(startLessonTime) / 60 ) / (lesson.stopTime.doubleValue - lesson.startTime.doubleValue))
             } else {
-                identifier = "LessonCellIdentifier"
-                lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as LessonScheduleCell
+                lCell = cellForLesson(lesson, isActive: false)
             }
             
             lCell.locationLabel.text = NSString(format: "%@; к.%@", lesson.address, lesson.room )
-            lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? NSString(format: "Подгруппа: %@", lesson.subgroupTitle! ) : ""
             lCell.studyTypeLabel.text = lesson.type
             lCell.studyNameLabel.text = lesson.studyName
-            lCell.teacherLabel.text = lesson.teacher.title
             lCell.startTime = lesson.startTime.integerValue
             lCell.stopTime = lesson.stopTime.integerValue
             
@@ -197,6 +187,10 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         return cell
+    }
+    
+    func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
+        return BaseLessonScheduleCell()
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

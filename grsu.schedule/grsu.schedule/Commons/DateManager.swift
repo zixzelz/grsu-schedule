@@ -10,7 +10,7 @@ import UIKit
 
 class DateManager: NSObject {
  
-    class func scheduleWeeks() -> Array<GSWeekItem>! {
+    class func scheduleWeeks() -> [GSWeekItem] {
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let formatterDate = NSDateFormatter()

@@ -16,12 +16,34 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
     override func fetchData(useCache: Bool = true) {
         super.fetchData(useCache: useCache)
         
-//        GetStudentScheduleService.getSchedule(scheduleQuery!.group!, dateStart: scheduleQuery!.startWeekDate!, dateEnd: scheduleQuery!.endWeekDate!, useCache: useCache) { [weak self] (items: Array<StudentDayScheduleEntity>?, error: NSError?) -> Void in
-//            if let wSelf = self {
-//                wSelf.schedules = items
-                self.reloadData()
-//            }
-//        }
+        GetTeacherScheduleService.getSchedule(teacher!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: false) { [weak self] (items: Array<LessonScheduleEntity>?, error: NSError?) -> Void in
+            if (error == nil) {
+                if let wSelf = self {
+                    wSelf.setLessonSchedule(items!)
+                    wSelf.reloadData()
+                }
+            } else {
+                NSLog("GetTeacherScheduleService error: \(error)")
+            }
+        }
+    }
+
+    override func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
+        var lCell: TeacherLessonScheduleCell
+        if (isActive) {
+            let identifier = "TeacherActiveLessonScheduleCellIdentifier"
+            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as TeacherActiveLessonScheduleCell
+        } else {
+            let identifier = "TeacherLessonScheduleCellIdentifier"
+            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as TeacherLessonScheduleCell
+        }
+        
+        let groups = lesson.groups.allObjects as [GroupsEntity]
+        let titles = groups.map { $0.title } as [String]
+        lCell.facultyLabel.text = groups.first?.faculty.title
+        lCell.groupsLabel.text =  join(", ", titles)
+        
+        return lCell
     }
 
 }

@@ -28,4 +28,42 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         }
     }
 
+    override func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
+        var lCell: StudentLessonScheduleCell
+        if (isActive) {
+            let identifier = "StudentActiveLessonScheduleCellIdentifier"
+            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as StudentActiveLessonScheduleCell
+        } else {
+            let identifier = "StudentLessonScheduleCellIdentifier"
+            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as StudentLessonScheduleCell
+        }
+        
+        lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? NSString(format: "Подгруппа: %@", lesson.subgroupTitle! ) : ""
+        lCell.teacherLabel.text = lesson.teacher.title
+        
+        return lCell
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "TeacherInfoIdentifier") {
+            var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
+            
+            let viewController = segue.destinationViewController as TeacherInfoViewController
+            viewController.teacherInfo = lesson.teacher
+            
+        } else if (segue.identifier == "TeacherSchedulePageIdentifier") {
+            var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
+            let weeks = DateManager.scheduleWeeks()
+            
+            let viewController = segue.destinationViewController as TeacherSchedulesPageViewController
+            viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
+            viewController.possibleWeeks = weeks
+            viewController.teacher = lesson.teacher
+        } else {
+            super.prepareForSegue(segue, sender: sender)
+        }
+        
+    }
+
 }

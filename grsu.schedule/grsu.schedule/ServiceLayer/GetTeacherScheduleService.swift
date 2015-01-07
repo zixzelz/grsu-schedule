@@ -99,12 +99,13 @@ class GetTeacherScheduleService: BaseDataService {
                                 let timeStart = lesson["timeStart"] as String
                                 let timeEnd = lesson["timeEnd"] as String
                                 let groupsDict = lesson["group"] as [NSDictionary]? ?? []
-                                let course = lesson["course"] as String
+                                let course = lesson["course"] as Int
                                 let facultyDict = lesson["faculty"] as NSDictionary?
                                 
                                 var faculty: FacultiesEntity!
                                 if let facultyDict = facultyDict {
-                                    let id = facultyDict["id"] as? String ?? ""
+                                    let idInt = facultyDict["id"] as? Int ?? 0
+                                    let id = "\(idInt)"
                                     faculty = facultyCacheItems[id]
                                     if (faculty == nil) {
                                         faculty = NSEntityDescription.insertNewObjectForEntityForName(FacultiesEntityName, inManagedObjectContext: context) as? FacultiesEntity
@@ -115,13 +116,14 @@ class GetTeacherScheduleService: BaseDataService {
                                 
                                 var groups = NSMutableSet()
                                 for groupDict in groupsDict {
-                                    let id = groupDict["id"] as? String ?? ""
+                                    let idInt = groupDict["id"] as? Int ?? 0
+                                    let id = "\(idInt)"
                                     var group = groupCacheItems[id]
                                     if (group == nil) {
                                         group = NSEntityDescription.insertNewObjectForEntityForName(GroupsEntityName, inManagedObjectContext: context) as? GroupsEntity
                                         group?.id = id
                                         group?.title = groupDict["title"] as? String ?? ""
-                                        group?.course = course
+                                        group?.course = "\(course)"
                                         group?.faculty = faculty
                                     }
                                     groups.addObject(group!)

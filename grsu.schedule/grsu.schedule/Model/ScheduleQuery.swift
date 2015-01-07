@@ -12,4 +12,13 @@ class DateScheduleQuery: NSObject {
 
     var startWeekDate : NSDate?
     var endWeekDate : NSDate?
+    
+    override init() {
+        super.init()
+    }
+    
+    init(startWeekDate : NSDate, endWeekDate : NSDate) {
+        self.startWeekDate = startWeekDate;
+        self.endWeekDate = endWeekDate;
+    }
 }
