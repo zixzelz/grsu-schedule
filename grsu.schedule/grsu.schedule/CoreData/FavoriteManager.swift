@@ -14,7 +14,7 @@ let GSFavoriteManagerFavoriteObjectKey = "GSFavoriteManagerFavoriteObjectKey"
 
 class FavoriteManager: NSObject {
    
-    func getFavoriteStudentGroup(completionHandler: ((Array<FavoriteEntity>) -> Void)!) {
+    func getAllFavorite(completionHandler: ((Array<FavoriteEntity>) -> Void)!) {
         
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let cdHelper = delegate.cdh
@@ -26,7 +26,7 @@ class FavoriteManager: NSObject {
                 let request = NSFetchRequest(entityName: FavoriteEntityName)
                 request.resultType = .ManagedObjectIDResultType
                 request.sortDescriptors = [sorter]
-                request.predicate = NSPredicate(format: "(group != nil)")
+//                request.predicate = NSPredicate(format: "(group != nil)")
                 
                 var error : NSError?
                 let itemIds = context.executeFetchRequest(request, error: &error) as [NSManagedObjectID]

@@ -29,7 +29,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
     func fetchFavorite() {
         let manager = FavoriteManager()
         
-        manager.getFavoriteStudentGroup { [weak self] (items: Array<FavoriteEntity>) -> Void in
+        manager.getAllFavorite { [weak self] (items: Array<FavoriteEntity>) -> Void in
             if let wSelf = self {
                 wSelf.favorites = items
                 wSelf.tableView.reloadData()
@@ -59,22 +59,32 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         NSUserDefaults.standardUserDefaults().synchronize()
-        if (segue.identifier == "SchedulePageIdentifier" && tableView.indexPathForSelectedRow() != nil) {
-            
+        
+        if let indexPath = tableView.indexPathForSelectedRow() {
             let item = favorites![tableView.indexPathForSelectedRow()!.row]
-            
             let week = DateManager.scheduleWeeks()
             
             let scheduleQuery = DateScheduleQuery()
             scheduleQuery.startWeekDate = week.first!.startDate
             scheduleQuery.endWeekDate = week.first!.endDate
-            
-            let navigationController = segue.destinationViewController as UINavigationController
-            let viewController = navigationController.topViewController as StudentSchedulesPageViewController
-            viewController.possibleWeeks = week
-            viewController.dateScheduleQuery = scheduleQuery
-            viewController.group = item.group
+
+            if (segue.identifier == "StudentFavoriteSegueIdentifier") {
+                
+                let navigationController = segue.destinationViewController as UINavigationController
+                let viewController = navigationController.topViewController as StudentSchedulesPageViewController
+                viewController.possibleWeeks = week
+                viewController.dateScheduleQuery = scheduleQuery
+                viewController.group = item.group
+            }
+            if (segue.identifier == "TeacherFavoriteSegueIdentifier") {
+                
+                let viewController = segue.destinationViewController as TeacherSchedulesPageViewController
+                viewController.possibleWeeks = week
+                viewController.dateScheduleQuery = scheduleQuery
+                viewController.teacher = item.teacher
+            }
         }
+        
     }
     
     // MARK: - UITableViewDataSource
@@ -119,11 +129,17 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func favoriteCell(row: Int) -> UITableViewCell {
-        var cell : UITableViewCell
-        cell = tableView.dequeueReusableCellWithIdentifier("FavoriteCellIdentifier") as UITableViewCell
-        cell.textLabel?.text = favorites![row].group.title
+        var cell : UITableViewCell?
         
-        return cell
+        if let group = favorites![row].group {
+            cell = tableView.dequeueReusableCellWithIdentifier("StudentFavoriteCellIdentifier") as? UITableViewCell
+            cell!.textLabel?.text = group.title
+        } else if let teacher = favorites![row].teacher {
+            cell = tableView.dequeueReusableCellWithIdentifier("TeacherFavoriteCellIdentifier") as? UITableViewCell
+            cell!.textLabel?.text = teacher.title
+        }
+        
+        return cell!
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
