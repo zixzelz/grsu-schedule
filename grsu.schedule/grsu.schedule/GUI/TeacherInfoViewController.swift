@@ -53,9 +53,15 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         self.refreshControl!.addTarget(self, action: "refreshTeacherInfo:", forControlEvents: UIControlEvents.ValueChanged)
     }
     
+    func scrollToTop() {
+        let top = self.tableView.contentInset.top
+        self.tableView.contentOffset = CGPointMake(0, -top)
+    }
+
     func fetchData(useCache: Bool = true) {
         if (!self.refreshControl!.refreshing) {
             self.refreshControl!.beginRefreshing()
+            scrollToTop()
         }
         
         GetTeachersService.getTeacher(teacherInfo.id, useCache: useCache) { [weak self](teacherInfo: TeacherInfoEntity?, error: NSError?) -> Void in
