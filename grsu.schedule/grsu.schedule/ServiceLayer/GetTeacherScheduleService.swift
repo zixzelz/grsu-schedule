@@ -77,12 +77,12 @@ class GetTeacherScheduleService: BaseDataService {
                 
                 request = NSFetchRequest(entityName: FacultiesEntityName)
                 let _facultyCacheItems = context.executeFetchRequest(request, error: &error) as [FacultiesEntity]
-                var facultyCacheItems = Dictionary<String, FacultiesEntity>(minimumCapacity: cacheItems.count)
+                var facultyCacheItems = Dictionary<String, FacultiesEntity>(minimumCapacity: _facultyCacheItems.count)
                 _facultyCacheItems.map { facultyCacheItems[$0.id] = $0 }
 
                 request = NSFetchRequest(entityName: GroupsEntityName)
                 let _groupCacheItems = context.executeFetchRequest(request, error: &error) as [GroupsEntity]
-                var groupCacheItems = Dictionary<String, GroupsEntity>(minimumCapacity: cacheItems.count)
+                var groupCacheItems = Dictionary<String, GroupsEntity>(minimumCapacity: _groupCacheItems.count)
                 _groupCacheItems.map { groupCacheItems[$0.id] = $0 }
 
                 

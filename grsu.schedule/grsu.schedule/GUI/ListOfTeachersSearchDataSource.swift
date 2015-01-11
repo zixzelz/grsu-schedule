@@ -43,7 +43,7 @@ class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableVi
     
     func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String!) -> Bool {
         
-        let filtredArr = items?.filter { $0.title?.rangeOfString(searchString) != nil }
+        let filtredArr = items?.filter { $0.title?.rangeOfString(searchString, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil }
         
         searcheArray = filtredArr
         
