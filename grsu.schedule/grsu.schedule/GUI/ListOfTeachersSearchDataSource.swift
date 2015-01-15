@@ -50,4 +50,8 @@ class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableVi
         return true
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        searchDisplayController.searchContentsController.performSegueWithIdentifier("SchedulePageIdentifier", sender: tableView.cellForRowAtIndexPath(indexPath))
+    }
+    
 }

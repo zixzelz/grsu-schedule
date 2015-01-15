@@ -89,10 +89,10 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             
             if let lesson = lesson {
                 let indexPath = NSIndexPath(forRow: find(day.lessons, lesson)!, inSection: find(schedules!, day)!)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: false)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true)
             } else {
                 let indexPath = NSIndexPath(forRow: 0, inSection: find(schedules!, day)!)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
             }
         }
     }
@@ -105,8 +105,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func reloadData() {
-        self.refreshControl.endRefreshing()
         self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
         self.scrollToActiveLesson()
     }
     

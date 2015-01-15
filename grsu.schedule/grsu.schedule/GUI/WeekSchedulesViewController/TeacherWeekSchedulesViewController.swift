@@ -27,6 +27,7 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
             }
         }
     }
+    
 
     override func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
         var lCell: TeacherLessonScheduleCell
@@ -45,5 +46,49 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
         
         return lCell
     }
+    
+    func groupScheduleMenuButtonPressed(sender: UIButton) {
+        var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
+        if (lesson.groups.count == 1) {
+            self.presentGroupSchedule(lesson.groups.allObjects.first as GroupsEntity)
+        } else {
+            chooseGroup(lesson.groups.allObjects as [GroupsEntity])
+        }
+    }
+    
+    func chooseGroup(groups: [GroupsEntity]) {
+        let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
+        
+        for group in groups {
+            let action = UIAlertAction(title: group.title, style: .Default) { _ in
+                self.presentGroupSchedule(group)
+            }
+            alert.addAction(action)
+        }
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    func presentGroupSchedule(group: GroupsEntity) {
+        performSegueWithIdentifier("StudentSchedulePageIdentifier", sender: group)
+    }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if (segue.identifier == "StudentSchedulePageIdentifier") {
+            let weeks = DateManager.scheduleWeeks()
+            
+            let viewController = segue.destinationViewController as StudentSchedulesPageViewController
+            viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
+            viewController.possibleWeeks = weeks
+            viewController.group = sender as? GroupsEntity
+            
+        } else {
+            super.prepareForSegue(segue, sender: sender)
+        }
+    }
+    
 }

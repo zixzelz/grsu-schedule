@@ -39,7 +39,7 @@ class GetTeacherScheduleService: BaseDataService {
     
     class func featchSchedule(teacher : TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
         
-        let path = "/getTeacherScheduleFake"
+        let path = "/getTeacherSchedule"
         
         let queryItems = [
             NSURLQueryItem(name: "teacherId", value: teacher.id),

@@ -15,7 +15,7 @@
 		<string>Russian</string>
 	</array>
 	<key>CFBundleName</key>
-	<string>Расписание занятий</string>
+	<string>Расписание</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
