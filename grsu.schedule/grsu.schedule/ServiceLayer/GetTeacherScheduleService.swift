@@ -104,13 +104,14 @@ class GetTeacherScheduleService: BaseDataService {
                                 
                                 var faculty: FacultiesEntity!
                                 if let facultyDict = facultyDict {
-                                    let idInt = facultyDict["id"] as? Int ?? 0
+                                    let idInt = facultyDict["id"] as? String ?? "0"
                                     let id = "\(idInt)"
                                     faculty = facultyCacheItems[id]
                                     if (faculty == nil) {
                                         faculty = NSEntityDescription.insertNewObjectForEntityForName(FacultiesEntityName, inManagedObjectContext: context) as? FacultiesEntity
                                         faculty?.id = id
                                         faculty?.title = facultyDict["title"] as? String ?? ""
+                                        facultyCacheItems[id] = faculty
                                     }
                                 }
                                 
@@ -125,6 +126,7 @@ class GetTeacherScheduleService: BaseDataService {
                                         group?.title = groupDict["title"] as? String ?? ""
                                         group?.course = "\(course)"
                                         group?.faculty = faculty
+                                        groupCacheItems[id] = group
                                     }
                                     groups.addObject(group!)
                                 }
@@ -134,7 +136,7 @@ class GetTeacherScheduleService: BaseDataService {
                                 newlesson.teacher = teacher_
                                 newlesson.groups = groups
                                 newlesson.date = date
-                                newlesson.studyName = lesson["title"] as? String ?? ""
+                                newlesson.studyName = lesson["title"] as? String ?? "Нет данных"
                                 newlesson.type = lesson["type"] as? String ?? ""
                                 newlesson.address = lesson["address"] as? String ?? ""
                                 newlesson.room = lesson["room"] as String? ?? ""
