@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */; };
 		2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */; };
 		2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505CA1A1662DC00171A2E /* BaseDataService.swift */; };
 		2D0825EE1A152913008B504E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0825ED1A152913008B504E /* AppDelegate.swift */; };
@@ -56,7 +57,6 @@
 		2DBD4E9D1A4EE97D0055EA3A /* LessonLocationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E9B1A4EE97D0055EA3A /* LessonLocationMapView.swift */; };
 		2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E9C1A4EE97D0055EA3A /* LessonLocationMapViewController.swift */; };
 		2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E9F1A4EEA2C0055EA3A /* CalloutView.swift */; };
-		2DBD4EA21A4EEA390055EA3A /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */; };
 		2DBD4EA41A4F14640055EA3A /* LessonLocationMapViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA31A4F14640055EA3A /* LessonLocationMapViewProtocol.swift */; };
 		2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA51A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift */; };
 		2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */; };
@@ -602,7 +602,7 @@
 				2D0825F51A152913008B504E /* Images.xcassets in Resources */,
 				2DCF59A61A4C616100D9F3FA /* GoogleMaps.bundle in Resources */,
 				2D8D59F01A682DDB00EB1884 /* WeekSchedulesHeaderFooterView.xib in Resources */,
-				2DBD4EA21A4EEA390055EA3A /* CalloutView.xib in Resources */,
+				2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

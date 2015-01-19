@@ -27,6 +27,7 @@ class GetFacultyService: BaseDataService {
                 if (items?.count > 0) {
                     self.storeFaculties(items!, completionHandler: { () -> Void in
                         userDefaults.setObject(NSDate(), forKey: "FacultiesKey")
+                        userDefaults.synchronize()
                         self.featchFacultiesFromCache(completionHandler)
                     })
                 } else {

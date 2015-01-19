@@ -28,6 +28,7 @@ class GetGroupsService: BaseDataService {
                 if (items?.count > 0) {
                     self.storeGroups(faculty, department: department, course: course, items: items!, completionHandler: { () -> Void in
                         userDefaults.setObject(NSDate(), forKey: userDefaultsGroupKey)
+                        userDefaults.synchronize()
                         self.featchGroupsFromCache(faculty, department: department, course: course, completionHandler: completionHandler)
                     })
                 } else {

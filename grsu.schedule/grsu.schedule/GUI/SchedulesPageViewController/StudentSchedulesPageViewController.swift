@@ -30,7 +30,7 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         if (sender.selected) {
             manager.addFavorite(group!)
         } else {
-            manager.removeFavorite(group!.favorite)
+            manager.removeFavorite(group!.favorite!)
         }
         
         self.sidebarController?.addLeftSidebarButton(self)

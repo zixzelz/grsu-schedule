@@ -20,17 +20,28 @@ class GetTeachersService: BaseDataService {
     class func getTeacher(teacherId : String, useCache: Bool, completionHandler: ((TeacherInfoEntity?, NSError?) -> Void)!) {
         
         if (useCache == false) {
-            featchTeacher(teacherId, completionHandler: completionHandler)
+            featchTeacher(teacherId) { (item: TeacherInfoEntity?, error: NSError?) -> Void in
+                if let item = item {
+                    completionHandler(item, error)
+                } else {
+                    GetTeachersService.featchTeacherFromCache(teacherId, completionHandler: completionHandler)
+                }
+            }
         } else {
             
-            featchTeacherFromCache(teacherId, completionHandler: { (items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
-                let item = items?.first
-                let expiryDate = item?.updatedDate.dateByAddingTimeInterval(TeacherCacheTimeInterval)
+            featchTeacherFromCache(teacherId, completionHandler: { (teacherInfo: TeacherInfoEntity?, error: NSError?) -> Void in
+                let expiryDate = teacherInfo?.updatedDate.dateByAddingTimeInterval(TeacherCacheTimeInterval)
                 
                 if (expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending ) {
-                    self.featchTeacher(teacherId, completionHandler: completionHandler)
+                    self.featchTeacher(teacherId) { (item: TeacherInfoEntity?, error: NSError?) -> Void in
+                        if let item = item {
+                            completionHandler(item, error)
+                        } else {
+                            completionHandler(teacherInfo, error)
+                        }
+                    }
                 } else {
-                    completionHandler(item, error)
+                    completionHandler(teacherInfo, error)
                 }
 
             })
@@ -54,17 +65,29 @@ class GetTeachersService: BaseDataService {
         
         if (useCache == false || expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending) {
             featchTeachers({ (error: NSError?) -> Void in
-                self.featchTeacherFromCache(nil, completionHandler: completionHandler)
+                self.featchTeachersFromCache(completionHandler)
+                userDefaults.synchronize()
                 userDefaults.setObject(NSDate(), forKey: userDefaultsTeachersKey)
             })
         } else {
-            featchTeacherFromCache(nil, completionHandler: completionHandler)
+            featchTeachersFromCache(completionHandler)
         }
     }
 
     // MARK: - Private
     
-    private class func featchTeacherFromCache(teacherId : String?, completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
+    private class func featchTeacherFromCache(teacherId : String?, completionHandler: ((TeacherInfoEntity?, NSError?) -> Void)!) {
+        
+        self.featchTeachersFromCache(teacherId) { (items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
+            completionHandler(items?.first, error)
+        }
+    }
+    
+    private class func featchTeachersFromCache(completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
+        self.featchTeachersFromCache(nil, completionHandler: completionHandler)
+    }
+    
+    private class func featchTeachersFromCache(teacherId : String?, completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let cdHelper = delegate.cdh
         if let context = cdHelper.backgroundContext {
@@ -166,8 +189,8 @@ class GetTeachersService: BaseDataService {
 
             let items = result?["items"] as? [NSDictionary]
             
-            if let item = items?.first {
-
+            if items?.count == 1 {
+                let item = items!.first!
                 if let context = cdHelper.backgroundContext {
                     context.performBlock({ () -> Void in
                         

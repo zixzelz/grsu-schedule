@@ -484,9 +484,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="Yoz-EF-kVC">
+                        <searchBar key="tableHeaderView" contentMode="redraw" translucent="NO" backgroundImage="Empty" id="Yoz-EF-kVC">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="barTintColor" red="0.28235294119999998" green="0.61568627450000002" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
                                 <outlet property="delegate" destination="LIC-wI-f0T" id="AFI-oP-z5m"/>
@@ -1475,7 +1477,7 @@
                                 <color key="separatorColor" red="0.75686274509999996" green="0.80000000000000004" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActiveLessonCellIdentifier" rowHeight="131" id="2bf-0E-h9r" customClass="TeacherActiveLessonScheduleCell" customModule="grsu_schedule" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TeacherActiveLessonScheduleCellIdentifier" rowHeight="131" id="2bf-0E-h9r" customClass="TeacherActiveLessonScheduleCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="175" width="320" height="131"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2bf-0E-h9r" id="b8T-NT-wB8">
@@ -1719,7 +1721,7 @@
                                                             <inset key="imageEdgeInsets" minX="65" minY="-16" maxX="65" maxY="0.0"/>
                                                             <state key="normal" title="Аудитория" image="LessonLocation"/>
                                                             <connections>
-                                                                <segue destination="6Qw-zL-iII" kind="push" id="fh5-Bf-6CT"/>
+                                                                <segue destination="6Qw-zL-iII" kind="push" identifier="LessonLocationIdentifier" id="fh5-Bf-6CT"/>
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJd-PI-YeT">
@@ -1729,6 +1731,9 @@
                                                             <inset key="titleEdgeInsets" minX="-28" minY="0.0" maxX="0.0" maxY="-28"/>
                                                             <inset key="imageEdgeInsets" minX="60" minY="-13" maxX="60" maxY="0.0"/>
                                                             <state key="normal" title="Расписание группы" image="LecturerSchedule"/>
+                                                            <connections>
+                                                                <action selector="groupScheduleMenuButtonPressed:" destination="eIB-YH-3Xp" eventType="touchUpInside" id="exH-X7-Nr5"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1811,6 +1816,7 @@
         <image name="EditIcon" width="26" height="26"/>
         <image name="EditIconOk" width="26" height="26"/>
         <image name="EmailIcon" width="30" height="30"/>
+        <image name="Empty" width="20" height="18"/>
         <image name="Lecturer" width="30" height="30"/>
         <image name="LecturerSchedule" width="30" height="30"/>
         <image name="LessonLocation" width="29" height="25"/>
@@ -1828,10 +1834,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IlV-GR-mxt"/>
-        <segue reference="Ydr-vv-0vX"/>
+        <segue reference="gXH-W7-SBr"/>
         <segue reference="Nv5-F0-siH"/>
-        <segue reference="fh5-Bf-6CT"/>
+        <segue reference="hOF-R1-qwA"/>
         <segue reference="3cS-fO-x8u"/>
+        <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>
 </document>

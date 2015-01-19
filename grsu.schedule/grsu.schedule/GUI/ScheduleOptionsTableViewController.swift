@@ -94,8 +94,8 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                         } else {
                             wSelf.scheduleDelegate?.didSelectDepartment(items.first!.id);
                         }
-                        wSelf.featchGroups(fromCacheOnly: true);
                     }
+                    wSelf.featchGroups(fromCacheOnly: true);
                 }
             }
         }
@@ -110,8 +110,8 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                         } else {
                             wSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
                         }
-                        wSelf.featchGroups(fromCacheOnly: true);
                     }
+                    wSelf.featchGroups(fromCacheOnly: true);
                 }
             }
         }

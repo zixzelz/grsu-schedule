@@ -16,7 +16,7 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
     override func fetchData(useCache: Bool = true) {
         super.fetchData(useCache: useCache)
         
-        GetTeacherScheduleService.getSchedule(teacher!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: false) { [weak self] (items: Array<LessonScheduleEntity>?, error: NSError?) -> Void in
+        GetTeacherScheduleService.getSchedule(teacher!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: true) { [weak self] (items: Array<LessonScheduleEntity>?, error: NSError?) -> Void in
             if (error == nil) {
                 if let wSelf = self {
                     wSelf.setLessonSchedule(items!)
@@ -41,13 +41,13 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
         
         let groups = lesson.groups.allObjects as [GroupsEntity]
         let titles = groups.map { $0.title } as [String]
-        lCell.facultyLabel.text = groups.first?.faculty.title
+        lCell.facultyLabel.text = groups.first?.faculty?.title
         lCell.groupsLabel.text =  join(", ", titles)
         
         return lCell
     }
     
-    func groupScheduleMenuButtonPressed(sender: UIButton) {
+    @IBAction func groupScheduleMenuButtonPressed(sender: UIButton) {
         var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
         if (lesson.groups.count == 1) {
             self.presentGroupSchedule(lesson.groups.allObjects.first as GroupsEntity)

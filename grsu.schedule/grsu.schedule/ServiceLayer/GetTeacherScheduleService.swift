@@ -27,6 +27,7 @@ class GetTeacherScheduleService: BaseDataService {
             featchSchedule(teacher, dateStart: dateStart, dateEnd: dateEnd, { (items: Array<LessonScheduleEntity>?, error: NSError?) -> Void in
                 if (error == nil) {
                     userDefaults.setObject(NSDate(), forKey: userDefaultsScheduleTeacherKey)
+                    userDefaults.synchronize()
                     completionHandler(items, error)
                 } else {
                     self.featchScheduleFromCache(teacher, dateStart: dateStart, dateEnd: dateEnd, completionHandler: completionHandler)
@@ -74,7 +75,12 @@ class GetTeacherScheduleService: BaseDataService {
                 for item in cacheItems {
                     context.deleteObject(item)
                 }
-                
+
+                request = NSFetchRequest(entityName: DepartmentsEntityName)
+                let _departmentCacheItems = context.executeFetchRequest(request, error: &error) as [DepartmentsEntity]
+                var departmentCacheItems = Dictionary<String, DepartmentsEntity>(minimumCapacity: _departmentCacheItems.count)
+                _departmentCacheItems.map { departmentCacheItems[$0.id] = $0 }
+
                 request = NSFetchRequest(entityName: FacultiesEntityName)
                 let _facultyCacheItems = context.executeFetchRequest(request, error: &error) as [FacultiesEntity]
                 var facultyCacheItems = Dictionary<String, FacultiesEntity>(minimumCapacity: _facultyCacheItems.count)
@@ -98,33 +104,48 @@ class GetTeacherScheduleService: BaseDataService {
                             for lesson in lessons {
                                 let timeStart = lesson["timeStart"] as String
                                 let timeEnd = lesson["timeEnd"] as String
-                                let groupsDict = lesson["group"] as [NSDictionary]? ?? []
-                                let course = lesson["course"] as Int
-                                let facultyDict = lesson["faculty"] as NSDictionary?
-                                
-                                var faculty: FacultiesEntity!
-                                if let facultyDict = facultyDict {
-                                    let idInt = facultyDict["id"] as? String ?? "0"
-                                    let id = "\(idInt)"
-                                    faculty = facultyCacheItems[id]
-                                    if (faculty == nil) {
-                                        faculty = NSEntityDescription.insertNewObjectForEntityForName(FacultiesEntityName, inManagedObjectContext: context) as? FacultiesEntity
-                                        faculty?.id = id
-                                        faculty?.title = facultyDict["title"] as? String ?? ""
-                                        facultyCacheItems[id] = faculty
-                                    }
-                                }
+                                let groupsDict = lesson["groups"] as? [NSDictionary] ?? [NSDictionary]()
                                 
                                 var groups = NSMutableSet()
                                 for groupDict in groupsDict {
-                                    let idInt = groupDict["id"] as? Int ?? 0
-                                    let id = "\(idInt)"
+                                    let id = groupDict["id"] as? String ?? "0"
                                     var group = groupCacheItems[id]
                                     if (group == nil) {
+                                        let departmentDict = groupDict["department"] as NSDictionary?
+                                        let facultyDict = groupDict["faculty"] as NSDictionary?
+                                        
+                                        //department
+                                        var department: DepartmentsEntity?
+                                        if let departmentDict = departmentDict {
+                                            let id = departmentDict["id"] as? String ?? "0"
+                                            department = departmentCacheItems[id]
+                                            if (department == nil) {
+                                                department = NSEntityDescription.insertNewObjectForEntityForName(DepartmentsEntityName, inManagedObjectContext: context) as? DepartmentsEntity
+                                                department?.id = id
+                                                department?.title = departmentDict["title"] as? String ?? ""
+                                                departmentCacheItems[id] = department
+                                            }
+                                        }
+                                        
+                                        //faculty
+                                        var faculty: FacultiesEntity?
+                                        if let facultyDict = facultyDict {
+                                            let id = facultyDict["id"] as? String ?? "0"
+                                            faculty = facultyCacheItems[id]
+                                            if (faculty == nil) {
+                                                faculty = NSEntityDescription.insertNewObjectForEntityForName(FacultiesEntityName, inManagedObjectContext: context) as? FacultiesEntity
+                                                faculty?.id = id
+                                                faculty?.title = facultyDict["title"] as? String ?? ""
+                                                facultyCacheItems[id] = faculty
+                                            }
+                                        }
+
+                                        
                                         group = NSEntityDescription.insertNewObjectForEntityForName(GroupsEntityName, inManagedObjectContext: context) as? GroupsEntity
                                         group?.id = id
                                         group?.title = groupDict["title"] as? String ?? ""
-                                        group?.course = "\(course)"
+                                        group?.course = groupDict["course"] as? String ?? "0"
+                                        group?.department = department
                                         group?.faculty = faculty
                                         groupCacheItems[id] = group
                                     }
@@ -171,11 +192,12 @@ class GetTeacherScheduleService: BaseDataService {
                 
                 let request = NSFetchRequest(entityName: LessonScheduleEntityName)
                 var sorter: NSSortDescriptor = NSSortDescriptor(key: "date" , ascending: true)
+                var lessonSorter = NSSortDescriptor(key: "startTime" , ascending: true)
                 let teacher_ = context.objectWithID(teacher.objectID) as TeacherInfoEntity
                 let predicate = NSPredicate(format: "(isTeacherSchedule == YES) && (teacher == %@) && (date >= %@) && (date <= %@)", teacher_, dateStart, dateEnd)
                 
                 request.resultType = .ManagedObjectIDResultType
-                request.sortDescriptors = [sorter]
+                request.sortDescriptors = [sorter, lessonSorter]
                 request.predicate = predicate
                 
                 var error : NSError?

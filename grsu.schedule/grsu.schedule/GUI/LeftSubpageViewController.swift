@@ -138,8 +138,12 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
             cell!.textLabel?.text = group.title
         } else if let teacher = favorites![row].teacher {
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherFavoriteCellIdentifier") as? UITableViewCell
+            
+            var text = teacher.title
             let texts = teacher.title!.componentsSeparatedByString(" ")
-            let text = texts[0] + " " + texts[1].substringToIndex(advance(texts[1].startIndex, 1)) + ". " + texts[2].substringToIndex(advance(texts[2].startIndex, 1)) + "."
+            if texts.count == 3 {
+                let text = texts[0] + " " + texts[1].substringToIndex(advance(texts[1].startIndex, 1)) + ". " + texts[2].substringToIndex(advance(texts[2].startIndex, 1)) + "."
+            }
             cell!.textLabel?.text = text
         }
         

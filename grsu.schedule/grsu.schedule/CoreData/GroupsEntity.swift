@@ -16,8 +16,8 @@ class GroupsEntity: NSManagedObject {
     @NSManaged var id: String
     @NSManaged var course: String
     @NSManaged var lessons: NSSet
-    @NSManaged var department: DepartmentsEntity
-    @NSManaged var faculty: FacultiesEntity
-    @NSManaged var favorite: FavoriteEntity
+    @NSManaged var department: DepartmentsEntity?
+    @NSManaged var faculty: FacultiesEntity?
+    @NSManaged var favorite: FavoriteEntity?
 
 }

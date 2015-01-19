@@ -26,6 +26,7 @@ class GetDepartmentsService: BaseDataService {
                 if (items?.count > 0) {
                     self.storeDepartments(items!, completionHandler: { () -> Void in
                         userDefaults.setObject(NSDate(), forKey: "DepartmentsKey")
+                        userDefaults.synchronize()
                         self.featchDepartmentsFromCache(completionHandler)
                     })
                 } else {

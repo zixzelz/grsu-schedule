@@ -27,6 +27,7 @@ class GetStudentScheduleService: BaseDataService {
             featchSchedule(group, dateStart: dateStart, dateEnd: dateEnd, { (items: Array<LessonScheduleEntity>?, error: NSError?) -> Void in
                 if (error == nil) {
                     userDefaults.setObject(NSDate(), forKey: userDefaultsGroupKey)
+                    userDefaults.synchronize()
                     completionHandler(items, error)
                 } else {
                     self.featchScheduleFromCache(group, dateStart: dateStart, dateEnd: dateEnd, completionHandler: completionHandler)
@@ -143,11 +144,13 @@ class GetStudentScheduleService: BaseDataService {
                 
                 let request = NSFetchRequest(entityName: LessonScheduleEntityName)
                 var sorter: NSSortDescriptor = NSSortDescriptor(key: "date" , ascending: true)
+                var lessonSorter = NSSortDescriptor(key: "startTime" , ascending: true)
+
                 let group_ = context.objectWithID(group.objectID) as GroupsEntity
                 let predicate = NSPredicate(format: "(isTeacherSchedule == NO) && (ANY groups == %@) && (date >= %@) && (date <= %@)", group_, dateStart, dateEnd)
                 
                 request.resultType = .ManagedObjectIDResultType
-                request.sortDescriptors = [sorter]
+                request.sortDescriptors = [sorter, lessonSorter]
                 request.predicate = predicate
                 
                 var error : NSError?
