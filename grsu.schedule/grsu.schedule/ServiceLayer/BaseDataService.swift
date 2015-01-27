@@ -8,9 +8,6 @@
 
 import UIKit
 
-let UrlScheme = "http"
-let UrlHost = "api.grsu.by/1.x/app1"
-
 class BaseDataService: NSObject {
    
     class func resumeRequest(path: String, queryItems: [AnyObject]?, completionHandler: ((NSDictionary?, NSError?) -> Void)!) -> NSURLSessionDataTask {
@@ -27,7 +24,7 @@ class BaseDataService: NSObject {
             var responseDict : NSDictionary?
             
             if (error == nil) {
-                NSLog("response: %@", NSString(data: data, encoding: NSUTF8StringEncoding)!)
+                //NSLog("response: %@", NSString(data: data, encoding: NSUTF8StringEncoding)!)
 
                 var jsonError: NSError?
                 responseDict = NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers, error: &jsonError) as? NSDictionary
