@@ -8,13 +8,20 @@
 
 import UIKit
 
+let DefaultAvailabilityHeaderHeight : CGFloat = 25
+
 class ReachabilityTableView: UITableView {
 
+    var unavailableHeaderLabel: UILabel?
+    
     override func awakeFromNib() {
         super.awakeFromNib();
         
-        if (!GSReachability.sharedInstance.isHostAvailable()) {
-            addUnavailableHeader()
+        
+        dispatch_after(1, dispatch_get_main_queue()) { () -> Void in
+            if (!GSReachability.sharedInstance.isHostAvailable()) {
+                self.addUnavailableHeader(true)
+            }
         }
         registerNotification()
     }
@@ -30,35 +37,58 @@ class ReachabilityTableView: UITableView {
     func reachabilityChanged(notification: NSNotification) {
         let reach = notification.object as GSReachability
         if ( !reach.isHostAvailable()) {
-            addUnavailableHeader()
+            addUnavailableHeader(true)
         } else {
             removeUnavailableHeader()
         }
     }
     
-    func addUnavailableHeader() {
+    func addUnavailableHeader(animated: Bool) {
+        if (unavailableHeaderLabel != nil) { return }
+
+        let headerTop : CGFloat = 64.0
+        
         let headerLabel = UILabel()
+        headerLabel.frame = CGRect(x: 0, y: headerTop-DefaultAvailabilityHeaderHeight, width: CGRectGetWidth(self.bounds), height: DefaultAvailabilityHeaderHeight)
         headerLabel.backgroundColor = UIColor(white: 0, alpha: 0.8)
         headerLabel.textColor = UIColor.whiteColor()
         headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
         headerLabel.textAlignment = NSTextAlignment.Center
         headerLabel.text = "Нет связи с сетью"
         
-        tableHeaderView = headerLabel
+        self.superview?.addSubview(headerLabel)
+        unavailableHeaderLabel = headerLabel
         
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            headerLabel.frame = CGRect(x: 0, y: 0, width: 0, height: 25)
+        var inset = contentInset
+        inset.top += DefaultAvailabilityHeaderHeight
+        self.contentInset = inset
+        self.scrollIndicatorInsets = inset
+        
+        let duration = animated ? 0.3 : 0
+        UIView.animateWithDuration(duration, animations: { () -> Void in
+            headerLabel.frame = CGRect(x: 0, y: headerTop, width: CGRectGetWidth(self.bounds), height: DefaultAvailabilityHeaderHeight)
         })
     }
     
     func removeUnavailableHeader() {
+        if (unavailableHeaderLabel == nil) { return }
+        
+        var inset = contentInset
+        inset.top -= DefaultAvailabilityHeaderHeight
+        
+        var newFrame = unavailableHeaderLabel?.frame
+        newFrame?.origin.y += -DefaultAvailabilityHeaderHeight
+        
         UIView.animateWithDuration(0.3, animations: { [weak self] () -> Void in
             if let weakSelf = self {
-                weakSelf.tableHeaderView?.frame = CGRectZero
+                weakSelf.contentInset = inset
+                weakSelf.scrollIndicatorInsets = inset
+                weakSelf.unavailableHeaderLabel?.frame = newFrame!
             }
         }) { [weak self] _ in
             if let weakSelf = self {
-                weakSelf.tableHeaderView = nil
+                weakSelf.unavailableHeaderLabel?.removeFromSuperview()
+                weakSelf.unavailableHeaderLabel = nil
             }
         }
     }
