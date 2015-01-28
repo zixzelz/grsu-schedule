@@ -8,6 +8,11 @@
 
 import Foundation
 
+
+let UrlScheme = "http"
+let UrlHost = "api.grsu.by/1.x/app1"
+let ReachabilityURL = "www.grsu.by"
+
 enum ScheduleOption : String {
     case Departmen = "DefaultDepartmentCell"
     case Faculty = "DefaultFacultyCell"

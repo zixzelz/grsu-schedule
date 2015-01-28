@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyDRuBofs3NN-GSEwklztolgYNvcURPH80I")
+        GSReachability.sharedInstance.startNotifier()
         return true
     }
 

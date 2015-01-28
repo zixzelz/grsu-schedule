@@ -97,6 +97,9 @@
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
 		44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */; };
 		44641E5D1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */; };
+		44D504181A780DD900265A7C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D504171A780DD900265A7C /* Reachability.m */; };
+		44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D504191A78147900265A7C /* ReachabilityTableView.swift */; };
+		44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D5041B1A7821E600265A7C /* GSReachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -209,6 +212,10 @@
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
+		44D504161A780DD900265A7C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		44D504171A780DD900265A7C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		44D504191A78147900265A7C /* ReachabilityTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityTableView.swift; sourceTree = "<group>"; };
+		44D5041B1A7821E600265A7C /* GSReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSReachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -366,6 +373,7 @@
 				2D7B6E851A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift */,
 				2D3744FA1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift */,
 				2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */,
+				44D504191A78147900265A7C /* ReachabilityTableView.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -438,6 +446,9 @@
 				2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */,
 				2D3FF2B51A23B8AC001BA278 /* DateUtils.h */,
 				2D3FF2B61A23B8AC001BA278 /* DateUtils.m */,
+				44D504161A780DD900265A7C /* Reachability.h */,
+				44D504171A780DD900265A7C /* Reachability.m */,
+				44D5041B1A7821E600265A7C /* GSReachability.swift */,
 				2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */,
 				2D6B07EF1A3637F30064DD39 /* DateManager.swift */,
 				2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */,
@@ -565,6 +576,7 @@
 				TargetAttributes = {
 					2D0825E71A152913008B504E = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 85PQGPWJWK;
 					};
 					2D0825FC1A152913008B504E = {
 						CreatedOnToolsVersion = 6.1;
@@ -640,6 +652,7 @@
 				2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */,
 				2D18E8E41A35FE5D0076F2A7 /* LeftSubpageViewController.swift in Sources */,
 				2D12012D1A4D84380065079E /* UniversityBuilding.swift in Sources */,
+				44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */,
 				2DBD4EC31A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift in Sources */,
 				2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */,
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
@@ -660,6 +673,7 @@
 				44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */,
 				2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,
+				44D504181A780DD900265A7C /* Reachability.m in Sources */,
 				2DBD4EC11A5AF9660055EA3A /* WeekSchedulesViewController.swift in Sources */,
 				44641E571A5DC67000AA46BB /* StudentLessonScheduleCell.swift in Sources */,
 				2D12012B1A4D83C20065079E /* GetUniversityBuildings.swift in Sources */,
@@ -676,6 +690,7 @@
 				2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */,
 				2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
+				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
@@ -813,7 +828,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "10c1bb51-3ad8-4999-a025-6e3e7ea56d1b";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -834,7 +849,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "10c1bb51-3ad8-4999-a025-6e3e7ea56d1b";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 			};
 			name = Release;
