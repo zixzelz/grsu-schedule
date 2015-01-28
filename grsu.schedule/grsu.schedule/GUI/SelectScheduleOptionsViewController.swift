@@ -24,7 +24,9 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        locationManager.requestWhenInUseAuthorization()
+        if (locationManager.respondsToSelector("requestWhenInUseAuthorization")) {
+            locationManager.requestWhenInUseAuthorization()
+        }
 
         scheduleOptions.scheduleDelegate = self
         scheduleOptions.scheduleDataSource = self

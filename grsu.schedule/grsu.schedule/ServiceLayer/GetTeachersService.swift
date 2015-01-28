@@ -176,10 +176,7 @@ class GetTeachersService: BaseDataService {
         
         let path = "/getTeachers"
         
-        var queryItems = [
-                NSURLQueryItem(name: "teacherId", value: teacherId),
-                NSURLQueryItem(name: "extended", value: "true")
-            ]
+        var queryItems = "teacherId=\(teacherId)&extended=true"
         
         resumeRequest(path, queryItems: queryItems, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
             

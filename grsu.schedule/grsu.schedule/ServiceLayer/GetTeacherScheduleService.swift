@@ -42,11 +42,7 @@ class GetTeacherScheduleService: BaseDataService {
         
         let path = "/getTeacherSchedule"
         
-        let queryItems = [
-            NSURLQueryItem(name: "teacherId", value: teacher.id),
-            NSURLQueryItem(name: "dateStart", value: DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2)),
-            NSURLQueryItem(name: "dateEnd", value: DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2))
-        ]
+        let queryItems = "teacherId=\(teacher.id)&dateStart=\(DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2))&dateEnd=\(DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2))"
         
         resumeRequest(path, queryItems: queryItems, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
             

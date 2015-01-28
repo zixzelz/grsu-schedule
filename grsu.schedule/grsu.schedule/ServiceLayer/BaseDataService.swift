@@ -10,12 +10,12 @@ import UIKit
 
 class BaseDataService: NSObject {
    
-    class func resumeRequest(path: String, queryItems: [AnyObject]?, completionHandler: ((NSDictionary?, NSError?) -> Void)!) -> NSURLSessionDataTask {
+    class func resumeRequest(path: String, queryItems: String?, completionHandler: ((NSDictionary?, NSError?) -> Void)!) -> NSURLSessionDataTask {
         let session = URLSession()
         
         let url = NSURL(scheme: UrlScheme, host: UrlHost, path: path)
         let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: true)
-        components?.queryItems = queryItems
+        components?.query = queryItems
         
         let request = NSURLRequest(URL: components!.URL!)
         

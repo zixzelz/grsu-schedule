@@ -42,11 +42,7 @@ class GetStudentScheduleService: BaseDataService {
         
         let path = "/getGroupSchedule"
         
-        let queryItems = [
-            NSURLQueryItem(name: "groupId", value: group.id),
-            NSURLQueryItem(name: "dateStart", value: DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2)),
-            NSURLQueryItem(name: "dateEnd", value: DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2))
-        ]
+        let queryItems = "groupId=\(group.id)&dateStart=\(DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2))&dateEnd=\(DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2))"
         
         resumeRequest(path, queryItems: queryItems, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
 

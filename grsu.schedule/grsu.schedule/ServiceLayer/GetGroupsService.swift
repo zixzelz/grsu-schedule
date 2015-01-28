@@ -44,11 +44,7 @@ class GetGroupsService: BaseDataService {
         
         let path = "/getGroups"
         
-        let queryItems = [
-            NSURLQueryItem(name: "facultyId", value: faculty.id),
-            NSURLQueryItem(name: "departmentId", value: department.id),
-            NSURLQueryItem(name: "course", value: course),
-        ]
+        let queryItems = "facultyId=\(faculty.id)&departmentId=\(department.id)&course=\(course)"
         
         resumeRequest(path, queryItems: queryItems, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
 

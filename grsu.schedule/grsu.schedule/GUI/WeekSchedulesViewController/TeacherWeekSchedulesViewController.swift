@@ -57,21 +57,30 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
     }
     
     func chooseGroup(groups: [GroupsEntity]) {
-        let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .ActionSheet)
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
-        alert.addAction(cancelAction)
-        
-        for group in groups {
+        #if giOS8OrGreater
+            let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .ActionSheet)
+            
+            let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            for group in groups {
             let action = UIAlertAction(title: group.title, style: .Default) { _ in
-                self.presentGroupSchedule(group)
+            self.presentGroupSchedule(group)
             }
             alert.addAction(action)
-        }
-        
-        self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
+            self.presentViewController(alert, animated: true, completion: nil)
+        #else
+
+            let al = UIAlertView(title: "", message: "Пока только в iOS 8.", delegate: nil, cancelButtonTitle: "OK")
+            al.show()
+            
+        #endif
+
     }
-    
+
     func presentGroupSchedule(group: GroupsEntity) {
         performSegueWithIdentifier("StudentSchedulePageIdentifier", sender: group)
     }
