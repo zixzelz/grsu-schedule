@@ -257,6 +257,13 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     }
 
     func canInteractiveTransition(interactiveTransitioning: RMSidebarInteractiveTransition, direction: GestureDirection) -> Bool {
+        if ((shownSidebar == .None && direction == .Left && rightSidebarViewController == nil) ||
+            (shownSidebar == .None && direction == .Right && leftSidebarViewController == nil) ||
+            (shownSidebar == .Left && direction == .Right) ||
+            (shownSidebar == .Right && direction == .Left)) {
+            return false
+        }
+        
         if (panRootView == false) {
             return false
         }

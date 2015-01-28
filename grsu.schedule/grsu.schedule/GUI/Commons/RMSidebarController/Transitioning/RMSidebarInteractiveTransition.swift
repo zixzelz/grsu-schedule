@@ -65,7 +65,7 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
             percentComplete = max(percentComplete, 0.001)
             updateInteractiveTransition(percentComplete)
         case .Ended:
-            NSLog("Ended")
+            //NSLog("Ended")
             interactive = false
             var velocity : CGFloat = velocityWithGestureRecognizer(panGestureRecognizer)
             var percentComplete : CGFloat = percentCompleteWithGestureRecognizer(panGestureRecognizer)
@@ -92,6 +92,12 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
                     completionSpeed = cancelCompletionSpeed
                     completionCurve = .EaseInOut
                 }
+            }
+            
+            if (percentComplete == 0.0) {
+                dispatch_after(1, dispatch_get_main_queue(), { () -> Void in
+                    self.cancelInteractiveTransition()
+                })
             }
             
 //            NSLog("completionSpeed \(completionSpeed)")
