@@ -221,7 +221,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     // MARK: - UITableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false);
+
         var menuIndexPath = NSIndexPath(forRow: indexPath.row+1, inSection: indexPath.section)
         
         if (menuIndexPath.isEqual(menuCellIndexPath)) {
