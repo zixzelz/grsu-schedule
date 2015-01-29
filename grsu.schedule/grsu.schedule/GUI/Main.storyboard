@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS" customClass="RMRootContainerView" customModule="grsu_schedule" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1854,9 +1854,9 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="3cS-fO-x8u"/>
-        <segue reference="vpV-t6-0WE"/>
-        <segue reference="Nv5-F0-siH"/>
-        <segue reference="gXH-W7-SBr"/>
+        <segue reference="b3P-IR-DQ5"/>
         <segue reference="hOF-R1-qwA"/>
+        <segue reference="gXH-W7-SBr"/>
+        <segue reference="vpV-t6-0WE"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D012B201A7ABAE100D8B5B1 /* RMRootContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */; };
 		2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */; };
 		2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */; };
 		2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505CA1A1662DC00171A2E /* BaseDataService.swift */; };
@@ -113,6 +114,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMRootContainerView.swift; sourceTree = "<group>"; };
 		2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDepartmentsService.swift; sourceTree = "<group>"; };
 		2D0505CA1A1662DC00171A2E /* BaseDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataService.swift; sourceTree = "<group>"; };
 		2D0505CC1A1676CD00171A2E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				2D0826121A15299D008B504E /* RMSidebarControllerTransitioning.swift */,
 				2D0826131A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift */,
 				2D0826141A15299D008B504E /* ViewController+RMSidebarController.swift */,
+				2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -683,6 +686,7 @@
 				2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */,
 				2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */,
 				2D0826221A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift in Sources */,
+				2D012B201A7ABAE100D8B5B1 /* RMRootContainerView.swift in Sources */,
 				2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */,
 				2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */,
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
@@ -828,7 +832,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ae420670-a072-418b-a6a4-bd99876a9776";
+				PROVISIONING_PROFILE = "40f418a7-c3b8-4073-acce-78f8e0fd8cde";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -849,7 +853,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ae420670-a072-418b-a6a4-bd99876a9776";
+				PROVISIONING_PROFILE = "40f418a7-c3b8-4073-acce-78f8e0fd8cde";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 			};
 			name = Release;

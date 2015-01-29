@@ -33,6 +33,10 @@ class RMSidebarControllerExpandedAnimatedTransitioning: NSObject, UIViewControll
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+        
+        let rootContainer = rootСontainerView() as RMRootContainerView
+        rootContainer.releaseFrame()
+        
         if (viewControllerToPresent == nil) {
             transitioningDelegate_.animateTransition(self)
         } else {
@@ -41,6 +45,10 @@ class RMSidebarControllerExpandedAnimatedTransitioning: NSObject, UIViewControll
     }
     
     func animationEnded(transitionCompleted: Bool) {
+        
+        let rootContainer = rootСontainerView() as RMRootContainerView
+        rootContainer.holdFrame()
+        
         transitioningDelegate_.animationEnded(transitionCompleted)
     }
 }
