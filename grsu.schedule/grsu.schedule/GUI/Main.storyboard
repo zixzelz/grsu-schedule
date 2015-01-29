@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
@@ -51,9 +51,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ew-L4-qbM">
-                                <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="386"/>
                                 <color key="backgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="v06-wL-ec9">
+                                    <rect key="frame" x="0.0" y="242" width="320" height="1"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentCellIdentifier" textLabel="40b-bH-mry" style="IBUITableViewCellStyleDefault" id="atC-gM-9JN">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -193,15 +198,29 @@
                                     <constraint firstAttribute="height" constant="64" id="pX9-Fd-sRp"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm8-uK-eJc">
+                                <rect key="frame" x="0.0" y="451" width="320" height="29"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <state key="normal" title="http://vk.com/grsuschedule">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="urlButtonPressed:" destination="CEG-CG-dQB" eventType="touchUpInside" id="0z1-RM-QN2"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="eem-i5-CtH" firstAttribute="leading" secondItem="ctI-7W-iKO" secondAttribute="leading" id="0ny-hb-hVE"/>
+                            <constraint firstAttribute="trailing" secondItem="wm8-uK-eJc" secondAttribute="trailing" id="CH6-Bu-lxe"/>
                             <constraint firstItem="eem-i5-CtH" firstAttribute="top" secondItem="ctI-7W-iKO" secondAttribute="top" id="Qnm-5m-HNL"/>
-                            <constraint firstItem="Apu-7C-Qkl" firstAttribute="top" secondItem="0ew-L4-qbM" secondAttribute="bottom" id="WXx-9W-YOV"/>
+                            <constraint firstItem="Apu-7C-Qkl" firstAttribute="top" secondItem="0ew-L4-qbM" secondAttribute="bottom" constant="30" id="WXx-9W-YOV"/>
+                            <constraint firstItem="Apu-7C-Qkl" firstAttribute="top" secondItem="wm8-uK-eJc" secondAttribute="bottom" id="adi-rN-Gvd"/>
                             <constraint firstAttribute="trailing" secondItem="0ew-L4-qbM" secondAttribute="trailing" id="c7l-d1-b3P"/>
                             <constraint firstItem="0ew-L4-qbM" firstAttribute="top" secondItem="eem-i5-CtH" secondAttribute="bottom" id="cwM-ee-KWP"/>
                             <constraint firstAttribute="trailing" secondItem="eem-i5-CtH" secondAttribute="trailing" id="gwC-GK-b8s"/>
+                            <constraint firstItem="wm8-uK-eJc" firstAttribute="leading" secondItem="ctI-7W-iKO" secondAttribute="leading" id="hnT-mW-ewc"/>
                             <constraint firstItem="0ew-L4-qbM" firstAttribute="leading" secondItem="ctI-7W-iKO" secondAttribute="leading" id="pc9-WD-NLh"/>
                         </constraints>
                     </view>
@@ -1834,10 +1853,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Nv5-F0-siH"/>
-        <segue reference="vpV-t6-0WE"/>
-        <segue reference="ZVo-zP-D5x"/>
         <segue reference="3cS-fO-x8u"/>
-        <segue reference="fh5-Bf-6CT"/>
+        <segue reference="vpV-t6-0WE"/>
+        <segue reference="Nv5-F0-siH"/>
+        <segue reference="gXH-W7-SBr"/>
+        <segue reference="hOF-R1-qwA"/>
     </inferredMetricsTieBreakers>
 </document>

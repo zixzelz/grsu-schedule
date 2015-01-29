@@ -828,7 +828,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ae420670-a072-418b-a6a4-bd99876a9776";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -849,7 +849,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ae420670-a072-418b-a6a4-bd99876a9776";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 			};
 			name = Release;

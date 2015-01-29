@@ -48,6 +48,11 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
         sender.selected = tableView.editing
     }
     
+    @IBAction func urlButtonPressed(sender: UIButton) {
+        let url = NSURL(string: "http://vk.com/grsuschedule")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+    
     func updateFavoriteOrder() {
         for i in 0..<favorites!.count {
             favorites![i].order = i
