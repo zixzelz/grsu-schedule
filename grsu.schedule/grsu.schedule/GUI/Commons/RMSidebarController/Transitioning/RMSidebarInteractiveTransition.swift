@@ -98,6 +98,7 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
                 dispatch_after(1, dispatch_get_main_queue(), { () -> Void in
                     self.cancelInteractiveTransition()
                 })
+                return
             }
             
 //            NSLog("completionSpeed \(completionSpeed)")
