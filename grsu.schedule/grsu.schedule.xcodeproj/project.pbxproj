@@ -52,6 +52,7 @@
 		2D8D59F01A682DDB00EB1884 /* WeekSchedulesHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */; };
 		2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */; };
 		2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */; };
+		2DBC294A1A8BADBE00494530 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBC29491A8BADBE00494530 /* libFlurry_6.0.0.a */; };
 		2DBD4E931A4EBD240055EA3A /* RYMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E921A4EBD240055EA3A /* RYMapViewController.swift */; };
 		2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E941A4EBD910055EA3A /* RYMapView.swift */; };
 		2DBD4E971A4EBDF50055EA3A /* RYBaseMapViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E961A4EBDF50055EA3A /* RYBaseMapViewProtocol.swift */; };
@@ -166,6 +167,8 @@
 		2D7B6E851A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScheduleOptionsViewController.swift; sourceTree = "<group>"; };
+		2DBC29481A8BADBE00494530 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		2DBC29491A8BADBE00494530 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		2DBD4E921A4EBD240055EA3A /* RYMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYMapViewController.swift; sourceTree = "<group>"; };
 		2DBD4E941A4EBD910055EA3A /* RYMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYMapView.swift; sourceTree = "<group>"; };
 		2DBD4E961A4EBDF50055EA3A /* RYBaseMapViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYBaseMapViewProtocol.swift; sourceTree = "<group>"; };
@@ -232,6 +235,7 @@
 				2DCF59B41A4C630B00D9F3FA /* libicucore.dylib in Frameworks */,
 				2DCF59B21A4C62EE00D9F3FA /* libc++.dylib in Frameworks */,
 				2DCF59B01A4C62DB00D9F3FA /* ImageIO.framework in Frameworks */,
+				2DBC294A1A8BADBE00494530 /* libFlurry_6.0.0.a in Frameworks */,
 				2DCF59AE1A4C62D300D9F3FA /* GLKit.framework in Frameworks */,
 				2DCF59AC1A4C62CA00D9F3FA /* CoreText.framework in Frameworks */,
 				2DCF59AA1A4C62C000D9F3FA /* CoreLocation.framework in Frameworks */,
@@ -305,6 +309,8 @@
 		2D0825EB1A152913008B504E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2DBC29481A8BADBE00494530 /* Flurry.h */,
+				2DBC29491A8BADBE00494530 /* libFlurry_6.0.0.a */,
 				2DCF59BB1A4C633A00D9F3FA /* SystemConfiguration.framework */,
 				2DCF59B91A4C632E00D9F3FA /* QuartzCore.framework */,
 				2DCF59B71A4C632100D9F3FA /* OpenGLES.framework */,
@@ -828,11 +834,15 @@
 					"$(PROJECT_DIR)/grsu.schedule",
 				);
 				INFOPLIST_FILE = grsu.schedule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/grsu.schedule",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "40f418a7-c3b8-4073-acce-78f8e0fd8cde";
+				PROVISIONING_PROFILE = "1ef9b993-ab76-48e6-bc8f-95fe0617aeff";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -849,11 +859,15 @@
 					"$(PROJECT_DIR)/grsu.schedule",
 				);
 				INFOPLIST_FILE = grsu.schedule/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/grsu.schedule",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "40f418a7-c3b8-4073-acce-78f8e0fd8cde";
+				PROVISIONING_PROFILE = "1ef9b993-ab76-48e6-bc8f-95fe0617aeff";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 			};
 			name = Release;

@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyDRuBofs3NN-GSEwklztolgYNvcURPH80I")
+        
+        Flurry.setCrashReportingEnabled(true)
+        Flurry.startSession("9W5R9JWXFCGXR7XJ5R83")
+        
         GSReachability.sharedInstance.startNotifier()
         return true
     }

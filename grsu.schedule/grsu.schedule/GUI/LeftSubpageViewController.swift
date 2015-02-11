@@ -150,6 +150,8 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
                 text = texts[0] + " " + texts[1].substringToIndex(advance(texts[1].startIndex, 1)) + ". " + texts[2].substringToIndex(advance(texts[2].startIndex, 1)) + "."
             }
             cell!.textLabel?.text = text
+        } else {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
         }
         
         return cell!

@@ -50,7 +50,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ew-L4-qbM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0ew-L4-qbM">
                                 <rect key="frame" x="0.0" y="64" width="320" height="386"/>
                                 <color key="backgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.34509803919999998" green="0.60784313729999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -1853,10 +1853,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3cS-fO-x8u"/>
-        <segue reference="b3P-IR-DQ5"/>
         <segue reference="hOF-R1-qwA"/>
+        <segue reference="Nv5-F0-siH"/>
         <segue reference="gXH-W7-SBr"/>
         <segue reference="vpV-t6-0WE"/>
+        <segue reference="3cS-fO-x8u"/>
     </inferredMetricsTieBreakers>
 </document>
