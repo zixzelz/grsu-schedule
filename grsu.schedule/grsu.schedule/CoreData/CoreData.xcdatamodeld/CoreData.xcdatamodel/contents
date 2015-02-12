@@ -22,7 +22,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="department" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DepartmentsEntity" inverseName="groups" inverseEntity="DepartmentsEntity" syncable="YES"/>
         <relationship name="faculty" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FacultiesEntity" inverseName="groups" inverseEntity="FacultiesEntity" syncable="YES"/>
-        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoriteEntity" inverseName="group" inverseEntity="FavoriteEntity" syncable="YES"/>
+        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FavoriteEntity" inverseName="group" inverseEntity="FavoriteEntity" syncable="YES"/>
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonScheduleEntity" inverseName="groups" inverseEntity="LessonScheduleEntity" syncable="YES"/>
     </entity>
     <entity name="LessonScheduleEntity" representedClassName="LessonScheduleEntity" syncable="YES">
@@ -50,7 +50,7 @@
         <attribute name="surname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoriteEntity" inverseName="teacher" inverseEntity="FavoriteEntity" syncable="YES"/>
+        <relationship name="favorite" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FavoriteEntity" inverseName="teacher" inverseEntity="FavoriteEntity" syncable="YES"/>
         <relationship name="lessons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LessonScheduleEntity" inverseName="teacher" inverseEntity="LessonScheduleEntity" syncable="YES"/>
     </entity>
     <elements>

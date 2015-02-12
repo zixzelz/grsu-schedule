@@ -47,6 +47,8 @@ class FavoriteManager: NSObject {
     }
     
     func addFavorite(group: GroupsEntity) {
+        Flurry.logEvent("add favorite group", withParameters: ["group": group.title])
+
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let cdHelper = delegate.cdh
         if let context = cdHelper.backgroundContext {
@@ -66,6 +68,8 @@ class FavoriteManager: NSObject {
     }
     
     func addFavorite(teacher: TeacherInfoEntity) {
+        Flurry.logEvent("add favorite teacher", withParameters: ["teacher": teacher.title!])
+
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let cdHelper = delegate.cdh
         if let context = cdHelper.backgroundContext {
@@ -86,6 +90,12 @@ class FavoriteManager: NSObject {
 
     func removeFavorite(item: FavoriteEntity) {
         
+        if let group = item.group {
+            Flurry.logEvent("remove favorite group", withParameters: ["group": group.title])
+        } else if let teacher = item.teacher {
+            Flurry.logEvent("remove favorite teacher", withParameters: ["teacher": teacher.title!])
+        }
+    
         NSNotificationCenter.defaultCenter().postNotificationName(GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil, userInfo: ["GSFavoriteManagerFavoriteObjectKey": item])
         
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate

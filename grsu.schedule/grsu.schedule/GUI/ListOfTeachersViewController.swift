@@ -22,6 +22,11 @@ class ListOfTeachersViewController: UITableViewController {
         fetchData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        Flurry.logEvent("List Of Teachers")
+    }
+
     func scrollToTop() {
         let top = self.tableView.contentInset.top
         self.tableView.contentOffset = CGPointMake(0, -top)

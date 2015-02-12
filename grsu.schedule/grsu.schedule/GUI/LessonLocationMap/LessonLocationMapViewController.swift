@@ -38,6 +38,11 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        Flurry.logEvent("Lesson Location Map")
+    }
+
     func fetchData() {
         GetUniversityBuildings.getBuildings() { [weak self](universityBuildings: [UniversityBuilding]?, error: NSError?) -> Void in
             if let wSelf = self {

@@ -49,6 +49,11 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         fetchData()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        Flurry.logEvent("Teacher Info", withParameters: ["Teacher": teacherInfo!.title!])
+    }
+    
     func setupRefreshControl() {
         self.refreshControl!.addTarget(self, action: "refreshTeacherInfo:", forControlEvents: UIControlEvents.ValueChanged)
     }

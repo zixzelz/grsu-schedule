@@ -842,7 +842,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ef9b993-ab76-48e6-bc8f-95fe0617aeff";
+				PROVISIONING_PROFILE = "a1737ca8-a4e8-4d90-a273-1fabdd67ead7";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -867,7 +867,7 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1ef9b993-ab76-48e6-bc8f-95fe0617aeff";
+				PROVISIONING_PROFILE = "a1737ca8-a4e8-4d90-a273-1fabdd67ead7";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
 			};
 			name = Release;
