@@ -65,10 +65,10 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
             alert.addAction(cancelAction)
             
             for group in groups {
-            let action = UIAlertAction(title: group.title, style: .Default) { _ in
-            self.presentGroupSchedule(group)
-            }
-            alert.addAction(action)
+                let action = UIAlertAction(title: group.title, style: .Default) { _ in
+                    self.presentGroupSchedule(group)
+                }
+                alert.addAction(action)
             }
             
             self.presentViewController(alert, animated: true, completion: nil)
