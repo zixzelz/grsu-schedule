@@ -46,3 +46,7 @@ calendar.rangeOfUnit(.CalendarUnitDay, startDate: &toDate, interval: nil, forDat
 
 let difference = calendar.components(.CalendarUnitDay, fromDate: fromDate!, toDate: toDate!, options: nil)
 difference.day
+
+
+let ddd = 567
+let sddd = String(ddd)
