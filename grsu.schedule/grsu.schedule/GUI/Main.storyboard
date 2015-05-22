@@ -23,7 +23,7 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="leftOffset">
                             <real key="value" value="48"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="panOnlyRootView" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="panOnlyRootView" value="NO"/>
                         <userDefinedRuntimeAttribute type="image" keyPath="sidebarNavigationIco" value="NavigationBarSidebarMenu"/>
                         <userDefinedRuntimeAttribute type="color" keyPath="tintColorSidebarNavigationIco">
                             <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -226,6 +226,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="editButton" destination="IaG-TA-yM9" id="hVw-5i-YUc"/>
                         <outlet property="tableView" destination="0ew-L4-qbM" id="3rO-xn-hjs"/>
                     </connections>
                 </viewController>
@@ -1853,10 +1854,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="5hu-zp-bdB"/>
-        <segue reference="Ydr-vv-0vX"/>
         <segue reference="IlV-GR-mxt"/>
-        <segue reference="Nv5-F0-siH"/>
+        <segue reference="b3P-IR-DQ5"/>
         <segue reference="MBi-ch-BHc"/>
+        <segue reference="gXH-W7-SBr"/>
+        <segue reference="hOF-R1-qwA"/>
     </inferredMetricsTieBreakers>
 </document>

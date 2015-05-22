@@ -13,6 +13,7 @@ let FavoriteTableSection = 1
 class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var editButton: UIButton!
     
     var favorites: Array<FavoriteEntity>?
     
@@ -33,6 +34,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
             if let wSelf = self {
                 wSelf.favorites = items
                 wSelf.tableView.reloadData()
+                wSelf.updateState()
             }
         }
         
@@ -92,6 +94,10 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
             }
         }
         
+    }
+    
+    func updateState() {
+        editButton.hidden = !(favorites?.count > 0)
     }
     
     // MARK: - UITableViewDataSource
@@ -181,6 +187,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
             
             favorites!.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            updateState()
         }
     }
     
