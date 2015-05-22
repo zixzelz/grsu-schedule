@@ -11,8 +11,7 @@ import UIKit
 class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
 
     @IBOutlet private var favoriteBarButtonItem : UIButton!
-    var teacher : TeacherInfoEntity?
-    
+    var teacher : TeacherInfoEntity?    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +33,7 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
         if (sender.selected) {
             manager.addFavorite(teacher!)
         } else {
-            manager.removeFavorite(teacher!.favorite)
+            manager.removeFavorite(teacher!.favorite!)
         }
         
         self.sidebarController?.addLeftSidebarButton(self)

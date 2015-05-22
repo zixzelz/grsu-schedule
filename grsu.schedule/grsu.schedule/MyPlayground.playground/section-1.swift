@@ -48,5 +48,6 @@ let difference = calendar.components(.CalendarUnitDay, fromDate: fromDate!, toDa
 difference.day
 
 
-let ddd = 567
-let sddd = String(ddd)
+let f = CGRectMake(20, 20, 50, 50)
+
+CGRectGetMidX(f)

@@ -24,6 +24,6 @@ class TeacherInfoEntity: NSManagedObject {
     @NSManaged var skype: String?
     @NSManaged var updatedDate: NSDate
     @NSManaged var lessons: NSSet
-    @NSManaged var favorite: FavoriteEntity
+    @NSManaged var favorite: FavoriteEntity?
 
 }

@@ -87,7 +87,9 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        didSelectRow(row)
+        if (items?.count > 0) {
+            didSelectRow(row)
+        }
     }
     
 }
