@@ -51,6 +51,7 @@
 		2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7B6E851A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift */; };
 		2D8D59F01A682DDB00EB1884 /* WeekSchedulesHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */; };
 		2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */; };
+		2DB1DF451B0FB12100272312 /* RYRussianIndexedCollation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB1DF441B0FB12100272312 /* RYRussianIndexedCollation.swift */; };
 		2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */; };
 		2DBC294A1A8BADBE00494530 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DBC29491A8BADBE00494530 /* libFlurry_6.0.0.a */; };
 		2DBD4E931A4EBD240055EA3A /* RYMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E921A4EBD240055EA3A /* RYMapViewController.swift */; };
@@ -166,6 +167,7 @@
 		2D7B6E831A39F2CE002BC208 /* TeacherInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherInfoViewController.swift; sourceTree = "<group>"; };
 		2D7B6E851A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2DB1DF441B0FB12100272312 /* RYRussianIndexedCollation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYRussianIndexedCollation.swift; sourceTree = "<group>"; };
 		2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScheduleOptionsViewController.swift; sourceTree = "<group>"; };
 		2DBC29481A8BADBE00494530 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		2DBC29491A8BADBE00494530 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
@@ -461,6 +463,7 @@
 				2D96AA641A1BB0BB00EDD9E2 /* Constants.swift */,
 				2D6B07EF1A3637F30064DD39 /* DateManager.swift */,
 				2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */,
+				2DB1DF441B0FB12100272312 /* RYRussianIndexedCollation.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -666,6 +669,7 @@
 				2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */,
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
 				2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */,
+				2DB1DF451B0FB12100272312 /* RYRussianIndexedCollation.swift in Sources */,
 				2DBD4EC51A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift in Sources */,
 				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,

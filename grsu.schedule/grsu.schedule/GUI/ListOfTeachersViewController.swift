@@ -61,14 +61,14 @@ class ListOfTeachersViewController: UITableViewController {
         fetchData(useCache: false)
     }
     
-    func prepareDataWithTeachers(items: Array<TeacherInfoEntity>) -> [[TeacherInfoEntity]] {
-        let theCollation = UILocalizedIndexedCollation.currentCollation() as UILocalizedIndexedCollation
+    func prepareDataWithTeachers(items: [TeacherInfoEntity]) -> [[TeacherInfoEntity]] {
+        let theCollation = RYRussianIndexedCollation()
         
         let highSection = theCollation.sectionIndexTitles.count
         var sections = [[TeacherInfoEntity]](count: highSection, repeatedValue: [TeacherInfoEntity]())
         
         for item in items {
-            let sectionIndex = theCollation.sectionForObject(item, collationStringSelector: "title")
+            let sectionIndex = theCollation.sectionForObject(item.title)
             sections[sectionIndex].append(item)
         }
         return sections
@@ -85,7 +85,6 @@ class ListOfTeachersViewController: UITableViewController {
                 teacher = searchDataSource.searcheArray![indexPath.row]
             }
         }
-
         
         if (segue.identifier == "TeacherInfoIdentifier") {
             let viewController = segue.destinationViewController as TeacherInfoViewController
@@ -140,16 +139,16 @@ class ListOfTeachersViewController: UITableViewController {
     }
     
     override func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-        return UILocalizedIndexedCollation.currentCollation().sectionIndexTitles
+        return RYRussianIndexedCollation().sectionIndexTitles
     }
     
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        return UILocalizedIndexedCollation.currentCollation().sectionForSectionIndexTitleAtIndex(index)
+        return RYRussianIndexedCollation().sectionForSectionIndexTitleAtIndex(index)
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if (teacherSections?[section].count > 0) {
-            return UILocalizedIndexedCollation.currentCollation().sectionIndexTitles[section] as? String
+            return RYRussianIndexedCollation().sectionIndexTitles[section]
         }
         return nil
     }
