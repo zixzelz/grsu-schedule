@@ -103,6 +103,7 @@
 		44D504181A780DD900265A7C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D504171A780DD900265A7C /* Reachability.m */; };
 		44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D504191A78147900265A7C /* ReachabilityTableView.swift */; };
 		44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D5041B1A7821E600265A7C /* GSReachability.swift */; };
+		44F556FA1D7B577F00DF6FF7 /* Array+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -223,6 +224,7 @@
 		44D504171A780DD900265A7C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		44D504191A78147900265A7C /* ReachabilityTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityTableView.swift; sourceTree = "<group>"; };
 		44D5041B1A7821E600265A7C /* GSReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSReachability.swift; sourceTree = "<group>"; };
+		44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Dict.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -464,6 +466,7 @@
 				2D6B07EF1A3637F30064DD39 /* DateManager.swift */,
 				2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */,
 				2DB1DF441B0FB12100272312 /* RYRussianIndexedCollation.swift */,
+				44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 		2D0825E01A152913008B504E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Ruslan Maslouski";
 				TargetAttributes = {
@@ -689,6 +693,7 @@
 				44D504181A780DD900265A7C /* Reachability.m in Sources */,
 				2DBD4EC11A5AF9660055EA3A /* WeekSchedulesViewController.swift in Sources */,
 				44641E571A5DC67000AA46BB /* StudentLessonScheduleCell.swift in Sources */,
+				44F556FA1D7B577F00DF6FF7 /* Array+Dict.swift in Sources */,
 				2D12012B1A4D83C20065079E /* GetUniversityBuildings.swift in Sources */,
 				2DBD4E931A4EBD240055EA3A /* RYMapViewController.swift in Sources */,
 				2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */,

@@ -11,6 +11,6 @@ import UIKit
 class DaySchedule: NSObject {
     
     var date : NSDate!
-    var lessons : Array<LessonScheduleEntity> = []
+    var lessons : [LessonScheduleEntity] = []
 
 }

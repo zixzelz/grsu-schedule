@@ -8,120 +8,132 @@
 
 import UIKit
 
-enum RMSidebar : Int {
+enum RMSidebar: Int {
     case None = 0
     case Left
     case Right
 }
+
+enum RMSidebarIdentifier: String {
+    case root = "root"
+    case right = "right"
+    case left = "left"
+}
+
 // TODO: add spring when trnsition was canceled
 
 class RMSidebarController: UIViewController, UIViewControllerTransitioningDelegate, RMSidebarInteractiveTransitionDelegate {
 
-    var leftSidebarViewController : UIViewController?
-    var rightSidebarViewController : UIViewController?
-    var rootViewController : UIViewController?
-    private var animationController : RMSidebarControllerExpandedAnimatedTransitioning?
-    private var interactionController : RMSidebarInteractiveTransition?
+    var leftSidebarViewController: UIViewController?
+    var rightSidebarViewController: UIViewController?
+    var rootViewController: UIViewController?
+    private var animationController: RMSidebarControllerExpandedAnimatedTransitioning?
+    private var interactionController: RMSidebarInteractiveTransition?
 
-    private var shownSidebar : RMSidebar = .None
-    
-    @IBInspectable var leftOffset : CGFloat = 20
-    @IBInspectable var rightOffset : CGFloat = 20
-    
-    @IBInspectable var panOnlyRootView : Bool = true
-    
-    @IBInspectable var panRootView : Bool = true
+    private var shownSidebar: RMSidebar = .None
+
+    @IBInspectable var leftOffset: CGFloat = 20
+    @IBInspectable var rightOffset: CGFloat = 20
+
+    @IBInspectable var panOnlyRootView: Bool = true
+
+    @IBInspectable var panRootView: Bool = true
 //    @IBInspectable var bezelPanRootView : Bool = true
 
-    @IBInspectable var sidebarNavigationIco : UIImage?
-    @IBInspectable var tintColorSidebarNavigationIco : UIColor = UIColor.blackColor()
+    @IBInspectable var sidebarNavigationIco: UIImage?
+    @IBInspectable var tintColorSidebarNavigationIco: UIColor = UIColor.blackColor()
 
-    override init() {
-        super.init()
-        setup();
-    }
-    
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+
         setup();
     }
-    
+
     private func setup() {
-        var slideAnimatedTransitioning = SlideAnimatedTransitioning()
-        self.animationController = RMSidebarControllerExpandedAnimatedTransitioning(transitioningDelegate: slideAnimatedTransitioning)
+
+        let slideAnimatedTransitioning = SlideAnimatedTransitioning()
+        animationController = RMSidebarControllerExpandedAnimatedTransitioning(transitioningDelegate: slideAnimatedTransitioning)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         interactionController = RMSidebarInteractiveTransition(view: view)
         interactionController?.delegate = self
 
         self.setupWithStoryboard();
-}
-    
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
     }
 
     func setupWithStoryboard() {
-        for identifier in ["left", "root"] {
-            self.performSegueWithIdentifier(identifier, sender: self);
+
+        let identifiers: [RMSidebarIdentifier] = [.left, .root]
+        for identifier in identifiers {
+
+            performSegueWithIdentifier(identifier.rawValue, sender: self)
         }
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "left") {
-            self.leftSidebarViewController = segue.destinationViewController as? UIViewController;
-        } else if (segue.identifier == "right") {
-            self.rightSidebarViewController = segue.destinationViewController as? UIViewController;
-        } else if (segue.identifier == "root") {
-            self.rootViewController = segue.destinationViewController as? UIViewController;
+
+        if segue.identifier == RMSidebarIdentifier.left.rawValue {
+            leftSidebarViewController = segue.destinationViewController
+        } else if segue.identifier == RMSidebarIdentifier.right.rawValue {
+            rightSidebarViewController = segue.destinationViewController
+        } else if segue.identifier == RMSidebarIdentifier.root.rawValue {
+            rootViewController = segue.destinationViewController
         }
     }
-    
+
     // MARK: - RootViewController Navigation Bar
-    
+
     private func setupRootNavigationController(vc: UIViewController) {
-        if ((vc.isKindOfClass(UINavigationController.classForCoder())) != true) {
-            return;
+
+        guard let rootNavigationController = vc as? UINavigationController else { return }
+        guard let topViewController = rootNavigationController.topViewController else { return }
+
+        if leftSidebarViewController != nil {
+
+            addLeftSidebarButton(topViewController)
         }
-        
-        let rootNavigationController = vc as UINavigationController
-        
-        if ((leftSidebarViewController) != nil) {
-            addLeftSidebarButton(rootNavigationController.topViewController)
-        }
-        if ((rightSidebarViewController) != nil) {
-            addRightSidebarButton(rootNavigationController.topViewController)
+        if rightSidebarViewController != nil {
+
+            addRightSidebarButton(topViewController)
         }
     }
-    
+
     func addLeftSidebarButton(vc: UIViewController) {
-        let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "leftRootBarButtonItemPressed:")
+
+        let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: #selector(RMSidebarController.leftRootBarButtonItemPressed(_:)))
         item.tintColor = tintColorSidebarNavigationIco
         vc.navigationItem.leftBarButtonItem = item
     }
-    
+
     func addRightSidebarButton(vc: UIViewController) {
-        let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: "rightRootBarButtonItemPressed:")
+
+        let item = UIBarButtonItem(image: sidebarNavigationIco, style: .Plain, target: self, action: #selector(RMSidebarController.rightRootBarButtonItemPressed(_:)))
         item.tintColor = tintColorSidebarNavigationIco
         vc.navigationItem.rightBarButtonItem = item
     }
-    
+
     func leftRootBarButtonItemPressed(sender: AnyObject) {
-        if (self.shownSidebar == .Left) {
-            hideSidebar();
+
+        if shownSidebar == .Left {
+            hideSidebar()
         } else {
-            showLeftSidebar();
+            showLeftSidebar()
         }
     }
-    
+
     func rightRootBarButtonItemPressed(sender: AnyObject) {
         // TODO
     }
-    
+
     // MARK: - RootViewController
-    
+
     func presentRootViewController(viewControllerToPresent: UIViewController, animated flag: Bool) {
         setupRootNavigationController(viewControllerToPresent)
 
@@ -129,12 +141,12 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
             replaceRootViewController(viewControllerToPresent, animated: flag)
             return
         }
-        
+
         self.addChildViewController(viewControllerToPresent)
-        
+
         animationController?.viewControllerToPresent = viewControllerToPresent
         self.animationController?.presentedViewController = rootViewController
-        
+
         hideSidebar { (completed) -> Void in
             self.animationController?.viewControllerToPresent = nil
             self.animationController?.presentedViewController = nil
@@ -146,16 +158,16 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
             }
         }
     }
-    
+
     private func replaceRootViewController(viewControllerToPresent: UIViewController, animated flag: Bool) {
         if (flag == false) {
             rootViewController?.removeFromParentViewController()
             rootViewController?.view.removeFromSuperview()
-            
+
             self.addChildViewController(viewControllerToPresent)
             viewControllerToPresent.view.frame = self.view.bounds
             self.view.addSubview(viewControllerToPresent.view)
-            
+
             rootViewController = viewControllerToPresent
         } else {
             animatedReplaceRootViewController(viewControllerToPresent)
@@ -163,7 +175,7 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     }
 
     private func animatedReplaceRootViewController(viewControllerToPresent: UIViewController) {
-        
+
         UIView.transitionFromView(rootViewController!.view,
             toView: viewControllerToPresent.view,
             duration: 0.3,
@@ -173,27 +185,28 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
                 self.rootViewController = viewControllerToPresent
         }
     }
-    
+
     // MARK: - RootViewController Utils
-  
+
     func enableRootViewController(enabled: Bool) {
-        var vc = rootViewController
-        if ((vc?.isKindOfClass(UINavigationController.classForCoder())) == true) {
-            vc = (rootViewController as UINavigationController).topViewController
+
+        if let vc = rootViewController as? UINavigationController {
+
+            let topVC = vc.topViewController
+            topVC?.view.userInteractionEnabled = enabled
         }
-        vc?.view.userInteractionEnabled = enabled
     }
-    
+
     // MARK: - Sidebar
-    
+
     func showLeftSidebar() {
         showSidebar(.Left, animated: true);
     }
-    
+
     func showRightSidebar() {
         showSidebar(.Right, animated: true);
     }
-    
+
     func showSidebar(sidebar: RMSidebar, animated: Bool) {
         var sidebarViewController: UIViewController?
         switch (sidebar) {
@@ -201,7 +214,7 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
         case .Right: sidebarViewController = self.rightSidebarViewController
         default: break
         }
-        
+
         if (sidebarViewController == nil) {
             return;
         }
@@ -220,11 +233,11 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
             }
         })
     }
-    
+
     func hideSidebar() {
         hideSidebar(nil)
     }
-    
+
     func hideSidebar(completion: ((completed: Bool) -> Void)?) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             var completed = false
@@ -240,12 +253,12 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     }
 
     // MARK: - RMSidebarInteractiveTransitionDelegate
-    
+
     func interactiveTransitionStarted(interactiveTransitioning: RMSidebarInteractiveTransition, direction: GestureDirection) {
-        
+
         if (shownSidebar == RMSidebar.None) {
-            
-            var sidebar : RMSidebar
+
+            var sidebar: RMSidebar
             switch (direction) {
             case .Right: sidebar = .Left
             case .Left: sidebar = .Right
@@ -257,42 +270,49 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
     }
 
     func canInteractiveTransition(interactiveTransitioning: RMSidebarInteractiveTransition, direction: GestureDirection) -> Bool {
+
         if ((shownSidebar == .None && direction == .Left && rightSidebarViewController == nil) ||
             (shownSidebar == .None && direction == .Right && leftSidebarViewController == nil) ||
             (shownSidebar == .Left && direction == .Right) ||
             (shownSidebar == .Right && direction == .Left)) {
-            return false
-        }
-        
-        if (panRootView == false) {
-            return false
-        }
-        
-        if (panOnlyRootView == true) {
-            var nc = rootViewController as UINavigationController
-            if ((nc.isKindOfClass(UINavigationController.classForCoder())) == true && nc.viewControllers.count > 1) {
+
                 return false
+        }
+
+        if panRootView == false {
+
+            return false
+        }
+
+        if panOnlyRootView == true {
+
+            if let nc = rootViewController as? UINavigationController {
+
+                if nc.viewControllers.count > 1 {
+
+                    return false
+                }
             }
         }
         return true
     }
-    
+
     // MARK: - UIViewControllerTransitioningDelegate
-    
+
     func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         animationController?.direction_ = .Right;
         animationController?.action_ = .Present
         animationController?.offset_ = offsetForSidebar(shownSidebar);
         return animationController;
     }
-    
+
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         animationController?.direction_ = .Left;
         animationController?.action_ = .Dismiss
         animationController?.offset_ = offsetForSidebar(shownSidebar);
         return animationController;
     }
-    
+
     func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if (interactionController?.interactive == true) {
             interactionController?.offset = offsetForSidebar(shownSidebar)
@@ -301,7 +321,7 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
             return nil
         }
     }
-    
+
     func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if (interactionController?.interactive == true) {
             interactionController?.offset = offsetForSidebar(shownSidebar)
@@ -310,16 +330,18 @@ class RMSidebarController: UIViewController, UIViewControllerTransitioningDelega
             return nil
         }
     }
-    
+
     // MARK: - Utils
-    
+
     func offsetForSidebar(sidebar: RMSidebar) -> CGFloat {
-        var offset : CGFloat
+
+        var offset: CGFloat
         switch (sidebar) {
         case .Left: offset = leftOffset
         case .Right: offset = rightOffset
         default: offset = 50;
         }
-        return CGRectGetWidth(self.view.bounds) - offset;
+
+        return self.view.bounds.width - offset
     }
 }

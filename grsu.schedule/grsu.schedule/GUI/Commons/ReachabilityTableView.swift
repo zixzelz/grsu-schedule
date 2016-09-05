@@ -35,7 +35,7 @@ class ReachabilityTableView: UITableView {
     }
     
     func reachabilityChanged(notification: NSNotification) {
-        let reach = notification.object as GSReachability
+        let reach = notification.object as! GSReachability
         if ( !reach.isHostAvailable()) {
             addUnavailableHeader(true)
         } else {

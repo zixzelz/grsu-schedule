@@ -12,8 +12,7 @@ class WeekSchedulesHeaderFooterView: UITableViewHeaderFooterView {
 
     @IBOutlet private weak var textLabel_: UILabel!
     
-    func textLabel() -> UILabel {
+    override var textLabel: UILabel? {
         return textLabel_
     }
-
 }

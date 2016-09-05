@@ -11,19 +11,21 @@ import UIKit
 class DateManager: NSObject {
  
     class func scheduleWeeks() -> [GSWeekItem] {
+        
         let date = NSDate()
         let calendar = NSCalendar.currentCalendar()
         let formatterDate = NSDateFormatter()
         formatterDate.dateStyle = .ShortStyle
         
         var startOfTheWeek : NSDate?
-        var endOfWeek : NSDate?
+//        var endOfWeek : NSDate?
         var interval: NSTimeInterval = 0
         
-        calendar.rangeOfUnit(NSCalendarUnit.WeekCalendarUnit, startDate: &startOfTheWeek, interval: &interval, forDate: date)
+        //TODO: NSCalendarUnit .WeekCalendarUnit
+        calendar.rangeOfUnit(.WeekOfMonth, startDate: &startOfTheWeek, interval: &interval, forDate: date)
         
-        var items  = Array<GSWeekItem>()
-        for (var i = 0; i < 4; i++) {
+        var items  = [GSWeekItem]()
+        for  _ in 0 ..< 4 {
             let endOfWeek = startOfTheWeek?.dateByAddingTimeInterval(interval-1)
             
             let dateStartString = formatterDate.stringFromDate(startOfTheWeek!)
@@ -44,18 +46,19 @@ class DateManager: NSObject {
     
         let calendar = NSCalendar.currentCalendar();
     
-        calendar.rangeOfUnit(.CalendarUnitDay, startDate: &fromDate, interval: nil, forDate: fromDateTime)
-        calendar.rangeOfUnit(.CalendarUnitDay, startDate: &toDate, interval: nil, forDate: toDateTime)
+        calendar.rangeOfUnit(.Day, startDate: &fromDate, interval: nil, forDate: fromDateTime)
+        calendar.rangeOfUnit(.Day, startDate: &toDate, interval: nil, forDate: toDateTime)
         
-        let difference = calendar.components(.CalendarUnitDay, fromDate: fromDate!, toDate: toDate!, options: nil)
+        let difference = calendar.components(.Day, fromDate: fromDate!, toDate: toDate!, options: [])
         
         return difference.day;
     }
     
     class func timeIntervalWithTimeText(time: String) -> Int {
+        
         let arr = time.componentsSeparatedByString(":")
-        let h : Int = arr[0].toInt()!
-        let m : Int = arr[1].toInt()!
+        let h : Int = Int(arr[0])!
+        let m : Int = Int(arr[1])!
         
         return h * 60 + m
     }

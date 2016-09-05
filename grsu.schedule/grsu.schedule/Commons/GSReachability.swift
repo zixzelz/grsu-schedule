@@ -26,7 +26,8 @@ class GSReachability: Reachability {
     // MARK: Reachability
     
     func isHostAvailable() -> Bool {
-        if ( self.currentReachabilityStatus().value == NotReachable.value) {
+        
+        if ( self.currentReachabilityStatus() == NotReachable) {
             return false;
         }
         return true;

@@ -10,40 +10,40 @@ import UIKit
 
 class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-    @IBInspectable var backgroundColor : UIColor = UIColor.whiteColor()
-    
-    @IBOutlet private var navigationTitle : UILabel!
-    @IBOutlet private var pageControl : UIPageControl!
-    
-    var possibleWeeks : Array<GSWeekItem>!
-    var dateScheduleQuery : DateScheduleQuery!
-    
-    required init(coder aDecoder: NSCoder) {
+    @IBInspectable var backgroundColor: UIColor = UIColor.whiteColor()
+
+    @IBOutlet private var navigationTitle: UILabel!
+    @IBOutlet private var pageControl: UIPageControl!
+
+    var possibleWeeks: [GSWeekItem]!
+    var dateScheduleQuery: DateScheduleQuery!
+
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         self.dataSource = self
         self.delegate = self
     }
 
     override func viewDidLoad() {
-        
+
         self.view.backgroundColor = backgroundColor
         setupPageController()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "favoritWillRemoveNotification:", name: GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseSchedulesPageViewController.favoritWillRemoveNotification(_:)), name: GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil)
     }
-    
+
     func setupPageController() {
         let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!
 
         pageControl.numberOfPages = possibleWeeks.count
-        pageControl.currentPage = find(weeks, dateScheduleQuery.startWeekDate!)!
+        pageControl.currentPage = weeks.indexOf(dateScheduleQuery.startWeekDate!)!
         updateNavigationTitle()
-        
+
         let vc = weekScheduleController()
         self.setViewControllers([vc], direction: .Forward, animated: false, completion: nil)
     }
-    
+
     func updateNavigationTitle() {
         let index = pageControl.currentPage
 
@@ -53,40 +53,42 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
             self.navigationTitle.alpha = 1.0
         })
     }
-    
-    func weekScheduleController(weekIndex : Int? = nil) -> UIViewController {
+
+    func weekScheduleController(weekIndex: Int? = nil) -> UIViewController {
         let vc = UIViewController()
         return vc
     }
 
-    func favoritWillRemoveNotification(notification: NSNotification){
+    func favoritWillRemoveNotification(notification: NSNotification) {
     }
-    
+
     // MARK: - UIPageViewControllerDataSource
-    
+
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var vc : UIViewController?
+        var vc: UIViewController?
         if (pageControl.currentPage > 0) {
             let index = pageControl.currentPage - 1
-            vc = weekScheduleController(weekIndex: index)
+            vc = weekScheduleController(index)
         }
         return vc
     }
-    
+
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var vc : UIViewController?
+        var vc: UIViewController?
         if (pageControl.currentPage < pageControl.numberOfPages - 1) {
             let index = pageControl.currentPage + 1
-            vc = weekScheduleController(weekIndex: index)
+            vc = weekScheduleController(index)
         }
         return vc
     }
-    
+
     // MARK: - UIPageViewControllerDelegate
-    
-    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+
         if (completed) {
-            if let vc = pageViewController.viewControllers.last as? WeekSchedulesViewController {
+
+            if let vc = pageViewController.viewControllers?.last as? WeekSchedulesViewController {
                 let index = indexOfViewController(vc)
                 pageControl.currentPage = index
                 updateNavigationTitle()
@@ -97,8 +99,9 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     // MARK: - Utils
 
     func indexOfViewController(vc: WeekSchedulesViewController) -> Int {
-        let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!
-        return find(weeks, vc.dateScheduleQuery!.startWeekDate!)!
+        
+        let weeks = possibleWeeks.map { $0.startDate } as [NSDate]
+        return weeks.indexOf(vc.dateScheduleQuery.startWeekDate!)!
     }
-    
+
 }

@@ -10,10 +10,11 @@ import UIKit
 
 class RMSidebarInitRootViewControllerSegue: UIStoryboardSegue {
     override func perform() {
-        let src  = self.sourceViewController as RMSidebarController
-        let dest = self.destinationViewController as UIViewController
-        
-        src.presentRootViewController(dest, animated: false)
+        if let src = self.sourceViewController as? RMSidebarController {
+
+            let dest = self.destinationViewController as UIViewController
+            src.presentRootViewController(dest, animated: false)
+        }
     }
-    
+
 }

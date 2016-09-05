@@ -51,7 +51,7 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("TeacherWeekSchedulesViewController") as TeacherWeekSchedulesViewController
+        let vc = storyboard.instantiateViewControllerWithIdentifier("TeacherWeekSchedulesViewController") as! TeacherWeekSchedulesViewController
         vc.dateScheduleQuery = query
         vc.teacher = teacher
         

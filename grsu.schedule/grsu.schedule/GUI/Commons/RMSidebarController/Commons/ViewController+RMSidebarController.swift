@@ -19,8 +19,8 @@ extension UIViewController {
         
         let res = (parent is RMSidebarController ? parent : nil) ??
             (self.navigationController != nil ? self.navigationController?.sidebarController : nil) ??
-            (self.presentingViewController? is RMSidebarController ? self.presentingViewController : nil);
-        return res as RMSidebarController?
+            (self.presentingViewController is RMSidebarController ? self.presentingViewController : nil);
+        return res as? RMSidebarController
         }
     }
 }

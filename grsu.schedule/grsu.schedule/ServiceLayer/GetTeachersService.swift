@@ -9,60 +9,62 @@
 import UIKit
 import CoreData
 
+typealias GetTeachersCompletionHandlet = ServiceResult<[TeacherInfoEntity], NSError> -> Void
+
 class GetTeachersService: BaseDataService {
-   
+
     // MARK: - Teacher
-    
-    class func getTeacher(teacherId : String, completionHandler: ((TeacherInfoEntity?, NSError?) -> Void)!) {
+
+    class func getTeacher(teacherId: String, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)!) {
         getTeacher(teacherId, useCache: true, completionHandler: completionHandler)
     }
-    
-    class func getTeacher(teacherId : String, useCache: Bool, completionHandler: ((TeacherInfoEntity?, NSError?) -> Void)!) {
-        
+
+    class func getTeacher(teacherId: String, useCache: Bool, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)) {
+
         if (useCache == false) {
-            featchTeacher(teacherId) { (item: TeacherInfoEntity?, error: NSError?) -> Void in
-                if let item = item {
-                    completionHandler(item, error)
-                } else {
-                    GetTeachersService.featchTeacherFromCache(teacherId, completionHandler: completionHandler)
+            featchTeacher(teacherId) { result -> Void in
+
+                switch result {
+                case .Failure: self.featchTeacherFromCache(teacherId, completionHandler: completionHandler)
+                case .Success: completionHandler(result)
                 }
             }
         } else {
-            
-            featchTeacherFromCache(teacherId, completionHandler: { (teacherInfo: TeacherInfoEntity?, error: NSError?) -> Void in
-                let expiryDate = teacherInfo?.updatedDate.dateByAddingTimeInterval(TeacherCacheTimeInterval)
-                
-                if (expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending ) {
-                    self.featchTeacher(teacherId) { (item: TeacherInfoEntity?, error: NSError?) -> Void in
-                        if let item = item {
-                            completionHandler(item, error)
-                        } else {
-                            completionHandler(teacherInfo, error)
-                        }
-                    }
-                } else {
-                    completionHandler(teacherInfo, error)
-                }
+
+            featchTeacherFromCache(teacherId, completionHandler: { result -> Void in
+
+//                let expiryDate = teacherInfo?.updatedDate.dateByAddingTimeInterval(TeacherCacheTimeInterval)
+//
+//                if (expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending) {
+//                    self.featchTeacher(teacherId) { (item: TeacherInfoEntity?, error: NSError?) -> Void in
+//                        if let item = item {
+//                            completionHandler(item, error)
+//                        } else {
+//                            completionHandler(teacherInfo, error)
+//                        }
+//                    }
+//                } else {
+//                    completionHandler(teacherInfo, error)
+//                }
 
             })
-            
+
         }
-        
     }
-    
+
     // MARK: - Teachers
-    
-    class func getTeachers(completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
+
+    class func getTeachers(completionHandler: GetTeachersCompletionHandlet) {
         getTeachers(true, completionHandler: completionHandler)
     }
-    
-    class func getTeachers(useCache: Bool, completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
-        
+
+    class func getTeachers(useCache: Bool, completionHandler: GetTeachersCompletionHandlet) {
+
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsTeachersKey = "TeachersKey"
-        let date = userDefaults.objectForKey(userDefaultsTeachersKey) as NSDate?
+        let date = userDefaults.objectForKey(userDefaultsTeachersKey) as? NSDate
         let expiryDate = date?.dateByAddingTimeInterval(TeachersCacheTimeInterval)
-        
+
         if (useCache == false || expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending) {
             featchTeachers({ (error: NSError?) -> Void in
                 self.featchTeachersFromCache(completionHandler)
@@ -75,131 +77,137 @@ class GetTeachersService: BaseDataService {
     }
 
     // MARK: - Private
-    
-    private class func featchTeacherFromCache(teacherId : String?, completionHandler: ((TeacherInfoEntity?, NSError?) -> Void)!) {
-        
-        self.featchTeachersFromCache(teacherId) { (items: Array<TeacherInfoEntity>?, error: NSError?) -> Void in
-            completionHandler(items?.first, error)
+
+    private class func featchTeacherFromCache(teacherId: String?, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)) {
+
+        self.featchTeachersFromCache(teacherId) { (result) -> Void in
+
+            switch result {
+            case .Failure(let error): completionHandler(.Failure(error))
+            case .Success(let items): completionHandler(.Success(items.first!))
+            }
         }
     }
-    
-    private class func featchTeachersFromCache(completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
+
+    private class func featchTeachersFromCache(completionHandler: GetTeachersCompletionHandlet) {
         self.featchTeachersFromCache(nil, completionHandler: completionHandler)
     }
-    
-    private class func featchTeachersFromCache(teacherId : String?, completionHandler: ((Array<TeacherInfoEntity>?, NSError?) -> Void)!) {
-        let delegate = UIApplication.sharedApplication().delegate as AppDelegate
+
+    private class func featchTeachersFromCache(teacherId: String?, completionHandler: GetTeachersCompletionHandlet) {
+
+        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let cdHelper = delegate.cdh
-        if let context = cdHelper.backgroundContext {
-            context.performBlock({ () -> Void in
-                
-                let request = NSFetchRequest(entityName: TeacherInfoEntityName)
-                var sorter: NSSortDescriptor = NSSortDescriptor(key: "title" , ascending: true)
-                if let id = teacherId {
-                    request.predicate = NSPredicate(format: "(id == %@)", id)
+        let context = cdHelper.backgroundContext
+
+        context.performBlock { () -> Void in
+
+            let request = NSFetchRequest(entityName: TeacherInfoEntityName)
+            let sorter = NSSortDescriptor(key: "title", ascending: true)
+            if let id = teacherId {
+                request.predicate = NSPredicate(format: "(id == %@)", id)
+            }
+
+            request.resultType = .ManagedObjectIDResultType
+            request.sortDescriptors = [sorter]
+
+            do {
+                let itemIds = try context.executeFetchRequest(request) as! [NSManagedObjectID]
+
+                dispatch_async(dispatch_get_main_queue()) { _ in
+
+                    let items = cdHelper.convertToMainQueue(itemIds) as! [TeacherInfoEntity]
+
+                    completionHandler(.Success(items))
                 }
-                
-                request.resultType = .ManagedObjectIDResultType
-                request.sortDescriptors = [sorter]
-                
-                var error : NSError?
-                let itemIds = context.executeFetchRequest(request, error: &error) as [NSManagedObjectID]
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    var items : [TeacherInfoEntity]?
-                    if error == nil {
-                        items = cdHelper.convertToMainQueue(itemIds) as? [TeacherInfoEntity]
-                    } else {
-                        NSLog("executeFetchRequest error: %@", error!)
-                    }
-                    
-                    completionHandler(items, error)
-                })
-            })
-        } else {
-            completionHandler(nil, NSError())
+            }
+            catch let error as NSError {
+
+                NSLog("executeFetchRequest error: \(error)")
+                completionHandler(.Failure(error))
+            }
         }
     }
-    
+
     private class func featchTeachers(completionHandler: ((NSError?) -> Void)!) {
-        
+
         let path = "/getTeachers"
-        
-        resumeRequest(path, queryItems: nil, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
-            
-            let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-            let cdHelper = delegate.cdh
-            
-            if let items = result?["items"] as? [NSDictionary] {
-                
-                if let context = cdHelper.backgroundContext {
-                    context.performBlock({ () -> Void in
-                        
+
+        resumeRequest(path, queryItems: nil) { result -> Void in
+
+            switch result {
+            case .Failure(let error): completionHandler(error)
+            case .Success(let dict):
+
+                let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let cdHelper = delegate.cdh
+
+                if let items = dict["items"] as? [NSDictionary] {
+
+                    let context = cdHelper.backgroundContext
+                    context.performBlock { _ in
+
                         let request = NSFetchRequest(entityName: TeacherInfoEntityName)
-                        var error : NSError?
-                        let cachedTeachers = context.executeFetchRequest(request, error: &error) as [TeacherInfoEntity]
-                        
-                        var cachedTeachersDictionary = Dictionary<String, TeacherInfoEntity>(minimumCapacity: cachedTeachers.count)
-                        cachedTeachers.map { cachedTeachersDictionary[$0.id] = $0 }
-                        
-                        var res : [TeacherInfoEntity] = Array()
+
+                        let cachedTeachers = try! context.executeFetchRequest(request) as! [TeacherInfoEntity]
+                        let cachedTeachersDictionary = cachedTeachers.dict { ($0.id, $0) }
+
                         for item in items {
-                            
-                            var id = item["id"] as String
+
+                            let id = item["id"] as! String
                             var teacher: TeacherInfoEntity? = cachedTeachersDictionary[id]
-                            
+
                             if (teacher == nil) {
                                 teacher = NSEntityDescription.insertNewObjectForEntityForName(TeacherInfoEntityName, inManagedObjectContext: context) as? TeacherInfoEntity
-                                teacher!.id = item["id"] as String
+                                teacher!.id = item["id"] as! String
                             }
-                            
+
                             if (teacher!.title != item["fullname"] as? String) {
                                 teacher!.title = item["fullname"] as? String
                             }
                         }
-                        
+
                         cdHelper.saveContext(context)
 
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            completionHandler(error)
+                            completionHandler(nil)
                         })
-                    })
+                    }
                 }
-            } else {
-                completionHandler(error)
             }
-            
-        })
+        }
     }
-    
-    private class func featchTeacher(teacherId : String, completionHandler: ((TeacherInfoEntity?, NSError?) -> Void)!) {
-        
-        let path = "/getTeachers"
-        
-        var queryItems = "teacherId=\(teacherId)&extended=true"
-        
-        resumeRequest(path, queryItems: queryItems, completionHandler: { (result: NSDictionary?, error: NSError?) -> Void in
-            
-            let cachedTeachers : [TeacherInfoEntity] = []
-            let delegate = UIApplication.sharedApplication().delegate as AppDelegate
-            let cdHelper = delegate.cdh
 
-            let items = result?["items"] as? [NSDictionary]
-            
-            if items?.count == 1 {
-                let item = items!.first!
-                if let context = cdHelper.backgroundContext {
-                    context.performBlock({ () -> Void in
-                        
+    private class func featchTeacher(teacherId: String, completionHandler: ServiceResult<TeacherInfoEntity, NSError> -> Void) {
+
+        let path = "/getTeachers"
+        let queryItems = "teacherId=\(teacherId)&extended=true"
+
+        resumeRequest(path, queryItems: queryItems, completionHandler: { result -> Void in
+
+            switch result {
+            case .Failure(let error): completionHandler(.Failure(error))
+            case .Success(let dict):
+
+                let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let cdHelper = delegate.cdh
+
+                let items = dict["items"] as? [NSDictionary]
+
+                if items?.count == 1 {
+
+                    let item = items!.first!
+                    let context = cdHelper.backgroundContext
+                    context.performBlock { () -> Void in
+
                         let request = NSFetchRequest(entityName: TeacherInfoEntityName)
                         request.predicate = NSPredicate(format: "(id == %@)", teacherId)
-                        var error : NSError?
-                        let items = context.executeFetchRequest(request, error: &error)
-                        var teacher = items?.first as TeacherInfoEntity?
-                        
+
+                        let items = try? context.executeFetchRequest(request)
+                        var teacher = items?.first as? TeacherInfoEntity
+
                         if (teacher == nil) {
                             teacher = NSEntityDescription.insertNewObjectForEntityForName(TeacherInfoEntityName, inManagedObjectContext: context) as? TeacherInfoEntity
-                            teacher!.id = item["id"] as String
+                            teacher!.id = item["id"] as! String
                         }
                         teacher!.name = item["name"] as? String
                         teacher!.surname = item["surname"] as? String
@@ -210,21 +218,22 @@ class GetTeachersService: BaseDataService {
                         teacher!.email = item["email"] as? String
                         teacher!.skype = item["skype"] as? String
                         teacher!.updatedDate = NSDate()
-                        
+
                         cdHelper.saveContext(context)
 
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            let mTeacher = cdHelper.managedObjectContext?.objectWithID(teacher!.objectID) as TeacherInfoEntity
-                            completionHandler(mTeacher, error)
+                        dispatch_async(dispatch_get_main_queue(), { _ in
+
+                            let mTeacher = cdHelper.managedObjectContext?.objectWithID(teacher!.objectID) as! TeacherInfoEntity
+                            completionHandler(.Success(mTeacher))
                         })
 
-                    })
+                    }
+                } else {
+                    completionHandler(.Failure(NSError(domain: "", code: -1, userInfo: nil)))
                 }
-            } else {
-                completionHandler(nil, error)
             }
-            
+
         })
     }
-    
+
 }

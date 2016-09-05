@@ -20,7 +20,7 @@ class LessonScheduleEntity: NSManagedObject {
     @NSManaged var studyName: String
     @NSManaged var subgroupTitle: String?
     @NSManaged var type: String
-    @NSManaged var groups: NSSet
+    @NSManaged var groups: Set<GroupsEntity>
     @NSManaged var teacher: TeacherInfoEntity
 
     @NSManaged var isTeacherSchedule: NSNumber

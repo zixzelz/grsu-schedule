@@ -17,12 +17,11 @@ class GetUniversityBuildings: BaseDataService {
 
     private class func featchBuildings(completionHandler: (([UniversityBuilding]?, NSError?) -> Void)!) {
         
-        var filePath = NSBundle.mainBundle().pathForResource("UniversityBuildings", ofType:"json")
-        var data = NSData(contentsOfFile:filePath!)
+        let filePath = NSBundle.mainBundle().pathForResource("UniversityBuildings", ofType:"json")
+        let data = NSData(contentsOfFile:filePath!)
         
         var responseArray : NSArray?
-        var jsonError: NSError?
-        responseArray = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers, error: &jsonError) as? NSArray
+        responseArray = try! NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSArray
 
         
         var universityBuilding = [UniversityBuilding]()
@@ -31,14 +30,15 @@ class GetUniversityBuildings: BaseDataService {
             
             var building: UniversityBuilding!
             
-            let type = buildingDict["type"] as String?
+            let type = buildingDict["type"] as? String
             if type == "Educational" {
                 
                 var faculties = [FacultyOfUniversity]()
-                for facultyDict in buildingDict["faculties"] as NSArray {
+                for facultyDict in buildingDict["faculties"] as! NSArray {
+                    
                     let faculty = FacultyOfUniversity()
-                    faculty.title = facultyDict["title"] as String?
-                    faculty.site = facultyDict["site"] as String?
+                    faculty.title = facultyDict["title"] as? String
+                    faculty.site = facultyDict["site"] as? String
                     
                     faculties.append(faculty)
                 }
@@ -49,16 +49,16 @@ class GetUniversityBuildings: BaseDataService {
                 building = educational
             } else if type == "Hostel" {
                 let hostel = HostelUniversityBuilding()
-                hostel.title = buildingDict["title"] as String?
-                hostel.number = buildingDict["number"] as String?
+                hostel.title = buildingDict["title"] as? String
+                hostel.number = buildingDict["number"] as? String
                 
                 building = hostel
             }
             
-            var location = CLLocationCoordinate2D(latitude: (buildingDict["lat"] as NSString ).doubleValue, longitude: (buildingDict["lng"] as NSString ).doubleValue)
+            let location = CLLocationCoordinate2D(latitude: (buildingDict["lat"] as! NSString ).doubleValue, longitude: (buildingDict["lng"] as! NSString ).doubleValue)
             
-            building.photo = buildingDict["photo"] as String?
-            building.address = buildingDict["address"] as String?
+            building.photo = buildingDict["photo"] as? String
+            building.address = buildingDict["address"] as? String
             building.location = location
             
             universityBuilding.append(building!)

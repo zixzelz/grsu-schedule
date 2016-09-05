@@ -32,7 +32,7 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         
         let manager = FavoriteManager()
         if (sender.selected) {
-            manager.addFavorite(group!)
+            manager.addFavoriteWithGroup(group!)
         } else {
             manager.removeFavorite(group!.favorite!)
         }
@@ -52,7 +52,7 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("StudentWeekSchedulesViewController") as StudentWeekSchedulesViewController
+        let vc = storyboard.instantiateViewControllerWithIdentifier("StudentWeekSchedulesViewController") as! StudentWeekSchedulesViewController
         vc.dateScheduleQuery = query
         vc.group = group
         

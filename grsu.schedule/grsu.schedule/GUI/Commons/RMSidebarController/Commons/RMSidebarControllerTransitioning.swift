@@ -27,14 +27,14 @@ class RMSidebarControllerExpandedAnimatedTransitioning: NSObject, UIViewControll
     
     // MARK: UIViewControllerAnimatedTransitioning Protocol
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         transitionContext_ = transitionContext
         return transitioningDelegate_.transitionDuration(self)
     }
     
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        let rootContainer = rootСontainerView() as RMRootContainerView
+        let rootContainer = rootСontainerView() as! RMRootContainerView
         rootContainer.releaseFrame()
         
         if (viewControllerToPresent == nil) {
@@ -46,7 +46,7 @@ class RMSidebarControllerExpandedAnimatedTransitioning: NSObject, UIViewControll
     
     func animationEnded(transitionCompleted: Bool) {
         
-        let rootContainer = rootСontainerView() as RMRootContainerView
+        let rootContainer = rootСontainerView() as! RMRootContainerView
         rootContainer.holdFrame()
         
         transitioningDelegate_.animationEnded(transitionCompleted)
@@ -58,28 +58,29 @@ extension RMSidebarControllerExpandedAnimatedTransitioning: RMSidebarControllerC
     // MARK: - RMSidebarControllerContextTransitioning Protocol
     
     func containerView() -> UIView {
-        return self.transitionContext_!.containerView()
+        return self.transitionContext_!.containerView()!
     }
     
     func sidebarView() -> UIView {
-        var key: NSString
+        
+        var key: String
         if (action_ == AnimatedTransitioningAction.Present) {
             key = UITransitionContextToViewControllerKey
         } else {
             key = UITransitionContextFromViewControllerKey
         }
-        var viewController = transitionContext_!.viewControllerForKey(key)
+        let viewController = transitionContext_!.viewControllerForKey(key)
         return viewController!.view
     }
 
     func rootСontainerView() -> UIView {
-        var key: NSString
+        var key: String
         if (action_ == AnimatedTransitioningAction.Present) {
             key = UITransitionContextFromViewControllerKey
         } else {
             key = UITransitionContextToViewControllerKey
         }
-        var viewController = transitionContext_!.viewControllerForKey(key)
+        let viewController = transitionContext_!.viewControllerForKey(key)
         return viewController!.view
     }
 

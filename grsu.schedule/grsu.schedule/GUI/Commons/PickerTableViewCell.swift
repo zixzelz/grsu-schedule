@@ -27,7 +27,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     }
     
     func selectRow(text: String) {
-        let index = find(items!, text)
+        let index = items?.indexOf(text)
         if (index != nil && index != pickerView.selectedRowInComponent(0)) {
             pickerView.selectRow(index!, inComponent: 0, animated: true)
             updateHeader(index!)

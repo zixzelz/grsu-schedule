@@ -10,13 +10,12 @@ import UIKit
 
 class StudentWeekSchedulesViewController: WeekSchedulesViewController {
 
-    var group : GroupsEntity?
+    var group: GroupsEntity?
 
-    
     override func fetchData(useCache: Bool = true) {
-        super.fetchData(useCache: useCache)
-        
-        GetStudentScheduleService.getSchedule(group!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: useCache) { [weak self] (items: [LessonScheduleEntity]?, error: NSError?) -> Void in
+        super.fetchData(useCache)
+
+        GetStudentScheduleService.getSchedule(group!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: useCache) { [weak self](items: [LessonScheduleEntity]?, error: NSError?) -> Void in
             if (error == nil) {
                 if let wSelf = self {
                     wSelf.setLessonSchedule(items!)
@@ -29,41 +28,44 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
     }
 
     override func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
+
         var lCell: StudentLessonScheduleCell
         if (isActive) {
             let identifier = "StudentActiveLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as StudentActiveLessonScheduleCell
+            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as! StudentActiveLessonScheduleCell
         } else {
             let identifier = "StudentLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as StudentLessonScheduleCell
+            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as! StudentLessonScheduleCell
         }
-        
-        lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? NSString(format: "Подгруппа: %@", lesson.subgroupTitle! ) : ""
+
+        lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? "Подгруппа: \(lesson.subgroupTitle!)" : ""
         lCell.teacherLabel.text = lesson.teacher.title
-        
+
         return lCell
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+
         if (segue.identifier == "TeacherInfoIdentifier") {
-            var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
-            
-            let viewController = segue.destinationViewController as TeacherInfoViewController
+
+            let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
+
+            let viewController = segue.destinationViewController as! TeacherInfoViewController
             viewController.teacherInfo = lesson.teacher
-            
+
         } else if (segue.identifier == "TeacherSchedulePageIdentifier") {
-            var lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row-1] as LessonScheduleEntity
+
+            let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
             let weeks = DateManager.scheduleWeeks()
-            
-            let viewController = segue.destinationViewController as TeacherSchedulesPageViewController
+
+            let viewController = segue.destinationViewController as! TeacherSchedulesPageViewController
             viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
             viewController.possibleWeeks = weeks
             viewController.teacher = lesson.teacher
         } else {
             super.prepareForSegue(segue, sender: sender)
         }
-        
+
     }
 
 }
