@@ -17,3 +17,28 @@ class DepartmentsEntity: NSManagedObject {
     @NSManaged var groups: NSSet
 
 }
+
+extension DepartmentsEntity: ModelType {
+
+    static func keyForIdentifier() -> String {
+        return "id"
+    }
+
+    static func keyForEnumerateObjects() -> String {
+        return "items"
+    }
+
+    func fill(json: [String: AnyObject]) {
+
+        id = json["id"] as! String
+        title = json["title"] as! String
+    }
+
+    // MARK: - ManagedObjectType
+
+    var identifier: String {
+
+        return id
+    }
+
+}

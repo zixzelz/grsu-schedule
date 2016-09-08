@@ -36,12 +36,13 @@ class CoreDataHelper: NSObject {
 
     // main thread context
 
-    lazy var managedObjectContext: NSManagedObjectContext? = {
-        // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.) This property is optional since there are legitimate error conditions that could cause the creation of the context to fail.
+    lazy var managedObjectContext: NSManagedObjectContext = {
+
         let coordinator = self.store.persistentStoreCoordinator
 
         var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
+
         return managedObjectContext
     }()
 
@@ -62,15 +63,7 @@ class CoreDataHelper: NSObject {
     // save NSManagedObjectContext
     func saveContext(context: NSManagedObjectContext) {
 
-        do {
-            if context.hasChanges {
-                try context.save()
-            }
-        } catch {
-
-            NSLog("Unresolved error \(error)")
-            abort()
-        }
+        context.saveIfNeeded()
     }
 
     func saveContext() {
@@ -82,8 +75,9 @@ class CoreDataHelper: NSObject {
 
         var items = [AnyObject]()
         for objId in itemIds {
-            let obj = mainContext?.objectWithID(objId)
-            items.append(obj!)
+
+            let obj = mainContext.objectWithID(objId)
+            items.append(obj)
         }
         return items
     }
@@ -98,11 +92,27 @@ class CoreDataHelper: NSObject {
             }
         } else if sender === self.backgroundContext {
             // NSLog("******** Saved background Context in this thread")
-            self.managedObjectContext!.performBlock {
-                self.managedObjectContext!.mergeChangesFromContextDidSaveNotification(notification)
+            self.managedObjectContext.performBlock {
+                self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
             }
         } else {
             // NSLog("******** Saved Context in other thread")
+        }
+    }
+}
+
+extension NSManagedObjectContext {
+
+    func saveIfNeeded() {
+
+        do {
+            if hasChanges {
+                try save()
+            }
+        } catch {
+
+            NSLog("Unresolved error \(error)")
+            abort()
         }
     }
 }

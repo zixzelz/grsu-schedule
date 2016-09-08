@@ -14,10 +14,10 @@ typealias GetDepartmentsCompletionHandlet = ServiceResult<[DepartmentsEntity], N
 class GetDepartmentsService: BaseDataService {
 
     class func getDepartments(completionHandler: GetDepartmentsCompletionHandlet) {
-        getDepartments(true, completionHandler: completionHandler)
+        getDepartments(.CachedElseLoad, completionHandler: completionHandler)
     }
 
-    class func getDepartments(useCache: Bool, completionHandler: GetDepartmentsCompletionHandlet) {
+    class func getDepartments(cache: CachePolicy, completionHandler: GetDepartmentsCompletionHandlet) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let date = userDefaults.objectForKey("DepartmentsKey") as? NSDate

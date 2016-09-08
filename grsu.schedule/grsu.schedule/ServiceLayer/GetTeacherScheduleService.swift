@@ -13,10 +13,10 @@ class GetTeacherScheduleService: BaseDataService {
 
     class func getSchedule(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
-        getSchedule(teacher, dateStart: dateStart, dateEnd: dateEnd, useCache: true, completionHandler: completionHandler)
+        getSchedule(teacher, dateStart: dateStart, dateEnd: dateEnd, cache: .CachedElseLoad, completionHandler: completionHandler)
     }
 
-    class func getSchedule(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, useCache: Bool, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
+    class func getSchedule(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsScheduleTeacherKey = "ScheduleTeacherKey \(teacher.id).\(dateStart)"
@@ -191,7 +191,6 @@ class GetTeacherScheduleService: BaseDataService {
             request.sortDescriptors = [sorter, lessonSorter]
             request.predicate = predicate
 
-            var error: NSError?
             let itemIds = try! context.executeFetchRequest(request) as! [NSManagedObjectID]
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

@@ -100,9 +100,16 @@
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
 		44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */; };
 		44641E5D1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */; };
+		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
+		44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */; };
+		44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146201D7F84510076BDF0 /* NetworkService.swift */; };
+		44D146251D7F84510076BDF0 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146211D7F84510076BDF0 /* Parsable.swift */; };
+		44D146271D7F84C00076BDF0 /* DepartmentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146261D7F84C00076BDF0 /* DepartmentsService.swift */; };
+		44D4EA541D7DD78800C38D1E /* CachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D4EA531D7DD78800C38D1E /* CachePolicy.swift */; };
 		44D504181A780DD900265A7C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D504171A780DD900265A7C /* Reachability.m */; };
 		44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D504191A78147900265A7C /* ReachabilityTableView.swift */; };
 		44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D5041B1A7821E600265A7C /* GSReachability.swift */; };
+		44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F0B1201D8221DC0008D91B /* ServiceError.swift */; };
 		44F556FA1D7B577F00DF6FF7 /* Array+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */; };
 /* End PBXBuildFile section */
 
@@ -220,10 +227,17 @@
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
+		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
+		44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
+		44D146201D7F84510076BDF0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		44D146211D7F84510076BDF0 /* Parsable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
+		44D146261D7F84C00076BDF0 /* DepartmentsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsService.swift; sourceTree = "<group>"; };
+		44D4EA531D7DD78800C38D1E /* CachePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachePolicy.swift; sourceTree = "<group>"; };
 		44D504161A780DD900265A7C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		44D504171A780DD900265A7C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		44D504191A78147900265A7C /* ReachabilityTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityTableView.swift; sourceTree = "<group>"; };
 		44D5041B1A7821E600265A7C /* GSReachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GSReachability.swift; sourceTree = "<group>"; };
+		44F0B1201D8221DC0008D91B /* ServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Dict.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -264,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				2D0505CA1A1662DC00171A2E /* BaseDataService.swift */,
+				44D146261D7F84C00076BDF0 /* DepartmentsService.swift */,
 				2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */,
 				2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */,
 				2D6000F11A1F9453005CB141 /* GetGroupsService.swift */,
@@ -299,6 +314,7 @@
 			children = (
 				2D6000E61A1E8229005CB141 /* Model */,
 				2D96AA631A1BB09F00EDD9E2 /* Commons */,
+				44D1461D1D7F84510076BDF0 /* ServiceLayerSDK */,
 				2D0505C71A1660C200171A2E /* ServiceLayer */,
 				2DDC78841A2A1C9A00C1D966 /* CoreData */,
 				2D08260D1A15299D008B504E /* GUI */,
@@ -466,6 +482,7 @@
 				2D6B07EF1A3637F30064DD39 /* DateManager.swift */,
 				2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */,
 				2DB1DF441B0FB12100272312 /* RYRussianIndexedCollation.swift */,
+				44D4EA531D7DD78800C38D1E /* CachePolicy.swift */,
 				44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */,
 			);
 			path = Commons;
@@ -540,6 +557,18 @@
 				44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */,
 			);
 			path = ScheduleCell;
+			sourceTree = "<group>";
+		};
+		44D1461D1D7F84510076BDF0 /* ServiceLayerSDK */ = {
+			isa = PBXGroup;
+			children = (
+				44F0B1201D8221DC0008D91B /* ServiceError.swift */,
+				44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */,
+				44D146211D7F84510076BDF0 /* Parsable.swift */,
+				44D146201D7F84510076BDF0 /* NetworkService.swift */,
+				44D1461E1D7F84510076BDF0 /* LocalService.swift */,
+			);
+			path = ServiceLayerSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -682,6 +711,7 @@
 				2D6000E81A1E825D005CB141 /* ScheduleQuery.swift in Sources */,
 				2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */,
 				2D12012F1A4D88690065079E /* FacultyOfUniversity.swift in Sources */,
+				44D146251D7F84510076BDF0 /* Parsable.swift in Sources */,
 				2D0826241A15299D008B504E /* RMSidebarController.swift in Sources */,
 				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
 				2D0825EE1A152913008B504E /* AppDelegate.swift in Sources */,
@@ -689,7 +719,9 @@
 				2DBD4EB11A52D09C0055EA3A /* BaseSchedulesPageViewController.swift in Sources */,
 				44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */,
 				2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */,
+				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,
+				44D146271D7F84C00076BDF0 /* DepartmentsService.swift in Sources */,
 				44D504181A780DD900265A7C /* Reachability.m in Sources */,
 				2DBD4EC11A5AF9660055EA3A /* WeekSchedulesViewController.swift in Sources */,
 				44641E571A5DC67000AA46BB /* StudentLessonScheduleCell.swift in Sources */,
@@ -701,6 +733,7 @@
 				2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */,
 				2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */,
 				2D0826221A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift in Sources */,
+				44D4EA541D7DD78800C38D1E /* CachePolicy.swift in Sources */,
 				2D012B201A7ABAE100D8B5B1 /* RMRootContainerView.swift in Sources */,
 				2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */,
 				2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */,
@@ -710,6 +743,7 @@
 				2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
+				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
@@ -717,7 +751,9 @@
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
 				2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */,
+				44D146221D7F84510076BDF0 /* LocalService.swift in Sources */,
 				2D0826281A15299D008B504E /* RMSidebarInteractiveTransition.swift in Sources */,
+				44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */,
 				2DBD4EB31A52D0EE0055EA3A /* StudentSchedulesPageViewController.swift in Sources */,
 				44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */,
 				2DBD4E9D1A4EE97D0055EA3A /* LessonLocationMapView.swift in Sources */,

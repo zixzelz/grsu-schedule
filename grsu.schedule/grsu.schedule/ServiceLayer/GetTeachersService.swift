@@ -16,10 +16,10 @@ class GetTeachersService: BaseDataService {
     // MARK: - Teacher
 
     class func getTeacher(teacherId: String, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)!) {
-        getTeacher(teacherId, useCache: true, completionHandler: completionHandler)
+        getTeacher(teacherId, cache: .CachedElseLoad, completionHandler: completionHandler)
     }
 
-    class func getTeacher(teacherId: String, useCache: Bool, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)) {
+    class func getTeacher(teacherId: String, cache: CachePolicy, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)) {
 
         if (useCache == false) {
             featchTeacher(teacherId) { result -> Void in

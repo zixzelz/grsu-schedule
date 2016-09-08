@@ -13,10 +13,10 @@ class GetGroupsService: BaseDataService {
 
     class func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, completionHandler: (([GroupsEntity]?, NSError?) -> Void)!) {
 
-        getGroups(faculty, department: department, course: course, useCache: true, completionHandler: completionHandler)
+        getGroups(faculty, department: department, course: course, cache: .CachedElseLoad, completionHandler: completionHandler)
     }
 
-    class func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, useCache: Bool, completionHandler: (([GroupsEntity]?, NSError?) -> Void)!) {
+    class func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, cache: CachePolicy, completionHandler: (([GroupsEntity]?, NSError?) -> Void)!) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsGroupKey = "GroupsKey \(faculty.id).\(department.id).\(course)"
@@ -103,7 +103,7 @@ class GetGroupsService: BaseDataService {
             let request = NSFetchRequest(entityName: GroupsEntityName)
             let predicate = NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@)", faculty, department, course)
             request.predicate = predicate
-
+ 
             let cacheItems = try! context.executeFetchRequest(request) as! [GroupsEntity]
 
             var handledItems: [GroupsEntity] = Array()

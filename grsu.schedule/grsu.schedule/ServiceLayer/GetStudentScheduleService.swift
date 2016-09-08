@@ -13,10 +13,10 @@ class GetStudentScheduleService: BaseDataService {
 
     class func getSchedule(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
-        getSchedule(group, dateStart: dateStart, dateEnd: dateEnd, useCache: true, completionHandler: completionHandler)
+        getSchedule(group, dateStart: dateStart, dateEnd: dateEnd, useCache: .CachedElseLoad, completionHandler: completionHandler)
     }
 
-    class func getSchedule(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate, useCache: Bool, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
+    class func getSchedule(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsGroupKey = "ScheduleKey \(group.id).\(dateStart)"
@@ -154,7 +154,7 @@ class GetStudentScheduleService: BaseDataService {
             let itemIds = try! context.executeFetchRequest(request) as! [NSManagedObjectID]
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
+
                 let items = cdHelper.convertToMainQueue(itemIds) as? [LessonScheduleEntity]
 
                 completionHandler(items, nil)

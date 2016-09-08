@@ -13,10 +13,10 @@ class GetFacultyService: BaseDataService {
 
     class func getFaculties(completionHandler: (([FacultiesEntity]?, NSError?) -> Void)!) {
 
-        getFaculties(true, completionHandler: completionHandler)
+        getFaculties(.CachedElseLoad, completionHandler: completionHandler)
     }
 
-    class func getFaculties(useCache: Bool, completionHandler: (([FacultiesEntity]?, NSError?) -> Void)!) {
+    class func getFaculties(cache: CachePolicy, completionHandler: (([FacultiesEntity]?, NSError?) -> Void)!) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let date = userDefaults.objectForKey("FacultiesKey") as? NSDate
