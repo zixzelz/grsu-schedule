@@ -12,16 +12,21 @@ public enum NetworkServiceMethod: String {
     case GET = "GET"
 }
 
-protocol NetworkServiceQuery {
+protocol NetworkServiceQueryType: LocalServiceQueryType {
 
     var path: String { get }
     var method: NetworkServiceMethod { get }
     var parameters: [String: AnyObject]? { get }
 
-    //
+    static var cacheTimeInterval: NSTimeInterval { get }
+}
 
-    var predicate: NSPredicate? { get }
-    var sortBy: [NSSortDescriptor]? { get }
+extension NetworkServiceQueryType {
+
+    // Think
+    static var cacheTimeInterval: NSTimeInterval {
+        return 60 * 60 * 24
+    }
 }
 
 class NetworkService<T: ModelType> {
@@ -36,7 +41,7 @@ class NetworkService<T: ModelType> {
         self.localService = localService
     }
 
-    func fetchData(query: NetworkServiceQuery, cache: CachePolicy, completionHandler: NetworkServiceFetchCompletionHandlet) {
+    func fetchData < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, cache: CachePolicy, completionHandler: NetworkServiceFetchCompletionHandlet) {
 
         switch cache {
         case .CachedOnly:
@@ -62,7 +67,7 @@ class NetworkService<T: ModelType> {
 
     }
 
-    func resumeRequest(query: NetworkServiceQuery, completionHandler: NetworkServiceStoreCompletionHandlet) -> NSURLSessionDataTask {
+    func resumeRequest < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, completionHandler: NetworkServiceStoreCompletionHandlet) -> NSURLSessionDataTask {
 
         let session = URLSession()
         let url = NSURL(scheme: UrlScheme, host: UrlHost, path: query.path)!
@@ -74,10 +79,11 @@ class NetworkService<T: ModelType> {
 
         let request = NSURLRequest(URL: components.URL!)
 
-        let task = session.dataTaskWithRequest(request) { [weak self](data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
 
             if let error = error {
 
+                NSLog("[Error] response error: \(error)")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     completionHandler(.Failure(.NetworkError(error: error)))
                 })
@@ -88,14 +94,14 @@ class NetworkService<T: ModelType> {
             let responseDict = json as? [String: AnyObject] ?? [String: AnyObject]()
 
             // NSLog("response: %@", NSString(data: data, encoding: NSUTF8StringEncoding)!)
-            self?.parseAndStore(query, responseDict: responseDict, completionHandler: completionHandler)
+            self.parseAndStore(query, responseDict: responseDict, completionHandler: completionHandler)
         }
 
         task.resume()
         return task
     }
 
-    private func parseAndStore(query: NetworkServiceQuery, responseDict: [String: AnyObject], completionHandler: NetworkServiceStoreCompletionHandlet) {
+    private func parseAndStore < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, responseDict: [String: AnyObject], completionHandler: NetworkServiceStoreCompletionHandlet) {
 
         localService.parseAndStore(query, json: responseDict, completionHandler: completionHandler)
     }

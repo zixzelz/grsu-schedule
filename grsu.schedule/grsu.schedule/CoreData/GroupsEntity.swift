@@ -21,3 +21,34 @@ class GroupsEntity: NSManagedObject {
     @NSManaged var favorite: FavoriteEntity?
 
 }
+
+extension GroupsEntity: ModelType {
+
+    typealias QueryInfo = NoneQueryInfo
+
+    static func keyForIdentifier() -> String {
+        return "id"
+    }
+
+    static func keyForEnumerateObjects() -> String {
+        return "items"
+    }
+
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo?) {
+
+        id = json["id"] as! String
+        title = json["title"] as! String
+
+//        newItem.faculty = query.faculty
+//        newItem.department = query.department
+//        newItem.course = query.course
+    }
+
+    // MARK: - ManagedObjectType
+
+    var identifier: String {
+
+        return id
+    }
+
+}

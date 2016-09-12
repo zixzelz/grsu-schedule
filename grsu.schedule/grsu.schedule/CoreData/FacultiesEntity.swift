@@ -17,3 +17,35 @@ class FacultiesEntity: NSManagedObject {
     @NSManaged var groups: NSSet
 
 }
+
+extension FacultiesEntity: ModelType {
+
+    typealias QueryInfo = NoneQueryInfo
+
+    static func keyForIdentifier() -> String {
+        return "id"
+    }
+
+    static func keyForEnumerateObjects() -> String {
+        return "items"
+    }
+
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo?) {
+
+        id = json["id"] as! String
+
+        let fullTitle = json["title"] as! String
+        title = fullTitle.stringByReplacingOccurrencesOfString("^Факультет ", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
+        // TODO:
+        // let nsRange = Range<String.Index>(start: advance(title.startIndex, 0), end: advance(title.startIndex, 1))
+        // title = title.stringByReplacingCharactersInRange(nsRange, withString: title.substringToIndex(advance(title.startIndex, 1)).capitalizedString)    }
+    }
+
+    // MARK: - ManagedObjectType
+
+    var identifier: String {
+
+        return id
+    }
+
+}

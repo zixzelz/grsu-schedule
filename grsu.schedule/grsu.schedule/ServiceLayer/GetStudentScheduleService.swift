@@ -13,10 +13,10 @@ class GetStudentScheduleService: BaseDataService {
 
     class func getSchedule(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
-        getSchedule(group, dateStart: dateStart, dateEnd: dateEnd, useCache: .CachedElseLoad, completionHandler: completionHandler)
+        getSchedule(group, dateStart: dateStart, dateEnd: dateEnd, useCache: true, completionHandler: completionHandler)
     }
 
-    class func getSchedule(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
+    class func getSchedule(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate, useCache: Bool, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsGroupKey = "ScheduleKey \(group.id).\(dateStart)"

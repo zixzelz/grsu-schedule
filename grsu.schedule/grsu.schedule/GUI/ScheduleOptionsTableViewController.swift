@@ -82,7 +82,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     func featchData() {
 
-        GetDepartmentsService.getDepartments { [weak self] result in
+        DepartmentsService().getDepartments(.ReloadIgnoringCache) { [weak self] result in
 
             guard let strongSelf = self else { return }
             guard case let .Success(items) = result else { return }
@@ -102,22 +102,24 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             strongSelf.featchGroups(true);
         }
 
-        GetFacultyService.getFaculties { [weak self](array: Array<FacultiesEntity>?, error: NSError?) -> Void in
+        FacultyService().getFaculties(.ReloadIgnoringCache) { [weak self] result in
 
             guard let strongSelf = self else { return }
+            guard case let .Success(items) = result else { return }
 
-            if let items = array {
-                strongSelf.faculties = items
-                strongSelf.facultyPickerTableViewCell.items = items.map { $0.title }
-                if let itemId = strongSelf.scheduleDataSource?.defaultFacultyID() {
-                    if let value = strongSelf.valueById(items, itemId: itemId) {
-                        strongSelf.facultyPickerTableViewCell.selectRow(value)
-                    } else {
-                        strongSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
-                    }
+            strongSelf.faculties = items
+            strongSelf.facultyPickerTableViewCell.items = items.map { $0.title }
+
+            if let itemId = strongSelf.scheduleDataSource?.defaultFacultyID() {
+
+                if let value = strongSelf.valueById(items, itemId: itemId) {
+                    strongSelf.facultyPickerTableViewCell.selectRow(value)
+                } else {
+                    strongSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
                 }
-                strongSelf.featchGroups(true);
             }
+
+            strongSelf.featchGroups(true);
         }
     }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias DepartmentsCompletionHandlet = ServiceResult<[DepartmentsEntity], LocalServiceError> -> Void
+typealias DepartmentsCompletionHandlet = ServiceResult<[DepartmentsEntity], ServiceError> -> Void
 
 class DepartmentsService {
 
@@ -23,26 +23,23 @@ class DepartmentsService {
         print("\(networkService)")
     }
 
-    func getDepartments(cache: CachePolicy, completionHandler: DepartmentsCompletionHandlet) {
+    func getDepartments(cache: CachePolicy = .CachedElseLoad, completionHandler: DepartmentsCompletionHandlet) {
 
         networkService.fetchData(DepartmentsQuery(), cache: cache, completionHandler: completionHandler)
     }
 
 }
 
-class DepartmentsQuery: NetworkServiceQuery {
-
-    var path: String {
-        return "/getDepartments"
-    }
-    var method: NetworkServiceMethod {
-        return .GET
-    }
-    var parameters: [String: AnyObject]? = nil
+class DepartmentsQuery: NetworkServiceQueryType {
 
     var predicate: NSPredicate? = nil
 
-    var sortBy: [NSSortDescriptor]? {
-        return [NSSortDescriptor(key: "id", ascending: true)]
-    }
+    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "id", ascending: true)]
+
+    var path: String = "/getDepartments"
+
+    var method: NetworkServiceMethod = .GET
+
+    var parameters: [String: AnyObject]? = nil
+
 }

@@ -20,6 +20,8 @@ class DepartmentsEntity: NSManagedObject {
 
 extension DepartmentsEntity: ModelType {
 
+    typealias QueryInfo = NoneQueryInfo
+
     static func keyForIdentifier() -> String {
         return "id"
     }
@@ -28,7 +30,7 @@ extension DepartmentsEntity: ModelType {
         return "items"
     }
 
-    func fill(json: [String: AnyObject]) {
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo?) {
 
         id = json["id"] as! String
         title = json["title"] as! String

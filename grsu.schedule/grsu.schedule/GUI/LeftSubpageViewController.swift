@@ -62,7 +62,7 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
         }
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let cdHelper = delegate.cdh
-        cdHelper.saveContext(cdHelper.managedObjectContext!)
+        cdHelper.saveContext(cdHelper.managedObjectContext)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

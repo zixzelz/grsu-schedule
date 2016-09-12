@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2D012B201A7ABAE100D8B5B1 /* RMRootContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */; };
 		2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */; };
-		2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */; };
 		2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505CA1A1662DC00171A2E /* BaseDataService.swift */; };
 		2D0825EE1A152913008B504E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0825ED1A152913008B504E /* AppDelegate.swift */; };
 		2D0825F51A152913008B504E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0825F41A152913008B504E /* Images.xcassets */; };
@@ -37,7 +36,6 @@
 		2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B61A23B8AC001BA278 /* DateUtils.m */; };
 		2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */; };
 		2D6000E81A1E825D005CB141 /* ScheduleQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E71A1E825D005CB141 /* ScheduleQuery.swift */; };
-		2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */; };
 		2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000F11A1F9453005CB141 /* GetGroupsService.swift */; };
 		2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B07EF1A3637F30064DD39 /* DateManager.swift */; };
 		2D716C381A3830EE00CE7F27 /* GetTeachersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */; };
@@ -100,6 +98,10 @@
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
 		44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */; };
 		44641E5D1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */; };
+		4486BC601D837633000DFF58 /* FacultyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4486BC5F1D837633000DFF58 /* FacultyService.swift */; };
+		448758411D8473320076F019 /* GroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758401D8473320076F019 /* GroupsService.swift */; };
+		448758431D85F8120076F019 /* QueryInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758421D85F8120076F019 /* QueryInfoType.swift */; };
+		448758451D85F8460076F019 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758441D85F8460076F019 /* ModelType.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
 		44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */; };
 		44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146201D7F84510076BDF0 /* NetworkService.swift */; };
@@ -125,7 +127,6 @@
 
 /* Begin PBXFileReference section */
 		2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMRootContainerView.swift; sourceTree = "<group>"; };
-		2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDepartmentsService.swift; sourceTree = "<group>"; };
 		2D0505CA1A1662DC00171A2E /* BaseDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataService.swift; sourceTree = "<group>"; };
 		2D0505CC1A1676CD00171A2E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		2D0825E81A152913008B504E /* grsu.schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grsu.schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,7 +163,6 @@
 		2D3FF2B81A23C00D001BA278 /* NSString+Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Expanded.h"; sourceTree = "<group>"; };
 		2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Expanded.m"; sourceTree = "<group>"; };
 		2D6000E71A1E825D005CB141 /* ScheduleQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleQuery.swift; sourceTree = "<group>"; };
-		2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFacultyService.swift; sourceTree = "<group>"; };
 		2D6000F11A1F9453005CB141 /* GetGroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupsService.swift; sourceTree = "<group>"; };
 		2D6B07EF1A3637F30064DD39 /* DateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTeachersService.swift; sourceTree = "<group>"; };
@@ -227,6 +227,10 @@
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
+		4486BC5F1D837633000DFF58 /* FacultyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultyService.swift; sourceTree = "<group>"; };
+		448758401D8473320076F019 /* GroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsService.swift; sourceTree = "<group>"; };
+		448758421D85F8120076F019 /* QueryInfoType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryInfoType.swift; sourceTree = "<group>"; };
+		448758441D85F8460076F019 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
 		44D146201D7F84510076BDF0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -279,8 +283,8 @@
 			children = (
 				2D0505CA1A1662DC00171A2E /* BaseDataService.swift */,
 				44D146261D7F84C00076BDF0 /* DepartmentsService.swift */,
-				2D0505C81A16615F00171A2E /* GetDepartmentsService.swift */,
-				2D6000EF1A1F847B005CB141 /* GetFacultyService.swift */,
+				4486BC5F1D837633000DFF58 /* FacultyService.swift */,
+				448758401D8473320076F019 /* GroupsService.swift */,
 				2D6000F11A1F9453005CB141 /* GetGroupsService.swift */,
 				2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */,
 				2DBD4ECE1A5B1A170055EA3A /* GetTeacherScheduleService.swift */,
@@ -564,9 +568,11 @@
 			children = (
 				44F0B1201D8221DC0008D91B /* ServiceError.swift */,
 				44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */,
+				448758421D85F8120076F019 /* QueryInfoType.swift */,
 				44D146211D7F84510076BDF0 /* Parsable.swift */,
-				44D146201D7F84510076BDF0 /* NetworkService.swift */,
+				448758441D85F8460076F019 /* ModelType.swift */,
 				44D1461E1D7F84510076BDF0 /* LocalService.swift */,
+				44D146201D7F84510076BDF0 /* NetworkService.swift */,
 			);
 			path = ServiceLayerSDK;
 			sourceTree = "<group>";
@@ -677,7 +683,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D0505C91A16615F00171A2E /* GetDepartmentsService.swift in Sources */,
 				44641E5D1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift in Sources */,
 				2D3744FB1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift in Sources */,
 				2DBD4ECB1A5B124C0055EA3A /* LessonScheduleEntity.swift in Sources */,
@@ -700,7 +705,9 @@
 				44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */,
 				2DBD4EC31A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift in Sources */,
 				2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */,
+				4486BC601D837633000DFF58 /* FacultyService.swift in Sources */,
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
+				448758431D85F8120076F019 /* QueryInfoType.swift in Sources */,
 				2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */,
 				2DB1DF451B0FB12100272312 /* RYRussianIndexedCollation.swift in Sources */,
 				2DBD4EC51A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift in Sources */,
@@ -708,6 +715,7 @@
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,
 				2DBD4EBE1A5ADB6C0055EA3A /* TeacherSchedulesPageViewController.swift in Sources */,
 				2DBD4ECF1A5B1A170055EA3A /* GetTeacherScheduleService.swift in Sources */,
+				448758411D8473320076F019 /* GroupsService.swift in Sources */,
 				2D6000E81A1E825D005CB141 /* ScheduleQuery.swift in Sources */,
 				2D75CF4C1A222D4F006F2A9D /* GetStudentScheduleService.swift in Sources */,
 				2D12012F1A4D88690065079E /* FacultyOfUniversity.swift in Sources */,
@@ -718,6 +726,7 @@
 				2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */,
 				2DBD4EB11A52D09C0055EA3A /* BaseSchedulesPageViewController.swift in Sources */,
 				44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */,
+				448758451D85F8460076F019 /* ModelType.swift in Sources */,
 				2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */,
 				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,
@@ -740,7 +749,6 @@
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
 				2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */,
 				2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */,
-				2D6000F01A1F847B005CB141 /* GetFacultyService.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
 				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,

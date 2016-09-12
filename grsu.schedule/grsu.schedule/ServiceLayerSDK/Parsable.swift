@@ -10,12 +10,10 @@ import UIKit
 
 protocol Parsable: class {
 
+    associatedtype QueryInfo: QueryInfoType
+
     static func keyForIdentifier() -> String
     static func keyForEnumerateObjects() -> String
 
-    func fill(json: [String: AnyObject])
-}
-
-protocol ModelType: Parsable, ManagedObjectType {
-
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo?)
 }

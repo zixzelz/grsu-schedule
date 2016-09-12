@@ -13,10 +13,10 @@ class GetGroupsService: BaseDataService {
 
     class func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, completionHandler: (([GroupsEntity]?, NSError?) -> Void)!) {
 
-        getGroups(faculty, department: department, course: course, cache: .CachedElseLoad, completionHandler: completionHandler)
+        getGroups(faculty, department: department, course: course, useCache: true, completionHandler: completionHandler)
     }
 
-    class func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, cache: CachePolicy, completionHandler: (([GroupsEntity]?, NSError?) -> Void)!) {
+    class func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, useCache: Bool, completionHandler: (([GroupsEntity]?, NSError?) -> Void)!) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsGroupKey = "GroupsKey \(faculty.id).\(department.id).\(course)"

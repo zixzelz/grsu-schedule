@@ -13,10 +13,10 @@ class GetTeacherScheduleService: BaseDataService {
 
     class func getSchedule(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
-        getSchedule(teacher, dateStart: dateStart, dateEnd: dateEnd, cache: .CachedElseLoad, completionHandler: completionHandler)
+        getSchedule(teacher, dateStart: dateStart, dateEnd: dateEnd, useCache: true, completionHandler: completionHandler)
     }
 
-    class func getSchedule(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
+    class func getSchedule(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, useCache: Bool, completionHandler: ((Array<LessonScheduleEntity>?, NSError?) -> Void)!) {
 
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsScheduleTeacherKey = "ScheduleTeacherKey \(teacher.id).\(dateStart)"
@@ -182,8 +182,8 @@ class GetTeacherScheduleService: BaseDataService {
         context.performBlock({ () -> Void in
 
             let request = NSFetchRequest(entityName: LessonScheduleEntityName)
-            var sorter: NSSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-            var lessonSorter = NSSortDescriptor(key: "startTime", ascending: true)
+            let sorter: NSSortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+            let lessonSorter = NSSortDescriptor(key: "startTime", ascending: true)
             let teacher_ = context.objectWithID(teacher.objectID) as! TeacherInfoEntity
             let predicate = NSPredicate(format: "(isTeacherSchedule == YES) && (teacher == %@) && (date >= %@) && (date <= %@)", teacher_, dateStart, dateEnd)
 
@@ -194,14 +194,9 @@ class GetTeacherScheduleService: BaseDataService {
             let itemIds = try! context.executeFetchRequest(request) as! [NSManagedObjectID]
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                var items: [LessonScheduleEntity]?
-                if error == nil {
-                    items = cdHelper.convertToMainQueue(itemIds) as? [LessonScheduleEntity]
-                } else {
-                    NSLog("executeFetchRequest error: %@", error!)
-                }
+                let items = cdHelper.convertToMainQueue(itemIds) as? [LessonScheduleEntity]
 
-                completionHandler(items, error)
+                completionHandler(items, nil)
             })
         })
     }

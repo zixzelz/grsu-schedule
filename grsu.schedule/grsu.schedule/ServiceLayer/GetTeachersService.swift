@@ -16,10 +16,10 @@ class GetTeachersService: BaseDataService {
     // MARK: - Teacher
 
     class func getTeacher(teacherId: String, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)!) {
-        getTeacher(teacherId, cache: .CachedElseLoad, completionHandler: completionHandler)
+        getTeacher(teacherId, useCache: true, completionHandler: completionHandler)
     }
 
-    class func getTeacher(teacherId: String, cache: CachePolicy, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)) {
+    class func getTeacher(teacherId: String, useCache: Bool, completionHandler: (ServiceResult<TeacherInfoEntity, NSError> -> Void)) {
 
         if (useCache == false) {
             featchTeacher(teacherId) { result -> Void in
@@ -223,7 +223,7 @@ class GetTeachersService: BaseDataService {
 
                         dispatch_async(dispatch_get_main_queue(), { _ in
 
-                            let mTeacher = cdHelper.managedObjectContext?.objectWithID(teacher!.objectID) as! TeacherInfoEntity
+                            let mTeacher = cdHelper.managedObjectContext.objectWithID(teacher!.objectID) as! TeacherInfoEntity
                             completionHandler(.Success(mTeacher))
                         })
 

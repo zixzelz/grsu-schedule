@@ -8,17 +8,34 @@
 
 import UIKit
 
-class LocalService<T: ModelType> {
+protocol LocalServiceQueryType {
+
+    associatedtype QueryInfo: QueryInfoType
+
+    var queryInfo: QueryInfo? { get }
+
+    var predicate: NSPredicate? { get }
+    var sortBy: [NSSortDescriptor]? { get }
+}
+
+extension LocalServiceQueryType {
+
+    var queryInfo: NoneQueryInfo? {
+        return nil
+    }
+}
+
+class LocalService < T: ModelType > {
 
     typealias LocalServiceFetchCompletionHandlet = ServiceResult<[T], ServiceError> -> ()
     typealias LocalServiceStoreCompletionHandlet = ServiceResult<Void, ServiceError> -> ()
 
-    func parseAndStore(query: NetworkServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
+    func parseAndStore < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
 
         store(query, json: json, completionHandler: completionHandler)
     }
 
-    func featch(query: NetworkServiceQuery, completionHandler: LocalServiceFetchCompletionHandlet) {
+    func featch < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, completionHandler: LocalServiceFetchCompletionHandlet) {
 
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let context = delegate.cdh.backgroundContext
@@ -32,7 +49,7 @@ class LocalService<T: ModelType> {
         }
     }
 
-    private func store(query: NetworkServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
+    private func store < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
 
         guard let items = json[T.keyForEnumerateObjects()] as? [[String: AnyObject]] else {
             completionHandler(.Failure(.WrongResponseFormat))
@@ -47,23 +64,23 @@ class LocalService<T: ModelType> {
             let cacheItems = T.objects(withPredicate: query.predicate, inContext: context) ?? []
             let cacheItemsMap = cacheItems.dict { ($0.identifier, $0) }
 
-            var handledItemKeys = [String]()
+            var handledItemsKey = [String]()
             for item in items {
 
                 let identifier = item[T.keyForIdentifier()] as! String
                 if let oldItem = cacheItemsMap[identifier] {
 
-                    oldItem.fill(item)
-                    handledItemKeys.append(identifier)
+                    oldItem.fill(item, queryInfo: query.queryInfo)
+                    handledItemsKey.append(identifier)
                 } else {
 
                     let newItem = T.insert(inContext: context)
-                    newItem.fill(item)
-                    handledItemKeys.append(identifier)
+                    newItem.fill(item, queryInfo: query.queryInfo)
+                    handledItemsKey.append(identifier)
                 }
             }
 
-            let itemForDelete = cacheItemsMap.filter { !handledItemKeys.contains($0.0) }
+            let itemForDelete = cacheItemsMap.filter { !handledItemsKey.contains($0.0) }
             for (_, item) in itemForDelete {
                 item.delete(context)
             }
