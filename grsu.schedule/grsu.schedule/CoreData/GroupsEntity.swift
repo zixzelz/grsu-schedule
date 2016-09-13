@@ -24,7 +24,7 @@ class GroupsEntity: NSManagedObject {
 
 extension GroupsEntity: ModelType {
 
-    typealias QueryInfo = NoneQueryInfo
+    typealias QueryInfo = GroupsServiceQueryInfo
 
     static func keyForIdentifier() -> String {
         return "id"
@@ -34,14 +34,24 @@ extension GroupsEntity: ModelType {
         return "items"
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo?) {
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo) {
 
         id = json["id"] as! String
-        title = json["title"] as! String
 
-//        newItem.faculty = query.faculty
-//        newItem.department = query.department
-//        newItem.course = query.course
+        if case let .Default(faculty, department, course) = queryInfo {
+
+            let context = managedObjectContext!
+
+            self.faculty = faculty.convertInContext(context)
+            self.department = department.convertInContext(context)
+            self.course = course
+        }
+
+        update(json, queryInfo: queryInfo)
+    }
+
+    func update(json: [String: AnyObject], queryInfo: QueryInfo) {
+        title = json["title"] as! String
     }
 
     // MARK: - ManagedObjectType

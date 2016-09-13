@@ -30,9 +30,15 @@ extension DepartmentsEntity: ModelType {
         return "items"
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo?) {
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo) {
 
         id = json["id"] as! String
+        
+        update(json, queryInfo: queryInfo)
+    }
+
+    func update(json: [String: AnyObject], queryInfo: QueryInfo) {
+
         title = json["title"] as! String
     }
 

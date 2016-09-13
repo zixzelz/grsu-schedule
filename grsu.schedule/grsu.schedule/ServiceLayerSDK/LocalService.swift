@@ -12,7 +12,7 @@ protocol LocalServiceQueryType {
 
     associatedtype QueryInfo: QueryInfoType
 
-    var queryInfo: QueryInfo? { get }
+    var queryInfo: QueryInfo { get }
 
     var predicate: NSPredicate? { get }
     var sortBy: [NSSortDescriptor]? { get }
@@ -20,8 +20,8 @@ protocol LocalServiceQueryType {
 
 extension LocalServiceQueryType {
 
-    var queryInfo: NoneQueryInfo? {
-        return nil
+    var queryInfo: NoneQueryInfo {
+        return NoneQueryInfo()
     }
 }
 
@@ -70,7 +70,7 @@ class LocalService < T: ModelType > {
                 let identifier = item[T.keyForIdentifier()] as! String
                 if let oldItem = cacheItemsMap[identifier] {
 
-                    oldItem.fill(item, queryInfo: query.queryInfo)
+                    oldItem.update(item, queryInfo: query.queryInfo)
                     handledItemsKey.append(identifier)
                 } else {
 

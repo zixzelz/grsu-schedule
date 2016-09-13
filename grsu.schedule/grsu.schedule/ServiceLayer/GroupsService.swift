@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum GroupsServiceQueryInfo: QueryInfoType {
+    case Default(faculty: FacultiesEntity, department: DepartmentsEntity, course: String)
+}
+
 typealias GroupsCompletionHandlet = ServiceResult<[GroupsEntity], ServiceError> -> Void
 
 class GroupsService {
@@ -19,8 +23,6 @@ class GroupsService {
 
         localService = LocalService()
         networkService = NetworkService(localService: localService)
-
-        print("\(networkService)")
     }
 
     func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, cache: CachePolicy = .CachedElseLoad, completionHandler: GroupsCompletionHandlet) {
@@ -33,8 +35,6 @@ class GroupsService {
 
 class GroupsQuery: NetworkServiceQueryType {
 
-    var queryInfo: NoneQueryInfo? = nil
-
     let faculty: FacultiesEntity
     let department: DepartmentsEntity
     let course: String
@@ -45,12 +45,14 @@ class GroupsQuery: NetworkServiceQueryType {
         self.course = course
     }
 
-    var path: String {
-        return "/getGroups"
+    var queryInfo: GroupsServiceQueryInfo {
+        return .Default(faculty: faculty, department: department, course: course)
     }
-    var method: NetworkServiceMethod {
-        return .GET
-    }
+
+    var path: String = "/getGroups"
+
+    var method: NetworkServiceMethod = .GET
+
     var parameters: [String: AnyObject]? {
 
         return ["facultyId": faculty.id,
@@ -62,8 +64,6 @@ class GroupsQuery: NetworkServiceQueryType {
         return NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@)", faculty, department, course)
     }
 
-    var sortBy: [NSSortDescriptor]? {
-        return [NSSortDescriptor(key: "title", ascending: true)]
-    }
+    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "title", ascending: true)]
 
 }

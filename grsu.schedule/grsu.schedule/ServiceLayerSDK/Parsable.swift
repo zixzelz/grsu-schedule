@@ -15,5 +15,6 @@ protocol Parsable: class {
     static func keyForIdentifier() -> String
     static func keyForEnumerateObjects() -> String
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo?)
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo)
+    func update(json: [String: AnyObject], queryInfo: QueryInfo)
 }

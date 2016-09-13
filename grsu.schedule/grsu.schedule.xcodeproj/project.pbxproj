@@ -36,7 +36,6 @@
 		2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B61A23B8AC001BA278 /* DateUtils.m */; };
 		2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */; };
 		2D6000E81A1E825D005CB141 /* ScheduleQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000E71A1E825D005CB141 /* ScheduleQuery.swift */; };
-		2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6000F11A1F9453005CB141 /* GetGroupsService.swift */; };
 		2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D6B07EF1A3637F30064DD39 /* DateManager.swift */; };
 		2D716C381A3830EE00CE7F27 /* GetTeachersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */; };
 		2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */; };
@@ -163,7 +162,6 @@
 		2D3FF2B81A23C00D001BA278 /* NSString+Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Expanded.h"; sourceTree = "<group>"; };
 		2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Expanded.m"; sourceTree = "<group>"; };
 		2D6000E71A1E825D005CB141 /* ScheduleQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleQuery.swift; sourceTree = "<group>"; };
-		2D6000F11A1F9453005CB141 /* GetGroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetGroupsService.swift; sourceTree = "<group>"; };
 		2D6B07EF1A3637F30064DD39 /* DateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTeachersService.swift; sourceTree = "<group>"; };
 		2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersViewController.swift; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 				44D146261D7F84C00076BDF0 /* DepartmentsService.swift */,
 				4486BC5F1D837633000DFF58 /* FacultyService.swift */,
 				448758401D8473320076F019 /* GroupsService.swift */,
-				2D6000F11A1F9453005CB141 /* GetGroupsService.swift */,
 				2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */,
 				2DBD4ECE1A5B1A170055EA3A /* GetTeacherScheduleService.swift */,
 				2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */,
@@ -739,7 +736,6 @@
 				2DBD4E931A4EBD240055EA3A /* RYMapViewController.swift in Sources */,
 				2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */,
 				2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */,
-				2D6000F21A1F9453005CB141 /* GetGroupsService.swift in Sources */,
 				2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */,
 				2D0826221A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift in Sources */,
 				44D4EA541D7DD78800C38D1E /* CachePolicy.swift in Sources */,

@@ -18,8 +18,7 @@ extension ManagedObjectType {
     public static func insert(inContext context: NSManagedObjectContext) -> Self {
         guard let result: Self = (NSEntityDescription.insertNewObjectForEntityForName(String(Self), inManagedObjectContext: context) as? Self) else {
 
-            print("Unable to insert \(String(self)) in context./n Check if module for Entity is set properly in CoreData model")
-            abort()
+            fatalError("Unable to insert \(String(self)) in context./n Check if module for Entity is set properly in CoreData model")
         }
         return result
     }
@@ -73,6 +72,16 @@ extension ManagedObjectType {
     public func delete(context: NSManagedObjectContext) {
 
         context.deleteObject(self as! NSManagedObject)
+    }
+
+}
+
+extension NSManagedObject {
+
+    func convertInContext<T: NSManagedObject>(context: NSManagedObjectContext) -> T? {
+
+        let object = context.objectWithID(objectID)
+        return object as? T
     }
 
 }

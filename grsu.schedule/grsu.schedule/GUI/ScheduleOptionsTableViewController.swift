@@ -124,28 +124,27 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     }
 
     func featchGroups(fromCacheOnly: Bool = false) {
-        let faculty = selectedFaculty()
-        let departmant = selectedDepartment()
-        let course = selectedCourse()
 
-        if (faculty != nil && departmant != nil && course != nil) {
-            GetGroupsService.getGroups(faculty!, department: departmant!, course: course!, completionHandler: { [weak self](array: Array<GroupsEntity>?, error: NSError?) -> Void in
-                if let wSelf = self {
-                    if let items = array {
-                        wSelf.groups = items
-                        wSelf.groupPickerTableViewCell.items = items.map { $0.title }
-
-                        var itemId = wSelf.scheduleDataSource?.defaultGroupID()
-                        if let value = wSelf.valueById(items, itemId: itemId) {
-                            wSelf.groupPickerTableViewCell.selectRow(value)
-                        } else {
-                            itemId = items.first?.id
-                        }
-                        wSelf.scheduleDelegate?.didSelectGroup(itemId);
-                    }
-                }
-            })
+        guard let faculty = selectedFaculty(), let departmant = selectedDepartment(), let course = selectedCourse() else {
+            return
         }
+
+        GroupsService().getGroups(faculty, department: departmant, course: course, completionHandler: { [weak self] result -> Void in
+
+            guard let strongSelf = self else { return }
+            guard case let .Success(items) = result else { return }
+
+            strongSelf.groups = items
+            strongSelf.groupPickerTableViewCell.items = items.map { $0.title }
+
+            var itemId = strongSelf.scheduleDataSource?.defaultGroupID()
+            if let value = strongSelf.valueById(items, itemId: itemId) {
+                strongSelf.groupPickerTableViewCell.selectRow(value)
+            } else {
+                itemId = items.first?.id
+            }
+            strongSelf.scheduleDelegate?.didSelectGroup(itemId);
+        })
     }
 
     // MARK: - Interface

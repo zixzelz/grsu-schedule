@@ -30,9 +30,14 @@ extension FacultiesEntity: ModelType {
         return "items"
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo?) {
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo) {
 
         id = json["id"] as! String
+
+        update(json, queryInfo: queryInfo)
+    }
+
+    func update(json: [String: AnyObject], queryInfo: QueryInfo) {
 
         let fullTitle = json["title"] as! String
         title = fullTitle.stringByReplacingOccurrencesOfString("^Факультет ", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil)
