@@ -13,13 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
         GMSServices.provideAPIKey("AIzaSyBSF-hRXIjTMwnB0vwWcaDX-aq7WSy2pAc")
-        
+
         Flurry.setCrashReportingEnabled(true)
         Flurry.startSession("9W5R9JWXFCGXR7XJ5R83")
-        
+
         GSReachability.sharedInstance.startNotifier()
         return true
     }
@@ -46,16 +46,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // #pragma mark - Core Data Helper
-    
+
     lazy var cdstore: CoreDataStore = {
         let cdstore = CoreDataStore()
         return cdstore
-        }()
-    
+    }()
+
     lazy var cdh: CoreDataHelper = {
         let cdh = CoreDataHelper()
         return cdh
-        }()
-    
+    }()
+
 }
 

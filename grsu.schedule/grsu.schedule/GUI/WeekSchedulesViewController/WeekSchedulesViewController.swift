@@ -92,11 +92,15 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
             if let lesson = lesson {
                 let indexPath = NSIndexPath(forRow: day.lessons.indexOf(lesson)!, inSection: dayIndex)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: true)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: false)
             } else {
                 let indexPath = NSIndexPath(forRow: 0, inSection: dayIndex)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
             }
+        }
+
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.flashScrollIndicators()
         }
     }
 
@@ -178,7 +182,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
                 lCell = cellForLesson(lesson, isActive: false)
             }
 
-            lCell.locationLabel.text = String(format: "%@; к.%@", lesson.address, lesson.room)
+            lCell.locationLabel.text = "\(lesson.address ?? ""); к.\(lesson.room ?? "")"
             lCell.studyTypeLabel.text = lesson.type
             lCell.studyNameLabel.text = lesson.studyName
             lCell.startTime = lesson.startTime.integerValue

@@ -92,6 +92,7 @@
 		2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */; };
 		2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */; };
 		2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */; };
+		4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */; };
 		44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */; };
 		44641E571A5DC67000AA46BB /* StudentLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E561A5DC67000AA46BB /* StudentLessonScheduleCell.swift */; };
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
@@ -101,6 +102,7 @@
 		448758411D8473320076F019 /* GroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758401D8473320076F019 /* GroupsService.swift */; };
 		448758431D85F8120076F019 /* QueryInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758421D85F8120076F019 /* QueryInfoType.swift */; };
 		448758451D85F8460076F019 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758441D85F8460076F019 /* ModelType.swift */; };
+		449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B4A8D1D887AFA00245E82 /* StudentScheduleService.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
 		44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */; };
 		44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146201D7F84510076BDF0 /* NetworkService.swift */; };
@@ -220,6 +222,7 @@
 		2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
 		2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersSearchDataSource.swift; sourceTree = "<group>"; };
 		2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsableManagedObjectExtension.swift; sourceTree = "<group>"; };
 		44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E561A5DC67000AA46BB /* StudentLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 		448758401D8473320076F019 /* GroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsService.swift; sourceTree = "<group>"; };
 		448758421D85F8120076F019 /* QueryInfoType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryInfoType.swift; sourceTree = "<group>"; };
 		448758441D85F8460076F019 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
+		449B4A8D1D887AFA00245E82 /* StudentScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentScheduleService.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
 		44D146201D7F84510076BDF0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -279,10 +283,12 @@
 		2D0505C71A1660C200171A2E /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */,
 				2D0505CA1A1662DC00171A2E /* BaseDataService.swift */,
 				44D146261D7F84C00076BDF0 /* DepartmentsService.swift */,
 				4486BC5F1D837633000DFF58 /* FacultyService.swift */,
 				448758401D8473320076F019 /* GroupsService.swift */,
+				449B4A8D1D887AFA00245E82 /* StudentScheduleService.swift */,
 				2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */,
 				2DBD4ECE1A5B1A170055EA3A /* GetTeacherScheduleService.swift */,
 				2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */,
@@ -726,6 +732,7 @@
 				448758451D85F8460076F019 /* ModelType.swift in Sources */,
 				2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */,
 				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
+				449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,
 				44D146271D7F84C00076BDF0 /* DepartmentsService.swift in Sources */,
 				44D504181A780DD900265A7C /* Reachability.m in Sources */,
@@ -745,6 +752,7 @@
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
 				2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */,
 				2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */,
+				4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */,
 				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
 				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,

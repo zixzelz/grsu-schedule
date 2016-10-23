@@ -31,9 +31,11 @@ class CoreDataStore: NSObject {
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(self.storeFilename)
 
-        let store = try? coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
-        if store == nil {
-            NSLog("Unresolved error")
+        do {
+            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+        } catch let error as NSError {
+
+            NSLog("Unresolved error \(error)")
             abort()
         }
         return coordinator!

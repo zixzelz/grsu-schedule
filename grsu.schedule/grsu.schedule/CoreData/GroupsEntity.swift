@@ -30,11 +30,12 @@ extension GroupsEntity: ModelType {
         return "id"
     }
 
-    static func keyForEnumerateObjects() -> String {
-        return "items"
+    static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]? {
+
+        return json["items"] as? [[String: AnyObject]]
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo) {
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
 
         id = json["id"] as! String
 

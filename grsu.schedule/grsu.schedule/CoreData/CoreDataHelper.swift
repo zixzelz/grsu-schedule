@@ -103,7 +103,7 @@ class CoreDataHelper: NSObject {
 
 extension NSManagedObjectContext {
 
-    func saveIfNeeded() {
+    public func saveIfNeeded() {
 
         do {
             if hasChanges {
