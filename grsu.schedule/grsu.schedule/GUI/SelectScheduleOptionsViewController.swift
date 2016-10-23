@@ -11,7 +11,6 @@ import UIKit
 class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTableViewControllerDataSource, ScheduleOptionsTableViewControllerDelegate {
 
     @IBOutlet weak var scheduleButton: UIButton!
-    let locationManager = CLLocationManager()
 
     var scheduleOptions: ScheduleOptionsTableViewController {
         get {
@@ -23,10 +22,6 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if #available(iOS 8.0, *) {
-            locationManager.requestWhenInUseAuthorization()
-        }
 
         scheduleOptions.scheduleDelegate = self
         scheduleOptions.scheduleDataSource = self
