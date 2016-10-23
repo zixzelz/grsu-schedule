@@ -182,7 +182,11 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
                 lCell = cellForLesson(lesson, isActive: false)
             }
 
-            lCell.locationLabel.text = "\(lesson.address ?? ""); к.\(lesson.room ?? "")"
+            if !NSString.isNilOrEmpty(lesson.address) || !NSString.isNilOrEmpty(lesson.room) {
+                lCell.locationLabel.text = "\(lesson.address ?? ""); к.\(lesson.room ?? "")"
+            } else {
+                lCell.locationLabel.text = nil
+            }
             lCell.studyTypeLabel.text = lesson.type
             lCell.studyNameLabel.text = lesson.studyName
             lCell.startTime = lesson.startTime.integerValue
