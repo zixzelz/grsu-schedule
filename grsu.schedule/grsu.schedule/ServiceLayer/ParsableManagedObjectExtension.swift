@@ -24,7 +24,7 @@ extension ManagedObjectType {
 extension ManagedObjectType {
 
     public static func insert(inContext context: ManagedObjectContextType) -> Self {
-        let context = context as! NSManagedObjectContext // WARNING
+        let context = context as! NSManagedObjectContext // TODO: context as generic type?  WARNING
         guard let result: Self = NSEntityDescription.insertNewObjectForEntityForName(String(Self), inManagedObjectContext: context) as? Self else {
 
             fatalError("Unable to insert \(String(self)) in context./n Check if module for Entity is set properly in CoreData model")
@@ -45,6 +45,7 @@ extension ManagedObjectType {
 
         let request = NSFetchRequest(entityName: String(self))
         request.predicate = predicate
+        request.sortDescriptors = sortBy
 
         let result: [Self]? = objects(withRequest: request, inContext: context)
         return result
@@ -55,6 +56,7 @@ extension ManagedObjectType {
         let request = NSFetchRequest(entityName: String(self))
         request.resultType = .ManagedObjectIDResultType
         request.predicate = predicate
+        request.sortDescriptors = sortBy
 
         let ids: [NSManagedObjectID] = objects(withRequest: request, inContext: context) ?? []
 

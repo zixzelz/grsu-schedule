@@ -121,7 +121,7 @@ extension LessonScheduleEntity: ModelType {
     // MARK: - ManagedObjectType
 
     var identifier: String {
-        let id = "\(date.timeIntervalSince1970)-\(startTime)-\(groups.first?.id)"
+        let id = "\(date.timeIntervalSince1970)-\(startTime)-\(groups.first?.id)-\(subgroupTitle)"
         return id
     }
 

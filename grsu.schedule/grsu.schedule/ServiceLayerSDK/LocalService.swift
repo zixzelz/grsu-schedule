@@ -84,9 +84,6 @@ class LocalService < T: ModelType > {
 
             context.saveIfNeeded()
 
-            let newcacheItemsMap = T.objectsMap(withPredicate: query.predicate, inContext: context) ?? [:]
-            print("newcacheItemsMap \(newcacheItemsMap.keys)")
-
             completionHandler(.Success())
         }
     }
