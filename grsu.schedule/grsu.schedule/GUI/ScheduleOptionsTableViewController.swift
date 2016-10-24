@@ -82,7 +82,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     func featchData() {
 
-        DepartmentsService().getDepartments(.ReloadIgnoringCache) { [weak self] result in
+        DepartmentsService().getDepartments(.CachedElseLoad) { [weak self] result in
 
             guard let strongSelf = self else { return }
             guard case let .Success(items) = result else { return }
@@ -102,7 +102,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             strongSelf.featchGroups(true);
         }
 
-        FacultyService().getFaculties(.ReloadIgnoringCache) { [weak self] result in
+        FacultyService().getFaculties(.CachedElseLoad) { [weak self] result in
 
             guard let strongSelf = self else { return }
             guard case let .Success(items) = result else { return }

@@ -38,7 +38,7 @@ class LessonScheduleContext {
 
 extension LessonScheduleEntity: ModelType {
 
-    typealias QueryInfo = StudentScheduleQueryInfo
+    typealias QueryInfo = ScheduleQueryInfo
 
     static func keyForIdentifier() -> String {
         return "timeStart"
@@ -77,18 +77,13 @@ extension LessonScheduleEntity: ModelType {
 
         let lesson = json
 
-        guard case let .Default(_group) = queryInfo,
-            let moContext = managedObjectContext else { return }
-        let group = _group.convertInContext(managedObjectContext!)
+        guard let moContext = managedObjectContext else { return }
 
         guard let lessonDate = lesson["date"] as? NSDate else { return }
         guard let timeStart = lesson["timeStart"] as? String else { return }
         guard let timeEnd = lesson["timeEnd"] as? String else { return }
-        let teacher = lesson["teacher"] as? [String: AnyObject]
-        let subGroup = lesson["subgroup"] as? [String: AnyObject]
 
         isTeacherSchedule = false
-        groups = Set<GroupsEntity>(arrayLiteral: group)
         date = lessonDate
         studyName = lesson["title"] as? String
         type = lesson["type"] as? String
@@ -96,26 +91,38 @@ extension LessonScheduleEntity: ModelType {
         room = lesson["room"] as? String
         startTime = DateManager.timeIntervalWithTimeText(timeStart)
         stopTime = DateManager.timeIntervalWithTimeText(timeEnd)
+        subgroupTitle = lesson["subgroup"]?["title"] as? String
 
-        if let subGroup = subGroup {
-            subgroupTitle = subGroup["title"] as? String
-        }
+        switch queryInfo {
+        case .Student(let _group):
+            let group = _group.convertInContext(moContext)
+            groups = Set<GroupsEntity>(arrayLiteral: group)
+            teacher = parseTeacher(lesson["teacher"], managedObjectContext: moContext, context: context)
 
-        if let teacher = teacher, teacherId = teacher["id"] as? String {
-
-            var newTeacher = context.teachersMap[teacherId]
-            if newTeacher == nil {
-
-                newTeacher = TeacherInfoEntity.insert(inContext: moContext)
-                newTeacher?.id = teacherId
-                newTeacher?.title = teacher["fullname"] as? String
-                newTeacher?.post = teacher["post"] as? String
-            }
-            self.teacher = newTeacher
+        case .Teacher(let _teacher):
+            teacher = _teacher.convertInContext(moContext)
         }
     }
 
     func update(json: [String: AnyObject], queryInfo: QueryInfo) {
+    }
+
+    //
+
+    private func parseTeacher(teacherJson: AnyObject?, managedObjectContext: NSManagedObjectContext, context: LessonScheduleContext) -> TeacherInfoEntity? {
+
+        guard let teacherJson = teacherJson as? [String: AnyObject] else { return nil }
+        guard let teacherId = teacherJson["id"] as? String else { return nil }
+
+        var newTeacher = context.teachersMap[teacherId]
+        if newTeacher == nil {
+
+            newTeacher = TeacherInfoEntity.insert(inContext: managedObjectContext)
+            newTeacher?.id = teacherId
+            newTeacher?.title = teacherJson["fullname"] as? String
+            newTeacher?.post = teacherJson["post"] as? String
+        }
+        return newTeacher
     }
 
     // MARK: - ManagedObjectType

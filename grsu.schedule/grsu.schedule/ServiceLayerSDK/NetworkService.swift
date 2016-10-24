@@ -120,7 +120,7 @@ class NetworkService<T: ModelType> {
 
     private func URLSession() -> NSURLSession {
         let queue = NSOperationQueue();
-        queue.name = "com.schedule.queue"
+        queue.name = "com.grsu.network.queue"
 
         let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
         sessionConfig.timeoutIntervalForRequest = 30
