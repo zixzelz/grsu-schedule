@@ -15,15 +15,14 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
     override func fetchData(useCache: Bool = true) {
         super.fetchData(useCache)
 
-        GetTeacherScheduleService.getSchedule(teacher!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, useCache: true) { [weak self](items: Array<LessonScheduleEntity>?, error: NSError?) -> Void in
-            if (error == nil) {
-                if let wSelf = self {
-                    wSelf.setLessonSchedule(items!)
-                    wSelf.reloadData()
-                }
-            } else {
-                NSLog("GetTeacherScheduleService error: \(error)")
-            }
+        let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
+        ScheduleService().getTeacherSchedule(teacher!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, cache: cache) { [weak self] result -> Void in
+
+            guard let strongSelf = self else { return }
+            guard case let .Success(items) = result else { return }
+
+            strongSelf.setLessonSchedule(items)
+            strongSelf.reloadData()
         }
     }
 
@@ -58,7 +57,8 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
     func chooseGroup(groups: Set<GroupsEntity>) {
 
-        #if giOS8OrGreater
+        if #available(iOS 8, *) {
+
             let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .ActionSheet)
 
             let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
@@ -72,12 +72,12 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
             }
 
             self.presentViewController(alert, animated: true, completion: nil)
-        #else
+        } else {
 
             let al = UIAlertView(title: "", message: "Пока только в iOS 8.", delegate: nil, cancelButtonTitle: "OK")
             al.show()
 
-        #endif
+        }
 
     }
 

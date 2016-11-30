@@ -18,15 +18,7 @@ protocol NetworkServiceQueryType: LocalServiceQueryType {
     var method: NetworkServiceMethod { get }
     var parameters: [String: AnyObject]? { get }
 
-    static var cacheTimeInterval: NSTimeInterval { get }
-}
-
-extension NetworkServiceQueryType {
-
-    // Think
-    static var cacheTimeInterval: NSTimeInterval {
-        return 60 * 60 * 24
-    }
+//    var cacheTimeInterval: NSTimeInterval { get }
 }
 
 class NetworkService<T: ModelType> {
@@ -50,7 +42,7 @@ class NetworkService<T: ModelType> {
 
         case .CachedElseLoad:
 
-            if isCacheExpired() {
+            if isCacheExpired(query) {
                 resumeRequest(query) { _ in
                     self.localService.featch(query, completionHandler: completionHandler)
                 }
@@ -72,10 +64,7 @@ class NetworkService<T: ModelType> {
         let session = URLSession()
         let url = NSURL(scheme: UrlScheme, host: UrlHost, path: query.path)!
         let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: true)!
-
-        if let parameters = query.parameters {
-            components.query = configureStringQuery(parameters)
-        }
+        components.query = query.queryString
 
         let request = NSURLRequest(URL: components.URL!)
 
@@ -94,6 +83,7 @@ class NetworkService<T: ModelType> {
             let responseDict = json as? [String: AnyObject] ?? [String: AnyObject]()
 
             NSLog("response: %@", NSString(data: data!, encoding: NSUTF8StringEncoding)!)
+            self.saveDate(query)
             self.parseAndStore(query, responseDict: responseDict, completionHandler: completionHandler)
         }
 
@@ -108,12 +98,20 @@ class NetworkService<T: ModelType> {
 
     // MARK - Utils
 
-    private func isCacheExpired() -> Bool {
+    private func saveDate < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery) {
 
+        let cacheIdentifier = query.cacheIdentifier
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setObject(NSDate(), forKey: cacheIdentifier)
+    }
+
+    private func isCacheExpired < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery) -> Bool {
+
+        let cacheIdentifier = query.cacheIdentifier
         let userDefaults = NSUserDefaults.standardUserDefaults()
 
-        guard let date = userDefaults.objectForKey(String(T)) as? NSDate else { return true }
-        let expiryDate = date.dateByAddingTimeInterval(60 * 60 * 24)
+        guard let date = userDefaults.objectForKey(cacheIdentifier) as? NSDate else { return true }
+        let expiryDate = date.dateByAddingTimeInterval(query.cacheTimeInterval)
 
         return expiryDate.compare(NSDate()) == .OrderedAscending
     }
@@ -128,12 +126,50 @@ class NetworkService<T: ModelType> {
         return NSURLSession(configuration: sessionConfig)
     }
 
-    private func configureStringQuery(parameters: [String: AnyObject]) -> String {
+}
 
-        let res = parameters.reduce("") { (result, dict) in
-            return "\(result)&\(dict.0)=\(dict.1)"
-        }
-        return res
+private extension NetworkServiceQueryType {
+
+    // Think
+    var cacheTimeInterval: NSTimeInterval {
+        return 60 * 60 * 24
     }
 
+    var cacheIdentifier: String {
+
+        var key = String(self.dynamicType)
+        if let str = queryString {
+            key.appendContentsOf(str)
+        }
+        return key
+    }
+
+    var queryString: String? {
+        return parameters?.stringFromHttpParameters()
+    }
+
+}
+
+extension String {
+    
+    func stringByAddingPercentEncodingForURLQueryValue() -> String? {
+        let allowedCharacters = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
+        
+        return self.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
+    }
+    
+}
+
+extension Dictionary {
+    
+    func stringFromHttpParameters() -> String {
+        let parameterArray = self.map { (key, value) -> String in
+            let percentEscapedKey = (key as! String).stringByAddingPercentEncodingForURLQueryValue()!
+            let percentEscapedValue = (value as! String).stringByAddingPercentEncodingForURLQueryValue()!
+            return "\(percentEscapedKey)=\(percentEscapedValue)"
+        }
+        
+        return parameterArray.joinWithSeparator("&")
+    }
+    
 }

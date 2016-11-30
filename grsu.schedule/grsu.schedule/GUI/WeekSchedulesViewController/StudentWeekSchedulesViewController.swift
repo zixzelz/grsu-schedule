@@ -15,7 +15,8 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
     override func fetchData(useCache: Bool = true) {
         super.fetchData(useCache)
 
-        ScheduleService().getStudentSchedule(group!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!) { [weak self] result -> Void in
+        let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
+        ScheduleService().getStudentSchedule(group!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
             guard case let .Success(items) = result else { return }

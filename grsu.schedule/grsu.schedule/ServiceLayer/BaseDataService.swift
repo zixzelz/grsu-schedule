@@ -40,7 +40,7 @@ class BaseDataService: NSObject {
             let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
             let responseDict = json as? [String: AnyObject] ?? [String: AnyObject]()
 
-            // NSLog("response: %@", NSString(data: data, encoding: NSUTF8StringEncoding)!)
+            NSLog("response: %@", NSString(data: data!, encoding: NSUTF8StringEncoding)!)
 
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 completionHandler(.Success(responseDict))
