@@ -23,6 +23,10 @@ class CoreDataHelper: NSObject {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CoreDataHelper.contextDidSaveContext(_:)), name: NSManagedObjectContextDidSaveNotification, object: nil)
     }
 
+    func setup() {
+        managedObjectContext.saveIfNeeded()
+    }
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }

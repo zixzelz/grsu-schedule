@@ -55,8 +55,7 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     }
 
     func weekScheduleController(weekIndex: Int? = nil) -> UIViewController {
-        let vc = UIViewController()
-        return vc
+        fatalError("You must override !!!")
     }
 
     func favoritWillRemoveNotification(notification: NSNotification) {
@@ -99,7 +98,7 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     // MARK: - Utils
 
     func indexOfViewController(vc: WeekSchedulesViewController) -> Int {
-        
+
         let weeks = possibleWeeks.map { $0.startDate } as [NSDate]
         return weeks.indexOf(vc.dateScheduleQuery.startWeekDate!)!
     }

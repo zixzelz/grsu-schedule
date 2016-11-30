@@ -14,9 +14,14 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
 
     override func fetchData(useCache: Bool = true) {
         super.fetchData(useCache)
+        
+        guard let group = group, let startWeekDate = dateScheduleQuery?.startWeekDate, let endWeekDate = dateScheduleQuery?.endWeekDate else {
+            assertionFailure("Miss params")
+            return
+        }
 
         let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
-        ScheduleService().getStudentSchedule(group!, dateStart: dateScheduleQuery!.startWeekDate!, dateEnd: dateScheduleQuery!.endWeekDate!, cache: cache) { [weak self] result -> Void in
+        ScheduleService().getStudentSchedule(group, dateStart: startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
             guard case let .Success(items) = result else { return }

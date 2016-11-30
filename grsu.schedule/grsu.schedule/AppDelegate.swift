@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Flurry.startSession("9W5R9JWXFCGXR7XJ5R83")
 
         GSReachability.sharedInstance.startNotifier()
+        cdh.setup()
         return true
     }
 
