@@ -23,6 +23,7 @@ protocol NetworkServiceQueryType: LocalServiceQueryType {
 
 class NetworkService<T: ModelType> {
 
+    typealias NetworkServiceFetchItemCompletionHandlet = ServiceResult<T, ServiceError> -> ()
     typealias NetworkServiceFetchCompletionHandlet = ServiceResult<[T], ServiceError> -> ()
     typealias NetworkServiceStoreCompletionHandlet = ServiceResult<Void, ServiceError> -> ()
 
@@ -33,6 +34,23 @@ class NetworkService<T: ModelType> {
         self.localService = localService
     }
 
+    func fetchDataItem < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, cache: CachePolicy, completionHandler: NetworkServiceFetchItemCompletionHandlet) {
+
+        fetchData(query, cache: cache) { (result) in
+            
+            switch result {
+            case .Success(let items):
+                guard let item = items.first else {
+                    completionHandler(.Failure(.WrongResponseFormat))
+                    return
+                }
+                completionHandler(.Success(item))
+            case .Failure(let error):
+                completionHandler(.Failure(error))
+            }
+        }
+    }
+    
     func fetchData < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, cache: CachePolicy, completionHandler: NetworkServiceFetchCompletionHandlet) {
 
         switch cache {

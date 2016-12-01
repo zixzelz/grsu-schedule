@@ -27,11 +27,11 @@ class TeachersService {
         networkService = NetworkService(localService: localService)
     }
     
-    func getTeacher(teacherId: String, cache: CachePolicy = .CachedElseLoad, completionHandler: TeachersCompletionHandlet) {
+    func getTeacher(teacherId: String, cache: CachePolicy = .CachedElseLoad, completionHandler: TeacherCompletionHandlet) {
         
         let queryInfo: TeachersServiceQueryInfo = .Teacher(teacherId: teacherId)
         let query = TeachersQuery(queryInfo: queryInfo)
-        networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
+        networkService.fetchDataItem(query, cache: cache, completionHandler: completionHandler)
     }
     
     func getTeachers(cache: CachePolicy = .CachedElseLoad, completionHandler: TeachersCompletionHandlet) {

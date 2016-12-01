@@ -11,7 +11,7 @@ import CoreData
 
 typealias GetTeachersCompletionHandlet = ServiceResult<[TeacherInfoEntity], NSError> -> Void
 
-class GetTeachersService_: BaseDataService {
+class GetTeachersService__: BaseDataService {
 
     // MARK: - Teacher
 

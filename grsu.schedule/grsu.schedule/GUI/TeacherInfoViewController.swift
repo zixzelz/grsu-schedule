@@ -73,7 +73,8 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
             scrollToTop()
         }
 
-        GetTeachersService_.getTeacher(teacherInfo.id, useCache: useCache) { [weak self] result -> Void in
+        let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
+        TeachersService().getTeacher(teacherInfo.id, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
 
