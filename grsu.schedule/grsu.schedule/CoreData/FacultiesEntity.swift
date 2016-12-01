@@ -42,9 +42,6 @@ extension FacultiesEntity: ModelType {
 
         let fullTitle = json["title"] as! String
         title = fullTitle.stringByReplacingOccurrencesOfString("^Факультет ", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil).capitalizingFirstLetter()
-        // TODO:
-        // let nsRange = Range<String.Index>(start: advance(title.startIndex, 0), end: advance(title.startIndex, 1))
-        // title = title.stringByReplacingCharactersInRange(nsRange, withString: title.substringToIndex(advance(title.startIndex, 1)).capitalizedString)    }
     }
 
     // MARK: - ManagedObjectType

@@ -83,7 +83,6 @@ extension LessonScheduleEntity: ModelType {
         guard let timeStart = lesson["timeStart"] as? String else { return }
         guard let timeEnd = lesson["timeEnd"] as? String else { return }
 
-        isTeacherSchedule = false
         date = lessonDate
         studyName = lesson["title"] as? String
         type = lesson["type"] as? String
@@ -95,11 +94,13 @@ extension LessonScheduleEntity: ModelType {
 
         switch queryInfo {
         case .Student(let _group):
+            isTeacherSchedule = false
             let group = _group.convertInContext(moContext)
             groups = Set<GroupsEntity>(arrayLiteral: group)
             teacher = parseTeacher(lesson["teacher"], managedObjectContext: moContext, context: context)
 
         case .Teacher(let _teacher):
+            isTeacherSchedule = true
             teacher = _teacher.convertInContext(moContext)
         }
     }
@@ -121,6 +122,8 @@ extension LessonScheduleEntity: ModelType {
             newTeacher?.id = teacherId
             newTeacher?.title = teacherJson["fullname"] as? String
             newTeacher?.post = teacherJson["post"] as? String
+
+            context.teachersMap[teacherId] = newTeacher
         }
         return newTeacher
     }

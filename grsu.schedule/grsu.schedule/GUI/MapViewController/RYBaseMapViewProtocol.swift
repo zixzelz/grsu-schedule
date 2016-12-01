@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 @objc(RYBaseMapViewProtocol)
 protocol RYBaseMapViewProtocol: NSObjectProtocol {

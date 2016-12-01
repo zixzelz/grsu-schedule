@@ -12,8 +12,8 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
     var teacher: TeacherInfoEntity?
 
-    override func fetchData(useCache: Bool = true) {
-        super.fetchData(useCache)
+    override func fetchData(useCache: Bool = true, animated: Bool) {
+        super.fetchData(useCache, animated: animated)
 
         guard let teacher = teacher, let startWeekDate = dateScheduleQuery?.startWeekDate, let endWeekDate = dateScheduleQuery?.endWeekDate else {
             assertionFailure("Miss params")
@@ -27,7 +27,7 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
             guard case let .Success(items) = result else { return }
 
             strongSelf.setLessonSchedule(items)
-            strongSelf.reloadData()
+            strongSelf.reloadData(animated)
         }
     }
 
@@ -62,27 +62,27 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
     func chooseGroup(groups: Set<GroupsEntity>) {
 
-        if #available(iOS 8, *) {
+//        if #available(iOS 8, *) {
 
-            let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .ActionSheet)
 
-            let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
-            alert.addAction(cancelAction)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
+        alert.addAction(cancelAction)
 
-            for group in groups {
-                let action = UIAlertAction(title: group.title, style: .Default) { _ in
-                    self.presentGroupSchedule(group)
-                }
-                alert.addAction(action)
+        for group in groups {
+            let action = UIAlertAction(title: group.title, style: .Default) { _ in
+                self.presentGroupSchedule(group)
             }
-
-            self.presentViewController(alert, animated: true, completion: nil)
-        } else {
-
-            let al = UIAlertView(title: "", message: "Пока только в iOS 8.", delegate: nil, cancelButtonTitle: "OK")
-            al.show()
-
+            alert.addAction(action)
         }
+
+        self.presentViewController(alert, animated: true, completion: nil)
+//        } else {
+//
+//            let al = UIAlertView(title: "", message: "Пока только в iOS 8.", delegate: nil, cancelButtonTitle: "OK")
+//            al.show()
+//
+//        }
 
     }
 

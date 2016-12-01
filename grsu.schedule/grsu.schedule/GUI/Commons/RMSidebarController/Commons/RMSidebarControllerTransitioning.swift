@@ -58,7 +58,7 @@ extension RMSidebarControllerExpandedAnimatedTransitioning: RMSidebarControllerC
     // MARK: - RMSidebarControllerContextTransitioning Protocol
     
     func containerView() -> UIView {
-        return self.transitionContext_!.containerView()!
+        return self.transitionContext_!.containerView()
     }
     
     func sidebarView() -> UIView {

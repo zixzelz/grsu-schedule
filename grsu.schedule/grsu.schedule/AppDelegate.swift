@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Flurry_iOS_SDK
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

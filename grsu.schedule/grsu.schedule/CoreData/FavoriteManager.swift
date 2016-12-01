@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Flurry_iOS_SDK
 
 let GSFavoriteManagerFavoritWillRemoveNotificationKey = "GSFavoriteManagerFavoritWillRemoveNotificationKey" // userInfo contains FavoriteEntity
 let GSFavoriteManagerFavoriteObjectKey = "GSFavoriteManagerFavoriteObjectKey"

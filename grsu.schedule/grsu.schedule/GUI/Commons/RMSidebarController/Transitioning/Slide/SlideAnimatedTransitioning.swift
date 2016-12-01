@@ -19,11 +19,11 @@ class SlideAnimatedTransitioning: NSObject, RMSidebarControllerAnimatedTransitio
     
     func animateTransition(transitionContext: RMSidebarControllerContextTransitioning) {
         
-        var containerView = transitionContext.containerView()
-        var rootСontainerView = transitionContext.rootСontainerView()
-        var sidebarView = transitionContext.sidebarView()
+        let containerView = transitionContext.containerView()
+        let rootСontainerView = transitionContext.rootСontainerView()
+        let sidebarView = transitionContext.sidebarView()
         
-        var offset = transitionContext.offset()
+        let offset = transitionContext.offset()
         var width = CGRectGetWidth(transitionContext.containerView().bounds)
         
         var rootStartFrame = CGRectZero
@@ -57,7 +57,7 @@ class SlideAnimatedTransitioning: NSObject, RMSidebarControllerAnimatedTransitio
         rootСontainerView.frame = rootStartFrame;
         sidebarView.frame = sidebarStartFrame;
 
-        var duration = transitionDuration(transitionContext)
+        let duration = transitionDuration(transitionContext)
         
         UIView.animateWithDuration(duration, delay: 0, options:.CurveLinear, animations: { () -> Void in
             
@@ -67,7 +67,7 @@ class SlideAnimatedTransitioning: NSObject, RMSidebarControllerAnimatedTransitio
         }, completion: { (completed: Bool) -> Void in
             NSLog("completion")
             
-            var transitionWasCancelled = transitionContext.transitionWasCancelled()
+            let transitionWasCancelled = transitionContext.transitionWasCancelled()
             if (transitionWasCancelled) {
                 transitionContext.containerView().superview!.addSubview(rootСontainerView)
             }
@@ -79,17 +79,17 @@ class SlideAnimatedTransitioning: NSObject, RMSidebarControllerAnimatedTransitio
     }
     
     func replaceAnimateTransition(transitionContext: RMSidebarControllerContextTransitioning) {
-        var containerView = transitionContext.containerView()
-        var rootСontainerView = transitionContext.rootСontainerView()
-        var sidebarView = transitionContext.sidebarView()
-        var rootView = transitionContext.rootView()
-        var newRootView = transitionContext.newRootView()!
+        let containerView = transitionContext.containerView()
+        let rootСontainerView = transitionContext.rootСontainerView()
+        let sidebarView = transitionContext.sidebarView()
+        let rootView = transitionContext.rootView()
+        let newRootView = transitionContext.newRootView()!
         
         var offset = transitionContext.offset()
-        var width = CGRectGetWidth(transitionContext.containerView().bounds)
+        let width = CGRectGetWidth(transitionContext.containerView().bounds)
         
         
-        var rootEndFrame = containerView.bounds;
+        let rootEndFrame = containerView.bounds;
         
         var sidebarEndFrame = containerView.bounds;
         sidebarEndFrame.origin.x = -CGRectGetWidth(sidebarEndFrame);
@@ -99,7 +99,7 @@ class SlideAnimatedTransitioning: NSObject, RMSidebarControllerAnimatedTransitio
         rootСontainerView.insertSubview(newRootView, atIndex: 0)
 
         
-        var duration = transitionDuration(transitionContext)
+        let duration = transitionDuration(transitionContext)
         UIView.animateKeyframesWithDuration(duration, delay: 0, options: UIViewKeyframeAnimationOptions.CalculationModeLinear, animations: { () -> Void in
             
             UIView.addKeyframeWithRelativeStartTime(0, relativeDuration: 0.3, animations: { () -> Void in
@@ -127,7 +127,7 @@ class SlideAnimatedTransitioning: NSObject, RMSidebarControllerAnimatedTransitio
             
             rootView!.removeFromSuperview()
             
-            var transitionWasCancelled = transitionContext.transitionWasCancelled()
+            let transitionWasCancelled = transitionContext.transitionWasCancelled()
             if (transitionWasCancelled) {
                 transitionContext.containerView().superview!.addSubview(rootСontainerView)
             }

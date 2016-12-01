@@ -25,15 +25,15 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
     
     init(view: UIView) {
         super.init()
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(RMSidebarInteractiveTransition.handlePanGesture(_:)))
         panGestureRecognizer.maximumNumberOfTouches = 1
         view.addGestureRecognizer(panGestureRecognizer)
     }
     
     override func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
         
-        var fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!;
-        var toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!;
+        let fromViewController = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)!;
+        let toViewController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!;
 
         var initialFromFrame = transitionContext.initialFrameForViewController(fromViewController)
         var initialToFrame = transitionContext.initialFrameForViewController(toViewController)
@@ -67,8 +67,8 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
         case .Ended:
             //NSLog("Ended")
             interactive = false
-            var velocity : CGFloat = velocityWithGestureRecognizer(panGestureRecognizer)
-            var percentComplete : CGFloat = percentCompleteWithGestureRecognizer(panGestureRecognizer)
+            let velocity : CGFloat = velocityWithGestureRecognizer(panGestureRecognizer)
+            let percentComplete : CGFloat = percentCompleteWithGestureRecognizer(panGestureRecognizer)
             var translation = translationWithGestureRecognizer(panGestureRecognizer)
             
             var completionSpeed = fabs((velocity / 1000))
@@ -131,7 +131,7 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }
     
     func percentCompleteWithGestureRecognizer(panGestureRecognizer: UIPanGestureRecognizer) -> CGFloat {
-        var translation = translationWithGestureRecognizer(panGestureRecognizer)
+        let translation = translationWithGestureRecognizer(panGestureRecognizer)
         return max(0, translation / offset)
     }
     
@@ -144,7 +144,7 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }
 
     func velocityWithGestureRecognizer(panGestureRecognizer: UIPanGestureRecognizer) -> CGFloat {
-        var velocityInView = panGestureRecognizer.velocityInView(panGestureRecognizer.view?.window)
+        let velocityInView = panGestureRecognizer.velocityInView(panGestureRecognizer.view?.window)
         var xVelocity : CGFloat = velocityInView.x
         if (initialDirection == GestureDirection.Left) {
             xVelocity = -xVelocity
@@ -153,7 +153,7 @@ class RMSidebarInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }
     
     func realVelocityWithGestureRecognizer(panGestureRecognizer: UIPanGestureRecognizer) -> CGFloat {
-        var velocityInView = panGestureRecognizer.velocityInView(panGestureRecognizer.view?.window)
+        let velocityInView = panGestureRecognizer.velocityInView(panGestureRecognizer.view?.window)
         return velocityInView.x
     }
 

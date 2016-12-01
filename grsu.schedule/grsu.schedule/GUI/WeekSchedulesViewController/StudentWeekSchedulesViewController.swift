@@ -12,9 +12,9 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
 
     var group: GroupsEntity?
 
-    override func fetchData(useCache: Bool = true) {
-        super.fetchData(useCache)
-        
+    override func fetchData(useCache: Bool = true, animated: Bool) {
+        super.fetchData(useCache, animated: animated)
+
         guard let group = group, let startWeekDate = dateScheduleQuery?.startWeekDate, let endWeekDate = dateScheduleQuery?.endWeekDate else {
             assertionFailure("Miss params")
             return
@@ -27,7 +27,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             guard case let .Success(items) = result else { return }
 
             strongSelf.setLessonSchedule(items)
-            strongSelf.reloadData()
+            strongSelf.reloadData(animated)
         }
     }
 

@@ -7,30 +7,30 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class LessonLocationMapView: RYMapView {
 
     @IBOutlet weak var lessonLocationDataSource: LessonLocationMapViewDataSource!
 
-    var calloutView: CalloutView?
-    
+    lazy var calloutView: CalloutView = {
+        return NSBundle.mainBundle().loadNibNamed("CalloutView", owner: self, options: nil)!.first as! CalloutView
+    }()
+
     // MARK: - CalloutView
-    
+
     override func bottomOffsetForCalloutView() -> CGFloat {
         return 74
     }
 
     override func calloutView(forMarker: GMSMarker) -> UIView {
-        
-        if (calloutView == nil) {
-            calloutView = NSBundle.mainBundle().loadNibNamed("CalloutView", owner: self, options: nil).first as? CalloutView
+
+        if let index = forMarker.userData?.integerValue {
+            calloutView.titleLabel.text = lessonLocationDataSource.titleForMarker(index)
+            calloutView.imageView.image = lessonLocationDataSource.imageForMarker(index)
         }
-        
-        let index = forMarker.userData.integerValue
-        calloutView?.titleLabel.text = lessonLocationDataSource.titleForMarker(index)
-        calloutView?.imageView.image = lessonLocationDataSource.imageForMarker(index)
-        
-        return calloutView!
+
+        return calloutView
     }
 
 }

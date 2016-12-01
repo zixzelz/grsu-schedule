@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
 
@@ -88,10 +89,10 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
 
         if let calloutView = calloutView_ {
             UIView.animateWithDuration(0.3, animations: { _ in
-                
+
                 calloutView.alpha = 0.0
             }) { (animated: Bool) -> Void in
-                
+
                 calloutView.removeFromSuperview()
             }
             calloutView_ = nil
@@ -117,7 +118,7 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
 
         var tempMarkers = [GMSMarker]()
         for i in 0 ..< count {
-            
+
             let marker = GMSMarker()
             marker.userData = "\(i)"
             marker.position = mapViewDataSource.locationForMarker(i)
@@ -143,19 +144,20 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
 
     // MARK: - GMSMapViewDelegate
 
-    func mapView(mapView: GMSMapView!, markerInfoWindow marker: GMSMarker!) -> UIView! {
+    func mapView(mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let view = calloutView(marker)
         showCalloutView(view, forMarker: marker)
         return UIView(frame: CGRectZero)
     }
 
-    func mapView(mapView: GMSMapView!, didChangeCameraPosition position: GMSCameraPosition!) {
-        if calloutView_ != nil && mapView.selectedMarker != nil {
-            updateCalloutViewPodition(mapView.selectedMarker)
+    func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
+
+        if let selectedMarker = mapView.selectedMarker where calloutView_ != nil {
+            updateCalloutViewPodition(selectedMarker)
         }
     }
 
-    func mapView(mapView: GMSMapView!, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+    func mapView(mapView: GMSMapView, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
         hideCalloutView()
     }
 

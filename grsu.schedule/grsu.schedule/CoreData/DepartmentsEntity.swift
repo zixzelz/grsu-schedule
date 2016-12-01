@@ -40,7 +40,8 @@ extension DepartmentsEntity: ModelType {
 
     func update(json: [String: AnyObject], queryInfo: QueryInfo) {
 
-        title = json["title"] as! String
+        let str = json["title"] as? String ?? ""
+        title = str.capitalizingFirstLetter()
     }
 
     // MARK: - ManagedObjectType

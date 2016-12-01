@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class GetUniversityBuildings: BaseDataService {
 

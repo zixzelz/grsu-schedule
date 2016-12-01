@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Flurry_iOS_SDK
 
 class ListOfTeachersViewController: UITableViewController {
 

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreLocation
+import Flurry_iOS_SDK
 
 class LessonLocationMapViewController: RYMapViewController, LessonLocationMapViewDataSource {
 

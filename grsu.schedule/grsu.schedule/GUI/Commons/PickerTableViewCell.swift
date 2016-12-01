@@ -35,8 +35,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     }
     
     func selectedRow() -> String? {
-        let index = pickerView.selectedRowInComponent(0)
-        
+
         var text : String?
         if let index = selectedRow() as Int? {
             text = items?[index]
@@ -58,7 +57,7 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     private func didSelectRow(row: Int) {
         updateHeader(row)
         
-        var text = items![row] as String
+        let text = items![row] as String
         delegate?.pickerTableViewCell(self, didSelectRow: row, withText: text)
     }
 
@@ -82,8 +81,8 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     // MARK: - UIPickerViewDelegate
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return items![row] as String
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return items?[row]
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

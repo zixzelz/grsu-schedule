@@ -31,7 +31,7 @@ class ReachabilityTableView: UITableView {
     }
     
     func registerNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: kReachabilityChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ReachabilityTableView.reachabilityChanged(_:)), name: kReachabilityChangedNotification, object: nil)
     }
     
     func reachabilityChanged(notification: NSNotification) {

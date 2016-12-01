@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
 
     var sidebarController: RMSidebarController? { get {
-        var parent = self.parentViewController
+        let parent = self.parentViewController
         
         var c1 : NSObject? = parent
         let c2 = self.navigationController

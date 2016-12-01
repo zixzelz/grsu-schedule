@@ -9,6 +9,7 @@
 
 import UIKit
 import MessageUI
+import Flurry_iOS_SDK
 
 enum GSTeacherFieldType: String {
     case Skype = "TeacherSkypeFieldCellIdentifier"
@@ -210,7 +211,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     
     override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
         
-        return (action == #selector(NSObject.copy(_:)))
+        return (action == #selector(copy(_:)))
     }
 
     override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {

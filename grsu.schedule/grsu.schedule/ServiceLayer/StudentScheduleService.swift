@@ -93,7 +93,7 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
     }
 
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(isTeacherSchedule == NO) && (ANY teacher == %@) && (date >= %@) && (date <= %@)", teacher, dateStart, dateEnd)
+        return NSPredicate(format: "(isTeacherSchedule == YES) && (ANY teacher == %@) && (date >= %@) && (date <= %@)", teacher, dateStart, dateEnd)
     }
 
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "startTime", ascending: true)]

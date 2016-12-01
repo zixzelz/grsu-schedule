@@ -43,21 +43,23 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
         tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
 
-        self.updatedTableViewInset()
+        updatedTableViewInset()
         setupRefreshControl()
-        fetchData()
+        fetchData(animated: true)
     }
 
     func setupRefreshControl() {
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.addTarget(self, action: #selector(WeekSchedulesViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        self.tableView.addSubview(refreshControl)
-    }
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(WeekSchedulesViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.tintColor = UIColor.blackColor()
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        if #available(iOS 10.0, *) {
+            tableView.refreshControl = refreshControl
+        } else {
+            tableView.addSubview(refreshControl)
+        }
     }
-
+    
     func updatedTableViewInset() {
         if let navigationBar = self.navigationController?.navigationBar {
             let top = CGRectGetMaxY(navigationBar.frame)
@@ -65,60 +67,61 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             self.tableView.contentInset = inset
             self.tableView.scrollIndicatorInsets = inset
         }
-        scrollToTop()
     }
 
-    func scrollToTop() {
-        let top = self.tableView.contentInset.top
-        self.tableView.contentOffset = CGPointMake(0, -top)
-    }
+    func reloadData(animated: Bool) {
+        
+        shouldShowRefreshControl = false
+        let animated = animated && refreshControl.refreshing
 
-    func scrollToActiveLesson() {
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+        scrollToActiveLesson(animated)
+    }
+    
+    func scrollToActiveLesson(animated: Bool) {
         let days = schedules?.filter { DateManager.daysBetweenDate($0.date, toDateTime: NSDate()) == 0 }
         let day = days?.first
-
+        
         if let day = day {
             var startDate: NSDate?
             let calendar = NSCalendar.currentCalendar();
-
+            
             calendar.rangeOfUnit(.Day, startDate: &startDate, interval: nil, forDate: NSDate())
-
+            
             let minToday = Int(NSDate().timeIntervalSinceDate(startDate!) / 60)
-
+            
             let lessons = day.lessons.filter { ($0.stopTime.integerValue >= minToday) }
             let lesson = lessons.first
-
+            
             let dayIndex = schedules!.indexOf(day)!
-
+            
             if let lesson = lesson {
                 let indexPath = NSIndexPath(forRow: day.lessons.indexOf(lesson)!, inSection: dayIndex)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: false)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: animated)
             } else {
                 let indexPath = NSIndexPath(forRow: 0, inSection: dayIndex)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: false)
+                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: animated)
             }
         }
-
+        
         dispatch_async(dispatch_get_main_queue()) {
             self.tableView.flashScrollIndicators()
         }
     }
 
-    func fetchData(useCache: Bool = true) {
-        if (!self.refreshControl.refreshing) {
-            self.refreshControl.beginRefreshing()
-            scrollToTop()
-        }
-    }
-
-    func reloadData() {
-        self.tableView.reloadData()
-        self.refreshControl.endRefreshing()
-        self.scrollToActiveLesson()
-    }
-
     func refresh(sender: AnyObject) {
-        fetchData(false)
+        fetchData(false, animated: true)
+    }
+
+    func fetchData(useCache: Bool = true, animated: Bool) {
+        
+        setNeedShowRefreshControl()
+    }
+    
+    func scrollToTop() {
+        let top = self.tableView.contentInset.top
+        self.tableView.contentOffset = CGPointMake(0, -top)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -127,6 +130,29 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
             let viewController = segue.destinationViewController as! LessonLocationMapViewController
             viewController.initAddress = lesson.address
+        }
+    }
+    
+    // MARK: - refresh Control
+
+    private var shouldShowRefreshControl: Bool = false
+    
+    private func setNeedShowRefreshControl() {
+        shouldShowRefreshControl = true
+        showRefreshControlIfNeeded()
+    }
+    
+    func showRefreshControlIfNeeded() {
+        
+        if !refreshControl.refreshing {
+            
+            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
+            dispatch_after(dispatchTime, dispatch_get_main_queue(), { [weak self] _ in
+                guard let strongSelf = self where  strongSelf.shouldShowRefreshControl else { return }
+                
+                strongSelf.refreshControl.beginRefreshing()
+                strongSelf.scrollToTop()
+            })
         }
     }
 

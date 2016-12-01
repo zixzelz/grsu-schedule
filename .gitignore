@@ -1,1 +1,10 @@
+# xcode
+xcuserdata
 *.xcuserstate
+
+# Cocoapods
+grsu.schedule/[Pp]ods/
+*.lock
+
+# Builds
+.bundle_identifier
