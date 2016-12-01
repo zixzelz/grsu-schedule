@@ -207,7 +207,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         selectedCell = (selectedCell != indexPath.row + 1) ? indexPath.row + 1: -1
 
         if (selectedCell == 7) {
-            featchGroups()
+//            featchGroups()
         }
 
         tableView.beginUpdates()

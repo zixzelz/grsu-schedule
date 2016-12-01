@@ -21,7 +21,8 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     var items : Array<String>? {
         didSet {
-            self.pickerView?.reloadAllComponents()
+            pickerView?.reloadAllComponents()
+            pickerView?.selectRow(0, inComponent: 0, animated: false)
             updateHeader(0)
         }
     }
