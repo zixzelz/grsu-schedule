@@ -107,6 +107,7 @@
 		44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146201D7F84510076BDF0 /* NetworkService.swift */; };
 		44D146251D7F84510076BDF0 /* Parsable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146211D7F84510076BDF0 /* Parsable.swift */; };
 		44D146271D7F84C00076BDF0 /* DepartmentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146261D7F84C00076BDF0 /* DepartmentsService.swift */; };
+		44D393EC1DF0CC1700BE7086 /* TeachersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D393EB1DF0CC1700BE7086 /* TeachersService.swift */; };
 		44D4EA541D7DD78800C38D1E /* CachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D4EA531D7DD78800C38D1E /* CachePolicy.swift */; };
 		44D504181A780DD900265A7C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D504171A780DD900265A7C /* Reachability.m */; };
 		44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D504191A78147900265A7C /* ReachabilityTableView.swift */; };
@@ -234,6 +235,7 @@
 		44D146201D7F84510076BDF0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		44D146211D7F84510076BDF0 /* Parsable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
 		44D146261D7F84C00076BDF0 /* DepartmentsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsService.swift; sourceTree = "<group>"; };
+		44D393EB1DF0CC1700BE7086 /* TeachersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachersService.swift; sourceTree = "<group>"; };
 		44D4EA531D7DD78800C38D1E /* CachePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachePolicy.swift; sourceTree = "<group>"; };
 		44D504161A780DD900265A7C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		44D504171A780DD900265A7C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				4486BC5F1D837633000DFF58 /* FacultyService.swift */,
 				448758401D8473320076F019 /* GroupsService.swift */,
 				449B4A8D1D887AFA00245E82 /* StudentScheduleService.swift */,
+				44D393EB1DF0CC1700BE7086 /* TeachersService.swift */,
 				2D75CF4B1A222D4F006F2A9D /* GetStudentScheduleService.swift */,
 				2DBD4ECE1A5B1A170055EA3A /* GetTeacherScheduleService.swift */,
 				2D716C371A3830EE00CE7F27 /* GetTeachersService.swift */,
@@ -798,6 +801,7 @@
 				44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */,
 				448758451D85F8460076F019 /* ModelType.swift in Sources */,
 				2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */,
+				44D393EC1DF0CC1700BE7086 /* TeachersService.swift in Sources */,
 				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
 				449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,

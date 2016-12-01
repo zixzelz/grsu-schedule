@@ -30,7 +30,7 @@ class TeacherInfoEntity: NSManagedObject {
 
 extension TeacherInfoEntity: ModelType {
 
-    typealias QueryInfo = NoneQueryInfo
+    typealias QueryInfo = TeachersServiceQueryInfo
 
     static func keyForIdentifier() -> String {
         return "id"
@@ -44,20 +44,28 @@ extension TeacherInfoEntity: ModelType {
     func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
 
         id = json["id"] as! String
-
         update(json, queryInfo: queryInfo)
     }
 
     func update(json: [String: AnyObject], queryInfo: QueryInfo) {
-
-        title = json["title"] as? String
+        
+        title = json["fullname"] as? String
+        name = json["name"] as? String
+        surname = json["surname"] as? String
+        patronym = json["patronym"] as? String
+        post = json["post"] as? String
+        phone = json["phone"] as? String
+        descr = json["descr"] as? String
+        email = json["email"] as? String
+        skype = json["skype"] as? String
+        updatedDate = NSDate()
     }
 
-    // MARK: - ManagedObjectType
+}
 
+extension TeacherInfoEntity: ManagedObjectType {
+    
     var identifier: String {
-
         return id
     }
-
 }
