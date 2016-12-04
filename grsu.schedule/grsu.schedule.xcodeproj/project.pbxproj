@@ -236,6 +236,7 @@
 		44D146211D7F84510076BDF0 /* Parsable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parsable.swift; sourceTree = "<group>"; };
 		44D146261D7F84C00076BDF0 /* DepartmentsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsService.swift; sourceTree = "<group>"; };
 		44D393EB1DF0CC1700BE7086 /* TeachersService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeachersService.swift; sourceTree = "<group>"; };
+		44D393ED1DF4464B00BE7086 /* CoreData 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreData 3.xcdatamodel"; sourceTree = "<group>"; };
 		44D4EA531D7DD78800C38D1E /* CachePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachePolicy.swift; sourceTree = "<group>"; };
 		44D504161A780DD900265A7C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		44D504171A780DD900265A7C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -1090,9 +1091,10 @@
 		2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				44D393ED1DF4464B00BE7086 /* CoreData 3.xcdatamodel */,
 				2DDC78891A2A1D7000C1D966 /* CoreData.xcdatamodel */,
 			);
-			currentVersion = 2DDC78891A2A1D7000C1D966 /* CoreData.xcdatamodel */;
+			currentVersion = 44D393ED1DF4464B00BE7086 /* CoreData 3.xcdatamodel */;
 			path = CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

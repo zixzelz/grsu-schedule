@@ -32,7 +32,8 @@ class CoreDataStore: NSObject {
         let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(self.storeFilename)
 
         do {
-            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil)
+            let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
+            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
         } catch let error as NSError {
 
             NSLog("Unresolved error \(error)")

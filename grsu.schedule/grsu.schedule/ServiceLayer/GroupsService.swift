@@ -8,10 +8,6 @@
 
 import UIKit
 
-enum GroupsServiceQueryInfo: QueryInfoType {
-    case Default(faculty: FacultiesEntity, department: DepartmentsEntity, course: String)
-}
-
 typealias GroupsCompletionHandlet = ServiceResult<[GroupsEntity], ServiceError> -> Void
 
 class GroupsService {
@@ -46,7 +42,7 @@ class GroupsQuery: NetworkServiceQueryType {
     }
 
     var queryInfo: GroupsServiceQueryInfo {
-        return .Default(faculty: faculty, department: department, course: course)
+        return .WithParams(faculty: faculty, department: department, course: course)
     }
 
     var path: String = "/getGroups"
@@ -61,7 +57,7 @@ class GroupsQuery: NetworkServiceQueryType {
     }
 
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@)", faculty, department, course)
+        return NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@) && (hidden == false)", faculty, department, course)
     }
 
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "title", ascending: true)]

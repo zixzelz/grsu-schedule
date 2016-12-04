@@ -13,7 +13,7 @@ protocol Parsable: class {
     associatedtype QueryInfo: QueryInfoType
     associatedtype ParsableContext: Any
 
-    static func keyForIdentifier() -> String
+    static func keyForIdentifier() -> String? // should use nil as identifier when items of response doesn't have identifier
     static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]?
     static func parsableContext(context: ManagedObjectContextType) -> ParsableContext
 

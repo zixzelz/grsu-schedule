@@ -32,7 +32,7 @@ extension TeacherInfoEntity: ModelType {
 
     typealias QueryInfo = TeachersServiceQueryInfo
 
-    static func keyForIdentifier() -> String {
+    static func keyForIdentifier() -> String? {
         return "id"
     }
 
@@ -65,7 +65,7 @@ extension TeacherInfoEntity: ModelType {
 
 extension TeacherInfoEntity: ManagedObjectType {
     
-    var identifier: String {
+    var identifier: String? {
         return id
     }
 }

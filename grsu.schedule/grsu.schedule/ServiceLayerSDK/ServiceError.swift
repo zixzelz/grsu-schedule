@@ -12,4 +12,5 @@ enum ServiceError: ErrorType {
 
     case NetworkError(error: NSError)
     case WrongResponseFormat
+    case InternalError
 }

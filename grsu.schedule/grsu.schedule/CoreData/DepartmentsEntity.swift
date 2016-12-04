@@ -18,11 +18,16 @@ class DepartmentsEntity: NSManagedObject {
 
 }
 
+enum DepartmentsQueryInfo: QueryInfoType {
+    case Default
+    case JustInsert
+}
+
 extension DepartmentsEntity: ModelType {
 
-    typealias QueryInfo = NoneQueryInfo
+    typealias QueryInfo = DepartmentsQueryInfo
 
-    static func keyForIdentifier() -> String {
+    static func keyForIdentifier() -> String? {
         return "id"
     }
 
@@ -34,19 +39,21 @@ extension DepartmentsEntity: ModelType {
     func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
 
         id = json["id"] as! String
-
         update(json, queryInfo: queryInfo)
     }
 
     func update(json: [String: AnyObject], queryInfo: QueryInfo) {
 
-        let str = json["title"] as? String ?? ""
-        title = str.capitalizingFirstLetter()
+        if queryInfo == .Default {
+            
+            let str = json["title"] as? String ?? ""
+            title = str.capitalizingFirstLetter()
+        }
     }
 
     // MARK: - ManagedObjectType
 
-    var identifier: String {
+    var identifier: String? {
 
         return id
     }

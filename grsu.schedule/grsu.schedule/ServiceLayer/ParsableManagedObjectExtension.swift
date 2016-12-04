@@ -37,7 +37,7 @@ extension ManagedObjectType {
         guard let cacheItems = objects(withPredicate: predicate, inContext: context, sortBy: sortBy) else {
             return nil
         }
-        let cacheItemsMap = cacheItems.dict { ($0.identifier, $0) }
+        let cacheItemsMap = cacheItems.dict { ($0.identifier ?? NSUUID().UUIDString, $0) }
         return cacheItemsMap
     }
 

@@ -26,12 +26,17 @@ class LessonScheduleEntity: NSManagedObject {
     @NSManaged var isTeacherSchedule: NSNumber
 }
 
+enum ScheduleQueryInfo: QueryInfoType {
+    case Student(group: GroupsEntity)
+    case Teacher(teacher: TeacherInfoEntity)
+}
+
 class LessonScheduleContext {
-    var groupsMap: [String: GroupsEntity]
+    var groupsLocalService: LocalService<GroupsEntity>
     var teachersMap: [String: TeacherInfoEntity]
 
-    init(groupsMap: [String: GroupsEntity], teachersMap: [String: TeacherInfoEntity]) {
-        self.groupsMap = groupsMap
+    init(groupsLocalService: LocalService<GroupsEntity>, teachersMap: [String: TeacherInfoEntity]) {
+        self.groupsLocalService = groupsLocalService
         self.teachersMap = teachersMap
     }
 }
@@ -40,8 +45,8 @@ extension LessonScheduleEntity: ModelType {
 
     typealias QueryInfo = ScheduleQueryInfo
 
-    static func keyForIdentifier() -> String {
-        return "timeStart"
+    static func keyForIdentifier() -> String? {
+        return nil
     }
 
     static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]? {
@@ -67,10 +72,10 @@ extension LessonScheduleEntity: ModelType {
 
     static func parsableContext(context: ManagedObjectContextType) -> LessonScheduleContext {
 
-        let groupsMap = GroupsEntity.objectsMap(withPredicate: nil, inContext: context) ?? [:]
+        let groupsLocalService = LocalService<GroupsEntity>()
         let teachersMap = TeacherInfoEntity.objectsMap(withPredicate: nil, inContext: context) ?? [:]
 
-        return LessonScheduleContext(groupsMap: groupsMap, teachersMap: teachersMap)
+        return LessonScheduleContext(groupsLocalService: groupsLocalService, teachersMap: teachersMap)
     }
 
     func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: LessonScheduleContext) {
@@ -101,6 +106,7 @@ extension LessonScheduleEntity: ModelType {
 
         case .Teacher(let _teacher):
             isTeacherSchedule = true
+            groups = parseGroups(lesson["groups"], managedObjectContext: moContext, context: context)
             teacher = _teacher.convertInContext(moContext)
         }
     }
@@ -127,12 +133,26 @@ extension LessonScheduleEntity: ModelType {
         }
         return newTeacher
     }
-
+    
+    private func parseGroups(groupsJson: AnyObject?, managedObjectContext: NSManagedObjectContext, context: LessonScheduleContext) -> Set<GroupsEntity> {
+        
+        guard let groupsJson = groupsJson as? [[String: AnyObject]] else { return [] }
+        
+        var groups = Set<GroupsEntity>()
+        for groupJson in groupsJson {
+            
+            if let newGroup = try? context.groupsLocalService.parseAndStoreItem(groupJson, context: managedObjectContext, queryInfo: .MakeAsHidden) {
+                groups.insert(newGroup)
+            }
+        }
+        
+        return groups
+    }
+    
     // MARK: - ManagedObjectType
 
-    var identifier: String {
-        let id = "\(date.timeIntervalSince1970)-\(startTime)-\(groups.first?.id)-\(subgroupTitle)"
-        return id
+    var identifier: String? {
+        return nil
     }
 
 }

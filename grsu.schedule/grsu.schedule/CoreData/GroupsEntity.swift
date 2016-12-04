@@ -19,33 +19,57 @@ class GroupsEntity: NSManagedObject {
     @NSManaged var department: DepartmentsEntity?
     @NSManaged var faculty: FacultiesEntity?
     @NSManaged var favorite: FavoriteEntity?
+    @NSManaged var hidden: NSNumber
 
+}
+
+enum GroupsServiceQueryInfo: QueryInfoType {
+    case WithParams(faculty: FacultiesEntity, department: DepartmentsEntity, course: String)
+    case MakeAsHidden
+}
+
+class GroupsParsableContext {
+    lazy var departmentsLocalService: LocalService<DepartmentsEntity> = {
+        return LocalService<DepartmentsEntity>()
+    }()
+    lazy var facultiesLocalService: LocalService<FacultiesEntity> = {
+        return LocalService<FacultiesEntity>()
+    }()
 }
 
 extension GroupsEntity: ModelType {
 
     typealias QueryInfo = GroupsServiceQueryInfo
 
-    static func keyForIdentifier() -> String {
+    static func keyForIdentifier() -> String? {
         return "id"
     }
 
     static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]? {
-
         return json["items"] as? [[String: AnyObject]]
     }
+    
+    static func parsableContext(context: ManagedObjectContextType) -> GroupsParsableContext {
+        return GroupsParsableContext()
+    }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
+    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: GroupsParsableContext) {
 
         id = json["id"] as! String
-
-        if case let .Default(faculty, department, course) = queryInfo {
-
-            let context = managedObjectContext!
-
-            self.faculty = faculty.convertInContext(context)
-            self.department = department.convertInContext(context)
-            self.course = course
+        
+        guard let moContext = managedObjectContext else { return }
+        switch queryInfo {
+        case let .WithParams(faculty_, department_, course_):
+            faculty = faculty_.convertInContext(moContext)
+            department = department_.convertInContext(moContext)
+            course = course_
+        case .MakeAsHidden:
+            let facultyJson = json["faculty"] as! [String: AnyObject]
+            let departmentJson = json["department"] as! [String: AnyObject]
+            faculty = try? context.facultiesLocalService.parseAndStoreItem(facultyJson, context: moContext, queryInfo: .JustInsert)
+            department = try? context.departmentsLocalService.parseAndStoreItem(departmentJson, context: moContext, queryInfo: .JustInsert)
+            course = json["course"] as! String
+            hidden = true
         }
 
         update(json, queryInfo: queryInfo)
@@ -57,7 +81,7 @@ extension GroupsEntity: ModelType {
 
     // MARK: - ManagedObjectType
 
-    var identifier: String {
+    var identifier: String? {
 
         return id
     }

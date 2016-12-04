@@ -14,7 +14,7 @@ public protocol ManagedObjectContextType {
 }
 
 public protocol ManagedObjectType: class {
-    var identifier: String { get }
+    var identifier: String? { get } // should use nil as identifier when items of response doesn't have identifier
 
     static func managedObjectContext() -> ManagedObjectContextType
 

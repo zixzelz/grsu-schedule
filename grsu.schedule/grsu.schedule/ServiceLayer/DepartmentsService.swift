@@ -32,6 +32,10 @@ class DepartmentsService {
 
 class DepartmentsQuery: NetworkServiceQueryType {
 
+    var queryInfo: DepartmentsQueryInfo {
+        return .Default
+    }
+    
     var predicate: NSPredicate? = nil
 
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "id", ascending: true)]

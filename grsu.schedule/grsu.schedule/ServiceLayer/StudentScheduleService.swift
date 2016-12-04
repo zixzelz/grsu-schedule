@@ -8,11 +8,6 @@
 
 import UIKit
 
-enum ScheduleQueryInfo: QueryInfoType {
-    case Student(group: GroupsEntity)
-    case Teacher(teacher: TeacherInfoEntity)
-}
-
 typealias StudentScheduleCompletionHandlet = ServiceResult<[LessonScheduleEntity], ServiceError> -> Void
 
 class ScheduleService {

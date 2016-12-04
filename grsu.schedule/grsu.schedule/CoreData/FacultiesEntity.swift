@@ -18,11 +18,16 @@ class FacultiesEntity: NSManagedObject {
 
 }
 
+enum FacultiesQueryInfo: QueryInfoType {
+    case Default
+    case JustInsert
+}
+
 extension FacultiesEntity: ModelType {
 
-    typealias QueryInfo = NoneQueryInfo
+    typealias QueryInfo = FacultiesQueryInfo
 
-    static func keyForIdentifier() -> String {
+    static func keyForIdentifier() -> String? {
         return "id"
     }
 
@@ -34,19 +39,21 @@ extension FacultiesEntity: ModelType {
     func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
 
         id = json["id"] as! String
-
         update(json, queryInfo: queryInfo)
     }
 
     func update(json: [String: AnyObject], queryInfo: QueryInfo) {
 
-        let fullTitle = json["title"] as! String
-        title = fullTitle.stringByReplacingOccurrencesOfString("^Факультет ", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil).capitalizingFirstLetter()
+        if queryInfo == .Default {
+            
+            let fullTitle = json["title"] as? String ?? ""
+            title = fullTitle.stringByReplacingOccurrencesOfString("^Факультет ", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil).capitalizingFirstLetter()
+        }
     }
 
     // MARK: - ManagedObjectType
 
-    var identifier: String {
+    var identifier: String? {
 
         return id
     }

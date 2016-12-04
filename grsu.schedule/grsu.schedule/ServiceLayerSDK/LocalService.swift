@@ -30,15 +30,20 @@ class LocalService < T: ModelType > {
     typealias LocalServiceFetchCompletionHandlet = ServiceResult<[T], ServiceError> -> ()
     typealias LocalServiceStoreCompletionHandlet = ServiceResult<Void, ServiceError> -> ()
 
-    func parseAndStore < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
-
-        store(query, json: json, completionHandler: completionHandler)
-    }
-
+    var predicate: NSPredicate?
+    private lazy var cachedItemsMap: [String: T] = {
+        let context = T.managedObjectContext()
+        return T.objectsMap(withPredicate: self.predicate, inContext: context) ?? [:]
+    }()
+    
+    private lazy var parsableContext: T.ParsableContext = {
+        let context = T.managedObjectContext()
+        return T.parsableContext(context)
+    }()
+    
     func featch < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, completionHandler: LocalServiceFetchCompletionHandlet) {
 
         let context = T.managedObjectContext()
-
         context.performBlock { _ in
 
             T.objectsForMainQueue(withPredicate: query.predicate, inContext: context, sortBy: query.sortBy) { (items) in
@@ -46,6 +51,43 @@ class LocalService < T: ModelType > {
                 completionHandler(.Success(items))
             }
         }
+    }
+    
+    // json: {"objectsCollection": [{item}, {item}, ...]}
+    func parseAndStore < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
+        
+        prepareService(query)
+        store(query, json: json, completionHandler: completionHandler)
+    }
+
+    // json: {item}
+    func parseAndStoreItem (json: [String: AnyObject], context: ManagedObjectContextType, queryInfo: T.QueryInfo) throws -> T {
+    
+        var item: T?
+        
+        if let keyForIdentifier = T.keyForIdentifier() {
+            guard let identifier = json[keyForIdentifier] as? String else {
+                throw ServiceError.WrongResponseFormat
+            }
+            
+            item = cachedItemsMap[identifier]
+        }
+        
+        if item != nil {
+            item?.update(json, queryInfo: queryInfo)
+        } else {
+            item = T.insert(inContext: context)
+            item?.fill(json, queryInfo: queryInfo, context: parsableContext)
+            
+            if let identifier = item?.identifier {
+                cachedItemsMap[identifier] = item
+            }
+        }
+        return item!
+    }
+    
+    private func prepareService < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery) {
+        predicate = query.predicate
     }
 
     private func store < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
@@ -56,34 +98,33 @@ class LocalService < T: ModelType > {
         }
 
         let context = T.managedObjectContext()
-
         context.performBlock { _ in
 
-            let cacheItemsMap = T.objectsMap(withPredicate: query.predicate, inContext: context) ?? [:]
-            let parsableContext = T.parsableContext(context)
-
+            let cachedItemsMap = self.cachedItemsMap
             var handledItemsKey = [String]()
             for item in items {
 
-                let identifier = item[T.keyForIdentifier()] as! String
-                if let oldItem = cacheItemsMap[identifier] {
+                do {
+                    let newItem = try self.parseAndStoreItem(item, context: context, queryInfo: query.queryInfo)
+                    if let identifier = newItem.identifier {
+                        handledItemsKey.append(identifier)
+                    }
+                } catch let error as ServiceError {
 
-                    oldItem.update(item, queryInfo: query.queryInfo)
-                    handledItemsKey.append(identifier)
-                } else {
-
-                    let newItem = T.insert(inContext: context)
-                    newItem.fill(item, queryInfo: query.queryInfo, context: parsableContext)
+                    completionHandler(.Failure(error))
+                    return
+                } catch {
+                    completionHandler(.Failure(.InternalError))
+                    return
                 }
             }
 
-            let itemForDelete = cacheItemsMap.filter { !handledItemsKey.contains($0.0) }
+            let itemForDelete = cachedItemsMap.filter { !handledItemsKey.contains($0.0) }
             for (_, item) in itemForDelete {
                 item.delete(context)
             }
 
             context.saveIfNeeded()
-
             completionHandler(.Success())
         }
     }

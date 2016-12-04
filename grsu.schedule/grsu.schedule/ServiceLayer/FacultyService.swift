@@ -31,6 +31,10 @@ class FacultyService {
 }
 
 class FacultyQuery: NetworkServiceQueryType {
+    
+    var queryInfo: FacultiesQueryInfo {
+        return .Default
+    }
 
     var path: String = "/getFaculties"
 
