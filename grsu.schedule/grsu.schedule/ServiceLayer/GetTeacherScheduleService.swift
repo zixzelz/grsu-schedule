@@ -21,7 +21,7 @@ class GetTeacherScheduleService: BaseDataService {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsScheduleTeacherKey = "ScheduleTeacherKey \(teacher.id).\(dateStart)"
         let date = userDefaults.objectForKey(userDefaultsScheduleTeacherKey) as? NSDate
-        let expiryDate = date?.dateByAddingTimeInterval(ScheduleCacheTimeInterval)
+        let expiryDate = date?.dateByAddingTimeInterval(0)
 
         if (useCache == false || expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending) {
             featchSchedule(teacher, dateStart: dateStart, dateEnd: dateEnd, completionHandler: { (items: Array<LessonScheduleEntity>?, error: NSError?) -> Void in

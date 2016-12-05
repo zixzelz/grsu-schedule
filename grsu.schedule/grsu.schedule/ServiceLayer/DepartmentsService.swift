@@ -20,7 +20,7 @@ class DepartmentsService {
         localService = LocalService()
         networkService = NetworkService(localService: localService)
 
-        print("\(networkService)")
+        print("init \(networkService)")
     }
 
     func getDepartments(cache: CachePolicy = .CachedElseLoad, completionHandler: DepartmentsCompletionHandlet) {
@@ -32,9 +32,7 @@ class DepartmentsService {
 
 class DepartmentsQuery: NetworkServiceQueryType {
 
-    var queryInfo: DepartmentsQueryInfo {
-        return .Default
-    }
+    var queryInfo: DepartmentsQueryInfo { return .Default }
     
     var predicate: NSPredicate? = nil
 

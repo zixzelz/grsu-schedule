@@ -71,4 +71,6 @@ class TeachersQuery: NetworkServiceQueryType {
     
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "title", ascending: true)]
     
+    static var cacheTimeInterval: NSTimeInterval { return TeachersCacheTimeInterval }
+    
 }

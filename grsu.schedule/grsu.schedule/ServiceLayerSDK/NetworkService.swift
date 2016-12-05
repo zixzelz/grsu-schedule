@@ -18,7 +18,7 @@ protocol NetworkServiceQueryType: LocalServiceQueryType {
     var method: NetworkServiceMethod { get }
     var parameters: [String: AnyObject]? { get }
 
-//    var cacheTimeInterval: NSTimeInterval { get }
+    static var cacheTimeInterval: NSTimeInterval { get }
 }
 
 class NetworkService<T: ModelType> {
@@ -129,7 +129,7 @@ class NetworkService<T: ModelType> {
         let userDefaults = NSUserDefaults.standardUserDefaults()
 
         guard let date = userDefaults.objectForKey(cacheIdentifier) as? NSDate else { return true }
-        let expiryDate = date.dateByAddingTimeInterval(query.cacheTimeInterval)
+        let expiryDate = date.dateByAddingTimeInterval(query.dynamicType.cacheTimeInterval)
 
         return expiryDate.compare(NSDate()) == .OrderedAscending
     }
@@ -148,11 +148,6 @@ class NetworkService<T: ModelType> {
 
 private extension NetworkServiceQueryType {
 
-    // Think
-    var cacheTimeInterval: NSTimeInterval {
-        return 60 * 60 * 24
-    }
-
     var cacheIdentifier: String {
 
         var key = String(self.dynamicType)
@@ -168,7 +163,7 @@ private extension NetworkServiceQueryType {
 
 }
 
-extension String {
+private extension String {
     
     func stringByAddingPercentEncodingForURLQueryValue() -> String? {
         let allowedCharacters = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
@@ -178,7 +173,7 @@ extension String {
     
 }
 
-extension Dictionary {
+private extension Dictionary {
     
     func stringFromHttpParameters() -> String {
         let parameterArray = self.map { (key, value) -> String in

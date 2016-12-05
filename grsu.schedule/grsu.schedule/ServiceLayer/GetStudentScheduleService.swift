@@ -21,7 +21,7 @@ class GetStudentScheduleService: BaseDataService {
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let userDefaultsGroupKey = "ScheduleKey \(group.id).\(dateStart)"
         let date = userDefaults.objectForKey(userDefaultsGroupKey) as? NSDate
-        let expiryDate = date?.dateByAddingTimeInterval(ScheduleCacheTimeInterval)
+        let expiryDate = date?.dateByAddingTimeInterval(0)
 
         if (useCache == false || expiryDate == nil || expiryDate!.compare(NSDate()) == .OrderedAscending) {
 
