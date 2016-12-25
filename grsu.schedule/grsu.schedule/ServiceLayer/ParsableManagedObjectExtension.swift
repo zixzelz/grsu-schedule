@@ -51,7 +51,7 @@ extension ManagedObjectType {
         return result
     }
 
-    public static func objectsForMainQueue(withPredicate predicate: NSPredicate?, inContext context: ManagedObjectContextType, sortBy: [NSSortDescriptor]? = nil, completion: (items: [Self]) -> Void) {
+    public static func objectsForMainQueue(withPredicate predicate: NSPredicate?, inContext context: ManagedObjectContextType, sortBy: [NSSortDescriptor]? = nil, completion: (_ : [Self]) -> Void) {
 
         let request = NSFetchRequest(entityName: String(self))
         request.resultType = .ManagedObjectIDResultType
@@ -64,7 +64,7 @@ extension ManagedObjectType {
 
             let items = self.convertToMainQueue(ids)
 
-            completion(items: items)
+            completion(items)
         })
     }
 

@@ -40,6 +40,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.backBarButtonItem?.title = "Back1"
 
         tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
 
@@ -63,7 +64,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     func updatedTableViewInset() {
         if let navigationBar = self.navigationController?.navigationBar {
             let top = CGRectGetMaxY(navigationBar.frame)
-            let inset = UIEdgeInsetsMake(top, 0, 0, 0)
+            let inset = UIEdgeInsetsMake(top, 0, 49, 0)
             self.tableView.contentInset = inset
             self.tableView.scrollIndicatorInsets = inset
         }
