@@ -8,10 +8,39 @@
 
 import UIKit
 
-class Student {
+class Student: NSObject, NSCoding {
 
-    init(json: String) {
-        let responseDict = json as? [String: AnyObject] ?? [String: AnyObject]()
+    var fullName: String?
+    var groupTitle: String?
+    var id: Int
+    var studentType: String?
+    
+    init(json: [String: AnyObject]) throws {
+
+        guard let _id = json["id"] as? Int else {
+            throw ServiceError.WrongResponseFormat
+        }
+        
+        id = _id
+        fullName = json["fullname"] as? String
+        groupTitle = json["grouptitle"] as? String
+        studentType = json["studenttype"] as? String
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        
+        fullName = aDecoder.decodeObjectForKey("fullName") as? String
+        groupTitle = aDecoder.decodeObjectForKey("groupTitle") as? String
+        id = aDecoder.decodeObjectForKey("id") as? Int ?? 0
+        studentType = aDecoder.decodeObjectForKey("studentType") as? String
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        
+        aCoder.encodeObject(fullName, forKey: "fullName")
+        aCoder.encodeObject(groupTitle, forKey: "groupTitle")
+        aCoder.encodeObject(id, forKey: "id")
+        aCoder.encodeObject(studentType, forKey: "studentType")
+    }
+
 }

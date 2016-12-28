@@ -208,27 +208,6 @@
             </objects>
             <point key="canvasLocation" x="1770" y="-1542"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Mvh-sg-Znn">
-            <objects>
-                <viewController id="BfP-xt-jfU" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="fU1-Dr-Upp"/>
-                        <viewControllerLayoutGuide type="bottom" id="P8b-dL-Qje"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CqS-wD-Vj2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="more" id="Z41-ec-h6Y">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
-                    </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DYV-14-4WX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="398" y="-1428"/>
-        </scene>
         <!--Преподаватели-->
         <scene sceneID="kTL-Lq-RhL">
             <objects>
@@ -1022,10 +1001,10 @@
             </objects>
             <point key="canvasLocation" x="819" y="1565"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="Inl-Kn-qPA">
             <objects>
-                <tabBarController id="Do1-9z-kCw" sceneMemberID="viewController">
+                <tabBarController id="Do1-9z-kCw" customClass="MainTabBarController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Z7b-q0-rpQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1037,18 +1016,17 @@
                         <segue destination="GPP-As-VMC" kind="relationship" relationship="viewControllers" id="apB-mR-EYq"/>
                         <segue destination="Sn6-5F-xOW" kind="relationship" relationship="viewControllers" id="sTm-IE-USq"/>
                         <segue destination="Bg8-52-oo4" kind="relationship" relationship="viewControllers" id="4RJ-kc-lOP"/>
-                        <segue destination="BfP-xt-jfU" kind="relationship" relationship="viewControllers" id="qh0-Xz-ouy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNg-qU-cen" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-63" y="499"/>
         </scene>
-        <!--Студент-->
+        <!--Студенты-->
         <scene sceneID="57d-AK-5Yo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GPP-As-VMC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Студент" image="Students" id="Cwp-be-qla">
+                    <tabBarItem key="tabBarItem" title="Студенты" image="Students" id="Cwp-be-qla">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -1070,7 +1048,7 @@
             </objects>
             <point key="canvasLocation" x="398" y="497"/>
         </scene>
-        <!--Me-->
+        <!--My Schedule View Controller-->
         <scene sceneID="t32-k8-gQd">
             <objects>
                 <viewController id="dVF-Oh-09g" customClass="MyScheduleViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
@@ -1094,7 +1072,6 @@
                             <constraint firstItem="3wF-6z-Jj1" firstAttribute="leading" secondItem="AfB-x9-vSZ" secondAttribute="leading" id="rQR-Pm-bkG"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Me" id="ilU-zd-10y"/>
                     <navigationItem key="navigationItem" id="kdb-0i-CIn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFS-AU-qEY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1133,11 +1110,11 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IEh-ca-0CZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
                                                 <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JNk-ak-JJI">
-                                                        <rect key="frame" x="94" y="39.5" width="140" height="128"/>
+                                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="JNk-ak-JJI">
+                                                        <rect key="frame" x="64" y="19.5" width="200" height="168"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="140" id="9Pw-9c-0g9"/>
-                                                            <constraint firstAttribute="height" constant="128" id="acb-SO-cpz"/>
+                                                            <constraint firstAttribute="width" constant="200" id="9Pw-9c-0g9"/>
+                                                            <constraint firstAttribute="height" constant="168" id="acb-SO-cpz"/>
                                                         </constraints>
                                                     </imageView>
                                                 </subviews>
@@ -1177,7 +1154,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="cFp-3l-o2C"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                                <state key="normal" title="Sign In">
+                                                <state key="normal" title="Войти">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -1199,7 +1176,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="R0H-bk-43n"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
-                                                <state key="normal" title="Cancel">
+                                                <state key="normal" title="Назад">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -2208,11 +2185,11 @@
             </objects>
             <point key="canvasLocation" x="1734" y="-164"/>
         </scene>
-        <!--Me-->
+        <!--Я-->
         <scene sceneID="1xi-7k-Zdo">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lId-0y-l0n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Me" image="Students" id="Gt3-E1-7u3">
+                    <tabBarItem key="tabBarItem" title="Я" image="Students" id="Gt3-E1-7u3">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -2254,7 +2231,7 @@
         <image name="Students" width="20" height="25"/>
         <image name="Teacher" width="45" height="25"/>
         <image name="UserPlaceholderIcon" width="66" height="66"/>
-        <image name="logo" width="133" height="116"/>
+        <image name="logo" width="200" height="168"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

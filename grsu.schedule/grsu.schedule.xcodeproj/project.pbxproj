@@ -88,6 +88,8 @@
 		2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */; };
 		41684273C2A43345FA5A293C /* Pods_grsu_schedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5B0FF555C30ECD35E9A607 /* Pods_grsu_schedule.framework */; };
 		4435EBC41E1077AF005F43B5 /* ExpandedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */; };
+		4435EBC61E11CC6A005F43B5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */; };
+		443768521E131C7C00D4EAAA /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443768511E131C7C00D4EAAA /* UserDefaults.swift */; };
 		4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4437AE0A1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift */; };
 		443CEC691E087EED002D2EC9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443CEC681E087EED002D2EC9 /* AuthenticationService.swift */; };
 		444822071E10555E00BE1C13 /* RoundBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444822061E10555E00BE1C13 /* RoundBorderButton.swift */; };
@@ -223,6 +225,8 @@
 		2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersSearchDataSource.swift; sourceTree = "<group>"; };
 		2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedScrollView.swift; sourceTree = "<group>"; };
+		4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		443768511E131C7C00D4EAAA /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		4437AE0A1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceQueryTypeExtension.swift; sourceTree = "<group>"; };
 		443CEC681E087EED002D2EC9 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		444822061E10555E00BE1C13 /* RoundBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBorderButton.swift; sourceTree = "<group>"; };
@@ -399,6 +403,7 @@
 				2DBD4EAF1A52D09C0055EA3A /* SchedulesPageViewController */,
 				2DBD4EBF1A5AF9660055EA3A /* WeekSchedulesViewController */,
 				2D08261E1A15299D008B504E /* Main.storyboard */,
+				4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */,
 				2D18E8E31A35FE5D0076F2A7 /* LeftSubpageViewController.swift */,
 				2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */,
 				2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */,
@@ -513,6 +518,7 @@
 				44D4EA531D7DD78800C38D1E /* CachePolicy.swift */,
 				44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */,
 				4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */,
+				443768511E131C7C00D4EAAA /* UserDefaults.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -828,6 +834,7 @@
 				448758451D85F8460076F019 /* ModelType.swift in Sources */,
 				2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */,
 				44D393EC1DF0CC1700BE7086 /* TeachersService.swift in Sources */,
+				443768521E131C7C00D4EAAA /* UserDefaults.swift in Sources */,
 				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
 				449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,
@@ -839,6 +846,7 @@
 				2D12012B1A4D83C20065079E /* GetUniversityBuildings.swift in Sources */,
 				44B64E931E0B159400A09057 /* Student.swift in Sources */,
 				2DBD4E931A4EBD240055EA3A /* RYMapViewController.swift in Sources */,
+				4435EBC61E11CC6A005F43B5 /* MainTabBarController.swift in Sources */,
 				2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */,
 				2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */,
 				2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */,

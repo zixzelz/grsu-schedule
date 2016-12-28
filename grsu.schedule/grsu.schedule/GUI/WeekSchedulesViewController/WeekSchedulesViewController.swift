@@ -40,7 +40,6 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backBarButtonItem?.title = "Back1"
 
         tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
 

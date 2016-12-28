@@ -8,14 +8,14 @@
 
 import UIKit
 
-typealias AuthenticationCompletionHandlet = ServiceResult<[FacultiesEntity], ServiceError> -> Void
+typealias AuthenticationCompletionHandlet = ServiceResult<Student, ServiceError> -> Void
 
 class AuthenticationService {
 
     init() {
     }
 
-    func auth(userName: String, completionHandler: FacultyCompletionHandlet) {
+    func auth(userName: String, completionHandler: AuthenticationCompletionHandlet) {
 
         let userName = "Belyvichjs_AR_15"
 
@@ -27,8 +27,35 @@ class AuthenticationService {
         let session = NSURLSession(configuration: sessionConfig)
 
         let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
-            let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+
+            if let error = error {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandler(.Failure(.NetworkError(error: error)))
+                }
+                return
+            }
+
+            guard let json_ = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers),
+                let json = json_ as? [String: AnyObject] else {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completionHandler(.Failure(.InternalError))
+                    }
+                    return
+            }
+
             print("\(json)")
+
+            guard let student = try? Student(json: json) else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completionHandler(.Failure(.InternalError))
+                }
+                return
+            }
+//            print("1 \(student)")
+            dispatch_async(dispatch_get_main_queue()) {
+//                print("2 \(student)")
+                completionHandler(.Success(student))
+            }
         }
 
         task.resume()
