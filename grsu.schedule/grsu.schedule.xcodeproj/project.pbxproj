@@ -100,6 +100,8 @@
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
 		44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */; };
 		44641E5D1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */; };
+		447063A51E170B120001C29B /* LoginBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447063A41E170B120001C29B /* LoginBarButtonItem.swift */; };
+		447063A71E171AAE0001C29B /* UIStoryboard+app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447063A61E171AAE0001C29B /* UIStoryboard+app.swift */; };
 		4486BC601D837633000DFF58 /* FacultyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4486BC5F1D837633000DFF58 /* FacultyService.swift */; };
 		448758411D8473320076F019 /* GroupsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758401D8473320076F019 /* GroupsService.swift */; };
 		448758431D85F8120076F019 /* QueryInfoType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758421D85F8120076F019 /* QueryInfoType.swift */; };
@@ -110,6 +112,9 @@
 		44B64E931E0B159400A09057 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B64E921E0B159400A09057 /* Student.swift */; };
 		44B64E951E0B282500A09057 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B64E941E0B282500A09057 /* AuthenticationViewController.swift */; };
 		44B64E971E0B295900A09057 /* MyScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B64E961E0B295900A09057 /* MyScheduleViewController.swift */; };
+		44BC6F481E146B2B004446F6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F471E146B2B004446F6 /* UserProfileViewController.swift */; };
+		44BC6F4A1E146E5C004446F6 /* TintImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F491E146E5C004446F6 /* TintImageView.swift */; };
+		44BC6F4C1E146E97004446F6 /* UIImage+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
 		44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */; };
 		44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146201D7F84510076BDF0 /* NetworkService.swift */; };
@@ -237,6 +242,8 @@
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
+		447063A41E170B120001C29B /* LoginBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginBarButtonItem.swift; sourceTree = "<group>"; };
+		447063A61E171AAE0001C29B /* UIStoryboard+app.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+app.swift"; sourceTree = "<group>"; };
 		4486BC5F1D837633000DFF58 /* FacultyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultyService.swift; sourceTree = "<group>"; };
 		448758401D8473320076F019 /* GroupsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsService.swift; sourceTree = "<group>"; };
 		448758421D85F8120076F019 /* QueryInfoType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryInfoType.swift; sourceTree = "<group>"; };
@@ -247,6 +254,9 @@
 		44B64E921E0B159400A09057 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		44B64E941E0B282500A09057 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		44B64E961E0B295900A09057 /* MyScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyScheduleViewController.swift; sourceTree = "<group>"; };
+		44BC6F471E146B2B004446F6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		44BC6F491E146E5C004446F6 /* TintImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintImageView.swift; sourceTree = "<group>"; };
+		44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Tint.swift"; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
 		44D146201D7F84510076BDF0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -413,6 +423,7 @@
 				2D7B6E831A39F2CE002BC208 /* TeacherInfoViewController.swift */,
 				44B64E961E0B295900A09057 /* MyScheduleViewController.swift */,
 				44B64E941E0B282500A09057 /* AuthenticationViewController.swift */,
+				44BC6F471E146B2B004446F6 /* UserProfileViewController.swift */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -434,6 +445,9 @@
 				444822061E10555E00BE1C13 /* RoundBorderButton.swift */,
 				4487C7F81E1055D600348B26 /* RoundBorderView.swift */,
 				4487C7FA1E10560C00348B26 /* DesignableTextField.swift */,
+				44BC6F491E146E5C004446F6 /* TintImageView.swift */,
+				447063A41E170B120001C29B /* LoginBarButtonItem.swift */,
+				447063A61E171AAE0001C29B /* UIStoryboard+app.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -503,6 +517,7 @@
 		2D96AA631A1BB09F00EDD9E2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */,
 				2D3FF2B41A23B8AC001BA278 /* grsu.schedule-Bridging-Header.h */,
 				2D3FF2B81A23C00D001BA278 /* NSString+Expanded.h */,
 				2D3FF2B91A23C00D001BA278 /* NSString+Expanded.m */,
@@ -827,15 +842,19 @@
 				2D0826241A15299D008B504E /* RMSidebarController.swift in Sources */,
 				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
 				4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */,
+				447063A71E171AAE0001C29B /* UIStoryboard+app.swift in Sources */,
+				44BC6F4A1E146E5C004446F6 /* TintImageView.swift in Sources */,
 				2D0825EE1A152913008B504E /* AppDelegate.swift in Sources */,
 				2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */,
 				2DBD4EB11A52D09C0055EA3A /* BaseSchedulesPageViewController.swift in Sources */,
 				44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */,
 				448758451D85F8460076F019 /* ModelType.swift in Sources */,
+				447063A51E170B120001C29B /* LoginBarButtonItem.swift in Sources */,
 				2D7B6E861A39F6D4002BC208 /* TeacherPhotoTableViewCell.swift in Sources */,
 				44D393EC1DF0CC1700BE7086 /* TeachersService.swift in Sources */,
 				443768521E131C7C00D4EAAA /* UserDefaults.swift in Sources */,
 				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
+				44BC6F4C1E146E97004446F6 /* UIImage+Tint.swift in Sources */,
 				449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */,
 				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,
 				44D146271D7F84C00076BDF0 /* DepartmentsService.swift in Sources */,
@@ -856,6 +875,7 @@
 				2D012B201A7ABAE100D8B5B1 /* RMRootContainerView.swift in Sources */,
 				2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */,
 				2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */,
+				44BC6F481E146B2B004446F6 /* UserProfileViewController.swift in Sources */,
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
 				2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */,
 				2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */,
