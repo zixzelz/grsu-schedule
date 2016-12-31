@@ -10,17 +10,18 @@ import UIKit
 
 class UserProfileViewController: UIViewController {
 
+    @IBOutlet private var fullNameLabel: UILabel?
+    @IBOutlet private var groupTitleLabel: UILabel?
+    @IBOutlet private var studentTypeLabel: UILabel?
+    
     var student: Student?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        fullNameLabel?.text = student?.fullName
+        groupTitleLabel?.text = student?.groupTitle
+        studentTypeLabel?.text = student?.studentType
     }
     
     @IBAction func cancelButtonPressed() {
@@ -30,7 +31,7 @@ class UserProfileViewController: UIViewController {
     @IBAction func logoutButtonPressed() {
 
         NSUserDefaults.student = nil
-        NSNotificationCenter.defaultCenter().postNotificationName(Notification.authenticationStateChanged, object: student)
+        NSNotificationCenter.defaultCenter().postNotificationName(Notification.authenticationStateChanged, object: nil)
 
         dismissViewControllerAnimated(true, completion: nil)
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class AuthenticationViewController: UIViewController, UITextFieldDelegate {
 
@@ -23,9 +24,12 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
             return
         }
 
+        MBProgressHUD.showHUDAddedTo(view, animated: true)
         AuthenticationService().auth(login) { [weak self] (result)  in
             guard let strongSelf = self else {return}
             
+            MBProgressHUD.hideHUDForView(strongSelf.view, animated: true)
+
             switch result {
             case.Success(let student): strongSelf.authenticationCompleted(student)
             case .Failure(_): strongSelf.showMessage("Неверное имя пользователя")

@@ -56,7 +56,9 @@ class LoginBarButtonItem: UIBarButtonItem {
         if !authenticated {
             vc = UIStoryboard.authenticationViewController()
         } else {
-            vc = UIStoryboard.profileViewController()
+            let profileViewController = UIStoryboard.profileViewController()
+            profileViewController.student = student
+            vc = profileViewController
         }
 
         let window = UIApplication.sharedApplication().keyWindow
