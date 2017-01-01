@@ -643,7 +643,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="mEg-GV-wU8" kind="push" id="ywd-IV-6uo"/>
+                                    <segue destination="mEg-GV-wU8" kind="push" identifier="StudentFavoriteSegueIdentifier" id="ywd-IV-6uo"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TeacherFavoriteCellIdentifier" textLabel="VT8-VD-u5k" style="IBUITableViewCellStyleDefault" id="Tzr-eS-H7T">
@@ -663,7 +663,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="gyA-nK-klc" kind="push" id="8xj-fk-ch7"/>
+                                    <segue destination="gyA-nK-klc" kind="push" identifier="TeacherFavoriteSegueIdentifier" id="8xj-fk-ch7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -691,7 +691,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="editButtonPressed:" destination="CEG-CG-dQB" eventType="touchUpInside" id="Pwy-X4-reA"/>
+                                    <action selector="editButtonPressed:" destination="f7c-Wi-Car" eventType="touchUpInside" id="Ybq-pQ-jlu"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1780,7 +1780,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rFa-5N-RPv">
-                                                            <rect key="frame" x="0.0" y="0.0" width="107" height="49"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="106.5" height="49"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="titleEdgeInsets" minX="-4" minY="0.0" maxX="25" maxY="-28"/>
@@ -1791,7 +1791,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZv-Ze-KcQ">
-                                                            <rect key="frame" x="107" y="0.0" width="107" height="49"/>
+                                                            <rect key="frame" x="106.5" y="0.0" width="107" height="49"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="titleEdgeInsets" minX="-28" minY="0.0" maxX="0.0" maxY="-28"/>
@@ -1802,7 +1802,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vm5-PN-Yqt">
-                                                            <rect key="frame" x="214" y="0.0" width="106" height="49"/>
+                                                            <rect key="frame" x="213.5" y="0.0" width="106.5" height="49"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="titleEdgeInsets" minX="-29" minY="0.0" maxX="0.0" maxY="-28"/>
@@ -1901,11 +1901,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Bkq-Fe-SY2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DvF-yP-ANK" customClass="LessonLocationMapView" customModule="grsu_schedule" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0r-1K-PAQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="520"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -2397,10 +2397,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="sTm-IE-USq"/>
+        <segue reference="ywd-IV-6uo"/>
+        <segue reference="8xj-fk-ch7"/>
         <segue reference="vpV-t6-0WE"/>
-        <segue reference="ZVo-zP-D5x"/>
-        <segue reference="MBi-ch-BHc"/>
-        <segue reference="5hu-zp-bdB"/>
+        <segue reference="eQ8-je-2eB"/>
+        <segue reference="hOF-R1-qwA"/>
     </inferredMetricsTieBreakers>
 </document>

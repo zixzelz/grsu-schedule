@@ -57,7 +57,6 @@ class FavoriteViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        NSUserDefaults.standardUserDefaults().synchronize()
         
         if (segue.identifier == "StudentFavoriteSegueIdentifier" || segue.identifier == "TeacherFavoriteSegueIdentifier") {
             
@@ -72,8 +71,7 @@ class FavoriteViewController: UITableViewController {
                 
                 if (segue.identifier == "StudentFavoriteSegueIdentifier") {
                     
-                    let navigationController = segue.destinationViewController as! UINavigationController
-                    let viewController = navigationController.topViewController as! StudentSchedulesPageViewController
+                    let viewController = segue.destinationViewController as! StudentSchedulesPageViewController
                     viewController.possibleWeeks = week
                     viewController.dateScheduleQuery = scheduleQuery
                     viewController.group = item.group
@@ -123,8 +121,10 @@ class FavoriteViewController: UITableViewController {
             
             if texts.count > 2 {
                 
-                text = texts[0]
-                // + " " + texts[1].substringToIndex(advance(texts[1].startIndex, 1)) + ". " + texts[2].substringToIndex(advance(texts[2].startIndex, 1)) + "."
+                let first = String(texts[1].characters.prefix(1)).capitalizedString
+                let second = String(texts[2].characters.prefix(1)).capitalizedString
+                
+                text = texts[0] + " \(first). \(second)."
             }
             
             cell!.textLabel?.text = text

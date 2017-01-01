@@ -30,10 +30,13 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
         self.view.backgroundColor = backgroundColor
         setupPageController()
 
+        navigationController?.hidesBarsOnSwipe = true
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseSchedulesPageViewController.favoritWillRemoveNotification(_:)), name: GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil)
     }
 
     func setupPageController() {
+        print("\(possibleWeeks)")
         let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!
 
         pageControl.numberOfPages = possibleWeeks.count

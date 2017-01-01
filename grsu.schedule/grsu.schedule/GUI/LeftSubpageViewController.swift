@@ -161,9 +161,11 @@ class LeftSubpageViewController: UIViewController, UITableViewDataSource, UITabl
             let texts = text!.componentsSeparatedByString(" ")
 
             if texts.count > 2 {
+                
+                let first = String(texts[1].characters.prefix(1)).capitalizedString
+                let second = String(texts[2].characters.prefix(1)).capitalizedString
 
-                text = texts[0]
-                // + " " + texts[1].substringToIndex(advance(texts[1].startIndex, 1)) + ". " + texts[2].substringToIndex(advance(texts[2].startIndex, 1)) + "."
+                text = texts[0] + "\(first). \(second)."
             }
 
             cell!.textLabel?.text = text
