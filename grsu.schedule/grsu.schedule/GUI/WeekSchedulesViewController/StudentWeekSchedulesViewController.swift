@@ -10,18 +10,29 @@ import UIKit
 
 class StudentWeekSchedulesViewController: WeekSchedulesViewController {
 
-    var group: GroupsEntity?
+    private var group: GroupsEntity?
+    private var studentId: String?
+
+    func configureWithStudent(studentId: String, dateScheduleQuery: DateScheduleQuery) {
+        self.studentId = studentId
+        self.dateScheduleQuery = dateScheduleQuery
+    }
+
+    func configureWithGroup(group: GroupsEntity, dateScheduleQuery: DateScheduleQuery) {
+        self.group = group
+        self.dateScheduleQuery = dateScheduleQuery
+    }
 
     override func fetchData(useCache: Bool = true, animated: Bool) {
         super.fetchData(useCache, animated: animated)
 
-        guard let group = group, let startWeekDate = dateScheduleQuery?.startWeekDate, let endWeekDate = dateScheduleQuery?.endWeekDate else {
-            assertionFailure("Miss params")
+        guard let startWeekDate = dateScheduleQuery?.startWeekDate, let endWeekDate = dateScheduleQuery?.endWeekDate else {
+            assertionFailure("Miss param query:\(self.dateScheduleQuery)")
             return
         }
 
         let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
-        ScheduleService().getStudentSchedule(group, dateStart: startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
+        fetchDataWithStudentId(startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
             guard case let .Success(items) = result else { return }
@@ -30,7 +41,18 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             strongSelf.reloadData(animated)
         }
     }
+    
+    private func fetchDataWithStudentId(dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy, completionHandler: StudentScheduleCompletionHandlet) {
 
+        if let group = group {
+            ScheduleService().getStudentSchedule(group, dateStart: dateStart, dateEnd: dateEnd, cache: cache, completionHandler: completionHandler)
+        } else if let studentId = studentId {
+            ScheduleService().getMySchedule(studentId, dateStart: dateStart, dateEnd: dateEnd, completionHandler: completionHandler)
+        } else {
+            assertionFailure("Miss params group and studentId")
+        }
+    }
+    
     override func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
 
         var lCell: StudentLessonScheduleCell

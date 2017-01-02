@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import RAMAnimatedTabBarController
 
 struct Notification {
     static let authenticationStateChanged = "authenticationStateChanged"
 }
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: RAMAnimatedTabBarController {
 
     private var originalViewControllers: [UIViewController]?
 
@@ -28,7 +29,7 @@ class MainTabBarController: UITabBarController {
     private func setup() {
 
         NSNotificationCenter.defaultCenter().addObserverForName(Notification.authenticationStateChanged, object: nil, queue: nil) { [weak self] notification in
-            
+
             let student = notification.object as? Student
             self?.updateState(student)
         }
@@ -43,7 +44,7 @@ class MainTabBarController: UITabBarController {
             newTabs?.removeFirst()
         }
         viewControllers = newTabs
-        
+
         if authenticated {
             selectedIndex = 0
         }

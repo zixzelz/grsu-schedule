@@ -17,7 +17,7 @@ class AuthenticationService {
 
     func auth(userName: String, completionHandler: AuthenticationCompletionHandlet) {
 
-        let userName = "Belyvichjs_AR_15"
+        let userName = "Barsukevich_EA_15"//"Belyvichjs_AR_15"
 
         let url = NSURL(scheme: UrlScheme, host: UrlHost, path: "/getStudent?login=\(userName)")
         let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: true)

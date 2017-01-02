@@ -15,8 +15,8 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     @IBOutlet private var navigationTitle: UILabel!
     @IBOutlet private var pageControl: UIPageControl!
 
-    var possibleWeeks: [GSWeekItem]!
-    var dateScheduleQuery: DateScheduleQuery!
+    var possibleWeeks: [GSWeekItem]?
+    var dateScheduleQuery: DateScheduleQuery?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -26,21 +26,28 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     }
 
     override func viewDidLoad() {
-
-        self.view.backgroundColor = backgroundColor
+        super.viewDidLoad()
+        
+        view.backgroundColor = backgroundColor
         setupPageController()
 
         navigationController?.hidesBarsOnSwipe = true
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseSchedulesPageViewController.favoritWillRemoveNotification(_:)), name: GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil)
     }
 
     func setupPageController() {
-        print("\(possibleWeeks)")
-        let weeks = possibleWeeks.map { $0.startDate } as [NSDate]!
+        guard let possibleWeeks = possibleWeeks,
+            dateScheduleQuery = dateScheduleQuery else {
+                pageControl.numberOfPages = 0
+                updateNavigationTitle()
+                return
+        }
+        let weeks = possibleWeeks.map { $0.startDate }
+        let currentPage: Int = weeks.indexOf(dateScheduleQuery.startWeekDate!) ?? 0
 
         pageControl.numberOfPages = possibleWeeks.count
-        pageControl.currentPage = weeks.indexOf(dateScheduleQuery.startWeekDate!)!
+        pageControl.currentPage = currentPage
         updateNavigationTitle()
 
         let vc = weekScheduleController()
@@ -48,11 +55,14 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     }
 
     func updateNavigationTitle() {
+        guard let possibleWeeks = possibleWeeks else { return }
+
         let index = pageControl.currentPage
+        let text: String? = (possibleWeeks.count > 0) ? possibleWeeks[index].value : nil
 
         UIView.animateWithDuration(1.0, animations: { () -> Void in
             self.navigationTitle.alpha = 0.0
-            self.navigationTitle.text = self.possibleWeeks[index].value
+            self.navigationTitle.text = text
             self.navigationTitle.alpha = 1.0
         })
     }
@@ -101,6 +111,7 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
     // MARK: - Utils
 
     func indexOfViewController(vc: WeekSchedulesViewController) -> Int {
+        guard let possibleWeeks = possibleWeeks else { return 0 }
 
         let weeks = possibleWeeks.map { $0.startDate } as [NSDate]
         return weeks.indexOf(vc.dateScheduleQuery.startWeekDate!)!

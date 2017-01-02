@@ -41,6 +41,13 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
     }
 
     override func weekScheduleController(weekIndex: Int? = nil) -> UIViewController {
+        
+        guard let possibleWeeks = possibleWeeks,
+            dateScheduleQuery = dateScheduleQuery else {
+                assertionFailure("possibleWeeks or dateScheduleQuery musn't be nil")
+                return UIViewController()
+        }
+
         let query = DateScheduleQuery()
         if let index = weekIndex {
             query.startWeekDate = possibleWeeks[index].startDate

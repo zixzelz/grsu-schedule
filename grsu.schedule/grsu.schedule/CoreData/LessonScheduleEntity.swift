@@ -27,6 +27,7 @@ class LessonScheduleEntity: NSManagedObject {
 }
 
 enum ScheduleQueryInfo: QueryInfoType {
+    case My(studentId: String)
     case Student(group: GroupsEntity)
     case Teacher(teacher: TeacherInfoEntity)
 }
@@ -108,6 +109,9 @@ extension LessonScheduleEntity: ModelType {
             isTeacherSchedule = true
             groups = parseGroups(lesson["groups"], managedObjectContext: moContext, context: context)
             teacher = _teacher.convertInContext(moContext)
+            
+        case .My(let studentId): break
+
         }
     }
 

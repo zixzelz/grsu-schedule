@@ -62,8 +62,6 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
     func chooseGroup(groups: Set<GroupsEntity>) {
 
-//        if #available(iOS 8, *) {
-
         let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .ActionSheet)
 
         let cancelAction = UIAlertAction(title: "Отмена", style: .Cancel, handler: nil)
@@ -76,16 +74,9 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
             alert.addAction(action)
         }
 
-        self.presentViewController(alert, animated: true, completion: nil)
-//        } else {
-//
-//            let al = UIAlertView(title: "", message: "Пока только в iOS 8.", delegate: nil, cancelButtonTitle: "OK")
-//            al.show()
-//
-//        }
-
+        presentViewController(alert, animated: true, completion: nil)
     }
-
+ 
     func presentGroupSchedule(group: GroupsEntity) {
         performSegueWithIdentifier("StudentSchedulePageIdentifier", sender: group)
     }
@@ -93,12 +84,13 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
         if (segue.identifier == "StudentSchedulePageIdentifier") {
+            guard let group = sender as? GroupsEntity else { assertionFailure("sender is not GroupsEntity"); return }
             let weeks = DateManager.scheduleWeeks()
 
             let viewController = segue.destinationViewController as! StudentSchedulesPageViewController
             viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
             viewController.possibleWeeks = weeks
-            viewController.group = sender as? GroupsEntity
+            viewController.configure(group)
 
         } else {
             super.prepareForSegue(segue, sender: sender)

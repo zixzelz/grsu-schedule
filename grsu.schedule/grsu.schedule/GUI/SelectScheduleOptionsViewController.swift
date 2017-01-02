@@ -34,16 +34,15 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 
-        NSUserDefaults.standardUserDefaults().synchronize()
         if (segue.identifier == "SchedulePageIdentifier") {
-            let group = scheduleOptions.selectedGroup()
-            let week = scheduleOptions.selectedWeek()
-            dateScheduleQuery.endWeekDate = week!.endDate
+            guard let group = scheduleOptions.selectedGroup() else { assertionFailure("Group is nil"); return }
+            guard let week = scheduleOptions.selectedWeek() else { assertionFailure("Week is nil"); return }
+            dateScheduleQuery.endWeekDate = week.endDate
 
             let viewController = segue.destinationViewController as! StudentSchedulesPageViewController
             viewController.dateScheduleQuery = dateScheduleQuery
             viewController.possibleWeeks = scheduleOptions.weeks
-            viewController.group = group
+            viewController.configure(group)
         }
     }
 

@@ -11,22 +11,22 @@ import UIKit
 class FavoriteViewController: UITableViewController {
 
     @IBOutlet weak var editButton: UIButton!
-    
+
     var favorites: [FavoriteEntity]?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         fetchFavorite()
     }
-    
+
     func fetchFavorite() {
         let manager = FavoriteManager()
-        
+
         manager.getAllFavorite { [weak self](items: Array<FavoriteEntity>) -> Void in
             if let wSelf = self {
                 wSelf.favorites = items
@@ -34,19 +34,19 @@ class FavoriteViewController: UITableViewController {
                 wSelf.updateState()
             }
         }
-        
+
     }
-    
+
     @IBAction func editButtonPressed(sender: UIButton) {
-        
+
         if (tableView.editing) {
             updateFavoriteOrder()
         }
-        
+
         tableView.setEditing(!tableView.editing, animated: true)
         sender.selected = tableView.editing
     }
-    
+
     func updateFavoriteOrder() {
         for i in 0..<favorites!.count {
             favorites![i].order = i
@@ -55,29 +55,30 @@ class FavoriteViewController: UITableViewController {
         let cdHelper = delegate.cdh
         cdHelper.saveContext(cdHelper.managedObjectContext)
     }
-    
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+
         if (segue.identifier == "StudentFavoriteSegueIdentifier" || segue.identifier == "TeacherFavoriteSegueIdentifier") {
-            
+
             if let indexPath = tableView.indexPathForSelectedRow {
-                
+
                 let item = favorites![indexPath.row]
                 let week = DateManager.scheduleWeeks()
-                
+
                 let scheduleQuery = DateScheduleQuery()
                 scheduleQuery.startWeekDate = week.first!.startDate
                 scheduleQuery.endWeekDate = week.first!.endDate
-                
+
                 if (segue.identifier == "StudentFavoriteSegueIdentifier") {
-                    
+                    guard let group = item.group else { return }
+
                     let viewController = segue.destinationViewController as! StudentSchedulesPageViewController
                     viewController.possibleWeeks = week
                     viewController.dateScheduleQuery = scheduleQuery
-                    viewController.group = item.group
+                    viewController.configure(group)
                 }
                 if (segue.identifier == "TeacherFavoriteSegueIdentifier") {
-                    
+
                     let viewController = segue.destinationViewController as! TeacherSchedulesPageViewController
                     viewController.possibleWeeks = week
                     viewController.dateScheduleQuery = scheduleQuery
@@ -85,56 +86,56 @@ class FavoriteViewController: UITableViewController {
                 }
             }
         }
-        
+
     }
-    
+
     func updateState() {
         editButton.hidden = !(favorites?.count > 0)
     }
-    
+
     // MARK: - UITableViewDataSource
-    
+
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         return favorites?.count ?? 0
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         return favoriteCell(indexPath.row)
     }
 
     func favoriteCell(row: Int) -> UITableViewCell {
         var cell: UITableViewCell?
-        
+
         if let group = favorites![row].group {
-            
+
             cell = tableView.dequeueReusableCellWithIdentifier("StudentFavoriteCellIdentifier")
             cell!.textLabel?.text = group.title
-            
+
         } else if let teacher = favorites![row].teacher {
-            
+
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherFavoriteCellIdentifier")
-            
+
             var text = teacher.title
             let texts = text!.componentsSeparatedByString(" ")
-            
+
             if texts.count > 2 {
-                
+
                 let first = String(texts[1].characters.prefix(1)).capitalizedString
                 let second = String(texts[2].characters.prefix(1)).capitalizedString
-                
+
                 text = texts[0] + " \(first). \(second)."
             }
-            
+
             cell!.textLabel?.text = text
         } else {
             cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
         }
-        
+
         return cell!
     }
-//    
+//
 //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 //        var title: String?
 //        switch (section) {
@@ -144,37 +145,37 @@ class FavoriteViewController: UITableViewController {
 //        }
 //        return title
 //    }
-    
+
     override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         let item = favorites![sourceIndexPath.row]
-        
+
         favorites!.removeAtIndex(sourceIndexPath.row)
         favorites!.insert(item, atIndex: destinationIndexPath.row)
     }
-    
+
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == .Delete) {
             let item = favorites![indexPath.row]
             FavoriteManager().removeFavorite(item)
-            
+
             favorites!.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
             updateState()
         }
     }
-    
+
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    
+
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
-    
+
     // MARK: - UITableViewDelegate
-    
+
 //    func tableView(tableView: UITableView, targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath, toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
-//        
+//
 //        if (proposedDestinationIndexPath.section != FavoriteTableSection) {
 //            return sourceIndexPath
 //        }
