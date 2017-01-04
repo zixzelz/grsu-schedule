@@ -498,9 +498,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="8JE-KY-UyY">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="oog-rh-E9B">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="oog-rh-E9B">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
-                                <rect key="frame" x="16" y="5" width="34" height="34"/>
+                                <rect key="frame" x="270" y="5" width="34" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1594,7 +1594,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZZv-Ze-KcQ">
-                                                            <rect key="frame" x="107" y="0.0" width="107" height="49"/>
+                                                            <rect key="frame" x="107" y="0.0" width="106" height="49"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="titleEdgeInsets" minX="-28" minY="0.0" maxX="0.0" maxY="-28"/>
@@ -1605,7 +1605,7 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vm5-PN-Yqt">
-                                                            <rect key="frame" x="214" y="0.0" width="106" height="49"/>
+                                                            <rect key="frame" x="213" y="0.0" width="107" height="49"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="titleEdgeInsets" minX="-29" minY="0.0" maxX="0.0" maxY="-28"/>
@@ -2212,7 +2212,7 @@
                                 <constraint firstItem="V7G-fT-Pu4" firstAttribute="top" secondItem="ez8-fq-f4i" secondAttribute="top" constant="8" id="nj7-FV-mOW"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="logIn" id="WbA-fw-RHt" customClass="LoginBarButtonItem" customModule="grsu_schedule" customModuleProvider="target"/>
+                        <barButtonItem key="rightBarButtonItem" image="UserTabBar" id="WbA-fw-RHt" customClass="LoginBarButtonItem" customModule="grsu_schedule" customModuleProvider="target"/>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
@@ -2250,6 +2250,7 @@
         <image name="Teacher" width="45" height="25"/>
         <image name="UserLogo" width="512" height="512"/>
         <image name="UserPlaceholderIcon" width="66" height="66"/>
+        <image name="UserTabBar" width="34" height="34"/>
         <image name="logo" width="200" height="168"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -2258,9 +2259,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="IlV-GR-mxt"/>
+        <segue reference="ywd-IV-6uo"/>
+        <segue reference="8xj-fk-ch7"/>
         <segue reference="5hu-zp-bdB"/>
-        <segue reference="Ydr-vv-0vX"/>
-        <segue reference="3cS-fO-x8u"/>
+        <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>
 </document>

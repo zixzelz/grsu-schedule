@@ -42,8 +42,10 @@ class LoginBarButtonItem: UIBarButtonItem {
         let authenticated = (student != nil)
         if !authenticated {
             title = "Войти"
+            image = nil
         } else {
-            title = "Профайл"
+            title = nil
+            image = UIImage(named: "UserTabBar")
         }
     }
 
