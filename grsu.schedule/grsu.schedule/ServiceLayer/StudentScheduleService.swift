@@ -58,7 +58,7 @@ class MyScheduleQuery: NetworkServiceQueryType {
     }
     
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(isTeacherSchedule == NO) && (ANY groups == %@) && (date >= %@) && (date <= %@)", studentId, dateStart, dateEnd)
+        return NSPredicate(format: "(isTeacherSchedule == NO) && (userId == %@) && (date >= %@) && (date <= %@)", studentId, dateStart, dateEnd)
     }
     
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "startTime", ascending: true)]
@@ -95,7 +95,7 @@ class StudentScheduleQuery: NetworkServiceQueryType {
     }
 
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(isTeacherSchedule == NO) && (ANY groups == %@) && (date >= %@) && (date <= %@)", group, dateStart, dateEnd)
+        return NSPredicate(format: "(isTeacherSchedule == NO) && (userId == NIL) && (ANY groups == %@) && (date >= %@) && (date <= %@)", group, dateStart, dateEnd)
     }
 
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "startTime", ascending: true)]

@@ -47,7 +47,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         if let group = group {
             ScheduleService().getStudentSchedule(group, dateStart: dateStart, dateEnd: dateEnd, cache: cache, completionHandler: completionHandler)
         } else if let studentId = studentId {
-            ScheduleService().getMySchedule(studentId, dateStart: dateStart, dateEnd: dateEnd, completionHandler: completionHandler)
+            ScheduleService().getMySchedule(studentId, dateStart: dateStart, dateEnd: dateEnd, cache: cache, completionHandler: completionHandler)
         } else {
             assertionFailure("Miss params group and studentId")
         }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2657" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16B2657" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="DepartmentsEntity" representedClassName="DepartmentsEntity" syncable="YES">
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,6 +36,7 @@
         <attribute name="studyName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subgroupTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupsEntity" inverseName="lessons" inverseEntity="GroupsEntity" syncable="YES"/>
         <relationship name="teacher" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TeacherInfoEntity" inverseName="lessons" inverseEntity="TeacherInfoEntity" syncable="YES"/>
     </entity>
@@ -59,7 +60,7 @@
         <element name="FacultiesEntity" positionX="-416" positionY="63" width="128" height="90"/>
         <element name="FavoriteEntity" positionX="-389" positionY="183" width="128" height="105"/>
         <element name="GroupsEntity" positionX="-209" positionY="-72" width="128" height="165"/>
-        <element name="LessonScheduleEntity" positionX="18" positionY="-81" width="128" height="210"/>
+        <element name="LessonScheduleEntity" positionX="18" positionY="-81" width="128" height="225"/>
         <element name="TeacherInfoEntity" positionX="-209" positionY="98" width="128" height="238"/>
     </elements>
 </model>

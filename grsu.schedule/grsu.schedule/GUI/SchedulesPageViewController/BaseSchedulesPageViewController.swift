@@ -31,8 +31,6 @@ class BaseSchedulesPageViewController: UIPageViewController, UIPageViewControlle
         view.backgroundColor = backgroundColor
         setupPageController()
 
-        navigationController?.hidesBarsOnSwipe = true
-
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(BaseSchedulesPageViewController.favoritWillRemoveNotification(_:)), name: GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil)
     }
 
