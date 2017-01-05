@@ -16,8 +16,6 @@ class ListOfTeachersViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.backBarButtonItem?.title = "Back0"
         
         tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
         self.refreshControl!.addTarget(self, action: #selector(ListOfTeachersViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)

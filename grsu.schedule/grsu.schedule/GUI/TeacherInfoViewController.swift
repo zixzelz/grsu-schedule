@@ -30,18 +30,19 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
             }
 
             teacherInfoFields = [];
-            if let phone = teacherInfo?.phone {
+            if let phone = teacherInfo?.phone where !NSString.isNilOrEmpty(phone) {
                 teacherInfoFields.append(("Сотовый", .Phone, phone))
             }
-            if let email = teacherInfo?.email {
+            if let email = teacherInfo?.email where !NSString.isNilOrEmpty(email) {
                 teacherInfoFields.append(("Email", .Email, email))
             }
-            if let skype = teacherInfo?.skype {
+            if let skype = teacherInfo?.skype where !NSString.isNilOrEmpty(skype) {
                 teacherInfoFields.append(("Skype", .Skype, skype))
             }
+            tableView.reloadData()
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,7 +52,10 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        Flurry.logEvent("Teacher Info", withParameters: ["Teacher": teacherInfo!.title!])
+        
+        if let title = teacherInfo?.title {
+            Flurry.logEvent("Teacher Info", withParameters: ["Teacher": title])
+        }
     }
 
     func setupRefreshControl() {
@@ -64,42 +68,47 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
 
     func fetchData(useCache: Bool = true) {
-
         guard let teacherInfo = teacherInfo else { return }
 
-        if (!self.refreshControl!.refreshing) {
-
-            self.refreshControl!.beginRefreshing()
-            scrollToTop()
-        }
-
+        setNeedsShowRefreshControl()
+        
         let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
         TeachersService().getTeacher(teacherInfo.id, cache: cache) { [weak self] result -> Void in
-
             guard let strongSelf = self else { return }
-
+            
+            strongSelf.hideRefreshControl()
             if case .Success(teacherInfo) = result {
 
-                strongSelf.refreshControl!.endRefreshing()
                 strongSelf.teacherInfo = teacherInfo
-                strongSelf.tableView.reloadData()
             }
         }
     }
 
     func refreshTeacherInfo(sender: AnyObject) {
-
         fetchData(false)
     }
 
+    private func setNeedsShowRefreshControl() {
+        
+        if (!self.refreshControl!.refreshing) {
+            self.refreshControl?.beginRefreshing()
+            //            scrollToTop()
+        }
+    }
+    
+    private func hideRefreshControl() {
+        refreshControl?.endRefreshing()
+    }
+    
     // MARK: - TeacherFieldAction
 
     @IBAction func emailButtonPressed(sender: AnyObject) {
 
-        // bug
+        guard let email = teacherInfo?.email else { return }
+        
         let compose = MFMailComposeViewController()
         compose.mailComposeDelegate = self
-        compose.setToRecipients([teacherInfo!.email!])
+        compose.setToRecipients([email])
 
         self.presentViewController(compose, animated: true, completion: nil)
     }
@@ -124,7 +133,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
     @IBAction func skypeButtonPressed(sender: AnyObject) {
 
-        let skype = "skype:\(teacherInfo!.skype!)"
+        let skype = "skype:\(teacherInfo?.skype)"
         let url = NSURL(string: skype)
 
         if UIApplication.sharedApplication().canOpenURL(url!) {
@@ -163,13 +172,13 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         var cell: UITableViewCell
 
         if (indexPath.section == 0) {
-            
+
             cell = tableView.dequeueReusableCellWithIdentifier("TeacherPhotoCellIdentifier") as! TeacherPhotoTableViewCell
             cell.imageView?.image = photoById(teacherInfo!.id)
-            cell.textLabel?.text = teacherInfo!.title
-            cell.detailTextLabel?.text = teacherInfo!.post
+            cell.textLabel?.text = teacherInfo?.title
+            cell.detailTextLabel?.text = teacherInfo?.post
         } else {
-            
+
             let cellIdentifier = teacherInfoFields[indexPath.row].type.rawValue
 
             cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CustomSubtitleTableViewCell
@@ -209,9 +218,9 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return (indexPath.section == 1)
     }
-    
+
     override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        
+
         return (action == #selector(copy(_:)))
     }
 

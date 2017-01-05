@@ -49,15 +49,33 @@ extension TeacherInfoEntity: ModelType {
 
     func update(json: [String: AnyObject], queryInfo: QueryInfo) {
         
-        title = json["fullname"] as? String
-        name = json["name"] as? String
-        surname = json["surname"] as? String
-        patronym = json["patronym"] as? String
-        post = json["post"] as? String
-        phone = json["phone"] as? String
-        descr = json["descr"] as? String
-        email = json["email"] as? String
-        skype = json["skype"] as? String
+        if let fullname = json["fullname"] as? String {
+            title = fullname
+        }
+        if let _name = json["name"] as? String {
+            name = _name
+        }
+        if let _surname = json["surname"] as? String {
+            surname = _surname
+        }
+        if let _patronym = json["patronym"] as? String {
+            patronym = _patronym
+        }
+        if let _post = json["post"] as? String {
+            post = _post
+        }
+        if let _phone = json["phone"] as? String {
+            phone = _phone
+        }
+        if let _descr = json["descr"] as? String {
+            descr = _descr
+        }
+        if let _email = json["email"] as? String {
+            email = _email
+        }
+        if let _skype = json["skype"] as? String {
+            skype = _skype
+        }
         updatedDate = NSDate()
     }
 
