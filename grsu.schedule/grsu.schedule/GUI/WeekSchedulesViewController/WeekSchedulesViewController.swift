@@ -41,6 +41,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.delaysContentTouches = false
+        
         tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
 
         updatedTableViewInset()
