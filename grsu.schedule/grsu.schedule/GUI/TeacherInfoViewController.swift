@@ -102,6 +102,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     
     // MARK: - TeacherFieldAction
 
+    lazy var overlayTransitioningDelegate = { return OverlayTransitioningDelegate() }()
     @IBAction func emailButtonPressed(sender: AnyObject) {
 
         guard let email = teacherInfo?.email else { return }
@@ -109,8 +110,12 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         let compose = MFMailComposeViewController()
         compose.mailComposeDelegate = self
         compose.setToRecipients([email])
+        
+        compose.modalPresentationStyle = .Custom
+        compose.transitioningDelegate = overlayTransitioningDelegate
+        compose.modalPresentationCapturesStatusBarAppearance = true
 
-        self.presentViewController(compose, animated: true, completion: nil)
+        presentViewController(compose, animated: true, completion: nil)
     }
 
     @IBAction func phoneButtonPressed(sender: AnyObject) {
@@ -118,17 +123,20 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         let url = NSURL(string: phoneNumber as String)
         UIApplication.sharedApplication().openURL(url!)
     }
-
+    
     @IBAction func messageButtonPressed(sender: AnyObject) {
+        
+        guard let phone = teacherInfo?.phone else { return }
+
         if !MFMessageComposeViewController.canSendText() {
             return
         }
 
         let compose = MFMessageComposeViewController()
         compose.messageComposeDelegate = self
-        compose.recipients = [teacherInfo!.phone!]
+        compose.recipients = [phone]
 
-        self.presentViewController(compose, animated: true, completion: nil)
+        presentViewController(compose, animated: true, completion: nil)
     }
 
     @IBAction func skypeButtonPressed(sender: AnyObject) {

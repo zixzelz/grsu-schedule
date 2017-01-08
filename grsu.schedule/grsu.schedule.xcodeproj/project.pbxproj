@@ -86,6 +86,9 @@
 		2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */; };
 		2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */; };
 		41684273C2A43345FA5A293C /* Pods_grsu_schedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5B0FF555C30ECD35E9A607 /* Pods_grsu_schedule.framework */; };
+		442538691E22D1AA00AFED79 /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */; };
+		4425386A1E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */; };
+		4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */; };
 		4435EBC41E1077AF005F43B5 /* ExpandedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */; };
 		4435EBC61E11CC6A005F43B5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */; };
 		443768521E131C7C00D4EAAA /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443768511E131C7C00D4EAAA /* UserDefaults.swift */; };
@@ -229,6 +232,9 @@
 		2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
 		2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersSearchDataSource.swift; sourceTree = "<group>"; };
 		2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
+		442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayTransitioningDelegate.swift; sourceTree = "<group>"; };
+		4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyViewControllerAnimator.swift; sourceTree = "<group>"; };
 		4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedScrollView.swift; sourceTree = "<group>"; };
 		4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		443768511E131C7C00D4EAAA /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -434,6 +440,7 @@
 			children = (
 				2D0826101A15299D008B504E /* RMSidebarController */,
 				44641E511A5DC5E600AA46BB /* ScheduleCell */,
+				442538651E22D19E00AFED79 /* Transitioning */,
 				4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */,
 				2DBD4EA51A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift */,
 				2D08260F1A15299D008B504E /* PickerTableViewCell.swift */,
@@ -598,6 +605,16 @@
 				2D7871341A34AF050062DCFE /* FavoriteManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		442538651E22D19E00AFED79 /* Transitioning */ = {
+			isa = PBXGroup;
+			children = (
+				442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */,
+				442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */,
+				4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */,
+			);
+			path = Transitioning;
 			sourceTree = "<group>";
 		};
 		44641E511A5DC5E600AA46BB /* ScheduleCell */ = {
@@ -865,6 +882,7 @@
 				44D504181A780DD900265A7C /* Reachability.m in Sources */,
 				2DBD4EC11A5AF9660055EA3A /* WeekSchedulesViewController.swift in Sources */,
 				44641E571A5DC67000AA46BB /* StudentLessonScheduleCell.swift in Sources */,
+				442538691E22D1AA00AFED79 /* OverlayPresentationController.swift in Sources */,
 				44F556FA1D7B577F00DF6FF7 /* Array+Dict.swift in Sources */,
 				2D12012B1A4D83C20065079E /* GetUniversityBuildings.swift in Sources */,
 				44B64E931E0B159400A09057 /* Student.swift in Sources */,
@@ -880,6 +898,7 @@
 				2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */,
 				2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */,
 				44BC6F481E146B2B004446F6 /* UserProfileViewController.swift in Sources */,
+				4425386A1E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift in Sources */,
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
 				2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */,
 				2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */,
@@ -890,6 +909,7 @@
 				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
 				4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */,
+				4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
