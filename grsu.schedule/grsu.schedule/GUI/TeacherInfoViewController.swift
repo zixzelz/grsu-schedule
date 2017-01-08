@@ -42,7 +42,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
             tableView.reloadData()
         }
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,7 +52,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         if let title = teacherInfo?.title {
             Flurry.logEvent("Teacher Info", withParameters: ["Teacher": title])
         }
@@ -71,11 +71,11 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         guard let teacherInfo = teacherInfo else { return }
 
         setNeedsShowRefreshControl()
-        
+
         let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
         TeachersService().getTeacher(teacherInfo.id, cache: cache) { [weak self] result -> Void in
             guard let strongSelf = self else { return }
-            
+
             strongSelf.hideRefreshControl()
             if case .Success(teacherInfo) = result {
 
@@ -89,31 +89,30 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
 
     private func setNeedsShowRefreshControl() {
-        
+
         if (!self.refreshControl!.refreshing) {
             self.refreshControl?.beginRefreshing()
             //            scrollToTop()
         }
     }
-    
+
     private func hideRefreshControl() {
         refreshControl?.endRefreshing()
     }
-    
+
     // MARK: - TeacherFieldAction
 
     lazy var overlayTransitioningDelegate = { return OverlayTransitioningDelegate() }()
     @IBAction func emailButtonPressed(sender: AnyObject) {
 
         guard let email = teacherInfo?.email else { return }
-        
+
         let compose = MFMailComposeViewController()
         compose.mailComposeDelegate = self
         compose.setToRecipients([email])
-        
+
         compose.modalPresentationStyle = .Custom
         compose.transitioningDelegate = overlayTransitioningDelegate
-        compose.modalPresentationCapturesStatusBarAppearance = true
 
         presentViewController(compose, animated: true, completion: nil)
     }
@@ -123,9 +122,9 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         let url = NSURL(string: phoneNumber as String)
         UIApplication.sharedApplication().openURL(url!)
     }
-    
+
     @IBAction func messageButtonPressed(sender: AnyObject) {
-        
+
         guard let phone = teacherInfo?.phone else { return }
 
         if !MFMessageComposeViewController.canSendText() {
@@ -136,16 +135,19 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         compose.messageComposeDelegate = self
         compose.recipients = [phone]
 
+//        compose.modalPresentationStyle = .Custom
+//        compose.transitioningDelegate = overlayTransitioningDelegate
+
         presentViewController(compose, animated: true, completion: nil)
     }
 
     @IBAction func skypeButtonPressed(sender: AnyObject) {
 
-        let skype = "skype:\(teacherInfo?.skype)"
-        let url = NSURL(string: skype)
+        guard let skype = teacherInfo?.skype,
+            let url = NSURL(string: "skype:\(skype)") else { return }
 
-        if UIApplication.sharedApplication().canOpenURL(url!) {
-            UIApplication.sharedApplication().openURL(url!)
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
         }
     }
 
