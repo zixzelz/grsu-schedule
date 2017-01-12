@@ -20,7 +20,7 @@ class MenuButton: UIButton {
 
     private func setupView() {
 
-        imageView?.contentMode = .Center
+        imageView?.contentMode = .ScaleToFill
         imageView?.translatesAutoresizingMaskIntoConstraints = false
         titleLabel?.textAlignment = .Center
         titleLabel?.translatesAutoresizingMaskIntoConstraints = false
@@ -30,9 +30,11 @@ class MenuButton: UIButton {
         removeConstraints(constraints)
 
         editing = true
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView]|", options: .AlignAllLeft, metrics: nil, views: dict))
+        
+        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: imageView, attribute: .CenterX, multiplier: 1, constant: 0))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-3-[imageView]", options: .AlignAllLeft, metrics: nil, views: dict))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[titleLabel]|", options: .AlignAllLeft, metrics: nil, views: dict))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-3-[imageView][titleLabel(12)]-4-|", options: .AlignAllLeft, metrics: nil, views: dict))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[titleLabel(12)]-4-|", options: .AlignAllLeft, metrics: nil, views: dict))
         editing = false
     }
 

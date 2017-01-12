@@ -319,7 +319,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет преподавателей" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ec-FD-UiE">
-                                            <rect key="frame" x="96" y="10" width="184" height="23"/>
+                                            <rect key="frame" x="95.5" y="10" width="184" height="23"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                             <color key="textColor" red="0.27043202519999998" green="0.31408891080000001" blue="0.35603061320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1101,7 +1101,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserLogo" translatesAutoresizingMaskIntoConstraints="NO" id="dg8-ZE-wGQ" customClass="TintImageView" customModule="grsu_schedule" customModuleProvider="target">
-                                            <rect key="frame" x="128" y="73.5" width="120" height="120"/>
+                                            <rect key="frame" x="128" y="74" width="120" height="120"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="120" id="cLF-Wm-imm"/>
@@ -1109,19 +1109,19 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ybb-ak-ENT">
-                                            <rect key="frame" x="40" y="223.5" width="295" height="21"/>
+                                            <rect key="frame" x="40" y="224" width="295" height="21"/>
                                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kgm-oc-nK4">
-                                            <rect key="frame" x="40" y="291.5" width="295" height="21"/>
+                                            <rect key="frame" x="40" y="292" width="295" height="21"/>
                                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wwS-tk-25a">
-                                            <rect key="frame" x="40" y="264.5" width="295" height="21"/>
+                                            <rect key="frame" x="40" y="265" width="295" height="21"/>
                                             <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="17"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1214,7 +1214,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4j8-Mr-Iff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1734" y="1170"/>
+            <point key="canvasLocation" x="1733.5" y="1169.5"/>
         </scene>
         <!--Select Schedule Options View Controller-->
         <scene sceneID="ePF-oU-xAK">
@@ -1826,7 +1826,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lTr-4E-IRX" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lTr-4E-IRX" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.97254901959999995" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" red="0.75686274509999996" green="0.80000000000000004" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2266,7 +2266,7 @@
         <image name="Student" width="20" height="25"/>
         <image name="Students" width="39" height="25"/>
         <image name="Teacher" width="45" height="25"/>
-        <image name="TeacherSchedule" width="25" height="25"/>
+        <image name="TeacherSchedule" width="30" height="30"/>
         <image name="UserLogo" width="512" height="512"/>
         <image name="UserPlaceholderIcon" width="66" height="66"/>
         <image name="UserTabBar" width="34" height="34"/>
@@ -2278,9 +2278,9 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fh5-Bf-6CT"/>
-        <segue reference="3cS-fO-x8u"/>
         <segue reference="IlV-GR-mxt"/>
         <segue reference="Ydr-vv-0vX"/>
+        <segue reference="3cS-fO-x8u"/>
+        <segue reference="fh5-Bf-6CT"/>
     </inferredMetricsTieBreakers>
 </document>
