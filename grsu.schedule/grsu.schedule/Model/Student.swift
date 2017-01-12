@@ -17,7 +17,8 @@ class Student: NSObject, NSCoding {
     
     init(json: [String: AnyObject]) throws {
 
-        guard let _id = json["id"] as? Int else {
+        guard let _id = json["id"] as? Int where _id != 0,
+        let k_sgryp = json["k_sgryp"] as? Int where k_sgryp != 0 else {
             throw ServiceError.WrongResponseFormat
         }
         

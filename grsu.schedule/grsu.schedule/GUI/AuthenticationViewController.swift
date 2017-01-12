@@ -15,6 +15,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupEasterEggs()
     }
 
     @IBAction func loginButtonPressed() {
@@ -67,5 +68,34 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
         }
 
         return true;
+    }
+    
+    // MARK: - Easter egg
+    
+    @IBOutlet weak var easterEggsPrivateView: UIView!
+    
+    private func setupEasterEggs() {
+        let firstGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(AuthenticationViewController.longtapGestureRecognizer(_:)))
+        firstGestureRecognizer.minimumPressDuration = 0.5
+        easterEggsPrivateView.addGestureRecognizer(firstGestureRecognizer)
+    }
+    
+    var startPoint = CGPointZero
+    @objc private func longtapGestureRecognizer(sender: UILongPressGestureRecognizer) {
+        switch (sender.state) {
+        case .Began: startPoint = sender.locationInView(sender.view)
+        case .Ended:
+            let point = sender.locationInView(sender.view)
+            if (startPoint.x >= point.x + 100) {
+                showEasterEgg()
+            } else {
+                easterEggsPrivateView.removeGestureRecognizer(sender)
+            }
+        default: break;
+        }
+    }
+    
+    private func showEasterEgg() {
+        userLoginTextField.text = "Barsukevich_EA_15"
     }
 }
