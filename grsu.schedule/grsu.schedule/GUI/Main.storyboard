@@ -1309,7 +1309,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="20" navigationOrientation="horizontal" spineLocation="none" id="mEg-GV-wU8" customClass="StudentSchedulesPageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6JS-Le-i3f">
                         <view key="titleView" contentMode="scaleToFill" id="emZ-lQ-gnS">
-                            <rect key="frame" x="116" y="0.0" width="144" height="44"/>
+                            <rect key="frame" x="88" y="0.0" width="144" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-gF-cey">
@@ -1334,7 +1334,7 @@
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="done" id="7m3-8E-ve7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LHe-ff-yK0">
-                                <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                <rect key="frame" x="282" y="11" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="NavigationBarEmptyStar">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1759,11 +1759,21 @@
                             <outlet property="mapViewDataSource" destination="6Qw-zL-iII" id="qil-nT-cT3"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Карта" id="Shs-mF-lcG"/>
+                    <navigationItem key="navigationItem" title="Карта" id="Shs-mF-lcG">
+                        <barButtonItem key="rightBarButtonItem" image="MapTabBar" id="xL4-rs-Il0">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="routeButtonPressed" destination="6Qw-zL-iII" id="74G-Jy-d57"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="routeButton" destination="xL4-rs-Il0" id="wTn-Es-jgw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qse-Se-xi6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3069" y="-234"/>
+            <point key="canvasLocation" x="2189" y="-164"/>
         </scene>
         <!--Teacher Schedules Page View Controller-->
         <scene sceneID="kxX-GR-Erj">
@@ -2269,6 +2279,7 @@
         <image name="Lecturer" width="30" height="30"/>
         <image name="LecturerSchedule" width="30" height="30"/>
         <image name="LessonLocation" width="29" height="25"/>
+        <image name="MapTabBar" width="34" height="34"/>
         <image name="MessageIcon" width="24" height="30"/>
         <image name="NavigationBarEmptyStar" width="22" height="22"/>
         <image name="NavigationBarFillStar" width="22" height="22"/>

@@ -10,10 +10,20 @@ import UIKit
 import CoreLocation
 import Flurry_iOS_SDK
 
-class LessonLocationMapViewController: RYMapViewController, LessonLocationMapViewDataSource {
+class LessonLocationMapViewController: RYMapViewController, LessonLocationMapViewDataSource, CLLocationManagerDelegate {
+
+    @IBOutlet var routeButton: UIBarButtonItem!
 
     var universityBuildings: [UniversityBuilding]?
     var initAddress_: String?
+
+    private var selectedUniversityBuildingIndex: Int? {
+        didSet {
+            routeButton.enabled = (selectedUniversityBuildingIndex != nil)
+        }
+    }
+
+    let locationManager = CLLocationManager()
 
     var initAddress: String? {
         get { return initAddress_ }
@@ -33,6 +43,9 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
 
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
@@ -67,13 +80,13 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         if let universityBuildings = universityBuildings {
 
             let foundItems = universityBuildings.filter { $0.address?.rangeOfString(address, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil }
-            let foundItem = foundItems.first
 
-            if let universityBuilding = foundItem {
+            if let universityBuilding = foundItems.first {
 
                 let index = universityBuildings.indexOf(universityBuilding)
                 ownView().selectMarker(index!)
             } else {
+                showMessage("Адрес не найден")
                 // TODO find location via google services
             }
         }
@@ -81,6 +94,41 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
 
     func ownView() -> RYBaseMapViewProtocol {
         return self.view as! RYBaseMapViewProtocol
+    }
+
+    @IBAction func routeButtonPressed() {
+
+        guard let mainLocation = locationManager.location?.coordinate else {
+            showMessage("Failed to detect location")
+            return
+        }
+
+        guard let index = selectedUniversityBuildingIndex else { return }
+        let universityBuilding = universityBuildings![index]
+        let location = universityBuilding.location!
+
+        let urlStr = "yandexmaps://maps.yandex.ru/?rtext=\(mainLocation.latitude),\(mainLocation.longitude)~\(location.latitude),\(location.longitude)"
+        guard let url = NSURL(string: urlStr) else {
+            showMessage("Адрес не найден")
+            return
+        }
+
+        guard let urlForCheck = NSURL(string: "yandexmaps://") else { return }
+        if UIApplication.sharedApplication().canOpenURL(urlForCheck) {
+            UIApplication.sharedApplication().openURL(url)
+        } else {
+            guard let appUrl = NSURL(string: "https://itunes.apple.com/ru/app/yandex.maps/id313877526?mt=8") else { return }
+            UIApplication.sharedApplication().openURL(appUrl)
+            showMessage("Приложение Яндекс.Карты не установлено")
+        }
+    }
+
+    private func showMessage(title: String) {
+
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+
+        presentViewController(alert, animated: true, completion: nil)
     }
 
     // MARK: - RYBaseMapViewDataSource
@@ -104,6 +152,14 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         }
 
         return image
+    }
+
+    override func didSelectMarker(index: Int) {
+        selectedUniversityBuildingIndex = index
+    }
+
+    override func didDeselectMarker() {
+        selectedUniversityBuildingIndex = nil
     }
 
     // MARK: - LessonLocationMapViewDataSource
@@ -132,6 +188,12 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         let universityBuilding = universityBuildings![index]
 
         return UIImage(named: universityBuilding.photo!)
+    }
+
+    // MARK: - CLLocationManagerDelegate
+
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        manager.stopUpdatingLocation()
     }
 
 }

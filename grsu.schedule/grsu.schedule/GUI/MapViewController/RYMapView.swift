@@ -145,6 +145,12 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
     // MARK: - GMSMapViewDelegate
 
     func mapView(mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+
+        if let markers = markers,
+            let index = markers.indexOf(marker) {
+            mapViewDataSource.didSelectMarker(index)
+        }
+
         let view = calloutView(marker)
         showCalloutView(view, forMarker: marker)
         return UIView(frame: CGRectZero)
@@ -158,6 +164,7 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
     }
 
     func mapView(mapView: GMSMapView, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+        mapViewDataSource.didDeselectMarker()
         hideCalloutView()
     }
 

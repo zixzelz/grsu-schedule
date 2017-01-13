@@ -25,5 +25,8 @@ protocol RYBaseMapViewDataSource: NSObjectProtocol {
     func numberOfMarkers() -> Int
     func locationForMarker(index: Int) -> CLLocationCoordinate2D
     func iconForMarker(index: Int) -> UIImage?
+
+    func didSelectMarker(index: Int)
+    func didDeselectMarker()
     
 }

@@ -10,22 +10,7 @@ import UIKit
 import CoreLocation
 
 class RYMapViewController: UIViewController, RYBaseMapViewDataSource {
-
-    let locationManager = CLLocationManager()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        if #available(iOS 8.0, *) {
-            locationManager.requestWhenInUseAuthorization()
-        }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - RYBaseMapViewDataSource
 
     func initialLocation() -> CLLocationCoordinate2D {
@@ -48,4 +33,6 @@ class RYMapViewController: UIViewController, RYBaseMapViewDataSource {
         return CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
 
+    func didSelectMarker(index: Int) {}
+    func didDeselectMarker() {}
 }

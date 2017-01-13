@@ -18,7 +18,7 @@ class LessonLocationMapView: RYMapView {
     }()
 
     // MARK: - CalloutView
-
+    
     override func bottomOffsetForCalloutView() -> CGFloat {
         return 74
     }
