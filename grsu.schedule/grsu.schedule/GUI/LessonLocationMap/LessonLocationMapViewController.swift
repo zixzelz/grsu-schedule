@@ -98,6 +98,25 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
 
     @IBAction func routeButtonPressed() {
 
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse {
+
+            let alertController = UIAlertController (title: "Приложение не знает, где вы находитесь", message: "Разрешите приложению определить ваше местоположение: это делается в настройках устройства.", preferredStyle: .Alert)
+
+            let settingsAction = UIAlertAction(title: "Настройки", style: .Default) { (_) -> Void in
+                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+                if let url = settingsUrl {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
+
+            let cancelAction = UIAlertAction(title: "Отменить", style: .Default, handler: nil)
+            alertController.addAction(settingsAction)
+            alertController.addAction(cancelAction)
+
+            presentViewController(alertController, animated: true, completion: nil)
+            return
+        }
+
         guard let mainLocation = locationManager.location?.coordinate else {
             showMessage("Failed to detect location")
             return
@@ -117,9 +136,21 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         if UIApplication.sharedApplication().canOpenURL(urlForCheck) {
             UIApplication.sharedApplication().openURL(url)
         } else {
-            guard let appUrl = NSURL(string: "https://itunes.apple.com/ru/app/yandex.maps/id313877526?mt=8") else { return }
-            UIApplication.sharedApplication().openURL(appUrl)
-            showMessage("Приложение Яндекс.Карты не установлено")
+            
+            let alertController = UIAlertController (title: "Приложение Яндекс.Карты не установлено", message: "Нажмите кнопку Установить для установки", preferredStyle: .Alert)
+            
+            let settingsAction = UIAlertAction(title: "Установить", style: .Default) { (_) -> Void in
+                let settingsUrl = NSURL(string: "https://itunes.apple.com/ru/app/yandex.maps/id313877526?mt=8")
+                if let url = settingsUrl {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+            }
+            
+            let cancelAction = UIAlertAction(title: "Отменить", style: .Default, handler: nil)
+            alertController.addAction(settingsAction)
+            alertController.addAction(cancelAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
         }
     }
 
