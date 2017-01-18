@@ -38,13 +38,16 @@ class ListOfTeachersViewController: UITableViewController {
         TeachersService().getTeachers(cache, completionHandler: { [weak self] result in
 
             guard let strongSelf = self else { return }
-            if case let .Success(items) = result {
-
+            
+            switch result {
+            case .Success(let items):
                 strongSelf.searchDataSource.items = items
                 strongSelf.teacherSections = strongSelf.prepareDataWithTeachers(items)
-            } else {
-
+            case .Failure(let error):
                 strongSelf.teacherSections = [[TeacherInfoEntity]]()
+
+                Flurry.logError(error, errId: "ListOfTeachersViewController")
+                strongSelf.showMessage("Ошибка при получении данных")
             }
 
             strongSelf.shouldShowRefreshControl = false
@@ -97,6 +100,14 @@ class ListOfTeachersViewController: UITableViewController {
 
     }
     
+    func showMessage(title: String) {
+        
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
     // MARK: - refresh Control
     
     private var shouldShowRefreshControl: Bool = false
@@ -171,11 +182,11 @@ class ListOfTeachersViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        if (teacherSections?[section].count > 0) {
-
-            let char = RYRussianIndexedCollation().sectionIndexTitles[section]
-            return "\(char)"
+        guard let sections = teacherSections where sections.count > section && sections[section].count > 0 else {
+            return nil
         }
-        return nil
+        
+        let char = RYRussianIndexedCollation().sectionIndexTitles[section]
+        return "\(char)"
     }
 }

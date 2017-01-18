@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func cleanCachejob() {
 
-
+        ScheduleService().cleanCache()
     }
 
     func applicationWillTerminate(application: UIApplication) {

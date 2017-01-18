@@ -103,6 +103,7 @@
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
 		44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */; };
 		44641E5D1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */; };
+		446622B41E300D98002B9146 /* FlurryExpanded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446622B31E300D98002B9146 /* FlurryExpanded.swift */; };
 		447063A51E170B120001C29B /* LoginBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447063A41E170B120001C29B /* LoginBarButtonItem.swift */; };
 		447063A71E171AAE0001C29B /* UIStoryboard+app.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447063A61E171AAE0001C29B /* UIStoryboard+app.swift */; };
 		447570641E216BB6003C6AD3 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447570631E216BB6003C6AD3 /* MenuButton.swift */; };
@@ -249,6 +250,7 @@
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
+		446622B31E300D98002B9146 /* FlurryExpanded.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlurryExpanded.swift; sourceTree = "<group>"; };
 		447063A41E170B120001C29B /* LoginBarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginBarButtonItem.swift; sourceTree = "<group>"; };
 		447063A61E171AAE0001C29B /* UIStoryboard+app.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+app.swift"; sourceTree = "<group>"; };
 		447570631E216BB6003C6AD3 /* MenuButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */,
 				4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */,
 				443768511E131C7C00D4EAAA /* UserDefaults.swift */,
+				446622B31E300D98002B9146 /* FlurryExpanded.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -888,6 +891,7 @@
 				44B64E931E0B159400A09057 /* Student.swift in Sources */,
 				2DBD4E931A4EBD240055EA3A /* RYMapViewController.swift in Sources */,
 				4435EBC61E11CC6A005F43B5 /* MainTabBarController.swift in Sources */,
+				446622B41E300D98002B9146 /* FlurryExpanded.swift in Sources */,
 				2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */,
 				2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */,
 				2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */,

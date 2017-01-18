@@ -49,6 +49,14 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         setupRefreshControl()
         fetchData(animated: true)
     }
+    
+    func showMessage(title: String) {
+        
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
 
     func setupRefreshControl() {
         refreshControl = UIRefreshControl()

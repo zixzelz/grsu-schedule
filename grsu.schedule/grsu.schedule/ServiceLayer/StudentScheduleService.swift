@@ -26,9 +26,9 @@ class ScheduleService {
         let query = StudentScheduleQuery(group: group, dateStart: dateStart, dateEnd: dateEnd)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
     }
-    
+
     func getMySchedule(studentId: String, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy = .CachedElseLoad, completionHandler: StudentScheduleCompletionHandlet) {
-        
+
         let query = MyScheduleQuery(studentId: studentId, dateStart: dateStart, dateEnd: dateEnd)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
     }
@@ -38,44 +38,63 @@ class ScheduleService {
         let query = TeacherScheduleQuery(teacher: teacher, dateStart: dateStart, dateEnd: dateEnd)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
     }
+
+    func cleanCache(completionHandler: dispatch_block_t? = nil) {
+
+        let query = CleanScheduleQuery()
+
+        networkService.fetchData(query, cache: .CachedOnly) { result in
+
+            switch result {
+            case .Success(let items):
+                for item in items {
+                    item.managedObjectContext?.deleteObject(item)
+                }
+            case .Failure(let error):
+                assertionFailure("cleanCache error: \(error)")
+            }
+
+            completionHandler?()
+        }
+    }
 }
 
 class MyScheduleQuery: NetworkServiceQueryType {
     //http://api.grsu.by/1.x/app1/getGroupSchedule?studentId=130569
-    
+
     let studentId: String
     let dateStart: NSDate
     let dateEnd: NSDate
-    
+
     init(studentId: String, dateStart: NSDate, dateEnd: NSDate) {
         self.studentId = studentId
         self.dateStart = dateStart
         self.dateEnd = dateEnd
     }
-    
+
     var queryInfo: ScheduleQueryInfo {
         return .My(studentId: studentId)
     }
-    
+
     var predicate: NSPredicate? {
         return NSPredicate(format: "(isTeacherSchedule == NO) && (userId == %@) && (date >= %@) && (date <= %@)", studentId, dateStart, dateEnd)
     }
-    
+
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "startTime", ascending: true)]
-    
+
     // MARK - NetworkServiceQueryType
-    
+
     var path: String = "/getGroupSchedule"
-    
+
     var method: NetworkServiceMethod = .GET
-    
+
     var parameters: [String: AnyObject]? {
-        
+
         return ["studentId": studentId,
-                "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-                "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
+            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
     }
-    
+
 }
 
 class StudentScheduleQuery: NetworkServiceQueryType {
@@ -149,5 +168,30 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
             "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
     }
+
+}
+
+class CleanScheduleQuery: NetworkServiceQueryType {
+
+    var predicate: NSPredicate? {
+
+        let monthTimeInterval: NSTimeInterval = 60 * 60 * 24 * 7
+        let dateEnd = NSDate(timeIntervalSinceNow: -monthTimeInterval)
+        return NSPredicate(format: "(date <= %@)", dateEnd)
+    }
+
+    var queryInfo: ScheduleQueryInfo {
+        return .My(studentId: "")
+    }
+
+    var sortBy: [NSSortDescriptor]? = nil
+
+    // MARK - NetworkServiceQueryType
+
+    var path: String = ""
+
+    var method: NetworkServiceMethod = .GET
+
+    var parameters: [String: AnyObject]? = nil
 
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Flurry_iOS_SDK
 
 class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
@@ -24,9 +25,15 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
         ScheduleService().getTeacherSchedule(teacher, dateStart: startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
-            guard case let .Success(items) = result else { return }
-
-            strongSelf.setLessonSchedule(items)
+            
+            switch result {
+            case .Success(let items):
+                strongSelf.setLessonSchedule(items)
+            case .Failure(let error):
+                
+                Flurry.logError(error, errId: "TeacherWeekSchedulesViewController")
+                strongSelf.showMessage("Ошибка при получении данных")
+            }
             strongSelf.reloadData(animated)
         }
     }

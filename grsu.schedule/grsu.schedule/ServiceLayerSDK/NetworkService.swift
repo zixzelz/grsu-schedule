@@ -61,8 +61,15 @@ class NetworkService<T: ModelType> {
         case .CachedElseLoad:
 
             if isCacheExpired(query) {
-                resumeRequest(query) { _ in
-                    self.localService.featch(query, completionHandler: completionHandler)
+                resumeRequest(query) { result in
+                    
+                    switch result {
+                    case .Success(_):
+                        self.localService.featch(query, completionHandler: completionHandler)
+                    case .Failure(let error):
+                        completionHandler(.Failure(error))
+                    }
+                    
                 }
             } else {
                 localService.featch(query, completionHandler: completionHandler)
@@ -70,8 +77,14 @@ class NetworkService<T: ModelType> {
 
         case .ReloadIgnoringCache:
 
-            resumeRequest(query) { _ in
-                self.localService.featch(query, completionHandler: completionHandler)
+            resumeRequest(query) { result in
+
+                switch result {
+                case .Success(_):
+                    self.localService.featch(query, completionHandler: completionHandler)
+                case .Failure(let error):
+                    completionHandler(.Failure(error))
+                }
             }
         }
 
