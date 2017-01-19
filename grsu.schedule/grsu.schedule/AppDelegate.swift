@@ -18,9 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         GMSServices.provideAPIKey("AIzaSyBSF-hRXIjTMwnB0vwWcaDX-aq7WSy2pAc")
-
-        Flurry.setCrashReportingEnabled(true)
-        Flurry.startSession("9W5R9JWXFCGXR7XJ5R83")
+        setupFlurry()
 
         GSReachability.sharedInstance.startNotifier()
         cdh.setup()
@@ -33,8 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func cleanCachejob() {
+    private func setupFlurry() {
 
+        var builder = FlurrySessionBuilder()
+//            .withLogLevel(FlurryLogLevelAll)
+            .withCrashReporting(false)
+
+        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+            builder = builder.withAppVersion(version)
+        }
+        Flurry.startSession("9W5R9JWXFCGXR7XJ5R83", withSessionBuilder: builder)
+    }
+
+    private func cleanCachejob() {
         ScheduleService().cleanCache()
     }
 

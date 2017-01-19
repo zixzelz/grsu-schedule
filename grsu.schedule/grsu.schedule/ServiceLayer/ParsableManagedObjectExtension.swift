@@ -75,7 +75,6 @@ extension ManagedObjectType {
             let context = context as! NSManagedObjectContext // WARNING
             result = try context.executeFetchRequest(request) as? [T]
         } catch let error {
-            print("\(error)")
             assertionFailure("\(error)")
         }
         return result

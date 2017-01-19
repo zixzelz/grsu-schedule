@@ -19,8 +19,6 @@ class FacultyService {
 
         localService = LocalService()
         networkService = NetworkService(localService: localService)
-
-        print("\(networkService)")
     }
 
     func getFaculties(cache: CachePolicy = .CachedElseLoad, completionHandler: FacultyCompletionHandlet) {

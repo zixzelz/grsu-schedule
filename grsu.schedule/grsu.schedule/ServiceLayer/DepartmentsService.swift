@@ -19,8 +19,6 @@ class DepartmentsService {
 
         localService = LocalService()
         networkService = NetworkService(localService: localService)
-
-        print("init \(networkService)")
     }
 
     func getDepartments(cache: CachePolicy = .CachedElseLoad, completionHandler: DepartmentsCompletionHandlet) {

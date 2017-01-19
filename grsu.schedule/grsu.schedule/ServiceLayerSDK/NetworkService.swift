@@ -113,9 +113,11 @@ class NetworkService<T: ModelType> {
             let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
             let responseDict = json as? [String: AnyObject] ?? [String: AnyObject]()
 
-            if let response = NSString(data: data!, encoding: NSUTF8StringEncoding) {
-                print("response: \(response)")
-            }
+            #if DEBUG
+                if let response = NSString(data: data!, encoding: NSUTF8StringEncoding) {
+                    print("response: \(response)")
+                }
+            #endif
             self.saveDate(query)
             self.parseAndStore(query, responseDict: responseDict, completionHandler: completionHandler)
         }

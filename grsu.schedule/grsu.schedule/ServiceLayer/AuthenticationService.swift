@@ -43,7 +43,9 @@ class AuthenticationService {
                     return
             }
 
-            print("\(json)")
+            #if DEBUG
+                print("\(json)")
+            #endif
 
             guard let student = try? Student(json: json) else {
                 dispatch_async(dispatch_get_main_queue()) {
