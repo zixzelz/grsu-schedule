@@ -9,6 +9,8 @@
 import UIKit
 import Flurry_iOS_SDK
 import GoogleMaps
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         GMSServices.provideAPIKey("AIzaSyBSF-hRXIjTMwnB0vwWcaDX-aq7WSy2pAc")
         setupFlurry()
+        Fabric.with([Crashlytics.self])
 
         GSReachability.sharedInstance.startNotifier()
         cdh.setup()
@@ -35,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         var builder = FlurrySessionBuilder()
 //            .withLogLevel(FlurryLogLevelAll)
-            .withCrashReporting(false)
+        .withCrashReporting(false)
 
         if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
             builder = builder.withAppVersion(version)

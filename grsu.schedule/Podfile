@@ -6,4 +6,6 @@ pod 'GoogleMaps'
 pod 'Flurry-iOS-SDK/FlurrySDK'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'RAMAnimatedTabBarController'
+pod 'Fabric'
+pod 'Crashlytics'
 end

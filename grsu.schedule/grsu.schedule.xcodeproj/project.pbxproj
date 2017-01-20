@@ -676,6 +676,7 @@
 				2D0825E61A152913008B504E /* Resources */,
 				E98A390C98526F98A13A5544 /* [CP] Embed Pods Frameworks */,
 				075B7BFECB3ECE0EAAAC627D /* [CP] Copy Pods Resources */,
+				443A61AA1E3163EF006D347F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -716,11 +717,12 @@
 				TargetAttributes = {
 					2D0825E71A152913008B504E = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 4MW854SLN7;
+						DevelopmentTeam = 76539BC667;
 						LastSwiftMigration = 0810;
 					};
 					2D0825FC1A152913008B504E = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 76539BC667;
 						LastSwiftMigration = 0810;
 						TestTargetID = 2D0825E71A152913008B504E;
 					};
@@ -798,6 +800,19 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		443A61AA1E3163EF006D347F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" a2f7fc842308ed8fcd896ff954a614aa5d21152e 09c70369e0c7f7019b7ec02e6e91159b43abf866c0989e473585f3904290c671";
 		};
 		E98A390C98526F98A13A5544 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1045,7 +1060,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = 76539BC667;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/grsu.schedule",
@@ -1062,7 +1078,7 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grsu.schedule1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grsu.schedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
@@ -1080,7 +1096,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				DEVELOPMENT_TEAM = 76539BC667;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = "$(inherited)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/grsu.schedule",
@@ -1096,7 +1113,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.grsu.schedule1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.grsu.schedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
@@ -1108,6 +1125,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 76539BC667;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1128,6 +1146,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 76539BC667;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

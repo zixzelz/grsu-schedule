@@ -43,17 +43,10 @@ class ScheduleService {
 
         let query = CleanScheduleQuery()
 
-        networkService.fetchData(query, cache: .CachedOnly) { result in
-
-            switch result {
-            case .Success(let items):
-                for item in items {
-                    item.managedObjectContext?.deleteObject(item)
-                }
-            case .Failure(let error):
+        localService.cleanCache(query) { (result) in
+            if case let .Failure(error) = result {
                 assertionFailure("cleanCache error: \(error)")
             }
-
             completionHandler?()
         }
     }
@@ -171,7 +164,7 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
 }
 
-class CleanScheduleQuery: NetworkServiceQueryType {
+class CleanScheduleQuery: LocalServiceQueryType {
 
     var predicate: NSPredicate? {
 
@@ -185,13 +178,4 @@ class CleanScheduleQuery: NetworkServiceQueryType {
     }
 
     var sortBy: [NSSortDescriptor]? = nil
-
-    // MARK - NetworkServiceQueryType
-
-    var path: String = ""
-
-    var method: NetworkServiceMethod = .GET
-
-    var parameters: [String: AnyObject]? = nil
-
 }

@@ -28,7 +28,7 @@ extension LocalServiceQueryType {
 class LocalService < T: ModelType > {
 
     typealias LocalServiceFetchCompletionHandlet = ServiceResult<[T], ServiceError> -> ()
-    typealias LocalServiceStoreCompletionHandlet = ServiceResult<Void, ServiceError> -> ()
+    typealias LocalServiceCompletionHandlet = ServiceResult<Void, ServiceError> -> ()
 
     var predicate: NSPredicate?
     private lazy var cachedItemsMap: [String: T] = {
@@ -54,7 +54,7 @@ class LocalService < T: ModelType > {
     }
     
     // json: {"objectsCollection": [{item}, {item}, ...]}
-    func parseAndStore < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
+    func parseAndStore < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceCompletionHandlet) {
         
         prepareService(query)
         store(query, json: json, completionHandler: completionHandler)
@@ -90,7 +90,7 @@ class LocalService < T: ModelType > {
         predicate = query.predicate
     }
 
-    private func store < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceStoreCompletionHandlet) {
+    private func store < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceCompletionHandlet) {
 
         guard let items = T.objects(json) else {
             completionHandler(.Failure(.WrongResponseFormat))
@@ -124,6 +124,29 @@ class LocalService < T: ModelType > {
                 item.delete(context)
             }
 
+            context.saveIfNeeded()
+            completionHandler(.Success())
+        }
+    }
+    
+    func cleanCache < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, completionHandler: LocalServiceCompletionHandlet) {
+        
+        let context = T.managedObjectContext()
+        context.performBlock { _ in
+            
+            guard let items = T.objects(withPredicate: query.predicate, inContext: context) else {
+                completionHandler(.Failure(.InternalError))
+                return
+            }
+            
+            for item in items {
+                item.delete(context)
+            }
+            
+            #if DEBUG
+                print("Removed cace for: \(items.count) items")
+            #endif
+            
             context.saveIfNeeded()
             completionHandler(.Success())
         }
