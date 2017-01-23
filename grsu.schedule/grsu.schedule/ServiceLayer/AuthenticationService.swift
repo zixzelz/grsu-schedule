@@ -47,7 +47,7 @@ class AuthenticationService {
                 print("\(json)")
             #endif
 
-            guard let student = try? Student(json: json) else {
+            guard let student = Student(json: json) else {
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandler(.Failure(.InternalError))
                 }

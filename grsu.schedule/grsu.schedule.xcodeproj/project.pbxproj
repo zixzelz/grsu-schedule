@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D012B201A7ABAE100D8B5B1 /* RMRootContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */; };
 		2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */; };
 		2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505CA1A1662DC00171A2E /* BaseDataService.swift */; };
 		2D0825EE1A152913008B504E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0825ED1A152913008B504E /* AppDelegate.swift */; };
@@ -15,15 +14,6 @@
 		2D0825F81A152913008B504E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D0825F61A152913008B504E /* LaunchScreen.xib */; };
 		2D0826041A152913008B504E /* grsu_scheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826031A152913008B504E /* grsu_scheduleTests.swift */; };
 		2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08260F1A15299D008B504E /* PickerTableViewCell.swift */; };
-		2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826121A15299D008B504E /* RMSidebarControllerTransitioning.swift */; };
-		2D0826221A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826131A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift */; };
-		2D0826231A15299D008B504E /* ViewController+RMSidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826141A15299D008B504E /* ViewController+RMSidebarController.swift */; };
-		2D0826241A15299D008B504E /* RMSidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826151A15299D008B504E /* RMSidebarController.swift */; };
-		2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826171A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift */; };
-		2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826181A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift */; };
-		2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826191A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift */; };
-		2D0826281A15299D008B504E /* RMSidebarInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261B1A15299D008B504E /* RMSidebarInteractiveTransition.swift */; };
-		2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261D1A15299D008B504E /* SlideAnimatedTransitioning.swift */; };
 		2D08262A1A15299D008B504E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D08261E1A15299D008B504E /* Main.storyboard */; };
 		2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */; };
 		2D12012B1A4D83C20065079E /* GetUniversityBuildings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D12012A1A4D83C20065079E /* GetUniversityBuildings.swift */; };
@@ -54,7 +44,6 @@
 		2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E9C1A4EE97D0055EA3A /* LessonLocationMapViewController.swift */; };
 		2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4E9F1A4EEA2C0055EA3A /* CalloutView.swift */; };
 		2DBD4EA41A4F14640055EA3A /* LessonLocationMapViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA31A4F14640055EA3A /* LessonLocationMapViewProtocol.swift */; };
-		2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA51A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift */; };
 		2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */; };
 		2DBD4EB11A52D09C0055EA3A /* BaseSchedulesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EB01A52D09C0055EA3A /* BaseSchedulesPageViewController.swift */; };
 		2DBD4EB31A52D0EE0055EA3A /* StudentSchedulesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBD4EB21A52D0EE0055EA3A /* StudentSchedulesPageViewController.swift */; };
@@ -146,7 +135,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMRootContainerView.swift; sourceTree = "<group>"; };
 		2D0505CA1A1662DC00171A2E /* BaseDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataService.swift; sourceTree = "<group>"; };
 		2D0505CC1A1676CD00171A2E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		2D0825E81A152913008B504E /* grsu.schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grsu.schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,15 +146,6 @@
 		2D0826021A152913008B504E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0826031A152913008B504E /* grsu_scheduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grsu_scheduleTests.swift; sourceTree = "<group>"; };
 		2D08260F1A15299D008B504E /* PickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
-		2D0826121A15299D008B504E /* RMSidebarControllerTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSidebarControllerTransitioning.swift; sourceTree = "<group>"; };
-		2D0826131A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSidebarControllerTransitioningProtocols.swift; sourceTree = "<group>"; };
-		2D0826141A15299D008B504E /* ViewController+RMSidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewController+RMSidebarController.swift"; sourceTree = "<group>"; };
-		2D0826151A15299D008B504E /* RMSidebarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSidebarController.swift; sourceTree = "<group>"; };
-		2D0826171A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSidebarInitRootViewControllerSegue.swift; sourceTree = "<group>"; };
-		2D0826181A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSidebarInitSidebarViewControllerSegue.swift; sourceTree = "<group>"; };
-		2D0826191A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSidebarPresentSlideRootViewControllerSegue.swift; sourceTree = "<group>"; };
-		2D08261B1A15299D008B504E /* RMSidebarInteractiveTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RMSidebarInteractiveTransition.swift; sourceTree = "<group>"; };
-		2D08261D1A15299D008B504E /* SlideAnimatedTransitioning.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimatedTransitioning.swift; sourceTree = "<group>"; };
 		2D08261E1A15299D008B504E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleOptionsTableViewController.swift; sourceTree = "<group>"; };
 		2D0A70401A1BB5F900A2A08D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -201,7 +180,6 @@
 		2DBD4E9F1A4EEA2C0055EA3A /* CalloutView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalloutView.swift; sourceTree = "<group>"; };
 		2DBD4EA11A4EEA390055EA3A /* CalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalloutView.xib; sourceTree = "<group>"; };
 		2DBD4EA31A4F14640055EA3A /* LessonLocationMapViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LessonLocationMapViewProtocol.swift; sourceTree = "<group>"; };
-		2DBD4EA51A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPresentRootViewControllerSegue.swift; sourceTree = "<group>"; };
 		2DBD4EA71A501D3B0055EA3A /* AddressUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressUtils.swift; sourceTree = "<group>"; };
 		2DBD4EB01A52D09C0055EA3A /* BaseSchedulesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseSchedulesPageViewController.swift; sourceTree = "<group>"; };
 		2DBD4EB21A52D0EE0055EA3A /* StudentSchedulesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentSchedulesPageViewController.swift; sourceTree = "<group>"; };
@@ -440,11 +418,9 @@
 		2D08260E1A15299D008B504E /* Commons */ = {
 			isa = PBXGroup;
 			children = (
-				2D0826101A15299D008B504E /* RMSidebarController */,
 				44641E511A5DC5E600AA46BB /* ScheduleCell */,
 				442538651E22D19E00AFED79 /* Transitioning */,
 				4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */,
-				2DBD4EA51A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift */,
 				2D08260F1A15299D008B504E /* PickerTableViewCell.swift */,
 				2DD1BB531A27810C00DB7FCB /* WeekSchedulesHeaderFooterView.xib */,
 				2DD1BB551A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift */,
@@ -461,55 +437,6 @@
 				447570631E216BB6003C6AD3 /* MenuButton.swift */,
 			);
 			path = Commons;
-			sourceTree = "<group>";
-		};
-		2D0826101A15299D008B504E /* RMSidebarController */ = {
-			isa = PBXGroup;
-			children = (
-				2D0826111A15299D008B504E /* Commons */,
-				2D0826151A15299D008B504E /* RMSidebarController.swift */,
-				2D0826161A15299D008B504E /* Segue */,
-				2D08261A1A15299D008B504E /* Transitioning */,
-			);
-			path = RMSidebarController;
-			sourceTree = "<group>";
-		};
-		2D0826111A15299D008B504E /* Commons */ = {
-			isa = PBXGroup;
-			children = (
-				2D0826121A15299D008B504E /* RMSidebarControllerTransitioning.swift */,
-				2D0826131A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift */,
-				2D0826141A15299D008B504E /* ViewController+RMSidebarController.swift */,
-				2D012B1F1A7ABAE100D8B5B1 /* RMRootContainerView.swift */,
-			);
-			path = Commons;
-			sourceTree = "<group>";
-		};
-		2D0826161A15299D008B504E /* Segue */ = {
-			isa = PBXGroup;
-			children = (
-				2D0826171A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift */,
-				2D0826181A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift */,
-				2D0826191A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift */,
-			);
-			path = Segue;
-			sourceTree = "<group>";
-		};
-		2D08261A1A15299D008B504E /* Transitioning */ = {
-			isa = PBXGroup;
-			children = (
-				2D08261B1A15299D008B504E /* RMSidebarInteractiveTransition.swift */,
-				2D08261C1A15299D008B504E /* Slide */,
-			);
-			path = Transitioning;
-			sourceTree = "<group>";
-		};
-		2D08261C1A15299D008B504E /* Slide */ = {
-			isa = PBXGroup;
-			children = (
-				2D08261D1A15299D008B504E /* SlideAnimatedTransitioning.swift */,
-			);
-			path = Slide;
 			sourceTree = "<group>";
 		};
 		2D6000E61A1E8229005CB141 /* Model */ = {
@@ -845,7 +772,6 @@
 				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
 				44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* DaySchedule.swift in Sources */,
-				2D0826231A15299D008B504E /* ViewController+RMSidebarController.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
 				2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */,
@@ -869,7 +795,6 @@
 				2DB1DF451B0FB12100272312 /* RYRussianIndexedCollation.swift in Sources */,
 				2DBD4EC51A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift in Sources */,
 				44B64E951E0B282500A09057 /* AuthenticationViewController.swift in Sources */,
-				2D0826261A15299D008B504E /* RMSidebarInitSidebarViewControllerSegue.swift in Sources */,
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,
 				44F0DC991DFB50450048F3AE /* FavoriteViewController.swift in Sources */,
 				2DBD4EBE1A5ADB6C0055EA3A /* TeacherSchedulesPageViewController.swift in Sources */,
@@ -878,7 +803,6 @@
 				2D6000E81A1E825D005CB141 /* ScheduleQuery.swift in Sources */,
 				2D12012F1A4D88690065079E /* FacultyOfUniversity.swift in Sources */,
 				44D146251D7F84510076BDF0 /* Parsable.swift in Sources */,
-				2D0826241A15299D008B504E /* RMSidebarController.swift in Sources */,
 				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
 				4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */,
 				447063A71E171AAE0001C29B /* UIStoryboard+app.swift in Sources */,
@@ -895,7 +819,6 @@
 				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
 				44BC6F4C1E146E97004446F6 /* UIImage+Tint.swift in Sources */,
 				449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */,
-				2D0826271A15299D008B504E /* RMSidebarPresentSlideRootViewControllerSegue.swift in Sources */,
 				44D146271D7F84C00076BDF0 /* DepartmentsService.swift in Sources */,
 				44D504181A780DD900265A7C /* Reachability.m in Sources */,
 				2DBD4EC11A5AF9660055EA3A /* WeekSchedulesViewController.swift in Sources */,
@@ -910,22 +833,16 @@
 				2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */,
 				2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */,
 				2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */,
-				2D0826221A15299D008B504E /* RMSidebarControllerTransitioningProtocols.swift in Sources */,
 				44D4EA541D7DD78800C38D1E /* CachePolicy.swift in Sources */,
 				4435EBC41E1077AF005F43B5 /* ExpandedScrollView.swift in Sources */,
-				2D012B201A7ABAE100D8B5B1 /* RMRootContainerView.swift in Sources */,
 				2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */,
-				2D0826291A15299D008B504E /* SlideAnimatedTransitioning.swift in Sources */,
 				44BC6F481E146B2B004446F6 /* UserProfileViewController.swift in Sources */,
 				4425386A1E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift in Sources */,
 				2DB233F71A1BD774005F1447 /* SelectScheduleOptionsViewController.swift in Sources */,
-				2DBD4EA61A4F2B670055EA3A /* DefaultPresentRootViewControllerSegue.swift in Sources */,
 				2D716C3E1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift in Sources */,
 				4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */,
-				2D0826251A15299D008B504E /* RMSidebarInitRootViewControllerSegue.swift in Sources */,
 				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
 				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,
-				2D0826211A15299D008B504E /* RMSidebarControllerTransitioning.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
 				4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */,
 				4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */,
@@ -935,7 +852,6 @@
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
 				2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */,
 				44D146221D7F84510076BDF0 /* LocalService.swift in Sources */,
-				2D0826281A15299D008B504E /* RMSidebarInteractiveTransition.swift in Sources */,
 				44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */,
 				2DBD4EB31A52D0EE0055EA3A /* StudentSchedulesPageViewController.swift in Sources */,
 				44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */,
@@ -1056,7 +972,6 @@
 			baseConfigurationReference = 9161E7781AC44D82C69A2900 /* Pods-grsu.schedule.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1092,7 +1007,6 @@
 			baseConfigurationReference = DB37C0AA4EC9E9C48021768A /* Pods-grsu.schedule.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

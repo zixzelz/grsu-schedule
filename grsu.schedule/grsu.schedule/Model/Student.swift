@@ -15,11 +15,12 @@ class Student: NSObject, NSCoding {
     var id: Int
     var studentType: String?
     
-    init(json: [String: AnyObject]) throws {
+    init?(json: [String: AnyObject]) {
 
         guard let _id = json["id"] as? Int where _id != 0,
         let k_sgryp = json["k_sgryp"] as? Int where k_sgryp != 0 else {
-            throw ServiceError.WrongResponseFormat
+            return nil
+//            throw ServiceError.WrongResponseFormat
         }
         
         id = _id

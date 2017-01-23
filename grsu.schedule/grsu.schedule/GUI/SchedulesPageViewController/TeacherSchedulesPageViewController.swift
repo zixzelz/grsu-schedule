@@ -36,8 +36,6 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
         } else {
             manager.removeFavorite(teacher!.favorite!)
         }
-
-        self.sidebarController?.addLeftSidebarButton(self)
     }
 
     override func weekScheduleController(weekIndex: Int? = nil) -> UIViewController {
