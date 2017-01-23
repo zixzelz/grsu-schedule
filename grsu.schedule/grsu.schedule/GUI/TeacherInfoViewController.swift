@@ -107,6 +107,10 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
         guard let email = teacherInfo?.email else { return }
 
+        if !MFMailComposeViewController.canSendMail() {
+            return
+        }
+        
         let compose = MFMailComposeViewController()
         compose.mailComposeDelegate = self
         compose.setToRecipients([email])
