@@ -43,6 +43,12 @@
       "idiom" : "iphone",
       "filename" : "appico@2x-3.png",
       "scale" : "3x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "appico.png",
+      "scale" : "1x"
     }
   ],
   "info" : {
