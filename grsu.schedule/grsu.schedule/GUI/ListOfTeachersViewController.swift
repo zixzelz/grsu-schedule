@@ -47,7 +47,7 @@ class ListOfTeachersViewController: UITableViewController {
                 strongSelf.teacherSections = [[TeacherInfoEntity]]()
 
                 Flurry.logError(error, errId: "ListOfTeachersViewController")
-                strongSelf.showMessage("Ошибка при получении данных")
+//                strongSelf.showMessage("Ошибка при получении данных")
             }
 
             strongSelf.shouldShowRefreshControl = false
