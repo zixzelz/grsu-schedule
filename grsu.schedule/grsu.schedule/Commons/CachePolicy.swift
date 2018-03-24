@@ -9,8 +9,8 @@
 import UIKit
 
 enum CachePolicy {
-    case CachedOnly
+    case cachedOnly
 //    case CachedThenLoad
-    case CachedElseLoad
-    case ReloadIgnoringCache
+    case cachedElseLoad
+    case reloadIgnoringCache
 }

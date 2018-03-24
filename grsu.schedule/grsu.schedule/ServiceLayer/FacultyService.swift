@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias FacultyCompletionHandlet = ServiceResult<[FacultiesEntity], ServiceError> -> Void
+typealias FacultyCompletionHandlet = (ServiceResult<[FacultiesEntity], ServiceError>) -> Void
 
 class FacultyService {
 
@@ -21,7 +21,7 @@ class FacultyService {
         networkService = NetworkService(localService: localService)
     }
 
-    func getFaculties(cache: CachePolicy = .CachedElseLoad, completionHandler: FacultyCompletionHandlet) {
+    func getFaculties(_ cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping FacultyCompletionHandlet) {
 
         networkService.fetchData(FacultyQuery(), cache: cache, completionHandler: completionHandler)
     }
@@ -31,10 +31,10 @@ class FacultyService {
 class FacultyQuery: NetworkServiceQueryType {
     
     var queryInfo: FacultiesQueryInfo {
-        return .Default
+        return .default
     }
 
-    var path: String = "/getFaculties"
+    var path: String = UrlHost + "/getFaculties"
 
     var method: NetworkServiceMethod = .GET
 

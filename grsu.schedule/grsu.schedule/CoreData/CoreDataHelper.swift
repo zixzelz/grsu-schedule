@@ -15,12 +15,12 @@ class CoreDataHelper: NSObject {
 
     override init() {
 
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         store = appDelegate.cdstore
 
         super.init()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CoreDataHelper.contextDidSaveContext(_:)), name: NSManagedObjectContextDidSaveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(CoreDataHelper.contextDidSaveContext(_:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
     }
 
     func setup() {
@@ -28,7 +28,7 @@ class CoreDataHelper: NSObject {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     // #pragma mark - Core Data stack
@@ -44,7 +44,7 @@ class CoreDataHelper: NSObject {
 
         let coordinator = self.store.persistentStoreCoordinator
 
-        var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
+        var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
 
         return managedObjectContext
@@ -58,46 +58,46 @@ class CoreDataHelper: NSObject {
 
         let coordinator = self.store.persistentStoreCoordinator
 
-        var backgroundContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.PrivateQueueConcurrencyType)
+        var backgroundContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
         backgroundContext.persistentStoreCoordinator = coordinator
 
         return backgroundContext
     }()
 
     // save NSManagedObjectContext
-    func saveContext(context: NSManagedObjectContext) {
+    func saveContext(_ context: NSManagedObjectContext) {
 
         context.saveIfNeeded()
     }
 
     func saveContext() {
-        saveContext(self.backgroundContext)
+        saveContext(backgroundContext)
     }
 
-    func convertToMainQueue(itemIds: [NSManagedObjectID]) -> [AnyObject] {
+    func convertToMainQueue(_ itemIds: [NSManagedObjectID]) -> [AnyObject] {
         let mainContext = managedObjectContext
 
         var items = [AnyObject]()
         for objId in itemIds {
 
-            let obj = mainContext.objectWithID(objId)
+            let obj = mainContext.object(with: objId)
             items.append(obj)
         }
         return items
     }
 
     // call back function by saveContext, support multi-thread
-    func contextDidSaveContext(notification: NSNotification) {
+    @objc func contextDidSaveContext(_ notification: Foundation.Notification) {
         let sender = notification.object as! NSManagedObjectContext
-        if sender === self.managedObjectContext {
+        if sender === managedObjectContext {
             // NSLog("******** Saved main Context in this thread")
-            self.backgroundContext.performBlock {
-                self.backgroundContext.mergeChangesFromContextDidSaveNotification(notification)
+            backgroundContext.perform {
+                self.backgroundContext.mergeChanges(fromContextDidSave: notification)
             }
-        } else if sender === self.backgroundContext {
+        } else if sender === backgroundContext {
             // NSLog("******** Saved background Context in this thread")
-            self.managedObjectContext.performBlock {
-                self.managedObjectContext.mergeChangesFromContextDidSaveNotification(notification)
+            managedObjectContext.perform {
+                self.managedObjectContext.mergeChanges(fromContextDidSave: notification)
             }
         } else {
             // NSLog("******** Saved Context in other thread")

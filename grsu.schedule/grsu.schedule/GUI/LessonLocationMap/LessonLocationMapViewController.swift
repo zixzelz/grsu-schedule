@@ -17,9 +17,9 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
     var universityBuildings: [UniversityBuilding]?
     var initAddress_: String?
 
-    private var selectedUniversityBuildingIndex: Int? {
+    fileprivate var selectedUniversityBuildingIndex: Int? {
         didSet {
-            routeButton.enabled = (selectedUniversityBuildingIndex != nil)
+            routeButton.isEnabled = (selectedUniversityBuildingIndex != nil)
         }
     }
 
@@ -47,13 +47,13 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
 
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        let delayTime = DispatchTime.now()
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.fetchData()
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Flurry.logEvent("Lesson Location Map")
     }
@@ -66,8 +66,8 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
                     wSelf.ownView().reloadMarkersList()
                 }
                 if let address = wSelf.initAddress {
-                    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC)))
-                    dispatch_after(delayTime, dispatch_get_main_queue()) {
+                    let delayTime = DispatchTime.now() + 1
+                    DispatchQueue.main.asyncAfter(deadline: delayTime) {
                         wSelf.selectMarker(address)
                     }
                 }
@@ -75,15 +75,15 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         }
     }
 
-    func selectMarker(address: String) {
+    func selectMarker(_ address: String) {
 
         if let universityBuildings = universityBuildings {
 
-            let foundItems = universityBuildings.filter { $0.address?.rangeOfString(address, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil }
+            let foundItems = universityBuildings.filter { $0.address?.range(of: address, options: .caseInsensitive, range: nil, locale: nil) != nil }
 
             if let universityBuilding = foundItems.first {
 
-                let index = universityBuildings.indexOf(universityBuilding)
+                let index = universityBuildings.index(of: universityBuilding)
                 ownView().selectMarker(index!)
             } else {
                 showMessage("Адрес не найден")
@@ -98,22 +98,22 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
 
     @IBAction func routeButtonPressed() {
 
-        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.AuthorizedWhenInUse {
+        if CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse {
 
-            let alertController = UIAlertController (title: "Приложение не знает, где вы находитесь", message: "Разрешите приложению определить ваше местоположение: это делается в настройках устройства.", preferredStyle: .Alert)
+            let alertController = UIAlertController (title: "Приложение не знает, где вы находитесь", message: "Разрешите приложению определить ваше местоположение: это делается в настройках устройства.", preferredStyle: .alert)
 
-            let settingsAction = UIAlertAction(title: "Настройки", style: .Default) { (_) -> Void in
-                let settingsUrl = NSURL(string: UIApplicationOpenSettingsURLString)
+            let settingsAction = UIAlertAction(title: "Настройки", style: .default) { (_) -> Void in
+                let settingsUrl = URL(string: UIApplicationOpenSettingsURLString)
                 if let url = settingsUrl {
-                    UIApplication.sharedApplication().openURL(url)
+                    UIApplication.shared.openURL(url)
                 }
             }
 
-            let cancelAction = UIAlertAction(title: "Отменить", style: .Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Отменить", style: .default, handler: nil)
             alertController.addAction(settingsAction)
             alertController.addAction(cancelAction)
 
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             return
         }
 
@@ -127,39 +127,40 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         let location = universityBuilding.location!
 
         let urlStr = "yandexmaps://maps.yandex.ru/?rtext=\(mainLocation.latitude),\(mainLocation.longitude)~\(location.latitude),\(location.longitude)"
-        guard let url = NSURL(string: urlStr) else {
+        guard let url = URL(string: urlStr) else {
             showMessage("Адрес не найден")
             return
         }
 
-        guard let urlForCheck = NSURL(string: "yandexmaps://") else { return }
-        if UIApplication.sharedApplication().canOpenURL(urlForCheck) {
-            UIApplication.sharedApplication().openURL(url)
+        guard let urlForCheck = URL(string: "yandexmaps://") else { return }
+        if UIApplication.shared.canOpenURL(urlForCheck) {
+            UIApplication.shared.openURL(url)
+            Flurry.logEvent("route with yandex maps")
         } else {
             
-            let alertController = UIAlertController (title: "Приложение Яндекс.Карты не установлено", message: "Нажмите кнопку Установить для установки", preferredStyle: .Alert)
+            let alertController = UIAlertController (title: "Приложение Яндекс.Карты не установлено", message: "Нажмите кнопку Установить для установки", preferredStyle: .alert)
             
-            let settingsAction = UIAlertAction(title: "Установить", style: .Default) { (_) -> Void in
-                let settingsUrl = NSURL(string: "https://itunes.apple.com/ru/app/yandex.maps/id313877526?mt=8")
+            let settingsAction = UIAlertAction(title: "Установить", style: .default) { (_) -> Void in
+                let settingsUrl = URL(string: "https://itunes.apple.com/ru/app/yandex.maps/id313877526?mt=8")
                 if let url = settingsUrl {
-                    UIApplication.sharedApplication().openURL(url)
+                    UIApplication.shared.openURL(url)
                 }
             }
             
-            let cancelAction = UIAlertAction(title: "Отменить", style: .Default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Отменить", style: .default, handler: nil)
             alertController.addAction(settingsAction)
             alertController.addAction(cancelAction)
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
     }
 
-    private func showMessage(title: String) {
+    fileprivate func showMessage(_ title: String) {
 
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
 
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 
     // MARK: - RYBaseMapViewDataSource
@@ -168,11 +169,11 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         return universityBuildings != nil ? universityBuildings!.count : 0
     }
 
-    override func locationForMarker(index: Int) -> CLLocationCoordinate2D {
+    override func locationForMarker(_ index: Int) -> CLLocationCoordinate2D {
         return universityBuildings![index].location!
     }
 
-    override func iconForMarker(index: Int) -> UIImage? {
+    override func iconForMarker(_ index: Int) -> UIImage? {
         let universityBuilding = universityBuildings![index]
         var image: UIImage?
 
@@ -185,7 +186,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         return image
     }
 
-    override func didSelectMarker(index: Int) {
+    override func didSelectMarker(_ index: Int) {
         selectedUniversityBuildingIndex = index
     }
 
@@ -195,7 +196,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
 
     // MARK: - LessonLocationMapViewDataSource
 
-    func titleForMarker(index: Int) -> String {
+    func titleForMarker(_ index: Int) -> String {
 
         let universityBuilding = universityBuildings![index]
         var title = ""
@@ -205,7 +206,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
             let educationalUniversityBuilding = universityBuilding as! EducationalUniversityBuilding
 
             let titles = educationalUniversityBuilding.faculties!.map { $0.title! } as [String]
-            title = titles.joinWithSeparator("\n")
+            title = titles.joined(separator: "\n")
         } else {
 
             let educationalUniversityBuilding = universityBuilding as! HostelUniversityBuilding
@@ -215,7 +216,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         return title
     }
 
-    func imageForMarker(index: Int) -> UIImage? {
+    func imageForMarker(_ index: Int) -> UIImage? {
         let universityBuilding = universityBuildings![index]
 
         return UIImage(named: universityBuilding.photo!)
@@ -223,7 +224,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
 
     // MARK: - CLLocationManagerDelegate
 
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         manager.stopUpdatingLocation()
     }
 

@@ -8,9 +8,9 @@
 
 import UIKit
 
-enum ServiceError: ErrorType {
+enum ServiceError: Error {
 
-    case NetworkError(error: NSError)
-    case WrongResponseFormat
-    case InternalError
+    case networkError(error: Error)
+    case wrongResponseFormat
+    case internalError
 }

@@ -7,7 +7,7 @@
 //
 
 extension Array {
-    func dict<K,V>(transform: (Element) -> (K,V)) -> [K:V] {
+    func dict<K,V>(_ transform: (Element) -> (K,V)) -> [K:V] {
         
         var res = [K:V](minimumCapacity: count)
         for value in self {

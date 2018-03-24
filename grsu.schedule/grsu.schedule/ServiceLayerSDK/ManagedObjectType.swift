@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol ManagedObjectContextType {
-    func performBlock(block: () -> Void)
+    func perform(_ block: @escaping () -> Swift.Void)
     func saveIfNeeded()
 }
 

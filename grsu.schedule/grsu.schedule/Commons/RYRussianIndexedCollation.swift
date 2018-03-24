@@ -15,17 +15,17 @@ class RYRussianIndexedCollation {
     var sectionTitles = DefaultCollection
     var sectionIndexTitles = DefaultCollection
 
-    func sectionForSectionIndexTitleAtIndex(indexTitleIndex: Int) -> Int {
+    func sectionForSectionIndexTitleAtIndex(_ indexTitleIndex: Int) -> Int {
         return indexTitleIndex
     }
 
-    func sectionForObject(object: String?) -> Int {
+    func sectionForObject(_ object: String?) -> Int {
 
         var sectionIndex: Int = sectionTitles.count - 1
         if let object = object {
 
-            let firstChar = object.capitalizedString[object.startIndex]
-            if let val = sectionTitles.indexOf(firstChar) {
+            let firstChar = object.capitalized[object.startIndex]
+            if let val = sectionTitles.index(of: firstChar) {
 
                 sectionIndex = val
             }

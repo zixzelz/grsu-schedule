@@ -13,7 +13,7 @@ import CoreLocation
 protocol RYBaseMapViewProtocol: NSObjectProtocol {
    
     func reloadMarkersList()
-    func selectMarker(index: Int)
+    func selectMarker(_ index: Int)
 }
 
 @objc(RYBaseMapViewDataSource)
@@ -23,10 +23,10 @@ protocol RYBaseMapViewDataSource: NSObjectProtocol {
     func currentLocation() -> CLLocationCoordinate2D
     
     func numberOfMarkers() -> Int
-    func locationForMarker(index: Int) -> CLLocationCoordinate2D
-    func iconForMarker(index: Int) -> UIImage?
+    func locationForMarker(_ index: Int) -> CLLocationCoordinate2D
+    func iconForMarker(_ index: Int) -> UIImage?
 
-    func didSelectMarker(index: Int)
+    func didSelectMarker(_ index: Int)
     func didDeselectMarker()
     
 }

@@ -7,17 +7,41 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 @objc protocol PickerTableViewCellDelegate {
-    func pickerTableViewCell(cell: PickerTableViewCell, didSelectRow row: Int, withText text: String)
+    func pickerTableViewCell(_ cell: PickerTableViewCell, didSelectRow row: Int, withText text: String)
 }
 
 class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    @IBOutlet private weak var headerCell : UITableViewCell!
-    @IBOutlet private weak var pickerView : UIPickerView!
+    @IBOutlet fileprivate weak var headerCell : UITableViewCell!
+    @IBOutlet fileprivate weak var pickerView : UIPickerView!
     
-    @IBOutlet private weak var delegate : PickerTableViewCellDelegate?
+    @IBOutlet fileprivate weak var delegate : PickerTableViewCellDelegate?
     
     var items : Array<String>? {
         didSet {
@@ -27,9 +51,9 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
         }
     }
     
-    func selectRow(text: String) {
-        let index = items?.indexOf(text)
-        if (index != nil && index != pickerView.selectedRowInComponent(0)) {
+    func selectRow(_ text: String) {
+        let index = items?.index(of: text)
+        if (index != nil && index != pickerView.selectedRow(inComponent: 0)) {
             pickerView.selectRow(index!, inComponent: 0, animated: true)
             updateHeader(index!)
         }
@@ -49,20 +73,20 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
         var index : Int? = nil
         
         if (items?.count > 0) {
-            index = pickerView.selectedRowInComponent(0)
+            index = pickerView.selectedRow(inComponent: 0)
         }
         
         return index
     }
     
-    private func didSelectRow(row: Int) {
+    fileprivate func didSelectRow(_ row: Int) {
         updateHeader(row)
         
         let text = items![row] as String
         delegate?.pickerTableViewCell(self, didSelectRow: row, withText: text)
     }
 
-    private func updateHeader(row: Int) {
+    fileprivate func updateHeader(_ row: Int) {
         var text : String?
         if (items?.count > row) {
             text = items![row]
@@ -72,21 +96,21 @@ class PickerTableViewCell: UITableViewCell, UIPickerViewDataSource, UIPickerView
     
     // MARK: - UIPickerViewDataSource
 
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return items?.count ?? 0
     }
     
     // MARK: - UIPickerViewDelegate
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return items?[row]
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (items?.count > 0) {
             didSelectRow(row)
         }

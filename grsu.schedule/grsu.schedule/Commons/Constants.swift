@@ -9,23 +9,24 @@
 import Foundation
 
 
-let UrlScheme = "http"
-let UrlHost = "api.grsu.by/1.x/app1"
+let UrlHost = "http://api.grsu.by/1.x/app1"
 let ReachabilityURL = "www.grsu.by"
 
 enum ScheduleOption : String {
-    case Departmen = "DefaultDepartmentCell"
-    case Faculty = "DefaultFacultyCell"
-    case Group = "DefaultGroupCell"
-    case Course = "DefaultCourseCell"
-    case Week = "DefaultWeekCell"
+    case departmen = "DefaultDepartmentCell"
+    case faculty = "DefaultFacultyCell"
+    case group = "DefaultGroupCell"
+    case course = "DefaultCourseCell"
+    case week = "DefaultWeekCell"
 }
 
 typealias GSItem = (id: String, value: String)
-typealias GSWeekItem = (startDate: NSDate, endDate: NSDate, value: String)
+typealias GSWeekItem = (startDate: Date, endDate: Date, value: String)
 
-let DefaultCacheTimeInterval : NSTimeInterval = 60 * 60 * 24
-let TeachersCacheTimeInterval : NSTimeInterval = 60 * 60 * 24 * 7
+struct Constants {
+    static let defaultCacheTimeInterval : TimeInterval = 60 * 60 * 24
+    static let teachersCacheTimeInterval : TimeInterval = 60 * 60 * 24 * 7
+}
 
 let DepartmentsEntityName = "DepartmentsEntity"
 let FacultiesEntityName =  "FacultiesEntity"

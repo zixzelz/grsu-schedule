@@ -11,18 +11,18 @@ import Flurry_iOS_SDK
 
 extension Flurry {
 
-    class func logError(error: ServiceError, errId: String) {
+    class func logError(_ error: ServiceError, errId: String) {
         
-        var err: NSError?
+        var err: Error?
         var message: String
         
         switch error {
-        case .NetworkError(let error):
+        case .networkError(let error):
             err = error
             message = "NetworkError"
-        case .WrongResponseFormat:
+        case .wrongResponseFormat:
             message = "WrongResponseFormat"
-        case .InternalError:
+        case .internalError:
             message = "InternalError"
         }
         

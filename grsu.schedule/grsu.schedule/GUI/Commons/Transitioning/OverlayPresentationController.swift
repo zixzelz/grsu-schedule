@@ -19,8 +19,8 @@ import UIKit
 class OverlayPresentationController: UIPresentationController {
     let dimmingView = UIView()
 
-    override init(presentedViewController: UIViewController, presentingViewController: UIViewController?) {
-        super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
+    override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
         dimmingView.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
     }
 
@@ -28,20 +28,20 @@ class OverlayPresentationController: UIPresentationController {
 
         dimmingView.frame = (containerView?.bounds)!
         dimmingView.alpha = 0.0
-        containerView?.insertSubview(dimmingView, atIndex: 0)
+        containerView?.insertSubview(dimmingView, at: 0)
 
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ (context) in
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (context) in
             self.dimmingView.alpha = 1.0
         }, completion: {
             context in
-            UIApplication.sharedApplication().statusBarStyle = .LightContent
+            UIApplication.shared.statusBarStyle = .lightContent
         })
 
     }
 
     override func dismissalTransitionWillBegin() {
 
-        presentedViewController.transitionCoordinator()?.animateAlongsideTransition({ (context) in
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (context) in
             self.dimmingView.alpha = 0.0
         }, completion: {
             context in
@@ -49,7 +49,7 @@ class OverlayPresentationController: UIPresentationController {
         })
     }
 
-    override func frameOfPresentedViewInContainerView() -> CGRect {
+    override var frameOfPresentedViewInContainerView : CGRect {
         let boundHeight = containerView?.bounds.height
         let boundWidth = containerView?.bounds.width
 
@@ -59,6 +59,6 @@ class OverlayPresentationController: UIPresentationController {
 
     override func containerViewWillLayoutSubviews() {
         dimmingView.frame = (containerView?.bounds)!
-        presentedView()?.frame = frameOfPresentedViewInContainerView()
+        presentedView?.frame = frameOfPresentedViewInContainerView
     }
 }

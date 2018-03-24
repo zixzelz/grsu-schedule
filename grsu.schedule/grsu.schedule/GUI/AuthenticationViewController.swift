@@ -20,82 +20,82 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func loginButtonPressed() {
 
-        guard let login = userLoginTextField.text where !login.isEmpty else {
+        guard let login = userLoginTextField.text, !login.isEmpty else {
             showMessage("Поле «Логин» должно быть заполнено")
             return
         }
 
-        MBProgressHUD.showHUDAddedTo(view, animated: true)
-        AuthenticationService().auth(login) { [weak self] (result)  in
-            guard let strongSelf = self else {return}
-            
-            MBProgressHUD.hideHUDForView(strongSelf.view, animated: true)
+        MBProgressHUD.showAdded(to: view, animated: true)
+        AuthenticationService().auth(login) { [weak self] (result) in
+            guard let strongSelf = self else { return }
+
+            MBProgressHUD.hide(for: strongSelf.view, animated: true)
 
             switch result {
-            case.Success(let student): strongSelf.authenticationCompleted(student)
-            case .Failure(_): strongSelf.showMessage("Неверное имя пользователя")
+            case .success(let student): strongSelf.authenticationCompleted(student)
+            case .failure(_): strongSelf.showMessage("Неверное имя пользователя")
             }
         }
     }
 
     @IBAction func cancelButtonPressed() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
-    private func authenticationCompleted(student: Student) {
-        
-        NSUserDefaults.student = student
-        NSNotificationCenter.defaultCenter().postNotificationName(Notification.authenticationStateChanged, object: student)
-        
-        dismissViewControllerAnimated(true, completion: nil)
+    fileprivate func authenticationCompleted(_ student: Student) {
+
+        UserDefaults.student = student
+        NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.authenticationStateChanged), object: student)
+
+        dismiss(animated: true, completion: nil)
     }
-    
-    private func showMessage(title: String) {
-        
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
-        
-        presentViewController(alert, animated: true, completion: nil)
+
+    fileprivate func showMessage(_ title: String) {
+
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
-    
+
     //MARK: UITextFieldDelegate
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
 
         if userLoginTextField.text != "" {
             loginButtonPressed()
         }
 
-        return true;
+        return true
     }
-    
+
     // MARK: - Easter egg
-    
+
     @IBOutlet weak var easterEggsPrivateView: UIView!
-    
-    private func setupEasterEggs() {
+
+    fileprivate func setupEasterEggs() {
         let firstGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(AuthenticationViewController.longtapGestureRecognizer(_:)))
         firstGestureRecognizer.minimumPressDuration = 0.5
         easterEggsPrivateView.addGestureRecognizer(firstGestureRecognizer)
     }
-    
-    var startPoint = CGPointZero
-    @objc private func longtapGestureRecognizer(sender: UILongPressGestureRecognizer) {
+
+    var startPoint = CGPoint.zero
+    @objc fileprivate func longtapGestureRecognizer(_ sender: UILongPressGestureRecognizer) {
         switch (sender.state) {
-        case .Began: startPoint = sender.locationInView(sender.view)
-        case .Ended:
-            let point = sender.locationInView(sender.view)
+        case .began: startPoint = sender.location(in: sender.view)
+        case .ended:
+            let point = sender.location(in: sender.view)
             if (startPoint.x >= point.x + 100) {
                 showEasterEgg()
             } else {
                 easterEggsPrivateView.removeGestureRecognizer(sender)
             }
-        default: break;
+        default: break
         }
     }
-    
-    private func showEasterEgg() {
+
+    fileprivate func showEasterEgg() {
         userLoginTextField.text = "Barsukevich_EA_15"
     }
 }

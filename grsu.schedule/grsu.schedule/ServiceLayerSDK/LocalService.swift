@@ -27,8 +27,8 @@ extension LocalServiceQueryType {
 
 class LocalService < T: ModelType > {
 
-    typealias LocalServiceFetchCompletionHandlet = ServiceResult<[T], ServiceError> -> ()
-    typealias LocalServiceCompletionHandlet = ServiceResult<Void, ServiceError> -> ()
+    typealias LocalServiceFetchCompletionHandlet = (ServiceResult<[T], ServiceError>) -> ()
+    typealias LocalServiceCompletionHandlet = (ServiceResult<Void, ServiceError>) -> ()
 
     var predicate: NSPredicate?
     private lazy var cachedItemsMap: [String: T] = {
@@ -41,33 +41,33 @@ class LocalService < T: ModelType > {
         return T.parsableContext(context)
     }()
     
-    func featch < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, completionHandler: LocalServiceFetchCompletionHandlet) {
+    func featch < LocalServiceQuery: LocalServiceQueryType> (_ query: LocalServiceQuery, completionHandler: @escaping LocalServiceFetchCompletionHandlet) where LocalServiceQuery.QueryInfo == T.QueryInfo  {
 
         let context = T.managedObjectContext()
-        context.performBlock { _ in
+        context.perform {
 
             T.objectsForMainQueue(withPredicate: query.predicate, inContext: context, sortBy: query.sortBy) { (items) in
 
-                completionHandler(.Success(items))
+                completionHandler(.success(items))
             }
         }
     }
     
     // json: {"objectsCollection": [{item}, {item}, ...]}
-    func parseAndStore < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceCompletionHandlet) {
+    func parseAndStore < LocalServiceQuery: LocalServiceQueryType> (_ query: LocalServiceQuery, json: [String: AnyObject], completionHandler: @escaping LocalServiceCompletionHandlet) where LocalServiceQuery.QueryInfo == T.QueryInfo  {
         
         prepareService(query)
         store(query, json: json, completionHandler: completionHandler)
     }
 
     // json: {item}
-    func parseAndStoreItem (json: [String: AnyObject], context: ManagedObjectContextType, queryInfo: T.QueryInfo) throws -> T {
+    func parseAndStoreItem (_ json: [String: AnyObject], context: ManagedObjectContextType, queryInfo: T.QueryInfo) throws -> T {
     
         var item: T?
         
         if let keyForIdentifier = T.keyForIdentifier() {
             guard let identifier = json[keyForIdentifier] as? String else {
-                throw ServiceError.WrongResponseFormat
+                throw ServiceError.wrongResponseFormat
             }
             
             item = cachedItemsMap[identifier]
@@ -86,19 +86,19 @@ class LocalService < T: ModelType > {
         return item!
     }
     
-    private func prepareService < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery) {
+    fileprivate func prepareService < LocalServiceQuery: LocalServiceQueryType> (_ query: LocalServiceQuery) where LocalServiceQuery.QueryInfo == T.QueryInfo  {
         predicate = query.predicate
     }
 
-    private func store < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, json: [String: AnyObject], completionHandler: LocalServiceCompletionHandlet) {
+    fileprivate func store < LocalServiceQuery: LocalServiceQueryType> (_ query: LocalServiceQuery, json: [String: AnyObject], completionHandler: @escaping LocalServiceCompletionHandlet) where LocalServiceQuery.QueryInfo == T.QueryInfo  {
 
         guard let items = T.objects(json) else {
-            completionHandler(.Failure(.WrongResponseFormat))
+            completionHandler(.failure(.wrongResponseFormat))
             return
         }
 
         let context = T.managedObjectContext()
-        context.performBlock { _ in
+        context.perform {
 
             let cachedItemsMap = self.cachedItemsMap
             var handledItemsKey = [String]()
@@ -111,10 +111,10 @@ class LocalService < T: ModelType > {
                     }
                 } catch let error as ServiceError {
 
-                    completionHandler(.Failure(error))
+                    completionHandler(.failure(error))
                     return
                 } catch {
-                    completionHandler(.Failure(.InternalError))
+                    completionHandler(.failure(.internalError))
                     return
                 }
             }
@@ -125,17 +125,17 @@ class LocalService < T: ModelType > {
             }
 
             context.saveIfNeeded()
-            completionHandler(.Success())
+            completionHandler(.success(()))
         }
     }
     
-    func cleanCache < LocalServiceQuery: LocalServiceQueryType where LocalServiceQuery.QueryInfo == T.QueryInfo > (query: LocalServiceQuery, completionHandler: LocalServiceCompletionHandlet) {
+    func cleanCache < LocalServiceQuery: LocalServiceQueryType> (_ query: LocalServiceQuery, completionHandler: @escaping LocalServiceCompletionHandlet) where LocalServiceQuery.QueryInfo == T.QueryInfo  {
         
         let context = T.managedObjectContext()
-        context.performBlock { _ in
+        context.perform {
             
             guard let items = T.objects(withPredicate: query.predicate, inContext: context) else {
-                completionHandler(.Failure(.InternalError))
+                completionHandler(.failure(.internalError))
                 return
             }
             
@@ -148,7 +148,7 @@ class LocalService < T: ModelType > {
             #endif
             
             context.saveIfNeeded()
-            completionHandler(.Success())
+            completionHandler(.success(()))
         }
     }
 

@@ -24,8 +24,8 @@ class GroupsEntity: NSManagedObject {
 }
 
 enum GroupsServiceQueryInfo: QueryInfoType {
-    case WithParams(faculty: FacultiesEntity, department: DepartmentsEntity, course: String)
-    case MakeAsHidden
+    case withParams(faculty: FacultiesEntity, department: DepartmentsEntity, course: String)
+    case makeAsHidden
 }
 
 class GroupsParsableContext {
@@ -45,29 +45,29 @@ extension GroupsEntity: ModelType {
         return "id"
     }
 
-    static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]? {
+    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
         return json["items"] as? [[String: AnyObject]]
     }
     
-    static func parsableContext(context: ManagedObjectContextType) -> GroupsParsableContext {
+    static func parsableContext(_ context: ManagedObjectContextType) -> GroupsParsableContext {
         return GroupsParsableContext()
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: GroupsParsableContext) {
+    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: GroupsParsableContext) {
 
         id = json["id"] as! String
         
         guard let moContext = managedObjectContext else { return }
         switch queryInfo {
-        case let .WithParams(faculty_, department_, course_):
+        case let .withParams(faculty_, department_, course_):
             faculty = faculty_.convertInContext(moContext)
             department = department_.convertInContext(moContext)
             course = course_
-        case .MakeAsHidden:
+        case .makeAsHidden:
             let facultyJson = json["faculty"] as! [String: AnyObject]
             let departmentJson = json["department"] as! [String: AnyObject]
-            faculty = try? context.facultiesLocalService.parseAndStoreItem(facultyJson, context: moContext, queryInfo: .JustInsert)
-            department = try? context.departmentsLocalService.parseAndStoreItem(departmentJson, context: moContext, queryInfo: .JustInsert)
+            faculty = try? context.facultiesLocalService.parseAndStoreItem(facultyJson, context: moContext, queryInfo: .justInsert)
+            department = try? context.departmentsLocalService.parseAndStoreItem(departmentJson, context: moContext, queryInfo: .justInsert)
             course = json["course"] as! String
             hidden = true
         }
@@ -75,7 +75,7 @@ extension GroupsEntity: ModelType {
         update(json, queryInfo: queryInfo)
     }
 
-    func update(json: [String: AnyObject], queryInfo: QueryInfo) {
+    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
         title = json["title"] as! String
     }
 

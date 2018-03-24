@@ -15,12 +15,12 @@ extension UIStoryboard {
     }
 
     class func authenticationViewController() -> AuthenticationViewController {
-        let vc = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("AuthenticationIdentifier") as! AuthenticationViewController
+        let vc = UIStoryboard.mainStoryboard().instantiateViewController(withIdentifier: "AuthenticationIdentifier") as! AuthenticationViewController
         return vc
     }
     
     class func profileViewController() -> UserProfileViewController {
-        let vc = UIStoryboard.mainStoryboard().instantiateViewControllerWithIdentifier("ProfileIdentifier") as! UserProfileViewController
+        let vc = UIStoryboard.mainStoryboard().instantiateViewController(withIdentifier: "ProfileIdentifier") as! UserProfileViewController
         return vc
     }
     

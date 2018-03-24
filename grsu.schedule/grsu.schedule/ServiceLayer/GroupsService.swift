@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias GroupsCompletionHandlet = ServiceResult<[GroupsEntity], ServiceError> -> Void
+typealias GroupsCompletionHandlet = (ServiceResult<[GroupsEntity], ServiceError>) -> Void
 
 class GroupsService {
 
@@ -21,7 +21,7 @@ class GroupsService {
         networkService = NetworkService(localService: localService)
     }
 
-    func getGroups(faculty: FacultiesEntity, department: DepartmentsEntity, course: String, cache: CachePolicy = .CachedElseLoad, completionHandler: GroupsCompletionHandlet) {
+    func getGroups(_ faculty: FacultiesEntity, department: DepartmentsEntity, course: String, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping GroupsCompletionHandlet) {
 
         let query = GroupsQuery(faculty: faculty, department: department, course: course)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
@@ -42,24 +42,24 @@ class GroupsQuery: NetworkServiceQueryType {
     }
 
     var queryInfo: GroupsServiceQueryInfo {
-        return .WithParams(faculty: faculty, department: department, course: course)
+        return .withParams(faculty: faculty, department: department, course: course)
     }
 
-    var path: String = "/getGroups"
+    var path: String = UrlHost + "/getGroups"
 
     var method: NetworkServiceMethod = .GET
 
     var parameters: [String: AnyObject]? {
 
-        return ["facultyId": faculty.id,
-            "departmentId": department.id,
-            "course": course]
+        return ["facultyId": faculty.id as AnyObject,
+            "departmentId": department.id as AnyObject,
+            "course": course as AnyObject]
     }
 
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(faculty == %@) && (department == %@) && (course == %@) && (hidden == false)", faculty, department, course)
+        return NSPredicate(format: "(\(#keyPath(GroupsEntity.faculty)) == %@) && (\(#keyPath(GroupsEntity.department)) == %@) && (\(#keyPath(GroupsEntity.course)) == %@) && (\(#keyPath(GroupsEntity.hidden)) == false)", faculty, department, course)
     }
 
-    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "title", ascending: true)]
+    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "\(#keyPath(GroupsEntity.title))", ascending: true)]
 
 }

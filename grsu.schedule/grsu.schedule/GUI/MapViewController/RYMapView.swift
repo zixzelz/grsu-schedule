@@ -29,16 +29,16 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
 //        let camera = GMSCameraPosition.cameraWithTarget(location, zoom: 8)
 
         mapView = GMSMapView() // .mapWithFrame(CGRectZero, camera: camera)
-        mapView.myLocationEnabled = true
+        mapView.isMyLocationEnabled = true
         mapView.settings.rotateGestures = false
         mapView.delegate = self
 
         mapView.translatesAutoresizingMaskIntoConstraints = false
         hostingMapView.addSubview(mapView)
 
-        let viewDictionary = ["mapView": mapView];
-        hostingMapView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[mapView]|", options: .AlignAllLeft, metrics: nil, views: viewDictionary))
-        hostingMapView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[mapView]|", options: .AlignAllLeft, metrics: nil, views: viewDictionary))
+        let viewDictionary: [String: UIView] = ["mapView": mapView];
+        hostingMapView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[mapView]|", options: .alignAllLeft, metrics: nil, views: viewDictionary))
+        hostingMapView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[mapView]|", options: .alignAllLeft, metrics: nil, views: viewDictionary))
     }
 
     func applyZoomForMarkers() {
@@ -53,19 +53,19 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
             }
 
             let mapInsets = UIEdgeInsetsMake(70.0, 20, 0.0, 20)
-            camera = GMSCameraUpdate.fitBounds(coordinateBounds, withEdgeInsets: mapInsets)
+            camera = GMSCameraUpdate.fit(coordinateBounds, with: mapInsets)
         } else {
             camera = GMSCameraUpdate.setTarget(currentLocation, zoom: 8)
         }
 
         if let cam = camera {
-            mapView.animateWithCameraUpdate(cam)
+            mapView.animate(with: cam)
         }
     }
 
     // MARK: - CalloutView
 
-    func calloutView(forMarker: GMSMarker) -> UIView {
+    func calloutView(_ forMarker: GMSMarker) -> UIView {
         return UIView()
     }
 
@@ -73,13 +73,13 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
         return 10
     }
 
-    func showCalloutView(view: UIView, forMarker: GMSMarker) {
+    func showCalloutView(_ view: UIView, forMarker: GMSMarker) {
         calloutView_ = view
         updateCalloutViewPodition(forMarker)
 
         view.alpha = 0.0
         mapView.addSubview(view)
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             view.alpha = 1.0
         })
     }
@@ -88,20 +88,20 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
         mapView.selectedMarker = nil
 
         if let calloutView = calloutView_ {
-            UIView.animateWithDuration(0.3, animations: { _ in
+            UIView.animate(withDuration: 0.3, animations: {
 
                 calloutView.alpha = 0.0
-            }) { (animated: Bool) -> Void in
+            }, completion: { (animated: Bool) -> Void in
 
                 calloutView.removeFromSuperview()
-            }
+            }) 
             calloutView_ = nil
         }
     }
 
-    func updateCalloutViewPodition(forMarker: GMSMarker) {
+    func updateCalloutViewPodition(_ forMarker: GMSMarker) {
         let anchor = forMarker.position
-        var anchorPoint = mapView.projection.pointForCoordinate(anchor)
+        var anchorPoint = mapView.projection.point(for: anchor)
 
         let offset = bottomOffsetForCalloutView()
         anchorPoint.y -= offset
@@ -132,38 +132,38 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
         applyZoomForMarkers()
     }
 
-    func selectMarker(index: Int) {
+    func selectMarker(_ index: Int) {
         if let markers = markers {
             let marker = markers[index]
             mapView.selectedMarker = marker
 
             let camera = GMSCameraUpdate.setTarget(marker.position)
-            mapView.animateWithCameraUpdate(camera)
+            mapView.animate(with: camera)
         }
     }
 
     // MARK: - GMSMapViewDelegate
 
-    func mapView(mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
 
         if let markers = markers,
-            let index = markers.indexOf(marker) {
+            let index = markers.index(of: marker) {
             mapViewDataSource.didSelectMarker(index)
         }
 
         let view = calloutView(marker)
         showCalloutView(view, forMarker: marker)
-        return UIView(frame: CGRectZero)
+        return UIView(frame: CGRect.zero)
     }
 
-    func mapView(mapView: GMSMapView, didChangeCameraPosition position: GMSCameraPosition) {
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
 
-        if let selectedMarker = mapView.selectedMarker where calloutView_ != nil {
+        if let selectedMarker = mapView.selectedMarker, calloutView_ != nil {
             updateCalloutViewPodition(selectedMarker)
         }
     }
 
-    func mapView(mapView: GMSMapView, didTapAtCoordinate coordinate: CLLocationCoordinate2D) {
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         mapViewDataSource.didDeselectMarker()
         hideCalloutView()
     }

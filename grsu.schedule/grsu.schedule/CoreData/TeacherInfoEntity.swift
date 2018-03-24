@@ -22,7 +22,7 @@ class TeacherInfoEntity: NSManagedObject {
     @NSManaged var descr: String?
     @NSManaged var email: String?
     @NSManaged var skype: String?
-    @NSManaged var updatedDate: NSDate
+    @NSManaged var updatedDate: Date
     @NSManaged var lessons: NSSet
     @NSManaged var favorite: FavoriteEntity?
 
@@ -36,18 +36,18 @@ extension TeacherInfoEntity: ModelType {
         return "id"
     }
 
-    static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]? {
+    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
 
         return json["items"] as? [[String: AnyObject]]
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
+    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
 
         id = json["id"] as! String
         update(json, queryInfo: queryInfo)
     }
 
-    func update(json: [String: AnyObject], queryInfo: QueryInfo) {
+    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
         
         if let fullname = json["fullname"] as? String {
             title = fullname
@@ -76,7 +76,7 @@ extension TeacherInfoEntity: ModelType {
         if let _skype = json["skype"] as? String {
             skype = _skype
         }
-        updatedDate = NSDate()
+        updatedDate = Date()
     }
 
 }

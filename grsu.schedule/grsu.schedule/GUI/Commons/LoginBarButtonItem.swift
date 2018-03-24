@@ -15,19 +15,19 @@ class LoginBarButtonItem: UIBarButtonItem {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        updateState(NSUserDefaults.student)
+        updateState(UserDefaults.student)
         setup()
     }
 
     deinit {
         if let observer = notificationObserver {
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
+            NotificationCenter.default.removeObserver(observer)
         }
     }
 
-    private func setup() {
+    fileprivate func setup() {
 
-        notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(Notification.authenticationStateChanged, object: nil, queue: nil) { [weak self] notification in
+        notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notification.authenticationStateChanged), object: nil, queue: nil) { [weak self] notification in
 
             let student = notification.object as? Student
             self?.updateState(student)
@@ -37,7 +37,7 @@ class LoginBarButtonItem: UIBarButtonItem {
         action = #selector(LoginBarButtonItem.pressed)
     }
 
-    private func updateState(student: Student?) {
+    fileprivate func updateState(_ student: Student?) {
 
         let authenticated = (student != nil)
         if !authenticated {
@@ -49,11 +49,11 @@ class LoginBarButtonItem: UIBarButtonItem {
         }
     }
 
-    func pressed() {
+    @objc func pressed() {
 
         let vc: UIViewController
 
-        let student = NSUserDefaults.student
+        let student = UserDefaults.student
         let authenticated = (student != nil)
         if !authenticated {
             vc = UIStoryboard.authenticationViewController()
@@ -63,8 +63,8 @@ class LoginBarButtonItem: UIBarButtonItem {
             vc = profileViewController
         }
 
-        let window = UIApplication.sharedApplication().keyWindow
-        window?.rootViewController?.presentViewController(vc, animated: true, completion: nil)
+        let window = UIApplication.shared.keyWindow
+        window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
 
 }

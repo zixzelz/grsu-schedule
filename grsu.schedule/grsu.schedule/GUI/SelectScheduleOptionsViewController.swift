@@ -27,19 +27,19 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         scheduleOptions.scheduleDataSource = self
         updateShowScheduleButtonState()
 
-        let inset = UIEdgeInsetsMake(0, 0, CGRectGetHeight(scheduleButton.frame), 0)
+        let inset = UIEdgeInsetsMake(0, 0, scheduleButton.frame.height, 0)
         scheduleOptions.tableView.contentInset = inset
         scheduleOptions.tableView.scrollIndicatorInsets = inset
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if (segue.identifier == "SchedulePageIdentifier") {
             guard let group = scheduleOptions.selectedGroup() else { assertionFailure("Group is nil"); return }
             guard let week = scheduleOptions.selectedWeek() else { assertionFailure("Week is nil"); return }
             dateScheduleQuery.endWeekDate = week.endDate
 
-            let viewController = segue.destinationViewController as! StudentSchedulesPageViewController
+            let viewController = segue.destination as! StudentSchedulesPageViewController
             viewController.dateScheduleQuery = dateScheduleQuery
             viewController.possibleWeeks = scheduleOptions.weeks
             viewController.configure(group)
@@ -50,73 +50,73 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         let group = scheduleOptions.selectedGroup()
         let enabled = group != nil && dateScheduleQuery.startWeekDate != nil
 
-        let backgroundColor = enabled ? UIColor(red: 0.43529409170150757, green: 0.7450980544090271, blue: 0.21176469326019287, alpha: 1) : UIColor.lightGrayColor()
+        let backgroundColor = enabled ? UIColor(red: 0.43529409170150757, green: 0.7450980544090271, blue: 0.21176469326019287, alpha: 1) : UIColor.lightGray
 
-        scheduleButton.enabled = enabled
+        scheduleButton.isEnabled = enabled
         scheduleButton.backgroundColor = backgroundColor
     }
 
     // MARK: - ScheduleOptionsTableViewControllerDataSource
 
     func defaultDepartmentID() -> String? {
-        return fetchDefaultValue(.Departmen) as? String
+        return fetchDefaultValue(.departmen) as? String
     }
 
     func defaultFacultyID() -> String? {
-        return fetchDefaultValue(.Faculty) as? String
+        return fetchDefaultValue(.faculty) as? String
     }
 
     func defaultCourse() -> String? {
-        return fetchDefaultValue(.Course) as? String
+        return fetchDefaultValue(.course) as? String
     }
 
     func defaultGroupID() -> String? {
-        return fetchDefaultValue(.Group) as? String
+        return fetchDefaultValue(.group) as? String
     }
 
-    func defaultWeek() -> NSDate? {
-        dateScheduleQuery.startWeekDate = fetchDefaultValue(.Week) as? NSDate
+    func defaultWeek() -> Date? {
+        dateScheduleQuery.startWeekDate = fetchDefaultValue(.week) as? Date
         return dateScheduleQuery.startWeekDate
     }
 
     // MARK: - ScheduleOptionsTableViewControllerDelegate
 
-    func didSelectDepartment(departmentId: String) {
-        storeDefaultValue(.Departmen, value: departmentId)
+    func didSelectDepartment(_ departmentId: String) {
+        storeDefaultValue(.departmen, value: departmentId as AnyObject)
         updateShowScheduleButtonState()
     }
 
-    func didSelectFaculty(facultyId: String) {
-        storeDefaultValue(.Faculty, value: facultyId)
+    func didSelectFaculty(_ facultyId: String) {
+        storeDefaultValue(.faculty, value: facultyId as AnyObject)
         updateShowScheduleButtonState()
     }
 
-    func didSelectCourse(course: String) {
-        storeDefaultValue(.Course, value: course)
+    func didSelectCourse(_ course: String) {
+        storeDefaultValue(.course, value: course as AnyObject)
         updateShowScheduleButtonState()
     }
 
-    func didSelectGroup(groupId: String?) {
-        storeDefaultValue(.Group, value: groupId)
+    func didSelectGroup(_ groupId: String?) {
+        storeDefaultValue(.group, value: groupId as AnyObject)
         updateShowScheduleButtonState()
     }
 
-    func didSelectWeek(startWeekDate: NSDate) {
+    func didSelectWeek(_ startWeekDate: Date) {
         dateScheduleQuery.startWeekDate = startWeekDate
-        storeDefaultValue(.Week, value: startWeekDate)
+        storeDefaultValue(.week, value: startWeekDate as AnyObject)
         updateShowScheduleButtonState()
     }
 
     // MARK: - Utils
 
-    func storeDefaultValue(key: ScheduleOption, value: AnyObject?) {
-        let userDef = NSUserDefaults.standardUserDefaults()
-        userDef.setObject(value, forKey: key.rawValue)
+    func storeDefaultValue(_ key: ScheduleOption, value: AnyObject?) {
+        let userDef = UserDefaults.standard
+        userDef.set(value, forKey: key.rawValue)
     }
 
-    func fetchDefaultValue(key: ScheduleOption) -> AnyObject? {
-        let userDef = NSUserDefaults.standardUserDefaults()
-        return userDef.objectForKey(key.rawValue) as? String
+    func fetchDefaultValue(_ key: ScheduleOption) -> AnyObject? {
+        let userDef = UserDefaults.standard
+        return userDef.object(forKey: key.rawValue) as? String as AnyObject
     }
 
 }

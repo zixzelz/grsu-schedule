@@ -23,15 +23,15 @@ class RoundBorderButton: UIButton {
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable var borderColor: UIColor = UIColor.white {
         didSet {
-            self.layer.borderColor = borderColor.CGColor
+            self.layer.borderColor = borderColor.cgColor
         }
     }
     
     @IBInspectable var angle: Double = 0 {
         didSet {
-            self.transform = CGAffineTransformMakeRotation(CGFloat((angle) * M_PI / 180.0));
+            self.transform = CGAffineTransform(rotationAngle: CGFloat(angle * Double.pi / 180.0));
         }
     }
 

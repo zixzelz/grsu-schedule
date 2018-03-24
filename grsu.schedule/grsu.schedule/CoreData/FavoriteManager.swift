@@ -15,71 +15,76 @@ let GSFavoriteManagerFavoriteObjectKey = "GSFavoriteManagerFavoriteObjectKey"
 
 class FavoriteManager: NSObject {
 
-    func getAllFavorite(completionHandler: (([FavoriteEntity]) -> Void)!) {
+    func getAllFavorite(_ completionHandler: @escaping (([FavoriteEntity]) -> Void)) {
 
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let delegate = UIApplication.shared.delegate as! AppDelegate
         let cdHelper = delegate.cdh
         let context = cdHelper.backgroundContext
-        context.performBlock { _ in
+        context.perform {
 
             let sorter: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
 
-            let request = NSFetchRequest(entityName: FavoriteEntityName)
-            request.resultType = .ManagedObjectIDResultType
+            let request = NSFetchRequest<NSFetchRequestResult>(entityName: FavoriteEntityName)
+            request.resultType = .managedObjectIDResultType
             request.sortDescriptors = [sorter]
 //                request.predicate = NSPredicate(format: "(group != nil)")
 
-            let itemIds = try! context.executeFetchRequest(request) as! [NSManagedObjectID]
-            dispatch_async(dispatch_get_main_queue(), { _ in
-
+            guard let res = try? context.fetch(request), let itemIds = res as? [NSManagedObjectID] else {
+                DispatchQueue.main.async {
+                    completionHandler([])
+                }
+                return
+            }
+            DispatchQueue.main.async {
                 let items = cdHelper.convertToMainQueue(itemIds) as! [FavoriteEntity]
                 completionHandler(items)
-            })
+            }
         }
     }
 
-    func addFavoriteWithGroup(group: GroupsEntity) {
+    func addFavoriteWithGroup(_ group: GroupsEntity) {
         Flurry.logEvent("add favorite group", withParameters: ["group": group.title])
 
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let delegate = UIApplication.shared.delegate as! AppDelegate
         let cdHelper = delegate.cdh
         let context = cdHelper.backgroundContext
-        context.performBlock({ _ in
+        context.perform({
 
-            let lastOrder = self.getMaxOrder(context)
-            let group_ = context.objectWithID(group.objectID) as! GroupsEntity
+            let lastOrder = FavoriteManager.getMaxOrder(context)
+            let group_ = context.object(with: group.objectID) as! GroupsEntity
 
-            let newItem = NSEntityDescription.insertNewObjectForEntityForName(FavoriteEntityName, inManagedObjectContext: context) as! FavoriteEntity
-            newItem.group = group_;
+            let newItem = NSEntityDescription.insertNewObject(forEntityName: FavoriteEntityName, into: context) as! FavoriteEntity
+            newItem.group = group_
             newItem.synchronizeCalendar = false
-            newItem.order = lastOrder + 1
+            newItem.order = NSNumber(value: lastOrder + 1)
 
             cdHelper.saveContext(context)
         })
     }
 
-    func addFavorite(teacher: TeacherInfoEntity) {
+    func addFavorite(_ teacher: TeacherInfoEntity) {
 
+        // todo: make enum with type of events in a future
         Flurry.logEvent("add favorite teacher", withParameters: ["teacher": teacher.title!])
 
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let delegate = UIApplication.shared.delegate as! AppDelegate
         let cdHelper = delegate.cdh
         let context = cdHelper.backgroundContext
-        context.performBlock({ _ in
+        context.perform({
 
-            let lastOrder = self.getMaxOrder(context)
-            let teacher_ = context.objectWithID(teacher.objectID) as! TeacherInfoEntity
+            let lastOrder = FavoriteManager.getMaxOrder(context)
+            let teacher_ = context.object(with: teacher.objectID) as! TeacherInfoEntity
 
-            let newItem = NSEntityDescription.insertNewObjectForEntityForName(FavoriteEntityName, inManagedObjectContext: context) as! FavoriteEntity
-            newItem.teacher = teacher_;
+            let newItem = NSEntityDescription.insertNewObject(forEntityName: FavoriteEntityName, into: context) as! FavoriteEntity
+            newItem.teacher = teacher_
             newItem.synchronizeCalendar = false
-            newItem.order = lastOrder + 1
+            newItem.order = NSNumber(value: lastOrder + 1)
 
             cdHelper.saveContext(context)
         })
     }
 
-    func removeFavorite(item: FavoriteEntity) {
+    func removeFavorite(_ item: FavoriteEntity) {
 
         if let group = item.group {
             Flurry.logEvent("remove favorite group", withParameters: ["group": group.title])
@@ -87,31 +92,31 @@ class FavoriteManager: NSObject {
             Flurry.logEvent("remove favorite teacher", withParameters: ["teacher": teacher.title!])
         }
 
-        NSNotificationCenter.defaultCenter().postNotificationName(GSFavoriteManagerFavoritWillRemoveNotificationKey, object: nil, userInfo: ["GSFavoriteManagerFavoriteObjectKey": item])
+        NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: GSFavoriteManagerFavoritWillRemoveNotificationKey), object: nil, userInfo: ["GSFavoriteManagerFavoriteObjectKey": item])
 
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let delegate = UIApplication.shared.delegate as! AppDelegate
         let cdHelper = delegate.cdh
         let context = cdHelper.backgroundContext
-        context.performBlock({ _ in
+        context.perform({
 
-            let item_ = context.objectWithID(item.objectID) as! FavoriteEntity
+            let item_ = context.object(with: item.objectID) as! FavoriteEntity
 
-            context.deleteObject(item_)
+            context.delete(item_)
             cdHelper.saveContext(context)
         })
     }
 
     // MARK: - Utils
 
-    func getMaxOrder(context: NSManagedObjectContext) -> Int {
+    private static func getMaxOrder(_ context: NSManagedObjectContext) -> Int {
 
-        let request = NSFetchRequest(entityName: FavoriteEntityName)
-        let sorter: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: false)
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: FavoriteEntityName)
+        let sorter: NSSortDescriptor = NSSortDescriptor(key: "\(#keyPath(FavoriteEntity.order))", ascending: false)
         request.sortDescriptors = [sorter]
-        request.fetchLimit = 1;
+        request.fetchLimit = 1
 
-        let items = try! context.executeFetchRequest(request) as! [FavoriteEntity]
-        let lastOrder = items.last?.order.integerValue ?? -1
+        let items = try! context.fetch(request) as! [FavoriteEntity]
+        let lastOrder = items.last?.order.intValue ?? -1
 
         return lastOrder
     }

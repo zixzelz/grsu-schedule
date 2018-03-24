@@ -21,11 +21,11 @@ class RYMapViewController: UIViewController, RYBaseMapViewDataSource {
         return 0
     }
 
-    func locationForMarker(index: Int) -> CLLocationCoordinate2D {
+    func locationForMarker(_ index: Int) -> CLLocationCoordinate2D {
         return CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
 
-    func iconForMarker(index: Int) -> UIImage? {
+    func iconForMarker(_ index: Int) -> UIImage? {
         return nil
     }
 
@@ -33,6 +33,6 @@ class RYMapViewController: UIViewController, RYBaseMapViewDataSource {
         return CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
 
-    func didSelectMarker(index: Int) {}
+    func didSelectMarker(_ index: Int) {}
     func didDeselectMarker() {}
 }

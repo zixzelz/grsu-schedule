@@ -9,12 +9,12 @@
 import UIKit
 
 enum TeachersServiceQueryInfo: QueryInfoType {
-    case Teacher(teacherId: String)
-    case Default
+    case teacher(teacherId: String)
+    case `default`
 }
 
-typealias TeacherCompletionHandlet = ServiceResult<TeacherInfoEntity, ServiceError> -> Void
-typealias TeachersCompletionHandlet = ServiceResult<[TeacherInfoEntity], ServiceError> -> Void
+typealias TeacherCompletionHandlet = (ServiceResult<TeacherInfoEntity, ServiceError>) -> Void
+typealias TeachersCompletionHandlet = (ServiceResult<[TeacherInfoEntity], ServiceError>) -> Void
 
 class TeachersService {
 
@@ -27,16 +27,16 @@ class TeachersService {
         networkService = NetworkService(localService: localService)
     }
     
-    func getTeacher(teacherId: String, cache: CachePolicy = .CachedElseLoad, completionHandler: TeacherCompletionHandlet) {
+    func getTeacher(_ teacherId: String, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping TeacherCompletionHandlet) {
         
-        let queryInfo: TeachersServiceQueryInfo = .Teacher(teacherId: teacherId)
+        let queryInfo: TeachersServiceQueryInfo = .teacher(teacherId: teacherId)
         let query = TeachersQuery(queryInfo: queryInfo)
         networkService.fetchDataItem(query, cache: cache, completionHandler: completionHandler)
     }
     
-    func getTeachers(cache: CachePolicy = .CachedElseLoad, completionHandler: TeachersCompletionHandlet) {
+    func getTeachers(_ cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping TeachersCompletionHandlet) {
         
-        let query = TeachersQuery(queryInfo: .Default)
+        let query = TeachersQuery(queryInfo: .default)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
     }
 
@@ -50,27 +50,27 @@ class TeachersQuery: NetworkServiceQueryType {
         self.queryInfo = queryInfo
     }
     
-    var path: String = "/getTeachers"
+    var path: String = UrlHost + "/getTeachers"
     
     var method: NetworkServiceMethod = .GET
     
     var parameters: [String: AnyObject]? {
         
         switch queryInfo {
-        case .Teacher(let teacherId): return ["teacherId": teacherId, "extended": "true"]
-        case.Default(): return nil
+        case .teacher(let teacherId): return ["teacherId": teacherId as AnyObject, "extended": "true" as AnyObject]
+        case .default: return nil
         }
     }
     
     var predicate: NSPredicate? {
         switch queryInfo {
-        case .Teacher(let teacherId): return NSPredicate(format: "(id == %@)", teacherId)
-        case.Default(): return nil
+        case .teacher(let teacherId): return NSPredicate(format: "(id == %@)", teacherId)
+        case .default: return nil
         }
     }
     
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "title", ascending: true)]
     
-    static var cacheTimeInterval: NSTimeInterval { return TeachersCacheTimeInterval }
+    static var cacheTimeInterval: TimeInterval { return Constants.teachersCacheTimeInterval }
     
 }

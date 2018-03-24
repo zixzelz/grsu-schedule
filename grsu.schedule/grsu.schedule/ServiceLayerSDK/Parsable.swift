@@ -14,16 +14,16 @@ protocol Parsable: class {
     associatedtype ParsableContext: Any
 
     static func keyForIdentifier() -> String? // should use nil as identifier when items of response doesn't have identifier
-    static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]?
-    static func parsableContext(context: ManagedObjectContextType) -> ParsableContext
+    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]?
+    static func parsableContext(_ context: ManagedObjectContextType) -> ParsableContext
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: ParsableContext)
-    func update(json: [String: AnyObject], queryInfo: QueryInfo)
+    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: ParsableContext)
+    func update(_ json: [String: AnyObject], queryInfo: QueryInfo)
 }
 
 extension Parsable {
 
-    static func parsableContext(context: ManagedObjectContextType) -> Void {
+    static func parsableContext(_ context: ManagedObjectContextType) -> Void {
 
     }
 

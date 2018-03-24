@@ -10,7 +10,7 @@ import UIKit
 
 class AddressUtils: NSObject {
    
-    class func restoreAddress(address: String) -> String  {
+    class func restoreAddress(_ address: String) -> String  {
         
         let dict = [
             "Врубл.": "Врублевского",
@@ -21,7 +21,7 @@ class AddressUtils: NSObject {
         
         var str = address
         for (key, value) in dict {
-            str = str.stringByReplacingOccurrencesOfString(key, withString: value)
+            str = str.replacingOccurrences(of: key, with: value)
         }
         return str
     }

@@ -19,8 +19,8 @@ class DepartmentsEntity: NSManagedObject {
 }
 
 enum DepartmentsQueryInfo: QueryInfoType {
-    case Default
-    case JustInsert
+    case `default`
+    case justInsert
 }
 
 extension DepartmentsEntity: ModelType {
@@ -31,20 +31,20 @@ extension DepartmentsEntity: ModelType {
         return "id"
     }
 
-    static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]? {
+    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
 
         return json["items"] as? [[String: AnyObject]]
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
+    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
 
         id = json["id"] as! String
         update(json, queryInfo: queryInfo)
     }
 
-    func update(json: [String: AnyObject], queryInfo: QueryInfo) {
+    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
 
-        if queryInfo == .Default {
+        if queryInfo == .default {
             
             let str = json["title"] as? String ?? ""
             title = str.capitalizingFirstLetter()

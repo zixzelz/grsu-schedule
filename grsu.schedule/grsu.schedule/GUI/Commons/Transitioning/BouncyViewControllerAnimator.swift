@@ -20,33 +20,33 @@ class BouncyViewControllerAnimator: NSObject, UIViewControllerAnimatedTransition
 
     var isPresenting: Bool = false
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.8
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
-        let fromView = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)?.view
-        let toView = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)?.view
+        let fromView = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.from)?.view
+        let toView = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)?.view
 
         var center: CGPoint?
 
         if isPresenting {
             center = toView!.center
             toView!.center = CGPoint(x: center!.x, y: toView!.bounds.size.height)
-            transitionContext.containerView().addSubview(toView!)
+            transitionContext.containerView.addSubview(toView!)
         } else {
             center = CGPoint(x: toView!.center.x, y: toView!.bounds.size.height + fromView!.bounds.size.height)
         }
 
-        UIView.animateWithDuration(self.transitionDuration(transitionContext), delay: 0, usingSpringWithDamping: 300, initialSpringVelocity: 10.0, options: [], animations: {
+        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 300, initialSpringVelocity: 10.0, options: [], animations: {
 
             if self.isPresenting {
                 toView!.center = center!
-                fromView!.transform = CGAffineTransformMakeScale(0.92, 0.92)
+                fromView!.transform = CGAffineTransform(scaleX: 0.92, y: 0.92)
             } else {
                 fromView!.center = center!
-                toView!.transform = CGAffineTransformIdentity
+                toView!.transform = CGAffineTransform.identity
             }
         }, completion: { _ in
 

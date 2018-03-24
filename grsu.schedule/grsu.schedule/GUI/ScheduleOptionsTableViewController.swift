@@ -9,11 +9,11 @@
 import UIKit
 
 protocol ScheduleOptionsTableViewControllerDelegate: NSObjectProtocol {
-    func didSelectDepartment(departmentId: String)
-    func didSelectFaculty(facultyId: String)
-    func didSelectCourse(course: String)
-    func didSelectGroup(groupId: String?)
-    func didSelectWeek(startDate: NSDate)
+    func didSelectDepartment(_ departmentId: String)
+    func didSelectFaculty(_ facultyId: String)
+    func didSelectCourse(_ course: String)
+    func didSelectGroup(_ groupId: String?)
+    func didSelectWeek(_ startDate: Date)
 }
 
 protocol ScheduleOptionsTableViewControllerDataSource: NSObjectProtocol {
@@ -21,36 +21,36 @@ protocol ScheduleOptionsTableViewControllerDataSource: NSObjectProtocol {
     func defaultFacultyID() -> String?
     func defaultCourse() -> String?
     func defaultGroupID() -> String?
-    func defaultWeek() -> NSDate?
+    func defaultWeek() -> Date?
 }
 
 class ScheduleOptionsTableViewController: UITableViewController, PickerTableViewCellDelegate {
 
-    @IBOutlet private weak var departmentTableViewCell: UITableViewCell!
-    @IBOutlet private weak var facultyTableViewCell: UITableViewCell!
-    @IBOutlet private weak var courseTableViewCell: UITableViewCell!
-    @IBOutlet private weak var groupTableViewCell: UITableViewCell!
-    @IBOutlet private weak var timeTableViewCell: UITableViewCell!
+    @IBOutlet fileprivate weak var departmentTableViewCell: UITableViewCell!
+    @IBOutlet fileprivate weak var facultyTableViewCell: UITableViewCell!
+    @IBOutlet fileprivate weak var courseTableViewCell: UITableViewCell!
+    @IBOutlet fileprivate weak var groupTableViewCell: UITableViewCell!
+    @IBOutlet fileprivate weak var timeTableViewCell: UITableViewCell!
 
-    @IBOutlet private weak var departmentPickerTableViewCell: PickerTableViewCell!
-    @IBOutlet private weak var facultyPickerTableViewCell: PickerTableViewCell!
-    @IBOutlet private weak var coursePickerTableViewCell: PickerTableViewCell!
-    @IBOutlet private weak var groupPickerTableViewCell: PickerTableViewCell!
-    @IBOutlet private weak var weekPickerTableViewCell: PickerTableViewCell!
+    @IBOutlet fileprivate weak var departmentPickerTableViewCell: PickerTableViewCell!
+    @IBOutlet fileprivate weak var facultyPickerTableViewCell: PickerTableViewCell!
+    @IBOutlet fileprivate weak var coursePickerTableViewCell: PickerTableViewCell!
+    @IBOutlet fileprivate weak var groupPickerTableViewCell: PickerTableViewCell!
+    @IBOutlet fileprivate weak var weekPickerTableViewCell: PickerTableViewCell!
 
-    private var departments: Array<DepartmentsEntity>?
-    private var faculties: Array<FacultiesEntity>?
-    private var groups: Array<GroupsEntity>?
-    private(set) var weeks: Array<GSWeekItem>!
+    fileprivate var departments: Array<DepartmentsEntity>?
+    fileprivate var faculties: Array<FacultiesEntity>?
+    fileprivate var groups: Array<GroupsEntity>?
+    fileprivate(set) var weeks: Array<GSWeekItem>!
 
     weak var scheduleDelegate: ScheduleOptionsTableViewControllerDelegate?
     weak var scheduleDataSource: ScheduleOptionsTableViewControllerDataSource?
-    private var selectedCell: NSInteger = -1
+    fileprivate var selectedCell: NSInteger = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dispatch_after(1, dispatch_get_main_queue()) { () -> Void in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { () -> Void in
             self.setupPickerCells()
         }
     }
@@ -62,19 +62,17 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         if let item = scheduleDataSource?.defaultCourse() {
             coursePickerTableViewCell.selectRow(item)
         } else {
-            self.scheduleDelegate?.didSelectCourse(courses.first!);
+            self.scheduleDelegate?.didSelectCourse(courses.first!)
         }
 
         weeks = DateManager.scheduleWeeks()
         weekPickerTableViewCell.items = weeks!.map { $0.value }
-        let startWeekDate = scheduleDataSource?.defaultWeek()
 
-        let item = weeks.filter { $0.startDate == startWeekDate }.first
-
-        if item != nil {
-            weekPickerTableViewCell.selectRow(item!.value)
+        if let startWeekDate = scheduleDataSource?.defaultWeek(),
+            let item = weeks.filter ({ $0.startDate as Date == startWeekDate }).first {
+            weekPickerTableViewCell.selectRow(item.value)
         } else {
-            self.scheduleDelegate?.didSelectWeek(weeks.first!.startDate);
+            self.scheduleDelegate?.didSelectWeek(weeks.first!.startDate as Date)
         }
 
         featchData()
@@ -82,10 +80,10 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     func featchData() {
 
-        DepartmentsService().getDepartments(.CachedElseLoad) { [weak self] result in
+        DepartmentsService().getDepartments(.cachedElseLoad) { [weak self] result in
 
             guard let strongSelf = self else { return }
-            guard case let .Success(items) = result else { return }
+            guard case let .success(items) = result else { return }
 
             strongSelf.departments = items
             strongSelf.departmentPickerTableViewCell.items = items.map { $0.title }
@@ -95,17 +93,19 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                 if let value = strongSelf.valueById(items, itemId: itemId) {
                     strongSelf.departmentPickerTableViewCell.selectRow(value)
                 } else {
-                    strongSelf.scheduleDelegate?.didSelectDepartment(items.first!.id);
+                    if let id = items.first?.id {
+                        strongSelf.scheduleDelegate?.didSelectDepartment(id)
+                    }
                 }
             }
 
-            strongSelf.featchGroups(true);
+            strongSelf.featchGroups(true)
         }
 
-        FacultyService().getFaculties(.CachedElseLoad) { [weak self] result in
+        FacultyService().getFaculties(.cachedElseLoad) { [weak self] result in
 
             guard let strongSelf = self else { return }
-            guard case let .Success(items) = result else { return }
+            guard case let .success(items) = result else { return }
 
             strongSelf.faculties = items
             strongSelf.facultyPickerTableViewCell.items = items.map { $0.title }
@@ -115,15 +115,17 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                 if let value = strongSelf.valueById(items, itemId: itemId) {
                     strongSelf.facultyPickerTableViewCell.selectRow(value)
                 } else {
-                    strongSelf.scheduleDelegate?.didSelectFaculty(items.first!.id);
+                    if let id = items.first?.id {
+                        strongSelf.scheduleDelegate?.didSelectFaculty(id)
+                    }
                 }
             }
 
-            strongSelf.featchGroups(true);
+            strongSelf.featchGroups(true)
         }
     }
 
-    func featchGroups(fromCacheOnly: Bool = false) {
+    func featchGroups(_ fromCacheOnly: Bool = false) {
 
         guard let faculty = selectedFaculty(), let departmant = selectedDepartment(), let course = selectedCourse() else {
             return
@@ -132,7 +134,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         GroupsService().getGroups(faculty, department: departmant, course: course, completionHandler: { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
-            guard case let .Success(items) = result else { return }
+            guard case let .success(items) = result else { return }
 
             strongSelf.groups = items
             strongSelf.groupPickerTableViewCell.items = items.map { $0.title }
@@ -143,7 +145,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             } else {
                 itemId = items.first?.id
             }
-            strongSelf.scheduleDelegate?.didSelectGroup(itemId);
+            strongSelf.scheduleDelegate?.didSelectGroup(itemId)
         })
     }
 
@@ -151,13 +153,13 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     func selectedDepartment() -> DepartmentsEntity? {
         let selectedRow = departmentPickerTableViewCell.selectedRow() as Int?
-        let item = (selectedRow != nil) ? departments?[selectedRow!]: nil
+        let item = (selectedRow != nil) ? departments?[selectedRow!] : nil
         return item
     }
 
     func selectedFaculty() -> FacultiesEntity? {
         let selectedRow = facultyPickerTableViewCell.selectedRow() as Int?
-        let item = (selectedRow != nil) ? faculties?[selectedRow!]: nil
+        let item = (selectedRow != nil) ? faculties?[selectedRow!] : nil
         return item
     }
 
@@ -168,14 +170,14 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     func selectedGroup() -> GroupsEntity? {
         let selectedRow = groupPickerTableViewCell.selectedRow() as Int?
-        let item = (selectedRow != nil) ? groups?[selectedRow!]: nil
+        let item = (selectedRow != nil) ? groups?[selectedRow!] : nil
         return item
     }
 
-    func selectedWeek() -> (startDate: NSDate, endDate: NSDate)? {
+    func selectedWeek() -> (startDate: Date, endDate: Date)? {
         let selectedRow = weekPickerTableViewCell.selectedRow() as Int?
-        if (selectedRow != nil) {
-            if let week = weeks?[selectedRow!] {
+        if let selectedRow = selectedRow {
+            if let week = weeks?[selectedRow] {
                 return (week.startDate, week.endDate)
             }
         }
@@ -184,27 +186,27 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     // MARK: - UITableViewDataSource
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height: CGFloat = 0
 
         if (indexPath.row % 2 == 0) {
-            height = super.tableView(tableView, heightForRowAtIndexPath: indexPath);
+            height = super.tableView(tableView, heightForRowAt: indexPath)
         } else if (selectedCell == indexPath.row) {
             height = 176
         }
         return height
     }
 
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 10
     }
 
     // MARK: - UITableViewDelegate
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
 
-        selectedCell = (selectedCell != indexPath.row + 1) ? indexPath.row + 1: -1
+        selectedCell = (selectedCell != indexPath.row + 1) ? indexPath.row + 1 : -1
 
         if (selectedCell == 7) {
 //            featchGroups()
@@ -213,17 +215,17 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         tableView.beginUpdates()
         tableView.endUpdates()
 
-        let scrollIndexPath = NSIndexPath(forRow: min(indexPath.row + 2, tableView.numberOfRowsInSection(indexPath.section) - 1), inSection: indexPath.section)
-        tableView.scrollToRowAtIndexPath(scrollIndexPath, atScrollPosition: .Bottom, animated: true)
+        let scrollIndexPath = IndexPath(row: min(indexPath.row + 2, tableView.numberOfRows(inSection: indexPath.section) - 1), section: indexPath.section)
+        tableView.scrollToRow(at: scrollIndexPath, at: .bottom, animated: true)
     }
 
-    override func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
 
     }
 
     // MARK: - Utils
 
-    func valueById(items: [AnyObject], itemId: String?) -> String? {
+    func valueById(_ items: [AnyObject], itemId: String?) -> String? {
         if let itemId_ = itemId {
             let item: AnyObject? = items.filter { $0.id == itemId_ }.first
             return item?.title
@@ -233,14 +235,26 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     // MARK: - PickerTableViewCelldelegate
 
-    func pickerTableViewCell(cell: PickerTableViewCell, didSelectRow row: Int, withText text: String) {
+    func pickerTableViewCell(_ cell: PickerTableViewCell, didSelectRow row: Int, withText text: String) {
 
         switch cell {
-        case departmentPickerTableViewCell: scheduleDelegate?.didSelectDepartment(departments![row].id); featchGroups(true); break
-        case facultyPickerTableViewCell: scheduleDelegate?.didSelectFaculty(faculties![row].id); featchGroups(true); break
-        case coursePickerTableViewCell: scheduleDelegate?.didSelectCourse(text); featchGroups(true); break
-        case groupPickerTableViewCell: scheduleDelegate?.didSelectGroup(groups![row].id); break
-        case weekPickerTableViewCell: scheduleDelegate?.didSelectWeek(weeks![row].startDate); break
+        case departmentPickerTableViewCell:
+            guard let departments = departments else { return }
+            scheduleDelegate?.didSelectDepartment(departments[row].id)
+            featchGroups(true)
+        case facultyPickerTableViewCell:
+            guard let faculties = faculties else { return }
+            scheduleDelegate?.didSelectFaculty(faculties[row].id)
+            featchGroups(true)
+        case coursePickerTableViewCell:
+            scheduleDelegate?.didSelectCourse(text)
+            featchGroups(true)
+        case groupPickerTableViewCell:
+            guard let groups = groups else { return }
+            scheduleDelegate?.didSelectGroup(groups[row].id)
+        case weekPickerTableViewCell:
+            guard let weeks = weeks else { return }
+            scheduleDelegate?.didSelectWeek(weeks[row].startDate)
         default: break
         }
 

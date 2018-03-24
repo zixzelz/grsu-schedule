@@ -10,14 +10,14 @@ import UIKit
 
 class DateScheduleQuery: NSObject {
 
-    var startWeekDate : NSDate?
-    var endWeekDate : NSDate?
+    var startWeekDate : Date?
+    var endWeekDate : Date?
     
     override init() {
         super.init()
     }
     
-    init(startWeekDate : NSDate, endWeekDate : NSDate) {
+    init(startWeekDate : Date, endWeekDate : Date) {
         self.startWeekDate = startWeekDate;
         self.endWeekDate = endWeekDate;
     }

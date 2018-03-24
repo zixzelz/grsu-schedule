@@ -19,8 +19,8 @@ class FacultiesEntity: NSManagedObject {
 }
 
 enum FacultiesQueryInfo: QueryInfoType {
-    case Default
-    case JustInsert
+    case `default`
+    case justInsert
 }
 
 extension FacultiesEntity: ModelType {
@@ -31,23 +31,23 @@ extension FacultiesEntity: ModelType {
         return "id"
     }
 
-    static func objects(json: [String: AnyObject]) -> [[String: AnyObject]]? {
+    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
 
         return json["items"] as? [[String: AnyObject]]
     }
 
-    func fill(json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
+    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
 
         id = json["id"] as! String
         update(json, queryInfo: queryInfo)
     }
 
-    func update(json: [String: AnyObject], queryInfo: QueryInfo) {
+    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
 
-        if queryInfo == .Default {
+        if queryInfo == .default {
             
             let fullTitle = json["title"] as? String ?? ""
-            title = fullTitle.stringByReplacingOccurrencesOfString("^Факультет ", withString: "", options: NSStringCompareOptions.RegularExpressionSearch, range: nil).capitalizingFirstLetter()
+            title = fullTitle.replacingOccurrences(of: "^Факультет ", with: "", options: NSString.CompareOptions.regularExpression, range: nil).capitalizingFirstLetter()
         }
     }
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Ruslan Maslouski. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public enum NetworkServiceMethod: String {
     case GET = "GET"
@@ -18,103 +18,113 @@ protocol NetworkServiceQueryType: LocalServiceQueryType {
     var method: NetworkServiceMethod { get }
     var parameters: [String: AnyObject]? { get }
 
-    static var cacheTimeInterval: NSTimeInterval { get }
+    static var cacheTimeInterval: TimeInterval { get }
 }
 
 class NetworkService<T: ModelType> {
 
-    typealias NetworkServiceFetchItemCompletionHandlet = ServiceResult<T, ServiceError> -> ()
-    typealias NetworkServiceFetchCompletionHandlet = ServiceResult<[T], ServiceError> -> ()
-    typealias NetworkServiceStoreCompletionHandlet = ServiceResult<Void, ServiceError> -> ()
+    typealias NetworkServiceFetchItemCompletionHandlet = (ServiceResult<T, ServiceError>) -> ()
+    typealias NetworkServiceFetchCompletionHandlet = (ServiceResult<[T], ServiceError>) -> ()
+    typealias NetworkServiceStoreCompletionHandlet = (ServiceResult<Void, ServiceError>) -> ()
 
-    private let localService: LocalService<T>
+    fileprivate let localService: LocalService<T>
 
     init (localService: LocalService<T>) {
 
         self.localService = localService
     }
 
-    func fetchDataItem < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, cache: CachePolicy, completionHandler: NetworkServiceFetchItemCompletionHandlet) {
+    func fetchDataItem < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery, cache: CachePolicy, completionHandler: @escaping NetworkServiceFetchItemCompletionHandlet) where NetworkServiceQuery.QueryInfo == T.QueryInfo {
 
         fetchData(query, cache: cache) { (result) in
-            
+
             switch result {
-            case .Success(let items):
+            case .success(let items):
                 guard let item = items.first else {
-                    completionHandler(.Failure(.WrongResponseFormat))
+                    completionHandler(.failure(.wrongResponseFormat))
                     return
                 }
-                completionHandler(.Success(item))
-            case .Failure(let error):
-                completionHandler(.Failure(error))
+                completionHandler(.success(item))
+            case .failure(let error):
+                completionHandler(.failure(error))
             }
         }
     }
-    
-    func fetchData < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, cache: CachePolicy, completionHandler: NetworkServiceFetchCompletionHandlet) {
+
+    func fetchData < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery, cache: CachePolicy, completionHandler: @escaping NetworkServiceFetchCompletionHandlet) where NetworkServiceQuery.QueryInfo == T.QueryInfo {
 
         switch cache {
-        case .CachedOnly:
+        case .cachedOnly:
 
             localService.featch(query, completionHandler: completionHandler)
 
-        case .CachedElseLoad:
+        case .cachedElseLoad:
 
             if isCacheExpired(query) {
                 resumeRequest(query) { result in
-                    
+
                     switch result {
-                    case .Success(_):
+                    case .success:
                         self.localService.featch(query, completionHandler: completionHandler)
-                    case .Failure(let error):
-                        completionHandler(.Failure(error))
+                    case .failure(let error):
+                        completionHandler(.failure(error))
                     }
-                    
+
                 }
             } else {
                 localService.featch(query, completionHandler: completionHandler)
             }
 
-        case .ReloadIgnoringCache:
+        case .reloadIgnoringCache:
 
             resumeRequest(query) { result in
 
                 switch result {
-                case .Success(_):
+                case .success:
                     self.localService.featch(query, completionHandler: completionHandler)
-                case .Failure(let error):
-                    completionHandler(.Failure(error))
+                case .failure(let error):
+                    completionHandler(.failure(error))
                 }
             }
         }
 
     }
 
-    func resumeRequest < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, completionHandler: NetworkServiceStoreCompletionHandlet) -> NSURLSessionDataTask {
+    @discardableResult private func resumeRequest < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery, completionHandler: @escaping NetworkServiceStoreCompletionHandlet) -> URLSessionDataTask? where NetworkServiceQuery.QueryInfo == T.QueryInfo {
 
-        let session = URLSession()
-        let url = NSURL(scheme: UrlScheme, host: UrlHost, path: query.path)!
-        let components = NSURLComponents(URL: url, resolvingAgainstBaseURL: true)!
+        let session = urlSession()
+
+        guard var components = URLComponents(string: query.path) else {
+            DispatchQueue.main.async(execute: { () -> Void in
+                completionHandler(.failure(.internalError))
+            })
+            return nil
+        }
         components.query = query.queryString
+        guard let url = components.url else {
+            DispatchQueue.main.async(execute: { () -> Void in
+                completionHandler(.failure(.internalError))
+            })
+            return nil
+        }
+        let request = URLRequest(url: url)
 
-        let request = NSURLRequest(URL: components.URL!)
-
-        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
 
             if let error = error {
 
                 NSLog("[Error] response error: \(error)")
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completionHandler(.Failure(.NetworkError(error: error)))
+                DispatchQueue.main.async(execute: { () -> Void in
+                    completionHandler(.failure(.networkError(error: error)))
                 })
                 return
             }
 
-            let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+            let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
             let responseDict = json as? [String: AnyObject] ?? [String: AnyObject]()
 
             #if DEBUG
-                if let response = NSString(data: data!, encoding: NSUTF8StringEncoding) {
+                if let response = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
                     print("response: \(response)")
                 }
             #endif
@@ -126,39 +136,39 @@ class NetworkService<T: ModelType> {
         return task
     }
 
-    private func parseAndStore < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery, responseDict: [String: AnyObject], completionHandler: NetworkServiceStoreCompletionHandlet) {
+    fileprivate func parseAndStore < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery, responseDict: [String: AnyObject], completionHandler: @escaping NetworkServiceStoreCompletionHandlet) where NetworkServiceQuery.QueryInfo == T.QueryInfo {
 
         localService.parseAndStore(query, json: responseDict, completionHandler: completionHandler)
     }
 
     // MARK - Utils
 
-    private func saveDate < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery) {
+    fileprivate func saveDate < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery) where NetworkServiceQuery.QueryInfo == T.QueryInfo {
 
         let cacheIdentifier = query.cacheIdentifier
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setObject(NSDate(), forKey: cacheIdentifier)
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(Date(), forKey: cacheIdentifier)
     }
 
-    private func isCacheExpired < NetworkServiceQuery: NetworkServiceQueryType where NetworkServiceQuery.QueryInfo == T.QueryInfo > (query: NetworkServiceQuery) -> Bool {
+    fileprivate func isCacheExpired < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery) -> Bool where NetworkServiceQuery.QueryInfo == T.QueryInfo {
 
         let cacheIdentifier = query.cacheIdentifier
-        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let userDefaults = UserDefaults.standard
 
-        guard let date = userDefaults.objectForKey(cacheIdentifier) as? NSDate else { return true }
-        let expiryDate = date.dateByAddingTimeInterval(query.dynamicType.cacheTimeInterval)
+        guard let date = userDefaults.object(forKey: cacheIdentifier) as? Date else { return true }
+        let expiryDate = date.addingTimeInterval(type(of: query).cacheTimeInterval)
 
-        return expiryDate.compare(NSDate()) == .OrderedAscending
+        return expiryDate < Date()
     }
 
-    private func URLSession() -> NSURLSession {
-        let queue = NSOperationQueue();
+    fileprivate func urlSession() -> URLSession {
+        let queue = OperationQueue()
         queue.name = "com.grsu.network.queue"
 
-        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 30
 
-        return NSURLSession(configuration: sessionConfig)
+        return URLSession(configuration: sessionConfig)
     }
 
 }
@@ -167,9 +177,9 @@ private extension NetworkServiceQueryType {
 
     var cacheIdentifier: String {
 
-        var key = String(self.dynamicType)
+        var key = String(describing: type(of: self))
         if let str = queryString {
-            key.appendContentsOf(str)
+            key.append(str)
         }
         return key
     }
@@ -181,25 +191,26 @@ private extension NetworkServiceQueryType {
 }
 
 private extension String {
-    
+
     func stringByAddingPercentEncodingForURLQueryValue() -> String? {
-        let allowedCharacters = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
-        
-        return self.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
+        let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
+
+        return addingPercentEncoding(withAllowedCharacters: allowedCharacters)
     }
-    
+
 }
 
 private extension Dictionary {
-    
+
     func stringFromHttpParameters() -> String {
         let parameterArray = self.map { (key, value) -> String in
             let percentEscapedKey = (key as! String).stringByAddingPercentEncodingForURLQueryValue()!
             let percentEscapedValue = (value as! String).stringByAddingPercentEncodingForURLQueryValue()!
             return "\(percentEscapedKey)=\(percentEscapedValue)"
         }
-        
-        return parameterArray.joinWithSeparator("&")
+
+        return parameterArray.joined(separator: "&")
     }
-    
+
 }
+

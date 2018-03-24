@@ -15,19 +15,19 @@ class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableVi
     var items: [TeacherInfoEntity]?
     var searcheArray: [TeacherInfoEntity]?
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searcheArray?.count ?? 0
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var cell: UITableViewCell?
 
-        cell = tableView.dequeueReusableCellWithIdentifier("TeacherSearchCellIdentifier")
+        cell = tableView.dequeueReusableCell(withIdentifier: "TeacherSearchCellIdentifier")
 
         if (cell == nil) {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: "TeacherSearchCellIdentifier")
-            cell?.accessoryType = .DetailDisclosureButton
+            cell = UITableViewCell(style: .default, reuseIdentifier: "TeacherSearchCellIdentifier")
+            cell?.accessoryType = .detailDisclosureButton
 
         }
         cell?.textLabel?.text = searcheArray![indexPath.row].title
@@ -35,24 +35,24 @@ class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableVi
         return cell!
     }
 
-    func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        searchDisplayController.searchContentsController.performSegueWithIdentifier("TeacherInfoIdentifier", sender: tableView.cellForRowAtIndexPath(indexPath))
+    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        searchDisplayController.searchContentsController.performSegue(withIdentifier: "TeacherInfoIdentifier", sender: tableView.cellForRow(at: indexPath))
     }
 
     // MARK: - UISearchDisplayDelegate
 
-    func searchDisplayController(controller: UISearchDisplayController, shouldReloadTableForSearchString searchString: String?) -> Bool {
+    func searchDisplayController(_ controller: UISearchDisplayController, shouldReloadTableForSearch searchString: String?) -> Bool {
 
         // TODO: bug
-        let filtredArr = items?.filter { $0.title?.rangeOfString(searchString!, options: .CaseInsensitiveSearch, range: nil, locale: nil) != nil }
+        let filtredArr = items?.filter { $0.title?.range(of: searchString!, options: .caseInsensitive, range: nil, locale: nil) != nil }
 
         searcheArray = filtredArr
 
         return true
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        searchDisplayController.searchContentsController.performSegueWithIdentifier("SchedulePageIdentifier", sender: tableView.cellForRowAtIndexPath(indexPath))
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchDisplayController.searchContentsController.performSegue(withIdentifier: "SchedulePageIdentifier", sender: tableView.cellForRow(at: indexPath))
     }
 
 }

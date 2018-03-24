@@ -14,26 +14,26 @@ class CoreDataStore: NSObject {
     let storeName = "CoreData"
     let storeFilename = "CoreData.sqlite"
 
-    lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: URL = {
 
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return urls[urls.count - 1]
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
 
-        let modelURL = NSBundle.mainBundle().URLForResource(self.storeName, withExtension: "momd")!
-        return NSManagedObjectModel(contentsOfURL: modelURL)!
+        let modelURL = Bundle.main.url(forResource: storeName, withExtension: "momd")!
+        return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
 
-        var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-        let url = self.applicationDocumentsDirectory.URLByAppendingPathComponent(self.storeFilename)
+        var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+        let url = applicationDocumentsDirectory.appendingPathComponent(storeFilename)
 
         do {
             let options = [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true]
-            try coordinator?.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: options)
+            try coordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
         } catch let error as NSError {
 
             NSLog("Unresolved error \(error)")

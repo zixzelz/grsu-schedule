@@ -17,21 +17,21 @@ class DesignableTextField: UITextField {
         updatePlaceholderStyle()
     }
     
-    override func textRectForBounds(bounds: CGRect) -> CGRect {
-        var rect = super.textRectForBounds(bounds)
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.textRect(forBounds: bounds)
         rect.origin.x += leftInset
         rect.size.width -= leftInset + rightInset
         
         return rect
     }
     
-    override func editingRectForBounds(bounds: CGRect) -> CGRect {
-        return textRectForBounds(bounds)
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return textRect(forBounds: bounds)
     }
     
     //MARK: Intrface
     
-    @IBInspectable var placeholderColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable var placeholderColor: UIColor = UIColor.white {
         didSet {
             updatePlaceholderStyle()
         }
@@ -49,9 +49,9 @@ class DesignableTextField: UITextField {
         }
     }
     
-    @IBInspectable var borderColor: UIColor = UIColor.whiteColor() {
+    @IBInspectable var borderColor: UIColor = UIColor.white {
         didSet {
-            self.layer.borderColor = borderColor.CGColor
+            self.layer.borderColor = borderColor.cgColor
         }
     }
     
@@ -61,9 +61,9 @@ class DesignableTextField: UITextField {
 
     //MARK: private
     
-    private func updatePlaceholderStyle() {
+    fileprivate func updatePlaceholderStyle() {
         if let text = placeholder {
-            let attributes = [NSForegroundColorAttributeName: placeholderColor]
+            let attributes = [NSAttributedStringKey.foregroundColor: placeholderColor]
             let attributedString = NSAttributedString(string: text, attributes: attributes)
             
             attributedPlaceholder = attributedString

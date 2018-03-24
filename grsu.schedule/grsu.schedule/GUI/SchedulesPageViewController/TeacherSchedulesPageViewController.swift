@@ -11,37 +11,37 @@ import Flurry_iOS_SDK
 
 class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
 
-    @IBOutlet private var favoriteBarButtonItem: UIButton!
+    @IBOutlet fileprivate var favoriteBarButtonItem: UIButton!
     var teacher: TeacherInfoEntity?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if (teacher?.favorite != nil) {
-            self.favoriteBarButtonItem.selected = true
+            self.favoriteBarButtonItem.isSelected = true
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Flurry.logEvent("open schedule for teacher", withParameters: ["teacher": teacher!.title!])
     }
 
-    @IBAction func favoriteButtonPressed(sender: UIButton) {
-        sender.selected = !sender.selected
+    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
 
         let manager = FavoriteManager()
-        if (sender.selected) {
+        if (sender.isSelected) {
             manager.addFavorite(teacher!)
         } else {
             manager.removeFavorite(teacher!.favorite!)
         }
     }
 
-    override func weekScheduleController(weekIndex: Int? = nil) -> UIViewController {
+    override func weekScheduleController(_ weekIndex: Int? = nil) -> UIViewController {
         
         guard let possibleWeeks = possibleWeeks,
-            dateScheduleQuery = dateScheduleQuery else {
+            let dateScheduleQuery = dateScheduleQuery else {
                 assertionFailure("possibleWeeks or dateScheduleQuery musn't be nil")
                 return UIViewController()
         }
@@ -56,18 +56,18 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
         }
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("TeacherWeekSchedulesViewController") as! TeacherWeekSchedulesViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "TeacherWeekSchedulesViewController") as! TeacherWeekSchedulesViewController
         vc.dateScheduleQuery = query
         vc.teacher = teacher
 
         return vc
     }
 
-    override func favoritWillRemoveNotification(notification: NSNotification) {
+    override func favoritWillRemoveNotification(_ notification: Foundation.Notification) {
         let item = notification.userInfo?[GSFavoriteManagerFavoriteObjectKey] as? FavoriteEntity
 
         if (item?.teacher == teacher) {
-            favoriteBarButtonItem.selected = false
+            favoriteBarButtonItem.isSelected = false
         }
     }
 

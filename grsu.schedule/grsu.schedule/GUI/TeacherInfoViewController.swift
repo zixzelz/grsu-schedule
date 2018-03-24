@@ -12,9 +12,9 @@ import MessageUI
 import Flurry_iOS_SDK
 
 enum GSTeacherFieldType: String {
-    case Skype = "TeacherSkypeFieldCellIdentifier"
-    case Email = "TeacherEmailFieldCellIdentifier"
-    case Phone = "TeacherPhoneFieldCellIdentifier"
+    case skype = "TeacherSkypeFieldCellIdentifier"
+    case email = "TeacherEmailFieldCellIdentifier"
+    case phone = "TeacherPhoneFieldCellIdentifier"
 }
 
 typealias GSTeacherField = (title: String, type: GSTeacherFieldType, value: String?)
@@ -30,14 +30,14 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
             }
 
             teacherInfoFields = [];
-            if let phone = teacherInfo?.phone where !NSString.isNilOrEmpty(phone) {
-                teacherInfoFields.append(("Сотовый", .Phone, phone))
+            if let phone = teacherInfo?.phone, !NSString.isNilOrEmpty(phone) {
+                teacherInfoFields.append(("Сотовый", .phone, phone))
             }
-            if let email = teacherInfo?.email where !NSString.isNilOrEmpty(email) {
-                teacherInfoFields.append(("Email", .Email, email))
+            if let email = teacherInfo?.email, !NSString.isNilOrEmpty(email) {
+                teacherInfoFields.append(("Email", .email, email))
             }
-            if let skype = teacherInfo?.skype where !NSString.isNilOrEmpty(skype) {
-                teacherInfoFields.append(("Skype", .Skype, skype))
+            if let skype = teacherInfo?.skype, !NSString.isNilOrEmpty(skype) {
+                teacherInfoFields.append(("Skype", .skype, skype))
             }
             tableView.reloadData()
         }
@@ -50,7 +50,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         fetchData()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         if let title = teacherInfo?.title {
@@ -59,51 +59,51 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     }
 
     func setupRefreshControl() {
-        self.refreshControl!.addTarget(self, action: #selector(TeacherInfoViewController.refreshTeacherInfo(_:)), forControlEvents: .ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(TeacherInfoViewController.refreshTeacherInfo(_:)), for: .valueChanged)
     }
 
     func scrollToTop() {
-        let top = self.tableView.contentInset.top
-        self.tableView.contentOffset = CGPointMake(0, -top)
+        let top = tableView.contentInset.top
+        tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 
-    func fetchData(useCache: Bool = true) {
+    func fetchData(_ useCache: Bool = true) {
         guard let teacherInfo = teacherInfo else { return }
 
         setNeedsShowRefreshControl()
 
-        let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
+        let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
         TeachersService().getTeacher(teacherInfo.id, cache: cache) { [weak self] result -> Void in
             guard let strongSelf = self else { return }
 
             strongSelf.hideRefreshControl()
-            if case .Success(teacherInfo) = result {
+            if case .success(teacherInfo) = result {
 
                 strongSelf.teacherInfo = teacherInfo
             }
         }
     }
 
-    func refreshTeacherInfo(sender: AnyObject) {
+    @objc func refreshTeacherInfo(_ sender: AnyObject) {
         fetchData(false)
     }
 
-    private func setNeedsShowRefreshControl() {
+    fileprivate func setNeedsShowRefreshControl() {
 
-        if (!self.refreshControl!.refreshing) {
-            self.refreshControl?.beginRefreshing()
+        if let refreshControl = refreshControl, !refreshControl.isRefreshing {
+            refreshControl.beginRefreshing()
             //            scrollToTop()
         }
     }
 
-    private func hideRefreshControl() {
+    fileprivate func hideRefreshControl() {
         refreshControl?.endRefreshing()
     }
 
     // MARK: - TeacherFieldAction
 
     lazy var overlayTransitioningDelegate = { return OverlayTransitioningDelegate() }()
-    @IBAction func emailButtonPressed(sender: AnyObject) {
+    @IBAction func emailButtonPressed(_ sender: AnyObject) {
 
         guard let email = teacherInfo?.email else { return }
 
@@ -115,19 +115,19 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         compose.mailComposeDelegate = self
         compose.setToRecipients([email])
 
-        compose.modalPresentationStyle = .Custom
+        compose.modalPresentationStyle = .custom
         compose.transitioningDelegate = overlayTransitioningDelegate
 
-        presentViewController(compose, animated: true, completion: nil)
+        present(compose, animated: true, completion: nil)
     }
 
-    @IBAction func phoneButtonPressed(sender: AnyObject) {
-        let phoneNumber = NSString(format: "telprompt:%@", teacherInfo!.phone!.stringByReplacingOccurrencesOfString(" ", withString: ""))
-        let url = NSURL(string: phoneNumber as String)
-        UIApplication.sharedApplication().openURL(url!)
+    @IBAction func phoneButtonPressed(_ sender: AnyObject) {
+        let phoneNumber = NSString(format: "telprompt:%@", teacherInfo!.phone!.replacingOccurrences(of: " ", with: ""))
+        let url = URL(string: phoneNumber as String)
+        UIApplication.shared.openURL(url!)
     }
 
-    @IBAction func messageButtonPressed(sender: AnyObject) {
+    @IBAction func messageButtonPressed(_ sender: AnyObject) {
 
         guard let phone = teacherInfo?.phone else { return }
 
@@ -142,38 +142,38 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 //        compose.modalPresentationStyle = .Custom
 //        compose.transitioningDelegate = overlayTransitioningDelegate
 
-        presentViewController(compose, animated: true, completion: nil)
+        present(compose, animated: true, completion: nil)
     }
 
-    @IBAction func skypeButtonPressed(sender: AnyObject) {
+    @IBAction func skypeButtonPressed(_ sender: AnyObject) {
 
         guard let skype = teacherInfo?.skype,
-            let url = NSURL(string: "skype:\(skype)") else { return }
+            let url = URL(string: "skype:\(skype)") else { return }
 
-        if UIApplication.sharedApplication().canOpenURL(url) {
-            UIApplication.sharedApplication().openURL(url)
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
         }
     }
 
     // MARK: - MFMailComposeViewControllerDelegate
 
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - MFMessageComposeViewControllerDelegate
 
-    func messageComposeViewController(controller: MFMessageComposeViewController, didFinishWithResult result: MessageComposeResult) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        self.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - UITableViewDataSource
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 1
         if (section == 1) {
             count = teacherInfoFields.count
@@ -181,21 +181,21 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         return count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var cell: UITableViewCell
 
         if (indexPath.section == 0) {
 
-            cell = tableView.dequeueReusableCellWithIdentifier("TeacherPhotoCellIdentifier") as! TeacherPhotoTableViewCell
-            cell.imageView?.image = photoById(teacherInfo!.id)
+            cell = tableView.dequeueReusableCell(withIdentifier: "TeacherPhotoCellIdentifier") as! TeacherPhotoTableViewCell
+            cell.imageView?.image = photoById(teacherInfo?.id)
             cell.textLabel?.text = teacherInfo?.title
             cell.detailTextLabel?.text = teacherInfo?.post
         } else {
 
             let cellIdentifier = teacherInfoFields[indexPath.row].type.rawValue
 
-            cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as! CustomSubtitleTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! CustomSubtitleTableViewCell
             cell.textLabel?.text = teacherInfoFields[indexPath.row].title
             cell.detailTextLabel?.text = teacherInfoFields[indexPath.row].value ?? "  "
         }
@@ -203,43 +203,48 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         return cell
     }
 
-    func photoById(id: String) -> UIImage {
-        var photo = UIImage(named: "Photo_\(id)")
-        if photo == nil {
-            photo = UIImage(named: "UserPlaceholderIcon")
+    func photoById(_ id: String?) -> UIImage? {
+        
+        guard let id = id, let photo = UIImage(named: "Photo_\(id)") else {
+            return UIImage(named: "UserPlaceholderIcon")
         }
-        return photo!
+        
+        return photo
     }
 
     // MARK: - UITableViewDelegate
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 84 : 56
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        guard let cell = tableView.cellForRow(at: indexPath) else {
+            return
+        }
 
         let field = teacherInfoFields[indexPath.row]
 
         switch (field.type) {
-        case .Email: emailButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
-        case .Phone: phoneButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
-        case .Skype: skypeButtonPressed(tableView.cellForRowAtIndexPath(indexPath)!)
+        case .email: emailButtonPressed(cell)
+        case .phone: phoneButtonPressed(cell)
+        case .skype: skypeButtonPressed(cell)
         }
     }
 
-    override func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         return (indexPath.section == 1)
     }
 
-    override func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
+    override func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
 
         return (action == #selector(copy(_:)))
     }
 
-    override func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
-        UIPasteboard.generalPasteboard().string = teacherInfoFields[indexPath.row].value
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any!) {
+        UIPasteboard.general.string = teacherInfoFields[indexPath.row].value
     }
 
 }

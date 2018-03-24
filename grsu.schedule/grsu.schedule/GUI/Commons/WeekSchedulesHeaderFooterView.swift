@@ -10,7 +10,7 @@ import UIKit
 
 class WeekSchedulesHeaderFooterView: UITableViewHeaderFooterView {
 
-    @IBOutlet private weak var textLabel_: UILabel!
+    @IBOutlet fileprivate weak var textLabel_: UILabel!
     
     override var textLabel: UILabel? {
         return textLabel_

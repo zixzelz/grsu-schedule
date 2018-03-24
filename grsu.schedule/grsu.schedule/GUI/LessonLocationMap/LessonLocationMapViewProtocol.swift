@@ -16,7 +16,7 @@ protocol LessonLocationMapViewProtocol: NSObjectProtocol {
 @objc(LessonLocationMapViewDataSource)
 protocol LessonLocationMapViewDataSource: NSObjectProtocol {
     
-    func titleForMarker(index: Int) -> String
-    func imageForMarker(index: Int) -> UIImage?
+    func titleForMarker(_ index: Int) -> String
+    func imageForMarker(_ index: Int) -> UIImage?
     
 }

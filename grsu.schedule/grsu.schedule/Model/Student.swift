@@ -17,8 +17,8 @@ class Student: NSObject, NSCoding {
     
     init?(json: [String: AnyObject]) {
 
-        guard let _id = json["id"] as? Int where _id != 0,
-        let k_sgryp = json["k_sgryp"] as? Int where k_sgryp != 0 else {
+        guard let _id = json["id"] as? Int, _id != 0,
+        let k_sgryp = json["k_sgryp"] as? Int, k_sgryp != 0 else {
             return nil
 //            throw ServiceError.WrongResponseFormat
         }
@@ -31,18 +31,18 @@ class Student: NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         
-        fullName = aDecoder.decodeObjectForKey("fullName") as? String
-        groupTitle = aDecoder.decodeObjectForKey("groupTitle") as? String
-        id = aDecoder.decodeObjectForKey("id") as? Int ?? 0
-        studentType = aDecoder.decodeObjectForKey("studentType") as? String
+        fullName = aDecoder.decodeObject(forKey: "fullName") as? String
+        groupTitle = aDecoder.decodeObject(forKey: "groupTitle") as? String
+        id = aDecoder.decodeObject(forKey: "id") as? Int ?? 0
+        studentType = aDecoder.decodeObject(forKey: "studentType") as? String
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         
-        aCoder.encodeObject(fullName, forKey: "fullName")
-        aCoder.encodeObject(groupTitle, forKey: "groupTitle")
-        aCoder.encodeObject(id, forKey: "id")
-        aCoder.encodeObject(studentType, forKey: "studentType")
+        aCoder.encode(fullName, forKey: "fullName")
+        aCoder.encode(groupTitle, forKey: "groupTitle")
+        aCoder.encode(id, forKey: "id")
+        aCoder.encode(studentType, forKey: "studentType")
     }
 
 }

@@ -11,18 +11,18 @@ import UIKit
 @IBDesignable
 class MenuButton: UIButton {
 
-    private var editing: Bool = false
+    fileprivate var editing: Bool = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
     }
 
-    private func setupView() {
+    fileprivate func setupView() {
 
-        imageView?.contentMode = .ScaleToFill
+        imageView?.contentMode = .scaleToFill
         imageView?.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel?.textAlignment = .Center
+        titleLabel?.textAlignment = .center
         titleLabel?.translatesAutoresizingMaskIntoConstraints = false
 
         let dict = ["imageView": imageView!, "titleLabel": titleLabel!]
@@ -31,39 +31,39 @@ class MenuButton: UIButton {
 
         editing = true
         
-        addConstraint(NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: imageView, attribute: .CenterX, multiplier: 1, constant: 0))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-3-[imageView]", options: .AlignAllLeft, metrics: nil, views: dict))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[titleLabel]|", options: .AlignAllLeft, metrics: nil, views: dict))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[titleLabel(12)]-4-|", options: .AlignAllLeft, metrics: nil, views: dict))
+        addConstraint(NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: imageView, attribute: .centerX, multiplier: 1, constant: 0))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-3-[imageView]", options: .alignAllLeft, metrics: nil, views: dict))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|", options: .alignAllLeft, metrics: nil, views: dict))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[titleLabel(12)]-4-|", options: .alignAllLeft, metrics: nil, views: dict))
         editing = false
     }
 
-    override func addConstraints(constraints: [NSLayoutConstraint]) {
+    override func addConstraints(_ constraints: [NSLayoutConstraint]) {
         if editing {
             super.addConstraints(constraints)
         }
     }
 
-    override func addConstraint(constraint: NSLayoutConstraint) {
+    override func addConstraint(_ constraint: NSLayoutConstraint) {
         if editing {
             super.addConstraint(constraint)
         }
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
-        UIView.animateWithDuration(0.1) {
-            self.imageView?.transform = CGAffineTransformMakeScale(0.8, 0.8)
-        }
+        UIView.animate(withDuration: 0.1, animations: {
+            self.imageView?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }) 
     }
     
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesEnded(touches, withEvent: event)
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
-        UIView.animateWithDuration(0.1) {
-            self.imageView?.transform = CGAffineTransformMakeScale(1, 1)
-        }
+        UIView.animate(withDuration: 0.1, animations: {
+            self.imageView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }) 
     }
     
 }

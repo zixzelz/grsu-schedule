@@ -15,21 +15,20 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     var dateScheduleQuery: DateScheduleQuery!
     var schedules: Array<DaySchedule>?
 
-    var menuCellIndexPath: NSIndexPath?
+    var menuCellIndexPath: IndexPath?
 
     @IBOutlet var tableView: UITableView!
     var refreshControl: UIRefreshControl!
 
-    func setLessonSchedule(lessons: [LessonScheduleEntity]) {
+    func setLessonSchedule(_ lessons: [LessonScheduleEntity]) {
         var daySchedule = [DaySchedule]()
 
         for lesson in lessons {
-            let days = daySchedule.filter { $0.date!.isEqualToDate(lesson.date) }
+            let days = daySchedule.filter { ($0.date == lesson.date) }
             var day = days.first
 
             if (day == nil) {
-                day = DaySchedule()
-                day?.date = lesson.date
+                day = DaySchedule(date: lesson.date)
                 daySchedule.append(day!)
             }
             day?.lessons.append(lesson)
@@ -42,26 +41,26 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
 
 //        tableView.delaysContentTouches = false
-        
-        tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
+
+        tableView.register(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
 
         updatedTableViewInset()
         setupRefreshControl()
         fetchData(animated: true)
     }
-    
-    func showMessage(title: String) {
-        
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
-        
-        presentViewController(alert, animated: true, completion: nil)
+
+    func showMessage(_ title: String) {
+
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+
+        present(alert, animated: true, completion: nil)
     }
 
     func setupRefreshControl() {
         refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(WeekSchedulesViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        refreshControl.tintColor = UIColor.blackColor()
+        refreshControl.addTarget(self, action: #selector(WeekSchedulesViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.black
 
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
@@ -69,97 +68,97 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             tableView.addSubview(refreshControl)
         }
     }
-    
+
     func updatedTableViewInset() {
-        if let navigationBar = self.navigationController?.navigationBar {
-            let top = CGRectGetMaxY(navigationBar.frame)
-            let inset = UIEdgeInsetsMake(top, 0, 49, 0)
-            self.tableView.contentInset = inset
-            self.tableView.scrollIndicatorInsets = inset
-        }
+//        if let navigationBar = self.navigationController?.navigationBar {
+//            let top = navigationBar.frame.maxY
+//            let inset = UIEdgeInsetsMake(top, 0, 49, 0)
+//            self.tableView.contentInset = inset
+//            self.tableView.scrollIndicatorInsets = inset
+//        }
     }
 
-    func reloadData(animated: Bool) {
-        
+    func reloadData(_ animated: Bool) {
+
         shouldShowRefreshControl = false
-        let animated = animated && refreshControl.refreshing
+        let animated = animated && refreshControl.isRefreshing
 
         tableView.reloadData()
         refreshControl.endRefreshing()
         scrollToActiveLesson(animated)
     }
-    
-    func scrollToActiveLesson(animated: Bool) {
-        let days = schedules?.filter { DateManager.daysBetweenDate($0.date, toDateTime: NSDate()) == 0 }
+
+    func scrollToActiveLesson(_ animated: Bool) {
+        let days = schedules?.filter { DateManager.daysBetweenDate($0.date, toDateTime: Date()) == 0 }
         let day = days?.first
-        
+
         if let day = day {
             var startDate: NSDate?
-            let calendar = NSCalendar.currentCalendar();
-            
-            calendar.rangeOfUnit(.Day, startDate: &startDate, interval: nil, forDate: NSDate())
-            
-            let minToday = Int(NSDate().timeIntervalSinceDate(startDate!) / 60)
-            
-            let lessons = day.lessons.filter { ($0.stopTime.integerValue >= minToday) }
+            let calendar = Calendar.current
+
+            (calendar as NSCalendar).range(of: .day, start: &startDate, interval: nil, for: Date())
+
+            let minToday = Int(Date().timeIntervalSince(startDate! as Date) / 60)
+
+            let lessons = day.lessons.filter { ($0.stopTime >= minToday) }
             let lesson = lessons.first
-            
-            let dayIndex = schedules!.indexOf(day)!
-            
+
+            let dayIndex = schedules!.index(of: day)!
+
             if let lesson = lesson {
-                let indexPath = NSIndexPath(forRow: day.lessons.indexOf(lesson)!, inSection: dayIndex)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Middle, animated: animated)
+                let indexPath = IndexPath(row: day.lessons.index(of: lesson)!, section: dayIndex)
+                self.tableView.scrollToRow(at: indexPath, at: .middle, animated: animated)
             } else {
-                let indexPath = NSIndexPath(forRow: 0, inSection: dayIndex)
-                self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: animated)
+                let indexPath = IndexPath(row: 0, section: dayIndex)
+                self.tableView.scrollToRow(at: indexPath, at: .top, animated: animated)
             }
         }
-        
-        dispatch_async(dispatch_get_main_queue()) {
+
+        DispatchQueue.main.async {
             self.tableView.flashScrollIndicators()
         }
     }
 
-    func refresh(sender: AnyObject) {
+    @objc func refresh(_ sender: AnyObject) {
         fetchData(false, animated: true)
     }
 
-    func fetchData(useCache: Bool = true, animated: Bool) {
-        
+    func fetchData(_ useCache: Bool = true, animated: Bool) {
+
         setNeedShowRefreshControl()
     }
-    
+
     func scrollToTop() {
         let top = self.tableView.contentInset.top
-        self.tableView.contentOffset = CGPointMake(0, -top)
+        self.tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "LessonLocationIdentifier") {
             let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
 
-            let viewController = segue.destinationViewController as! LessonLocationMapViewController
+            let viewController = segue.destination as! LessonLocationMapViewController
             viewController.initAddress = lesson.address
         }
     }
-    
+
     // MARK: - refresh Control
 
-    private var shouldShowRefreshControl: Bool = false
-    
-    private func setNeedShowRefreshControl() {
+    fileprivate var shouldShowRefreshControl: Bool = false
+
+    fileprivate func setNeedShowRefreshControl() {
         shouldShowRefreshControl = true
         showRefreshControlIfNeeded()
     }
-    
+
     func showRefreshControlIfNeeded() {
-        
-        if !refreshControl.refreshing {
-            
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), { [weak self] _ in
-                guard let strongSelf = self where  strongSelf.shouldShowRefreshControl else { return }
-                
+
+        if !refreshControl.isRefreshing {
+
+            let dispatchTime: DispatchTime = DispatchTime.now() + Double(Int64(0.2 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: { [weak self] in
+                guard let strongSelf = self, strongSelf.shouldShowRefreshControl else { return }
+
                 strongSelf.refreshControl.beginRefreshing()
                 strongSelf.scrollToTop()
             })
@@ -168,7 +167,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
     // MARK: - UITableViewDataSource
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if (schedules != nil && schedules?.count == 0) {
             return 1
         } else if (schedules == nil) {
@@ -177,43 +176,47 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         return schedules!.count
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 1
-        if (schedules != nil && schedules?.count > 0) {
-            let number = schedules![section].lessons.count
-            count = menuCellIndexPath?.section == section ? number + 1: number
+        if let schedules = schedules, schedules.count > 0 {
+            let number = schedules[section].lessons.count
+            count = menuCellIndexPath?.section == section ? number + 1 : number
         }
         return count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var cell: UITableViewCell
 
-        if (schedules == nil || schedules?.count == 0) {
-            cell = tableView.dequeueReusableCellWithIdentifier("EmptyCellIdentifier")!
+        guard let schedules = schedules else {
+            return tableView.dequeueReusableCell(withIdentifier: "EmptyCellIdentifier")!
+        }
 
-        } else if (indexPath.isEqual(menuCellIndexPath)) {
-            cell = tableView.dequeueReusableCellWithIdentifier("MenuCellIdentifier")!
+        if schedules.count == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCellIdentifier")!
+
+        } else if indexPath == menuCellIndexPath {
+            cell = tableView.dequeueReusableCell(withIdentifier: "MenuCellIdentifier")!
 
         } else {
 
             var fixIndexPath = indexPath
-            if (menuCellIndexPath != nil && menuCellIndexPath?.section == indexPath.section && indexPath.row > menuCellIndexPath?.row) {
-                fixIndexPath = NSIndexPath(forRow: indexPath.row - 1, inSection: indexPath.section)
+            if let menuCellIndexPath = menuCellIndexPath, menuCellIndexPath.section == indexPath.section && indexPath.row > menuCellIndexPath.row {
+                fixIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
             }
 
-            let lesson = schedules![fixIndexPath.section].lessons[fixIndexPath.row] as LessonScheduleEntity
+            let lesson = schedules[fixIndexPath.section].lessons[fixIndexPath.row]
 
-            let startLessonTime = lesson.date.dateByAddingTimeInterval(lesson.startTime.doubleValue * 60) as NSDate
-            let endLessonTime = lesson.date.dateByAddingTimeInterval(lesson.stopTime.doubleValue * 60) as NSDate
+            let startLessonTime = lesson.date.addingTimeInterval(TimeInterval(lesson.startTime * 60))
+            let endLessonTime = lesson.date.addingTimeInterval(TimeInterval(lesson.stopTime * 60))
 
             var lCell: BaseLessonScheduleCell
-            if (NSDate().compare(startLessonTime) == NSComparisonResult.OrderedDescending && NSDate().compare(endLessonTime) == NSComparisonResult.OrderedAscending) {
-                lCell = cellForLesson(lesson, isActive: true) as BaseLessonScheduleCell
+            if Date() > startLessonTime && Date() < endLessonTime {
+                lCell = cellForLesson(lesson, isActive: true)
 
                 let acell = lCell as! ActiveLessonScheduleCell
-                acell.lessonProgressView.progress = Float((NSDate().timeIntervalSinceDate(startLessonTime) / 60) / (lesson.stopTime.doubleValue - lesson.startTime.doubleValue))
+                acell.lessonProgressView.progress = Float((Date().timeIntervalSince(startLessonTime) / 60) / Double(lesson.stopTime - lesson.startTime))
             } else {
                 lCell = cellForLesson(lesson, isActive: false)
             }
@@ -225,8 +228,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             }
             lCell.studyTypeLabel.text = lesson.type
             lCell.studyNameLabel.text = lesson.studyName
-            lCell.startTime = lesson.startTime.integerValue
-            lCell.stopTime = lesson.stopTime.integerValue
+            lCell.startTime = lesson.startTime
+            lCell.stopTime = lesson.stopTime
 
             cell = lCell
         }
@@ -234,13 +237,13 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         return cell
     }
 
-    func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
+    func cellForLesson(_ lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
         return BaseLessonScheduleCell()
     }
 
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
-        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SectionHeaderIdentifier)
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: SectionHeaderIdentifier)
 
         var title: String
         if (schedules == nil || schedules?.count == 0) {
@@ -255,34 +258,34 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         return headerView
     }
 
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return indexPath.isEqual(menuCellIndexPath) ? 50 : 130
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return (indexPath == menuCellIndexPath) ? 50 : 130
     }
 
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 38
     }
 
     // MARK: - UITableViewDelegate
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false);
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
 
-        var menuIndexPath = NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)
+        var menuIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
 
-        if (menuIndexPath.isEqual(menuCellIndexPath)) {
+        if (menuIndexPath == menuCellIndexPath) {
             menuCellIndexPath = nil
-            tableView.deleteRowsAtIndexPaths([menuIndexPath], withRowAnimation: .Middle)
+            tableView.deleteRows(at: [menuIndexPath], with: .middle)
         } else {
             tableView.beginUpdates()
-            if (menuCellIndexPath != nil) {
-                tableView.deleteRowsAtIndexPaths([menuCellIndexPath!], withRowAnimation: .Middle)
+            if let menuCellIndexPath = menuCellIndexPath {
+                tableView.deleteRows(at: [menuCellIndexPath], with: .middle)
 
-                if (menuCellIndexPath?.section == menuIndexPath.section && menuCellIndexPath?.row < menuIndexPath.row) {
+                if menuCellIndexPath.section == menuIndexPath.section && menuCellIndexPath.row < menuIndexPath.row {
                     menuIndexPath = indexPath
                 }
             }
-            tableView.insertRowsAtIndexPaths([menuIndexPath], withRowAnimation: .Middle)
+            tableView.insertRows(at: [menuIndexPath], with: .middle)
             menuCellIndexPath = menuIndexPath
             tableView.endUpdates()
         }

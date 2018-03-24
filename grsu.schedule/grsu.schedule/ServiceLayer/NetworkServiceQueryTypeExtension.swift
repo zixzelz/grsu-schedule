@@ -7,5 +7,5 @@
 //
 
 extension NetworkServiceQueryType {
-    static var cacheTimeInterval: NSTimeInterval { return DefaultCacheTimeInterval }
+    static var cacheTimeInterval: TimeInterval { return Constants.defaultCacheTimeInterval }
 }

@@ -14,7 +14,7 @@ class LessonLocationMapView: RYMapView {
     @IBOutlet weak var lessonLocationDataSource: LessonLocationMapViewDataSource!
 
     lazy var calloutView: CalloutView = {
-        return NSBundle.mainBundle().loadNibNamed("CalloutView", owner: self, options: nil)!.first as! CalloutView
+        return Bundle.main.loadNibNamed("CalloutView", owner: self, options: nil)!.first as! CalloutView
     }()
 
     // MARK: - CalloutView
@@ -23,9 +23,9 @@ class LessonLocationMapView: RYMapView {
         return 74
     }
 
-    override func calloutView(forMarker: GMSMarker) -> UIView {
+    override func calloutView(_ forMarker: GMSMarker) -> UIView {
 
-        if let index = forMarker.userData?.integerValue {
+        if let str = forMarker.userData as? String, let index = Int(str) {
             calloutView.titleLabel.text = lessonLocationDataSource.titleForMarker(index)
             calloutView.imageView.image = lessonLocationDataSource.imageForMarker(index)
         }

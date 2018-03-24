@@ -10,15 +10,19 @@ import UIKit
 
 class CustomSubtitleTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var customTextLabel : UILabel!
-    @IBOutlet private weak var customDetailTextLabel : UILabel!
-    
-    override var textLabel: UILabel? { get {
-        return customTextLabel
-        }}
-    
-    override var detailTextLabel: UILabel? { get {
-        return customDetailTextLabel
-        }}
+    @IBOutlet fileprivate weak var customTextLabel: UILabel!
+    @IBOutlet fileprivate weak var customDetailTextLabel: UILabel!
+
+    override var textLabel: UILabel? {
+        get {
+            return customTextLabel
+        }
+    }
+
+    override var detailTextLabel: UILabel? {
+        get {
+            return customDetailTextLabel
+        }
+    }
 
 }

@@ -10,7 +10,11 @@ import UIKit
 
 class DaySchedule: NSObject {
     
-    var date : NSDate!
+    var date : Date
     var lessons : [LessonScheduleEntity] = []
+
+    init(date : Date) {
+        self.date = date
+    }
 
 }

@@ -16,7 +16,7 @@ extension NSManagedObjectContext: ManagedObjectContextType {
 extension ManagedObjectType {
 
     public static func managedObjectContext() -> ManagedObjectContextType {
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let delegate = UIApplication.shared.delegate as! AppDelegate //must be used from main thread
         return delegate.cdh.backgroundContext
     }
 }
@@ -25,9 +25,9 @@ extension ManagedObjectType {
 
     public static func insert(inContext context: ManagedObjectContextType) -> Self {
         let context = context as! NSManagedObjectContext // TODO: context as generic type?  WARNING
-        guard let result: Self = NSEntityDescription.insertNewObjectForEntityForName(String(Self), inManagedObjectContext: context) as? Self else {
+        guard let result: Self = NSEntityDescription.insertNewObject(forEntityName: String(describing: Self.self), into: context) as? Self else {
 
-            fatalError("Unable to insert \(String(self)) in context./n Check if module for Entity is set properly in CoreData model")
+            fatalError("Unable to insert \(String(describing: self)) in context./n Check if module for Entity is set properly in CoreData model")
         }
         return result
     }
@@ -37,13 +37,13 @@ extension ManagedObjectType {
         guard let cacheItems = objects(withPredicate: predicate, inContext: context, sortBy: sortBy) else {
             return nil
         }
-        let cacheItemsMap = cacheItems.dict { ($0.identifier ?? NSUUID().UUIDString, $0) }
+        let cacheItemsMap = cacheItems.dict { ($0.identifier ?? UUID().uuidString, $0) }
         return cacheItemsMap
     }
 
     public static func objects(withPredicate predicate: NSPredicate?, inContext context: ManagedObjectContextType, sortBy: [NSSortDescriptor]?) -> [Self]? {
 
-        let request = NSFetchRequest(entityName: String(self))
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: self))
         request.predicate = predicate
         request.sortDescriptors = sortBy
 
@@ -51,16 +51,16 @@ extension ManagedObjectType {
         return result
     }
 
-    public static func objectsForMainQueue(withPredicate predicate: NSPredicate?, inContext context: ManagedObjectContextType, sortBy: [NSSortDescriptor]? = nil, completion: (_ : [Self]) -> Void) {
+    public static func objectsForMainQueue(withPredicate predicate: NSPredicate?, inContext context: ManagedObjectContextType, sortBy: [NSSortDescriptor]? = nil, completion: @escaping (_ : [Self]) -> Void) {
 
-        let request = NSFetchRequest(entityName: String(self))
-        request.resultType = .ManagedObjectIDResultType
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: self))
+        request.resultType = .managedObjectIDResultType
         request.predicate = predicate
         request.sortDescriptors = sortBy
 
         let ids: [NSManagedObjectID] = objects(withRequest: request, inContext: context) ?? []
 
-        dispatch_async(dispatch_get_main_queue(), { _ in
+        DispatchQueue.main.async(execute: {
 
             let items = self.convertToMainQueue(ids)
 
@@ -68,31 +68,31 @@ extension ManagedObjectType {
         })
     }
 
-    private static func objects<T: AnyObject>(withRequest request: NSFetchRequest, inContext context: ManagedObjectContextType) -> [T]? {
+    fileprivate static func objects<T: AnyObject>(withRequest request: NSFetchRequest<NSFetchRequestResult>, inContext context: ManagedObjectContextType) -> [T]? {
 
         var result: [T]? = nil
         do {
             let context = context as! NSManagedObjectContext // WARNING
-            result = try context.executeFetchRequest(request) as? [T]
+            result = try context.fetch(request) as? [T]
         } catch let error {
             assertionFailure("\(error)")
         }
         return result
     }
 
-    private static func convertToMainQueue(itemIds: [NSManagedObjectID]) -> [Self] {
+    fileprivate static func convertToMainQueue(_ itemIds: [NSManagedObjectID]) -> [Self] {
 
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let delegate = UIApplication.shared.delegate as! AppDelegate
         let mainContext = delegate.cdh.managedObjectContext
 
-        let items = itemIds.map { mainContext.objectWithID($0) } as [AnyObject]
+        let items = itemIds.map { mainContext.object(with: $0) } as [AnyObject]
         return items as! [Self]
     }
 
-    public func delete(context: ManagedObjectContextType) {
+    public func delete(_ context: ManagedObjectContextType) {
 
         let context = context as! NSManagedObjectContext // WARNING
-        context.deleteObject(self as! NSManagedObject)
+        context.delete(self as! NSManagedObject)
     }
 
 }
@@ -104,9 +104,9 @@ protocol ManagedObjectConveniance {
 extension NSManagedObject: ManagedObjectConveniance { }
 extension ManagedObjectConveniance {
 
-    func convertInContext(context: NSManagedObjectContext) -> Self {
+    func convertInContext(_ context: NSManagedObjectContext) -> Self {
 
-        let object = context.objectWithID(objectID)
+        let object = context.object(with: objectID)
         return object as! Self
     }
 

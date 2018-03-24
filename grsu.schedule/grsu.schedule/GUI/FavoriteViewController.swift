@@ -14,11 +14,7 @@ class FavoriteViewController: UITableViewController {
 
     var favorites: [FavoriteEntity]?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         fetchFavorite()
@@ -27,7 +23,7 @@ class FavoriteViewController: UITableViewController {
     func fetchFavorite() {
         let manager = FavoriteManager()
 
-        manager.getAllFavorite { [weak self](items: Array<FavoriteEntity>) -> Void in
+        manager.getAllFavorite { [weak self](items: [FavoriteEntity]) -> Void in
             if let wSelf = self {
                 wSelf.favorites = items
                 wSelf.tableView.reloadData()
@@ -37,49 +33,56 @@ class FavoriteViewController: UITableViewController {
 
     }
 
-    @IBAction func editButtonPressed(sender: UIButton) {
+    @IBAction func editButtonPressed(_ sender: UIButton) {
 
-        if (tableView.editing) {
+        if (tableView.isEditing) {
             updateFavoriteOrder()
         }
 
-        tableView.setEditing(!tableView.editing, animated: true)
-        sender.selected = tableView.editing
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        sender.isSelected = tableView.isEditing
     }
 
     func updateFavoriteOrder() {
-        for i in 0..<favorites!.count {
-            favorites![i].order = i
+        guard let favorites = favorites else {
+            return
         }
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        for i in 0..<favorites.count {
+            favorites[i].order = NSNumber(value: i)
+        }
+        let delegate = UIApplication.shared.delegate as! AppDelegate
         let cdHelper = delegate.cdh
         cdHelper.saveContext(cdHelper.managedObjectContext)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        guard let favorites = favorites else {
+            return
+        }
 
         if (segue.identifier == "StudentFavoriteSegueIdentifier" || segue.identifier == "TeacherFavoriteSegueIdentifier") {
 
             if let indexPath = tableView.indexPathForSelectedRow {
 
-                let item = favorites![indexPath.row]
+                let item = favorites[indexPath.row]
                 let week = DateManager.scheduleWeeks()
 
                 let scheduleQuery = DateScheduleQuery()
-                scheduleQuery.startWeekDate = week.first!.startDate
-                scheduleQuery.endWeekDate = week.first!.endDate
+                scheduleQuery.startWeekDate = week.first?.startDate
+                scheduleQuery.endWeekDate = week.first?.endDate
 
                 if (segue.identifier == "StudentFavoriteSegueIdentifier") {
                     guard let group = item.group else { return }
 
-                    let viewController = segue.destinationViewController as! StudentSchedulesPageViewController
+                    let viewController = segue.destination as! StudentSchedulesPageViewController
                     viewController.possibleWeeks = week
                     viewController.dateScheduleQuery = scheduleQuery
                     viewController.configure(group)
                 }
                 if (segue.identifier == "TeacherFavoriteSegueIdentifier") {
 
-                    let viewController = segue.destinationViewController as! TeacherSchedulesPageViewController
+                    let viewController = segue.destination as! TeacherSchedulesPageViewController
                     viewController.possibleWeeks = week
                     viewController.dateScheduleQuery = scheduleQuery
                     viewController.teacher = item.teacher
@@ -90,47 +93,50 @@ class FavoriteViewController: UITableViewController {
     }
 
     func updateState() {
-        editButton.hidden = !(favorites?.count > 0)
+        guard let favorites = favorites else {
+            return
+        }
+        editButton.isHidden = favorites.count <= 0
     }
 
     // MARK: - UITableViewDataSource
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return favorites?.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         return favoriteCell(indexPath.row)
     }
 
-    func favoriteCell(row: Int) -> UITableViewCell {
+    func favoriteCell(_ row: Int) -> UITableViewCell {
         var cell: UITableViewCell?
 
         if let group = favorites![row].group {
 
-            cell = tableView.dequeueReusableCellWithIdentifier("StudentFavoriteCellIdentifier")
+            cell = tableView.dequeueReusableCell(withIdentifier: "StudentFavoriteCellIdentifier")
             cell!.textLabel?.text = group.title
 
         } else if let teacher = favorites![row].teacher {
 
-            cell = tableView.dequeueReusableCellWithIdentifier("TeacherFavoriteCellIdentifier")
+            cell = tableView.dequeueReusableCell(withIdentifier: "TeacherFavoriteCellIdentifier")
 
             var text = teacher.title
-            let texts = text!.componentsSeparatedByString(" ")
+            let texts = text!.components(separatedBy: " ")
 
             if texts.count > 2 {
 
-                let first = String(texts[1].characters.prefix(1)).capitalizedString
-                let second = String(texts[2].characters.prefix(1)).capitalizedString
+                let first = String(texts[1].characters.prefix(1)).capitalized
+                let second = String(texts[2].characters.prefix(1)).capitalized
 
                 text = texts[0] + " \(first). \(second)."
             }
 
             cell!.textLabel?.text = text
         } else {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
+            cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         }
 
         return cell!
@@ -146,29 +152,28 @@ class FavoriteViewController: UITableViewController {
 //        return title
 //    }
 
-    override func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let item = favorites![sourceIndexPath.row]
-
-        favorites!.removeAtIndex(sourceIndexPath.row)
-        favorites!.insert(item, atIndex: destinationIndexPath.row)
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if let item = favorites?[sourceIndexPath.row] {
+            favorites?.remove(at: sourceIndexPath.row)
+            favorites?.insert(item, at: destinationIndexPath.row)
+        }
     }
 
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == .Delete) {
-            let item = favorites![indexPath.row]
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if let item = favorites?[indexPath.row], editingStyle == .delete {
             FavoriteManager().removeFavorite(item)
 
-            favorites!.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            favorites?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
             updateState()
         }
     }
 
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 

@@ -13,25 +13,25 @@ class RoundImageView: UIImageView {
 
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
-            self.layer.cornerRadius = cornerRadius
-        }
-    }
-    
-    @IBInspectable var borderWidth: CGFloat = 0 {
-        didSet {
-            self.layer.borderWidth = borderWidth
-        }
-    }
-    
-    @IBInspectable var borderColor: UIColor = UIColor.whiteColor() {
-        didSet {
-            self.layer.borderColor = borderColor.CGColor
+            layer.cornerRadius = cornerRadius
         }
     }
 
-    @IBInspectable var angle: Double = 0{
+    @IBInspectable var borderWidth: CGFloat = 0 {
         didSet {
-            self.transform = CGAffineTransformMakeRotation(CGFloat((angle) * M_PI / 180.0));
+            layer.borderWidth = borderWidth
+        }
+    }
+
+    @IBInspectable var borderColor: UIColor = UIColor.white {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+        }
+    }
+
+    @IBInspectable var angle: Double = 0 {
+        didSet {
+            transform = CGAffineTransform(rotationAngle: CGFloat(angle * Double.pi / 180.0))
         }
     }
 

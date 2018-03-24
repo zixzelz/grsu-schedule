@@ -17,33 +17,33 @@ class ListOfTeachersViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.registerNib(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
-        self.refreshControl!.addTarget(self, action: #selector(ListOfTeachersViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        tableView.register(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
+        refreshControl!.addTarget(self, action: #selector(ListOfTeachersViewController.refresh(_:)), for: UIControlEvents.valueChanged)
 
         fetchData(animated: true)
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Flurry.logEvent("List Of Teachers")
     }
 
-    func fetchData(useCache: Bool = true, animated: Bool) {
+    func fetchData(_ useCache: Bool = true, animated: Bool) {
         
-        if !refreshControl!.refreshing {
+        if !refreshControl!.isRefreshing {
             setNeedShowRefreshControl()
         }
         
-        let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
+        let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
         TeachersService().getTeachers(cache, completionHandler: { [weak self] result in
 
             guard let strongSelf = self else { return }
             
             switch result {
-            case .Success(let items):
+            case .success(let items):
                 strongSelf.searchDataSource.items = items
                 strongSelf.teacherSections = strongSelf.prepareDataWithTeachers(items)
-            case .Failure(let error):
+            case .failure(let error):
                 strongSelf.teacherSections = [[TeacherInfoEntity]]()
 
                 Flurry.logError(error, errId: "ListOfTeachersViewController")
@@ -56,15 +56,15 @@ class ListOfTeachersViewController: UITableViewController {
         })
     }
 
-    func refresh(sender: AnyObject) {
+    @objc func refresh(_ sender: AnyObject) {
         fetchData(false, animated: true)
     }
 
-    func prepareDataWithTeachers(items: [TeacherInfoEntity]) -> [[TeacherInfoEntity]] {
+    func prepareDataWithTeachers(_ items: [TeacherInfoEntity]) -> [[TeacherInfoEntity]] {
         let theCollation = RYRussianIndexedCollation()
 
         let highSection = theCollation.sectionIndexTitles.count
-        var sections = [[TeacherInfoEntity]](count: highSection, repeatedValue: [TeacherInfoEntity]())
+        var sections = [[TeacherInfoEntity]](repeating: [TeacherInfoEntity](), count: highSection)
 
         for item in items {
             let sectionIndex = theCollation.sectionForObject(item.title)
@@ -73,26 +73,26 @@ class ListOfTeachersViewController: UITableViewController {
         return sections
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         var teacher: TeacherInfoEntity?
         let cell = sender as! UITableViewCell
-        if let indexPath = tableView.indexPathForCell(cell) {
+        if let indexPath = tableView.indexPath(for: cell) {
             teacher = teacherSections![indexPath.section][indexPath.row]
         } else {
-            if let indexPath = searchDataSource.searchDisplayController.searchResultsTableView.indexPathForCell(cell) {
+            if let indexPath = searchDataSource.searchDisplayController.searchResultsTableView.indexPath(for: cell) {
                 teacher = searchDataSource.searcheArray![indexPath.row]
             }
         }
 
         if (segue.identifier == "TeacherInfoIdentifier") {
-            let viewController = segue.destinationViewController as! TeacherInfoViewController
+            let viewController = segue.destination as! TeacherInfoViewController
             viewController.teacherInfo = teacher
 
         } else if (segue.identifier == "SchedulePageIdentifier") {
             let weeks = DateManager.scheduleWeeks()
 
-            let viewController = segue.destinationViewController as! TeacherSchedulesPageViewController
+            let viewController = segue.destination as! TeacherSchedulesPageViewController
             viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
             viewController.possibleWeeks = weeks
             viewController.teacher = teacher
@@ -100,30 +100,30 @@ class ListOfTeachersViewController: UITableViewController {
 
     }
     
-    func showMessage(title: String) {
+    func showMessage(_ title: String) {
         
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Destructive, handler: nil))
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 
     // MARK: - refresh Control
     
-    private var shouldShowRefreshControl: Bool = false
+    fileprivate var shouldShowRefreshControl: Bool = false
     
-    private func setNeedShowRefreshControl() {
+    fileprivate func setNeedShowRefreshControl() {
         shouldShowRefreshControl = true
         showRefreshControlIfNeeded()
     }
     
     func showRefreshControlIfNeeded() {
         
-        if !refreshControl!.refreshing {
+        if !refreshControl!.isRefreshing {
             
-            let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(0.2 * Double(NSEC_PER_SEC)))
-            dispatch_after(dispatchTime, dispatch_get_main_queue(), { [weak self] _ in
-                guard let strongSelf = self where  strongSelf.shouldShowRefreshControl else { return }
+            let dispatchTime: DispatchTime = DispatchTime.now() + 0.2
+            DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: { [weak self] in
+                guard let strongSelf = self,  strongSelf.shouldShowRefreshControl else { return }
                 
                 strongSelf.refreshControl!.beginRefreshing()
                 strongSelf.scrollToTop()
@@ -133,12 +133,12 @@ class ListOfTeachersViewController: UITableViewController {
     
     func scrollToTop() {
         let top = self.tableView.contentInset.top
-        self.tableView.contentOffset = CGPointMake(0, -top)
+        self.tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 
     // MARK: - UITableViewDataSource
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
 
         guard let sections = teacherSections else { return 0 }
         
@@ -146,43 +146,43 @@ class ListOfTeachersViewController: UITableViewController {
         return count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let sections = teacherSections where sections.count > 0 else { return 1 }
+        guard let sections = teacherSections, sections.count > 0 else { return 1 }
 
         let count = sections[section].count
         return count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var cell: UITableViewCell
 
-        guard let sections = teacherSections where sections.count > 0 else {
+        guard let sections = teacherSections, sections.count > 0 else {
 
-            cell = tableView.dequeueReusableCellWithIdentifier("EmptyCellIdentifier")!
+            cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCellIdentifier")!
             return cell
         }
 
         let teacher = sections[indexPath.section][indexPath.row]
 
-        cell = tableView.dequeueReusableCellWithIdentifier("TeacherCellIdentifier")!
+        cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCellIdentifier")!
         cell.textLabel?.text = teacher.title
 
         return cell
     }
 
-    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         return RYRussianIndexedCollation().sectionIndexTitles.map { "\($0)" }
     }
 
-    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return RYRussianIndexedCollation().sectionForSectionIndexTitleAtIndex(index)
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        guard let sections = teacherSections where sections.count > section && sections[section].count > 0 else {
+        guard let sections = teacherSections, sections.count > section && sections[section].count > 0 else {
             return nil
         }
         

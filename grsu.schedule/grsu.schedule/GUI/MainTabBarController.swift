@@ -15,27 +15,27 @@ struct Notification {
 
 class MainTabBarController: RAMAnimatedTabBarController {
 
-    private var originalViewControllers: [UIViewController]?
+    fileprivate var originalViewControllers: [UIViewController]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         originalViewControllers = viewControllers
-        updateState(NSUserDefaults.student)
+        updateState(UserDefaults.student)
 
         setup()
     }
 
-    private func setup() {
+    fileprivate func setup() {
 
-        NSNotificationCenter.defaultCenter().addObserverForName(Notification.authenticationStateChanged, object: nil, queue: nil) { [weak self] notification in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notification.authenticationStateChanged), object: nil, queue: nil) { [weak self] notification in
 
             let student = notification.object as? Student
             self?.updateState(student)
         }
     }
 
-    private func updateState(student: Student?) {
+    fileprivate func updateState(_ student: Student?) {
 
         var newTabs = originalViewControllers
 

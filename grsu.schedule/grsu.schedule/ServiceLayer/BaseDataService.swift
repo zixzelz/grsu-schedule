@@ -6,44 +6,43 @@
 //  Copyright (c) 2014 Ruslan Maslouski. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-enum ServiceResult<T, Error: ErrorType> {
+enum ServiceResult<T, Err: Error> {
 
-    case Success(T)
-    case Failure(Error)
+    case success(T)
+    case failure(Err)
 }
 
-typealias ResumeRequestCompletionHandlet = ServiceResult<[String: AnyObject], NSError> -> ()
+typealias ResumeRequestCompletionHandlet = (ServiceResult<[String: AnyObject], ServiceError>) -> ()
 
 class BaseDataService: NSObject {
 
-    class func resumeRequest(path: String, queryItems: String?, completionHandler: ResumeRequestCompletionHandlet) -> NSURLSessionDataTask {
-        let session = URLSession()
+    class func resumeRequest(_ path: String, queryItems: String?, completionHandler: @escaping ResumeRequestCompletionHandlet) -> URLSessionDataTask {
+        let session = urlSession()
 
-        let url = NSURL(scheme: UrlScheme, host: UrlHost, path: path)
-        let components = NSURLComponents(URL: url!, resolvingAgainstBaseURL: true)
+        var components = URLComponents(string: UrlHost + path)
         components?.query = queryItems
 
-        let request = NSURLRequest(URL: components!.URL!)
+        let request = URLRequest(url: components!.url!)
 
-        let task = session.dataTaskWithRequest(request) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = session.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
 
             if let error = error {
 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    completionHandler(.Failure(error))
+                DispatchQueue.main.async(execute: { () -> Void in
+                    completionHandler(.failure(.networkError(error: error)))
                 })
                 return
             }
 
-            let json = try? NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+            let json = try? JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
             let responseDict = json as? [String: AnyObject] ?? [String: AnyObject]()
 
-            NSLog("response: %@", NSString(data: data!, encoding: NSUTF8StringEncoding)!)
+            NSLog("response: %@", NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!)
 
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completionHandler(.Success(responseDict))
+            DispatchQueue.main.async(execute: { () -> Void in
+                completionHandler(.success(responseDict))
             })
         }
 
@@ -51,14 +50,14 @@ class BaseDataService: NSObject {
         return task
     }
 
-    class func URLSession() -> NSURLSession {
-        let queue = NSOperationQueue();
+    class func urlSession() -> Foundation.URLSession {
+        let queue = OperationQueue()
         queue.name = "com.schedule.queue"
 
-        let sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+        let sessionConfig = URLSessionConfiguration.default
         sessionConfig.timeoutIntervalForRequest = 30
 
-        return NSURLSession(configuration: sessionConfig)
+        return URLSession(configuration: sessionConfig)
     }
 
 }

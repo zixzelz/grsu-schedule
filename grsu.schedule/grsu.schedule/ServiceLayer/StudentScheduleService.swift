@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias StudentScheduleCompletionHandlet = ServiceResult<[LessonScheduleEntity], ServiceError> -> Void
+typealias StudentScheduleCompletionHandlet = (ServiceResult<[LessonScheduleEntity], ServiceError>) -> Void
 
 class ScheduleService {
 
@@ -21,30 +21,30 @@ class ScheduleService {
         networkService = NetworkService(localService: localService)
     }
 
-    func getStudentSchedule(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy = .CachedElseLoad, completionHandler: StudentScheduleCompletionHandlet) {
+    func getStudentSchedule(_ group: GroupsEntity, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping StudentScheduleCompletionHandlet) {
 
         let query = StudentScheduleQuery(group: group, dateStart: dateStart, dateEnd: dateEnd)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
     }
 
-    func getMySchedule(studentId: String, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy = .CachedElseLoad, completionHandler: StudentScheduleCompletionHandlet) {
+    func getMySchedule(_ studentId: String, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping StudentScheduleCompletionHandlet) {
 
         let query = MyScheduleQuery(studentId: studentId, dateStart: dateStart, dateEnd: dateEnd)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
     }
 
-    func getTeacherSchedule(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy = .CachedElseLoad, completionHandler: StudentScheduleCompletionHandlet) {
+    func getTeacherSchedule(_ teacher: TeacherInfoEntity, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping StudentScheduleCompletionHandlet) {
 
         let query = TeacherScheduleQuery(teacher: teacher, dateStart: dateStart, dateEnd: dateEnd)
         networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
     }
 
-    func cleanCache(completionHandler: dispatch_block_t? = nil) {
+    func cleanCache(_ completionHandler: (() -> ())? = nil) {
 
         let query = CleanScheduleQuery()
 
         localService.cleanCache(query) { (result) in
-            if case let .Failure(error) = result {
+            if case let .failure(error) = result {
                 assertionFailure("cleanCache error: \(error)")
             }
             completionHandler?()
@@ -56,36 +56,36 @@ class MyScheduleQuery: NetworkServiceQueryType {
     //http://api.grsu.by/1.x/app1/getGroupSchedule?studentId=130569
 
     let studentId: String
-    let dateStart: NSDate
-    let dateEnd: NSDate
+    let dateStart: Date
+    let dateEnd: Date
 
-    init(studentId: String, dateStart: NSDate, dateEnd: NSDate) {
+    init(studentId: String, dateStart: Date, dateEnd: Date) {
         self.studentId = studentId
         self.dateStart = dateStart
         self.dateEnd = dateEnd
     }
 
     var queryInfo: ScheduleQueryInfo {
-        return .My(studentId: studentId)
+        return .my(studentId: studentId)
     }
 
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(isTeacherSchedule == NO) && (userId == %@) && (date >= %@) && (date <= %@)", studentId, dateStart, dateEnd)
+        return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.isTeacherSchedule)) == NO) && (\(#keyPath(LessonScheduleEntity.userId)) == %@) && (\(#keyPath(LessonScheduleEntity.date)) >= %@) && (\(#keyPath(LessonScheduleEntity.date)) <= %@)", studentId, dateStart as CVarArg, dateEnd as CVarArg)
     }
 
-    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "startTime", ascending: true)]
+    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "\(#keyPath(LessonScheduleEntity.startTime))", ascending: true)]
 
     // MARK - NetworkServiceQueryType
 
-    var path: String = "/getGroupSchedule"
+    var path: String = UrlHost + "/getGroupSchedule"
 
     var method: NetworkServiceMethod = .GET
 
     var parameters: [String: AnyObject]? {
 
-        return ["studentId": studentId,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
+        return ["studentId": studentId as AnyObject,
+            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2) as AnyObject,
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2) as AnyObject]
     }
 
 }
@@ -93,36 +93,36 @@ class MyScheduleQuery: NetworkServiceQueryType {
 class StudentScheduleQuery: NetworkServiceQueryType {
 
     let group: GroupsEntity
-    let dateStart: NSDate
-    let dateEnd: NSDate
+    let dateStart: Date
+    let dateEnd: Date
 
-    init(group: GroupsEntity, dateStart: NSDate, dateEnd: NSDate) {
+    init(group: GroupsEntity, dateStart: Date, dateEnd: Date) {
         self.group = group
         self.dateStart = dateStart
         self.dateEnd = dateEnd
     }
 
     var queryInfo: ScheduleQueryInfo {
-        return .Student(group: group)
+        return .student(group: group)
     }
 
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(isTeacherSchedule == NO) && (userId == NIL) && (ANY groups == %@) && (date >= %@) && (date <= %@)", group, dateStart, dateEnd)
+        return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.isTeacherSchedule)) == NO) && (\(#keyPath(LessonScheduleEntity.userId)) == NIL) && (ANY \(#keyPath(LessonScheduleEntity.groups)) == %@) && (\(#keyPath(LessonScheduleEntity.date)) >= %@) && (\(#keyPath(LessonScheduleEntity.date)) <= %@)", group, dateStart as CVarArg, dateEnd as CVarArg)
     }
 
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "startTime", ascending: true)]
 
     // MARK - NetworkServiceQueryType
 
-    var path: String = "/getGroupSchedule"
+    var path: String = UrlHost + "/getGroupSchedule"
 
     var method: NetworkServiceMethod = .GET
 
     var parameters: [String: AnyObject]? {
 
-        return ["groupId": group.id,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
+        return ["groupId": group.id as AnyObject,
+            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2) as AnyObject,
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2) as AnyObject]
     }
 
 }
@@ -130,36 +130,36 @@ class StudentScheduleQuery: NetworkServiceQueryType {
 class TeacherScheduleQuery: NetworkServiceQueryType {
 
     let teacher: TeacherInfoEntity
-    let dateStart: NSDate
-    let dateEnd: NSDate
+    let dateStart: Date
+    let dateEnd: Date
 
-    init(teacher: TeacherInfoEntity, dateStart: NSDate, dateEnd: NSDate) {
+    init(teacher: TeacherInfoEntity, dateStart: Date, dateEnd: Date) {
         self.teacher = teacher
         self.dateStart = dateStart
         self.dateEnd = dateEnd
     }
 
     var queryInfo: ScheduleQueryInfo {
-        return .Teacher(teacher: teacher)
+        return .teacher(teacher: teacher)
     }
 
     var predicate: NSPredicate? {
-        return NSPredicate(format: "(isTeacherSchedule == YES) && (ANY teacher == %@) && (date >= %@) && (date <= %@)", teacher, dateStart, dateEnd)
+        return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.isTeacherSchedule)) == YES) && (ANY \(#keyPath(LessonScheduleEntity.teacher)) == %@) && (\(#keyPath(LessonScheduleEntity.date)) >= %@) && (\(#keyPath(LessonScheduleEntity.date)) <= %@)", teacher, dateStart as CVarArg, dateEnd as CVarArg)
     }
 
-    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "date", ascending: true), NSSortDescriptor(key: "startTime", ascending: true)]
+    var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "\(#keyPath(LessonScheduleEntity.date))", ascending: true), NSSortDescriptor(key: "\(#keyPath(LessonScheduleEntity.startTime))", ascending: true)]
 
     // MARK - NetworkServiceQueryType
 
-    var path: String = "/getTeacherSchedule"
+    var path: String = UrlHost + "/getTeacherSchedule"
 
     var method: NetworkServiceMethod = .GET
 
     var parameters: [String: AnyObject]? {
 
-        return ["teacherId": teacher.id,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
+        return ["teacherId": teacher.id as AnyObject,
+            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2) as AnyObject,
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2) as AnyObject]
     }
 
 }
@@ -168,13 +168,13 @@ class CleanScheduleQuery: LocalServiceQueryType {
 
     var predicate: NSPredicate? {
 
-        let monthTimeInterval: NSTimeInterval = 60 * 60 * 24 * 7
-        let dateEnd = NSDate(timeIntervalSinceNow: -monthTimeInterval)
-        return NSPredicate(format: "(date <= %@)", dateEnd)
+        let monthTimeInterval: TimeInterval = 60 * 60 * 24 * 7
+        let dateEnd = Date(timeIntervalSinceNow: -monthTimeInterval)
+        return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.date)) <= %@)", dateEnd as CVarArg)
     }
 
     var queryInfo: ScheduleQueryInfo {
-        return .My(studentId: "")
+        return .my(studentId: "")
     }
 
     var sortBy: [NSSortDescriptor]? = nil

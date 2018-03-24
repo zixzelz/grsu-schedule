@@ -11,20 +11,20 @@ import Flurry_iOS_SDK
 
 class StudentWeekSchedulesViewController: WeekSchedulesViewController {
 
-    private var group: GroupsEntity?
-    private var studentId: String?
+    fileprivate var group: GroupsEntity?
+    fileprivate var studentId: String?
 
-    func configureWithStudent(studentId: String, dateScheduleQuery: DateScheduleQuery) {
+    func configureWithStudent(_ studentId: String, dateScheduleQuery: DateScheduleQuery) {
         self.studentId = studentId
         self.dateScheduleQuery = dateScheduleQuery
     }
 
-    func configureWithGroup(group: GroupsEntity, dateScheduleQuery: DateScheduleQuery) {
+    func configureWithGroup(_ group: GroupsEntity, dateScheduleQuery: DateScheduleQuery) {
         self.group = group
         self.dateScheduleQuery = dateScheduleQuery
     }
 
-    override func fetchData(useCache: Bool = true, animated: Bool) {
+    override func fetchData(_ useCache: Bool = true, animated: Bool) {
         super.fetchData(useCache, animated: animated)
 
         guard let startWeekDate = dateScheduleQuery?.startWeekDate, let endWeekDate = dateScheduleQuery?.endWeekDate else {
@@ -32,15 +32,15 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             return
         }
 
-        let cache: CachePolicy = useCache ? .CachedElseLoad : .ReloadIgnoringCache
-        fetchDataWithStudentId(startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
+        let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
+        fetchDataWithStudentId(startWeekDate as Date, dateEnd: endWeekDate as Date, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
 
             switch result {
-            case .Success(let items):
+            case .success(let items):
                 strongSelf.setLessonSchedule(items)
-            case .Failure(let error):
+            case .failure(let error):
                 
                 Flurry.logError(error, errId: "StudentWeekSchedulesViewController")
                 strongSelf.showMessage("Ошибка при получении данных")
@@ -49,7 +49,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         }
     }
     
-    private func fetchDataWithStudentId(dateStart: NSDate, dateEnd: NSDate, cache: CachePolicy, completionHandler: StudentScheduleCompletionHandlet) {
+    fileprivate func fetchDataWithStudentId(_ dateStart: Date, dateEnd: Date, cache: CachePolicy, completionHandler: @escaping StudentScheduleCompletionHandlet) {
 
         if let group = group {
             ScheduleService().getStudentSchedule(group, dateStart: dateStart, dateEnd: dateEnd, cache: cache, completionHandler: completionHandler)
@@ -60,15 +60,15 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         }
     }
     
-    override func cellForLesson(lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
+    override func cellForLesson(_ lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
 
         var lCell: StudentLessonScheduleCell
         if (isActive) {
             let identifier = "StudentActiveLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as! StudentActiveLessonScheduleCell
+            lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! StudentActiveLessonScheduleCell
         } else {
             let identifier = "StudentLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCellWithIdentifier(identifier) as! StudentLessonScheduleCell
+            lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! StudentLessonScheduleCell
         }
 
         lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? "Подгруппа: \(lesson.subgroupTitle!)" : ""
@@ -77,13 +77,13 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         return lCell
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if (segue.identifier == "TeacherInfoIdentifier") {
 
             let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
 
-            let viewController = segue.destinationViewController as! TeacherInfoViewController
+            let viewController = segue.destination as! TeacherInfoViewController
             viewController.teacherInfo = lesson.teacher
 
         } else if (segue.identifier == "TeacherSchedulePageIdentifier") {
@@ -91,12 +91,12 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
             let weeks = DateManager.scheduleWeeks()
 
-            let viewController = segue.destinationViewController as! TeacherSchedulesPageViewController
+            let viewController = segue.destination as! TeacherSchedulesPageViewController
             viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
             viewController.possibleWeeks = weeks
             viewController.teacher = lesson.teacher
         } else {
-            super.prepareForSegue(segue, sender: sender)
+            super.prepare(for: segue, sender: sender)
         }
 
     }

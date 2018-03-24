@@ -10,20 +10,26 @@ import UIKit
 
 class TeacherPhotoTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var photoImageView : UIImageView!
-    @IBOutlet private weak var fullNameLabel : UILabel!
-    @IBOutlet private weak var jobTitle : UILabel!
-    
-    override var imageView: UIImageView? { get {
-        return photoImageView
-        }}
+    @IBOutlet fileprivate weak var photoImageView: UIImageView!
+    @IBOutlet fileprivate weak var fullNameLabel: UILabel!
+    @IBOutlet fileprivate weak var jobTitle: UILabel!
 
-    override var textLabel: UILabel? { get {
-        return fullNameLabel
-        }}
-    
-    override var detailTextLabel: UILabel? { get {
-        return jobTitle
-        }}
+    override var imageView: UIImageView? {
+        get {
+            return photoImageView
+        }
+    }
+
+    override var textLabel: UILabel? {
+        get {
+            return fullNameLabel
+        }
+    }
+
+    override var detailTextLabel: UILabel? {
+        get {
+            return jobTitle
+        }
+    }
 
 }

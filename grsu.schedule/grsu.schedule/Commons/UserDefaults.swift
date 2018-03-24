@@ -8,24 +8,24 @@
 
 import UIKit
 
-extension NSUserDefaults {
+extension UserDefaults {
 
-    private static var userDefaults: NSUserDefaults {
-        return standardUserDefaults()
+    fileprivate static var userDefaults: UserDefaults {
+        return standard
     }
 
     static var student: Student? {
         set {
             guard let value = newValue else  {
-                userDefaults.removeObjectForKey("student")
+                userDefaults.removeObject(forKey: "student")
                 return
             }
-            let data = NSKeyedArchiver.archivedDataWithRootObject(value)
-            userDefaults.setObject(data, forKey: "student")
+            let data = NSKeyedArchiver.archivedData(withRootObject: value)
+            userDefaults.set(data, forKey: "student")
         }
         get {
-            guard let data = userDefaults.objectForKey("student") as? NSData else { return nil }
-            return NSKeyedUnarchiver.unarchiveObjectWithData(data) as? Student
+            guard let data = userDefaults.object(forKey: "student") as? Data else { return nil }
+            return NSKeyedUnarchiver.unarchiveObject(with: data) as? Student
         }
     }
 

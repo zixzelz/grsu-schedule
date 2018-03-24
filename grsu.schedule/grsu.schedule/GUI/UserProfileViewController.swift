@@ -10,9 +10,9 @@ import UIKit
 
 class UserProfileViewController: UIViewController {
 
-    @IBOutlet private var fullNameLabel: UILabel?
-    @IBOutlet private var groupTitleLabel: UILabel?
-    @IBOutlet private var studentTypeLabel: UILabel?
+    @IBOutlet fileprivate var fullNameLabel: UILabel?
+    @IBOutlet fileprivate var groupTitleLabel: UILabel?
+    @IBOutlet fileprivate var studentTypeLabel: UILabel?
     
     var student: Student?
     
@@ -25,15 +25,15 @@ class UserProfileViewController: UIViewController {
     }
     
     @IBAction func cancelButtonPressed() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func logoutButtonPressed() {
 
-        NSUserDefaults.student = nil
-        NSNotificationCenter.defaultCenter().postNotificationName(Notification.authenticationStateChanged, object: nil)
+        UserDefaults.student = nil
+        NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.authenticationStateChanged), object: nil)
 
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 }

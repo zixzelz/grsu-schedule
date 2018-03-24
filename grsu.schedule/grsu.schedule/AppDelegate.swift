@@ -16,8 +16,8 @@ import Crashlytics
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         GMSServices.provideAPIKey("AIzaSyBSF-hRXIjTMwnB0vwWcaDX-aq7WSy2pAc")
         setupFlurry()
@@ -26,34 +26,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GSReachability.sharedInstance.startNotifier()
         cdh.setup()
 
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64( 3 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue(), { [weak self] _ in
+        let delayTime = DispatchTime.now() + Double(Int64( 3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: { [weak self] in
             self?.cleanCachejob()
         })
 
         return true
     }
 
-    private func setupFlurry() {
+    fileprivate func setupFlurry() {
 
         var builder = FlurrySessionBuilder()
 //            .withLogLevel(FlurryLogLevelAll)
         .withCrashReporting(false)
 
-        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
-            builder = builder.withAppVersion(version)
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            builder = builder?.withAppVersion(version)
         }
-        Flurry.startSession("9W5R9JWXFCGXR7XJ5R83", withSessionBuilder: builder)
+        Flurry.startSession("9W5R9JWXFCGXR7XJ5R83", with: builder)
     }
 
-    private func cleanCachejob() {
+    fileprivate func cleanCachejob() {
         ScheduleService().cleanCache()
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         self.cdh.saveContext()
     }
 
+    func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+    
+    func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        return true
+    }
+    
     // #pragma mark - Core Data Helper
 
     lazy var cdstore: CoreDataStore = {

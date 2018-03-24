@@ -9,58 +9,78 @@
 import UIKit
 
 class DateManager: NSObject {
- 
+
     class func scheduleWeeks() -> [GSWeekItem] {
-        
-        let date = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        let formatterDate = NSDateFormatter()
-        formatterDate.dateStyle = .ShortStyle
-        
-        var startOfTheWeek : NSDate?
-//        var endOfWeek : NSDate?
-        var interval: NSTimeInterval = 0
-        
-        //TODO: NSCalendarUnit .WeekCalendarUnit
-        calendar.rangeOfUnit(.WeekOfMonth, startDate: &startOfTheWeek, interval: &interval, forDate: date)
-        
-        var items  = [GSWeekItem]()
-        for  _ in 0 ..< 4 {
-            let endOfWeek = startOfTheWeek?.dateByAddingTimeInterval(interval-1)
-            
-            let dateStartString = formatterDate.stringFromDate(startOfTheWeek!)
-            let dateEndString = formatterDate.stringFromDate(endOfWeek!)
-            
+
+        let date = Date()
+        let formatterDate = DateFormatter() // todo: create cache of formatters
+        formatterDate.dateStyle = .short
+
+        var startOfTheWeek: Date = date.dateFromBeginningOfWeek()
+        let interval: TimeInterval = 604800 // 1 weak
+
+        var items = [GSWeekItem]()
+        for _ in 0 ..< 4 {
+            let endOfWeek = startOfTheWeek.addingTimeInterval(interval - 1)
+
+            let dateStartString = formatterDate.string(from: startOfTheWeek)
+            let dateEndString = formatterDate.string(from: endOfWeek)
+
             let value = dateStartString + " - " + dateEndString
-            let gsItem = GSWeekItem(startOfTheWeek!, endOfWeek!, value)
-            
+            let gsItem = GSWeekItem(startOfTheWeek, endOfWeek, value)
+
             items.append(gsItem)
-            startOfTheWeek = startOfTheWeek?.dateByAddingTimeInterval(interval)
+            startOfTheWeek = startOfTheWeek.addingTimeInterval(interval)
         }
         return items
     }
 
-    class func daysBetweenDate(fromDateTime: NSDate, toDateTime: NSDate) -> Int {
-        var fromDate: NSDate?
-        var toDate: NSDate?
-    
-        let calendar = NSCalendar.currentCalendar();
-    
-        calendar.rangeOfUnit(.Day, startDate: &fromDate, interval: nil, forDate: fromDateTime)
-        calendar.rangeOfUnit(.Day, startDate: &toDate, interval: nil, forDate: toDateTime)
-        
-        let difference = calendar.components(.Day, fromDate: fromDate!, toDate: toDate!, options: [])
-        
-        return difference.day;
+    class func daysBetweenDate(_ fromDateTime: Date, toDateTime: Date) -> Int {
+        var fromDate = Date()
+        var toDate = Date()
+
+        let calendar = Calendar.current
+        var interval: TimeInterval = 0
+
+        _ = calendar.dateInterval(of: .day, start: &fromDate, interval: &interval, for: fromDateTime)
+        _ = calendar.dateInterval(of: .day, start: &toDate, interval: &interval, for: toDateTime)
+
+        let difference = (calendar as NSCalendar).components(.day, from: fromDate, to: toDate, options: [])
+
+        return difference.day!
     }
-    
-    class func timeIntervalWithTimeText(time: String) -> Int {
-        
-        let arr = time.componentsSeparatedByString(":")
-        let h : Int = Int(arr[0])!
-        let m : Int = Int(arr[1])!
-        
+
+    class func timeIntervalWithTimeText(_ time: String) -> Int? {
+
+        let arr = time.components(separatedBy: ":")
+        guard
+            let hour = arr.first, let h = Int(hour),
+            let minutes = arr.last, let m = Int(minutes) else {
+                return nil
+        }
+
         return h * 60 + m
     }
 
+}
+
+extension Date {
+    func dateFromBeginningOfWeek() -> Date {
+        let calendar = Calendar.current
+        var startOfTheWeek: Date = Date()
+        var interval: TimeInterval = 0
+        _ = calendar.dateInterval(of: .weekOfMonth, start: &startOfTheWeek, interval: &interval, for: self)
+
+        return startOfTheWeek
+    }
+
+    func startEndOfWeak() -> (Date, Date) {
+        let calendar = Calendar.current
+        var startOfTheWeek: Date = Date()
+        var interval: TimeInterval = 0
+        _ = calendar.dateInterval(of: .weekOfMonth, start: &startOfTheWeek, interval: &interval, for: self)
+        let endOfWeek = startOfTheWeek.addingTimeInterval(interval - 1)
+
+        return (startOfTheWeek, endOfWeek)
+    }
 }

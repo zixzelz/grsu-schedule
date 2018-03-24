@@ -11,32 +11,31 @@ import Flurry_iOS_SDK
 
 class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
 
-    @IBOutlet private var favoriteBarButtonItem: UIButton!
-    private var group: GroupsEntity!
-
+    @IBOutlet fileprivate var favoriteBarButtonItem: UIButton!
+    fileprivate var group: GroupsEntity!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if ( group?.favorite != nil) {
-            self.favoriteBarButtonItem.selected = true
+        if (group?.favorite != nil) {
+            favoriteBarButtonItem.isSelected = true
         }
     }
 
-    func configure(group: GroupsEntity) {
+    func configure(_ group: GroupsEntity) {
         self.group = group
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         Flurry.logEvent("open schedule for group", withParameters: ["group": group!.title])
     }
 
-    @IBAction func favoriteButtonPressed(sender: UIButton) {
-        sender.selected = !sender.selected
+    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
 
         let manager = FavoriteManager()
-        if (sender.selected) {
+        if sender.isSelected {
             manager.addFavoriteWithGroup(group)
         } else {
             manager.removeFavorite(group.favorite!)
@@ -44,16 +43,16 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
     }
 
 
-    override func weekScheduleController(weekIndex: Int? = nil) -> UIViewController {
+    override func weekScheduleController(_ weekIndex: Int? = nil) -> UIViewController {
 
         guard let possibleWeeks = possibleWeeks,
-            dateScheduleQuery = dateScheduleQuery else {
+            let dateScheduleQuery = dateScheduleQuery else {
                 assertionFailure("possibleWeeks or dateScheduleQuery musn't be nil")
                 return UIViewController()
         }
 
         let query = DateScheduleQuery()
-        if (weekIndex != nil) {
+        if weekIndex != nil {
             query.startWeekDate = possibleWeeks[weekIndex!].startDate
             query.endWeekDate = possibleWeeks[weekIndex!].endDate
         } else {
@@ -62,17 +61,17 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         }
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewControllerWithIdentifier("StudentWeekSchedulesViewController") as! StudentWeekSchedulesViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "StudentWeekSchedulesViewController") as! StudentWeekSchedulesViewController
         vc.configureWithGroup(group, dateScheduleQuery: query)
 
         return vc
     }
 
-    override func favoritWillRemoveNotification(notification: NSNotification) {
+    override func favoritWillRemoveNotification(_ notification: Foundation.Notification) {
         let item = notification.userInfo?[GSFavoriteManagerFavoriteObjectKey] as? FavoriteEntity
 
-        if (item?.group == group) {
-            favoriteBarButtonItem.selected = false
+        if item?.group == group {
+            favoriteBarButtonItem.isSelected = false
         }
     }
 
