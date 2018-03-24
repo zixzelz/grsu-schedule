@@ -17,23 +17,23 @@ class MySchedulesPageViewController: BaseSchedulesPageViewController {
         configure()
         super.viewDidLoad()
     }
-    
+
     fileprivate func configure() {
-        
+
         if let student = UserDefaults.student {
-            
+
             let weeks = DateManager.scheduleWeeks()
             let studentId = student.id
             let scheduleQuery = DateScheduleQuery()
             scheduleQuery.startWeekDate = weeks.first!.startDate
             scheduleQuery.endWeekDate = weeks.first!.endDate
-            
+
             dateScheduleQuery = scheduleQuery
             possibleWeeks = weeks
             configure("\(studentId)")
         }
     }
-    
+
     func configure(_ studentId: String) {
         self.studentId = studentId
     }
@@ -44,7 +44,7 @@ class MySchedulesPageViewController: BaseSchedulesPageViewController {
     }
 
     override func weekScheduleController(_ weekIndex: Int? = nil) -> UIViewController {
-        
+
         guard let possibleWeeks = possibleWeeks,
             let dateScheduleQuery = dateScheduleQuery else {
                 assertionFailure("possibleWeeks or dateScheduleQuery musn't be nil")
@@ -52,9 +52,9 @@ class MySchedulesPageViewController: BaseSchedulesPageViewController {
         }
 
         let query = DateScheduleQuery()
-        if (weekIndex != nil) {
-            query.startWeekDate = possibleWeeks[weekIndex!].startDate
-            query.endWeekDate = possibleWeeks[weekIndex!].endDate
+        if let weekIndex = weekIndex {
+            query.startWeekDate = possibleWeeks[weekIndex].startDate
+            query.endWeekDate = possibleWeeks[weekIndex].endDate
         } else {
             query.startWeekDate = dateScheduleQuery.startWeekDate
             query.endWeekDate = dateScheduleQuery.endWeekDate
@@ -66,7 +66,4 @@ class MySchedulesPageViewController: BaseSchedulesPageViewController {
 
         return vc
     }
-    
-    
-    
 }

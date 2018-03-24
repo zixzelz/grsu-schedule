@@ -33,7 +33,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         }
 
         let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
-        fetchDataWithStudentId(startWeekDate as Date, dateEnd: endWeekDate as Date, cache: cache) { [weak self] result -> Void in
+        fetchDataWithStudentId(startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
 
