@@ -39,10 +39,12 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
             guard let week = scheduleOptions.selectedWeek() else { assertionFailure("Week is nil"); return }
             dateScheduleQuery.endWeekDate = week.endDate
 
-            let viewController = segue.destination as! StudentSchedulesPageViewController
-            viewController.dateScheduleQuery = dateScheduleQuery
-            viewController.possibleWeeks = scheduleOptions.weeks
-            viewController.configure(group)
+            if let nc = segue.destination as? UINavigationController,
+                let viewController = nc.topViewController as? StudentSchedulesPageViewController {
+                viewController.dateScheduleQuery = dateScheduleQuery
+                viewController.possibleWeeks = scheduleOptions.weeks
+                viewController.configure(group)
+            }
         }
     }
 

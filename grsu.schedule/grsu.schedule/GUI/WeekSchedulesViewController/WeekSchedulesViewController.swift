@@ -94,7 +94,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
         if let day = day {
             var startDate: NSDate?
-            let calendar = Calendar.current
+            let calendar = Calendar.current// todo avoid of (calendar as NSCalendar)
 
             (calendar as NSCalendar).range(of: .day, start: &startDate, interval: nil, for: Date())
 
@@ -228,8 +228,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             }
             lCell.studyTypeLabel.text = lesson.type
             lCell.studyNameLabel.text = lesson.studyName
-            lCell.startTime = lesson.startTime
-            lCell.stopTime = lesson.stopTime
+            lCell.startTime = Int(lesson.startTime)
+            lCell.stopTime = Int(lesson.stopTime)
 
             cell = lCell
         }

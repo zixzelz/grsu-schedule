@@ -15,8 +15,8 @@ class LessonScheduleEntity: NSManagedObject {
     @NSManaged var date: Date
     @NSManaged var address: String?
     @NSManaged var room: String?
-    @NSManaged var startTime: Int
-    @NSManaged var stopTime: Int
+    @NSManaged var startTime: Int32
+    @NSManaged var stopTime: Int32
     @NSManaged var studyName: String?
     @NSManaged var subgroupTitle: String?
     @NSManaged var type: String?
@@ -95,8 +95,8 @@ extension LessonScheduleEntity: ModelType {
         type = lesson["type"] as? String
         address = lesson["address"] as? String
         room = lesson["room"] as? String
-        startTime = DateManager.timeIntervalWithTimeText(timeStart) ?? 0
-        stopTime = DateManager.timeIntervalWithTimeText(timeEnd) ?? 0
+        startTime = DateManager.timeIntervalWithTimeText(timeStart).map { Int32($0) } ?? 0
+        stopTime = DateManager.timeIntervalWithTimeText(timeEnd).map { Int32($0) } ?? 0
         subgroupTitle = lesson["subgroup"]?["title"] as? String
 
         switch queryInfo {

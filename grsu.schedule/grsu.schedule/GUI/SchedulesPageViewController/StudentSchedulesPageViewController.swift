@@ -12,7 +12,7 @@ import Flurry_iOS_SDK
 class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
 
     @IBOutlet fileprivate var favoriteBarButtonItem: UIButton!
-    fileprivate var group: GroupsEntity!
+    fileprivate var group: GroupsEntity?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,32 +20,43 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
         if (group?.favorite != nil) {
             favoriteBarButtonItem.isSelected = true
         }
+//        favoriteBarButtonItem.isHidden = true
     }
 
     func configure(_ group: GroupsEntity) {
         self.group = group
+//        favoriteBarButtonItem.isHidden = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Flurry.logEvent("open schedule for group", withParameters: ["group": group!.title])
+        if let group = group {
+            Flurry.logEvent("open schedule for group", withParameters: ["group": group.title])
+        }
     }
 
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        guard let group = group else {
+            return
+        }
+
         sender.isSelected = !sender.isSelected
 
         let manager = FavoriteManager()
         if sender.isSelected {
             manager.addFavoriteWithGroup(group)
         } else {
-            manager.removeFavorite(group.favorite!)
+            if let favorite = group.favorite {
+                manager.removeFavorite(favorite)
+            }
         }
     }
 
-
     override func weekScheduleController(_ weekIndex: Int? = nil) -> UIViewController {
 
-        guard let possibleWeeks = possibleWeeks,
+        guard
+            let group = group,
+            let possibleWeeks = possibleWeeks,
             let dateScheduleQuery = dateScheduleQuery else {
                 assertionFailure("possibleWeeks or dateScheduleQuery musn't be nil")
                 return UIViewController()

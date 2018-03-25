@@ -75,6 +75,9 @@
 		2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */; };
 		2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */; };
 		41684273C2A43345FA5A293C /* Pods_grsu_schedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C5B0FF555C30ECD35E9A607 /* Pods_grsu_schedule.framework */; };
+		440F2AE32067EC8A006E3B9A /* GeneralSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */; };
+		440F2AE5206806C3006E3B9A /* SupportStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */; };
+		440F2AE720684651006E3B9A /* FavoriteSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F2AE620684651006E3B9A /* FavoriteSplitViewController.swift */; };
 		442538691E22D1AA00AFED79 /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */; };
 		4425386A1E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */; };
 		4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */; };
@@ -211,6 +214,9 @@
 		2DDC78B11A2B6DA900C1D966 /* DepartmentsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DepartmentsEntity.swift; sourceTree = "<group>"; };
 		2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfTeachersSearchDataSource.swift; sourceTree = "<group>"; };
 		2DF35A941A41F5D80010A2F3 /* RoundImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSplitViewController.swift; sourceTree = "<group>"; };
+		440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SupportStoryboard.storyboard; sourceTree = "<group>"; };
+		440F2AE620684651006E3B9A /* FavoriteSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSplitViewController.swift; sourceTree = "<group>"; };
 		442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayTransitioningDelegate.swift; sourceTree = "<group>"; };
 		4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyViewControllerAnimator.swift; sourceTree = "<group>"; };
@@ -401,6 +407,9 @@
 				2DBD4EAF1A52D09C0055EA3A /* SchedulesPageViewController */,
 				2DBD4EBF1A5AF9660055EA3A /* WeekSchedulesViewController */,
 				2D08261E1A15299D008B504E /* Main.storyboard */,
+				440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */,
+				440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */,
+				440F2AE620684651006E3B9A /* FavoriteSplitViewController.swift */,
 				4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */,
 				2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */,
 				2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */,
@@ -684,6 +693,7 @@
 				2D0825F81A152913008B504E /* LaunchScreen.xib in Resources */,
 				2D0825F51A152913008B504E /* Images.xcassets in Resources */,
 				2D8D59F01A682DDB00EB1884 /* WeekSchedulesHeaderFooterView.xib in Resources */,
+				440F2AE5206806C3006E3B9A /* SupportStoryboard.storyboard in Resources */,
 				2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -798,6 +808,7 @@
 				44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */,
 				447570641E216BB6003C6AD3 /* MenuButton.swift in Sources */,
 				2DBD4EC31A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift in Sources */,
+				440F2AE32067EC8A006E3B9A /* GeneralSplitViewController.swift in Sources */,
 				2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */,
 				4486BC601D837633000DFF58 /* FacultyService.swift in Sources */,
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
@@ -860,6 +871,7 @@
 				4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */,
 				4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
+				440F2AE720684651006E3B9A /* FavoriteSplitViewController.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,

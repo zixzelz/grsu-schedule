@@ -75,17 +75,23 @@ class FavoriteViewController: UITableViewController {
                 if (segue.identifier == "StudentFavoriteSegueIdentifier") {
                     guard let group = item.group else { return }
 
-                    let viewController = segue.destination as! StudentSchedulesPageViewController
-                    viewController.possibleWeeks = week
-                    viewController.dateScheduleQuery = scheduleQuery
-                    viewController.configure(group)
+                    if let nc = segue.destination as? UINavigationController,
+                        let viewController = nc.topViewController as? StudentSchedulesPageViewController {
+
+                        viewController.possibleWeeks = week
+                        viewController.dateScheduleQuery = scheduleQuery
+                        viewController.configure(group)
+                    }
                 }
                 if (segue.identifier == "TeacherFavoriteSegueIdentifier") {
 
-                    let viewController = segue.destination as! TeacherSchedulesPageViewController
-                    viewController.possibleWeeks = week
-                    viewController.dateScheduleQuery = scheduleQuery
-                    viewController.teacher = item.teacher
+                    if let nc = segue.destination as? UINavigationController,
+                        let viewController = nc.topViewController as? TeacherSchedulesPageViewController {
+
+                        viewController.possibleWeeks = week
+                        viewController.dateScheduleQuery = scheduleQuery
+                        viewController.teacher = item.teacher
+                    }
                 }
             }
         }
