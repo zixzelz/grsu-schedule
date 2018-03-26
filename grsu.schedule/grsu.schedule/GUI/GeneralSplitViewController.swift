@@ -19,16 +19,11 @@ class GeneralSplitViewController: UISplitViewController {
 
         delegate = self
 
-//        guard
-//            let navigationController = viewControllers[viewControllers.count - 1] as? UINavigationController,
-//            let navigationItem = navigationController.topViewController?.navigationItem else {
-//                return
-//        }
-//
-//        navigationItem.leftBarButtonItem = displayModeButtonItem
-
         preferredDisplayMode = .allVisible
-        showDetailViewController(defaultDetailVC(), sender: nil)
+
+        if UIDevice.isIPAD {
+            showDetailViewController(defaultDetailVC(), sender: nil)
+        }
     }
 
     private func defaultDetailVC() -> UIViewController {

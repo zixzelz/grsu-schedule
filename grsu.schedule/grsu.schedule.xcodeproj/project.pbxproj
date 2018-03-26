@@ -105,6 +105,7 @@
 		448758451D85F8460076F019 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448758441D85F8460076F019 /* ModelType.swift */; };
 		4487C7F91E1055D600348B26 /* RoundBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4487C7F81E1055D600348B26 /* RoundBorderView.swift */; };
 		4487C7FB1E10560C00348B26 /* DesignableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4487C7FA1E10560C00348B26 /* DesignableTextField.swift */; };
+		448B066420698D5800BF2D42 /* UIDevice+type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448B066320698D5800BF2D42 /* UIDevice+type.swift */; };
 		449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449B4A8D1D887AFA00245E82 /* StudentScheduleService.swift */; };
 		44B64E931E0B159400A09057 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B64E921E0B159400A09057 /* Student.swift */; };
 		44B64E951E0B282500A09057 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B64E941E0B282500A09057 /* AuthenticationViewController.swift */; };
@@ -244,6 +245,7 @@
 		448758441D85F8460076F019 /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		4487C7F81E1055D600348B26 /* RoundBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBorderView.swift; sourceTree = "<group>"; };
 		4487C7FA1E10560C00348B26 /* DesignableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableTextField.swift; sourceTree = "<group>"; };
+		448B066320698D5800BF2D42 /* UIDevice+type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+type.swift"; sourceTree = "<group>"; };
 		449B4A8D1D887AFA00245E82 /* StudentScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentScheduleService.swift; sourceTree = "<group>"; };
 		44B64E921E0B159400A09057 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		44B64E941E0B282500A09057 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -482,6 +484,7 @@
 				4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */,
 				443768511E131C7C00D4EAAA /* UserDefaults.swift */,
 				446622B31E300D98002B9146 /* FlurryExpanded.swift */,
+				448B066320698D5800BF2D42 /* UIDevice+type.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				448758411D8473320076F019 /* GroupsService.swift in Sources */,
 				2D6000E81A1E825D005CB141 /* ScheduleQuery.swift in Sources */,
 				2D12012F1A4D88690065079E /* FacultyOfUniversity.swift in Sources */,
+				448B066420698D5800BF2D42 /* UIDevice+type.swift in Sources */,
 				44D146251D7F84510076BDF0 /* Parsable.swift in Sources */,
 				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
 				4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */,
