@@ -122,7 +122,7 @@ class RYMapView: UIView, RYBaseMapViewProtocol, GMSMapViewDelegate {
             let marker = GMSMarker()
             marker.userData = "\(i)"
             marker.position = mapViewDataSource.locationForMarker(i)
-            marker.appearAnimation = kGMSMarkerAnimationPop
+            marker.appearAnimation = GMSMarkerAnimation.pop
             marker.icon = mapViewDataSource.iconForMarker(i)
             marker.map = mapView
 
