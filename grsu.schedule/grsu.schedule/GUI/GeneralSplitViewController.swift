@@ -50,7 +50,7 @@ extension GeneralSplitViewController: UISplitViewControllerDelegate {
         }
 
         navigationItem.leftBarButtonItem = displayModeButtonItem
-//        navigationItem.leftItemsSupplementBackButton = true
+        navigationItem.leftItemsSupplementBackButton = true
 
         toggleMasterView()
         return false

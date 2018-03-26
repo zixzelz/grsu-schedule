@@ -16,7 +16,7 @@ class ListOfTeachersViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.register(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
         refreshControl!.addTarget(self, action: #selector(ListOfTeachersViewController.refresh(_:)), for: UIControlEvents.valueChanged)
 
@@ -29,16 +29,16 @@ class ListOfTeachersViewController: UITableViewController {
     }
 
     func fetchData(_ useCache: Bool = true, animated: Bool) {
-        
+
         if !refreshControl!.isRefreshing {
             setNeedShowRefreshControl()
         }
-        
+
         let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
         TeachersService().getTeachers(cache, completionHandler: { [weak self] result in
 
             guard let strongSelf = self else { return }
-            
+
             switch result {
             case .success(let items):
                 strongSelf.searchDataSource.items = items
@@ -86,51 +86,57 @@ class ListOfTeachersViewController: UITableViewController {
         }
 
         if (segue.identifier == "TeacherInfoIdentifier") {
-            let viewController = segue.destination as! TeacherInfoViewController
-            viewController.teacherInfo = teacher
+            if let nc = segue.destination as? UINavigationController,
+                let viewController = nc.topViewController as? TeacherInfoViewController {
+
+                viewController.teacherInfo = teacher
+            }
 
         } else if (segue.identifier == "SchedulePageIdentifier") {
-            let weeks = DateManager.scheduleWeeks()
 
-            let viewController = segue.destination as! TeacherSchedulesPageViewController
-            viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks.first!.startDate, endWeekDate: weeks.first!.endDate)
-            viewController.possibleWeeks = weeks
-            viewController.teacher = teacher
+            if let nc = segue.destination as? UINavigationController,
+                let viewController = nc.topViewController as? TeacherSchedulesPageViewController {
+
+                let weeks = DateManager.scheduleWeeks()
+                viewController.dateScheduleQuery = DateScheduleQuery(startWeekDate: weeks[0].startDate, endWeekDate: weeks[0].endDate)
+                viewController.possibleWeeks = weeks
+                viewController.teacher = teacher
+            }
         }
 
     }
-    
+
     func showMessage(_ title: String) {
-        
+
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
-        
+
         present(alert, animated: true, completion: nil)
     }
 
     // MARK: - refresh Control
-    
+
     fileprivate var shouldShowRefreshControl: Bool = false
-    
+
     fileprivate func setNeedShowRefreshControl() {
         shouldShowRefreshControl = true
         showRefreshControlIfNeeded()
     }
-    
+
     func showRefreshControlIfNeeded() {
-        
+
         if !refreshControl!.isRefreshing {
-            
+
             let dispatchTime: DispatchTime = DispatchTime.now() + 0.2
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: { [weak self] in
-                guard let strongSelf = self,  strongSelf.shouldShowRefreshControl else { return }
-                
+                guard let strongSelf = self, strongSelf.shouldShowRefreshControl else { return }
+
                 strongSelf.refreshControl!.beginRefreshing()
                 strongSelf.scrollToTop()
             })
         }
     }
-    
+
     func scrollToTop() {
         let top = self.tableView.contentInset.top
         self.tableView.contentOffset = CGPoint(x: 0, y: -top)
@@ -141,13 +147,13 @@ class ListOfTeachersViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
 
         guard let sections = teacherSections else { return 0 }
-        
+
         let count = sections.count > 0 ? sections.count : 1
         return count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         guard let sections = teacherSections, sections.count > 0 else { return 1 }
 
         let count = sections[section].count
@@ -185,7 +191,7 @@ class ListOfTeachersViewController: UITableViewController {
         guard let sections = teacherSections, sections.count > section && sections[section].count > 0 else {
             return nil
         }
-        
+
         let char = RYRussianIndexedCollation().sectionIndexTitles[section]
         return "\(char)"
     }
