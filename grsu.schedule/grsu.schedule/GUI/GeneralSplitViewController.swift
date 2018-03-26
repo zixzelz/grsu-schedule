@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SecondarySplitViewControllerProtocol {
+    func shouldCollapsed() -> Bool
+}
+
 class GeneralSplitViewController: UISplitViewController {
 
     override func viewDidLoad() {
@@ -37,14 +41,10 @@ extension GeneralSplitViewController: UISplitViewControllerDelegate {
     func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
         guard
             let secondaryAsNavController = secondaryViewController as? UINavigationController,
-            let topAsDetailController = secondaryAsNavController.topViewController else {
-                return false
+            let topAsDetailController = secondaryAsNavController.topViewController as? SecondarySplitViewControllerProtocol else {
+                return true
         }
-//        if topAsDetailController.detailItem == nil {
-//            // Return true to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
-//            return true
-//        }
-        return true
+        return topAsDetailController.shouldCollapsed()
     }
 
     func splitViewController(_ splitViewController: UISplitViewController, showDetail vc: UIViewController, sender: Any?) -> Bool {

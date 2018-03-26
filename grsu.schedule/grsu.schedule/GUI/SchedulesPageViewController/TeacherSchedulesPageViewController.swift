@@ -72,3 +72,9 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
     }
 
 }
+
+extension TeacherSchedulesPageViewController: SecondarySplitViewControllerProtocol {
+    func shouldCollapsed() -> Bool {
+        return teacher == nil
+    }
+}
