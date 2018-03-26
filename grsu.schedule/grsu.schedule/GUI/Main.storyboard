@@ -606,8 +606,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iXJ-s4-tRx">
-                                                    <rect key="frame" x="0.0" y="-20" width="320" height="162"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXJ-s4-tRx">
+                                                    <rect key="frame" x="0.0" y="-20" width="320" height="216"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="vM1-hq-fsF" id="R2B-Yd-kAb"/>
                                                         <outlet property="delegate" destination="vM1-hq-fsF" id="gIX-4j-l2a"/>
@@ -657,8 +657,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bzb-tw-NZG">
-                                                    <rect key="frame" x="0.0" y="-20" width="320" height="162"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bzb-tw-NZG">
+                                                    <rect key="frame" x="0.0" y="-20" width="320" height="216"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="D0L-YK-RZU" id="SfG-kY-c6T"/>
                                                         <outlet property="delegate" destination="D0L-YK-RZU" id="iRe-Cx-zac"/>
@@ -708,8 +708,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1hF-uV-V4w">
-                                                    <rect key="frame" x="0.0" y="-20" width="320" height="162"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hF-uV-V4w">
+                                                    <rect key="frame" x="0.0" y="-20" width="320" height="216"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="ORM-Ue-zgL" id="AM8-N4-juA"/>
                                                         <outlet property="delegate" destination="ORM-Ue-zgL" id="VX1-1I-Ymk"/>
@@ -759,8 +759,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PKC-dL-3Jo">
-                                                    <rect key="frame" x="0.0" y="-20" width="320" height="162"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PKC-dL-3Jo">
+                                                    <rect key="frame" x="0.0" y="-20" width="320" height="216"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="Wjy-a1-pcA" id="rt2-Vb-H0H"/>
                                                         <outlet property="delegate" destination="Wjy-a1-pcA" id="ee5-0L-EHi"/>
@@ -810,8 +810,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="215.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eyT-EO-Sj6">
-                                                    <rect key="frame" x="0.0" y="-20" width="320" height="162"/>
+                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eyT-EO-Sj6">
+                                                    <rect key="frame" x="0.0" y="-20" width="320" height="216"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="taF-jd-LbV" id="eKi-fj-Rus"/>
                                                         <outlet property="delegate" destination="taF-jd-LbV" id="UIX-Ua-clO"/>
