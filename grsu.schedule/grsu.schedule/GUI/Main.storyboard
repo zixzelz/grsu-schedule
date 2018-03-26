@@ -1054,7 +1054,7 @@
                     <navigationItem key="navigationItem" id="6JS-Le-i3f">
                         <view key="titleView" contentMode="scaleToFill" id="emZ-lQ-gnS">
                             <rect key="frame" x="88" y="0.0" width="144" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-gF-cey">
                                     <rect key="frame" x="31" y="8" width="83" height="21"/>
@@ -1074,6 +1074,7 @@
                                 <constraint firstAttribute="centerX" secondItem="20c-bt-Vcl" secondAttribute="centerX" id="DTl-jl-ct0"/>
                                 <constraint firstItem="jeo-gF-cey" firstAttribute="top" secondItem="emZ-lQ-gnS" secondAttribute="top" constant="8" id="FL8-Dy-w2g"/>
                                 <constraint firstAttribute="centerX" secondItem="jeo-gF-cey" secondAttribute="centerX" id="OMY-NG-fI7"/>
+                                <constraint firstItem="20c-bt-Vcl" firstAttribute="top" secondItem="emZ-lQ-gnS" secondAttribute="top" constant="17" id="spw-lr-T86"/>
                             </constraints>
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="done" id="7m3-8E-ve7">
@@ -1543,6 +1544,7 @@
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="centerX" secondItem="LeU-CI-dFd" secondAttribute="centerX" id="C3K-UG-Cq2"/>
+                                <constraint firstItem="dkC-FI-kXE" firstAttribute="top" secondItem="z9U-hY-JSw" secondAttribute="top" constant="17" id="EX9-s3-0mH"/>
                                 <constraint firstItem="LeU-CI-dFd" firstAttribute="top" secondItem="z9U-hY-JSw" secondAttribute="top" constant="8" id="GqB-5d-fgB"/>
                                 <constraint firstAttribute="bottom" secondItem="dkC-FI-kXE" secondAttribute="bottom" constant="-10" id="HJf-29-1yo"/>
                                 <constraint firstAttribute="centerX" secondItem="dkC-FI-kXE" secondAttribute="centerX" id="yiS-cB-UGy"/>
