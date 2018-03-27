@@ -2062,7 +2062,7 @@
         <!--Преподаватели-->
         <scene sceneID="DMK-mh-cRx">
             <objects>
-                <splitViewController id="NCW-AP-qhN" customClass="FavoriteSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController id="NCW-AP-qhN" customClass="GeneralSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Преподаватели" image="Teacher" id="nMs-nY-wkC" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                         <userDefinedRuntimeAttributes>

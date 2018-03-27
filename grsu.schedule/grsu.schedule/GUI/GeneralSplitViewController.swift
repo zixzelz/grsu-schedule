@@ -19,7 +19,7 @@ class GeneralSplitViewController: UISplitViewController {
 
         delegate = self
 
-        preferredDisplayMode = .allVisible
+//        preferredDisplayMode = .allVisible
 
         if UIDevice.isIPAD {
             showDetailViewController(defaultDetailVC(), sender: nil)
@@ -56,9 +56,9 @@ extension GeneralSplitViewController: UISplitViewControllerDelegate {
         return false
     }
 
-    func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
-        return .allVisible
-    }
+//    func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
+//        return .allVisible
+//    }
 }
 
 extension UISplitViewController {

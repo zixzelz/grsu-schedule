@@ -13,11 +13,11 @@ class FavoriteSplitViewController: GeneralSplitViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        preferredDisplayMode = .automatic
+        preferredDisplayMode = .allVisible
     }
 
-    override func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
-        return .automatic
+    func targetDisplayModeForAction(in svc: UISplitViewController) -> UISplitViewControllerDisplayMode {
+        return .allVisible
     }
 
 }
