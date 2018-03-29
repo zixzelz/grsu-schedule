@@ -21,7 +21,7 @@ typealias GSTeacherField = (title: String, type: GSTeacherFieldType, value: Stri
 
 class TeacherInfoViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
-    var teacherInfoFields: [GSTeacherField]!
+    var teacherInfoFields: [GSTeacherField] = []
     var teacherInfo: TeacherInfoEntity? {
         didSet {
             if (teacherInfo?.id == "20200") {
@@ -29,7 +29,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
                 teacherInfo?.skype = "a.karkanica"
             }
 
-            teacherInfoFields = [];
+            teacherInfoFields = []
             if let phone = teacherInfo?.phone, !NSString.isNilOrEmpty(phone) {
                 teacherInfoFields.append(("Сотовый", .phone, phone))
             }
@@ -48,6 +48,8 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
         setupRefreshControl()
         fetchData()
+
+        navigationItem.title = "Преподаватель"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -100,6 +102,10 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         refreshControl?.endRefreshing()
     }
 
+    @IBAction func donePressed() {
+        dismiss(animated: true, completion: nil)
+    }
+
     // MARK: - TeacherFieldAction
 
     lazy var overlayTransitioningDelegate = { return OverlayTransitioningDelegate() }()
@@ -110,7 +116,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         if !MFMailComposeViewController.canSendMail() {
             return
         }
-        
+
         let compose = MFMailComposeViewController()
         compose.mailComposeDelegate = self
         compose.setToRecipients([email])
@@ -189,26 +195,24 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
             cell = tableView.dequeueReusableCell(withIdentifier: "TeacherPhotoCellIdentifier") as! TeacherPhotoTableViewCell
             cell.imageView?.image = photoById(teacherInfo?.id)
-            cell.textLabel?.text = teacherInfo?.title
+            cell.textLabel?.text = teacherInfo?.displayTitle
             cell.detailTextLabel?.text = teacherInfo?.post
         } else {
 
             let cellIdentifier = teacherInfoFields[indexPath.row].type.rawValue
-
             cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as! CustomSubtitleTableViewCell
             cell.textLabel?.text = teacherInfoFields[indexPath.row].title
             cell.detailTextLabel?.text = teacherInfoFields[indexPath.row].value ?? "  "
         }
-
         return cell
     }
 
     func photoById(_ id: String?) -> UIImage? {
-        
+
         guard let id = id, let photo = UIImage(named: "Photo_\(id)") else {
             return UIImage(named: "UserPlaceholderIcon")
         }
-        
+
         return photo
     }
 
@@ -227,7 +231,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
         let field = teacherInfoFields[indexPath.row]
 
-        switch (field.type) {
+        switch field.type {
         case .email: emailButtonPressed(cell)
         case .phone: phoneButtonPressed(cell)
         case .skype: skypeButtonPressed(cell)

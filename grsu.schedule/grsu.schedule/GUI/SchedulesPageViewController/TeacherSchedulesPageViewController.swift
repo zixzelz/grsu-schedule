@@ -24,14 +24,17 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Flurry.logEvent("open schedule for teacher", withParameters: ["teacher": teacher!.title!])
+
+        if let title = teacher?.displayTitle {
+            Flurry.logEvent("open schedule for teacher", withParameters: ["teacher": title])
+        }
     }
 
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
 
         let manager = FavoriteManager()
-        if (sender.isSelected) {
+        if sender.isSelected {
             manager.addFavorite(teacher!)
         } else {
             manager.removeFavorite(teacher!.favorite!)

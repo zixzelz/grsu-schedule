@@ -48,7 +48,7 @@ extension TeacherInfoEntity: ModelType {
     }
 
     func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
-        
+
         if let fullname = json["fullname"] as? String {
             title = fullname
         }
@@ -79,10 +79,28 @@ extension TeacherInfoEntity: ModelType {
         updatedDate = Date()
     }
 
+    var displayTitle: String {
+        if let _title = title {
+            return _title
+        } else {
+            var arr = [String]()
+            if let name = name {
+                arr.append(name)
+            }
+            if let surname = surname {
+                arr.append(surname)
+            }
+            if let patronym = patronym {
+                arr.append(patronym)
+            }
+            return arr.joined(separator: " ")
+        }
+    }
+
 }
 
 extension TeacherInfoEntity: ManagedObjectType {
-    
+
     var identifier: String? {
         return id
     }

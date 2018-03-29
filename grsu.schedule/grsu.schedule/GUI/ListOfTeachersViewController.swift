@@ -67,7 +67,7 @@ class ListOfTeachersViewController: UITableViewController {
         var sections = [[TeacherInfoEntity]](repeating: [TeacherInfoEntity](), count: highSection)
 
         for item in items {
-            let sectionIndex = theCollation.sectionForObject(item.title)
+            let sectionIndex = theCollation.sectionForObject(item.displayTitle)
             sections[sectionIndex].append(item)
         }
         return sections
@@ -173,7 +173,7 @@ class ListOfTeachersViewController: UITableViewController {
         let teacher = sections[indexPath.section][indexPath.row]
 
         cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCellIdentifier")!
-        cell.textLabel?.text = teacher.title
+        cell.textLabel?.text = teacher.displayTitle
 
         return cell
     }

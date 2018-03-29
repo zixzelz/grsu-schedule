@@ -65,7 +65,7 @@ class FavoriteManager: NSObject {
     func addFavorite(_ teacher: TeacherInfoEntity) {
 
         // todo: make enum with type of events in a future
-        Flurry.logEvent("add favorite teacher", withParameters: ["teacher": teacher.title!])
+        Flurry.logEvent("add favorite teacher", withParameters: ["teacher": teacher.displayTitle])
 
         let delegate = UIApplication.shared.delegate as! AppDelegate
         let cdHelper = delegate.cdh

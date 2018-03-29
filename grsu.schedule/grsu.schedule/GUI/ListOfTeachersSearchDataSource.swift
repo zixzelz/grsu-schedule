@@ -28,9 +28,8 @@ class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableVi
         if (cell == nil) {
             cell = UITableViewCell(style: .default, reuseIdentifier: "TeacherSearchCellIdentifier")
             cell?.accessoryType = .detailDisclosureButton
-
         }
-        cell?.textLabel?.text = searcheArray![indexPath.row].title
+        cell?.textLabel?.text = searcheArray![indexPath.row].displayTitle
 
         return cell!
     }
@@ -43,9 +42,12 @@ class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableVi
 
     func searchDisplayController(_ controller: UISearchDisplayController, shouldReloadTableForSearch searchString: String?) -> Bool {
 
-        // TODO: bug
-        let filtredArr = items?.filter { $0.title?.range(of: searchString!, options: .caseInsensitive, range: nil, locale: nil) != nil }
+        guard let searchString = searchString else {
+            searcheArray = items
+            return true
+        }
 
+        let filtredArr = items?.filter { $0.displayTitle.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil }
         searcheArray = filtredArr
 
         return true
