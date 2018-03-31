@@ -12,14 +12,19 @@ import Flurry_iOS_SDK
 class ListOfTeachersViewController: UITableViewController {
 
     @IBOutlet weak var searchDataSource: ListOfTeachersSearchDataSource!
-    var teacherSections: [[TeacherInfoEntity]]?
+    let searchController = CustomSearchController(searchResultsController: nil)
+
+    var originalTeachers: [TeacherInfoEntity]?
+    var teacherSections: [[TeacherInfoEntity]] = []
+    var filteredTeachers: [TeacherInfoEntity]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.register(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
-        refreshControl!.addTarget(self, action: #selector(ListOfTeachersViewController.refresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl?.addTarget(self, action: #selector(ListOfTeachersViewController.refresh(_:)), for: UIControlEvents.valueChanged)
 
+        setupSearchController()
         fetchData(animated: true)
     }
 
@@ -28,9 +33,38 @@ class ListOfTeachersViewController: UITableViewController {
         Flurry.logEvent("List Of Teachers")
     }
 
-    func fetchData(_ useCache: Bool = true, animated: Bool) {
+    private func setupSearchController() {
 
-        if !refreshControl!.isRefreshing {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = "Поиск"
+
+        if #available(iOS 9.1, *) {
+            searchController.obscuresBackgroundDuringPresentation = false
+        }
+
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
+
+        definesPresentationContext = true
+
+        if let navigationBar = navigationController?.navigationBar {
+            navigationBar.barTintColor = UIColor.navigationBar
+        }
+
+        // Fix bug with a magic line between navigationBar and searchBar 🤬
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.subviews.first?.clipsToBounds = true
+        }
+    }
+
+    private func fetchData(_ useCache: Bool = true, animated: Bool) {
+
+        if let refreshControl = refreshControl, !refreshControl.isRefreshing {
             setNeedShowRefreshControl()
         }
 
@@ -41,17 +75,15 @@ class ListOfTeachersViewController: UITableViewController {
 
             switch result {
             case .success(let items):
-                strongSelf.searchDataSource.items = items
+                strongSelf.originalTeachers = items
                 strongSelf.teacherSections = strongSelf.prepareDataWithTeachers(items)
             case .failure(let error):
                 strongSelf.teacherSections = [[TeacherInfoEntity]]()
-
                 Flurry.logError(error, errId: "ListOfTeachersViewController")
-//                strongSelf.showMessage("Ошибка при получении данных")
             }
 
             strongSelf.shouldShowRefreshControl = false
-            strongSelf.refreshControl!.endRefreshing()
+            strongSelf.refreshControl?.endRefreshing()
             strongSelf.tableView.reloadData()
         })
     }
@@ -60,7 +92,7 @@ class ListOfTeachersViewController: UITableViewController {
         fetchData(false, animated: true)
     }
 
-    func prepareDataWithTeachers(_ items: [TeacherInfoEntity]) -> [[TeacherInfoEntity]] {
+    private func prepareDataWithTeachers(_ items: [TeacherInfoEntity]) -> [[TeacherInfoEntity]] {
         let theCollation = RYRussianIndexedCollation()
 
         let highSection = theCollation.sectionIndexTitles.count
@@ -78,7 +110,7 @@ class ListOfTeachersViewController: UITableViewController {
         var teacher: TeacherInfoEntity?
         let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell) {
-            teacher = teacherSections![indexPath.section][indexPath.row]
+            teacher = teacherSections[indexPath.section][indexPath.row]
         } else {
             if let indexPath = searchDataSource.searchDisplayController.searchResultsTableView.indexPath(for: cell) {
                 teacher = searchDataSource.searcheArray![indexPath.row]
@@ -106,7 +138,7 @@ class ListOfTeachersViewController: UITableViewController {
 
     }
 
-    func showMessage(_ title: String) {
+    private func showMessage(_ title: String) {
 
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
@@ -116,61 +148,89 @@ class ListOfTeachersViewController: UITableViewController {
 
     // MARK: - refresh Control
 
-    fileprivate var shouldShowRefreshControl: Bool = false
+    private var shouldShowRefreshControl: Bool = false
 
-    fileprivate func setNeedShowRefreshControl() {
+    private func setNeedShowRefreshControl() {
         shouldShowRefreshControl = true
         showRefreshControlIfNeeded()
     }
 
-    func showRefreshControlIfNeeded() {
+    private func showRefreshControlIfNeeded() {
 
-        if !refreshControl!.isRefreshing {
+        if let refreshControl = refreshControl, !refreshControl.isRefreshing {
 
             let dispatchTime: DispatchTime = DispatchTime.now() + 0.2
             DispatchQueue.main.asyncAfter(deadline: dispatchTime, execute: { [weak self] in
                 guard let strongSelf = self, strongSelf.shouldShowRefreshControl else { return }
 
-                strongSelf.refreshControl!.beginRefreshing()
+                strongSelf.refreshControl?.beginRefreshing()
                 strongSelf.scrollToTop()
             })
         }
     }
 
-    func scrollToTop() {
+    private func scrollToTop() {
         let top = self.tableView.contentInset.top
         self.tableView.contentOffset = CGPoint(x: 0, y: -top)
+    }
+
+    private func filterContentForSearchText(_ searchText: String?) {
+
+        guard let searchText = searchText, searchText.utf8.count > 0 else {
+            filteredTeachers = nil
+            tableView.reloadData()
+            return
+        }
+
+        filteredTeachers = originalTeachers?.filter { $0.displayTitle.lowercased().contains(searchText.lowercased()) }
+        tableView.reloadData()
     }
 
     // MARK: - UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
 
-        guard let sections = teacherSections else { return 0 }
-
-        let count = sections.count > 0 ? sections.count : 1
-        return count
+        let resCount: Int
+        if let count = filteredTeachers?.count {
+            resCount = count > 0 ? 1 : 0
+        } else {
+            if teacherSections.count > 0 {
+                resCount = teacherSections.count
+            } else {
+                resCount = 1
+            }
+        }
+        return resCount
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        guard let sections = teacherSections, sections.count > 0 else { return 1 }
-
-        let count = sections[section].count
-        return count
+        let resCount: Int
+        if let count = filteredTeachers?.count {
+            resCount = count
+        } else {
+            resCount = teacherSections.count > 0 ? teacherSections[section].count : 1
+        }
+        return resCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var cell: UITableViewCell
 
-        guard let sections = teacherSections, sections.count > 0 else {
+        let items: [TeacherInfoEntity]
+        if let filteredTeachers = filteredTeachers {
+            items = filteredTeachers
+        } else {
+            items = teacherSections.count > indexPath.section ? teacherSections[indexPath.section] : []
+        }
 
+        guard items.count > 0 else {
             cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCellIdentifier")!
             return cell
         }
 
-        let teacher = sections[indexPath.section][indexPath.row]
+        let teacher = items[indexPath.row]
 
         cell = tableView.dequeueReusableCell(withIdentifier: "TeacherCellIdentifier")!
         cell.textLabel?.text = teacher.displayTitle
@@ -188,11 +248,19 @@ class ListOfTeachersViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        guard let sections = teacherSections, sections.count > section && sections[section].count > 0 else {
+        guard filteredTeachers == nil, teacherSections.count > section && teacherSections[section].count > 0 else {
             return nil
         }
 
         let char = RYRussianIndexedCollation().sectionIndexTitles[section]
         return "\(char)"
+    }
+}
+
+extension ListOfTeachersViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text)
     }
 }

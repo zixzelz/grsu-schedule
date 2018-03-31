@@ -30,7 +30,7 @@ class MenuButton: UIButton {
         removeConstraints(constraints)
 
         editing = true
-        
+
         addConstraint(NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: imageView, attribute: .centerX, multiplier: 1, constant: 0))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-3-[imageView]", options: .alignAllLeft, metrics: nil, views: dict))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[titleLabel]|", options: .alignAllLeft, metrics: nil, views: dict))
@@ -52,18 +52,18 @@ class MenuButton: UIButton {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        
+
         UIView.animate(withDuration: 0.1, animations: {
             self.imageView?.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        }) 
+        })
     }
-    
+
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        
+
         UIView.animate(withDuration: 0.1, animations: {
             self.imageView?.transform = CGAffineTransform(scaleX: 1, y: 1)
-        }) 
+        })
     }
-    
+
 }

@@ -87,6 +87,10 @@
 		4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4437AE0A1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift */; };
 		443CEC691E087EED002D2EC9 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443CEC681E087EED002D2EC9 /* AuthenticationService.swift */; };
 		443EF03F1E1A902200C8876A /* MySchedulesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443EF03E1E1A902200C8876A /* MySchedulesPageViewController.swift */; };
+		44481071206FC3FA0044023E /* UIColorDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481070206FC3FA0044023E /* UIColorDefault.swift */; };
+		44481073206FC5EE0044023E /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481072206FC5EE0044023E /* CustomSearchController.swift */; };
+		44481075206FD9E00044023E /* TempTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481074206FD9E00044023E /* TempTableViewController.swift */; };
+		4448107820701D6D0044023E /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448107720701D6D0044023E /* TableViewDataSource.swift */; };
 		444822071E10555E00BE1C13 /* RoundBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444822061E10555E00BE1C13 /* RoundBorderButton.swift */; };
 		4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */; };
 		4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */; };
@@ -227,6 +231,10 @@
 		4437AE0A1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceQueryTypeExtension.swift; sourceTree = "<group>"; };
 		443CEC681E087EED002D2EC9 /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		443EF03E1E1A902200C8876A /* MySchedulesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySchedulesPageViewController.swift; sourceTree = "<group>"; };
+		44481070206FC3FA0044023E /* UIColorDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorDefault.swift; sourceTree = "<group>"; };
+		44481072206FC5EE0044023E /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
+		44481074206FD9E00044023E /* TempTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTableViewController.swift; sourceTree = "<group>"; };
+		4448107720701D6D0044023E /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		444822061E10555E00BE1C13 /* RoundBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBorderButton.swift; sourceTree = "<group>"; };
 		4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsableManagedObjectExtension.swift; sourceTree = "<group>"; };
 		4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalizingFirstLetter.swift"; sourceTree = "<group>"; };
@@ -411,6 +419,7 @@
 				2D08261E1A15299D008B504E /* Main.storyboard */,
 				440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */,
 				440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */,
+				44481072206FC5EE0044023E /* CustomSearchController.swift */,
 				440F2AE620684651006E3B9A /* FavoriteSplitViewController.swift */,
 				4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */,
 				2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */,
@@ -422,6 +431,7 @@
 				44B64E961E0B295900A09057 /* MyScheduleViewController.swift */,
 				44B64E941E0B282500A09057 /* AuthenticationViewController.swift */,
 				44BC6F471E146B2B004446F6 /* UserProfileViewController.swift */,
+				44481074206FD9E00044023E /* TempTableViewController.swift */,
 			);
 			path = GUI;
 			sourceTree = "<group>";
@@ -446,6 +456,7 @@
 				447063A41E170B120001C29B /* LoginBarButtonItem.swift */,
 				447063A61E171AAE0001C29B /* UIStoryboard+app.swift */,
 				447570631E216BB6003C6AD3 /* MenuButton.swift */,
+				44481070206FC3FA0044023E /* UIColorDefault.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -559,6 +570,14 @@
 			path = Transitioning;
 			sourceTree = "<group>";
 		};
+		4448107620701D1B0044023E /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				4448107720701D6D0044023E /* TableViewDataSource.swift */,
+			);
+			path = Cocoa;
+			sourceTree = "<group>";
+		};
 		44641E511A5DC5E600AA46BB /* ScheduleCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +593,7 @@
 		44D1461D1D7F84510076BDF0 /* ServiceLayerSDK */ = {
 			isa = PBXGroup;
 			children = (
+				4448107620701D1B0044023E /* Cocoa */,
 				44F0B1201D8221DC0008D91B /* ServiceError.swift */,
 				44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */,
 				448758421D85F8120076F019 /* QueryInfoType.swift */,
@@ -810,6 +830,7 @@
 				44B64E971E0B295900A09057 /* MyScheduleViewController.swift in Sources */,
 				44D5041A1A78147900265A7C /* ReachabilityTableView.swift in Sources */,
 				447570641E216BB6003C6AD3 /* MenuButton.swift in Sources */,
+				44481075206FD9E00044023E /* TempTableViewController.swift in Sources */,
 				2DBD4EC31A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift in Sources */,
 				440F2AE32067EC8A006E3B9A /* GeneralSplitViewController.swift in Sources */,
 				2DBD4E9E1A4EE97D0055EA3A /* LessonLocationMapViewController.swift in Sources */,
@@ -822,6 +843,7 @@
 				2DB1DF451B0FB12100272312 /* RYRussianIndexedCollation.swift in Sources */,
 				2DBD4EC51A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift in Sources */,
 				44B64E951E0B282500A09057 /* AuthenticationViewController.swift in Sources */,
+				44481073206FC5EE0044023E /* CustomSearchController.swift in Sources */,
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,
 				44F0DC991DFB50450048F3AE /* FavoriteViewController.swift in Sources */,
 				2DBD4EBE1A5ADB6C0055EA3A /* TeacherSchedulesPageViewController.swift in Sources */,
@@ -872,10 +894,12 @@
 				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
 				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
+				4448107820701D6D0044023E /* TableViewDataSource.swift in Sources */,
 				4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */,
 				4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
 				440F2AE720684651006E3B9A /* FavoriteSplitViewController.swift in Sources */,
+				44481071206FC3FA0044023E /* UIColorDefault.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
