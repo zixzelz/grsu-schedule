@@ -32,7 +32,7 @@ class CustomSearchController: UISearchController {
         if #available(iOS 11.0, *) {
 
             if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-                textfield.textColor = UIColor.blue
+//                textfield.textColor = UIColor.blue
                 if let backgroundview = textfield.subviews.first {
 
                     backgroundview.backgroundColor = UIColor.white
