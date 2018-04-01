@@ -69,13 +69,13 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         }
     }
 
-    func updatedTableViewInset() {
-//        if let navigationBar = self.navigationController?.navigationBar {
-//            let top = navigationBar.frame.maxY
-//            let inset = UIEdgeInsetsMake(top, 0, 49, 0)
-//            self.tableView.contentInset = inset
-//            self.tableView.scrollIndicatorInsets = inset
-//        }
+    private func updatedTableViewInset() {
+        if let navigationBar = navigationController?.navigationBar {
+            let top = navigationBar.bounds.height + 20
+            let inset = UIEdgeInsetsMake(top, 0, 49, 0)
+            tableView.contentInset = inset
+            tableView.scrollIndicatorInsets = inset
+        }
     }
 
     func reloadData(_ animated: Bool) {
@@ -129,8 +129,8 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     func scrollToTop() {
-        let top = self.tableView.contentInset.top
-        self.tableView.contentOffset = CGPoint(x: 0, y: -top)
+        let top = tableView.contentInset.top
+        tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

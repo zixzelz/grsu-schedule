@@ -1,6 +1,9 @@
 platform:ios,'9.0'
 use_frameworks!
 
+#set_arc_compatibility_flag!
+#inhibit_all_warnings!
+
 target 'grsu.schedule' do
 pod 'GoogleMaps'
 pod 'Flurry-iOS-SDK/FlurrySDK'
