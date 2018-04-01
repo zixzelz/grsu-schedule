@@ -30,6 +30,15 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         let inset = UIEdgeInsetsMake(0, 0, scheduleButton.frame.height, 0)
         scheduleOptions.tableView.contentInset = inset
         scheduleOptions.tableView.scrollIndicatorInsets = inset
+
+        applyLargeTitles()
+    }
+
+    private func applyLargeTitles() {
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -401,6 +401,9 @@
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="f7c-Wi-Car" kind="relationship" relationship="rootViewController" id="nLa-kt-Ka6"/>
@@ -410,7 +413,7 @@
             </objects>
             <point key="canvasLocation" x="-128" y="-180"/>
         </scene>
-        <!--Favorite View Controller-->
+        <!--Избранное-->
         <scene sceneID="q3F-pP-ZN1">
             <objects>
                 <tableViewController id="f7c-Wi-Car" customClass="FavoriteViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
@@ -465,32 +468,13 @@
                             <outlet property="delegate" destination="f7c-Wi-Car" id="Rae-ae-Jv2"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8JE-KY-UyY">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Избранное" id="8JE-KY-UyY">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="ev3-Rb-T5u">
                             <view key="customView" contentMode="scaleToFill" id="AbP-xQ-s2K">
                                 <rect key="frame" x="16" y="5" width="34" height="34"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </view>
                         </barButtonItem>
-                        <view key="titleView" contentMode="scaleToFill" id="Eaq-9o-Glh">
-                            <rect key="frame" x="74.5" y="5.5" width="171" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Избранное" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBR-VE-HkL">
-                                    <rect key="frame" x="0.0" y="0.0" width="171" height="33"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="gBR-VE-HkL" firstAttribute="leading" secondItem="Eaq-9o-Glh" secondAttribute="leading" id="Ffj-kG-2Vc"/>
-                                <constraint firstAttribute="trailing" secondItem="gBR-VE-HkL" secondAttribute="trailing" id="K4o-aQ-aOG"/>
-                                <constraint firstItem="gBR-VE-HkL" firstAttribute="top" secondItem="Eaq-9o-Glh" secondAttribute="top" id="qnB-32-tRM"/>
-                                <constraint firstAttribute="bottom" secondItem="gBR-VE-HkL" secondAttribute="bottom" id="zId-yN-iwt"/>
-                            </constraints>
-                        </view>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="oog-rh-E9B">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
                                 <rect key="frame" x="270" y="5" width="34" height="34"/>
@@ -929,6 +913,9 @@
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -994,7 +981,7 @@
             </objects>
             <point key="canvasLocation" x="-923" y="649"/>
         </scene>
-        <!--Select Schedule Options View Controller-->
+        <!--Фильтр-->
         <scene sceneID="ePF-oU-xAK">
             <objects>
                 <viewController id="fjK-ZB-MlV" customClass="SelectScheduleOptionsViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
@@ -1040,26 +1027,7 @@
                             <constraint firstItem="pD2-Jd-lSc" firstAttribute="top" secondItem="5ye-uu-VaJ" secondAttribute="top" id="tSB-Cg-Wy7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nLQ-r9-nhW">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="bkT-vb-uUY">
-                            <rect key="frame" x="81.5" y="5.5" width="157" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Фильтр" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUl-0A-6wT">
-                                    <rect key="frame" x="0.0" y="0.0" width="157" height="33"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="SUl-0A-6wT" firstAttribute="top" secondItem="bkT-vb-uUY" secondAttribute="top" id="U1K-CV-Hex"/>
-                                <constraint firstItem="SUl-0A-6wT" firstAttribute="leading" secondItem="bkT-vb-uUY" secondAttribute="leading" id="fXF-3Q-4eu"/>
-                                <constraint firstAttribute="bottom" secondItem="SUl-0A-6wT" secondAttribute="bottom" id="flb-jb-4xS"/>
-                                <constraint firstAttribute="trailing" secondItem="SUl-0A-6wT" secondAttribute="trailing" id="z0k-QJ-TxM"/>
-                            </constraints>
-                        </view>
+                    <navigationItem key="navigationItem" title="Фильтр" id="nLQ-r9-nhW">
                         <barButtonItem key="rightBarButtonItem" title="logIn" id="w3w-XD-RgQ" customClass="LoginBarButtonItem" customModule="grsu_schedule" customModuleProvider="target"/>
                     </navigationItem>
                     <connections>
@@ -2183,7 +2151,7 @@
         <image name="UserTabBar" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jeW-CV-Nrg"/>
+        <segue reference="Lt3-w8-xSP"/>
         <segue reference="CXD-Lq-yOm"/>
         <segue reference="oBu-gG-NXI"/>
         <segue reference="fh5-Bf-6CT"/>
