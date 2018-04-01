@@ -133,13 +133,13 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     func scrollToTop() {
-        let top = tableView.contentInset.top
+        let top = tableView.contentInset.top + 10
         tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "LessonLocationIdentifier") {
-            let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
+        if segue.identifier == "LessonLocationIdentifier", let schedules = schedules, let menuCellIndexPath = menuCellIndexPath {
+            let lesson = schedules[menuCellIndexPath.section].lessons[menuCellIndexPath.row - 1]
 
             let viewController = segue.destination as! LessonLocationMapViewController
             viewController.initAddress = lesson.address
