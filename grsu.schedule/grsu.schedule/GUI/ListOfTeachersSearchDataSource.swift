@@ -8,18 +8,30 @@
 
 import UIKit
 
-class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate {
-
-    @IBOutlet var searchDisplayController: UISearchDisplayController!
+class ListOfTeachersResultController: UITableViewController {
 
     var items: [TeacherInfoEntity]?
-    var searcheArray: [TeacherInfoEntity]?
+    var filteredItems: [TeacherInfoEntity]?
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searcheArray?.count ?? 0
+    weak var paretViewController: UIViewController?
+
+    private func filterContentForSearchText(_ searchText: String?) {
+
+        guard let searchText = searchText, searchText.utf8.count > 0 else {
+            filteredItems = nil
+            tableView.reloadData()
+            return
+        }
+
+        filteredItems = items?.filter { $0.displayTitle.lowercased().contains(searchText.lowercased()) }
+        tableView.reloadData()
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredItems?.count ?? 0
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         var cell: UITableViewCell?
 
@@ -29,32 +41,25 @@ class ListOfTeachersSearchDataSource: NSObject, UITableViewDataSource, UITableVi
             cell = UITableViewCell(style: .default, reuseIdentifier: "TeacherSearchCellIdentifier")
             cell?.accessoryType = .detailDisclosureButton
         }
-        cell?.textLabel?.text = searcheArray![indexPath.row].displayTitle
+        cell?.textLabel?.text = filteredItems?[indexPath.row].displayTitle
 
         return cell!
     }
 
-    func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        searchDisplayController.searchContentsController.performSegue(withIdentifier: "TeacherInfoIdentifier", sender: tableView.cellForRow(at: indexPath))
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        paretViewController?.performSegue(withIdentifier: "TeacherInfoIdentifier", sender: tableView.cellForRow(at: indexPath))
     }
 
-    // MARK: - UISearchDisplayDelegate
-
-    func searchDisplayController(_ controller: UISearchDisplayController, shouldReloadTableForSearch searchString: String?) -> Bool {
-
-        guard let searchString = searchString else {
-            searcheArray = items
-            return true
-        }
-
-        let filtredArr = items?.filter { $0.displayTitle.range(of: searchString, options: .caseInsensitive, range: nil, locale: nil) != nil }
-        searcheArray = filtredArr
-
-        return true
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        paretViewController?.performSegue(withIdentifier: "SchedulePageIdentifier", sender: tableView.cellForRow(at: indexPath))
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchDisplayController.searchContentsController.performSegue(withIdentifier: "SchedulePageIdentifier", sender: tableView.cellForRow(at: indexPath))
-    }
+}
 
+extension ListOfTeachersResultController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        filterContentForSearchText(searchBar.text)
+    }
 }
