@@ -12,7 +12,7 @@ class FavoriteViewController: UITableViewController {
 
     @IBOutlet weak var editButton: UIButton!
 
-    var favorites: [FavoriteEntity]?
+    var favorites: [FavoriteEntity] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,9 +56,6 @@ class FavoriteViewController: UITableViewController {
     }
 
     func updateFavoriteOrder() {
-        guard let favorites = favorites else {
-            return
-        }
         for i in 0..<favorites.count {
             favorites[i].order = NSNumber(value: i)
         }
@@ -68,10 +65,6 @@ class FavoriteViewController: UITableViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        guard let favorites = favorites else {
-            return
-        }
 
         if (segue.identifier == "StudentFavoriteSegueIdentifier" || segue.identifier == "TeacherFavoriteSegueIdentifier") {
 
@@ -111,9 +104,6 @@ class FavoriteViewController: UITableViewController {
     }
 
     func updateState() {
-        guard let favorites = favorites else {
-            return
-        }
         editButton.isHidden = favorites.count <= 0
     }
 
@@ -121,7 +111,7 @@ class FavoriteViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return favorites?.count ?? 0
+        return favorites.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,18 +122,18 @@ class FavoriteViewController: UITableViewController {
     func favoriteCell(_ row: Int) -> UITableViewCell {
         var cell: UITableViewCell?
 
-        if let group = favorites![row].group {
+        if let group = favorites[row].group {
 
             cell = tableView.dequeueReusableCell(withIdentifier: "StudentFavoriteCellIdentifier")
             cell!.textLabel?.text = group.title
 
-        } else if let teacher = favorites![row].teacher {
+        } else if let teacher = favorites[row].teacher {
 
             cell = tableView.dequeueReusableCell(withIdentifier: "TeacherFavoriteCellIdentifier")
 
-            var text = teacher.title
-            let texts = text!.components(separatedBy: " ")
+            var text = teacher.displayTitle
 
+            let texts = text.components(separatedBy: " ")
             if texts.count > 2 {
 
                 let first = String(texts[1].characters.prefix(1)).capitalized
@@ -171,17 +161,18 @@ class FavoriteViewController: UITableViewController {
 //    }
 
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        if let item = favorites?[sourceIndexPath.row] {
-            favorites?.remove(at: sourceIndexPath.row)
-            favorites?.insert(item, at: destinationIndexPath.row)
-        }
+        let item = favorites[sourceIndexPath.row]
+        favorites.remove(at: sourceIndexPath.row)
+        favorites.insert(item, at: destinationIndexPath.row)
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if let item = favorites?[indexPath.row], editingStyle == .delete {
+        if editingStyle == .delete {
+            let item = favorites[indexPath.row]
+
             FavoriteManager().removeFavorite(item)
 
-            favorites?.remove(at: indexPath.row)
+            favorites.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             updateState()
         }
