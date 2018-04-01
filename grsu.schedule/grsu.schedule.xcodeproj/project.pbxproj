@@ -93,6 +93,8 @@
 		4448107820701D6D0044023E /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448107720701D6D0044023E /* TableViewDataSource.swift */; };
 		4448107A20713D6B0044023E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448107920713D6A0044023E /* StringExtension.swift */; };
 		444822071E10555E00BE1C13 /* RoundBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444822061E10555E00BE1C13 /* RoundBorderButton.swift */; };
+		444AAD82207184D900F7CF10 /* Parametres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444AAD81207184D900F7CF10 /* Parametres.swift */; };
+		444AAD84207185B500F7CF10 /* LocaleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444AAD83207185B500F7CF10 /* LocaleExtension.swift */; };
 		4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */; };
 		4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */; };
 		44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */; };
@@ -238,6 +240,8 @@
 		4448107720701D6D0044023E /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		4448107920713D6A0044023E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		444822061E10555E00BE1C13 /* RoundBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBorderButton.swift; sourceTree = "<group>"; };
+		444AAD81207184D900F7CF10 /* Parametres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parametres.swift; sourceTree = "<group>"; };
+		444AAD83207185B500F7CF10 /* LocaleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleExtension.swift; sourceTree = "<group>"; };
 		4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsableManagedObjectExtension.swift; sourceTree = "<group>"; };
 		4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalizingFirstLetter.swift"; sourceTree = "<group>"; };
 		44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLessonScheduleCell.swift; sourceTree = "<group>"; };
@@ -318,6 +322,7 @@
 		2D0505C71A1660C200171A2E /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				444AAD81207184D900F7CF10 /* Parametres.swift */,
 				4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */,
 				2D0505CA1A1662DC00171A2E /* BaseDataService.swift */,
 				4437AE0A1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift */,
@@ -499,6 +504,7 @@
 				446622B31E300D98002B9146 /* FlurryExpanded.swift */,
 				448B066320698D5800BF2D42 /* UIDevice+type.swift */,
 				4448107920713D6A0044023E /* StringExtension.swift */,
+				444AAD83207185B500F7CF10 /* LocaleExtension.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -814,6 +820,7 @@
 			files = (
 				44641E5D1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift in Sources */,
 				2D3744FB1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift in Sources */,
+				444AAD84207185B500F7CF10 /* LocaleExtension.swift in Sources */,
 				2DBD4ECB1A5B124C0055EA3A /* LessonScheduleEntity.swift in Sources */,
 				4487C7FB1E10560C00348B26 /* DesignableTextField.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
@@ -842,6 +849,7 @@
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
 				4487C7F91E1055D600348B26 /* RoundBorderView.swift in Sources */,
 				448758431D85F8120076F019 /* QueryInfoType.swift in Sources */,
+				444AAD82207184D900F7CF10 /* Parametres.swift in Sources */,
 				443EF03F1E1A902200C8876A /* MySchedulesPageViewController.swift in Sources */,
 				2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */,
 				2DB1DF451B0FB12100272312 /* RYRussianIndexedCollation.swift in Sources */,

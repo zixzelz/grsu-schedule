@@ -53,7 +53,9 @@ class GroupsQuery: NetworkServiceQueryType {
 
         return ["facultyId": faculty.id,
             "departmentId": department.id,
-            "course": course]
+            "course": course,
+            Parametres.lang.rawValue: Locale.currenLocale
+        ]
     }
 
     var predicate: NSPredicate? {

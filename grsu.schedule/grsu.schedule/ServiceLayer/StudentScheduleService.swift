@@ -85,7 +85,9 @@ class MyScheduleQuery: NetworkServiceQueryType {
 
         return ["studentId": studentId,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
+            Parametres.lang.rawValue: Locale.currenLocale
+        ]
     }
 
 }
@@ -122,7 +124,9 @@ class StudentScheduleQuery: NetworkServiceQueryType {
 
         return ["groupId": group.id,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
+            Parametres.lang.rawValue: Locale.currenLocale
+        ]
     }
 
 }
@@ -159,7 +163,9 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
         return ["teacherId": teacher.id,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
+            Parametres.lang.rawValue: Locale.currenLocale
+        ]
     }
 
 }

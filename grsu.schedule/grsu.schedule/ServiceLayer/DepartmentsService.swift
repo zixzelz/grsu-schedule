@@ -31,7 +31,7 @@ class DepartmentsService {
 class DepartmentsQuery: NetworkServiceQueryType {
 
     var queryInfo: DepartmentsQueryInfo { return .default }
-    
+
     var predicate: NSPredicate? = nil
 
     var sortBy: [NSSortDescriptor]? = [NSSortDescriptor(key: "id", ascending: true)]
@@ -40,6 +40,8 @@ class DepartmentsQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? = nil
+    var parameters: [String: Any]? = [
+        Parametres.lang.rawValue: Locale.currenLocale
+    ]
 
 }

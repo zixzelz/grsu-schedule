@@ -38,7 +38,9 @@ class FacultyQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? = nil
+    var parameters: [String: Any]? = [
+        Parametres.lang.rawValue: Locale.currenLocale
+    ]
 
     var predicate: NSPredicate? = nil
 
