@@ -13,7 +13,6 @@ class ListOfTeachersViewController: UITableViewController {
 
     var originalTeachers: [TeacherInfoEntity]?
     var teacherSections: [[TeacherInfoEntity]] = []
-    var filteredTeachers: [TeacherInfoEntity]?
 
     lazy var searchController: CustomSearchController = {
         return CustomSearchController(searchResultsController: resultsTableController)
@@ -227,7 +226,7 @@ class ListOfTeachersViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
-        guard filteredTeachers == nil, teacherSections.count > section && teacherSections[section].count > 0 else {
+        guard teacherSections.count > section && teacherSections[section].count > 0 else {
             return nil
         }
 
