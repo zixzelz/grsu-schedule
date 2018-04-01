@@ -11,7 +11,9 @@ import UIKit
 
 class CoreDataHelper: NSObject {
 
-    let store: CoreDataStore!
+    private let store: CoreDataStore!
+
+    private static let sharedInstance = CoreDataHelper()
 
     override init() {
 
@@ -23,12 +25,32 @@ class CoreDataHelper: NSObject {
         NotificationCenter.default.addObserver(self, selector: #selector(CoreDataHelper.contextDidSaveContext(_:)), name: NSNotification.Name.NSManagedObjectContextDidSave, object: nil)
     }
 
-    func setup() {
+    private func setup() {
         managedObjectContext.saveIfNeeded()
     }
 
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+
+    static var managedObjectContext: NSManagedObjectContext {
+        return sharedInstance.managedObjectContext
+    }
+
+    static var backgroundContext: NSManagedObjectContext {
+        return sharedInstance.backgroundContext
+    }
+
+    class func saveBackgroundContext() {
+        saveContext(sharedInstance.backgroundContext)
+    }
+
+    class func saveContext(_ context: NSManagedObjectContext) {
+        context.saveIfNeeded()
+    }
+
+    class func convertToMainQueue(_ itemIds: [NSManagedObjectID]) -> [AnyObject] {
+        return sharedInstance.convertToMainQueue(itemIds)
     }
 
     // #pragma mark - Core Data stack
@@ -70,7 +92,7 @@ class CoreDataHelper: NSObject {
         context.saveIfNeeded()
     }
 
-    func saveContext() {
+    func saveBackgroundContext() {
         saveContext(backgroundContext)
     }
 

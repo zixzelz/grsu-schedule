@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
 
         GSReachability.sharedInstance.startNotifier()
-        cdh.setup()
+//        cdh.setup()
 
         let delayTime = DispatchTime.now() + Double(Int64( 3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime, execute: { [weak self] in
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        self.cdh.saveContext()
+        CoreDataHelper.saveBackgroundContext()
     }
 
     func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
@@ -69,10 +69,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return cdstore
     }()
 
-    lazy var cdh: CoreDataHelper = {
-        let cdh = CoreDataHelper()
-        return cdh
-    }()
+//    lazy var cdh: CoreDataHelper = {
+//        let cdh = CoreDataHelper()
+//        return cdh
+//    }()
 
 }
 

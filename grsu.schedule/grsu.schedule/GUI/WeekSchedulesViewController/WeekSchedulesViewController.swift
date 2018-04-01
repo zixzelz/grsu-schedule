@@ -70,11 +70,15 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     }
 
     private func updatedTableViewInset() {
-        if let navigationBar = navigationController?.navigationBar {
-            let top = navigationBar.bounds.height + 20
-            let inset = UIEdgeInsetsMake(top, 0, 49, 0)
-            tableView.contentInset = inset
-            tableView.scrollIndicatorInsets = inset
+
+        if #available(iOS 11.0, *) {
+        } else {
+            if let navigationBar = navigationController?.navigationBar {
+                let top = navigationBar.bounds.height + 20
+                let inset = UIEdgeInsetsMake(top, 0, 49, 0)
+                tableView.contentInset = inset
+                tableView.scrollIndicatorInsets = inset
+            }
         }
     }
 

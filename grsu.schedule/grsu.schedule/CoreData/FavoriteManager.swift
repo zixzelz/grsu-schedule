@@ -17,9 +17,7 @@ class FavoriteManager: NSObject {
 
     func getAllFavorite(_ completionHandler: @escaping (([FavoriteEntity]) -> Void)) {
 
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let cdHelper = delegate.cdh
-        let context = cdHelper.backgroundContext
+        let context = CoreDataHelper.backgroundContext
         context.perform {
 
             let sorter: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
@@ -36,7 +34,7 @@ class FavoriteManager: NSObject {
                 return
             }
             DispatchQueue.main.async {
-                let items = cdHelper.convertToMainQueue(itemIds) as! [FavoriteEntity]
+                let items = CoreDataHelper.convertToMainQueue(itemIds) as! [FavoriteEntity]
                 completionHandler(items)
             }
         }
@@ -45,9 +43,7 @@ class FavoriteManager: NSObject {
     func addFavoriteWithGroup(_ group: GroupsEntity) {
         Flurry.logEvent("add favorite group", withParameters: ["group": group.title])
 
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let cdHelper = delegate.cdh
-        let context = cdHelper.backgroundContext
+        let context = CoreDataHelper.backgroundContext
         context.perform({
 
             let lastOrder = FavoriteManager.getMaxOrder(context)
@@ -58,7 +54,7 @@ class FavoriteManager: NSObject {
             newItem.synchronizeCalendar = false
             newItem.order = NSNumber(value: lastOrder + 1)
 
-            cdHelper.saveContext(context)
+            CoreDataHelper.saveContext(context)
         })
     }
 
@@ -67,9 +63,7 @@ class FavoriteManager: NSObject {
         // todo: make enum with type of events in a future
         Flurry.logEvent("add favorite teacher", withParameters: ["teacher": teacher.displayTitle])
 
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let cdHelper = delegate.cdh
-        let context = cdHelper.backgroundContext
+        let context = CoreDataHelper.backgroundContext
         context.perform({
 
             let lastOrder = FavoriteManager.getMaxOrder(context)
@@ -80,7 +74,7 @@ class FavoriteManager: NSObject {
             newItem.synchronizeCalendar = false
             newItem.order = NSNumber(value: lastOrder + 1)
 
-            cdHelper.saveContext(context)
+            CoreDataHelper.saveContext(context)
         })
     }
 
@@ -94,15 +88,13 @@ class FavoriteManager: NSObject {
 
         NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: GSFavoriteManagerFavoritWillRemoveNotificationKey), object: nil, userInfo: ["GSFavoriteManagerFavoriteObjectKey": item])
 
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let cdHelper = delegate.cdh
-        let context = cdHelper.backgroundContext
+        let context = CoreDataHelper.backgroundContext
         context.perform({
 
             let item_ = context.object(with: item.objectID) as! FavoriteEntity
 
             context.delete(item_)
-            cdHelper.saveContext(context)
+            CoreDataHelper.saveContext(context)
         })
     }
 

@@ -16,8 +16,7 @@ extension NSManagedObjectContext: ManagedObjectContextType {
 extension ManagedObjectType {
 
     public static func managedObjectContext() -> ManagedObjectContextType {
-        let delegate = UIApplication.shared.delegate as! AppDelegate //must be used from main thread
-        return delegate.cdh.backgroundContext
+        return CoreDataHelper.backgroundContext
     }
 }
 
@@ -82,8 +81,7 @@ extension ManagedObjectType {
 
     fileprivate static func convertToMainQueue(_ itemIds: [NSManagedObjectID]) -> [Self] {
 
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let mainContext = delegate.cdh.managedObjectContext
+        let mainContext = CoreDataHelper.managedObjectContext
 
         let items = itemIds.map { mainContext.object(with: $0) } as [AnyObject]
         return items as! [Self]

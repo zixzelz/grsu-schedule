@@ -10,11 +10,11 @@ import UIKit
 
 extension String {
     func capitalizingFirstLetter() -> String {
-        let first = String(characters.prefix(1)).capitalized
-        let other = String(characters.dropFirst())
+        let first = String(self[0]).capitalized
+        let other = dropFirst()
         return first + other
     }
-    
+
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
     }

@@ -59,9 +59,7 @@ class FavoriteViewController: UITableViewController {
         for i in 0..<favorites.count {
             favorites[i].order = NSNumber(value: i)
         }
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let cdHelper = delegate.cdh
-        cdHelper.saveContext(cdHelper.managedObjectContext)
+        CoreDataHelper.saveContext(CoreDataHelper.managedObjectContext)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
