@@ -61,7 +61,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         let group = scheduleOptions.selectedGroup()
         let enabled = group != nil && dateScheduleQuery.startWeekDate != nil
 
-        let backgroundColor = enabled ? UIColor(red: 0.43529409170150757, green: 0.7450980544090271, blue: 0.21176469326019287, alpha: 1) : UIColor.lightGray
+        let backgroundColor = enabled ? UIColor.interaction : UIColor.lightGray
 
         scheduleButton.isEnabled = enabled
         scheduleButton.backgroundColor = backgroundColor
