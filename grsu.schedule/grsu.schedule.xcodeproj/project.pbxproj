@@ -91,6 +91,7 @@
 		44481073206FC5EE0044023E /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481072206FC5EE0044023E /* CustomSearchController.swift */; };
 		44481075206FD9E00044023E /* TempTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481074206FD9E00044023E /* TempTableViewController.swift */; };
 		4448107820701D6D0044023E /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448107720701D6D0044023E /* TableViewDataSource.swift */; };
+		4448107A20713D6B0044023E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448107920713D6A0044023E /* StringExtension.swift */; };
 		444822071E10555E00BE1C13 /* RoundBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444822061E10555E00BE1C13 /* RoundBorderButton.swift */; };
 		4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */; };
 		4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */; };
@@ -235,6 +236,7 @@
 		44481072206FC5EE0044023E /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		44481074206FD9E00044023E /* TempTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTableViewController.swift; sourceTree = "<group>"; };
 		4448107720701D6D0044023E /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		4448107920713D6A0044023E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		444822061E10555E00BE1C13 /* RoundBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBorderButton.swift; sourceTree = "<group>"; };
 		4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsableManagedObjectExtension.swift; sourceTree = "<group>"; };
 		4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalizingFirstLetter.swift"; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				443768511E131C7C00D4EAAA /* UserDefaults.swift */,
 				446622B31E300D98002B9146 /* FlurryExpanded.swift */,
 				448B066320698D5800BF2D42 /* UIDevice+type.swift */,
+				4448107920713D6A0044023E /* StringExtension.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
 				44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */,
+				4448107A20713D6B0044023E /* StringExtension.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* DaySchedule.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,

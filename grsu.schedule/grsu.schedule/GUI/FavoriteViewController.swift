@@ -136,10 +136,10 @@ class FavoriteViewController: UITableViewController {
             let texts = text.components(separatedBy: " ")
             if texts.count > 2 {
 
-                let first = String(texts[1].characters.prefix(1)).capitalized
-                let second = String(texts[2].characters.prefix(1)).capitalized
+                let first = String(texts[0][0]).capitalized
+                let second = String(texts[2][0]).capitalized
 
-                text = texts[0] + " \(first). \(second)."
+                text = texts[1] + " \(first). \(second)."
             }
 
             cell!.textLabel?.text = text
