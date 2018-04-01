@@ -49,11 +49,11 @@ class GroupsQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: AnyObject]? {
+    var parameters: [String: Any]? {
 
-        return ["facultyId": faculty.id as AnyObject,
-            "departmentId": department.id as AnyObject,
-            "course": course as AnyObject]
+        return ["facultyId": faculty.id,
+            "departmentId": department.id,
+            "course": course]
     }
 
     var predicate: NSPredicate? {

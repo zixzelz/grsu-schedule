@@ -38,7 +38,7 @@ class FacultyQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: AnyObject]? = nil
+    var parameters: [String: Any]? = nil
 
     var predicate: NSPredicate? = nil
 

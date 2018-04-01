@@ -81,11 +81,11 @@ class MyScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: AnyObject]? {
+    var parameters: [String: Any]? {
 
-        return ["studentId": studentId as AnyObject,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2) as AnyObject,
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2) as AnyObject]
+        return ["studentId": studentId,
+            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
     }
 
 }
@@ -118,11 +118,11 @@ class StudentScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: AnyObject]? {
+    var parameters: [String: Any]? {
 
-        return ["groupId": group.id as AnyObject,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2) as AnyObject,
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2) as AnyObject]
+        return ["groupId": group.id,
+            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
     }
 
 }
@@ -155,11 +155,11 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: AnyObject]? {
+    var parameters: [String: Any]? {
 
-        return ["teacherId": teacher.id as AnyObject,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2) as AnyObject,
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2) as AnyObject]
+        return ["teacherId": teacher.id,
+            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
+            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2)]
     }
 
 }
