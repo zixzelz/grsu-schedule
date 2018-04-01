@@ -33,7 +33,8 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
 
             switch result {
             case .success(let student): strongSelf.authenticationCompleted(student)
-            case .failure(_): strongSelf.showMessage("Неверное имя пользователя")
+            case .failure(_):
+                strongSelf.showMessage("Неверное имя пользователя")
             }
         }
     }

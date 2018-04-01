@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
 
         GSReachability.sharedInstance.startNotifier()
-//        cdh.setup()
+
+        // workaround to store DB in main queue for first time
+        CoreDataHelper.managedObjectContext.saveIfNeeded()
 
         let delayTime = DispatchTime.now() + Double(Int64( 3 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime, execute: { [weak self] in

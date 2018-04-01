@@ -46,7 +46,9 @@ class NetworkService<T: ModelType> {
                 }
                 completionHandler(.success(item))
             case .failure(let error):
-                completionHandler(.failure(error))
+                DispatchQueue.main.async {
+                    completionHandler(.failure(error))
+                }
             }
         }
     }
@@ -67,7 +69,9 @@ class NetworkService<T: ModelType> {
                     case .success:
                         self.localService.featch(query, completionHandler: completionHandler)
                     case .failure(let error):
-                        completionHandler(.failure(error))
+                        DispatchQueue.main.async {
+                            completionHandler(.failure(error))
+                        }
                     }
 
                 }
@@ -83,7 +87,9 @@ class NetworkService<T: ModelType> {
                 case .success:
                     self.localService.featch(query, completionHandler: completionHandler)
                 case .failure(let error):
-                    completionHandler(.failure(error))
+                    DispatchQueue.main.async {
+                        completionHandler(.failure(error))
+                    }
                 }
             }
         }
@@ -95,16 +101,16 @@ class NetworkService<T: ModelType> {
         let session = urlSession()
 
         guard var components = URLComponents(string: query.path) else {
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async {
                 completionHandler(.failure(.internalError))
-            })
+            }
             return nil
         }
         components.query = query.queryString
         guard let url = components.url else {
-            DispatchQueue.main.async(execute: { () -> Void in
+            DispatchQueue.main.async {
                 completionHandler(.failure(.internalError))
-            })
+            }
             return nil
         }
         let request = URLRequest(url: url)
@@ -114,9 +120,9 @@ class NetworkService<T: ModelType> {
             if let error = error {
 
                 NSLog("[Error] response error: \(error)")
-                DispatchQueue.main.async(execute: { () -> Void in
+                DispatchQueue.main.async {
                     completionHandler(.failure(.networkError(error: error)))
-                })
+                }
                 return
             }
 

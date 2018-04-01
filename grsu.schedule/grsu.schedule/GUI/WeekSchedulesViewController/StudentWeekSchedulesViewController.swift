@@ -41,14 +41,14 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             case .success(let items):
                 strongSelf.setLessonSchedule(items)
             case .failure(let error):
-                
+
                 Flurry.logError(error, errId: "StudentWeekSchedulesViewController")
                 strongSelf.showMessage("Ошибка при получении данных")
             }
             strongSelf.reloadData(animated)
         }
     }
-    
+
     fileprivate func fetchDataWithStudentId(_ dateStart: Date, dateEnd: Date, cache: CachePolicy, completionHandler: @escaping StudentScheduleCompletionHandlet) {
 
         if let group = group {
@@ -59,7 +59,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             assertionFailure("Miss params group and studentId")
         }
     }
-    
+
     override func cellForLesson(_ lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
 
         var lCell: StudentLessonScheduleCell

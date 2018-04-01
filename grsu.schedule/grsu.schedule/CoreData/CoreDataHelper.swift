@@ -11,14 +11,13 @@ import UIKit
 
 class CoreDataHelper: NSObject {
 
-    private let store: CoreDataStore!
+    private let store: CoreDataStore
 
     private static let sharedInstance = CoreDataHelper()
 
     override init() {
 
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        store = appDelegate.cdstore
+        store = CoreDataStore()
 
         super.init()
 
@@ -64,7 +63,7 @@ class CoreDataHelper: NSObject {
 
     lazy var managedObjectContext: NSManagedObjectContext = {
 
-        let coordinator = self.store.persistentStoreCoordinator
+        let coordinator = store.persistentStoreCoordinator
 
         var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
         managedObjectContext.persistentStoreCoordinator = coordinator
@@ -78,7 +77,7 @@ class CoreDataHelper: NSObject {
 
     lazy var backgroundContext: NSManagedObjectContext = {
 
-        let coordinator = self.store.persistentStoreCoordinator
+        let coordinator = store.persistentStoreCoordinator
 
         var backgroundContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
         backgroundContext.persistentStoreCoordinator = coordinator

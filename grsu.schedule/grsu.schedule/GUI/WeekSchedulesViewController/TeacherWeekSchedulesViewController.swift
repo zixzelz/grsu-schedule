@@ -25,12 +25,11 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
         ScheduleService().getTeacherSchedule(teacher, dateStart: startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
 
             guard let strongSelf = self else { return }
-            
+
             switch result {
             case .success(let items):
                 strongSelf.setLessonSchedule(items)
             case .failure(let error):
-                
                 Flurry.logError(error, errId: "TeacherWeekSchedulesViewController")
                 strongSelf.showMessage("Ошибка при получении данных")
             }
@@ -83,7 +82,7 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
         present(alert, animated: true, completion: nil)
     }
- 
+
     func presentGroupSchedule(_ group: GroupsEntity) {
         performSegue(withIdentifier: "StudentSchedulePageIdentifier", sender: group)
     }
