@@ -22,6 +22,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        applyLargeTitles()
 
         scheduleOptions.scheduleDelegate = self
         scheduleOptions.scheduleDataSource = self
@@ -31,7 +32,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         scheduleOptions.tableView.contentInset = inset
         scheduleOptions.tableView.scrollIndicatorInsets = inset
 
-        applyLargeTitles()
+        scrollToTop()
     }
 
     private func applyLargeTitles() {
@@ -39,6 +40,11 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+    }
+
+    func scrollToTop() {
+        let top = scheduleOptions.tableView.contentInset.top
+        scheduleOptions.tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -24,7 +24,7 @@
         <!--Преподаватели-->
         <scene sceneID="kTL-Lq-RhL">
             <objects>
-                <navigationController restorationIdentifier="TeachersListNC" id="Sn6-5F-xOW" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="TeachersListNC" title="Преподаватели" id="Sn6-5F-xOW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Преподаватели" image="Teacher" id="EYc-YS-Jrx" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                         <userDefinedRuntimeAttributes>
@@ -930,7 +930,7 @@
         <!--Избранное-->
         <scene sceneID="Wvu-eH-TLK">
             <objects>
-                <splitViewController id="Sql-28-IW8" customClass="GeneralSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController presentsWithGesture="NO" id="Sql-28-IW8" customClass="GeneralSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Избранное" image="Favorite" selectedImage="FavoriteSelected" id="ATh-aC-vA9" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                         <userDefinedRuntimeAttributes>
@@ -957,7 +957,7 @@
         <!--Студенты-->
         <scene sceneID="HH3-m4-DHV">
             <objects>
-                <splitViewController id="830-ha-d4M" customClass="GeneralSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController presentsWithGesture="NO" id="830-ha-d4M" customClass="GeneralSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Студенты" image="Students" id="w4F-Q6-0Oc" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                         <userDefinedRuntimeAttributes>
@@ -2054,7 +2054,7 @@
         <!--Преподаватели-->
         <scene sceneID="DMK-mh-cRx">
             <objects>
-                <splitViewController id="NCW-AP-qhN" customClass="GeneralSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController presentsWithGesture="NO" id="NCW-AP-qhN" customClass="GeneralSplitViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Преподаватели" image="Teacher" id="nMs-nY-wkC" customClass="RAMAnimatedTabBarItem" customModule="RAMAnimatedTabBarController">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-2"/>
                         <userDefinedRuntimeAttributes>
@@ -2116,6 +2116,7 @@
                 <tabBarController id="8Po-Ya-KgE" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LwK-P4-BTZ">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -2151,8 +2152,8 @@
         <image name="UserTabBar" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lt3-w8-xSP"/>
-        <segue reference="CXD-Lq-yOm"/>
+        <segue reference="jeW-CV-Nrg"/>
+        <segue reference="tEX-IB-45v"/>
         <segue reference="oBu-gG-NXI"/>
         <segue reference="fh5-Bf-6CT"/>
         <segue reference="bVc-d5-06z"/>
