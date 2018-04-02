@@ -34,7 +34,8 @@ class ListOfTeachersViewController: UITableViewController {
         setupSearchController()
         fetchData(animated: true)
 
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
+        navigationItem.title = L10n.teachersNavigationBarTitle
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -45,7 +46,7 @@ class ListOfTeachersViewController: UITableViewController {
     private func setupSearchController() {
 
         searchController.searchResultsUpdater = resultsTableController
-        searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.placeholder = L10n.searchBarPlaceholderTitle
 
 //        if #available(iOS 9.1, *) {
 //            searchController.obscuresBackgroundDuringPresentation = false

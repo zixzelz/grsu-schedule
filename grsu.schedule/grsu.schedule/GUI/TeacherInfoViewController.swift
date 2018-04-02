@@ -49,7 +49,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         setupRefreshControl()
         fetchData()
 
-        navigationItem.title = "Преподаватель"
+        navigationItem.title = L10n.teacherInfoNavigationBarTitle
     }
 
     override func viewWillAppear(_ animated: Bool) {

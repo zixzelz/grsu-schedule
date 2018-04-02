@@ -7,8 +7,29 @@
 */
 
 "OK" = "OK";
-"Cancel" = "Cancel";
+"CANCEL" = "Cancel";
+"BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
+"SEARCH_BAR_PLACEHOLDER_TITLE" = "Search";
 
-"StudentNavigationBarTitle" = "Filter";
-"StudentTabBarTitle" = "Students";
+"STUDENT_NAVIGATION_BAR_TITLE" = "Filter";
+"STUDENT_TABBAR_TITLE" = "Students";
 
+"FAVORITE_NAVIGATION_BAR_TITLE" = "Избранное";
+"FAVORITE_TABBAR_TITLE" = "Избранное";
+
+"TEACHERS_NAVIGATION_BAR_TITLE" = "Teachers";
+"TEACHERS_TABBAR_TITLE" = "Teachers";
+
+"MYSCHEDULES_NAVIGATION_BAR_TITLE" = "";
+"MYSCHEDULES_TABBAR_TITLE" = "Я";
+
+"MAP_NAVIGATION_BAR_TITLE" = "Карта";
+"TEACHER_INFO_NAVIGATION_BAR_TITLE" = "Teacher";
+
+"TEACHERS_LIST_EMPTY" = "Нет преподавателей";
+
+"SCHEDULE_ACTION_MENU_ROOM" = "Аудитория";
+"SCHEDULE_ACTION_MENU_GROUP_SCHEDULE" = "Расписание группы";
+"SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Расписание преп.";
+"SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Преподаватель";
+"SCHEDULE_LIST_EMPTY" = "Нет расписания\nна данную неделю";

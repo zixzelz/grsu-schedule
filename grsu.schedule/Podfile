@@ -11,4 +11,8 @@ pod 'MBProgressHUD', '~> 1.0.0'
 pod 'RAMAnimatedTabBarController', :git => 'https://github.com/zixzelz/animated-tab-bar.git', :branch => 'dev'
 pod 'Fabric'
 pod 'Crashlytics'
+
+#Localizable strings generation
+pod 'SwiftGen', '5.2.1'
+
 end

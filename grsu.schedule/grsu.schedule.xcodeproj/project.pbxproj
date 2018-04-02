@@ -121,6 +121,8 @@
 		44BC6F481E146B2B004446F6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F471E146B2B004446F6 /* UserProfileViewController.swift */; };
 		44BC6F4A1E146E5C004446F6 /* TintImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F491E146E5C004446F6 /* TintImageView.swift */; };
 		44BC6F4C1E146E97004446F6 /* UIImage+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */; };
+		44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */; };
+		44C7AB152072E10700D4EF32 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C7AB142072E10700D4EF32 /* Strings.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
 		44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */; };
 		44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146201D7F84510076BDF0 /* NetworkService.swift */; };
@@ -273,6 +275,8 @@
 		44BC6F491E146E5C004446F6 /* TintImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintImageView.swift; sourceTree = "<group>"; };
 		44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Tint.swift"; sourceTree = "<group>"; };
 		44C7AB0B2072D18A00D4EF32 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "structured-swift4.stencil"; path = "Pods/SwiftGen/templates/strings/structured-swift4.stencil"; sourceTree = SOURCE_ROOT; };
+		44C7AB142072E10700D4EF32 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
 		44D146201D7F84510076BDF0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				2D0825EA1A152913008B504E /* grsu.schedule */,
+				44C7AB0D2072DCD600D4EF32 /* Resources */,
 				2D0826001A152913008B504E /* grsu.scheduleTests */,
 				2D0825E91A152913008B504E /* Products */,
 				DBD93D0FCB080EAA94CE82F1 /* Pods */,
@@ -606,6 +611,15 @@
 			path = ScheduleCell;
 			sourceTree = "<group>";
 		};
+		44C7AB0D2072DCD600D4EF32 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */,
+				44C7AB142072E10700D4EF32 /* Strings.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		44D1461D1D7F84510076BDF0 /* ServiceLayerSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +660,7 @@
 			buildConfigurationList = 2D0826071A152913008B504E /* Build configuration list for PBXNativeTarget "grsu.schedule" */;
 			buildPhases = (
 				3235382F1D5A6B8A540F166F /* [CP] Check Pods Manifest.lock */,
+				44C7AB0C2072DC3500D4EF32 /* Run Script SwiftGen */,
 				2D0825E41A152913008B504E /* Sources */,
 				2D0825E51A152913008B504E /* Frameworks */,
 				2D0825E61A152913008B504E /* Resources */,
@@ -731,6 +746,7 @@
 				2D3577221A4DC142006D6914 /* UniversityBuildings.json in Resources */,
 				2D08262A1A15299D008B504E /* Main.storyboard in Resources */,
 				2D0825F81A152913008B504E /* LaunchScreen.xib in Resources */,
+				44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */,
 				2D0825F51A152913008B504E /* Images.xcassets in Resources */,
 				2D8D59F01A682DDB00EB1884 /* WeekSchedulesHeaderFooterView.xib in Resources */,
 				4491105520718D5700E6E427 /* Localizable.strings in Resources */,
@@ -797,6 +813,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" a2f7fc842308ed8fcd896ff954a614aa5d21152e 09c70369e0c7f7019b7ec02e6e91159b43abf866c0989e473585f3904290c671";
+		};
+		44C7AB0C2072DC3500D4EF32 /* Run Script SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script SwiftGen";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen strings --template structured-swift4 --output ${SRCROOT}/Resources/Strings.swift ${SRCROOT}/grsu.schedule/Base.lproj/Localizable.strings";
 		};
 		E98A390C98526F98A13A5544 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -924,6 +954,7 @@
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
+				44C7AB152072E10700D4EF32 /* Strings.swift in Sources */,
 				2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */,
 				44D146221D7F84510076BDF0 /* LocalService.swift in Sources */,
 				44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */,
