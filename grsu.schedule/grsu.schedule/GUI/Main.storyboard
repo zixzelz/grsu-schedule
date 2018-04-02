@@ -542,7 +542,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSk-5A-u3e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-924" y="1704"/>
+            <point key="canvasLocation" x="-992" y="1544"/>
         </scene>
         <!--Item-->
         <scene sceneID="cKJ-gn-6rs">
@@ -565,7 +565,7 @@
                 <customObject id="30X-As-Jie" customClass="RAMBounceAnimation" customModule="RAMAnimatedTabBarController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LIo-tc-jff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1678" y="1704"/>
+            <point key="canvasLocation" x="-1746" y="1544"/>
         </scene>
         <!--Delegate-->
         <scene sceneID="Sbv-x0-LQ2">
@@ -2154,9 +2154,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="jeW-CV-Nrg"/>
         <segue reference="tEX-IB-45v"/>
-        <segue reference="oBu-gG-NXI"/>
+        <segue reference="Ydr-vv-0vX"/>
         <segue reference="fh5-Bf-6CT"/>
-        <segue reference="bVc-d5-06z"/>
-        <segue reference="qgZ-mu-iN3"/>
+        <segue reference="3cS-fO-x8u"/>
+        <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>
 </document>
