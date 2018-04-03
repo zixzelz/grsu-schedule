@@ -11,17 +11,17 @@ import UIKit
 import MessageUI
 import Flurry_iOS_SDK
 
-enum GSTeacherFieldType: String {
+private enum GSTeacherFieldType: String {
     case skype = "TeacherSkypeFieldCellIdentifier"
     case email = "TeacherEmailFieldCellIdentifier"
     case phone = "TeacherPhoneFieldCellIdentifier"
 }
 
-typealias GSTeacherField = (title: String, type: GSTeacherFieldType, value: String?)
+private typealias GSTeacherField = (title: String, type: GSTeacherFieldType, value: String?)
 
 class TeacherInfoViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
-    var teacherInfoFields: [GSTeacherField] = []
+    private var teacherInfoFields: [GSTeacherField] = []
     var teacherInfo: TeacherInfoEntity? {
         didSet {
             if (teacherInfo?.id == "20200") {
@@ -31,13 +31,13 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 
             teacherInfoFields = []
             if let phone = teacherInfo?.phone, !NSString.isNilOrEmpty(phone) {
-                teacherInfoFields.append(("Сотовый", .phone, phone))
+                teacherInfoFields.append((L10n.teacherInfoMobileFieldTitle, .phone, phone))
             }
             if let email = teacherInfo?.email, !NSString.isNilOrEmpty(email) {
-                teacherInfoFields.append(("Email", .email, email))
+                teacherInfoFields.append((L10n.teacherInfoEmailFieldTitle, .email, email))
             }
             if let skype = teacherInfo?.skype, !NSString.isNilOrEmpty(skype) {
-                teacherInfoFields.append(("Skype", .skype, skype))
+                teacherInfoFields.append((L10n.teacherInfoSkypeFieldTitle, .skype, skype))
             }
             tableView.reloadData()
         }

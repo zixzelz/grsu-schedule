@@ -11,6 +11,7 @@ import UIKit
 class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTableViewControllerDataSource, ScheduleOptionsTableViewControllerDelegate {
 
     @IBOutlet weak var scheduleButton: UIButton!
+    @IBOutlet weak var loginBarButtonItem: UIBarButtonItem!
 
     var scheduleOptions: ScheduleOptionsTableViewController {
         get {
@@ -19,6 +20,11 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
 
     var dateScheduleQuery: DateScheduleQuery = DateScheduleQuery()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        splitViewController?.tabBarItem?.title = L10n.studentTabbarTitle
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +39,10 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         scheduleOptions.tableView.scrollIndicatorInsets = inset
 
         scrollToTop()
+
+        scheduleButton.setTitle(L10n.studentActionShowScheduleTitle, for: .normal)
+        navigationItem.title = L10n.studentNavigationBarTitle
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
 
     private func applyLargeTitles() {
@@ -43,7 +53,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     }
 
     func scrollToTop() {
-        let top = scheduleOptions.tableView.contentInset.top
+        let top = navigationController?.navigationBar.bounds.height ?? 44
         scheduleOptions.tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 

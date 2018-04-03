@@ -1031,6 +1031,7 @@
                         <barButtonItem key="rightBarButtonItem" title="logIn" id="w3w-XD-RgQ" customClass="LoginBarButtonItem" customModule="grsu_schedule" customModuleProvider="target"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="loginBarButtonItem" destination="w3w-XD-RgQ" id="reF-Hz-qTo"/>
                         <outlet property="scheduleButton" destination="LOf-qf-Oua" id="en6-OJ-EqM"/>
                     </connections>
                 </viewController>
@@ -2153,7 +2154,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jeW-CV-Nrg"/>
-        <segue reference="tEX-IB-45v"/>
+        <segue reference="CXD-Lq-yOm"/>
         <segue reference="Ydr-vv-0vX"/>
         <segue reference="fh5-Bf-6CT"/>
         <segue reference="3cS-fO-x8u"/>

@@ -25,6 +25,11 @@ class ListOfTeachersViewController: UITableViewController {
         return vc
     }()
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        splitViewController?.tabBarItem?.title = L10n.teachersTabbarTitle
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

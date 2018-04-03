@@ -10,10 +10,12 @@ import UIKit
 
 class UserProfileViewController: UIViewController {
 
-    @IBOutlet fileprivate var fullNameLabel: UILabel?
-    @IBOutlet fileprivate var groupTitleLabel: UILabel?
-    @IBOutlet fileprivate var studentTypeLabel: UILabel?
-    
+    @IBOutlet private var fullNameLabel: UILabel?
+    @IBOutlet private var groupTitleLabel: UILabel?
+    @IBOutlet private var studentTypeLabel: UILabel?
+    @IBOutlet private weak var userSignOutButton: UIButton!
+    @IBOutlet private weak var userBackButton: UIButton!
+
     var student: Student?
     
     override func viewDidLoad() {
@@ -22,6 +24,9 @@ class UserProfileViewController: UIViewController {
         fullNameLabel?.text = student?.fullName
         groupTitleLabel?.text = student?.groupTitle
         studentTypeLabel?.text = student?.studentType
+
+        userBackButton.setTitle(L10n.anyScreenActionBack, for: .normal)
+        userSignOutButton.setTitle(L10n.userProfileActionSignout, for: .normal)
     }
     
     @IBAction func cancelButtonPressed() {

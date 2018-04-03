@@ -19,7 +19,6 @@
         <!--View Controller-->
         <scene sceneID="jhc-Gt-c1b">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fFe-Q9-IaG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Z7u-up-MH8" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fo0-1g-jFa"/>
@@ -44,13 +43,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="avQ-7W-S4p"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFe-Q9-IaG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-126" y="1460"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="TjM-UW-jL3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XOp-o5-HaS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="DedaultDetailSplitIdentifier" automaticallyAdjustsScrollViewInsets="NO" id="Z8I-F9-Doo" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hw6-pi-Ntj">
@@ -64,6 +63,7 @@
                         <segue destination="Z7u-up-MH8" kind="relationship" relationship="rootViewController" id="Dvj-al-ano"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XOp-o5-HaS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-872" y="1461"/>
         </scene>
@@ -240,6 +240,8 @@
                     <navigationItem key="navigationItem" id="vt3-M4-zCu"/>
                     <connections>
                         <outlet property="easterEggsPrivateView" destination="4aQ-R1-vLr" id="6sp-nz-aqS"/>
+                        <outlet property="userBackButton" destination="SgB-AK-2yp" id="daV-9E-a8r"/>
+                        <outlet property="userLoginButton" destination="AB0-eX-x1Y" id="Bl2-1Q-i5Q"/>
                         <outlet property="userLoginTextField" destination="odt-ex-Q4G" id="brz-Fh-iFY"/>
                     </connections>
                 </viewController>
@@ -379,6 +381,8 @@
                         <outlet property="fullNameLabel" destination="qnA-wJ-G4F" id="tkR-f9-Lbd"/>
                         <outlet property="groupTitleLabel" destination="gC2-ri-mpd" id="RiA-8d-u30"/>
                         <outlet property="studentTypeLabel" destination="MkT-Oe-SnE" id="Jja-Fq-0oh"/>
+                        <outlet property="userBackButton" destination="SMA-Yv-4qT" id="UfH-4d-xme"/>
+                        <outlet property="userSignOutButton" destination="kjz-cx-xEn" id="fRC-IA-4gb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRM-EL-Lh2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -387,7 +391,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Grsu" width="1024" height="765"/>
+        <image name="Grsu" width="1600" height="1200"/>
         <image name="LaunchImage" width="320" height="480"/>
         <image name="UserLogo" width="512" height="512"/>
         <image name="logo" width="200" height="168"/>

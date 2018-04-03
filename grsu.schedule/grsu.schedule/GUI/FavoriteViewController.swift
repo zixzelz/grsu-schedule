@@ -14,6 +14,11 @@ class FavoriteViewController: UITableViewController {
 
     var favorites: [FavoriteEntity] = []
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        splitViewController?.tabBarItem?.title = L10n.favoriteTabbarTitle
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         applyLargeTitles()

@@ -13,6 +13,11 @@ class MySchedulesPageViewController: BaseSchedulesPageViewController {
 
     fileprivate var studentId: String!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        navigationController?.tabBarItem?.title = L10n.myschedulesTabbarTitle
+    }
+
     override func viewDidLoad() {
         configure()
         super.viewDidLoad()

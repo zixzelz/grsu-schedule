@@ -11,11 +11,17 @@ import MBProgressHUD
 
 class AuthenticationViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var userLoginTextField: UITextField!
+    @IBOutlet private weak var userLoginTextField: UITextField!
+    @IBOutlet private weak var userLoginButton: UIButton!
+    @IBOutlet private weak var userBackButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupEasterEggs()
+
+        userLoginTextField.placeholder = L10n.authenticationFieldLogin
+        userLoginButton.setTitle(L10n.authenticationActionLogin, for: .normal)
+        userBackButton.setTitle(L10n.anyScreenActionBack, for: .normal)
     }
 
     @IBAction func loginButtonPressed() {
