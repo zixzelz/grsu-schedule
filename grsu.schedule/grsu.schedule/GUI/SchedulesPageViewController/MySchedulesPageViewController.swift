@@ -12,15 +12,30 @@ import Flurry_iOS_SDK
 class MySchedulesPageViewController: BaseSchedulesPageViewController {
 
     fileprivate var studentId: String!
+    private var notificationObserver: AnyObject?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         navigationController?.tabBarItem?.title = L10n.myschedulesTabbarTitle
     }
 
+    deinit {
+        if let observer = notificationObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+
     override func viewDidLoad() {
+        setup()
         configure()
         super.viewDidLoad()
+    }
+
+    private func setup() {
+        notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notification.authenticationStateChanged), object: nil, queue: nil) { [weak self] notification in
+            self?.configure()
+            self?.setupPageController()
+        }
     }
 
     fileprivate func configure() {
