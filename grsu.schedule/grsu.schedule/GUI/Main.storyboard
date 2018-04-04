@@ -582,7 +582,7 @@
                         <sections>
                             <tableViewSection id="fJj-Ky-fuR">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Sy5-Nk-Sqp" detailTextLabel="WdW-Gw-cqM" style="IBUITableViewCellStyleValue1" id="qqR-Ko-iaW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Sy5-Nk-Sqp" detailTextLabel="WdW-Gw-cqM" style="IBUITableViewCellStyleValue1" id="qqR-Ko-iaW" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qqR-Ko-iaW" id="kvV-XA-Zwm">
@@ -605,6 +605,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_textLabel" destination="Sy5-Nk-Sqp" id="3Bx-nr-7Bg"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="vM1-hq-fsF" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44" width="320" height="216"/>
@@ -633,7 +636,7 @@
                                             <outlet property="pickerView" destination="iXJ-s4-tRx" id="bja-r4-gIg"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="vGd-6B-aRJ" detailTextLabel="4OY-VW-rDa" style="IBUITableViewCellStyleValue1" id="PSZ-7U-Jn5">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="vGd-6B-aRJ" detailTextLabel="4OY-VW-rDa" style="IBUITableViewCellStyleValue1" id="PSZ-7U-Jn5" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="260" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PSZ-7U-Jn5" id="DIq-Fs-amC">
@@ -656,6 +659,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_textLabel" destination="vGd-6B-aRJ" id="Y5J-AX-Kyw"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="D0L-YK-RZU" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="304" width="320" height="216"/>
@@ -684,7 +690,7 @@
                                             <outlet property="pickerView" destination="Bzb-tw-NZG" id="037-Rp-Mo4"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="2Wd-dm-QiU" detailTextLabel="wSm-3j-3um" style="IBUITableViewCellStyleValue1" id="zlY-Sg-ANp">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="2Wd-dm-QiU" detailTextLabel="wSm-3j-3um" style="IBUITableViewCellStyleValue1" id="zlY-Sg-ANp" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="520" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zlY-Sg-ANp" id="Qll-df-aoS">
@@ -707,6 +713,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_textLabel" destination="2Wd-dm-QiU" id="jb0-i0-v1Q"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="ORM-Ue-zgL" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="564" width="320" height="216"/>
@@ -735,7 +744,7 @@
                                             <outlet property="pickerView" destination="1hF-uV-V4w" id="eNt-5Y-1iC"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ECs-aH-4VN" detailTextLabel="QO8-iH-xvQ" style="IBUITableViewCellStyleValue1" id="KEs-FM-Auf">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ECs-aH-4VN" detailTextLabel="QO8-iH-xvQ" style="IBUITableViewCellStyleValue1" id="KEs-FM-Auf" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="780" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KEs-FM-Auf" id="Rba-6W-n0F">
@@ -758,6 +767,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_textLabel" destination="ECs-aH-4VN" id="pLU-cW-QXf"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="Wjy-a1-pcA" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="824" width="320" height="216"/>
@@ -786,7 +798,7 @@
                                             <outlet property="pickerView" destination="PKC-dL-3Jo" id="Dnk-GO-mIs"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="uM8-rk-vuh" detailTextLabel="VPi-nz-HTR" style="IBUITableViewCellStyleValue1" id="CUf-UR-jdI">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="uM8-rk-vuh" detailTextLabel="VPi-nz-HTR" style="IBUITableViewCellStyleValue1" id="CUf-UR-jdI" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1040" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CUf-UR-jdI" id="xlg-wD-J45">
@@ -809,6 +821,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_textLabel" destination="uM8-rk-vuh" id="e0Z-ve-dHe"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="taF-jd-LbV" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1084" width="320" height="216"/>

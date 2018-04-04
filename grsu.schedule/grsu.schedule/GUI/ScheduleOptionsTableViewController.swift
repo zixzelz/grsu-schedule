@@ -53,6 +53,12 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { () -> Void in
             self.setupPickerCells()
         }
+
+        departmentTableViewCell.textLabel?.text = L10n.studentFilterDepartmentTitle
+        facultyTableViewCell.textLabel?.text = L10n.studentFilterFacultyTitle
+        courseTableViewCell.textLabel?.text = L10n.studentFilterCourseTitle
+        groupTableViewCell.textLabel?.text = L10n.studentFilterGroupTitle
+        timeTableViewCell.textLabel?.text = L10n.studentFilterWeekTitle
     }
 
     func setupPickerCells() {
@@ -259,4 +265,14 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         }
 
     }
+}
+
+class ScheduleOptionsFilterTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var _textLabel: UILabel!
+
+    override var textLabel: UILabel? {
+        return _textLabel
+    }
+
 }
