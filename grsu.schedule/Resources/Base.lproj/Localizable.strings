@@ -19,6 +19,7 @@
 "USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "Поле «Логин» должно быть заполнено";
 "USERNAME_NOT_FOUND_HEADER" = "Ошибка авторизации";
 "USERNAME_NOT_FOUND_MESSAGE" = "Неверное имя пользователя";
+"ROOM_NUMBER_TITLE" = "к.";
 
 "STUDENT_NAVIGATION_BAR_TITLE" = "Фильтр";
 "STUDENT_TABBAR_TITLE" = "Студенты";
@@ -52,6 +53,8 @@
 "SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Расписание преп.";
 "SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Преподаватель";
 "SCHEDULE_LIST_EMPTY" = "Нет расписания\nна данную неделю";
+"SCHEDULE_SELECT_GROUP_TITLE" = "Выбор группы:";
+"SCHEDULE_SUBGROUP_TITLE" = "Подгруппа:";
 
 "AUTHENTICATION_FIELD_LOGIN" = "Логин";
 "AUTHENTICATION_ACTION_LOGIN" = "Войти";

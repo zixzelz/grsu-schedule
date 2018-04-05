@@ -39,6 +39,8 @@ enum L10n {
   static let myschedulesTabbarTitle = L10n.tr("Localizable", "MYSCHEDULES_TABBAR_TITLE")
   /// OK
   static let ok = L10n.tr("Localizable", "OK")
+  /// к.
+  static let roomNumberTitle = L10n.tr("Localizable", "ROOM_NUMBER_TITLE")
   /// Расписание группы
   static let scheduleActionMenuGroupSchedule = L10n.tr("Localizable", "SCHEDULE_ACTION_MENU_GROUP_SCHEDULE")
   /// Аудитория
@@ -49,6 +51,10 @@ enum L10n {
   static let scheduleActionMenuTeacherSchedule = L10n.tr("Localizable", "SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE")
   /// Нет расписания\nна данную неделю
   static let scheduleListEmpty = L10n.tr("Localizable", "SCHEDULE_LIST_EMPTY")
+  /// Выбор группы:
+  static let scheduleSelectGroupTitle = L10n.tr("Localizable", "SCHEDULE_SELECT_GROUP_TITLE")
+  /// Подгруппа:
+  static let scheduleSubgroupTitle = L10n.tr("Localizable", "SCHEDULE_SUBGROUP_TITLE")
   /// Поиск
   static let searchBarPlaceholderTitle = L10n.tr("Localizable", "SEARCH_BAR_PLACEHOLDER_TITLE")
   /// Войти

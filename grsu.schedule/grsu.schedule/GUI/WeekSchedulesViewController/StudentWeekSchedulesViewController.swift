@@ -43,7 +43,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             case .failure(let error):
 
                 Flurry.logError(error, errId: "StudentWeekSchedulesViewController")
-                strongSelf.showMessage("Ошибка при получении данных")
+                strongSelf.showMessage(L10n.loadingFailedMessage)
             }
             strongSelf.reloadData(animated)
         }
@@ -71,7 +71,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! StudentLessonScheduleCell
         }
 
-        lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? "Подгруппа: \(lesson.subgroupTitle!)" : ""
+        lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? "\(L10n.scheduleSubgroupTitle) \(lesson.subgroupTitle!)" : ""
         lCell.teacherLabel.text = lesson.teacher?.title
 
         return lCell

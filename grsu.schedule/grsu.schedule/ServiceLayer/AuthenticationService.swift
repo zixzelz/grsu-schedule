@@ -18,7 +18,7 @@ class AuthenticationService {
     func auth(_ userName: String, completionHandler: @escaping AuthenticationCompletionHandlet) {
 
 //        let userName = "Barsukevich_EA_15"//"Belyvichjs_AR_15"
-        let components = URLComponents(string: UrlHost + "/getStudent?login=\(userName)&\(Parametres.lang.rawValue)=\(Locale.currenLocale)")
+        let components = URLComponents(string: UrlHost + "/getStudent?login=\(userName)&\(Parametres.lang.rawValue)=\(Locale.preferredLocale)")
         let request = URLRequest(url: components!.url!)
 
         let sessionConfig = URLSessionConfiguration.default

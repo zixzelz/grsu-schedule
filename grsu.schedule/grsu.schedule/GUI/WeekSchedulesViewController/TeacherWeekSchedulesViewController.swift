@@ -31,7 +31,7 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
                 strongSelf.setLessonSchedule(items)
             case .failure(let error):
                 Flurry.logError(error, errId: "TeacherWeekSchedulesViewController")
-                strongSelf.showMessage("Ошибка при получении данных")
+                strongSelf.showMessage(L10n.loadingFailedMessage)
             }
             strongSelf.reloadData(animated)
         }
@@ -68,9 +68,9 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
     func chooseGroup(_ groups: Set<GroupsEntity>) {
 
-        let alert = UIAlertController(title: "Выбор группы:", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: L10n.scheduleSelectGroupTitle, message: "", preferredStyle: .actionSheet)
 
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: L10n.cancel, style: .cancel, handler: nil)
         alert.addAction(cancelAction)
 
         for group in groups {

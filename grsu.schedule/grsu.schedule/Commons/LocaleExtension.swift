@@ -11,22 +11,34 @@ import UIKit
 extension Locale {
 
     private struct Constants {
-        static let defaultLocale = "ru_RU"
+        static let defaultLocale = "en_GB"
+        static let defaultLanguageCode = "en"
     }
 
-    static var currenLocale: String {
-        guard let code = Locale.current.languageCode else {
-            return Constants.defaultLocale
+    static var preferredLanguageCode: String {
+        guard let languageCode = Locale.current.languageCode else {
+            return Constants.defaultLanguageCode
         }
+
+        switch languageCode {
+        case "be",  "ru":
+            return languageCode
+        default:
+            return Constants.defaultLanguageCode
+        }
+    }
+
+    static var preferredLocale: String {
+        let code = preferredLanguageCode
 
         var locale: String?
         switch code {
         case "en":
-            return "\(code)_GB"
+            locale = "\(code)_GB"
         case "be":
-            return "\(code)_BY"
+            locale = "\(code)_BY"
         case "ru":
-            return "\(code)_RU"
+            locale = "\(code)_RU"
         default:
             if let regionCode = Locale.current.regionCode {
                 locale = "\(code)_\(regionCode)"

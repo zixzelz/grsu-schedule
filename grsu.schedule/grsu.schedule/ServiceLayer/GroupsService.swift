@@ -54,7 +54,7 @@ class GroupsQuery: NetworkServiceQueryType {
         return ["facultyId": faculty.id,
             "departmentId": department.id,
             "course": course,
-            Parametres.lang.rawValue: Locale.currenLocale
+            Parametres.lang.rawValue: Locale.preferredLocale
         ]
     }
 

@@ -61,11 +61,11 @@ class TeachersQuery: NetworkServiceQueryType {
             return [
                 "teacherId": teacherId,
                 "extended": "true",
-                Parametres.lang.rawValue: Locale.currenLocale
+                Parametres.lang.rawValue: Locale.preferredLocale
             ]
         default:
             return [
-                Parametres.lang.rawValue: Locale.currenLocale
+                Parametres.lang.rawValue: Locale.preferredLocale
             ]
         }
     }

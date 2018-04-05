@@ -199,6 +199,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
         if schedules.count == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCellIdentifier")!
+            cell.textLabel?.text = L10n.scheduleListEmpty
 
         } else if indexPath == menuCellIndexPath {
             cell = tableView.dequeueReusableCell(withIdentifier: "MenuCellIdentifier")!
@@ -226,7 +227,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             }
 
             if !NSString.isNilOrEmpty(lesson.address) || !NSString.isNilOrEmpty(lesson.room) {
-                lCell.locationLabel.text = "\(lesson.address ?? ""); к.\(lesson.room ?? "")"
+                lCell.locationLabel.text = "\(lesson.address ?? ""); \(L10n.roomNumberTitle)\(lesson.room ?? "")"
             } else {
                 lCell.locationLabel.text = nil
             }
@@ -294,4 +295,14 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             tableView.endUpdates()
         }
     }
+}
+
+class WeekSchedulesEmptyTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var _textLabel: UILabel!
+
+    override var textLabel: UILabel? {
+        return _textLabel
+    }
+
 }

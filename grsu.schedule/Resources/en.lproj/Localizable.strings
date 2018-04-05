@@ -19,6 +19,7 @@
 "USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "The user name cannot be empty";
 "USERNAME_NOT_FOUND_HEADER" = "Login Failed";
 "USERNAME_NOT_FOUND_MESSAGE" = "The username you entered is incorrect";
+"ROOM_NUMBER_TITLE" = "RN ";
 
 "STUDENT_NAVIGATION_BAR_TITLE" = "Schedule filter";
 "STUDENT_TABBAR_TITLE" = "Students";
@@ -52,6 +53,8 @@
 "SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Teacher schedule";
 "SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Teacher info";
 "SCHEDULE_LIST_EMPTY" = "No schedule\nfor the week";
+"SCHEDULE_SELECT_GROUP_TITLE" = "Select group:";
+"SCHEDULE_SUBGROUP_TITLE" = "Subgroup:";
 
 "AUTHENTICATION_FIELD_LOGIN" = "Username";
 "AUTHENTICATION_ACTION_LOGIN" = "Sign In";

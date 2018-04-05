@@ -1427,7 +1427,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="h8e-n2-31d">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="h8e-n2-31d" customClass="WeekSchedulesEmptyTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="367.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="h8e-n2-31d" id="WZN-wl-Ctr">
@@ -1448,6 +1448,9 @@
                                                 <constraint firstAttribute="centerX" secondItem="aFc-DI-fBl" secondAttribute="centerX" id="pdM-eD-1eI"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_textLabel" destination="aFc-DI-fBl" id="EXv-98-9X3"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1884,7 +1887,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="AP0-oL-zz1">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="AP0-oL-zz1" customClass="WeekSchedulesEmptyTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="367.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="AP0-oL-zz1" id="CpW-3l-gAX">
@@ -1905,6 +1908,9 @@
                                                 <constraint firstAttribute="centerY" secondItem="pH6-1t-qFt" secondAttribute="centerY" id="ciG-I8-K4u"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="_textLabel" destination="pH6-1t-qFt" id="dSh-E3-GiR"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -2171,7 +2177,7 @@
         <segue reference="jeW-CV-Nrg"/>
         <segue reference="CXD-Lq-yOm"/>
         <segue reference="Ydr-vv-0vX"/>
-        <segue reference="fh5-Bf-6CT"/>
+        <segue reference="5hu-zp-bdB"/>
         <segue reference="3cS-fO-x8u"/>
         <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>
