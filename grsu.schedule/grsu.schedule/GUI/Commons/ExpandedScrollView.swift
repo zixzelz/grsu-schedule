@@ -66,7 +66,7 @@ class ExpandedScrollView: UIScrollView {
         bottomSpace = max(bottomSpace, 0)
         let inset = UIEdgeInsetsMake(0, 0, bottomSpace, 0)
 
-        UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
+        UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: { () -> Void in
             self.contentInset = inset
             self.scrollIndicatorInsets = inset
         }) { (complited) -> Void in

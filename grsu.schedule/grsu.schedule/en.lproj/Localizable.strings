@@ -8,9 +8,17 @@
 
 "OK" = "OK";
 "CANCEL" = "Cancel";
+"INSTALL_BUTTON" = "Install";
 "BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
 "SEARCH_BAR_PLACEHOLDER_TITLE" = "Search";
 "ANY_SCREEN_ACTION_BACK" = "Back";
+"LOADING_FAILED" = "Loading Failed";
+"ADDRESS_NOT_FOUND_MESSAGE" = "Address not found";
+"HOSTELL_NUMBER_TITLE" = "Hostel №";
+"APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE" = "Yandex Maps application is not installed";
+"USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "The user name cannot be empty";
+"USERNAME_NOT_FOUND_HEADER" = "Login Failed";
+"USERNAME_NOT_FOUND_MESSAGE" = "The username you entered is incorrect";
 
 "STUDENT_NAVIGATION_BAR_TITLE" = "Schedule filter";
 "STUDENT_TABBAR_TITLE" = "Students";

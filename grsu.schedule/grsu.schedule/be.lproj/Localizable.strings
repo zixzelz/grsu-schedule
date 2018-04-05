@@ -5,3 +5,55 @@
   Created by Ruslan Maslouski on 4/2/18.
   Copyright © 2018 Ruslan Maslouski. All rights reserved.
 */
+
+"OK" = "OK";
+"CANCEL" = "Отмена";
+"INSTALL_BUTTON" = "Установить";
+"BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
+"SEARCH_BAR_PLACEHOLDER_TITLE" = "Поиск";
+"ANY_SCREEN_ACTION_BACK" = "Назад";
+"LOADING_FAILED_MESSAGE" = "Ошибка при получении данных";
+"ADDRESS_NOT_FOUND_MESSAGE" = "Адрес не найден";
+"HOSTELL_NUMBER_TITLE" = "Общежитие №";
+"APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE" = "Приложение Яндекс.Карты не установлено";
+"USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "Поле «Логин» должно быть заполнено";
+"USERNAME_NOT_FOUND_HEADER" = "Ошибка авторизации";
+"USERNAME_NOT_FOUND_MESSAGE" = "Неверное имя пользователя";
+
+"STUDENT_NAVIGATION_BAR_TITLE" = "Фильтр";
+"STUDENT_TABBAR_TITLE" = "Студенты";
+"STUDENT_ACTION_LOGIN_TITLE" = "Войти";
+"STUDENT_ACTION_SHOW_SCHEDULE_TITLE" = "Показать";
+"STUDENT_FILTER_DEPARTMENT_TITLE" = "Форма обучения";
+"STUDENT_FILTER_FACULTY_TITLE" = "Факультет";
+"STUDENT_FILTER_COURSE_TITLE" = "Курс";
+"STUDENT_FILTER_GROUP_TITLE" = "Группа";
+"STUDENT_FILTER_WEEK_TITLE" = "Неделя";
+
+"FAVORITE_NAVIGATION_BAR_TITLE" = "Избранное";
+"FAVORITE_TABBAR_TITLE" = "Избранное";
+
+"TEACHERS_NAVIGATION_BAR_TITLE" = "Преподаватели";
+"TEACHERS_TABBAR_TITLE" = "Преподаватели";
+
+"MYSCHEDULES_NAVIGATION_BAR_TITLE" = "";
+"MYSCHEDULES_TABBAR_TITLE" = "Мое";
+
+"MAP_NAVIGATION_BAR_TITLE" = "Карта";
+"TEACHER_INFO_NAVIGATION_BAR_TITLE" = "Преподаватель";
+"TEACHER_INFO_MOBILE_FIELD_TITLE" = "Сотовый";
+"TEACHER_INFO_EMAIL_FIELD_TITLE" = "Email";
+"TEACHER_INFO_SKYPE_FIELD_TITLE" = "Skype";
+
+"TEACHERS_LIST_EMPTY" = "Нет преподавателей";
+
+"SCHEDULE_ACTION_MENU_ROOM" = "Аудитория";
+"SCHEDULE_ACTION_MENU_GROUP_SCHEDULE" = "Расписание группы";
+"SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Расписание преп.";
+"SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Преподаватель";
+"SCHEDULE_LIST_EMPTY" = "Нет расписания\nна данную неделю";
+
+"AUTHENTICATION_FIELD_LOGIN" = "Логин";
+"AUTHENTICATION_ACTION_LOGIN" = "Войти";
+
+"USER_PROFILE_ACTION_SIGNOUT" = "Выход";

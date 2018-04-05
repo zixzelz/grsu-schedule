@@ -8,9 +8,17 @@
 
 "OK" = "OK";
 "CANCEL" = "Отмена";
+"INSTALL_BUTTON" = "Установить";
 "BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
 "SEARCH_BAR_PLACEHOLDER_TITLE" = "Поиск";
 "ANY_SCREEN_ACTION_BACK" = "Назад";
+"LOADING_FAILED_MESSAGE" = "Ошибка при получении данных";
+"ADDRESS_NOT_FOUND_MESSAGE" = "Адрес не найден";
+"HOSTELL_NUMBER_TITLE" = "Общежитие №";
+"APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE" = "Приложение Яндекс.Карты не установлено";
+"USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "Поле «Логин» должно быть заполнено";
+"USERNAME_NOT_FOUND_HEADER" = "Ошибка авторизации";
+"USERNAME_NOT_FOUND_MESSAGE" = "Неверное имя пользователя";
 
 "STUDENT_NAVIGATION_BAR_TITLE" = "Фильтр";
 "STUDENT_TABBAR_TITLE" = "Студенты";
@@ -49,4 +57,3 @@
 "AUTHENTICATION_ACTION_LOGIN" = "Войти";
 
 "USER_PROFILE_ACTION_SIGNOUT" = "Выход";
-

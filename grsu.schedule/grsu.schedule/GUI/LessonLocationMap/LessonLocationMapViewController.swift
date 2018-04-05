@@ -51,6 +51,15 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         DispatchQueue.main.asyncAfter(deadline: delayTime) {
             self.fetchData()
         }
+
+        applyLargeTitles()
+        navigationItem.title = L10n.mapNavigationBarTitle
+    }
+
+    private func applyLargeTitles() {
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -137,20 +146,20 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
             UIApplication.shared.openURL(url)
             Flurry.logEvent("route with yandex maps")
         } else {
-            
+
             let alertController = UIAlertController (title: "Приложение Яндекс.Карты не установлено", message: "Нажмите кнопку Установить для установки", preferredStyle: .alert)
-            
+
             let settingsAction = UIAlertAction(title: "Установить", style: .default) { (_) -> Void in
                 let settingsUrl = URL(string: "https://itunes.apple.com/ru/app/yandex.maps/id313877526?mt=8")
                 if let url = settingsUrl {
                     UIApplication.shared.openURL(url)
                 }
             }
-            
+
             let cancelAction = UIAlertAction(title: "Отменить", style: .default, handler: nil)
             alertController.addAction(settingsAction)
             alertController.addAction(cancelAction)
-            
+
             present(alertController, animated: true, completion: nil)
         }
     }
@@ -163,7 +172,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         present(alert, animated: true, completion: nil)
     }
 
-    // MARK: - RYBaseMapViewDataSource
+// MARK: - RYBaseMapViewDataSource
 
     override func numberOfMarkers() -> Int {
         return universityBuildings != nil ? universityBuildings!.count : 0
@@ -194,7 +203,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         selectedUniversityBuildingIndex = nil
     }
 
-    // MARK: - LessonLocationMapViewDataSource
+// MARK: - LessonLocationMapViewDataSource
 
     func titleForMarker(_ index: Int) -> String {
 
@@ -222,7 +231,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         return UIImage(named: universityBuilding.photo!)
     }
 
-    // MARK: - CLLocationManagerDelegate
+// MARK: - CLLocationManagerDelegate
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         manager.stopUpdatingLocation()

@@ -7,8 +7,12 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 enum L10n {
+  /// Адрес не найден
+  static let addressNotFoundMessage = L10n.tr("Localizable", "ADDRESS_NOT_FOUND_MESSAGE")
   /// Назад
   static let anyScreenActionBack = L10n.tr("Localizable", "ANY_SCREEN_ACTION_BACK")
+  /// Приложение Яндекс.Карты не установлено
+  static let applicationYandexMapNotInstalledMessage = L10n.tr("Localizable", "APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE")
   /// Войти
   static let authenticationActionLogin = L10n.tr("Localizable", "AUTHENTICATION_ACTION_LOGIN")
   /// Логин
@@ -21,6 +25,12 @@ enum L10n {
   static let favoriteNavigationBarTitle = L10n.tr("Localizable", "FAVORITE_NAVIGATION_BAR_TITLE")
   /// Избранное
   static let favoriteTabbarTitle = L10n.tr("Localizable", "FAVORITE_TABBAR_TITLE")
+  /// Общежитие №
+  static let hostellNumberTitle = L10n.tr("Localizable", "HOSTELL_NUMBER_TITLE")
+  /// Установить
+  static let installButton = L10n.tr("Localizable", "INSTALL_BUTTON")
+  /// Ошибка при получении данных
+  static let loadingFailedMessage = L10n.tr("Localizable", "LOADING_FAILED_MESSAGE")
   /// Карта
   static let mapNavigationBarTitle = L10n.tr("Localizable", "MAP_NAVIGATION_BAR_TITLE")
   /// 
@@ -75,6 +85,12 @@ enum L10n {
   static let teachersTabbarTitle = L10n.tr("Localizable", "TEACHERS_TABBAR_TITLE")
   /// Выход
   static let userProfileActionSignout = L10n.tr("Localizable", "USER_PROFILE_ACTION_SIGNOUT")
+  /// Поле «Логин» должно быть заполнено
+  static let usernameCannotBeEmptyMessage = L10n.tr("Localizable", "USERNAME_CANNOT_BE_EMPTY_MESSAGE")
+  /// Ошибка авторизации
+  static let usernameNotFoundHeader = L10n.tr("Localizable", "USERNAME_NOT_FOUND_HEADER")
+  /// Неверное имя пользователя
+  static let usernameNotFoundMessage = L10n.tr("Localizable", "USERNAME_NOT_FOUND_MESSAGE")
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 

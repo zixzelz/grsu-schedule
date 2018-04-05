@@ -14,7 +14,7 @@ class UserProfileViewController: UIViewController {
     @IBOutlet private var groupTitleLabel: UILabel?
     @IBOutlet private var studentTypeLabel: UILabel?
     @IBOutlet private weak var userSignOutButton: UIButton!
-    @IBOutlet private weak var userBackButton: UIButton!
+//    @IBOutlet private weak var userBackButton: UIButton!
 
     var student: Student?
     
@@ -25,7 +25,7 @@ class UserProfileViewController: UIViewController {
         groupTitleLabel?.text = student?.groupTitle
         studentTypeLabel?.text = student?.studentType
 
-        userBackButton.setTitle(L10n.anyScreenActionBack, for: .normal)
+//        userBackButton.setTitle(L10n.anyScreenActionBack, for: .normal)
         userSignOutButton.setTitle(L10n.userProfileActionSignout, for: .normal)
     }
     
