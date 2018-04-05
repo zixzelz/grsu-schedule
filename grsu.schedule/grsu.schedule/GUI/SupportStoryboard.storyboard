@@ -166,7 +166,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHl-6U-R2M">
-                                                <rect key="frame" x="20" y="40" width="44" height="44"/>
+                                                <rect key="frame" x="10" y="30" width="44" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="P0l-Ol-t1i"/>
                                                     <constraint firstAttribute="width" constant="44" id="ygE-Bf-iJZ"/>
@@ -189,11 +189,11 @@
                                             <constraint firstItem="odt-ex-Q4G" firstAttribute="top" secondItem="rxQ-LY-Hu7" secondAttribute="bottom" id="MxJ-hh-4ff"/>
                                             <constraint firstAttribute="bottom" secondItem="AB0-eX-x1Y" secondAttribute="bottom" constant="50" id="OOF-Vu-fRp"/>
                                             <constraint firstItem="4aQ-R1-vLr" firstAttribute="top" secondItem="pH5-6N-Eh2" secondAttribute="top" id="UOw-l0-tXu"/>
-                                            <constraint firstItem="cHl-6U-R2M" firstAttribute="top" secondItem="pH5-6N-Eh2" secondAttribute="top" constant="40" id="UnP-iD-fk6"/>
+                                            <constraint firstItem="cHl-6U-R2M" firstAttribute="top" secondItem="pH5-6N-Eh2" secondAttribute="top" constant="30" id="UnP-iD-fk6"/>
                                             <constraint firstItem="odt-ex-Q4G" firstAttribute="leading" secondItem="pH5-6N-Eh2" secondAttribute="leading" constant="25" id="ZTl-CL-OM2"/>
                                             <constraint firstItem="rxQ-LY-Hu7" firstAttribute="top" secondItem="pH5-6N-Eh2" secondAttribute="top" id="d4u-gw-BQI"/>
                                             <constraint firstItem="odt-ex-Q4G" firstAttribute="top" secondItem="rxQ-LY-Hu7" secondAttribute="bottom" id="f78-fh-MoG"/>
-                                            <constraint firstItem="cHl-6U-R2M" firstAttribute="leading" secondItem="pH5-6N-Eh2" secondAttribute="leading" constant="20" id="fMP-mD-GhP"/>
+                                            <constraint firstItem="cHl-6U-R2M" firstAttribute="leading" secondItem="pH5-6N-Eh2" secondAttribute="leading" constant="10" id="fMP-mD-GhP"/>
                                             <constraint firstItem="AB0-eX-x1Y" firstAttribute="top" secondItem="odt-ex-Q4G" secondAttribute="bottom" constant="20" id="jwR-w8-it9"/>
                                             <constraint firstItem="AB0-eX-x1Y" firstAttribute="centerX" secondItem="pH5-6N-Eh2" secondAttribute="centerX" id="nie-eX-zuJ"/>
                                             <constraint firstItem="odt-ex-Q4G" firstAttribute="top" secondItem="rxQ-LY-Hu7" secondAttribute="bottom" id="pFb-0J-4Wb"/>
@@ -329,7 +329,7 @@
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rb9-IL-aR7">
-                                <rect key="frame" x="20" y="40" width="44" height="44"/>
+                                <rect key="frame" x="10" y="30" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="JVX-uG-GyV"/>
                                     <constraint firstAttribute="width" constant="44" id="S0j-at-diW"/>
@@ -345,10 +345,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rb9-IL-aR7" firstAttribute="top" secondItem="Ijk-WA-bk4" secondAttribute="top" constant="40" id="6lS-vh-p8M"/>
+                            <constraint firstItem="Rb9-IL-aR7" firstAttribute="top" secondItem="Ijk-WA-bk4" secondAttribute="top" constant="30" id="6lS-vh-p8M"/>
                             <constraint firstItem="yWh-7X-We6" firstAttribute="top" secondItem="Ijk-WA-bk4" secondAttribute="top" id="8dw-do-o1G"/>
                             <constraint firstAttribute="trailing" secondItem="jsK-Kg-iLh" secondAttribute="trailing" id="IwH-mh-GiY"/>
-                            <constraint firstItem="Rb9-IL-aR7" firstAttribute="leading" secondItem="xaU-ce-Mhh" secondAttribute="leading" constant="20" id="M3v-nY-Yjt"/>
+                            <constraint firstItem="Rb9-IL-aR7" firstAttribute="leading" secondItem="xaU-ce-Mhh" secondAttribute="leading" constant="10" id="M3v-nY-Yjt"/>
                             <constraint firstAttribute="bottom" secondItem="jsK-Kg-iLh" secondAttribute="bottom" id="MsB-Vt-wzP"/>
                             <constraint firstItem="yWh-7X-We6" firstAttribute="leading" secondItem="Ijk-WA-bk4" secondAttribute="leading" id="cws-w4-cwx"/>
                             <constraint firstAttribute="bottom" secondItem="yWh-7X-We6" secondAttribute="bottom" id="k0o-gX-ajG"/>
