@@ -87,64 +87,64 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     // MARK: - ScheduleOptionsTableViewControllerDataSource
 
     func defaultDepartmentID() -> String? {
-        return fetchDefaultValue(.departmen) as? String
+        return fetchDefaultValue(.departmen)
     }
 
     func defaultFacultyID() -> String? {
-        return fetchDefaultValue(.faculty) as? String
+        return fetchDefaultValue(.faculty)
     }
 
     func defaultCourse() -> String? {
-        return fetchDefaultValue(.course) as? String
+        return fetchDefaultValue(.course)
     }
 
     func defaultGroupID() -> String? {
-        return fetchDefaultValue(.group) as? String
+        return fetchDefaultValue(.group)
     }
 
     func defaultWeek() -> Date? {
-        dateScheduleQuery.startWeekDate = fetchDefaultValue(.week) as? Date
+        dateScheduleQuery.startWeekDate = fetchDefaultValue(.week)
         return dateScheduleQuery.startWeekDate
     }
 
     // MARK: - ScheduleOptionsTableViewControllerDelegate
 
     func didSelectDepartment(_ departmentId: String) {
-        storeDefaultValue(.departmen, value: departmentId as AnyObject)
+        storeDefaultValue(.departmen, value: departmentId)
         updateShowScheduleButtonState()
     }
 
     func didSelectFaculty(_ facultyId: String) {
-        storeDefaultValue(.faculty, value: facultyId as AnyObject)
+        storeDefaultValue(.faculty, value: facultyId)
         updateShowScheduleButtonState()
     }
 
     func didSelectCourse(_ course: String) {
-        storeDefaultValue(.course, value: course as AnyObject)
+        storeDefaultValue(.course, value: course)
         updateShowScheduleButtonState()
     }
 
     func didSelectGroup(_ groupId: String?) {
-        storeDefaultValue(.group, value: groupId as AnyObject)
+        storeDefaultValue(.group, value: groupId)
         updateShowScheduleButtonState()
     }
 
     func didSelectWeek(_ startWeekDate: Date) {
         dateScheduleQuery.startWeekDate = startWeekDate
-        storeDefaultValue(.week, value: startWeekDate as AnyObject)
+        storeDefaultValue(.week, value: startWeekDate)
         updateShowScheduleButtonState()
     }
 
     // MARK: - Utils
 
-    func storeDefaultValue(_ key: ScheduleOption, value: AnyObject?) {
+    func storeDefaultValue<T>(_ key: ScheduleOption, value: T?) {
         let userDef = UserDefaults.standard
         userDef.set(value, forKey: key.rawValue)
     }
 
-    func fetchDefaultValue(_ key: ScheduleOption) -> AnyObject? {
+    func fetchDefaultValue<T>(_ key: ScheduleOption) -> T? {
         let userDef = UserDefaults.standard
-        return userDef.object(forKey: key.rawValue) as? String as AnyObject
+        return userDef.object(forKey: key.rawValue) as? T
     }
 
 }
