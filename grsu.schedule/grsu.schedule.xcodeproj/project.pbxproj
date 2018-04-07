@@ -383,7 +383,6 @@
 				2D08260D1A15299D008B504E /* GUI */,
 				2D0825ED1A152913008B504E /* AppDelegate.swift */,
 				2D0825F41A152913008B504E /* Images.xcassets */,
-				2D0825F61A152913008B504E /* LaunchScreen.xib */,
 				2D0825EB1A152913008B504E /* Supporting Files */,
 			);
 			path = grsu.schedule;
@@ -615,6 +614,7 @@
 		44C7AB0D2072DCD600D4EF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2D0825F61A152913008B504E /* LaunchScreen.xib */,
 				44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */,
 				4491105720718D5700E6E427 /* Localizable.strings */,
 				44C7AB142072E10700D4EF32 /* Strings.swift */,
