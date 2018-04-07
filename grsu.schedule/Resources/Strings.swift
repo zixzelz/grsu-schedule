@@ -7,95 +7,95 @@ import Foundation
 
 // swiftlint:disable explicit_type_interface identifier_name line_length nesting type_body_length type_name
 enum L10n {
-  /// Адрес не найден
+  /// Address not found
   static let addressNotFoundMessage = L10n.tr("Localizable", "ADDRESS_NOT_FOUND_MESSAGE")
-  /// Назад
+  /// Back
   static let anyScreenActionBack = L10n.tr("Localizable", "ANY_SCREEN_ACTION_BACK")
-  /// Приложение Яндекс.Карты не установлено
+  /// Yandex Maps application is not installed
   static let applicationYandexMapNotInstalledMessage = L10n.tr("Localizable", "APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE")
-  /// Войти
+  /// Sign In
   static let authenticationActionLogin = L10n.tr("Localizable", "AUTHENTICATION_ACTION_LOGIN")
-  /// Логин
+  /// Username
   static let authenticationFieldLogin = L10n.tr("Localizable", "AUTHENTICATION_FIELD_LOGIN")
   /// Back
   static let backBarButtonItemTitle = L10n.tr("Localizable", "BACK_BAR_BUTTON_ITEM_TITLE")
-  /// Отмена
+  /// Cancel
   static let cancel = L10n.tr("Localizable", "CANCEL")
-  /// Избранное
+  /// Favorites
   static let favoriteNavigationBarTitle = L10n.tr("Localizable", "FAVORITE_NAVIGATION_BAR_TITLE")
-  /// Избранное
+  /// Favorites
   static let favoriteTabbarTitle = L10n.tr("Localizable", "FAVORITE_TABBAR_TITLE")
-  /// Общежитие №
+  /// Hostel №
   static let hostellNumberTitle = L10n.tr("Localizable", "HOSTELL_NUMBER_TITLE")
-  /// Установить
+  /// Install
   static let installButton = L10n.tr("Localizable", "INSTALL_BUTTON")
-  /// Ошибка при получении данных
+  /// Loading Failed
   static let loadingFailedMessage = L10n.tr("Localizable", "LOADING_FAILED_MESSAGE")
   /// Карта
   static let mapNavigationBarTitle = L10n.tr("Localizable", "MAP_NAVIGATION_BAR_TITLE")
   /// 
   static let myschedulesNavigationBarTitle = L10n.tr("Localizable", "MYSCHEDULES_NAVIGATION_BAR_TITLE")
-  /// Мое
+  /// My
   static let myschedulesTabbarTitle = L10n.tr("Localizable", "MYSCHEDULES_TABBAR_TITLE")
   /// OK
   static let ok = L10n.tr("Localizable", "OK")
-  /// к.
+  /// RN 
   static let roomNumberTitle = L10n.tr("Localizable", "ROOM_NUMBER_TITLE")
-  /// Расписание группы
+  /// Group schedule
   static let scheduleActionMenuGroupSchedule = L10n.tr("Localizable", "SCHEDULE_ACTION_MENU_GROUP_SCHEDULE")
-  /// Аудитория
+  /// Lecture hall
   static let scheduleActionMenuRoom = L10n.tr("Localizable", "SCHEDULE_ACTION_MENU_ROOM")
-  /// Преподаватель
+  /// Teacher info
   static let scheduleActionMenuTeacherInfo = L10n.tr("Localizable", "SCHEDULE_ACTION_MENU_TEACHER_INFO")
-  /// Расписание преп.
+  /// Teacher schedule
   static let scheduleActionMenuTeacherSchedule = L10n.tr("Localizable", "SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE")
-  /// Нет расписания\nна данную неделю
+  /// No schedule\nfor the week
   static let scheduleListEmpty = L10n.tr("Localizable", "SCHEDULE_LIST_EMPTY")
-  /// Выбор группы:
+  /// Select group:
   static let scheduleSelectGroupTitle = L10n.tr("Localizable", "SCHEDULE_SELECT_GROUP_TITLE")
-  /// Подгруппа:
+  /// Subgroup:
   static let scheduleSubgroupTitle = L10n.tr("Localizable", "SCHEDULE_SUBGROUP_TITLE")
-  /// Поиск
+  /// Search
   static let searchBarPlaceholderTitle = L10n.tr("Localizable", "SEARCH_BAR_PLACEHOLDER_TITLE")
-  /// Войти
+  /// Sign In
   static let studentActionLoginTitle = L10n.tr("Localizable", "STUDENT_ACTION_LOGIN_TITLE")
-  /// Показать
+  /// Show
   static let studentActionShowScheduleTitle = L10n.tr("Localizable", "STUDENT_ACTION_SHOW_SCHEDULE_TITLE")
-  /// Курс
+  /// Course
   static let studentFilterCourseTitle = L10n.tr("Localizable", "STUDENT_FILTER_COURSE_TITLE")
-  /// Форма обучения
+  /// Department
   static let studentFilterDepartmentTitle = L10n.tr("Localizable", "STUDENT_FILTER_DEPARTMENT_TITLE")
-  /// Факультет
+  /// Faculty
   static let studentFilterFacultyTitle = L10n.tr("Localizable", "STUDENT_FILTER_FACULTY_TITLE")
-  /// Группа
+  /// Group
   static let studentFilterGroupTitle = L10n.tr("Localizable", "STUDENT_FILTER_GROUP_TITLE")
-  /// Неделя
+  /// Week
   static let studentFilterWeekTitle = L10n.tr("Localizable", "STUDENT_FILTER_WEEK_TITLE")
-  /// Фильтр
+  /// Schedule filter
   static let studentNavigationBarTitle = L10n.tr("Localizable", "STUDENT_NAVIGATION_BAR_TITLE")
-  /// Студенты
+  /// Students
   static let studentTabbarTitle = L10n.tr("Localizable", "STUDENT_TABBAR_TITLE")
   /// Email
   static let teacherInfoEmailFieldTitle = L10n.tr("Localizable", "TEACHER_INFO_EMAIL_FIELD_TITLE")
-  /// Сотовый
+  /// Mobile
   static let teacherInfoMobileFieldTitle = L10n.tr("Localizable", "TEACHER_INFO_MOBILE_FIELD_TITLE")
-  /// Преподаватель
+  /// Teacher
   static let teacherInfoNavigationBarTitle = L10n.tr("Localizable", "TEACHER_INFO_NAVIGATION_BAR_TITLE")
   /// Skype
   static let teacherInfoSkypeFieldTitle = L10n.tr("Localizable", "TEACHER_INFO_SKYPE_FIELD_TITLE")
-  /// Нет преподавателей
+  /// No teachers
   static let teachersListEmpty = L10n.tr("Localizable", "TEACHERS_LIST_EMPTY")
-  /// Преподаватели
+  /// Teachers
   static let teachersNavigationBarTitle = L10n.tr("Localizable", "TEACHERS_NAVIGATION_BAR_TITLE")
-  /// Преподаватели
+  /// Teachers
   static let teachersTabbarTitle = L10n.tr("Localizable", "TEACHERS_TABBAR_TITLE")
-  /// Выход
+  /// Sign Out
   static let userProfileActionSignout = L10n.tr("Localizable", "USER_PROFILE_ACTION_SIGNOUT")
-  /// Поле «Логин» должно быть заполнено
+  /// The user name cannot be empty
   static let usernameCannotBeEmptyMessage = L10n.tr("Localizable", "USERNAME_CANNOT_BE_EMPTY_MESSAGE")
-  /// Ошибка авторизации
+  /// Login Failed
   static let usernameNotFoundHeader = L10n.tr("Localizable", "USERNAME_NOT_FOUND_HEADER")
-  /// Неверное имя пользователя
+  /// The username you entered is incorrect
   static let usernameNotFoundMessage = L10n.tr("Localizable", "USERNAME_NOT_FOUND_MESSAGE")
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length nesting type_body_length type_name

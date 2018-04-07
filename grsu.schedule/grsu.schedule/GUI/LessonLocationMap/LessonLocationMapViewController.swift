@@ -219,7 +219,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         } else {
 
             let educationalUniversityBuilding = universityBuilding as! HostelUniversityBuilding
-            title = "Общежитие №\(educationalUniversityBuilding.number!)"
+            title = "\(L10n.hostellNumberTitle)\(educationalUniversityBuilding.number!)"
         }
 
         return title

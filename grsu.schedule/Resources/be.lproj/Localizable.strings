@@ -7,56 +7,56 @@
 */
 
 "OK" = "OK";
-"CANCEL" = "Отмена";
-"INSTALL_BUTTON" = "Установить";
+"CANCEL" = "Адмена";
+"INSTALL_BUTTON" = "Устанавіць";
 "BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
-"SEARCH_BAR_PLACEHOLDER_TITLE" = "Поиск";
+"SEARCH_BAR_PLACEHOLDER_TITLE" = "Пошук";
 "ANY_SCREEN_ACTION_BACK" = "Назад";
-"LOADING_FAILED_MESSAGE" = "Ошибка при получении данных";
-"ADDRESS_NOT_FOUND_MESSAGE" = "Адрес не найден";
-"HOSTELL_NUMBER_TITLE" = "Общежитие №";
-"APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE" = "Приложение Яндекс.Карты не установлено";
-"USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "Поле «Логин» должно быть заполнено";
-"USERNAME_NOT_FOUND_HEADER" = "Ошибка авторизации";
-"USERNAME_NOT_FOUND_MESSAGE" = "Неверное имя пользователя";
+"LOADING_FAILED_MESSAGE" = "Памылка пры атрыманні дадзеных";
+"ADDRESS_NOT_FOUND_MESSAGE" = "Адрас не знойдзены";
+"HOSTELL_NUMBER_TITLE" = "Інтэрнат №";
+"APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE" = "Праграма Яндекс. Карты не ўстаноўлена";
+"USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "Поле «Лагін» павінна быць запоўнена";
+"USERNAME_NOT_FOUND_HEADER" = "Памылка аўтарызацыі";
+"USERNAME_NOT_FOUND_MESSAGE" = "Памылковае імя карыстальніка";
 "ROOM_NUMBER_TITLE" = "к.";
 
-"STUDENT_NAVIGATION_BAR_TITLE" = "Фильтр";
-"STUDENT_TABBAR_TITLE" = "Студенты";
-"STUDENT_ACTION_LOGIN_TITLE" = "Войти";
-"STUDENT_ACTION_SHOW_SCHEDULE_TITLE" = "Показать";
-"STUDENT_FILTER_DEPARTMENT_TITLE" = "Форма обучения";
-"STUDENT_FILTER_FACULTY_TITLE" = "Факультет";
+"STUDENT_NAVIGATION_BAR_TITLE" = "Фільтр";
+"STUDENT_TABBAR_TITLE" = "Студэнты";
+"STUDENT_ACTION_LOGIN_TITLE" = "Увайсці";
+"STUDENT_ACTION_SHOW_SCHEDULE_TITLE" = "Паказаць";
+"STUDENT_FILTER_DEPARTMENT_TITLE" = "Форма навучання";
+"STUDENT_FILTER_FACULTY_TITLE" = "Факультэт";
 "STUDENT_FILTER_COURSE_TITLE" = "Курс";
-"STUDENT_FILTER_GROUP_TITLE" = "Группа";
-"STUDENT_FILTER_WEEK_TITLE" = "Неделя";
+"STUDENT_FILTER_GROUP_TITLE" = "Група";
+"STUDENT_FILTER_WEEK_TITLE" = "Тыдзень";
 
-"FAVORITE_NAVIGATION_BAR_TITLE" = "Избранное";
-"FAVORITE_TABBAR_TITLE" = "Избранное";
+"FAVORITE_NAVIGATION_BAR_TITLE" = "Выбранае";
+"FAVORITE_TABBAR_TITLE" = "Выбранае";
 
-"TEACHERS_NAVIGATION_BAR_TITLE" = "Преподаватели";
-"TEACHERS_TABBAR_TITLE" = "Преподаватели";
+"TEACHERS_NAVIGATION_BAR_TITLE" = "Выкладчыкі";
+"TEACHERS_TABBAR_TITLE" = "Выкладчыкі";
 
 "MYSCHEDULES_NAVIGATION_BAR_TITLE" = "";
-"MYSCHEDULES_TABBAR_TITLE" = "Мое";
+"MYSCHEDULES_TABBAR_TITLE" = "Маё";
 
 "MAP_NAVIGATION_BAR_TITLE" = "Карта";
-"TEACHER_INFO_NAVIGATION_BAR_TITLE" = "Преподаватель";
-"TEACHER_INFO_MOBILE_FIELD_TITLE" = "Сотовый";
+"TEACHER_INFO_NAVIGATION_BAR_TITLE" = "Выкладчык";
+"TEACHER_INFO_MOBILE_FIELD_TITLE" = "Сотавы";
 "TEACHER_INFO_EMAIL_FIELD_TITLE" = "Email";
 "TEACHER_INFO_SKYPE_FIELD_TITLE" = "Skype";
 
-"TEACHERS_LIST_EMPTY" = "Нет преподавателей";
+"TEACHERS_LIST_EMPTY" = "Няма выкладчыкаў";
 
-"SCHEDULE_ACTION_MENU_ROOM" = "Аудитория";
-"SCHEDULE_ACTION_MENU_GROUP_SCHEDULE" = "Расписание группы";
-"SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Расписание преп.";
-"SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Преподаватель";
-"SCHEDULE_LIST_EMPTY" = "Нет расписания\nна данную неделю";
-"SCHEDULE_SELECT_GROUP_TITLE" = "Выбор группы:";
-"SCHEDULE_SUBGROUP_TITLE" = "Подгруппа:";
+"SCHEDULE_ACTION_MENU_ROOM" = "Аўдыторыя";
+"SCHEDULE_ACTION_MENU_GROUP_SCHEDULE" = "Расклад групы";
+"SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Расклад выкладчыка";
+"SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Выкладчык";
+"SCHEDULE_LIST_EMPTY" = "Няма раскладу\nна гэты тыдзень";
+"SCHEDULE_SELECT_GROUP_TITLE" = "выбар падргрупы:";
+"SCHEDULE_SUBGROUP_TITLE" = "падгрупа:";
 
-"AUTHENTICATION_FIELD_LOGIN" = "Логин";
-"AUTHENTICATION_ACTION_LOGIN" = "Войти";
+"AUTHENTICATION_FIELD_LOGIN" = "Лагін";
+"AUTHENTICATION_ACTION_LOGIN" = "Увайсці";
 
-"USER_PROFILE_ACTION_SIGNOUT" = "Выход";
+"USER_PROFILE_ACTION_SIGNOUT" = "Выхад";

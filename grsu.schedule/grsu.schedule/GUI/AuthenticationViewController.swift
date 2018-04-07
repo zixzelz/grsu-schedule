@@ -27,7 +27,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginButtonPressed() {
 
         guard let login = userLoginTextField.text, !login.isEmpty else {
-            showMessage("Поле «Логин» должно быть заполнено")
+            showMessage(L10n.usernameCannotBeEmptyMessage)
             return
         }
 
@@ -40,7 +40,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
             switch result {
             case .success(let student): strongSelf.authenticationCompleted(student)
             case .failure(_):
-                strongSelf.showMessage("Неверное имя пользователя")
+                strongSelf.showMessage(L10n.usernameNotFoundHeader, message: L10n.usernameNotFoundMessage)
             }
         }
     }
@@ -57,9 +57,9 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
 
-    fileprivate func showMessage(_ title: String) {
+    fileprivate func showMessage(_ title: String, message: String? = nil) {
 
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
 
         present(alert, animated: true, completion: nil)

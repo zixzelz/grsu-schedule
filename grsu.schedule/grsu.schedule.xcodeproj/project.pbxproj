@@ -154,7 +154,6 @@
 		2D0825EC1A152913008B504E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0825ED1A152913008B504E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D0825F41A152913008B504E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		2D0825F71A152913008B504E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		2D0825FD1A152913008B504E /* grsu.scheduleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grsu.scheduleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0826021A152913008B504E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0826031A152913008B504E /* grsu_scheduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grsu_scheduleTests.swift; sourceTree = "<group>"; };
@@ -272,6 +271,10 @@
 		44BC6F471E146B2B004446F6 /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		44BC6F491E146E5C004446F6 /* TintImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TintImageView.swift; sourceTree = "<group>"; };
 		44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Tint.swift"; sourceTree = "<group>"; };
+		44C239522079659400A0B5AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		44C2395920796A4700A0B5AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		44C2395A20796A4D00A0B5AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		44C2395B20796A5300A0B5AF /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "structured-swift4.stencil"; path = "Pods/SwiftGen/templates/strings/structured-swift4.stencil"; sourceTree = SOURCE_ROOT; };
 		44C7AB142072E10700D4EF32 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
@@ -722,6 +725,7 @@
 				en,
 				Base,
 				be,
+				ru,
 			);
 			mainGroup = 2D0825DF1A152913008B504E;
 			productRefGroup = 2D0825E91A152913008B504E /* Products */;
@@ -985,7 +989,9 @@
 		2D0825F61A152913008B504E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2D0825F71A152913008B504E /* Base */,
+				44C2395920796A4700A0B5AF /* en */,
+				44C2395A20796A4D00A0B5AF /* ru */,
+				44C2395B20796A5300A0B5AF /* be */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -996,6 +1002,7 @@
 				4491105A20718D8800E6E427 /* be */,
 				4491105B20718E5800E6E427 /* Base */,
 				4491105C20718E9400E6E427 /* en */,
+				44C239522079659400A0B5AF /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
