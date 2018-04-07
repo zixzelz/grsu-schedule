@@ -63,7 +63,13 @@ class LoginBarButtonItem: UIBarButtonItem {
             vc = profileViewController
         }
 
+        // Think about router
         let window = UIApplication.shared.keyWindow
+        if let tbc = window?.rootViewController as? UITabBarController,
+            let scv = tbc.selectedViewController as? UISplitViewController {
+            scv.toggleMasterView()
+        }
+
         window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
 
