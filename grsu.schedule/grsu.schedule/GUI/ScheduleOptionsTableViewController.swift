@@ -158,36 +158,38 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
     // MARK: - Interface
 
     func selectedDepartment() -> DepartmentsEntity? {
-        let selectedRow = departmentPickerTableViewCell.selectedRow() as Int?
-        let item = (selectedRow != nil) ? departments?[selectedRow!] : nil
-        return item
+        guard let selectedRow = departmentPickerTableViewCell.selectedRowIndex() else {
+            return nil
+        }
+        return departments?[selectedRow]
     }
 
     func selectedFaculty() -> FacultiesEntity? {
-        let selectedRow = facultyPickerTableViewCell.selectedRow() as Int?
-        let item = (selectedRow != nil) ? faculties?[selectedRow!] : nil
-        return item
+        guard let selectedRow = facultyPickerTableViewCell.selectedRowIndex() else {
+            return nil
+        }
+        return faculties?[selectedRow]
     }
 
     func selectedCourse() -> String? {
-        let selectedRow = coursePickerTableViewCell.selectedRow() as String?
+        let selectedRow = coursePickerTableViewCell.selectedRow()
         return selectedRow
     }
 
     func selectedGroup() -> GroupsEntity? {
-        let selectedRow = groupPickerTableViewCell.selectedRow() as Int?
-        let item = (selectedRow != nil) ? groups?[selectedRow!] : nil
-        return item
+        guard let selectedRow = groupPickerTableViewCell.selectedRowIndex() else {
+            return nil
+        }
+        return groups?[selectedRow]
     }
 
     func selectedWeek() -> (startDate: Date, endDate: Date)? {
-        let selectedRow = weekPickerTableViewCell.selectedRow() as Int?
-        if let selectedRow = selectedRow {
-            if let week = weeks?[selectedRow] {
-                return (week.startDate, week.endDate)
-            }
+        guard
+            let selectedRow = weekPickerTableViewCell.selectedRowIndex(),
+            let week = weeks?[selectedRow] else {
+            return nil
         }
-        return nil
+        return (week.startDate, week.endDate)
     }
 
     // MARK: - UITableViewDataSource
