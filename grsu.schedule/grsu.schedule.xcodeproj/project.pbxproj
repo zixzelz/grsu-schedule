@@ -121,6 +121,7 @@
 		44BC6F481E146B2B004446F6 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F471E146B2B004446F6 /* UserProfileViewController.swift */; };
 		44BC6F4A1E146E5C004446F6 /* TintImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F491E146E5C004446F6 /* TintImageView.swift */; };
 		44BC6F4C1E146E97004446F6 /* UIImage+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */; };
+		44C2395E20797BE000A0B5AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44C2396020797BE000A0B5AF /* InfoPlist.strings */; };
 		44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */; };
 		44C7AB152072E10700D4EF32 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C7AB142072E10700D4EF32 /* Strings.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
@@ -274,6 +275,9 @@
 		44C2395920796A4700A0B5AF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		44C2395A20796A4D00A0B5AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		44C2395B20796A5300A0B5AF /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		44C2395F20797BE000A0B5AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		44C2396120797BEA00A0B5AF /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		44C2396220797BEF00A0B5AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "structured-swift4.stencil"; path = "Pods/SwiftGen/templates/strings/structured-swift4.stencil"; sourceTree = SOURCE_ROOT; };
 		44C7AB142072E10700D4EF32 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
@@ -614,6 +618,7 @@
 				44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */,
 				4491105720718D5700E6E427 /* Localizable.strings */,
 				44C7AB142072E10700D4EF32 /* Strings.swift */,
+				44C2396020797BE000A0B5AF /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -751,6 +756,7 @@
 				4491105520718D5700E6E427 /* Localizable.strings in Resources */,
 				440F2AE5206806C3006E3B9A /* SupportStoryboard.storyboard in Resources */,
 				2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */,
+				44C2395E20797BE000A0B5AF /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,7 +831,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen strings --template structured-swift4 --output ${SRCROOT}/Resources/Strings.swift ${SRCROOT}/Resources/Base.lproj/Localizable.strings";
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen strings --template structured-swift4 --output ${SRCROOT}/Resources/Strings.swift ${SRCROOT}/Resources/en.lproj/Localizable.strings";
 		};
 		E98A390C98526F98A13A5544 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1003,6 +1009,16 @@
 				44C239522079659400A0B5AF /* ru */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		44C2396020797BE000A0B5AF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44C2395F20797BE000A0B5AF /* en */,
+				44C2396120797BEA00A0B5AF /* be */,
+				44C2396220797BEF00A0B5AF /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

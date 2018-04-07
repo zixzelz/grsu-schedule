@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  grsu.schedule
+
+  Created by Ruslan Maslouski on 4/8/18.
+  Copyright © 2018 Ruslan Maslouski. All rights reserved.
+*/
+
+"CFBundleDisplayName" = "Schedule";
