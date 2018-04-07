@@ -262,7 +262,6 @@
 		4487C7FA1E10560C00348B26 /* DesignableTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableTextField.swift; sourceTree = "<group>"; };
 		448B066320698D5800BF2D42 /* UIDevice+type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+type.swift"; sourceTree = "<group>"; };
 		4491105A20718D8800E6E427 /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4491105B20718E5800E6E427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4491105C20718E9400E6E427 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		449B4A8D1D887AFA00245E82 /* StudentScheduleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentScheduleService.swift; sourceTree = "<group>"; };
 		44B64E921E0B159400A09057 /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
@@ -1000,7 +999,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				4491105A20718D8800E6E427 /* be */,
-				4491105B20718E5800E6E427 /* Base */,
 				4491105C20718E9400E6E427 /* en */,
 				44C239522079659400A0B5AF /* ru */,
 			);
