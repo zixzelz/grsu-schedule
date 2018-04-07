@@ -24,6 +24,7 @@ class FavoriteViewController: UITableViewController {
         applyLargeTitles()
 
         navigationItem.title = L10n.favoriteNavigationBarTitle
+        navigationController?.title = L10n.favoriteNavigationBarTitle
     }
 
     private func applyLargeTitles() {

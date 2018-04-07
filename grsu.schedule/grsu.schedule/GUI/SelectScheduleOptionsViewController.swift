@@ -23,6 +23,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        navigationController?.title = L10n.studentTabbarTitle
         splitViewController?.tabBarItem?.title = L10n.studentTabbarTitle
     }
 

@@ -40,6 +40,7 @@ class ListOfTeachersViewController: UITableViewController {
         fetchData(animated: true)
 
         navigationItem.title = L10n.teachersNavigationBarTitle
+        navigationController?.title = L10n.teachersNavigationBarTitle
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
 
