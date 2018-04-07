@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Armchair
 
 class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTableViewControllerDataSource, ScheduleOptionsTableViewControllerDelegate {
 
@@ -44,6 +45,8 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         scheduleButton.setTitle(L10n.studentActionShowScheduleTitle, for: .normal)
         navigationItem.title = L10n.studentNavigationBarTitle
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+
+        Armchair.showPromptIfNecessary()
     }
 
     private func applyLargeTitles() {

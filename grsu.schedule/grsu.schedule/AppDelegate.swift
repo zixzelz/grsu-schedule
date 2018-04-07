@@ -62,9 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //
         // NOTE: The appID call always has to go before any other Armchair calls
         Armchair.appID("992531651")
-        Armchair.daysUntilPrompt(0)
+        Armchair.daysUntilPrompt(7)
         Armchair.usesUntilPrompt(10)
-        Armchair.debugEnabled(true)
+//        Armchair.debugEnabled(true)
 //        SKStoreReviewController.requestReview()
     }
 
