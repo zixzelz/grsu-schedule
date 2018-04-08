@@ -7,3 +7,4 @@
 */
 
 "CFBundleDisplayName" = "Расклад";
+"UILaunchStoryboardName" = "LaunchScreen_be";

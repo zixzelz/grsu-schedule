@@ -7,3 +7,4 @@
 */
 
 "CFBundleDisplayName" = "Schedule";
+"UILaunchStoryboardName" = "LaunchScreen";

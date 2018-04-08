@@ -7,3 +7,4 @@
 */
 
 "CFBundleDisplayName" = "Расписание";
+"UILaunchStoryboardName" = "LaunchScreen_ru";
