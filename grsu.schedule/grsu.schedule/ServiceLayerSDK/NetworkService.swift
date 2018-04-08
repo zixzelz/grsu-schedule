@@ -152,8 +152,15 @@ class NetworkService<T: ModelType> {
     fileprivate func saveDate < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery) where NetworkServiceQuery.QueryInfo == T.QueryInfo {
 
         let cacheIdentifier = query.cacheIdentifier
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(Date(), forKey: cacheIdentifier)
+
+        DispatchQueue.main.async {
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(Date(), forKey: cacheIdentifier)
+
+            var arr = userDefaults.stringArray(forKey: "NetworkServiceExpiredFlags") ?? []
+            arr.append(cacheIdentifier)
+            userDefaults.set(arr, forKey: "NetworkServiceExpiredFlags")
+        }
     }
 
     fileprivate func isCacheExpired < NetworkServiceQuery: NetworkServiceQueryType> (_ query: NetworkServiceQuery) -> Bool where NetworkServiceQuery.QueryInfo == T.QueryInfo {
@@ -177,6 +184,16 @@ class NetworkService<T: ModelType> {
         return URLSession(configuration: sessionConfig)
     }
 
+}
+
+func cleanCacheExpiredFlags() {
+    let userDefaults = UserDefaults.standard
+    let arr = userDefaults.stringArray(forKey: "NetworkServiceExpiredFlags") ?? []
+    userDefaults.removeObject(forKey: "NetworkServiceExpiredFlags")
+
+    for cacheIdentifier in arr {
+        userDefaults.removeObject(forKey: cacheIdentifier)
+    }
 }
 
 private extension NetworkServiceQueryType {

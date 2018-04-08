@@ -18,6 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+        setupArmchair()
+        checkLocal()
+        return true
+    }
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         GMSServices.provideAPIKey("AIzaSyBSF-hRXIjTMwnB0vwWcaDX-aq7WSy2pAc")
@@ -33,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DispatchQueue.main.asyncAfter(deadline: delayTime, execute: { [weak self] in
             self?.cleanCachejob()
         })
-
-        setupArmchair()
 
         return true
     }
@@ -61,7 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // because it needs to receive application life-cycle notifications
         //
         // NOTE: The appID call always has to go before any other Armchair calls
-        Armchair.appID("992531651")
+        appID = "992531651"
+        Armchair.appID(appID)
         Armchair.daysUntilPrompt(7)
         Armchair.usesUntilPrompt(10)
 //        Armchair.debugEnabled(true)
@@ -73,7 +78,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
+        UserDefaults.previousLanguageCode = Locale.preferredLanguageCode
         CoreDataHelper.saveBackgroundContext()
+    }
+
+    func applicationWillResignActive(_ application: UIApplication) {
+        UserDefaults.previousLanguageCode = Locale.preferredLanguageCode
     }
 
     func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
@@ -82,6 +92,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
         return true
+    }
+
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        checkLocal()
+    }
+
+    func checkLocal() {
+        if UserDefaults.previousLanguageCode != Locale.preferredLanguageCode {
+            UserDefaults.previousLanguageCode = Locale.preferredLanguageCode
+            cleanCacheExpiredFlags()
+        }
     }
 
     // #pragma mark - Core Data Helper

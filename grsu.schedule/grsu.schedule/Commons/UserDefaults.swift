@@ -29,4 +29,16 @@ extension UserDefaults {
         }
     }
 
+    static var previousLanguageCode: String? {
+        set {
+            guard let value = newValue else  {
+                userDefaults.removeObject(forKey: "previousLanguageCode")
+                return
+            }
+            userDefaults.set(value, forKey: "previousLanguageCode")
+        }
+        get {
+            return userDefaults.string(forKey: "previousLanguageCode")
+        }
+    }
 }
