@@ -110,7 +110,7 @@ extension LessonScheduleEntity: ModelType {
             isTeacherSchedule = true
             groups = parseGroups(lesson["groups"], managedObjectContext: moContext, context: context)
             teacher = _teacher.convertInContext(moContext)
-            
+
         case .my(let _studentId):
             isTeacherSchedule = false
             userId = _studentId
@@ -131,33 +131,34 @@ extension LessonScheduleEntity: ModelType {
         guard let teacherId = teacherJson["id"] as? String else { return nil }
 
         var newTeacher = context.teachersMap[teacherId]
-        if newTeacher == nil {
 
+        if newTeacher == nil {
             newTeacher = TeacherInfoEntity.insert(inContext: managedObjectContext)
             newTeacher?.id = teacherId
-            newTeacher?.title = teacherJson["fullname"] as? String
-            newTeacher?.post = teacherJson["post"] as? String
-
             context.teachersMap[teacherId] = newTeacher
         }
+
+        newTeacher?.title = teacherJson["fullname"] as? String
+        newTeacher?.post = teacherJson["post"] as? String
+
         return newTeacher
     }
-    
+
     fileprivate func parseGroups(_ groupsJson: AnyObject?, managedObjectContext: NSManagedObjectContext, context: LessonScheduleContext) -> Set<GroupsEntity> {
-        
+
         guard let groupsJson = groupsJson as? [[String: AnyObject]] else { return [] }
-        
+
         var groups = Set<GroupsEntity>()
         for groupJson in groupsJson {
-            
+
             if let newGroup = try? context.groupsLocalService.parseAndStoreItem(groupJson, context: managedObjectContext, queryInfo: .makeAsHidden) {
                 groups.insert(newGroup)
             }
         }
-        
+
         return groups
     }
-    
+
     // MARK: - ManagedObjectType
 
     var identifier: String? {

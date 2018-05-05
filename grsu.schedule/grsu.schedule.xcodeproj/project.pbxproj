@@ -11,7 +11,6 @@
 		2D0505CB1A1662DC00171A2E /* BaseDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0505CA1A1662DC00171A2E /* BaseDataService.swift */; };
 		2D0825EE1A152913008B504E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0825ED1A152913008B504E /* AppDelegate.swift */; };
 		2D0825F51A152913008B504E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D0825F41A152913008B504E /* Images.xcassets */; };
-		2D0826041A152913008B504E /* grsu_scheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0826031A152913008B504E /* grsu_scheduleTests.swift */; };
 		2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08260F1A15299D008B504E /* PickerTableViewCell.swift */; };
 		2D08262A1A15299D008B504E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D08261E1A15299D008B504E /* Main.storyboard */; };
 		2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */; };
@@ -141,23 +140,12 @@
 		44F556FA1D7B577F00DF6FF7 /* Array+Dict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F556F91D7B577F00DF6FF7 /* Array+Dict.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2D0825FE1A152913008B504E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2D0825E01A152913008B504E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2D0825E71A152913008B504E;
-			remoteInfo = grsu.schedule;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		2D0505CA1A1662DC00171A2E /* BaseDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDataService.swift; sourceTree = "<group>"; };
 		2D0825E81A152913008B504E /* grsu.schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = grsu.schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0825EC1A152913008B504E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0825ED1A152913008B504E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D0825F41A152913008B504E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		2D0825FD1A152913008B504E /* grsu.scheduleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = grsu.scheduleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D0826021A152913008B504E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D0826031A152913008B504E /* grsu_scheduleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = grsu_scheduleTests.swift; sourceTree = "<group>"; };
 		2D08260F1A15299D008B504E /* PickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTableViewCell.swift; sourceTree = "<group>"; };
@@ -324,13 +312,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2D0825FA1A152913008B504E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -369,7 +350,6 @@
 			isa = PBXGroup;
 			children = (
 				2D0825E81A152913008B504E /* grsu.schedule.app */,
-				2D0825FD1A152913008B504E /* grsu.scheduleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -684,24 +664,6 @@
 			productReference = 2D0825E81A152913008B504E /* grsu.schedule.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D0825FC1A152913008B504E /* grsu.scheduleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2D08260A1A152913008B504E /* Build configuration list for PBXNativeTarget "grsu.scheduleTests" */;
-			buildPhases = (
-				2D0825F91A152913008B504E /* Sources */,
-				2D0825FA1A152913008B504E /* Frameworks */,
-				2D0825FB1A152913008B504E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2D0825FF1A152913008B504E /* PBXTargetDependency */,
-			);
-			name = grsu.scheduleTests;
-			productName = grsu.scheduleTests;
-			productReference = 2D0825FD1A152913008B504E /* grsu.scheduleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -716,12 +678,6 @@
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 76539BC667;
 						LastSwiftMigration = 0900;
-					};
-					2D0825FC1A152913008B504E = {
-						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 76539BC667;
-						LastSwiftMigration = 0810;
-						TestTargetID = 2D0825E71A152913008B504E;
 					};
 				};
 			};
@@ -741,7 +697,6 @@
 			projectRoot = "";
 			targets = (
 				2D0825E71A152913008B504E /* grsu.schedule */,
-				2D0825FC1A152913008B504E /* grsu.scheduleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -763,13 +718,6 @@
 				443B0B6F2079F8D9005125A1 /* LaunchScreen_ru.xib in Resources */,
 				443B0B6C2079F88B005125A1 /* LaunchScreen.xib in Resources */,
 				44C2395E20797BE000A0B5AF /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2D0825FB1A152913008B504E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,23 +926,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2D0825F91A152913008B504E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D0826041A152913008B504E /* grsu_scheduleTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2D0825FF1A152913008B504E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2D0825E71A152913008B504E /* grsu.schedule */;
-			targetProxy = 2D0825FE1A152913008B504E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4491105720718D5700E6E427 /* Localizable.strings */ = {
@@ -1169,44 +1101,6 @@
 			};
 			name = Release;
 		};
-		2D08260B1A152913008B504E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 76539BC667;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = grsu.scheduleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/grsu.schedule.app/grsu.schedule";
-			};
-			name = Debug;
-		};
-		2D08260C1A152913008B504E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 76539BC667;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = grsu.scheduleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/grsu.schedule.app/grsu.schedule";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1224,15 +1118,6 @@
 			buildConfigurations = (
 				2D0826081A152913008B504E /* Debug */,
 				2D0826091A152913008B504E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2D08260A1A152913008B504E /* Build configuration list for PBXNativeTarget "grsu.scheduleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2D08260B1A152913008B504E /* Debug */,
-				2D08260C1A152913008B504E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
