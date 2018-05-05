@@ -79,16 +79,21 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
+        guard let schedules = schedules, let menuCellIndexPath = menuCellIndexPath else {
+            assertionFailure("schedules or menuCellIndexPath is empty")
+            return
+        }
+
         if (segue.identifier == "TeacherInfoIdentifier") {
 
-            let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
+            let lesson = schedules[menuCellIndexPath.section].lessons[menuCellIndexPath.row - 1] as LessonScheduleEntity
 
             let viewController = segue.destination as! TeacherInfoViewController
             viewController.teacherInfo = lesson.teacher
 
         } else if (segue.identifier == "TeacherSchedulePageIdentifier") {
 
-            let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
+            let lesson = schedules[menuCellIndexPath.section].lessons[menuCellIndexPath.row - 1] as LessonScheduleEntity
             let weeks = DateManager.scheduleWeeks()
 
             let viewController = segue.destination as! TeacherSchedulesPageViewController

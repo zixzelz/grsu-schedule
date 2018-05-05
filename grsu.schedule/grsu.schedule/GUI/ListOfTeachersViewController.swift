@@ -213,6 +213,7 @@ class ListOfTeachersViewController: UITableViewController {
 
         guard items.count > 0 else {
             cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCellIdentifier")!
+            cell.textLabel?.text = L10n.teachersListEmpty
             return cell
         }
 

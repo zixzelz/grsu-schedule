@@ -31,7 +31,7 @@ enum L10n {
   static let installButton = L10n.tr("Localizable", "INSTALL_BUTTON")
   /// Loading Failed
   static let loadingFailedMessage = L10n.tr("Localizable", "LOADING_FAILED_MESSAGE")
-  /// Карта
+  /// Map
   static let mapNavigationBarTitle = L10n.tr("Localizable", "MAP_NAVIGATION_BAR_TITLE")
   /// 
   static let myschedulesNavigationBarTitle = L10n.tr("Localizable", "MYSCHEDULES_NAVIGATION_BAR_TITLE")

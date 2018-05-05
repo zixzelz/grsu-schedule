@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Do1-9z-kCw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Do1-9z-kCw">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Helvetica.ttc">
-            <string>Helvetica</string>
-            <string>Helvetica-Light</string>
-        </array>
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
-        <array key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Light</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Преподаватели-->
         <scene sceneID="kTL-Lq-RhL">
@@ -99,16 +87,16 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pj3-43-QYI">
-                                            <rect key="frame" x="83" y="23" width="223" height="39"/>
+                                            <rect key="frame" x="83" y="23.5" width="223" height="38.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqW-3j-due">
-                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="223" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckr-CP-mYM">
-                                                    <rect key="frame" x="0.0" y="21" width="223" height="18"/>
+                                                    <rect key="frame" x="0.0" y="20.5" width="223" height="18"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -321,7 +309,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="Zck-r7-9Ib">
+                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="Zck-r7-9Ib" customClass="WeekSchedulesEmptyTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="Zck-r7-9Ib" id="NZU-B8-ZWe">
@@ -329,7 +317,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Нет преподавателей" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ec-FD-UiE">
-                                            <rect key="frame" x="68" y="10" width="184" height="23"/>
+                                            <rect key="frame" x="68" y="10.5" width="184" height="22.5"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                             <color key="textColor" red="0.27043202519999998" green="0.31408891080000001" blue="0.35603061320000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -340,6 +328,9 @@
                                         <constraint firstAttribute="centerX" secondItem="5ec-FD-UiE" secondAttribute="centerX" id="nkk-Cf-4OA"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="_textLabel" destination="5ec-FD-UiE" id="rHg-1r-nlC"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TeacherCellIdentifier" textLabel="cIh-IJ-ykM" style="IBUITableViewCellStyleDefault" id="kTB-eb-LgT">
                                 <rect key="frame" x="0.0" y="72" width="320" height="44"/>
@@ -1360,7 +1351,7 @@
                                             <outlet property="teacherLabel" destination="VDF-YZ-BCH" id="geo-UQ-9xM"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCellIdentifier" rowHeight="50" id="bSX-7y-whF">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCellIdentifier" rowHeight="50" id="bSX-7y-whF" customClass="StudentMenuCellTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="317.5" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSX-7y-whF" id="A0k-Wq-c4J">
@@ -1426,6 +1417,11 @@
                                                 <constraint firstItem="FaK-8y-33W" firstAttribute="leading" secondItem="A0k-Wq-c4J" secondAttribute="leading" id="bm6-Fa-sf8"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lessonLocationButton" destination="rFa-5N-RPv" id="kuY-Zn-eUM"/>
+                                            <outlet property="teacherInfoButton" destination="vm5-PN-Yqt" id="Ftz-oC-gaL"/>
+                                            <outlet property="teacherScheduleButton" destination="ZZv-Ze-KcQ" id="oGL-RC-J6c"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="h8e-n2-31d" customClass="WeekSchedulesEmptyTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="367.5" width="320" height="44"/>
@@ -1837,7 +1833,7 @@
                                             <outlet property="studyTypeLabel" destination="ETy-cQ-zsB" id="pQv-w0-cJU"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCellIdentifier" rowHeight="50" id="Uh3-H4-Rvc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCellIdentifier" rowHeight="50" id="Uh3-H4-Rvc" customClass="TeacherMenuCellTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="317.5" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Uh3-H4-Rvc" id="jL7-bF-aef">
@@ -1886,6 +1882,10 @@
                                                 <constraint firstItem="f2M-RD-b3t" firstAttribute="top" secondItem="jL7-bF-aef" secondAttribute="top" id="aVV-PM-pBB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="groupScheduleButton" destination="mJd-PI-YeT" id="hfK-EG-LUJ"/>
+                                            <outlet property="lessonLocationButton" destination="fz1-b4-e50" id="bV6-L9-Kpq"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="AP0-oL-zz1" customClass="WeekSchedulesEmptyTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="367.5" width="320" height="44"/>
@@ -2177,7 +2177,7 @@
         <segue reference="jeW-CV-Nrg"/>
         <segue reference="CXD-Lq-yOm"/>
         <segue reference="Ydr-vv-0vX"/>
-        <segue reference="5hu-zp-bdB"/>
+        <segue reference="fh5-Bf-6CT"/>
         <segue reference="3cS-fO-x8u"/>
         <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>

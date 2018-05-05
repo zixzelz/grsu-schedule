@@ -123,6 +123,8 @@
 		44BC6F4A1E146E5C004446F6 /* TintImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F491E146E5C004446F6 /* TintImageView.swift */; };
 		44BC6F4C1E146E97004446F6 /* UIImage+Tint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */; };
 		44C2395E20797BE000A0B5AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44C2396020797BE000A0B5AF /* InfoPlist.strings */; };
+		44C3A969209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3A968209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift */; };
+		44C3A96B209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */; };
 		44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */; };
 		44C7AB152072E10700D4EF32 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C7AB142072E10700D4EF32 /* Strings.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
@@ -268,6 +270,8 @@
 		44C2395F20797BE000A0B5AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		44C2396120797BEA00A0B5AF /* be */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = be; path = be.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		44C2396220797BEF00A0B5AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		44C3A968209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentMenuCellTableViewCell.swift; sourceTree = "<group>"; };
+		44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherMenuCellTableViewCell.swift; sourceTree = "<group>"; };
 		44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "structured-swift4.stencil"; path = "Pods/SwiftGen/templates/strings/structured-swift4.stencil"; sourceTree = SOURCE_ROOT; };
 		44C7AB142072E10700D4EF32 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
@@ -539,6 +543,7 @@
 		2DBD4EBF1A5AF9660055EA3A /* WeekSchedulesViewController */ = {
 			isa = PBXGroup;
 			children = (
+				44C3A967209DAC8600ABDA66 /* MenuCell */,
 				2DBD4EC01A5AF9660055EA3A /* WeekSchedulesViewController.swift */,
 				2DBD4EC21A5AF9B90055EA3A /* StudentWeekSchedulesViewController.swift */,
 				2DBD4EC41A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift */,
@@ -591,6 +596,15 @@
 				44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */,
 			);
 			path = ScheduleCell;
+			sourceTree = "<group>";
+		};
+		44C3A967209DAC8600ABDA66 /* MenuCell */ = {
+			isa = PBXGroup;
+			children = (
+				44C3A968209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift */,
+				44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */,
+			);
+			path = MenuCell;
 			sourceTree = "<group>";
 		};
 		44C7AB0D2072DCD600D4EF32 /* Resources */ = {
@@ -822,6 +836,7 @@
 				2D3744FB1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift in Sources */,
 				444AAD84207185B500F7CF10 /* LocaleExtension.swift in Sources */,
 				2DBD4ECB1A5B124C0055EA3A /* LessonScheduleEntity.swift in Sources */,
+				44C3A96B209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift in Sources */,
 				4487C7FB1E10560C00348B26 /* DesignableTextField.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
@@ -834,6 +849,7 @@
 				2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */,
 				2DBD4E971A4EBDF50055EA3A /* RYBaseMapViewProtocol.swift in Sources */,
 				2D7B6E841A39F2CE002BC208 /* TeacherInfoViewController.swift in Sources */,
+				44C3A969209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift in Sources */,
 				2DBD4EA41A4F14640055EA3A /* LessonLocationMapViewProtocol.swift in Sources */,
 				2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */,
 				443CEC691E087EED002D2EC9 /* AuthenticationService.swift in Sources */,
