@@ -91,13 +91,22 @@
 		44481071206FC3FA0044023E /* UIColorDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481070206FC3FA0044023E /* UIColorDefault.swift */; };
 		44481073206FC5EE0044023E /* CustomSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481072206FC5EE0044023E /* CustomSearchController.swift */; };
 		44481075206FD9E00044023E /* TempTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44481074206FD9E00044023E /* TempTableViewController.swift */; };
-		4448107820701D6D0044023E /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448107720701D6D0044023E /* TableViewDataSource.swift */; };
 		4448107A20713D6B0044023E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4448107920713D6A0044023E /* StringExtension.swift */; };
 		444822071E10555E00BE1C13 /* RoundBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444822061E10555E00BE1C13 /* RoundBorderButton.swift */; };
 		444AAD82207184D900F7CF10 /* Parametres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444AAD81207184D900F7CF10 /* Parametres.swift */; };
 		444AAD84207185B500F7CF10 /* LocaleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444AAD83207185B500F7CF10 /* LocaleExtension.swift */; };
 		4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */; };
 		4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */; };
+		4461152A214ACB1200A52B41 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44611529214ACB1200A52B41 /* SettingsViewController.swift */; };
+		4461152C214ACD5B00A52B41 /* SettingsBarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461152B214ACD5B00A52B41 /* SettingsBarButtonItem.swift */; };
+		4461152E214AD38D00A52B41 /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461152D214AD38D00A52B41 /* LanguageSelectionViewController.swift */; };
+		44611534214AD48100A52B41 /* CollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44611530214AD48100A52B41 /* CollectionViewDataSource.swift */; };
+		44611535214AD48100A52B41 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44611531214AD48100A52B41 /* TableViewDataSource.swift */; };
+		44611536214AD48100A52B41 /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44611532214AD48100A52B41 /* UITableViewExtension.swift */; };
+		44611537214AD48100A52B41 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44611533214AD48100A52B41 /* ListViewModel.swift */; };
+		4461153A214AD55200A52B41 /* ReactiveFetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44611539214AD55200A52B41 /* ReactiveFetchResult.swift */; };
+		4461153C214AD56200A52B41 /* FetchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461153B214AD56200A52B41 /* FetchResult.swift */; };
+		4461153E214AD60100A52B41 /* LanguageSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4461153D214AD60100A52B41 /* LanguageSelectionViewModel.swift */; };
 		44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */; };
 		44641E571A5DC67000AA46BB /* StudentLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E561A5DC67000AA46BB /* StudentLessonScheduleCell.swift */; };
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
@@ -234,13 +243,22 @@
 		44481070206FC3FA0044023E /* UIColorDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorDefault.swift; sourceTree = "<group>"; };
 		44481072206FC5EE0044023E /* CustomSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSearchController.swift; sourceTree = "<group>"; };
 		44481074206FD9E00044023E /* TempTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempTableViewController.swift; sourceTree = "<group>"; };
-		4448107720701D6D0044023E /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 		4448107920713D6A0044023E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		444822061E10555E00BE1C13 /* RoundBorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBorderButton.swift; sourceTree = "<group>"; };
 		444AAD81207184D900F7CF10 /* Parametres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parametres.swift; sourceTree = "<group>"; };
 		444AAD83207185B500F7CF10 /* LocaleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleExtension.swift; sourceTree = "<group>"; };
 		4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsableManagedObjectExtension.swift; sourceTree = "<group>"; };
 		4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalizingFirstLetter.swift"; sourceTree = "<group>"; };
+		44611529214ACB1200A52B41 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		4461152B214ACD5B00A52B41 /* SettingsBarButtonItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBarButtonItem.swift; sourceTree = "<group>"; };
+		4461152D214AD38D00A52B41 /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
+		44611530214AD48100A52B41 /* CollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDataSource.swift; sourceTree = "<group>"; };
+		44611531214AD48100A52B41 /* TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
+		44611532214AD48100A52B41 /* UITableViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		44611533214AD48100A52B41 /* ListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		44611539214AD55200A52B41 /* ReactiveFetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveFetchResult.swift; sourceTree = "<group>"; };
+		4461153B214AD56200A52B41 /* FetchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchResult.swift; sourceTree = "<group>"; };
+		4461153D214AD60100A52B41 /* LanguageSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewModel.swift; sourceTree = "<group>"; };
 		44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E561A5DC67000AA46BB /* StudentLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
@@ -421,6 +439,7 @@
 				2DBD4E9A1A4EDCEA0055EA3A /* LessonLocationMap */,
 				2DBD4EAF1A52D09C0055EA3A /* SchedulesPageViewController */,
 				2DBD4EBF1A5AF9660055EA3A /* WeekSchedulesViewController */,
+				44611528214ACAED00A52B41 /* Settings */,
 				2D08261E1A15299D008B504E /* Main.storyboard */,
 				440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */,
 				440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */,
@@ -459,6 +478,7 @@
 				4487C7FA1E10560C00348B26 /* DesignableTextField.swift */,
 				44BC6F491E146E5C004446F6 /* TintImageView.swift */,
 				447063A41E170B120001C29B /* LoginBarButtonItem.swift */,
+				4461152B214ACD5B00A52B41 /* SettingsBarButtonItem.swift */,
 				447063A61E171AAE0001C29B /* UIStoryboard+app.swift */,
 				447570631E216BB6003C6AD3 /* MenuButton.swift */,
 				44481070206FC3FA0044023E /* UIColorDefault.swift */,
@@ -578,12 +598,34 @@
 			path = Transitioning;
 			sourceTree = "<group>";
 		};
-		4448107620701D1B0044023E /* Cocoa */ = {
+		44611528214ACAED00A52B41 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				4448107720701D6D0044023E /* TableViewDataSource.swift */,
+				44611529214ACB1200A52B41 /* SettingsViewController.swift */,
+				4461152D214AD38D00A52B41 /* LanguageSelectionViewController.swift */,
+				4461153D214AD60100A52B41 /* LanguageSelectionViewModel.swift */,
 			);
-			path = Cocoa;
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		4461152F214AD48100A52B41 /* ServiceLayerSDK+Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				44611530214AD48100A52B41 /* CollectionViewDataSource.swift */,
+				44611531214AD48100A52B41 /* TableViewDataSource.swift */,
+				44611532214AD48100A52B41 /* UITableViewExtension.swift */,
+				44611533214AD48100A52B41 /* ListViewModel.swift */,
+			);
+			path = "ServiceLayerSDK+Cocoa";
+			sourceTree = "<group>";
+		};
+		44611538214AD54900A52B41 /* ServiceLayerSDK+Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				4461153B214AD56200A52B41 /* FetchResult.swift */,
+				44611539214AD55200A52B41 /* ReactiveFetchResult.swift */,
+			);
+			path = "ServiceLayerSDK+Foundation";
 			sourceTree = "<group>";
 		};
 		44641E511A5DC5E600AA46BB /* ScheduleCell */ = {
@@ -624,7 +666,6 @@
 		44D1461D1D7F84510076BDF0 /* ServiceLayerSDK */ = {
 			isa = PBXGroup;
 			children = (
-				4448107620701D1B0044023E /* Cocoa */,
 				44F0B1201D8221DC0008D91B /* ServiceError.swift */,
 				44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */,
 				448758421D85F8120076F019 /* QueryInfoType.swift */,
@@ -632,6 +673,8 @@
 				448758441D85F8460076F019 /* ModelType.swift */,
 				44D1461E1D7F84510076BDF0 /* LocalService.swift */,
 				44D146201D7F84510076BDF0 /* NetworkService.swift */,
+				44611538214AD54900A52B41 /* ServiceLayerSDK+Foundation */,
+				4461152F214AD48100A52B41 /* ServiceLayerSDK+Cocoa */,
 			);
 			path = ServiceLayerSDK;
 			sourceTree = "<group>";
@@ -812,6 +855,9 @@
 				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/RAMAnimatedTabBarController/RAMAnimatedTabBarController.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -819,6 +865,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Flurry_iOS_SDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RAMAnimatedTabBarController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -838,18 +887,23 @@
 				2DBD4ECB1A5B124C0055EA3A /* LessonScheduleEntity.swift in Sources */,
 				44C3A96B209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift in Sources */,
 				4487C7FB1E10560C00348B26 /* DesignableTextField.swift in Sources */,
+				4461153A214AD55200A52B41 /* ReactiveFetchResult.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
+				4461152E214AD38D00A52B41 /* LanguageSelectionViewController.swift in Sources */,
 				44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */,
 				4448107A20713D6B0044023E /* StringExtension.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* DaySchedule.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
+				44611537214AD48100A52B41 /* ListViewModel.swift in Sources */,
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
 				2D7871351A34AF050062DCFE /* FavoriteManager.swift in Sources */,
+				4461152C214ACD5B00A52B41 /* SettingsBarButtonItem.swift in Sources */,
 				2DBD4E971A4EBDF50055EA3A /* RYBaseMapViewProtocol.swift in Sources */,
 				2D7B6E841A39F2CE002BC208 /* TeacherInfoViewController.swift in Sources */,
 				44C3A969209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift in Sources */,
+				4461153E214AD60100A52B41 /* LanguageSelectionViewModel.swift in Sources */,
 				2DBD4EA41A4F14640055EA3A /* LessonLocationMapViewProtocol.swift in Sources */,
 				2DDC78AA1A2A359700C1D966 /* CoreDataStore.swift in Sources */,
 				443CEC691E087EED002D2EC9 /* AuthenticationService.swift in Sources */,
@@ -864,6 +918,7 @@
 				4486BC601D837633000DFF58 /* FacultyService.swift in Sources */,
 				2DDC78A91A2A359700C1D966 /* CoreDataHelper.swift in Sources */,
 				4487C7F91E1055D600348B26 /* RoundBorderView.swift in Sources */,
+				44611534214AD48100A52B41 /* CollectionViewDataSource.swift in Sources */,
 				448758431D85F8120076F019 /* QueryInfoType.swift in Sources */,
 				444AAD82207184D900F7CF10 /* Parametres.swift in Sources */,
 				443EF03F1E1A902200C8876A /* MySchedulesPageViewController.swift in Sources */,
@@ -880,6 +935,7 @@
 				2D6000E81A1E825D005CB141 /* ScheduleQuery.swift in Sources */,
 				2D12012F1A4D88690065079E /* FacultyOfUniversity.swift in Sources */,
 				448B066420698D5800BF2D42 /* UIDevice+type.swift in Sources */,
+				44611536214AD48100A52B41 /* UITableViewExtension.swift in Sources */,
 				44D146251D7F84510076BDF0 /* Parsable.swift in Sources */,
 				2D96AA651A1BB0BB00EDD9E2 /* Constants.swift in Sources */,
 				4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */,
@@ -911,6 +967,7 @@
 				2D08262B1A15299D008B504E /* ScheduleOptionsTableViewController.swift in Sources */,
 				2D3FF2B71A23B8AC001BA278 /* DateUtils.m in Sources */,
 				2D3FF2BA1A23C00D001BA278 /* NSString+Expanded.m in Sources */,
+				44611535214AD48100A52B41 /* TableViewDataSource.swift in Sources */,
 				44D4EA541D7DD78800C38D1E /* CachePolicy.swift in Sources */,
 				4435EBC41E1077AF005F43B5 /* ExpandedScrollView.swift in Sources */,
 				2DBD4EA01A4EEA2C0055EA3A /* CalloutView.swift in Sources */,
@@ -922,11 +979,11 @@
 				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
 				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
-				4448107820701D6D0044023E /* TableViewDataSource.swift in Sources */,
 				4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */,
 				4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
 				440F2AE720684651006E3B9A /* FavoriteSplitViewController.swift in Sources */,
+				4461153C214AD56200A52B41 /* FetchResult.swift in Sources */,
 				44481071206FC3FA0044023E /* UIColorDefault.swift in Sources */,
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
@@ -939,6 +996,7 @@
 				44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */,
 				2DBD4E9D1A4EE97D0055EA3A /* LessonLocationMapView.swift in Sources */,
 				2DBD4ECD1A5B12770055EA3A /* TeacherInfoEntity.swift in Sources */,
+				4461152A214ACB1200A52B41 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

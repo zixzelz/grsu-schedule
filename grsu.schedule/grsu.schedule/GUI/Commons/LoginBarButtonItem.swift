@@ -70,6 +70,8 @@ class LoginBarButtonItem: UIBarButtonItem {
             scv.toggleMasterView()
         }
 
+        vc.modalPresentationStyle = .formSheet
+
         window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
 

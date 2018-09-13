@@ -8,11 +8,40 @@
 
 import UIKit
 
+enum LanguageItem: String {
+    case ru = "ru"
+    case en = "en"
+    case be = "be"
+
+    var code: String {
+        return rawValue
+    }
+
+    var title: String {
+        switch self {
+        case .ru:
+            return "ru"
+        case .en:
+            return "en"
+        case .be:
+            return "be"
+        }
+    }
+
+    static var defaultValue: LanguageItem {
+        return .en
+    }
+}
+
 extension Locale {
 
     private struct Constants {
         static let defaultLocale = "en_GB"
         static let defaultLanguageCode = "en"
+    }
+
+    static var languages: [LanguageItem] {
+        return [.ru, .en, .be]
     }
 
     static var preferredLanguageCode: String {
@@ -21,7 +50,7 @@ extension Locale {
         }
 
         switch languageCode {
-        case "be",  "ru":
+        case "be", "ru":
             return languageCode
         default:
             return Constants.defaultLanguageCode

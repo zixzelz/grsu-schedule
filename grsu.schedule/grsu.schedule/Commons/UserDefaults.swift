@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
+import Result
 
 extension UserDefaults {
 
@@ -16,7 +19,7 @@ extension UserDefaults {
 
     static var student: Student? {
         set {
-            guard let value = newValue else  {
+            guard let value = newValue else {
                 userDefaults.removeObject(forKey: "student")
                 return
             }
@@ -31,7 +34,7 @@ extension UserDefaults {
 
     static var previousLanguageCode: String? {
         set {
-            guard let value = newValue else  {
+            guard let value = newValue else {
                 userDefaults.removeObject(forKey: "previousLanguageCode")
                 return
             }
@@ -41,4 +44,22 @@ extension UserDefaults {
             return userDefaults.string(forKey: "previousLanguageCode")
         }
     }
+
+    static var selectedLanguage: LanguageItem {
+        set {
+            userDefaults.set(newValue.code, forKey: "selectedLanguageCode")
+        }
+        get {
+            let code = userDefaults.string(forKey: "selectedLanguageCode")
+            return code.flatMap { LanguageItem(rawValue: $0) } ?? .defaultValue
+        }
+    }
+
+    static var selectedLanguageSignalProducer: SignalProducer<LanguageItem, NoError> {
+        return userDefaults.reactive.producer(forKeyPath: "selectedLanguageCode").map { value in
+            let code = userDefaults.string(forKey: "selectedLanguageCode")
+            return code.flatMap { LanguageItem(rawValue: $0) } ?? .defaultValue
+        }.skipRepeats()
+    }
+
 }

@@ -33,4 +33,23 @@ extension UIStoryboard {
         return vc
     }
 
+    class func settingsViewController() -> UIViewController {
+        let vc = UIStoryboard.supportStoryboard().instantiateViewController(withIdentifier: "SettingsIdentifier")
+        return vc
+    }
+
+}
+
+extension UIStoryboardSegue {
+
+    func viewController<T: UIViewController>() -> T? {
+        if let vc = destination as? T {
+            return vc
+        } else if let nc = destination as? UINavigationController, let vc = nc.viewControllers.first as? T {
+            return vc
+        }
+
+        return nil
+    }
+
 }

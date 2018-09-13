@@ -21,6 +21,8 @@ enum L10n {
   static let backBarButtonItemTitle = L10n.tr("Localizable", "BACK_BAR_BUTTON_ITEM_TITLE")
   /// Cancel
   static let cancel = L10n.tr("Localizable", "CANCEL")
+  /// Done
+  static let done = L10n.tr("Localizable", "DONE")
   /// Favorites
   static let favoriteNavigationBarTitle = L10n.tr("Localizable", "FAVORITE_NAVIGATION_BAR_TITLE")
   /// Favorites
@@ -29,6 +31,8 @@ enum L10n {
   static let hostellNumberTitle = L10n.tr("Localizable", "HOSTELL_NUMBER_TITLE")
   /// Install
   static let installButton = L10n.tr("Localizable", "INSTALL_BUTTON")
+  /// Language
+  static let languageNavigationBarTitle = L10n.tr("Localizable", "LANGUAGE_NAVIGATION_BAR_TITLE")
   /// Loading Failed
   static let loadingFailedMessage = L10n.tr("Localizable", "LOADING_FAILED_MESSAGE")
   /// Map
@@ -57,6 +61,10 @@ enum L10n {
   static let scheduleSubgroupTitle = L10n.tr("Localizable", "SCHEDULE_SUBGROUP_TITLE")
   /// Search
   static let searchBarPlaceholderTitle = L10n.tr("Localizable", "SEARCH_BAR_PLACEHOLDER_TITLE")
+  /// Language
+  static let settingsLanguageMenuItemTitle = L10n.tr("Localizable", "SETTINGS_LANGUAGE_MENU_ITEM_TITLE")
+  /// Settings
+  static let settingsNavigationBarTitle = L10n.tr("Localizable", "SETTINGS_NAVIGATION_BAR_TITLE")
   /// Sign In
   static let studentActionLoginTitle = L10n.tr("Localizable", "STUDENT_ACTION_LOGIN_TITLE")
   /// Show
