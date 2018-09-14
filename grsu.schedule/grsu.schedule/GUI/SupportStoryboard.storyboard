@@ -375,6 +375,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.22963848710000001" green="0.54153126480000002" blue="0.88644945620000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -385,7 +391,7 @@
             </objects>
             <point key="canvasLocation" x="-898" y="2907"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Тут-->
         <scene sceneID="4Rk-od-hjs">
             <objects>
                 <tableViewController id="krE-UH-UKw" customClass="SettingsViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
@@ -438,7 +444,7 @@
                             <outlet property="delegate" destination="krE-UH-UKw" id="RjK-Ak-T5E"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ran-2g-UYf">
+                    <navigationItem key="navigationItem" title="Тут" id="ran-2g-UYf">
                         <barButtonItem key="rightBarButtonItem" title="Done" id="vWi-sy-ml8">
                             <connections>
                                 <action selector="donePressed" destination="krE-UH-UKw" id="J2T-a6-i9D"/>

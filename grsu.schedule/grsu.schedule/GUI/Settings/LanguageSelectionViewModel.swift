@@ -20,14 +20,13 @@ class LanguageSelectionViewModel: LanguageSelectionViewModeling {
             return item.title
         })
 
-        lvm.selectedCells.producer.startWithValues { [unowned self] selectedItems in
-            if let item = selectedItems.first.map ({ self.fetchResult.object(at: $0) }) {
-                UserDefaults.selectedLanguage = item
-            }
-        }
-
         return lvm
     }()
+
+    func selectLanguage(at indexPath: IndexPath) {
+        let item = fetchResult.object(at: indexPath)
+        UserDefaults.selectedLanguage = item
+    }
 
     init(defaultLanguage: LanguageItem? = nil) {
         let item = defaultLanguage ?? .defaultValue

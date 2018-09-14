@@ -31,7 +31,9 @@ class SettingsViewController: UITableViewController {
         let list = CompositeDisposable()
         scopedDisposable = ScopedDisposable(list)
 
-        list += UserDefaults.selectedLanguageSignalProducer.startWithValues { [unowned self] language in
+        list += UserDefaults.selectedLanguageSignalProducer
+            .skipRepeats()
+            .startWithValues { [unowned self] language in
             self.languageValueLabel.text = language.title
         }
     }

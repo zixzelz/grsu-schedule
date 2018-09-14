@@ -13,6 +13,7 @@ typealias LanguageSelectionCellViewModeling = String
 
 protocol LanguageSelectionViewModeling {
     var listViewModel: ListViewModel<LanguageSelectionCellViewModeling> { get }
+    func selectLanguage(at indexPath: IndexPath)
 }
 
 class LanguageSelectionViewController: UIViewController {
@@ -65,6 +66,15 @@ class LanguageSelectionViewController: UIViewController {
                 return cell
             })
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        if isMovingFromParentViewController, let indexPath = viewModel?.listViewModel.selectedCells.value.first {
+            viewModel?.selectLanguage(at: indexPath)
+        }
+    }
+
 }
 
 extension LanguageSelectionViewController: UITableViewDelegate {
