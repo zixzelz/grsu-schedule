@@ -46,51 +46,54 @@ class ReachabilityTableView: UITableView {
     func addUnavailableHeader(_ animated: Bool) {
         if (unavailableHeaderLabel != nil) { return }
 
-        let headerTop: CGFloat = 64.0
+//        let headerTop: CGFloat = inset.top
 
         let headerLabel = UILabel()
-        headerLabel.frame = CGRect(x: 0, y: headerTop - DefaultAvailabilityHeaderHeight, width: self.bounds.width, height: DefaultAvailabilityHeaderHeight)
+        headerLabel.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: DefaultAvailabilityHeaderHeight)
         headerLabel.backgroundColor = UIColor(white: 0, alpha: 0.8)
         headerLabel.textColor = UIColor.white
         headerLabel.font = UIFont(name: "HelveticaNeue-Light", size: 14)
         headerLabel.textAlignment = NSTextAlignment.center
-        headerLabel.text = "Нет связи с сетью"
+        headerLabel.setLocalizedTitle(L10n.thereIsNoInternetConnection)
 
-        self.superview?.addSubview(headerLabel)
+//        self.superview?.addSubview(headerLabel)
         unavailableHeaderLabel = headerLabel
 
-        var inset = contentInset
-        inset.top += DefaultAvailabilityHeaderHeight
-        self.contentInset = inset
-        self.scrollIndicatorInsets = inset
+//        inset.top += DefaultAvailabilityHeaderHeight
+//        self.contentInset = inset
+//        self.scrollIndicatorInsets = inset
 
-        let duration = animated ? 0.3 : 0
-        UIView.animate(withDuration: duration, animations: { () -> Void in
-            headerLabel.frame = CGRect(x: 0, y: headerTop, width: self.bounds.width, height: DefaultAvailabilityHeaderHeight)
-        })
+        tableHeaderView = headerLabel
+
+//        let duration = animated ? 0.3 : 0
+//        UIView.animate(withDuration: duration, animations: { () -> Void in
+//            headerLabel.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: DefaultAvailabilityHeaderHeight)
+//        })
     }
 
     func removeUnavailableHeader() {
         if (unavailableHeaderLabel == nil) { return }
 
-        var inset = contentInset
-        inset.top -= DefaultAvailabilityHeaderHeight
+        tableHeaderView = nil
 
-        var newFrame = unavailableHeaderLabel?.frame
-        newFrame?.origin.y += -DefaultAvailabilityHeaderHeight
-
-        UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
-            if let strongSelf = self {
-                strongSelf.contentInset = inset
-                strongSelf.scrollIndicatorInsets = inset
-                strongSelf.unavailableHeaderLabel?.frame = newFrame!
-            }
-        }, completion: { [weak self] _ in
-                if let strongSelf = self {
-                    strongSelf.unavailableHeaderLabel?.removeFromSuperview()
-                    strongSelf.unavailableHeaderLabel = nil
-                }
-            })
+//        var inset = contentInset
+////        inset.top -= DefaultAvailabilityHeaderHeight
+//
+//        var newFrame = unavailableHeaderLabel?.frame
+//        newFrame?.origin.y += -DefaultAvailabilityHeaderHeight
+//
+//        UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
+//            if let strongSelf = self {
+////                strongSelf.contentInset = inset
+////                strongSelf.scrollIndicatorInsets = inset
+//                strongSelf.unavailableHeaderLabel?.frame = newFrame!
+//            }
+//        }, completion: { [weak self] _ in
+//                if let strongSelf = self {
+//                    strongSelf.unavailableHeaderLabel?.removeFromSuperview()
+//                    strongSelf.unavailableHeaderLabel = nil
+//                }
+//            })
     }
 
 }

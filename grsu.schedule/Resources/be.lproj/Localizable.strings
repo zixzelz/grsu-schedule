@@ -60,3 +60,4 @@
 "AUTHENTICATION_ACTION_LOGIN" = "Увайсці";
 
 "USER_PROFILE_ACTION_SIGNOUT" = "Выхад";
+"THERE_IS_NO_INTERNET_CONNECTION" = "Нет связи с сетью";

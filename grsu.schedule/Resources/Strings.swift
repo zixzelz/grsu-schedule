@@ -187,6 +187,10 @@ enum L10n {
   static var teachersTabbarTitle: String {
     return L10n.tr("Localizable", "TEACHERS_TABBAR_TITLE")
   }
+  /// There is no internet connection
+  static var thereIsNoInternetConnection: String {
+    return L10n.tr("Localizable", "THERE_IS_NO_INTERNET_CONNECTION")
+  }
   /// Sign Out
   static var userProfileActionSignout: String {
     return L10n.tr("Localizable", "USER_PROFILE_ACTION_SIGNOUT")
