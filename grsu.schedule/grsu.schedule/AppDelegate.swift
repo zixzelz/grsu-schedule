@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+        setupLanguage()
         setupArmchair()
         checkLocal()
         return true
@@ -75,6 +76,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     fileprivate func cleanCachejob() {
         ScheduleService().cleanCache()
+    }
+
+    private func setupLanguage() {
+        let code = UserDefaults.selectedLanguage
+        Bundle.setLanguage(code: code.code)
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

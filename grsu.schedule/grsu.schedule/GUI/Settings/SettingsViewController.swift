@@ -18,12 +18,10 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        doneBarButtonItem.title = L10n.done
-        navigationItem.title = L10n.settingsNavigationBarTitle
-        languageLabel.text = L10n.settingsLanguageMenuItemTitle
         languageValueLabel.text = ""
 
         setup()
+        setupLanguage()
     }
 
     private var scopedDisposable: ScopedDisposable<AnyDisposable>?
@@ -34,8 +32,20 @@ class SettingsViewController: UITableViewController {
         list += UserDefaults.selectedLanguageSignalProducer
             .skipRepeats()
             .startWithValues { [unowned self] language in
-            self.languageValueLabel.text = language.title
+                self.languageValueLabel.text = language.title
         }
+    }
+
+    private func setupLanguage() {
+        languageLabel.setLocalizedTitle(L10n.settingsLanguageMenuItemTitle)
+        doneBarButtonItem.setLocalizedTitle(L10n.done)
+        navigationItem.setLocalizedTitle(L10n.settingsNavigationBarTitle)
+//        UserDefaults.selectedLanguageSignalProducer
+//            .skipRepeats()
+//            .take(duringLifetimeOf: self)
+//            .startWithValues { [unowned self] _ in
+//                self.navigationItem.title = L10n.settingsNavigationBarTitle
+//        }
     }
 
     @IBAction func donePressed() {

@@ -16,14 +16,14 @@ class FavoriteViewController: UITableViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        splitViewController?.tabBarItem?.title = L10n.favoriteTabbarTitle
+        splitViewController?.tabBarItem?.setLocalizedTitle(L10n.favoriteTabbarTitle)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         applyLargeTitles()
 
-        navigationItem.title = L10n.favoriteNavigationBarTitle
+        navigationItem.setLocalizedTitle(L10n.favoriteNavigationBarTitle)
         navigationController?.title = L10n.favoriteNavigationBarTitle
     }
 
@@ -31,7 +31,7 @@ class FavoriteViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(localizedTitle: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {

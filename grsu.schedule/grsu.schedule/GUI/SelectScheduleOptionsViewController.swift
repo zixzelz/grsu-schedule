@@ -25,7 +25,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
     override func awakeFromNib() {
         super.awakeFromNib()
         navigationController?.title = L10n.studentTabbarTitle
-        splitViewController?.tabBarItem?.title = L10n.studentTabbarTitle
+        splitViewController?.tabBarItem?.setLocalizedTitle(L10n.studentTabbarTitle)
     }
 
     override func viewDidLoad() {
@@ -42,9 +42,9 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
         scrollToTop()
 
-        scheduleButton.setTitle(L10n.studentActionShowScheduleTitle, for: .normal)
-        navigationItem.title = L10n.studentNavigationBarTitle
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+        scheduleButton.setLocalizedTitle(L10n.studentActionShowScheduleTitle)
+        navigationItem.setLocalizedTitle(L10n.studentNavigationBarTitle)
+        navigationItem.backBarButtonItem = UIBarButtonItem(localizedTitle: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
 
         Armchair.showPromptIfNecessary()
     }
@@ -53,7 +53,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(localizedTitle: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
 
     func scrollToTop() {

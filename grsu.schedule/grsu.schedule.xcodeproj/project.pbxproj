@@ -76,6 +76,8 @@
 		440F2AE32067EC8A006E3B9A /* GeneralSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */; };
 		440F2AE5206806C3006E3B9A /* SupportStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */; };
 		440F2AE720684651006E3B9A /* FavoriteSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440F2AE620684651006E3B9A /* FavoriteSplitViewController.swift */; };
+		4422143C214C206B004D4014 /* Bundle+Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4422143B214C206B004D4014 /* Bundle+Language.swift */; };
+		4422143E214C2A2F004D4014 /* LocalizationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4422143D214C2A2F004D4014 /* LocalizationHelper.swift */; };
 		442538691E22D1AA00AFED79 /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */; };
 		4425386A1E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */; };
 		4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */; };
@@ -228,6 +230,8 @@
 		440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSplitViewController.swift; sourceTree = "<group>"; };
 		440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SupportStoryboard.storyboard; sourceTree = "<group>"; };
 		440F2AE620684651006E3B9A /* FavoriteSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteSplitViewController.swift; sourceTree = "<group>"; };
+		4422143B214C206B004D4014 /* Bundle+Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Language.swift"; sourceTree = "<group>"; };
+		4422143D214C2A2F004D4014 /* LocalizationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationHelper.swift; sourceTree = "<group>"; };
 		442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayTransitioningDelegate.swift; sourceTree = "<group>"; };
 		4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyViewControllerAnimator.swift; sourceTree = "<group>"; };
@@ -523,6 +527,8 @@
 				448B066320698D5800BF2D42 /* UIDevice+type.swift */,
 				4448107920713D6A0044023E /* StringExtension.swift */,
 				444AAD83207185B500F7CF10 /* LocaleExtension.swift */,
+				4422143B214C206B004D4014 /* Bundle+Language.swift */,
+				4422143D214C2A2F004D4014 /* LocalizationHelper.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -925,6 +931,7 @@
 				2DBD4EA81A501D3B0055EA3A /* AddressUtils.swift in Sources */,
 				2DB1DF451B0FB12100272312 /* RYRussianIndexedCollation.swift in Sources */,
 				2DBD4EC51A5AFE610055EA3A /* TeacherWeekSchedulesViewController.swift in Sources */,
+				4422143E214C2A2F004D4014 /* LocalizationHelper.swift in Sources */,
 				44B64E951E0B282500A09057 /* AuthenticationViewController.swift in Sources */,
 				44481073206FC5EE0044023E /* CustomSearchController.swift in Sources */,
 				2DDC78981A2A2CF100C1D966 /* GroupsEntity.swift in Sources */,
@@ -980,6 +987,7 @@
 				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
 				4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */,
+				4422143C214C206B004D4014 /* Bundle+Language.swift in Sources */,
 				4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */,
 				2DBD4E951A4EBD910055EA3A /* RYMapView.swift in Sources */,
 				440F2AE720684651006E3B9A /* FavoriteSplitViewController.swift in Sources */,

@@ -27,7 +27,7 @@ class LoginBarButtonItem: UIBarButtonItem {
 
     fileprivate func setup() {
 
-        notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notification.authenticationStateChanged), object: nil, queue: nil) { [weak self] notification in
+        notificationObserver = NotificationCenter.default.addObserver(forName: .authenticationStateChanged, object: nil, queue: nil) { [weak self] notification in
 
             let student = notification.object as? Student
             self?.updateState(student)
@@ -41,10 +41,10 @@ class LoginBarButtonItem: UIBarButtonItem {
 
         let authenticated = (student != nil)
         if !authenticated {
-            title = L10n.studentActionLoginTitle
+            setLocalizedTitle(L10n.studentActionLoginTitle)
             image = nil
         } else {
-            title = nil
+            setLocalizedTitle("")
             image = UIImage(named: "UserTabBar")
         }
     }

@@ -25,7 +25,11 @@ class LanguageSelectionViewModel: LanguageSelectionViewModeling {
 
     func selectLanguage(at indexPath: IndexPath) {
         let item = fetchResult.object(at: indexPath)
+        Bundle.setLanguage(code: item.code)
+
         UserDefaults.selectedLanguage = item
+
+        print("\(locString(key: "STUDENT_FILTER_WEEK_TITLE"))")
     }
 
     init(defaultLanguage: LanguageItem? = nil) {

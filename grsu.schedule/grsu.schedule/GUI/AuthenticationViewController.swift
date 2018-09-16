@@ -52,7 +52,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
     fileprivate func authenticationCompleted(_ student: Student) {
 
         UserDefaults.student = student
-        NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.authenticationStateChanged), object: student)
+        NotificationCenter.default.post(name: .authenticationStateChanged, object: student)
 
         dismiss(animated: true, completion: nil)
     }

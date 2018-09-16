@@ -9,8 +9,8 @@
 import UIKit
 import RAMAnimatedTabBarController
 
-struct Notification {
-    static let authenticationStateChanged = "authenticationStateChanged"
+extension Notification.Name {
+    static let authenticationStateChanged = Notification.Name("authenticationStateChanged")
 }
 
 class MainTabBarController: RAMAnimatedTabBarController {
@@ -28,7 +28,7 @@ class MainTabBarController: RAMAnimatedTabBarController {
 
     fileprivate func setup() {
 
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notification.authenticationStateChanged), object: nil, queue: nil) { [weak self] notification in
+        NotificationCenter.default.addObserver(forName: .authenticationStateChanged, object: nil, queue: nil) { [weak self] notification in
 
             let student = notification.object as? Student
             self?.updateState(student)

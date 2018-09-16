@@ -36,7 +36,7 @@ class UserProfileViewController: UIViewController {
     @IBAction func logoutButtonPressed() {
 
         UserDefaults.student = nil
-        NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.authenticationStateChanged), object: nil)
+        NotificationCenter.default.post(name: .authenticationStateChanged, object: nil)
 
         dismiss(animated: true, completion: nil)
     }

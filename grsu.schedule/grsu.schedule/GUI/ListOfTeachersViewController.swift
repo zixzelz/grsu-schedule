@@ -8,6 +8,8 @@
 
 import UIKit
 import Flurry_iOS_SDK
+import ReactiveSwift
+//import ReactiveCocoa
 
 // TODO: Make with MVVM
 class ListOfTeachersViewController: UITableViewController {
@@ -27,7 +29,7 @@ class ListOfTeachersViewController: UITableViewController {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        splitViewController?.tabBarItem?.title = L10n.teachersTabbarTitle
+        splitViewController?.tabBarItem?.setLocalizedTitle(L10n.teachersTabbarTitle)
     }
 
     override func viewDidLoad() {
@@ -39,9 +41,9 @@ class ListOfTeachersViewController: UITableViewController {
         setupSearchController()
         fetchData(animated: true)
 
-        navigationItem.title = L10n.teachersNavigationBarTitle
+        navigationItem.setLocalizedTitle(L10n.teachersNavigationBarTitle)
         navigationController?.title = L10n.teachersNavigationBarTitle
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(localizedTitle: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -52,7 +54,7 @@ class ListOfTeachersViewController: UITableViewController {
     private func setupSearchController() {
 
         searchController.searchResultsUpdater = resultsTableController
-        searchController.searchBar.placeholder = L10n.searchBarPlaceholderTitle
+        searchController.searchBar.setLocalizedPlaceholder(L10n.searchBarPlaceholderTitle)
 
 //        if #available(iOS 9.1, *) {
 //            searchController.obscuresBackgroundDuringPresentation = false
@@ -213,7 +215,7 @@ class ListOfTeachersViewController: UITableViewController {
 
         guard items.count > 0 else {
             cell = tableView.dequeueReusableCell(withIdentifier: "EmptyCellIdentifier")!
-            cell.textLabel?.text = L10n.teachersListEmpty
+            cell.textLabel?.setLocalizedTitle(L10n.teachersListEmpty)
             return cell
         }
 

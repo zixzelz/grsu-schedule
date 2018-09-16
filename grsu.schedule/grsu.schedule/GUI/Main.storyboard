@@ -565,7 +565,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uXK-zE-g01" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="8pB-YC-GFY">
+                        <view key="tableFooterView" contentMode="scaleToFill" misplaced="YES" id="8pB-YC-GFY">
                             <rect key="frame" x="0.0" y="1300" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2176,7 +2176,7 @@
         <image name="UserTabBar" width="34" height="34"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lt3-w8-xSP"/>
+        <segue reference="jeW-CV-Nrg"/>
         <segue reference="tEX-IB-45v"/>
         <segue reference="Ydr-vv-0vX"/>
         <segue reference="fh5-Bf-6CT"/>

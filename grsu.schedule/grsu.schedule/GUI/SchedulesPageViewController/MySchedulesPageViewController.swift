@@ -32,7 +32,7 @@ class MySchedulesPageViewController: BaseSchedulesPageViewController {
     }
 
     private func setup() {
-        notificationObserver = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Notification.authenticationStateChanged), object: nil, queue: nil) { [weak self] notification in
+        notificationObserver = NotificationCenter.default.addObserver(forName: .authenticationStateChanged, object: nil, queue: nil) { [weak self] notification in
             self?.configure()
             self?.setupPageController()
         }

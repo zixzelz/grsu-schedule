@@ -54,11 +54,11 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             self.setupPickerCells()
         }
 
-        departmentTableViewCell.textLabel?.text = L10n.studentFilterDepartmentTitle
-        facultyTableViewCell.textLabel?.text = L10n.studentFilterFacultyTitle
-        courseTableViewCell.textLabel?.text = L10n.studentFilterCourseTitle
-        groupTableViewCell.textLabel?.text = L10n.studentFilterGroupTitle
-        timeTableViewCell.textLabel?.text = L10n.studentFilterWeekTitle
+        departmentTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterDepartmentTitle)
+        facultyTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterFacultyTitle)
+        courseTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterCourseTitle)
+        groupTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterGroupTitle)
+        timeTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterWeekTitle)
     }
 
     func setupPickerCells() {

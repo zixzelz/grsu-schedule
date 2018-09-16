@@ -8,6 +8,7 @@
 
 "OK" = "OK";
 "CANCEL" = "Отмена";
+"DONE" = "Готово";
 "INSTALL_BUTTON" = "Установить";
 "BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
 "SEARCH_BAR_PLACEHOLDER_TITLE" = "Поиск";
@@ -60,3 +61,8 @@
 "AUTHENTICATION_ACTION_LOGIN" = "Войти";
 
 "USER_PROFILE_ACTION_SIGNOUT" = "Выход";
+
+"SETTINGS_NAVIGATION_BAR_TITLE" = "Настройки";
+"SETTINGS_LANGUAGE_MENU_ITEM_TITLE" = "Язык";
+
+"LANGUAGE_NAVIGATION_BAR_TITLE" = "Язык";
