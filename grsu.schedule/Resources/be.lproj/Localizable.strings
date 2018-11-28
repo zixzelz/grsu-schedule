@@ -8,6 +8,7 @@
 
 "OK" = "OK";
 "CANCEL" = "Адмена";
+"DONE" = "Зроблена";
 "INSTALL_BUTTON" = "Устанавіць";
 "BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
 "SEARCH_BAR_PLACEHOLDER_TITLE" = "Пошук";
@@ -60,4 +61,9 @@
 "AUTHENTICATION_ACTION_LOGIN" = "Увайсці";
 
 "USER_PROFILE_ACTION_SIGNOUT" = "Выхад";
+
+"SETTINGS_NAVIGATION_BAR_TITLE" = "Налады";
+"SETTINGS_LANGUAGE_MENU_ITEM_TITLE" = "Мова";
+
+"LANGUAGE_NAVIGATION_BAR_TITLE" = "Мова";
 "THERE_IS_NO_INTERNET_CONNECTION" = "Нет связи с сетью";

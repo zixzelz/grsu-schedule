@@ -17,6 +17,7 @@
 		2D12012B1A4D83C20065079E /* GetUniversityBuildings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D12012A1A4D83C20065079E /* GetUniversityBuildings.swift */; };
 		2D12012D1A4D84380065079E /* UniversityBuilding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D12012C1A4D84380065079E /* UniversityBuilding.swift */; };
 		2D12012F1A4D88690065079E /* FacultyOfUniversity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D12012E1A4D88690065079E /* FacultyOfUniversity.swift */; };
+		2D2E066B21AEA33000958BF6 /* structured-swift4.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 2D2E066A21AEA33000958BF6 /* structured-swift4.stencil */; };
 		2D3577221A4DC142006D6914 /* UniversityBuildings.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D3577211A4DC142006D6914 /* UniversityBuildings.json */; };
 		2D3744FB1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3744FA1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift */; };
 		2D3744FD1A3DE35F00B60B3A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D3744FC1A3DE35F00B60B3A /* MessageUI.framework */; };
@@ -136,7 +137,6 @@
 		44C2395E20797BE000A0B5AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44C2396020797BE000A0B5AF /* InfoPlist.strings */; };
 		44C3A969209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3A968209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift */; };
 		44C3A96B209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */; };
-		44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */; };
 		44C7AB152072E10700D4EF32 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C7AB142072E10700D4EF32 /* Strings.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
 		44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */; };
@@ -168,6 +168,7 @@
 		2D12012A1A4D83C20065079E /* GetUniversityBuildings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUniversityBuildings.swift; sourceTree = "<group>"; };
 		2D12012C1A4D84380065079E /* UniversityBuilding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniversityBuilding.swift; sourceTree = "<group>"; };
 		2D12012E1A4D88690065079E /* FacultyOfUniversity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacultyOfUniversity.swift; sourceTree = "<group>"; };
+		2D2E066A21AEA33000958BF6 /* structured-swift4.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "structured-swift4.stencil"; sourceTree = "<group>"; };
 		2D3577211A4DC142006D6914 /* UniversityBuildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UniversityBuildings.json; sourceTree = "<group>"; };
 		2D3744FA1A3DDEF400B60B3A /* CustomSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		2D3744FC1A3DE35F00B60B3A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -294,7 +295,6 @@
 		44C2396220797BEF00A0B5AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		44C3A968209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentMenuCellTableViewCell.swift; sourceTree = "<group>"; };
 		44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherMenuCellTableViewCell.swift; sourceTree = "<group>"; };
-		44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "structured-swift4.stencil"; path = "Pods/SwiftGen/templates/strings/structured-swift4.stencil"; sourceTree = SOURCE_ROOT; };
 		44C7AB142072E10700D4EF32 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
@@ -661,7 +661,7 @@
 				443B0B6B2079F88A005125A1 /* LaunchScreen.xib */,
 				443B0B6E2079F8D9005125A1 /* LaunchScreen_be.xib */,
 				443B0B6D2079F8D9005125A1 /* LaunchScreen_ru.xib */,
-				44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */,
+				2D2E066A21AEA33000958BF6 /* structured-swift4.stencil */,
 				4491105720718D5700E6E427 /* Localizable.strings */,
 				44C7AB142072E10700D4EF32 /* Strings.swift */,
 				44C2396020797BE000A0B5AF /* InfoPlist.strings */,
@@ -771,10 +771,10 @@
 			files = (
 				2D3577221A4DC142006D6914 /* UniversityBuildings.json in Resources */,
 				2D08262A1A15299D008B504E /* Main.storyboard in Resources */,
-				44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */,
 				2D0825F51A152913008B504E /* Images.xcassets in Resources */,
 				2D8D59F01A682DDB00EB1884 /* WeekSchedulesHeaderFooterView.xib in Resources */,
 				443B0B702079F8D9005125A1 /* LaunchScreen_be.xib in Resources */,
+				2D2E066B21AEA33000958BF6 /* structured-swift4.stencil in Resources */,
 				4491105520718D5700E6E427 /* Localizable.strings in Resources */,
 				440F2AE5206806C3006E3B9A /* SupportStoryboard.storyboard in Resources */,
 				2D0427751A6D6CC400222E12 /* CalloutView.xib in Resources */,
@@ -848,7 +848,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen strings --template structured-swift4 --output ${SRCROOT}/Resources/Strings.swift ${SRCROOT}/Resources/en.lproj/Localizable.strings";
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen strings --template ${SRCROOT}/Resources/structured-swift4 --output ${SRCROOT}/Resources/Strings.swift ${SRCROOT}/Resources/en.lproj/Localizable.strings\n";
 		};
 		E98A390C98526F98A13A5544 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
