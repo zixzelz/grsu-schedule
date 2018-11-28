@@ -37,7 +37,6 @@ extension Locale {
 
     private struct Constants {
         static let defaultLocale = "en_GB"
-        static let defaultLanguageCode = "en"
     }
 
     static var languages: [LanguageItem] {
@@ -45,15 +44,13 @@ extension Locale {
     }
 
     static var preferredLanguageCode: String {
-        guard let languageCode = Locale.current.languageCode else {
-            return Constants.defaultLanguageCode
-        }
+        let languageCode = UserDefaults.selectedLanguage.code
 
         switch languageCode {
         case "be", "ru":
             return languageCode
         default:
-            return Constants.defaultLanguageCode
+            return LanguageItem.defaultValue.code
         }
     }
 

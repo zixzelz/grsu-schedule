@@ -452,8 +452,7 @@
 				4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */,
 				2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */,
 				2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */,
-				2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */,
-				2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */,
+				2D2E066C21AEC39300958BF6 /* ListOfTeachers */,
 				44F0DC981DFB50450048F3AE /* FavoriteViewController.swift */,
 				2D7B6E831A39F2CE002BC208 /* TeacherInfoViewController.swift */,
 				44B64E961E0B295900A09057 /* MyScheduleViewController.swift */,
@@ -488,6 +487,15 @@
 				44481070206FC3FA0044023E /* UIColorDefault.swift */,
 			);
 			path = Commons;
+			sourceTree = "<group>";
+		};
+		2D2E066C21AEC39300958BF6 /* ListOfTeachers */ = {
+			isa = PBXGroup;
+			children = (
+				2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */,
+				2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */,
+			);
+			path = ListOfTeachers;
 			sourceTree = "<group>";
 		};
 		2D6000E61A1E8229005CB141 /* Model */ = {

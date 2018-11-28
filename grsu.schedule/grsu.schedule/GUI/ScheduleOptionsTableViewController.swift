@@ -59,6 +59,12 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         courseTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterCourseTitle)
         groupTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterGroupTitle)
         timeTableViewCell.textLabel?.setLocalizedTitle(L10n.studentFilterWeekTitle)
+
+        NotificationCenter.default.reactive.notifications(forName: .languageDidChanged)
+            .take(duringLifetimeOf: self)
+            .observeValues { [weak self] _ in
+                self?.featchData(cachePolicy: .reloadIgnoringCache)
+        }
     }
 
     func setupPickerCells() {
@@ -84,9 +90,9 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         featchData()
     }
 
-    func featchData() {
+    func featchData(cachePolicy: CachePolicy = .cachedElseLoad) {
 
-        DepartmentsService().getDepartments(.cachedElseLoad) { [weak self] result in
+        DepartmentsService().getDepartments(cachePolicy) { [weak self] result in
 
             guard let strongSelf = self else { return }
             guard case let .success(items) = result else { return }
@@ -105,10 +111,10 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                 }
             }
 
-            strongSelf.featchGroups(true)
+            strongSelf.featchGroups(cachePolicy: cachePolicy)
         }
 
-        FacultyService().getFaculties(.cachedElseLoad) { [weak self] result in
+        FacultyService().getFaculties(cachePolicy) { [weak self] result in
 
             guard let strongSelf = self else { return }
             guard case let .success(items) = result else { return }
@@ -127,11 +133,11 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
                 }
             }
 
-            strongSelf.featchGroups(true)
+            strongSelf.featchGroups(cachePolicy: cachePolicy)
         }
     }
 
-    func featchGroups(_ fromCacheOnly: Bool = false) {
+    func featchGroups(cachePolicy: CachePolicy) {
 
         guard let faculty = selectedFaculty(), let departmant = selectedDepartment(), let course = selectedCourse() else {
             return
@@ -187,7 +193,7 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         guard
             let selectedRow = weekPickerTableViewCell.selectedRowIndex(),
             let week = weeks?[selectedRow] else {
-            return nil
+                return nil
         }
         return (week.startDate, week.endDate)
     }
@@ -249,14 +255,14 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         case departmentPickerTableViewCell:
             guard let departments = departments else { return }
             scheduleDelegate?.didSelectDepartment(departments[row].id)
-            featchGroups(true)
+            featchGroups(cachePolicy: .cachedElseLoad)
         case facultyPickerTableViewCell:
             guard let faculties = faculties else { return }
             scheduleDelegate?.didSelectFaculty(faculties[row].id)
-            featchGroups(true)
+            featchGroups(cachePolicy: .cachedElseLoad)
         case coursePickerTableViewCell:
             scheduleDelegate?.didSelectCourse(text)
-            featchGroups(true)
+            featchGroups(cachePolicy: .cachedElseLoad)
         case groupPickerTableViewCell:
             guard let groups = groups else { return }
             scheduleDelegate?.didSelectGroup(groups[row].id)
