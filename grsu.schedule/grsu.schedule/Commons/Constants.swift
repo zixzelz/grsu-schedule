@@ -25,7 +25,7 @@ typealias GSWeekItem = (startDate: Date, endDate: Date, value: String)
 
 struct Constants {
     static let defaultCacheTimeInterval : TimeInterval = 60 * 60 * 24
-    static let teachersCacheTimeInterval : TimeInterval = 60 * 60 * 24 * 7
+    static let teachersCacheTimeInterval : TimeInterval = 60 * 60 * 24
 }
 
 let DepartmentsEntityName = "DepartmentsEntity"
