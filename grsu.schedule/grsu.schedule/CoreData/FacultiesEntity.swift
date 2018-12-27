@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 import CoreData
 
 @objc(FacultiesEntity)
@@ -27,34 +28,49 @@ extension FacultiesEntity: ModelType {
 
     typealias QueryInfo = FacultiesQueryInfo
 
-    static func keyForIdentifier() -> String? {
-        return "id"
+//    static func keyForIdentifier() -> String? {
+//        return "id"
+//    }
+
+    static func identifier(_ json: NSDictionary) throws -> String {
+        guard let id = json.string(for: "id") else {
+            throw ParseError.invalidData
+        }
+        return id
     }
 
-    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
-
-        return json["items"] as? [[String: AnyObject]]
+    static func objects(_ json: NSDictionary) -> [NSDictionary]? {
+        return json.dictArr(for: "items")
     }
 
-    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
+    func fill(_ json: NSDictionary, queryInfo: QueryInfo, context: Void) throws {
+        let identifier = try type(of: self).identifier(json)
 
-        id = json["id"] as! String
-        update(json, queryInfo: queryInfo)
+        updateIfNeeded(keyPath: \FacultiesEntity.id, value: identifier)
+
+        if queryInfo == .default {
+            let fullTitle = json.stringValue(for: "title")
+            let title = fullTitle.replacingOccurrences(of: "^Факультет ", with: "", options: NSString.CompareOptions.regularExpression, range: nil).capitalizingFirstLetter()
+            updateIfNeeded(keyPath: \FacultiesEntity.title, value: title)
+        }
     }
 
     func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
 
         if queryInfo == .default {
-            
+
             let fullTitle = json["title"] as? String ?? ""
             title = fullTitle.replacingOccurrences(of: "^Факультет ", with: "", options: NSString.CompareOptions.regularExpression, range: nil).capitalizingFirstLetter()
         }
     }
 
+    static func totalItems(_ json: NSDictionary) -> Int {
+        return 0
+    }
+
     // MARK: - ManagedObjectType
 
-    var identifier: String? {
-
+    var identifier: String {
         return id
     }
 

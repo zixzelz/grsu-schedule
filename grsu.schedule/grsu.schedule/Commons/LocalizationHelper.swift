@@ -12,20 +12,20 @@ import RAMAnimatedTabBarController
 
 extension UITabBarItem {
     func setLocalizedTitle(_ value: @escaping @autoclosure () -> String) {
-        guard let item = self as? RAMAnimatedTabBarItem else {
-            return
-        }
-        
-        let signal = NotificationCenter.default.reactive.notifications(forName: .languageDidChanged).map { _ -> String in
-            return value()
-        }
-        let property = Property<String?>(initial: value(), then: signal)
-
-        property.producer
-            .take(duringLifetimeOf: self)
-            .startWithValues { text in
-            item.iconView?.textLabel.text = text
-        }
+//        guard let item = self as? RAMAnimatedTabBarItem else {
+//            return
+//        }
+//        
+//        let signal = NotificationCenter.default.reactive.notifications(forName: .languageDidChanged).map { _ -> String in
+//            return value()
+//        }
+//        let property = Property<String?>(initial: value(), then: signal)
+//
+//        property.producer
+//            .take(duringLifetimeOf: self)
+//            .startWithValues { text in
+//            item.iconView?.textLabel.text = text
+//        }
     }
 }
 

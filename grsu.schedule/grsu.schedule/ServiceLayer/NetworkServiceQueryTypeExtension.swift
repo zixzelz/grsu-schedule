@@ -6,6 +6,8 @@
 //  Copyright © 2016 Ruslan Maslouski. All rights reserved.
 //
 
+import ServiceLayerSDK
+
 extension NetworkServiceQueryType {
     static var cacheTimeInterval: TimeInterval { return Constants.defaultCacheTimeInterval }
 }

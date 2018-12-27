@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 
 class LanguageSelectionViewModel: LanguageSelectionViewModeling {
 
-    lazy var fetchResult: ReactiveFetchResult<LanguageItem> = {
+    lazy var fetchResult: FetchResult<LanguageItem> = {
         let languages = Locale.languages
-        return ReactiveFetchResult(items: languages)
+        return StaticFetchResult(items: languages)
     }()
 
     lazy var listViewModel: ListViewModel<LanguageSelectionCellViewModeling> = {

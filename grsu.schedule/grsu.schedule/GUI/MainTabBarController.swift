@@ -45,8 +45,8 @@ class MainTabBarController: RAMAnimatedTabBarController {
         }
         viewControllers = newTabs
 
-        if authenticated {
+//        if authenticated {
             selectedIndex = 0
-        }
+//        }
     }
 }

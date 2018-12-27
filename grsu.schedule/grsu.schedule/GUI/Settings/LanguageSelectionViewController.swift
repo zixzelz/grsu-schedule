@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ServiceLayerSDK
 import ReactiveSwift
 
 typealias LanguageSelectionCellViewModeling = String

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 
 typealias AuthenticationCompletionHandlet = (ServiceResult<Student, ServiceError>) -> Void
 

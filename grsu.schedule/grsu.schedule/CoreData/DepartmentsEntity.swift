@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 import CoreData
 
 @objc(DepartmentsEntity)
@@ -25,36 +26,60 @@ enum DepartmentsQueryInfo: QueryInfoType {
 
 extension DepartmentsEntity: ModelType {
 
+    struct Mapper {
+
+        private let dict: NSDictionary
+
+        public init(_ dict: NSDictionary) {
+            self.dict = dict
+        }
+
+        static func identifier(_ object: NSDictionary) -> String? {
+            return object.string(for: "id")
+        }
+
+        var identifier: String? {
+            return type(of: self).identifier(dict)
+        }
+
+        var title: String {
+            let str = dict.stringValue(for: "title")
+            return str
+        }
+
+    }
+
     typealias QueryInfo = DepartmentsQueryInfo
 
-    static func keyForIdentifier() -> String? {
-        return "id"
+    static func identifier(_ json: NSDictionary) throws -> String {
+        guard let id = Mapper.identifier(json) else {
+            throw ParseError.invalidData
+        }
+        return id
     }
 
-    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
-
-        return json["items"] as? [[String: AnyObject]]
+    static func objects(_ json: NSDictionary) -> [NSDictionary]? {
+        return json.dictArr(for: "items")
     }
 
-    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
+    func fill(_ json: NSDictionary, queryInfo: QueryInfo, context: Void) throws {
+        let identifier = try DepartmentsEntity.identifier(json)
 
-        id = json["id"] as! String
-        update(json, queryInfo: queryInfo)
-    }
-
-    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
+        let mapper = Mapper(json)
+        updateIfNeeded(keyPath: \DepartmentsEntity.id, value: identifier)
 
         if queryInfo == .default {
-            
-            let str = json["title"] as? String ?? ""
-            title = str.capitalizingFirstLetter()
+            updateIfNeeded(keyPath: \DepartmentsEntity.title, value: mapper.title.capitalizingFirstLetter())
         }
+    }
+
+    static func totalItems(_ json: NSDictionary) -> Int {
+        return 0
     }
 
     // MARK: - ManagedObjectType
 
-    var identifier: String? {
-
+    var identifier: String {
         return id
     }
 

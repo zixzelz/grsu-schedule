@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ServiceLayerSDK
 import Flurry_iOS_SDK
 
 class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
@@ -22,18 +23,19 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
         }
 
         let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
-        ScheduleService().getTeacherSchedule(teacher, dateStart: startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
+        ScheduleService().getTeacherSchedule(teacher, dateStart: startWeekDate, dateEnd: endWeekDate, cache: cache)
+            .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
+            .startWithResult { [weak self] result in
+                guard let strongSelf = self else { return }
 
-            guard let strongSelf = self else { return }
-
-            switch result {
-            case .success(let items):
-                strongSelf.setLessonSchedule(items)
-            case .failure(let error):
-                Flurry.logError(error, errId: "TeacherWeekSchedulesViewController")
-                strongSelf.showMessage(L10n.loadingFailedMessage)
-            }
-            strongSelf.reloadData(animated)
+                switch result {
+                case .success(let items):
+                    strongSelf.setLessonSchedule(items)
+                case .failure(let error):
+                    Flurry.logError(error, errId: "TeacherWeekSchedulesViewController")
+                    strongSelf.showMessage(L10n.loadingFailedMessage)
+                }
+                strongSelf.reloadData(animated)
         }
     }
 

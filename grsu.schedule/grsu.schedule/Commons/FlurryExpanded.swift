@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ServiceLayerSDK
 import Flurry_iOS_SDK
 
 extension Flurry {

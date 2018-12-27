@@ -107,7 +107,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func checkLocal() {
         if UserDefaults.previousLanguageCode != Locale.preferredLanguageCode {
             UserDefaults.previousLanguageCode = Locale.preferredLanguageCode
-            cleanCacheExpiredFlags()
+//            cleanCacheExpiredFlags() // todo
         }
     }
 

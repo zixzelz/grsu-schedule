@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ServiceLayerSDK
+import ReactiveSwift
 
 enum TeachersServiceQueryInfo: QueryInfoType {
     case teacher(teacherId: String)
@@ -22,27 +24,37 @@ class TeachersService {
     let networkService: NetworkService<TeacherInfoEntity>
 
     init() {
-
-        localService = LocalService()
+        localService = LocalService(contextProvider: CoreDataHelper.contextProvider())
         networkService = NetworkService(localService: localService)
     }
 
-    func getTeacher(_ teacherId: String, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping TeacherCompletionHandlet) {
-
+    func getTeacher(_ teacherId: String, cache: CachePolicy = .cachedElseLoad) -> SignalProducer<TeacherInfoEntity, ServiceError> {
         let queryInfo: TeachersServiceQueryInfo = .teacher(teacherId: teacherId)
         let query = TeachersQuery(queryInfo: queryInfo)
-        networkService.fetchDataItem(query, cache: cache, completionHandler: completionHandler)
+        return networkService.fetchDataItems(query, cache: cache)
+            .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
+            .flatMap(.latest) { (items) -> SignalProducer<TeacherInfoEntity, ServiceError> in
+                guard let item = items.first else {
+                    return SignalProducer(error: .wrongResponseFormat)
+                }
+                return SignalProducer(value: item)
+        }
     }
 
-    func getTeachers(_ cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping TeachersCompletionHandlet) {
-
+    func getTeachers(_ cache: CachePolicy = .cachedElseLoad) -> SignalProducer<[TeacherInfoEntity], ServiceError> {
         let query = TeachersQuery(queryInfo: .default)
-        networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
+        return networkService
+            .fetchDataItems(query, cache: cache)
+            .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
     }
 
 }
 
 class TeachersQuery: NetworkServiceQueryType {
+
+    var identifier: String {
+        return filterIdentifier
+    }
 
     let queryInfo: TeachersServiceQueryInfo
 
@@ -54,8 +66,7 @@ class TeachersQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
-
+    func parameters(range: NSRange?) -> [String: String]? {
         switch queryInfo {
         case .teacher(let teacherId):
             return [

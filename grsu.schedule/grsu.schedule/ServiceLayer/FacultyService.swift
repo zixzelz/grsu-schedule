@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ServiceLayerSDK
+import ReactiveSwift
 
 typealias FacultyCompletionHandlet = (ServiceResult<[FacultiesEntity], ServiceError>) -> Void
 
@@ -16,20 +18,22 @@ class FacultyService {
     let networkService: NetworkService<FacultiesEntity>
 
     init() {
-
-        localService = LocalService()
+        localService = LocalService(contextProvider: CoreDataHelper.contextProvider())
         networkService = NetworkService(localService: localService)
     }
 
-    func getFaculties(_ cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping FacultyCompletionHandlet) {
-
-        networkService.fetchData(FacultyQuery(), cache: cache, completionHandler: completionHandler)
+    func getFaculties(_ cache: CachePolicy = .cachedElseLoad) -> SignalProducer<ServiceResponse<FacultiesEntity>, ServiceError> {
+        return networkService.fetchDataItems(FacultyQuery(), cache: cache)
     }
 
 }
 
 class FacultyQuery: NetworkServiceQueryType {
-    
+
+    var identifier: String {
+        return filterIdentifier
+    }
+
     var queryInfo: FacultiesQueryInfo {
         return .default
     }
@@ -38,9 +42,11 @@ class FacultyQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? = [
-        Parametres.lang.rawValue: Locale.preferredLocale
-    ]
+    func parameters(range: NSRange?) -> [String: String]? {
+        return [
+            Parametres.lang.rawValue: Locale.preferredLocale
+        ]
+    }
 
     var predicate: NSPredicate? = nil
 

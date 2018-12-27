@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 import CoreData
 
 @objc(TeacherInfoEntity)
@@ -32,49 +33,48 @@ extension TeacherInfoEntity: ModelType {
 
     typealias QueryInfo = TeachersServiceQueryInfo
 
-    static func keyForIdentifier() -> String? {
-        return "id"
+    static func identifier(_ json: NSDictionary) throws -> String {
+        guard let id = json["id"] as? String else {
+            throw ParseError.invalidData
+        }
+        return id
     }
 
-    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
-
-        return json["items"] as? [[String: AnyObject]]
+    static func objects(_ json: NSDictionary) -> [NSDictionary]? {
+        return json.dictArr(for: "items")
     }
 
-    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: Void) {
+    func fill(_ json: NSDictionary, queryInfo: QueryInfo, context: Void) throws {
+        let identifier = try DepartmentsEntity.identifier(json)
 
-        id = json["id"] as! String
-        update(json, queryInfo: queryInfo)
-    }
-
-    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
+        updateIfNeeded(keyPath: \TeacherInfoEntity.id, value: identifier)
 
         if let fullname = json["fullname"] as? String {
-            title = fullname
+            updateIfNeeded(keyPath: \TeacherInfoEntity.title, value: fullname)
         }
         if let _name = json["name"] as? String {
-            name = _name
+            updateIfNeeded(keyPath: \TeacherInfoEntity.name, value: _name)
         }
         if let _surname = json["surname"] as? String {
-            surname = _surname
+            updateIfNeeded(keyPath: \TeacherInfoEntity.surname, value: _surname)
         }
         if let _patronym = json["patronym"] as? String {
-            patronym = _patronym
+            updateIfNeeded(keyPath: \TeacherInfoEntity.patronym, value: _patronym)
         }
         if let _post = json["post"] as? String {
-            post = _post
+            updateIfNeeded(keyPath: \TeacherInfoEntity.post, value: _post)
         }
         if let _phone = json["phone"] as? String {
-            phone = _phone
+            updateIfNeeded(keyPath: \TeacherInfoEntity.phone, value: _phone)
         }
         if let _descr = json["descr"] as? String {
-            descr = _descr
+            updateIfNeeded(keyPath: \TeacherInfoEntity.descr, value: _descr)
         }
         if let _email = json["email"] as? String {
-            email = _email
+            updateIfNeeded(keyPath: \TeacherInfoEntity.email, value: _email)
         }
         if let _skype = json["skype"] as? String {
-            skype = _skype
+            updateIfNeeded(keyPath: \TeacherInfoEntity.skype, value: _skype)
         }
         updatedDate = Date()
     }
@@ -97,11 +97,15 @@ extension TeacherInfoEntity: ModelType {
         }
     }
 
+    static func totalItems(_ json: NSDictionary) -> Int {
+        return 0
+    }
+
 }
 
 extension TeacherInfoEntity: ManagedObjectType {
 
-    var identifier: String? {
+    var identifier: String {
         return id
     }
 }

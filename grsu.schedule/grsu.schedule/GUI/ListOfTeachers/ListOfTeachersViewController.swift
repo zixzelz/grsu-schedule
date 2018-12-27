@@ -9,7 +9,7 @@
 import UIKit
 import Flurry_iOS_SDK
 import ReactiveSwift
-//import ReactiveCocoa
+import ServiceLayerSDK
 
 // TODO: Make with MVVM
 class ListOfTeachersViewController: UITableViewController {
@@ -87,7 +87,7 @@ class ListOfTeachersViewController: UITableViewController {
         }
 
         let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
-        TeachersService().getTeachers(cache, completionHandler: { [weak self] result in
+        TeachersService().getTeachers(cache).startWithResult { [weak self] result in
 
             guard let strongSelf = self else { return }
 
@@ -103,7 +103,7 @@ class ListOfTeachersViewController: UITableViewController {
             strongSelf.shouldShowRefreshControl = false
             strongSelf.refreshControl?.endRefreshing()
             strongSelf.tableView.reloadData()
-        })
+        }
     }
 
     @objc func refresh(_ sender: AnyObject) {

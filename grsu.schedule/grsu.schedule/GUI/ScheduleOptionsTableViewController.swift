@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ServiceLayerSDK
 
 protocol ScheduleOptionsTableViewControllerDelegate: NSObjectProtocol {
     func didSelectDepartment(_ departmentId: String)
@@ -90,50 +91,57 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
         featchData()
     }
 
+    private lazy var departmentsService: DepartmentsService = {
+        return DepartmentsService()
+    }()
+
     func featchData(cachePolicy: CachePolicy = .cachedElseLoad) {
 
-        DepartmentsService().getDepartments(cachePolicy) { [weak self] result in
+        departmentsService.getDepartments(cachePolicy)
+            .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
+            .startWithResult { [weak self] result in
+                guard let strongSelf = self else { return }
+                guard case let .success(items) = result else { return }
 
-            guard let strongSelf = self else { return }
-            guard case let .success(items) = result else { return }
+                strongSelf.departments = items
+                strongSelf.departmentPickerTableViewCell.items = items.map { $0.title }
 
-            strongSelf.departments = items
-            strongSelf.departmentPickerTableViewCell.items = items.map { $0.title }
+                if let itemId = strongSelf.scheduleDataSource?.defaultDepartmentID() {
 
-            if let itemId = strongSelf.scheduleDataSource?.defaultDepartmentID() {
-
-                if let value = strongSelf.valueById(items, itemId: itemId) {
-                    strongSelf.departmentPickerTableViewCell.selectRow(value)
-                } else {
-                    if let id = items.first?.id {
-                        strongSelf.scheduleDelegate?.didSelectDepartment(id)
+                    if let value = strongSelf.valueById(items, itemId: itemId) {
+                        strongSelf.departmentPickerTableViewCell.selectRow(value)
+                    } else {
+                        if let id = items.first?.id {
+                            strongSelf.scheduleDelegate?.didSelectDepartment(id)
+                        }
                     }
                 }
-            }
 
-            strongSelf.featchGroups(cachePolicy: cachePolicy)
+                strongSelf.featchGroups(cachePolicy: cachePolicy)
         }
 
-        FacultyService().getFaculties(cachePolicy) { [weak self] result in
+        FacultyService().getFaculties(cachePolicy)
+            .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
+            .startWithResult { [weak self] result in
 
-            guard let strongSelf = self else { return }
-            guard case let .success(items) = result else { return }
+                guard let strongSelf = self else { return }
+                guard case let .success(items) = result else { return }
 
-            strongSelf.faculties = items
-            strongSelf.facultyPickerTableViewCell.items = items.map { $0.title }
+                strongSelf.faculties = items
+                strongSelf.facultyPickerTableViewCell.items = items.map { $0.title }
 
-            if let itemId = strongSelf.scheduleDataSource?.defaultFacultyID() {
+                if let itemId = strongSelf.scheduleDataSource?.defaultFacultyID() {
 
-                if let value = strongSelf.valueById(items, itemId: itemId) {
-                    strongSelf.facultyPickerTableViewCell.selectRow(value)
-                } else {
-                    if let id = items.first?.id {
-                        strongSelf.scheduleDelegate?.didSelectFaculty(id)
+                    if let value = strongSelf.valueById(items, itemId: itemId) {
+                        strongSelf.facultyPickerTableViewCell.selectRow(value)
+                    } else {
+                        if let id = items.first?.id {
+                            strongSelf.scheduleDelegate?.didSelectFaculty(id)
+                        }
                     }
                 }
-            }
 
-            strongSelf.featchGroups(cachePolicy: cachePolicy)
+                strongSelf.featchGroups(cachePolicy: cachePolicy)
         }
     }
 
@@ -143,22 +151,24 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
             return
         }
 
-        GroupsService().getGroups(faculty, department: departmant, course: course, completionHandler: { [weak self] result -> Void in
+        GroupsService().getGroups(faculty, department: departmant, course: course)
+            .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
+            .startWithResult { [weak self] result in
 
-            guard let strongSelf = self else { return }
-            guard case let .success(items) = result else { return }
+                guard let strongSelf = self else { return }
+                guard case let .success(items) = result else { return }
 
-            strongSelf.groups = items
-            strongSelf.groupPickerTableViewCell.items = items.map { $0.title }
+                strongSelf.groups = items
+                strongSelf.groupPickerTableViewCell.items = items.map { $0.title }
 
-            var itemId = strongSelf.scheduleDataSource?.defaultGroupID()
-            if let value = strongSelf.valueById(items, itemId: itemId) {
-                strongSelf.groupPickerTableViewCell.selectRow(value)
-            } else {
-                itemId = items.first?.id
-            }
-            strongSelf.scheduleDelegate?.didSelectGroup(itemId)
-        })
+                var itemId = strongSelf.scheduleDataSource?.defaultGroupID()
+                if let itemId = itemId, let value = strongSelf.valueById(items, itemId: itemId) {
+                    strongSelf.groupPickerTableViewCell.selectRow(value)
+                } else {
+                    itemId = items.first?.id
+                }
+                strongSelf.scheduleDelegate?.didSelectGroup(itemId)
+        }
     }
 
     // MARK: - Interface
@@ -239,12 +249,9 @@ class ScheduleOptionsTableViewController: UITableViewController, PickerTableView
 
     // MARK: - Utils
 
-    func valueById(_ items: [AnyObject], itemId: String?) -> String? {
-        if let itemId_ = itemId {
-            let item: AnyObject? = items.filter { $0.id == itemId_ }.first
-            return item?.title
-        }
-        return nil
+    func valueById(_ items: [AnyObject], itemId: String) -> String? {
+        let item: AnyObject? = items.filter { $0.id == itemId }.first
+        return item?.title
     }
 
     // MARK: - PickerTableViewCelldelegate

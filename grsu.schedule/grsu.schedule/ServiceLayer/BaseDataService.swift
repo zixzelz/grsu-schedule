@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 
-enum ServiceResult<T, Err: Error> {
-
-    case success(T)
-    case failure(Err)
-}
+//enum ServiceResult<T, Err: Error> {
+//
+//    case success(T)
+//    case failure(Err)
+//}
 
 typealias ResumeRequestCompletionHandlet = (ServiceResult<[String: AnyObject], ServiceError>) -> ()
 

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ServiceLayerSDK
 
 typealias StudentScheduleCompletionHandlet = (ServiceResult<[LessonScheduleEntity], ServiceError>) -> Void
 
@@ -16,39 +18,35 @@ class ScheduleService {
     let networkService: NetworkService<LessonScheduleEntity>
 
     init() {
-
-        localService = LocalService()
+        localService = LocalService(contextProvider: CoreDataHelper.contextProvider())
         networkService = NetworkService(localService: localService)
     }
 
-    func getStudentSchedule(_ group: GroupsEntity, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping StudentScheduleCompletionHandlet) {
-
+    func getStudentSchedule(_ group: GroupsEntity, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad) -> SignalProducer<ServiceResponse<LessonScheduleEntity>, ServiceError> {
         let query = StudentScheduleQuery(group: group, dateStart: dateStart, dateEnd: dateEnd)
-        networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
+        return networkService.fetchDataItems(query, cache: cache)
     }
 
-    func getMySchedule(_ studentId: String, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping StudentScheduleCompletionHandlet) {
-
+    func getMySchedule(_ studentId: String, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad) -> SignalProducer<ServiceResponse<LessonScheduleEntity>, ServiceError> {
         let query = MyScheduleQuery(studentId: studentId, dateStart: dateStart, dateEnd: dateEnd)
-        networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
+        return networkService.fetchDataItems(query, cache: cache)
     }
 
-    func getTeacherSchedule(_ teacher: TeacherInfoEntity, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping StudentScheduleCompletionHandlet) {
-
+    func getTeacherSchedule(_ teacher: TeacherInfoEntity, dateStart: Date, dateEnd: Date, cache: CachePolicy = .cachedElseLoad) -> SignalProducer<ServiceResponse<LessonScheduleEntity>, ServiceError> {
         let query = TeacherScheduleQuery(teacher: teacher, dateStart: dateStart, dateEnd: dateEnd)
-        networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
+        return networkService.fetchDataItems(query, cache: cache)
     }
 
     func cleanCache(_ completionHandler: (() -> ())? = nil) {
-
-        let query = CleanScheduleQuery()
-
-        localService.cleanCache(query) { (result) in
-            if case let .failure(error) = result {
-                assertionFailure("cleanCache error: \(error)")
-            }
-            completionHandler?()
-        }
+        // todo
+//        let query = CleanScheduleQuery()
+//
+//        localService.cleanCache(query) { (result) in
+//            if case let .failure(error) = result {
+//                assertionFailure("cleanCache error: \(error)")
+//            }
+//            completionHandler?()
+//        }
     }
 }
 
@@ -63,6 +61,10 @@ class MyScheduleQuery: NetworkServiceQueryType {
         self.studentId = studentId
         self.dateStart = dateStart
         self.dateEnd = dateEnd
+    }
+
+    var identifier: String {
+        return filterIdentifier
     }
 
     var queryInfo: ScheduleQueryInfo {
@@ -81,8 +83,7 @@ class MyScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
-
+    func parameters(range: NSRange?) -> [String: String]? {
         return ["studentId": studentId,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
             "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
@@ -104,6 +105,10 @@ class StudentScheduleQuery: NetworkServiceQueryType {
         self.dateEnd = dateEnd
     }
 
+    var identifier: String {
+        return filterIdentifier
+    }
+
     var queryInfo: ScheduleQueryInfo {
         return .student(group: group)
     }
@@ -120,8 +125,7 @@ class StudentScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
-
+    func parameters(range: NSRange?) -> [String: String]? {
         return ["groupId": group.id,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
             "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
@@ -143,6 +147,10 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
         self.dateEnd = dateEnd
     }
 
+    var identifier: String {
+        return filterIdentifier
+    }
+
     var queryInfo: ScheduleQueryInfo {
         return .teacher(teacher: teacher)
     }
@@ -159,8 +167,7 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
-
+    func parameters(range: NSRange?) -> [String: String]? {
         return ["teacherId": teacher.id,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
             "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
@@ -170,18 +177,18 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
 }
 
-class CleanScheduleQuery: LocalServiceQueryType {
-
-    var predicate: NSPredicate? {
-
-        let monthTimeInterval: TimeInterval = 60 * 60 * 24 * 7
-        let dateEnd = Date(timeIntervalSinceNow: -monthTimeInterval)
-        return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.date)) <= %@)", dateEnd as CVarArg)
-    }
-
-    var queryInfo: ScheduleQueryInfo {
-        return .my(studentId: "")
-    }
-
-    var sortBy: [NSSortDescriptor]? = nil
-}
+//class CleanScheduleQuery: LocalServiceQueryType {
+//
+//    var predicate: NSPredicate? {
+//
+//        let monthTimeInterval: TimeInterval = 60 * 60 * 24 * 7
+//        let dateEnd = Date(timeIntervalSinceNow: -monthTimeInterval)
+//        return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.date)) <= %@)", dateEnd as CVarArg)
+//    }
+//
+//    var queryInfo: ScheduleQueryInfo {
+//        return .my(studentId: "")
+//    }
+//
+//    var sortBy: [NSSortDescriptor]? = nil
+//}

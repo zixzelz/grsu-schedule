@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 import CoreData
 
 @objc(GroupsEntity)
@@ -28,61 +29,75 @@ enum GroupsServiceQueryInfo: QueryInfoType {
     case makeAsHidden
 }
 
-class GroupsParsableContext {
-    lazy var departmentsLocalService: LocalService<DepartmentsEntity> = {
-        return LocalService<DepartmentsEntity>()
-    }()
-    lazy var facultiesLocalService: LocalService<FacultiesEntity> = {
-        return LocalService<FacultiesEntity>()
-    }()
-}
-
 extension GroupsEntity: ModelType {
+
+    class GroupsParsableContext {
+        var departmentsMap: [String: DepartmentsEntity]
+        var facultiesMap: [String: FacultiesEntity]
+
+        init(departmentsMap: [String: DepartmentsEntity], facultiesMap: [String: FacultiesEntity]) {
+            self.departmentsMap = departmentsMap
+            self.facultiesMap = facultiesMap
+        }
+    }
 
     typealias QueryInfo = GroupsServiceQueryInfo
 
-    static func keyForIdentifier() -> String? {
-        return "id"
+    static func objects(_ json: NSDictionary) -> [NSDictionary]? {
+        return json.dictArr(for: "items")
     }
 
-    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
-        return json["items"] as? [[String: AnyObject]]
-    }
-    
     static func parsableContext(_ context: ManagedObjectContextType) -> GroupsParsableContext {
-        return GroupsParsableContext()
+        return GroupsParsableContext(
+            departmentsMap: DepartmentsEntity.objectsMap(withPredicate: nil, inContext: context, sortBy: nil, keyForObject: nil) ?? [:],
+            facultiesMap: FacultiesEntity.objectsMap(withPredicate: nil, inContext: context, sortBy: nil, keyForObject: nil) ?? [:]
+        )
     }
 
-    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: GroupsParsableContext) {
+    static func identifier(_ json: NSDictionary) throws -> String {
+        guard let id = json["id"] as? String else {
+            throw ParseError.invalidData
+        }
+        return id
+    }
 
-        id = json["id"] as! String
-        
-        guard let moContext = managedObjectContext else { return }
+    func fill(_ json: NSDictionary, queryInfo: QueryInfo, context: GroupsParsableContext) throws {
+        let identifier = try GroupsEntity.identifier(json)
+
+        updateIfNeeded(keyPath: \GroupsEntity.id, value: identifier)
+
+        guard let currentContext = managedObjectContext else { return }
         switch queryInfo {
         case let .withParams(faculty_, department_, course_):
-            faculty = faculty_.convertInContext(moContext)
-            department = department_.convertInContext(moContext)
+            faculty = faculty_.existingObject(in: currentContext)
+            department = department_.existingObject(in: currentContext)
             course = course_
         case .makeAsHidden:
-            let facultyJson = json["faculty"] as! [String: AnyObject]
-            let departmentJson = json["department"] as! [String: AnyObject]
-            faculty = try? context.facultiesLocalService.parseAndStoreItem(facultyJson, context: moContext, queryInfo: .justInsert)
-            department = try? context.departmentsLocalService.parseAndStoreItem(departmentJson, context: moContext, queryInfo: .justInsert)
+            if let facultyJson = json.dict(for: "faculty") {
+                let facultiesLocalService = LocalService<FacultiesEntity>(contextProvider: CoreDataHelper.contextProvider())
+                faculty = try? facultiesLocalService.parseAndStoreItem(facultyJson, cachedItemsMap: context.facultiesMap, context: currentContext, queryInfo: .justInsert)
+            } else {
+                faculty = nil
+            }
+            
+            if let departmentJson = json.dict(for: "department") {
+                let departmentsLocalService = LocalService<DepartmentsEntity>(contextProvider: CoreDataHelper.contextProvider())
+                department = try? departmentsLocalService.parseAndStoreItem(departmentJson, cachedItemsMap: context.departmentsMap, context: currentContext, queryInfo: .justInsert)
+            }
             course = json["course"] as! String
             hidden = true
         }
 
-        update(json, queryInfo: queryInfo)
+        updateIfNeeded(keyPath: \GroupsEntity.title, value: json.stringValue(for: "title"))
     }
 
-    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
-        title = json["title"] as! String
+    static func totalItems(_ json: NSDictionary) -> Int {
+        return 0
     }
 
     // MARK: - ManagedObjectType
 
-    var identifier: String? {
-
+    var identifier: String {
         return id
     }
 

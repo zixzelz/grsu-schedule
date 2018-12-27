@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ServiceLayerSDK
+import ReactiveSwift
 import Flurry_iOS_SDK
 
 class StudentWeekSchedulesViewController: WeekSchedulesViewController {
@@ -28,12 +30,12 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         super.fetchData(useCache, animated: animated)
 
         guard let startWeekDate = dateScheduleQuery?.startWeekDate, let endWeekDate = dateScheduleQuery?.endWeekDate else {
-            assertionFailure("Miss param query:\(self.dateScheduleQuery)")
+            assertionFailure("Miss param query:\(String(describing: self.dateScheduleQuery))")
             return
         }
 
         let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
-        fetchDataWithStudentId(startWeekDate, dateEnd: endWeekDate, cache: cache) { [weak self] result -> Void in
+        fetchDataWithStudentId(startWeekDate, dateEnd: endWeekDate, cache: cache).startWithResult { [weak self] result in
 
             guard let strongSelf = self else { return }
 
@@ -49,14 +51,18 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         }
     }
 
-    fileprivate func fetchDataWithStudentId(_ dateStart: Date, dateEnd: Date, cache: CachePolicy, completionHandler: @escaping StudentScheduleCompletionHandlet) {
-
+    fileprivate func fetchDataWithStudentId(_ dateStart: Date, dateEnd: Date, cache: CachePolicy) -> SignalProducer<[LessonScheduleEntity], ServiceError> {
         if let group = group {
-            ScheduleService().getStudentSchedule(group, dateStart: dateStart, dateEnd: dateEnd, cache: cache, completionHandler: completionHandler)
+            return ScheduleService()
+                .getStudentSchedule(group, dateStart: dateStart, dateEnd: dateEnd, cache: cache)
+                .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
         } else if let studentId = studentId {
-            ScheduleService().getMySchedule(studentId, dateStart: dateStart, dateEnd: dateEnd, cache: cache, completionHandler: completionHandler)
+            return ScheduleService()
+                .getMySchedule(studentId, dateStart: dateStart, dateEnd: dateEnd, cache: cache)
+                .flatMap(.latest) { $0.items(in: CoreDataHelper.managedObjectContext) }
         } else {
             assertionFailure("Miss params group and studentId")
+            return SignalProducer.empty
         }
     }
 

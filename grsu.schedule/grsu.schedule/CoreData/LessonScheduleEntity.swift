@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ServiceLayerSDK
 import CoreData
 
 @objc(LessonScheduleEntity)
@@ -34,37 +35,112 @@ enum ScheduleQueryInfo: QueryInfoType {
 }
 
 class LessonScheduleContext {
-    var groupsLocalService: LocalService<GroupsEntity>
+    var groupsMap: [String: GroupsEntity]
     var teachersMap: [String: TeacherInfoEntity]
 
-    init(groupsLocalService: LocalService<GroupsEntity>, teachersMap: [String: TeacherInfoEntity]) {
-        self.groupsLocalService = groupsLocalService
+    init(groupsMap: [String: GroupsEntity], teachersMap: [String: TeacherInfoEntity]) {
+        self.groupsMap = groupsMap
         self.teachersMap = teachersMap
     }
 }
 
 extension LessonScheduleEntity: ModelType {
 
-    typealias QueryInfo = ScheduleQueryInfo
+    struct Mapper {
 
-    static func keyForIdentifier() -> String? {
-        return nil
+        private let dict: NSDictionary
+
+        public init(_ dict: NSDictionary) {
+            self.dict = dict
+        }
+
+//        static func identifier(_ object: NSDictionary) -> String? {
+//            //return object.string(for: "id")
+//            return nil
+//        }
+//
+//        var identifier: String? {
+//            return type(of: self).identifier(dict)
+//        }
+
+        public static func addDate(_ object: NSDictionary, date: Date) -> NSDictionary {
+            let result = object.mutableCopy() as! NSMutableDictionary//swiftlint:disable:this force_cast
+            result["date"] = date
+            return result.copy() as! NSDictionary//swiftlint:disable:this force_cast
+        }
+
+        var date: Date? {
+            return dict.date(for: "date")
+        }
+
+        var studyName: String? {
+            return dict.string(for: "title")
+        }
+
+        var type: String? {
+            return dict.string(for: "type")
+        }
+
+        var address: String? {
+            return dict.string(for: "address")
+        }
+
+        var room: String? {
+            return dict.string(for: "room")
+        }
+
+        var startTime: Int32? {
+            guard let startTime = dict.string(for: "timeStart") else {
+                return nil
+            }
+            return DateManager.timeIntervalWithTimeText(startTime).map { Int32($0) }
+        }
+
+        var endTime: Int32? {
+            guard let timeEnd = dict.string(for: "timeEnd") else {
+                return nil
+            }
+            return DateManager.timeIntervalWithTimeText(timeEnd).map { Int32($0) }
+        }
+
+        var subgroup: String? {
+            return dict.dict(for: "subgroup")?.string(for: "title")
+        }
+
+        var teacher: NSDictionary? {
+            return dict.dict(for: "teacher")
+        }
+
+        var groups: [NSDictionary]? {
+            return dict.dictArr(for: "groups")
+        }
+
     }
 
-    static func objects(_ json: [String: AnyObject]) -> [[String: AnyObject]]? {
+    typealias QueryInfo = ScheduleQueryInfo
 
-        guard let days = json["days"] as? [[String: AnyObject]] else { return nil }
+    static func identifier(_ json: NSDictionary) throws -> String {
+        let lessonMap = Mapper(json)
 
-        var items = [[String: AnyObject]]()
+        let startTime = lessonMap.startTime ?? 0
+        let endTime = lessonMap.endTime ?? 0
+        let studyName = lessonMap.studyName
+
+        return "\(String(describing: studyName))-\(startTime)-\(endTime)"
+    }
+
+    static func objects(_ json: NSDictionary) -> [NSDictionary]? {
+
+        guard let days = json.dictArr(for: "days") else { return nil }
+
+        var items = [NSDictionary]()
         for day in days {
 
-            guard let strDate = day["date"] as? String else { return nil }
-            guard var lessons = day["lessons"] as? [[String: AnyObject]] else { return nil }
+            guard let strDate = day.string(for: "date") else { return nil }
+            guard var lessons = day.dictArr(for: "lessons") else { return nil }
 
-            let date = DateUtils.date(from: strDate, format: DateFormatKeyDateInDefaultFormat)
-            for index in 0 ..< lessons.count {
-                lessons[index]["date"] = date as AnyObject
-            }
+            let date = DateUtils.date(from: strDate, format: DateFormatKeyDateInDefaultFormat)!
+            lessons = lessons.map { Mapper.addDate($0, date: date) }
 
             items.append(contentsOf: lessons)
         }
@@ -73,96 +149,105 @@ extension LessonScheduleEntity: ModelType {
     }
 
     static func parsableContext(_ context: ManagedObjectContextType) -> LessonScheduleContext {
+// todo, think context, predicate
+        let groupsMap = GroupsEntity.objectsMap(withPredicate: nil, inContext: context, sortBy: nil, keyForObject: nil) ?? [:]
+        let teachersMap = TeacherInfoEntity.objectsMap(withPredicate: nil, inContext: context, sortBy: nil, keyForObject: nil) ?? [:]
 
-        let groupsLocalService = LocalService<GroupsEntity>()
-        let teachersMap = TeacherInfoEntity.objectsMap(withPredicate: nil, inContext: context) ?? [:]
-
-        return LessonScheduleContext(groupsLocalService: groupsLocalService, teachersMap: teachersMap)
+        return LessonScheduleContext(groupsMap: groupsMap, teachersMap: teachersMap)
     }
 
-    func fill(_ json: [String: AnyObject], queryInfo: QueryInfo, context: LessonScheduleContext) {
-
-        let lesson = json
+    func fill(_ json: NSDictionary, queryInfo: QueryInfo, context: LessonScheduleContext) throws {
+        let lessonMap = Mapper(json)
 
         guard let moContext = managedObjectContext else { return }
 
-        guard let lessonDate = lesson["date"] as? Date else { return }
-        guard let timeStart = lesson["timeStart"] as? String else { return }
-        guard let timeEnd = lesson["timeEnd"] as? String else { return }
+        guard let lessonDate = lessonMap.date,
+            let startTime = lessonMap.startTime,
+            let endTime = lessonMap.endTime
+            else {
+                throw ParseError.invalidData
+        }
 
         date = lessonDate
-        studyName = lesson["title"] as? String
-        type = lesson["type"] as? String
-        address = lesson["address"] as? String
-        room = lesson["room"] as? String
-        startTime = DateManager.timeIntervalWithTimeText(timeStart).map { Int32($0) } ?? 0
-        stopTime = DateManager.timeIntervalWithTimeText(timeEnd).map { Int32($0) } ?? 0
-        subgroupTitle = lesson["subgroup"]?["title"] as? String
+        studyName = lessonMap.studyName
+        type = lessonMap.type
+        address = lessonMap.address
+        room = lessonMap.room
+        self.startTime = startTime
+        self.stopTime = endTime
+        subgroupTitle = lessonMap.subgroup
+
+        updateIfNeeded(keyPath: \LessonScheduleEntity.date, value: lessonDate)
+        updateIfNeeded(keyPath: \LessonScheduleEntity.studyName, value: lessonMap.studyName)
+        updateIfNeeded(keyPath: \LessonScheduleEntity.type, value: lessonMap.type)
+        updateIfNeeded(keyPath: \LessonScheduleEntity.address, value: lessonMap.address)
+        updateIfNeeded(keyPath: \LessonScheduleEntity.room, value: lessonMap.room)
+        updateIfNeeded(keyPath: \LessonScheduleEntity.startTime, value: startTime)
+        updateIfNeeded(keyPath: \LessonScheduleEntity.stopTime, value: endTime)
+        updateIfNeeded(keyPath: \LessonScheduleEntity.subgroupTitle, value: lessonMap.subgroup)
 
         switch queryInfo {
         case .student(let _group):
             isTeacherSchedule = false
-            let group = _group.convertInContext(moContext)
-            groups = Set<GroupsEntity>(arrayLiteral: group)
-            teacher = parseTeacher(lesson["teacher"], managedObjectContext: moContext, context: context)
+            let group = _group.existingObject(in: moContext)
+            groups = group.map { Set<GroupsEntity>(arrayLiteral: $0) } ?? []
+            teacher = lessonMap.teacher.flatMap { teacher in
+                return parseTeacher(teacher, managedObjectContext: moContext, context: context)
+            }
 
         case .teacher(let _teacher):
             isTeacherSchedule = true
-            groups = parseGroups(lesson["groups"], managedObjectContext: moContext, context: context)
-            teacher = _teacher.convertInContext(moContext)
+            groups = lessonMap.groups.map { groups in
+                return parseGroups(groups, managedObjectContext: moContext, context: context)
+            } ?? []
+            teacher = _teacher.existingObject(in: moContext)
 
         case .my(let _studentId):
             isTeacherSchedule = false
             userId = _studentId
-            groups = parseGroups(lesson["groups"], managedObjectContext: moContext, context: context)
-            teacher = parseTeacher(lesson["teacher"], managedObjectContext: moContext, context: context)
+            groups = lessonMap.groups.map { groups in
+                return parseGroups(groups, managedObjectContext: moContext, context: context)
+            } ?? []
+            teacher = lessonMap.teacher.flatMap { teacher in
+                return parseTeacher(teacher, managedObjectContext: moContext, context: context)
+            }
 
         }
-    }
-
-    func update(_ json: [String: AnyObject], queryInfo: QueryInfo) {
     }
 
     //
 
-    fileprivate func parseTeacher(_ teacherJson: AnyObject?, managedObjectContext: NSManagedObjectContext, context: LessonScheduleContext) -> TeacherInfoEntity? {
+    private func parseTeacher(_ teacherJson: NSDictionary, managedObjectContext: NSManagedObjectContext, context: LessonScheduleContext) -> TeacherInfoEntity? {
+        let teacherLocalService = LocalService<TeacherInfoEntity>(contextProvider: CoreDataHelper.contextProvider())
 
-        guard let teacherJson = teacherJson as? [String: AnyObject] else { return nil }
-        guard let teacherId = teacherJson["id"] as? String else { return nil }
-
-        var newTeacher = context.teachersMap[teacherId]
-
-        if newTeacher == nil {
-            newTeacher = TeacherInfoEntity.insert(inContext: managedObjectContext)
-            newTeacher?.id = teacherId
-            context.teachersMap[teacherId] = newTeacher
+        guard let newTeacher = try? teacherLocalService.parseAndStoreItem(teacherJson, cachedItemsMap: context.teachersMap, context: managedObjectContext, queryInfo: .default) else {
+            return nil
         }
-
-        newTeacher?.title = teacherJson["fullname"] as? String
-        newTeacher?.post = teacherJson["post"] as? String
-
+        context.teachersMap[newTeacher.identifier] = newTeacher
         return newTeacher
     }
 
-    fileprivate func parseGroups(_ groupsJson: AnyObject?, managedObjectContext: NSManagedObjectContext, context: LessonScheduleContext) -> Set<GroupsEntity> {
-
-        guard let groupsJson = groupsJson as? [[String: AnyObject]] else { return [] }
+    private func parseGroups(_ groupsJson: [NSDictionary], managedObjectContext: NSManagedObjectContext, context: LessonScheduleContext) -> Set<GroupsEntity> {
+        let groupsLocalService = LocalService<GroupsEntity>(contextProvider: CoreDataHelper.contextProvider())
 
         var groups = Set<GroupsEntity>()
         for groupJson in groupsJson {
-
-            if let newGroup = try? context.groupsLocalService.parseAndStoreItem(groupJson, context: managedObjectContext, queryInfo: .makeAsHidden) {
+            if let newGroup = try? groupsLocalService.parseAndStoreItem(groupJson, cachedItemsMap: context.groupsMap, context: managedObjectContext, queryInfo: .makeAsHidden) {
+                context.groupsMap[newGroup.identifier] = newGroup
                 groups.insert(newGroup)
             }
         }
-
         return groups
+    }
+
+    static func totalItems(_ json: NSDictionary) -> Int {
+        return 0
     }
 
     // MARK: - ManagedObjectType
 
-    var identifier: String? {
-        return nil
+    var identifier: String {
+        return "\(String(describing: studyName))-\(startTime)-\(stopTime)"
     }
 
 }

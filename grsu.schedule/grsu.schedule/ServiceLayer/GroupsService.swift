@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ServiceLayerSDK
+import ReactiveSwift
 
 typealias GroupsCompletionHandlet = (ServiceResult<[GroupsEntity], ServiceError>) -> Void
 
@@ -16,15 +18,13 @@ class GroupsService {
     let networkService: NetworkService<GroupsEntity>
 
     init() {
-
-        localService = LocalService()
+        localService = LocalService(contextProvider: CoreDataHelper.contextProvider())
         networkService = NetworkService(localService: localService)
     }
 
-    func getGroups(_ faculty: FacultiesEntity, department: DepartmentsEntity, course: String, cache: CachePolicy = .cachedElseLoad, completionHandler: @escaping GroupsCompletionHandlet) {
-
+    func getGroups(_ faculty: FacultiesEntity, department: DepartmentsEntity, course: String, cache: CachePolicy = .cachedElseLoad) -> SignalProducer<ServiceResponse<GroupsEntity>, ServiceError> {
         let query = GroupsQuery(faculty: faculty, department: department, course: course)
-        networkService.fetchData(query, cache: cache, completionHandler: completionHandler)
+        return networkService.fetchDataItems(query, cache: cache)
     }
 
 }
@@ -41,6 +41,10 @@ class GroupsQuery: NetworkServiceQueryType {
         self.course = course
     }
 
+    var identifier: String {
+        return filterIdentifier
+    }
+
     var queryInfo: GroupsServiceQueryInfo {
         return .withParams(faculty: faculty, department: department, course: course)
     }
@@ -49,8 +53,7 @@ class GroupsQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
-
+    func parameters(range: NSRange?) -> [String: String]? {
         return ["facultyId": faculty.id,
             "departmentId": department.id,
             "course": course,

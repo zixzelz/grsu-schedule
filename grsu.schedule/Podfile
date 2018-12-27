@@ -9,9 +9,16 @@ pod 'GoogleMaps'
 pod 'Flurry-iOS-SDK/FlurrySDK'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'RAMAnimatedTabBarController', :git => 'https://github.com/zixzelz/animated-tab-bar.git', :branch => 'dev'
+#pod 'ServiceLayerSDK', :git => 'https://github.com/zixzelz/love-of-music', :tag => '0.0.1'
+#pod 'ServiceLayerSDK/CoreData', :git => 'https://github.com/zixzelz/love-of-music', :tag => '0.0.1'
+#pod 'ServiceLayerSDK/ServiceLayerUIKit', :git => 'https://github.com/zixzelz/love-of-music', :tag => '0.0.1'
+
+pod 'ServiceLayerSDK', :path => '../../love-of-music/'
+pod 'ServiceLayerSDK/CoreData', :path => '../../love-of-music/'
+pod 'ServiceLayerSDK/ServiceLayerUIKit', :path => '../../love-of-music/'
+
 pod 'Fabric'
 pod 'Crashlytics'
-
 #Localizable strings generation
 pod 'SwiftGen', '5.2.1'
 

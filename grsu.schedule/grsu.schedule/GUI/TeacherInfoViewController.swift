@@ -10,6 +10,7 @@
 import UIKit
 import MessageUI
 import Flurry_iOS_SDK
+import ServiceLayerSDK
 
 private enum GSTeacherFieldType: String {
     case skype = "TeacherSkypeFieldCellIdentifier"
@@ -75,12 +76,11 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         setNeedsShowRefreshControl()
 
         let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCache
-        TeachersService().getTeacher(teacherInfo.id, cache: cache) { [weak self] result -> Void in
+        TeachersService().getTeacher(teacherInfo.id, cache: cache).startWithResult { [weak self] result in
             guard let strongSelf = self else { return }
 
             strongSelf.hideRefreshControl()
             if case .success(teacherInfo) = result {
-
                 strongSelf.teacherInfo = teacherInfo
             }
         }

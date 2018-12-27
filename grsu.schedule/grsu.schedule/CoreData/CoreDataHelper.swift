@@ -125,19 +125,3 @@ class CoreDataHelper: NSObject {
         }
     }
 }
-
-extension NSManagedObjectContext {
-
-    public func saveIfNeeded() {
-
-        do {
-            if hasChanges {
-                try save()
-            }
-        } catch {
-
-            NSLog("Unresolved error \(error)")
-            abort()
-        }
-    }
-}
