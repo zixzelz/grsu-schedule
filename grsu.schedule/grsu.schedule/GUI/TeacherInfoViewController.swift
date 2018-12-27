@@ -25,10 +25,10 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
     private var teacherInfoFields: [GSTeacherField] = []
     var teacherInfo: TeacherInfoEntity? {
         didSet {
-            if (teacherInfo?.id == "20200") {
-                teacherInfo?.phone = "+375 29 320 9908"
-                teacherInfo?.skype = "a.karkanica"
-            }
+//            if (teacherInfo?.id == "20200") {
+//                teacherInfo?.phone = "+375 29 320 9908"
+//                teacherInfo?.skype = "a.karkanica"
+//            }
 
             teacherInfoFields = []
             if let phone = teacherInfo?.phone, !NSString.isNilOrEmpty(phone) {
