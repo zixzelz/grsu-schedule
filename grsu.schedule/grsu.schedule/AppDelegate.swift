@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     fileprivate func cleanCachejob() {
-        ScheduleService().cleanCache()
+        ScheduleService().cleanCache().start()
     }
 
     private func setupLanguage() {

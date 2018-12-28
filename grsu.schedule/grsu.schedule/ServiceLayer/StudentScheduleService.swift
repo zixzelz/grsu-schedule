@@ -37,16 +37,14 @@ class ScheduleService {
         return networkService.fetchDataItems(query, cache: cache)
     }
 
-    func cleanCache(_ completionHandler: (() -> ())? = nil) {
-        // todo
-//        let query = CleanScheduleQuery()
-//
-//        localService.cleanCache(query) { (result) in
-//            if case let .failure(error) = result {
-//                assertionFailure("cleanCache error: \(error)")
-//            }
-//            completionHandler?()
-//        }
+    func cleanCache() -> SignalProducer<Void, ServiceError> {
+        var predicate: NSPredicate {
+            let dayTimeInterval: TimeInterval = 60 * 60 * 24 * 10
+            let dateEnd = Date(timeIntervalSinceNow: -dayTimeInterval)
+            return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.date)) <= %@)", dateEnd as CVarArg)
+        }
+
+        return localService.cleanCache(predicate)
     }
 }
 
@@ -176,19 +174,3 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
     }
 
 }
-
-//class CleanScheduleQuery: LocalServiceQueryType {
-//
-//    var predicate: NSPredicate? {
-//
-//        let monthTimeInterval: TimeInterval = 60 * 60 * 24 * 7
-//        let dateEnd = Date(timeIntervalSinceNow: -monthTimeInterval)
-//        return NSPredicate(format: "(\(#keyPath(LessonScheduleEntity.date)) <= %@)", dateEnd as CVarArg)
-//    }
-//
-//    var queryInfo: ScheduleQueryInfo {
-//        return .my(studentId: "")
-//    }
-//
-//    var sortBy: [NSSortDescriptor]? = nil
-//}
