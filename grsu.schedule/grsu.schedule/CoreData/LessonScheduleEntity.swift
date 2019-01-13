@@ -150,7 +150,8 @@ extension LessonScheduleEntity: ModelType {
 
     static func parsableContext(_ context: ManagedObjectContextType) -> LessonScheduleContext {
 // todo, think context, predicate
-        let groupsMap = GroupsEntity.objectsMap(withPredicate: nil, inContext: context, sortBy: nil, keyForObject: nil) ?? [:]
+        let groupsPredicate = NSPredicate(format: "(hidden == YES)")
+        let groupsMap = GroupsEntity.objectsMap(withPredicate: groupsPredicate, inContext: context, sortBy: nil, keyForObject: nil) ?? [:]
         let teachersMap = TeacherInfoEntity.objectsMap(withPredicate: nil, inContext: context, sortBy: nil, keyForObject: nil) ?? [:]
 
         return LessonScheduleContext(groupsMap: groupsMap, teachersMap: teachersMap)
