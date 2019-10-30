@@ -468,7 +468,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Rfz-B4-bNG">
-                                <rect key="frame" x="0.0" y="44" width="320" height="524"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="jzl-MC-UF9" style="IBUITableViewCellStyleDefault" id="rmo-dX-6vc">
@@ -492,8 +492,8 @@
                             </tableView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Rfz-B4-bNG" firstAttribute="top" secondItem="WKV-Ay-JiE" secondAttribute="top" id="7HO-rG-enf"/>
-                            <constraint firstItem="WKV-Ay-JiE" firstAttribute="bottom" secondItem="Rfz-B4-bNG" secondAttribute="bottom" id="9na-yH-Zya"/>
+                            <constraint firstItem="Rfz-B4-bNG" firstAttribute="top" secondItem="Lux-aZ-Vi6" secondAttribute="top" id="7HO-rG-enf"/>
+                            <constraint firstAttribute="bottom" secondItem="Rfz-B4-bNG" secondAttribute="bottom" id="9na-yH-Zya"/>
                             <constraint firstItem="Rfz-B4-bNG" firstAttribute="leading" secondItem="WKV-Ay-JiE" secondAttribute="leading" id="cI8-4i-k5l"/>
                             <constraint firstItem="WKV-Ay-JiE" firstAttribute="trailing" secondItem="Rfz-B4-bNG" secondAttribute="trailing" id="xOI-By-M0d"/>
                         </constraints>
