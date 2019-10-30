@@ -140,7 +140,7 @@ class FavoriteViewController: UITableViewController {
             var text = teacher.displayTitle
 
             let texts = text.components(separatedBy: " ")
-            if texts.count > 2 {
+            if texts.count > 2 && !texts[2].isEmpty {
 
                 let first = String(texts[0][0]).capitalized
                 let second = String(texts[2][0]).capitalized

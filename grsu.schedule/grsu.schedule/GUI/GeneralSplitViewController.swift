@@ -21,6 +21,8 @@ class GeneralSplitViewController: UISplitViewController {
 
 //        preferredDisplayMode = .allVisible
 
+        view.backgroundColor = UIColor(named: "NavigationBarColor")
+
         if UIDevice.isIPAD {
             showDetailViewController(defaultDetailVC(), sender: nil)
         }

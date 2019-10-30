@@ -71,7 +71,7 @@ class ListOfTeachersViewController: UITableViewController {
         definesPresentationContext = true
 
         if let navigationBar = navigationController?.navigationBar {
-            navigationBar.barTintColor = UIColor.navigationBar
+//            navigationBar.barTintColor = UIColor.navigationBar
         }
 
         // Fix bug with a magic line between navigationBar and searchBar 🤬

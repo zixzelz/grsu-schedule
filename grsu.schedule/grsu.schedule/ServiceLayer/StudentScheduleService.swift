@@ -124,7 +124,7 @@ class StudentScheduleQuery: NetworkServiceQueryType {
     var method: NetworkServiceMethod = .GET
 
     func parameters(range: NSRange?) -> [String: String]? {
-        return ["groupId": group.id,
+        return ["groupId": "6729",//group.id,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
             "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
             Parametres.lang.rawValue: Locale.preferredLocale
