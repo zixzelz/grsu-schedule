@@ -16,7 +16,7 @@ class DateManager: NSObject {
         let formatterDate = DateFormatter() // todo: create cache of formatters
         formatterDate.dateStyle = .short
 
-        var startOfTheWeek: Date = date.dateFromBeginningOfWeek()
+        var startOfTheWeek: Date = date.startOfWeek
         let interval: TimeInterval = 604800 // 1 weak
 
         var items = [GSWeekItem]()
@@ -39,7 +39,7 @@ class DateManager: NSObject {
         var fromDate = Date()
         var toDate = Date()
 
-        let calendar = Calendar.current
+        let calendar = Calendar.shared
         var interval: TimeInterval = 0
 
         _ = calendar.dateInterval(of: .day, start: &fromDate, interval: &interval, for: fromDateTime)
@@ -65,22 +65,25 @@ class DateManager: NSObject {
 }
 
 extension Date {
-    func dateFromBeginningOfWeek() -> Date {
-        let calendar = Calendar.current
-        var startOfTheWeek: Date = Date()
-        var interval: TimeInterval = 0
-        _ = calendar.dateInterval(of: .weekOfMonth, start: &startOfTheWeek, interval: &interval, for: self)
-
-        return startOfTheWeek
+    var startOfWeek: Date {
+        let gregorian = Calendar.shared
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+        return gregorian.date(byAdding: .day, value: 1, to: sunday)!
     }
-
+    var endOfWeek: Date {
+        let gregorian = Calendar(identifier: .gregorian)
+        let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
+        return gregorian.date(byAdding: .day, value: 7, to: sunday)!
+    }
     func startEndOfWeak() -> (Date, Date) {
-        let calendar = Calendar.current
-        var startOfTheWeek: Date = Date()
-        var interval: TimeInterval = 0
-        _ = calendar.dateInterval(of: .weekOfMonth, start: &startOfTheWeek, interval: &interval, for: self)
-        let endOfWeek = startOfTheWeek.addingTimeInterval(interval - 1)
+        return (startOfWeek, endOfWeek)
+    }
+}
 
-        return (startOfTheWeek, endOfWeek)
+extension Calendar {
+    static var shared: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.firstWeekday = 0
+        return calendar
     }
 }
