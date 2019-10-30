@@ -28,8 +28,9 @@ class CustomSearchController: UISearchController {
         searchBar.barTintColor = UIColor.navigationBar.withAlphaComponent(0.85)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.navigationBar
 
-        if #available(iOS 11.0, *) {
-
+        if #available(iOS 13.0, *) {
+            searchBar.searchTextField.backgroundColor = UIColor(named: "SearchTextFieldBackgroundColor")
+        } else {
             UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.black]
 
             if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
