@@ -62,24 +62,20 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         refreshControl.addTarget(self, action: #selector(WeekSchedulesViewController.refresh(_:)), for: UIControlEvents.valueChanged)
         refreshControl.tintColor = UIColor.black
 
-        if #available(iOS 10.0, *) {
-            tableView.refreshControl = refreshControl
-        } else {
-            tableView.addSubview(refreshControl)
-        }
+        tableView.refreshControl = refreshControl
     }
 
     private func updatedTableViewInset() {
 
-        if #available(iOS 11.0, *) {
-        } else {
+//        if #available(iOS 11.0, *) {
+//        } else {
             if let navigationBar = navigationController?.navigationBar {
-                let top = navigationBar.bounds.height + 20
+                let top = navigationBar.bounds.height// + 20
                 let inset = UIEdgeInsetsMake(top, 0, 49, 0)
                 tableView.contentInset = inset
                 tableView.scrollIndicatorInsets = inset
             }
-        }
+//        }
     }
 
     func reloadData(_ animated: Bool) {

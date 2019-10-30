@@ -996,7 +996,7 @@
                         <viewControllerLayoutGuide type="top" id="dha-jW-wKa"/>
                         <viewControllerLayoutGuide type="bottom" id="ZPS-7c-QJI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5ye-uu-VaJ">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="5ye-uu-VaJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1007,7 +1007,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-qf-Oua">
-                                <rect key="frame" x="0.0" y="343" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="337" width="320" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="47e-op-Xxt"/>
@@ -1116,7 +1116,7 @@
                         <viewControllerLayoutGuide type="top" id="JA1-Zn-n4u"/>
                         <viewControllerLayoutGuide type="bottom" id="SdL-eB-GrC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Xv0-5l-EwS">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Xv0-5l-EwS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="470"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1599,7 +1599,7 @@
                         <viewControllerLayoutGuide type="bottom" id="t2v-jp-Gng"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vNq-4O-8rg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lTr-4E-IRX" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
@@ -1991,7 +1991,7 @@
                     <navigationItem key="navigationItem" id="shV-bh-36b">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="nbk-lx-Ukl" customClass="SettingsBarButtonItem" customModule="grsu_schedule" customModuleProvider="target"/>
                         <view key="titleView" contentMode="scaleToFill" id="ez8-fq-f4i">
-                            <rect key="frame" x="75" y="0.0" width="144" height="44"/>
+                            <rect key="frame" x="75" y="3" width="144" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7G-fT-Pu4">
