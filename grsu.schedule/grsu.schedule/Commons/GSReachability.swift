@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 class GSReachability: Reachability {
 

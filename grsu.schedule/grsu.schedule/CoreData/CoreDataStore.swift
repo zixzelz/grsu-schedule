@@ -21,7 +21,6 @@ class CoreDataStore: NSObject {
     }()
 
     lazy var managedObjectModel: NSManagedObjectModel = {
-
         let modelURL = Bundle.main.url(forResource: storeName, withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()

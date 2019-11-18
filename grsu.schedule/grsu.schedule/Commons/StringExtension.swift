@@ -36,3 +36,9 @@ extension String {
         return self[startIndex ..< end]
     }
 }
+
+extension Optional where Wrapped == String {
+    var isNilOrEmpty: Bool {
+        return (self ?? "").isEmpty
+    }
+}

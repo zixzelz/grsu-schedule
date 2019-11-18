@@ -222,7 +222,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
                 lCell = cellForLesson(lesson, isActive: false)
             }
 
-            if !NSString.isNilOrEmpty(lesson.address) || !NSString.isNilOrEmpty(lesson.room) {
+            if !lesson.address.isNilOrEmpty || !lesson.room.isNilOrEmpty {
                 lCell.locationLabel.text = "\(lesson.address ?? ""); \(L10n.roomNumberTitle)\(lesson.room ?? "")"
             } else {
                 lCell.locationLabel.text = nil
@@ -251,7 +251,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             title = ""
         } else {
             let date = schedules![section].date
-            title = DateUtils.formatDate(date, withFormat: DateFormatDayOfWeekAndMonthAndDay)
+            title = date.dayOfWeekAndMonthAndDayFormatter
         }
 
         headerView?.textLabel?.text = title

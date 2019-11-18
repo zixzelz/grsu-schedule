@@ -515,7 +515,7 @@
         <image name="UserLogo" width="512" height="512"/>
         <image name="logo" width="200" height="168"/>
         <namedColor name="NavigationBarColor">
-            <color red="0.22745098039215686" green="0.53725490196078429" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.059000000357627869" green="0.059000000357627869" blue="0.059000000357627869" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
