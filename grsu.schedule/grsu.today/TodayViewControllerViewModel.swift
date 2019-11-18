@@ -64,20 +64,6 @@ class TodayViewControllerViewModel: TodayViewControllerViewModeling {
         fetchResult.refresh()
     }
 
-//    private func reloadData(dataSource: ScheduleDataSource, useCache: Bool = true, complited: @escaping (_ success: Bool) -> Void) {
-//        let cache: CachePolicy = useCache ? .cachedElseLoad : .reloadIgnoringCacheы
-//                self?.allLessons.value = items
-//                complited(true)
-//            case .failure(let error):
-//                print("error: \(error)")
-//                complited(false)
-////                Flurry.logError(error, errId: "StudentWeekSchedulesViewController")
-////                strongSelf.showMessage(L10n.loadingFailedMessage)
-//                break
-//            }
-//        }
-//    }
-
 }
 
 class StudentLessonCellViewModel: StudentLessonCellViewModeling {
