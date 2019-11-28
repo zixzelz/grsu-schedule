@@ -31,13 +31,13 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
 //            }
 
             teacherInfoFields = []
-            if let phone = teacherInfo?.phone, !NSString.isNilOrEmpty(phone) {
+            if let phone = teacherInfo?.phone, !phone.isEmpty {
                 teacherInfoFields.append((L10n.teacherInfoMobileFieldTitle, .phone, phone))
             }
-            if let email = teacherInfo?.email, !NSString.isNilOrEmpty(email) {
+            if let email = teacherInfo?.email, !email.isEmpty {
                 teacherInfoFields.append((L10n.teacherInfoEmailFieldTitle, .email, email))
             }
-            if let skype = teacherInfo?.skype, !NSString.isNilOrEmpty(skype) {
+            if let skype = teacherInfo?.skype, !skype.isEmpty {
                 teacherInfoFields.append((L10n.teacherInfoSkypeFieldTitle, .skype, skype))
             }
             tableView.reloadData()

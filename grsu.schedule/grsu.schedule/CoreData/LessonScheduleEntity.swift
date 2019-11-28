@@ -28,6 +28,15 @@ class LessonScheduleEntity: NSManagedObject {
     @NSManaged var userId: String?
 }
 
+extension LessonScheduleEntity {
+    var beginLessonDate: Date {
+        return date + TimeInterval(startTime * 60)
+    }
+    var endLessonDate: Date {
+        return date + TimeInterval(stopTime * 60)
+    }
+}
+
 enum ScheduleQueryInfo: QueryInfoType {
     case my(studentId: String)
     case student(group: GroupsEntity)
@@ -123,10 +132,12 @@ extension LessonScheduleEntity: ModelType {
         let lessonMap = Mapper(json)
 
         let startTime = lessonMap.startTime ?? 0
+        let date = lessonMap.date ?? Date()
         let endTime = lessonMap.endTime ?? 0
         let studyName = lessonMap.studyName
+        let subGroup = lessonMap.subgroup ?? ""
 
-        return "\(String(describing: studyName))-\(startTime)-\(endTime)"
+        return "\(date)-\(String(describing: studyName))-\(subGroup)-\(startTime)-\(endTime)"
     }
 
     static func objects(_ json: NSDictionary) -> [NSDictionary]? {
@@ -139,7 +150,7 @@ extension LessonScheduleEntity: ModelType {
             guard let strDate = day.string(for: "date") else { return nil }
             guard var lessons = day.dictArr(for: "lessons") else { return nil }
 
-            let date = DateUtils.date(from: strDate, format: DateFormatKeyDateInDefaultFormat)!
+            let date = strDate.dateFromDefaultDateFormatter!
             lessons = lessons.map { Mapper.addDate($0, date: date) }
 
             items.append(contentsOf: lessons)
@@ -248,7 +259,7 @@ extension LessonScheduleEntity: ModelType {
     // MARK: - ManagedObjectType
 
     var identifier: String {
-        return "\(String(describing: studyName))-\(startTime)-\(stopTime)"
+        return "\(date)-\(String(describing: studyName))-\(subgroupTitle ?? "")-\(startTime)-\(stopTime)"
     }
 
 }

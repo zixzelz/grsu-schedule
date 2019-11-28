@@ -49,6 +49,7 @@ class ScheduleService {
 }
 
 class MyScheduleQuery: NetworkServiceQueryType {
+
     //http://api.grsu.by/1.x/app1/getGroupSchedule?studentId=130569
 
     let studentId: String
@@ -83,9 +84,9 @@ class MyScheduleQuery: NetworkServiceQueryType {
 
     func parameters(range: NSRange?) -> [String: String]? {
         return ["studentId": studentId,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
-            Parametres.lang.rawValue: Locale.preferredLocale
+                "dateStart": dateStart.dateFormatDayMonthYear2,
+                "dateEnd": dateEnd.dateFormatDayMonthYear2,
+                Parametres.lang.rawValue: Locale.preferredLocale
         ]
     }
 
@@ -126,8 +127,8 @@ class StudentScheduleQuery: NetworkServiceQueryType {
     func parameters(range: NSRange?) -> [String: String]? {
         return [
             "groupId": group.id,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
+            "dateStart": dateStart.dateFormatDayMonthYear2,
+            "dateEnd": dateEnd.dateFormatDayMonthYear2,
             Parametres.lang.rawValue: Locale.preferredLocale
         ]
     }
@@ -168,8 +169,8 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
     func parameters(range: NSRange?) -> [String: String]? {
         return ["teacherId": teacher.id,
-            "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
-            "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
+            "dateStart": dateStart.dateFormatDayMonthYear2,
+            "dateEnd": dateEnd.dateFormatDayMonthYear2,
             Parametres.lang.rawValue: Locale.preferredLocale
         ]
     }

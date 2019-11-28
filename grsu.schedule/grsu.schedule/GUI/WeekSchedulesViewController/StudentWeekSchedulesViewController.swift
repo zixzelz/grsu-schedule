@@ -77,7 +77,7 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
             lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! StudentLessonScheduleCell
         }
 
-        lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? "\(L10n.scheduleSubgroupTitle) \(lesson.subgroupTitle!)" : ""
+        lCell.subgroupTitleLabel.text = !lesson.subgroupTitle.isNilOrEmpty ? "\(L10n.scheduleSubgroupTitle) \(lesson.subgroupTitle!)" : ""
         lCell.teacherLabel.text = lesson.teacher?.title
 
         return lCell

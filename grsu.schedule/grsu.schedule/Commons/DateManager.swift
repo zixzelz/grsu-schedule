@@ -70,6 +70,10 @@ extension Date {
         let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!
         return gregorian.date(byAdding: .day, value: 1, to: sunday)!
     }
+    static var startOfDay: Date {
+        let gregorian = Calendar.shared
+        return gregorian.date(from: gregorian.dateComponents([.day, .month, .year], from: Date()))!
+    }
     var endOfWeek: Date {
         let gregorian = Calendar(identifier: .gregorian)
         let sunday = gregorian.date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self))!

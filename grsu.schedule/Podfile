@@ -24,9 +24,16 @@ pod 'SwiftGen', '5.2.1'
 
 pod 'ReactiveCocoa'
 
+pod 'Armchair', '>= 0.3'
 end
 
-pod 'Armchair', '>= 0.3'
+target 'grsu.today' do
+  pod 'ServiceLayerSDK', :path => '../../love-of-music/'
+  pod 'ServiceLayerSDK/CoreData', :path => '../../love-of-music/'
+  pod 'ServiceLayerSDK/ServiceLayerUIKit', :path => '../../love-of-music/'
+  pod 'ReactiveCocoa'
+end
+
 
 #Add the following in order to automatically set debug flags for armchair in debug builds
 post_install do |installer|
