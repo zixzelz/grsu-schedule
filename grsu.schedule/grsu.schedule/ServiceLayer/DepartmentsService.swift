@@ -44,9 +44,9 @@ class DepartmentsQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    func parameters(range: NSRange?) -> [String: String]? {
+    func parameters(range: NSRange?) -> [URLQueryItem]? {
         return [
-            Parametres.lang.rawValue: Locale.preferredLocale
+            URLQueryItem(name: Parametres.lang.rawValue, value: Locale.preferredLocale)
         ]
     }
 

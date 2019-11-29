@@ -53,11 +53,12 @@ class GroupsQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    func parameters(range: NSRange?) -> [String: String]? {
-        return ["facultyId": faculty.id,
-            "departmentId": department.id,
-            "course": course,
-            Parametres.lang.rawValue: Locale.preferredLocale
+    func parameters(range: NSRange?) -> [URLQueryItem]? {
+        return [
+            URLQueryItem(name: "facultyId", value: faculty.id),
+            URLQueryItem(name: "departmentId", value: department.id),
+            URLQueryItem(name: "course", value: course),
+            URLQueryItem(name: Parametres.lang.rawValue, value: Locale.preferredLocale)
         ]
     }
 

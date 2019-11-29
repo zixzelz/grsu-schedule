@@ -66,17 +66,17 @@ class TeachersQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    func parameters(range: NSRange?) -> [String: String]? {
+    func parameters(range: NSRange?) -> [URLQueryItem]? {
         switch queryInfo {
         case .teacher(let teacherId):
             return [
-                "teacherId": teacherId,
-                "extended": "true",
-                Parametres.lang.rawValue: Locale.preferredLocale
+                URLQueryItem(name: "teacherId", value: teacherId),
+                URLQueryItem(name: "extended", value: "true"),
+                URLQueryItem(name: Parametres.lang.rawValue, value: Locale.preferredLocale),
             ]
         default:
             return [
-                Parametres.lang.rawValue: Locale.preferredLocale
+                URLQueryItem(name: Parametres.lang.rawValue, value: Locale.preferredLocale)
             ]
         }
     }
