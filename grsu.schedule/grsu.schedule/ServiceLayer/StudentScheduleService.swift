@@ -82,11 +82,12 @@ class MyScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    func parameters(range: NSRange?) -> [String: String]? {
-        return ["studentId": studentId,
-                "dateStart": dateStart.dateFormatDayMonthYear2,
-                "dateEnd": dateEnd.dateFormatDayMonthYear2,
-                Parametres.lang.rawValue: Locale.preferredLocale
+    func parameters(range: NSRange?) -> [URLQueryItem]? {
+        return [
+            URLQueryItem(name: "studentId", value: studentId),
+            URLQueryItem(name: "dateStart", value: dateStart.dateFormatDayMonthYear2),
+            URLQueryItem(name: "dateEnd", value: dateEnd.dateFormatDayMonthYear2),
+            URLQueryItem(name: Parametres.lang.rawValue, value: Locale.preferredLocale)
         ]
     }
 
@@ -124,12 +125,12 @@ class StudentScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    func parameters(range: NSRange?) -> [String: String]? {
+    func parameters(range: NSRange?) -> [URLQueryItem]? {
         return [
-            "groupId": group.id,
-            "dateStart": dateStart.dateFormatDayMonthYear2,
-            "dateEnd": dateEnd.dateFormatDayMonthYear2,
-            Parametres.lang.rawValue: Locale.preferredLocale
+            URLQueryItem(name: "groupId", value:  group.id),
+            URLQueryItem(name: "dateStart", value: dateStart.dateFormatDayMonthYear2),
+            URLQueryItem(name: "dateEnd", value: dateEnd.dateFormatDayMonthYear2),
+            URLQueryItem(name: Parametres.lang.rawValue, value: Locale.preferredLocale)
         ]
     }
 
@@ -167,11 +168,12 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    func parameters(range: NSRange?) -> [String: String]? {
-        return ["teacherId": teacher.id,
-            "dateStart": dateStart.dateFormatDayMonthYear2,
-            "dateEnd": dateEnd.dateFormatDayMonthYear2,
-            Parametres.lang.rawValue: Locale.preferredLocale
+    func parameters(range: NSRange?) -> [URLQueryItem]? {
+        return [
+            URLQueryItem(name: "teacherId", value: teacher.id),
+            URLQueryItem(name: "dateStart", value: dateStart.dateFormatDayMonthYear2),
+            URLQueryItem(name: "dateEnd", value: dateEnd.dateFormatDayMonthYear2),
+            URLQueryItem(name: Parametres.lang.rawValue, value: Locale.preferredLocale)
         ]
     }
 
