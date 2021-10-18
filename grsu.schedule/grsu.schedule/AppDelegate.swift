@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self?.cleanCachejob()
         })
 
+        window?.backgroundColor = UIColor(named: "NavigationBarColor")
+
         return true
     }
 
