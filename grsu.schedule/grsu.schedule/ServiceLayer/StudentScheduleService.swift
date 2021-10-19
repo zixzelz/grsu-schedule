@@ -81,7 +81,7 @@ class MyScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
+    var parameters: [String: String]? {
 
         return ["studentId": studentId,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
@@ -120,9 +120,9 @@ class StudentScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
-
-        return ["groupId": group.id,
+    var parameters: [String : String]? {
+        return [
+            "groupId": group.id,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),
             "dateEnd": DateUtils.formatDate(dateEnd, withFormat: DateFormatDayMonthYear2),
             Parametres.lang.rawValue: Locale.preferredLocale
@@ -159,7 +159,7 @@ class TeacherScheduleQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
+    var parameters: [String: String]? {
 
         return ["teacherId": teacher.id,
             "dateStart": DateUtils.formatDate(dateStart, withFormat: DateFormatDayMonthYear2),

@@ -107,7 +107,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 
         if let day = day {
             var startDate: NSDate?
-            let calendar = Calendar.current// todo avoid of (calendar as NSCalendar)
+            let calendar = Calendar.shared
 
             (calendar as NSCalendar).range(of: .day, start: &startDate, interval: nil, for: Date())
 

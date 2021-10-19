@@ -49,7 +49,7 @@ class GroupsQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
+    var parameters: [String: String]? {
 
         return ["facultyId": faculty.id,
             "departmentId": department.id,

@@ -54,7 +54,7 @@
             <objects>
                 <tableViewController id="tcl-fs-2hA" customClass="TeacherInfoViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aqn-vI-Ee5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ANG-wX-PEg">
@@ -427,7 +427,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="StudentFavoriteCellIdentifier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xmE-yt-kiE">
-                                            <rect key="frame" x="15" y="0.0" width="297" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="288" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -447,7 +447,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="TeacherFavoriteCellIdentifier" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VT8-VD-u5k">
-                                            <rect key="frame" x="15" y="0.0" width="297" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="288" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -468,13 +468,13 @@
                     <navigationItem key="navigationItem" title="Избранное" id="8JE-KY-UyY">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="ev3-Rb-T5u">
                             <view key="customView" contentMode="scaleToFill" id="AbP-xQ-s2K">
-                                <rect key="frame" x="16" y="5" width="34" height="34"/>
+                                <rect key="frame" x="16" y="8" width="34" height="34"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </view>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="oog-rh-E9B">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
-                                <rect key="frame" x="252" y="0.0" width="52" height="44"/>
+                                <rect key="frame" x="252" y="3" width="52" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1459,14 +1459,14 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="3HM-qm-2ia" firstAttribute="leading" secondItem="Xv0-5l-EwS" secondAttribute="leading" id="2ut-Zs-d6D"/>
-                            <constraint firstItem="3HM-qm-2ia" firstAttribute="top" secondItem="Xv0-5l-EwS" secondAttribute="top" id="58r-0y-lrx"/>
                             <constraint firstAttribute="trailing" secondItem="3HM-qm-2ia" secondAttribute="trailing" id="NmP-vG-ucr"/>
+                            <constraint firstItem="3HM-qm-2ia" firstAttribute="top" secondItem="Xv0-5l-EwS" secondAttribute="top" id="j6X-UH-YhS"/>
                             <constraint firstAttribute="bottom" secondItem="3HM-qm-2ia" secondAttribute="bottom" id="nty-m6-uCY"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="520"/>
                     <connections>
@@ -1491,11 +1491,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Bkq-Fe-SY2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DvF-yP-ANK" customClass="LessonLocationMapView" customModule="grsu_schedule" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0r-1K-PAQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -1598,7 +1598,7 @@
                         <viewControllerLayoutGuide type="top" id="i6b-MQ-UyS"/>
                         <viewControllerLayoutGuide type="bottom" id="t2v-jp-Gng"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="vNq-4O-8rg">
+                    <view key="view" contentMode="scaleToFill" id="vNq-4O-8rg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -2182,7 +2182,7 @@
         <segue reference="CXD-Lq-yOm"/>
         <segue reference="Ydr-vv-0vX"/>
         <segue reference="5hu-zp-bdB"/>
-        <segue reference="bVc-d5-06z"/>
+        <segue reference="3cS-fO-x8u"/>
         <segue reference="IlV-GR-mxt"/>
     </inferredMetricsTieBreakers>
     <resources>

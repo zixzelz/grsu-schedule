@@ -222,6 +222,7 @@
 		442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayPresentationController.swift; sourceTree = "<group>"; };
 		442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayTransitioningDelegate.swift; sourceTree = "<group>"; };
 		4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyViewControllerAnimator.swift; sourceTree = "<group>"; };
+		4435C604271F07EB0041FAED /* CoreData 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreData 4.xcdatamodel"; sourceTree = "<group>"; };
 		4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedScrollView.swift; sourceTree = "<group>"; };
 		4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		443768511E131C7C00D4EAAA /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
@@ -1074,7 +1075,7 @@
 					"$(inherited)",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = com.grsu.schedule;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grsu.schedule-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
@@ -1109,7 +1110,7 @@
 					"-ObjC",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.grsu.schedule;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.grsu.schedule-1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "grsu.schedule/Commons/grsu.schedule-Bridging-Header.h";
@@ -1145,10 +1146,11 @@
 		2DDC78881A2A1D7000C1D966 /* CoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				4435C604271F07EB0041FAED /* CoreData 4.xcdatamodel */,
 				44D393ED1DF4464B00BE7086 /* CoreData 3.xcdatamodel */,
 				2DDC78891A2A1D7000C1D966 /* CoreData.xcdatamodel */,
 			);
-			currentVersion = 44D393ED1DF4464B00BE7086 /* CoreData 3.xcdatamodel */;
+			currentVersion = 4435C604271F07EB0041FAED /* CoreData 4.xcdatamodel */;
 			path = CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

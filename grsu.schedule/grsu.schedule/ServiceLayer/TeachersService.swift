@@ -54,7 +54,7 @@ class TeachersQuery: NetworkServiceQueryType {
 
     var method: NetworkServiceMethod = .GET
 
-    var parameters: [String: Any]? {
+    var parameters: [String: String]? {
 
         switch queryInfo {
         case .teacher(let teacherId):

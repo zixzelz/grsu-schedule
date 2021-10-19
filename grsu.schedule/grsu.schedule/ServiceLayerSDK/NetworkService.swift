@@ -16,7 +16,7 @@ protocol NetworkServiceQueryType: LocalServiceQueryType {
 
     var path: String { get }
     var method: NetworkServiceMethod { get }
-    var parameters: [String: Any]? { get }
+    var parameters: [String: String]? { get }
 
     static var cacheTimeInterval: TimeInterval { get }
 }
