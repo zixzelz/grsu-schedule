@@ -54,7 +54,7 @@
             <objects>
                 <tableViewController id="tcl-fs-2hA" customClass="TeacherInfoViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aqn-vI-Ee5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ANG-wX-PEg">
@@ -423,11 +423,11 @@
                                 <rect key="frame" x="0.0" y="24.5" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tag-KX-vZz" id="UIj-kO-RHT">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bj8-Nu-o1r">
-                                            <rect key="frame" x="16" y="0.0" width="736" height="44"/>
+                                            <rect key="frame" x="15" y="0.0" width="297" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
@@ -467,7 +467,7 @@
                             </view>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="oog-rh-E9B">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
                                 <rect key="frame" x="252" y="3" width="52" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -991,7 +991,7 @@
                         <viewControllerLayoutGuide type="top" id="dha-jW-wKa"/>
                         <viewControllerLayoutGuide type="bottom" id="ZPS-7c-QJI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5ye-uu-VaJ">
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="5ye-uu-VaJ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1002,7 +1002,7 @@
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-qf-Oua">
-                                <rect key="frame" x="0.0" y="392" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="930" width="320" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="47e-op-Xxt"/>
@@ -1051,13 +1051,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-gF-cey">
-                                    <rect key="frame" x="31" y="8" width="82" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <rect key="frame" x="35.5" y="8" width="73.5" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="20c-bt-Vcl">
-                                    <rect key="frame" x="-27" y="17" width="198" height="37"/>
+                                    <rect key="frame" x="-25.5" y="17" width="195" height="37"/>
                                     <color key="pageIndicatorTintColor" name="SchedulePageUnselectedColor"/>
                                     <color key="currentPageIndicatorTintColor" name="SchedulePageSelectedColor"/>
                                 </pageControl>
@@ -1110,8 +1110,8 @@
                         <viewControllerLayoutGuide type="top" id="JA1-Zn-n4u"/>
                         <viewControllerLayoutGuide type="bottom" id="SdL-eB-GrC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Xv0-5l-EwS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="476"/>
+                    <view key="view" contentMode="scaleToFill" id="Xv0-5l-EwS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="470"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="3HM-qm-2ia" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
@@ -1302,17 +1302,17 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="sZt-yt-p7r">
                         <barButtonItem key="backBarButtonItem" title="Back" id="bBk-mp-xvv"/>
                         <view key="titleView" contentMode="scaleToFill" id="z9U-hY-JSw">
-                            <rect key="frame" x="88" y="3" width="144" height="44"/>
+                            <rect key="frame" x="88" y="0.0" width="144" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeU-CI-dFd">
-                                    <rect key="frame" x="31" y="8" width="82" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <rect key="frame" x="35.5" y="8" width="73.5" height="18"/>
+                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="dkC-FI-kXE">
-                                    <rect key="frame" x="-27" y="17" width="198" height="37"/>
+                                    <rect key="frame" x="-25.5" y="17" width="195" height="37"/>
                                     <color key="pageIndicatorTintColor" name="SchedulePageUnselectedColor"/>
                                     <color key="currentPageIndicatorTintColor" name="SchedulePageSelectedColor"/>
                                 </pageControl>
@@ -1328,7 +1328,7 @@
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="done" id="3tD-Zd-zjD">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XM1-qf-lTG">
-                                <rect key="frame" x="260" y="3" width="44" height="44"/>
+                                <rect key="frame" x="260" y="0.0" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="NavigationBarEmptyStar">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1365,8 +1365,8 @@
                         <viewControllerLayoutGuide type="top" id="i6b-MQ-UyS"/>
                         <viewControllerLayoutGuide type="bottom" id="t2v-jp-Gng"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="vNq-4O-8rg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                    <view key="view" contentMode="scaleToFill" id="vNq-4O-8rg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lTr-4E-IRX" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
@@ -1576,7 +1576,7 @@
             <objects>
                 <navigationController id="eUr-LH-v08" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9QP-xc-tkv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="NavigationBarColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1599,7 +1599,7 @@
                 <navigationController restorationIdentifier="StudentSchedule" automaticallyAdjustsScrollViewInsets="NO" id="Em1-Ib-qh1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wPh-dG-uNs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="NavigationBarColor"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
