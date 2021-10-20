@@ -94,7 +94,7 @@ extension LessonScheduleEntity: ModelType {
         date = lessonDate
         studyName = lesson["title"] as? String
         type = lesson["type"] as? String
-        type = lesson["label"] as? String
+        label = lesson["label"] as? String
         address = lesson["address"] as? String
         room = lesson["room"] as? String
         startTime = DateManager.timeIntervalWithTimeText(timeStart).map { Int32($0) } ?? 0

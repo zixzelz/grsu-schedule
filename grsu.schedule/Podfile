@@ -13,7 +13,7 @@ pod 'Fabric'
 pod 'Crashlytics'
 
 #Localizable strings generation
-pod 'SwiftGen', '5.2.1'
+pod 'SwiftGen', '6.5.1'
 
 end
 

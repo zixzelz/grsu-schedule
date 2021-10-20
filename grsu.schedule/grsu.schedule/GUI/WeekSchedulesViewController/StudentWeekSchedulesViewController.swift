@@ -60,21 +60,8 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
         }
     }
 
-    override func cellForLesson(_ lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
-
-        var lCell: StudentLessonScheduleCell
-        if (isActive) {
-            let identifier = "StudentActiveLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! StudentActiveLessonScheduleCell
-        } else {
-            let identifier = "StudentLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! StudentLessonScheduleCell
-        }
-
-        lCell.subgroupTitleLabel.text = !NSString.isNilOrEmpty(lesson.subgroupTitle) ? "\(L10n.scheduleSubgroupTitle) \(lesson.subgroupTitle!)" : ""
-        lCell.teacherLabel.text = lesson.teacher?.title
-
-        return lCell
+    override func configure(_ cell: LessonScheduleCell, lesson: LessonScheduleEntity) {
+        cell.configureStuden(lesson)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -88,8 +75,9 @@ class StudentWeekSchedulesViewController: WeekSchedulesViewController {
 
             let lesson = schedules[menuCellIndexPath.section].lessons[menuCellIndexPath.row - 1] as LessonScheduleEntity
 
-            let viewController = segue.destination as! TeacherInfoViewController
-            viewController.teacherInfo = lesson.teacher
+            let navigationController = segue.destination as? UINavigationController
+            let viewController = navigationController?.viewControllers.first as? TeacherInfoViewController
+            viewController?.teacherInfo = lesson.teacher
 
         } else if (segue.identifier == "TeacherSchedulePageIdentifier") {
 

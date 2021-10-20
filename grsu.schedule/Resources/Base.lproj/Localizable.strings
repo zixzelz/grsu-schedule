@@ -1,0 +1,62 @@
+/* 
+  Localizable.strings
+  grsu.schedule
+
+  Created by Ruslan Maslouski on 4/2/18.
+  Copyright © 2018 Ruslan Maslouski. All rights reserved.
+*/
+
+"OK" = "OK";
+"CANCEL" = "Cancel";
+"INSTALL_BUTTON" = "Install";
+"BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
+"SEARCH_BAR_PLACEHOLDER_TITLE" = "Search";
+"ANY_SCREEN_ACTION_BACK" = "Back";
+"LOADING_FAILED_MESSAGE" = "Loading Failed";
+"ADDRESS_NOT_FOUND_MESSAGE" = "Address not found";
+"HOSTELL_NUMBER_TITLE" = "Hostel №";
+"APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE" = "Yandex Maps application is not installed";
+"USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "The user name cannot be empty";
+"USERNAME_NOT_FOUND_HEADER" = "Login Failed";
+"USERNAME_NOT_FOUND_MESSAGE" = "The username you entered is incorrect";
+"ROOM_NUMBER_TITLE" = "RN ";
+
+"STUDENT_NAVIGATION_BAR_TITLE" = "Schedule filter";
+"STUDENT_TABBAR_TITLE" = "Students";
+"STUDENT_ACTION_LOGIN_TITLE" = "Sign In";
+"STUDENT_ACTION_SHOW_SCHEDULE_TITLE" = "Show";
+"STUDENT_FILTER_DEPARTMENT_TITLE" = "Department";
+"STUDENT_FILTER_FACULTY_TITLE" = "Faculty";
+"STUDENT_FILTER_COURSE_TITLE" = "Course";
+"STUDENT_FILTER_GROUP_TITLE" = "Group";
+"STUDENT_FILTER_WEEK_TITLE" = "Week";
+
+"FAVORITE_NAVIGATION_BAR_TITLE" = "Favorites";
+"FAVORITE_TABBAR_TITLE" = "Favorites";
+
+"TEACHERS_NAVIGATION_BAR_TITLE" = "Teachers";
+"TEACHERS_TABBAR_TITLE" = "Teachers";
+
+"MYSCHEDULES_NAVIGATION_BAR_TITLE" = "";
+"MYSCHEDULES_TABBAR_TITLE" = "My";
+
+"MAP_NAVIGATION_BAR_TITLE" = "Map";
+"TEACHER_INFO_NAVIGATION_BAR_TITLE" = "Teacher";
+"TEACHER_INFO_MOBILE_FIELD_TITLE" = "Mobile";
+"TEACHER_INFO_EMAIL_FIELD_TITLE" = "Email";
+"TEACHER_INFO_SKYPE_FIELD_TITLE" = "Skype";
+
+"TEACHERS_LIST_EMPTY" = "No teachers";
+
+"SCHEDULE_ACTION_MENU_ROOM" = "Lecture hall";
+"SCHEDULE_ACTION_MENU_GROUP_SCHEDULE" = "Group schedule";
+"SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Teacher schedule";
+"SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Teacher info";
+"SCHEDULE_LIST_EMPTY" = "No schedule\nfor the week";
+"SCHEDULE_SELECT_GROUP_TITLE" = "Select group:";
+"SCHEDULE_SUBGROUP_TITLE" = "Subgroup:";
+
+"AUTHENTICATION_FIELD_LOGIN" = "Username";
+"AUTHENTICATION_ACTION_LOGIN" = "Sign In";
+
+"USER_PROFILE_ACTION_SIGNOUT" = "Sign Out";

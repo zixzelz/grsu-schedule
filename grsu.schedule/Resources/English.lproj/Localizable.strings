@@ -1,0 +1,62 @@
+/* 
+  Localizable.strings
+  grsu.schedule
+
+  Created by Ruslan Maslouski on 4/2/18.
+  Copyright © 2018 Ruslan Maslouski. All rights reserved.
+*/
+
+"OK" = "OK";
+"CANCEL" = "Адмена";
+"INSTALL_BUTTON" = "Устанавіць";
+"BACK_BAR_BUTTON_ITEM_TITLE" = "Back";
+"SEARCH_BAR_PLACEHOLDER_TITLE" = "Пошук";
+"ANY_SCREEN_ACTION_BACK" = "Назад";
+"LOADING_FAILED_MESSAGE" = "Памылка пры атрыманні дадзеных";
+"ADDRESS_NOT_FOUND_MESSAGE" = "Адрас не знойдзены";
+"HOSTELL_NUMBER_TITLE" = "Інтэрнат №";
+"APPLICATION_YANDEX_MAP_NOT_INSTALLED_MESSAGE" = "Праграма Яндекс. Карты не ўстаноўлена";
+"USERNAME_CANNOT_BE_EMPTY_MESSAGE" = "Поле «Лагін» павінна быць запоўнена";
+"USERNAME_NOT_FOUND_HEADER" = "Памылка аўтарызацыі";
+"USERNAME_NOT_FOUND_MESSAGE" = "Памылковае імя карыстальніка";
+"ROOM_NUMBER_TITLE" = "к.";
+
+"STUDENT_NAVIGATION_BAR_TITLE" = "Фільтр";
+"STUDENT_TABBAR_TITLE" = "Студэнты";
+"STUDENT_ACTION_LOGIN_TITLE" = "Увайсці";
+"STUDENT_ACTION_SHOW_SCHEDULE_TITLE" = "Паказаць";
+"STUDENT_FILTER_DEPARTMENT_TITLE" = "Форма навучання";
+"STUDENT_FILTER_FACULTY_TITLE" = "Факультэт";
+"STUDENT_FILTER_COURSE_TITLE" = "Курс";
+"STUDENT_FILTER_GROUP_TITLE" = "Група";
+"STUDENT_FILTER_WEEK_TITLE" = "Тыдзень";
+
+"FAVORITE_NAVIGATION_BAR_TITLE" = "Выбранае";
+"FAVORITE_TABBAR_TITLE" = "Выбранае";
+
+"TEACHERS_NAVIGATION_BAR_TITLE" = "Выкладчыкі";
+"TEACHERS_TABBAR_TITLE" = "Выкладчыкі";
+
+"MYSCHEDULES_NAVIGATION_BAR_TITLE" = "";
+"MYSCHEDULES_TABBAR_TITLE" = "Маё";
+
+"MAP_NAVIGATION_BAR_TITLE" = "Карта";
+"TEACHER_INFO_NAVIGATION_BAR_TITLE" = "Выкладчык";
+"TEACHER_INFO_MOBILE_FIELD_TITLE" = "Сотавы";
+"TEACHER_INFO_EMAIL_FIELD_TITLE" = "Email";
+"TEACHER_INFO_SKYPE_FIELD_TITLE" = "Skype";
+
+"TEACHERS_LIST_EMPTY" = "Няма выкладчыкаў";
+
+"SCHEDULE_ACTION_MENU_ROOM" = "Аўдыторыя";
+"SCHEDULE_ACTION_MENU_GROUP_SCHEDULE" = "Расклад групы";
+"SCHEDULE_ACTION_MENU_TEACHER_SCHEDULE" = "Расклад выкладчыка";
+"SCHEDULE_ACTION_MENU_TEACHER_INFO" = "Выкладчык";
+"SCHEDULE_LIST_EMPTY" = "Няма раскладу\nна гэты тыдзень";
+"SCHEDULE_SELECT_GROUP_TITLE" = "выбар падргрупы:";
+"SCHEDULE_SUBGROUP_TITLE" = "падгрупа:";
+
+"AUTHENTICATION_FIELD_LOGIN" = "Лагін";
+"AUTHENTICATION_ACTION_LOGIN" = "Увайсці";
+
+"USER_PROFILE_ACTION_SIGNOUT" = "Выхад";

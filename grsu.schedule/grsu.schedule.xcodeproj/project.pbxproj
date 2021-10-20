@@ -79,10 +79,18 @@
 		442538691E22D1AA00AFED79 /* OverlayPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538661E22D1AA00AFED79 /* OverlayPresentationController.swift */; };
 		4425386A1E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */; };
 		4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */; };
+		4435C606271F0E1D0041FAED /* UILabel+SetText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435C605271F0E1D0041FAED /* UILabel+SetText.swift */; };
+		4435C60A27209FEA0041FAED /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 4435C60927209FEA0041FAED /* swiftgen.yml */; };
+		4435C6122720A4C50041FAED /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4435C6112720A4C50041FAED /* Colors.xcassets */; };
 		4435EBC41E1077AF005F43B5 /* ExpandedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */; };
 		4435EBC61E11CC6A005F43B5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */; };
 		443768521E131C7C00D4EAAA /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443768511E131C7C00D4EAAA /* UserDefaults.swift */; };
 		4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4437AE0A1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift */; };
+		443837422720B02000971830 /* LessonScheduleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443837412720B02000971830 /* LessonScheduleCell.xib */; };
+		443837442720B20600971830 /* ReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443837432720B20600971830 /* ReusableCell.swift */; };
+		443837462720B29900971830 /* NSObject+NibHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443837452720B29900971830 /* NSObject+NibHelpers.swift */; };
+		443837492720BB8200971830 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443837472720BB8200971830 /* Strings.swift */; };
+		4438374A2720BB8200971830 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443837482720BB8200971830 /* Assets.swift */; };
 		443B0B6C2079F88B005125A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443B0B6B2079F88A005125A1 /* LaunchScreen.xib */; };
 		443B0B6F2079F8D9005125A1 /* LaunchScreen_ru.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443B0B6D2079F8D9005125A1 /* LaunchScreen_ru.xib */; };
 		443B0B702079F8D9005125A1 /* LaunchScreen_be.xib in Resources */ = {isa = PBXBuildFile; fileRef = 443B0B6E2079F8D9005125A1 /* LaunchScreen_be.xib */; };
@@ -125,8 +133,6 @@
 		44C2395E20797BE000A0B5AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44C2396020797BE000A0B5AF /* InfoPlist.strings */; };
 		44C3A969209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3A968209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift */; };
 		44C3A96B209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */; };
-		44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */; };
-		44C7AB152072E10700D4EF32 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C7AB142072E10700D4EF32 /* Strings.swift */; };
 		44D146221D7F84510076BDF0 /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461E1D7F84510076BDF0 /* LocalService.swift */; };
 		44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */; };
 		44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44D146201D7F84510076BDF0 /* NetworkService.swift */; };
@@ -223,10 +229,18 @@
 		442538671E22D1AA00AFED79 /* OverlayTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayTransitioningDelegate.swift; sourceTree = "<group>"; };
 		4425386C1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncyViewControllerAnimator.swift; sourceTree = "<group>"; };
 		4435C604271F07EB0041FAED /* CoreData 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreData 4.xcdatamodel"; sourceTree = "<group>"; };
+		4435C605271F0E1D0041FAED /* UILabel+SetText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+SetText.swift"; sourceTree = "<group>"; };
+		4435C60927209FEA0041FAED /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = SOURCE_ROOT; };
+		4435C6112720A4C50041FAED /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4435EBC31E1077AF005F43B5 /* ExpandedScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpandedScrollView.swift; sourceTree = "<group>"; };
 		4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		443768511E131C7C00D4EAAA /* UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		4437AE0A1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkServiceQueryTypeExtension.swift; sourceTree = "<group>"; };
+		443837412720B02000971830 /* LessonScheduleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LessonScheduleCell.xib; sourceTree = "<group>"; };
+		443837432720B20600971830 /* ReusableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableCell.swift; sourceTree = "<group>"; };
+		443837452720B29900971830 /* NSObject+NibHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+NibHelpers.swift"; sourceTree = "<group>"; };
+		443837472720BB8200971830 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		443837482720BB8200971830 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		443B0B6B2079F88A005125A1 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		443B0B6D2079F8D9005125A1 /* LaunchScreen_ru.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen_ru.xib; sourceTree = "<group>"; };
 		443B0B6E2079F8D9005125A1 /* LaunchScreen_be.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen_be.xib; sourceTree = "<group>"; };
@@ -273,8 +287,6 @@
 		44C2396220797BEF00A0B5AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		44C3A968209DACC800ABDA66 /* StudentMenuCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentMenuCellTableViewCell.swift; sourceTree = "<group>"; };
 		44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeacherMenuCellTableViewCell.swift; sourceTree = "<group>"; };
-		44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "structured-swift4.stencil"; path = "Pods/SwiftGen/templates/strings/structured-swift4.stencil"; sourceTree = SOURCE_ROOT; };
-		44C7AB142072E10700D4EF32 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		44D1461E1D7F84510076BDF0 /* LocalService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
 		44D1461F1D7F84510076BDF0 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
 		44D146201D7F84510076BDF0 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -369,6 +381,7 @@
 				2D0505C71A1660C200171A2E /* ServiceLayer */,
 				2D08260D1A15299D008B504E /* GUI */,
 				2D0825ED1A152913008B504E /* AppDelegate.swift */,
+				4435C6112720A4C50041FAED /* Colors.xcassets */,
 				2D0825F41A152913008B504E /* Images.xcassets */,
 				2D0825EB1A152913008B504E /* Supporting Files */,
 			);
@@ -483,6 +496,8 @@
 		2D96AA631A1BB09F00EDD9E2 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				443837452720B29900971830 /* NSObject+NibHelpers.swift */,
+				443837432720B20600971830 /* ReusableCell.swift */,
 				44BC6F4B1E146E97004446F6 /* UIImage+Tint.swift */,
 				2D3FF2B41A23B8AC001BA278 /* grsu.schedule-Bridging-Header.h */,
 				2D3FF2B81A23C00D001BA278 /* NSString+Expanded.h */,
@@ -504,6 +519,7 @@
 				448B066320698D5800BF2D42 /* UIDevice+type.swift */,
 				4448107920713D6A0044023E /* StringExtension.swift */,
 				444AAD83207185B500F7CF10 /* LocaleExtension.swift */,
+				4435C605271F0E1D0041FAED /* UILabel+SetText.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -595,6 +611,7 @@
 				44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */,
 				44641E5A1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift */,
 				44641E5C1A5DC84D00AA46BB /* TeacherActiveLessonScheduleCell.swift */,
+				443837412720B02000971830 /* LessonScheduleCell.xib */,
 			);
 			path = ScheduleCell;
 			sourceTree = "<group>";
@@ -611,12 +628,13 @@
 		44C7AB0D2072DCD600D4EF32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4435C60927209FEA0041FAED /* swiftgen.yml */,
+				443837482720BB8200971830 /* Assets.swift */,
+				443837472720BB8200971830 /* Strings.swift */,
 				443B0B6B2079F88A005125A1 /* LaunchScreen.xib */,
 				443B0B6E2079F8D9005125A1 /* LaunchScreen_be.xib */,
 				443B0B6D2079F8D9005125A1 /* LaunchScreen_ru.xib */,
-				44C7AB122072DF1D00D4EF32 /* structured-swift4.stencil */,
 				4491105720718D5700E6E427 /* Localizable.strings */,
-				44C7AB142072E10700D4EF32 /* Strings.swift */,
 				44C2396020797BE000A0B5AF /* InfoPlist.strings */,
 			);
 			path = Resources;
@@ -724,8 +742,9 @@
 			files = (
 				2D3577221A4DC142006D6914 /* UniversityBuildings.json in Resources */,
 				2D08262A1A15299D008B504E /* Main.storyboard in Resources */,
-				44C7AB132072DF1D00D4EF32 /* structured-swift4.stencil in Resources */,
+				4435C6122720A4C50041FAED /* Colors.xcassets in Resources */,
 				2D0825F51A152913008B504E /* Images.xcassets in Resources */,
+				443837422720B02000971830 /* LessonScheduleCell.xib in Resources */,
 				2D8D59F01A682DDB00EB1884 /* WeekSchedulesHeaderFooterView.xib in Resources */,
 				443B0B702079F8D9005125A1 /* LaunchScreen_be.xib in Resources */,
 				4491105520718D5700E6E427 /* Localizable.strings in Resources */,
@@ -734,6 +753,7 @@
 				443B0B6F2079F8D9005125A1 /* LaunchScreen_ru.xib in Resources */,
 				443B0B6C2079F88B005125A1 /* LaunchScreen.xib in Resources */,
 				44C2395E20797BE000A0B5AF /* InfoPlist.strings in Resources */,
+				4435C60A27209FEA0041FAED /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,7 +766,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -755,7 +775,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3235382F1D5A6B8A540F166F /* [CP] Check Pods Manifest.lock */ = {
@@ -801,7 +821,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen strings --template structured-swift4 --output ${SRCROOT}/Resources/Strings.swift ${SRCROOT}/Resources/en.lproj/Localizable.strings\n";
+			shellScript = "$PODS_ROOT/SwiftGen/bin/swiftgen\n";
 		};
 		E98A390C98526F98A13A5544 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -809,7 +829,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Armchair/Armchair.framework",
 				"${BUILT_PRODUCTS_DIR}/Flurry-iOS-SDK/Flurry_iOS_SDK.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -824,7 +844,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-grsu.schedule/Pods-grsu.schedule-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -839,12 +859,14 @@
 				444AAD84207185B500F7CF10 /* LocaleExtension.swift in Sources */,
 				2DBD4ECB1A5B124C0055EA3A /* LessonScheduleEntity.swift in Sources */,
 				44C3A96B209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift in Sources */,
+				443837442720B20600971830 /* ReusableCell.swift in Sources */,
 				4487C7FB1E10560C00348B26 /* DesignableTextField.swift in Sources */,
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
 				44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */,
 				4448107A20713D6B0044023E /* StringExtension.swift in Sources */,
+				443837492720BB8200971830 /* Strings.swift in Sources */,
 				2D75CF501A22342C006F2A9D /* DaySchedule.swift in Sources */,
 				2D0826201A15299D008B504E /* PickerTableViewCell.swift in Sources */,
 				2DD1BB561A27850100DB7FCB /* WeekSchedulesHeaderFooterView.swift in Sources */,
@@ -898,6 +920,7 @@
 				443768521E131C7C00D4EAAA /* UserDefaults.swift in Sources */,
 				44F0B1211D8221DC0008D91B /* ServiceError.swift in Sources */,
 				44BC6F4C1E146E97004446F6 /* UIImage+Tint.swift in Sources */,
+				443837462720B29900971830 /* NSObject+NibHelpers.swift in Sources */,
 				449B4A8E1D887AFA00245E82 /* StudentScheduleService.swift in Sources */,
 				44D146271D7F84C00076BDF0 /* DepartmentsService.swift in Sources */,
 				44D504181A780DD900265A7C /* Reachability.m in Sources */,
@@ -924,6 +947,7 @@
 				44D5041C1A7821E600265A7C /* GSReachability.swift in Sources */,
 				44D146241D7F84510076BDF0 /* NetworkService.swift in Sources */,
 				2D6B07F01A3637F30064DD39 /* DateManager.swift in Sources */,
+				4435C606271F0E1D0041FAED /* UILabel+SetText.swift in Sources */,
 				4448107820701D6D0044023E /* TableViewDataSource.swift in Sources */,
 				4437AE0B1DF629D300156CEE /* NetworkServiceQueryTypeExtension.swift in Sources */,
 				4425386D1E22D38C00AFED79 /* BouncyViewControllerAnimator.swift in Sources */,
@@ -933,8 +957,8 @@
 				2D7871331A34ABDA0062DCFE /* FavoriteEntity.swift in Sources */,
 				2DF35A951A41F5D80010A2F3 /* RoundImageView.swift in Sources */,
 				2D78712D1A3214160062DCFE /* BaseTeacherInfo.swift in Sources */,
-				44C7AB152072E10700D4EF32 /* Strings.swift in Sources */,
 				2DF35A911A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift in Sources */,
+				4438374A2720BB8200971830 /* Assets.swift in Sources */,
 				44D146221D7F84510076BDF0 /* LocalService.swift in Sources */,
 				44D146231D7F84510076BDF0 /* ManagedObjectType.swift in Sources */,
 				2DBD4EB31A52D0EE0055EA3A /* StudentSchedulesPageViewController.swift in Sources */,

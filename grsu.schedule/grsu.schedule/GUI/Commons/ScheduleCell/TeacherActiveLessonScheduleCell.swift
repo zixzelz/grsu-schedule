@@ -9,7 +9,5 @@
 import UIKit
 
 class TeacherActiveLessonScheduleCell: TeacherLessonScheduleCell, ActiveLessonScheduleCell {
-   
     @IBOutlet private(set) weak var lessonProgressView : UIProgressView!
-    
 }

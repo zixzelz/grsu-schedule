@@ -52,6 +52,10 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
 //        tableView.delaysContentTouches = false
 
         tableView.register(UINib(nibName: "WeekSchedulesHeaderFooterView", bundle: nil), forHeaderFooterViewReuseIdentifier: SectionHeaderIdentifier)
+        tableView.register(cell: LessonScheduleCell.self)
+
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 131
 
         updatedTableViewInset()
         setupRefreshControl()
@@ -221,29 +225,9 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
             }
 
             let lesson = schedules[fixIndexPath.section].lessons[fixIndexPath.row]
+            let lCell: LessonScheduleCell = tableView.dequeueCell(for: indexPath)
 
-            let startLessonTime = lesson.date.addingTimeInterval(TimeInterval(lesson.startTime * 60))
-            let endLessonTime = lesson.date.addingTimeInterval(TimeInterval(lesson.stopTime * 60))
-
-            var lCell: BaseLessonScheduleCell
-            if Date() > startLessonTime && Date() < endLessonTime {
-                lCell = cellForLesson(lesson, isActive: true)
-
-                let acell = lCell as! ActiveLessonScheduleCell
-                acell.lessonProgressView.progress = Float((Date().timeIntervalSince(startLessonTime) / 60) / Double(lesson.stopTime - lesson.startTime))
-            } else {
-                lCell = cellForLesson(lesson, isActive: false)
-            }
-
-            if !NSString.isNilOrEmpty(lesson.address) || !NSString.isNilOrEmpty(lesson.room) {
-                lCell.locationLabel.text = "\(lesson.address ?? ""); \(L10n.roomNumberTitle)\(lesson.room ?? "")"
-            } else {
-                lCell.locationLabel.text = nil
-            }
-            lCell.studyTypeLabel.text = lesson.type
-            lCell.studyNameLabel.text = lesson.studyName
-            lCell.startTime = Int(lesson.startTime)
-            lCell.stopTime = Int(lesson.stopTime)
+            configure(lCell, lesson: lesson)
 
             cell = lCell
         }
@@ -251,8 +235,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         return cell
     }
 
-    func cellForLesson(_ lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
-        return BaseLessonScheduleCell()
+    func configure(_ cell: LessonScheduleCell, lesson: LessonScheduleEntity) {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -272,9 +255,9 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         return headerView
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return (indexPath == menuCellIndexPath) ? 50 : 130
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return (indexPath == menuCellIndexPath) ? 50 : 130
+//    }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 38

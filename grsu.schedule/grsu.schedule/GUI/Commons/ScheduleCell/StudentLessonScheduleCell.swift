@@ -9,8 +9,6 @@
 import UIKit
 
 class StudentLessonScheduleCell: BaseLessonScheduleCell {
-
-    
     @IBOutlet private(set) weak var teacherLabel : UILabel!
     @IBOutlet private(set) weak var subgroupTitleLabel : UILabel!
 }

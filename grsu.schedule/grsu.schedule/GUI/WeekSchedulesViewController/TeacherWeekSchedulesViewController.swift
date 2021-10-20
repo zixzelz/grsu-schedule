@@ -37,22 +37,8 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
         }
     }
 
-    override func cellForLesson(_ lesson: LessonScheduleEntity, isActive: Bool) -> BaseLessonScheduleCell {
-        var lCell: TeacherLessonScheduleCell
-        if (isActive) {
-            let identifier = "TeacherActiveLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! TeacherActiveLessonScheduleCell
-        } else {
-            let identifier = "TeacherLessonScheduleCellIdentifier"
-            lCell = tableView.dequeueReusableCell(withIdentifier: identifier) as! TeacherLessonScheduleCell
-        }
-
-        let groups = lesson.groups
-        let titles = groups.map { $0.title } as [String]
-        lCell.facultyLabel.text = groups.first?.faculty?.title
-        lCell.groupsLabel.text = titles.joined(separator: ", ")
-
-        return lCell
+    override func configure(_ cell: LessonScheduleCell, lesson: LessonScheduleEntity) {
+        cell.configureTeacher(lesson)
     }
 
     @IBAction func groupScheduleMenuButtonPressed(_ sender: UIButton) {
