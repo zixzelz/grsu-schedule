@@ -30,7 +30,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        applyLargeTitles()
+        setupNavigationController()
 
         scheduleOptions.scheduleDelegate = self
         scheduleOptions.scheduleDataSource = self
@@ -49,11 +49,12 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
         Armchair.showPromptIfNecessary()
     }
 
-    private func applyLargeTitles() {
+    private func setupNavigationController() {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+        navigationController?.applyStyle()
     }
 
     func scrollToTop() {

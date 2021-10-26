@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Do1-9z-kCw">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Do1-9z-kCw">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment version="4352" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,17 +54,17 @@
             <objects>
                 <tableViewController id="tcl-fs-2hA" customClass="TeacherInfoViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Aqn-vI-Ee5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="ANG-wX-PEg">
-                            <rect key="frame" x="0.0" y="305.00000034679067" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="323" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <prototypes>
                             <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeacherPhotoCellIdentifier" rowHeight="85" id="vUG-KE-22D" customClass="TeacherPhotoTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="320" height="85"/>
+                                <rect key="frame" x="0.0" y="44.5" width="320" height="85"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vUG-KE-22D" id="CBh-qx-6gK">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
@@ -130,7 +130,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeacherEmailFieldCellIdentifier" rowHeight="57" id="Cje-oK-tEU" customClass="CustomSubtitleTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="109.5" width="320" height="57"/>
+                                <rect key="frame" x="0.0" y="129.5" width="320" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cje-oK-tEU" id="co6-SX-hdT">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
@@ -177,7 +177,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeacherPhoneFieldCellIdentifier" rowHeight="57" id="yZt-wi-Ynh" customClass="CustomSubtitleTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="166.5" width="320" height="57"/>
+                                <rect key="frame" x="0.0" y="186.5" width="320" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yZt-wi-Ynh" id="ZRZ-rh-mTd">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
@@ -240,7 +240,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TeacherSkypeFieldCellIdentifier" rowHeight="57" id="CKI-AD-QVJ" customClass="CustomSubtitleTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="223.5" width="320" height="57"/>
+                                <rect key="frame" x="0.0" y="243.5" width="320" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CKI-AD-QVJ" id="gGk-JD-Goe">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
@@ -311,12 +311,12 @@
             <objects>
                 <tableViewController restorationIdentifier="TeachersList" id="LIC-wI-f0T" userLabel="Преподаватели" customClass="ListOfTeachersViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kg3-dI-xvS" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCellIdentifier" rowHeight="44" id="Zck-r7-9Ib" customClass="WeekSchedulesEmptyTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="24.5" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="44.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="Zck-r7-9Ib" id="NZU-B8-ZWe">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -338,14 +338,14 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="TeacherCellIdentifier" textLabel="cIh-IJ-ykM" style="IBUITableViewCellStyleDefault" id="kTB-eb-LgT">
-                                <rect key="frame" x="0.0" y="68.5" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="88.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kTB-eb-LgT" id="Kdp-bo-la0">
                                     <rect key="frame" x="0.0" y="0.0" width="274" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cIh-IJ-ykM">
-                                            <rect key="frame" x="15" y="0.0" width="251" height="44"/>
+                                            <rect key="frame" x="8" y="0.0" width="258" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
@@ -390,7 +390,7 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="20z-cO-Gnk">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="NavigationBarColor"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -415,36 +415,19 @@
             <objects>
                 <tableViewController id="f7c-Wi-Car" customClass="FavoriteViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yKg-aH-AmE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentFavoriteCellIdentifier" textLabel="bj8-Nu-o1r" style="IBUITableViewCellStyleDefault" id="Tag-KX-vZz">
-                                <rect key="frame" x="0.0" y="24.5" width="768" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentFavoriteCellIdentifier" textLabel="pUW-pD-OPT" style="IBUITableViewCellStyleDefault" id="Tag-KX-vZz">
+                                <rect key="frame" x="0.0" y="44.5" width="568" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Tag-KX-vZz" id="UIj-kO-RHT">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bj8-Nu-o1r">
-                                            <rect key="frame" x="15" y="0.0" width="297" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeacherFavoriteCellIdentifier" textLabel="KA6-qG-sBw" style="IBUITableViewCellStyleDefault" id="N5N-jS-X1G">
-                                <rect key="frame" x="0.0" y="68.5" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N5N-jS-X1G" id="Xe2-fB-JEe">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KA6-qG-sBw">
-                                            <rect key="frame" x="16" y="0.0" width="736" height="44"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pUW-pD-OPT">
+                                            <rect key="frame" x="16" y="0.0" width="536" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -452,6 +435,29 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="eUr-LH-v08" kind="showDetail" identifier="StudentFavoriteSegueIdentifier" id="fM0-Ju-kzg"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeacherFavoriteCellIdentifier" textLabel="FLb-T1-Ur4" style="IBUITableViewCellStyleDefault" id="N5N-jS-X1G">
+                                <rect key="frame" x="0.0" y="88.5" width="568" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N5N-jS-X1G" id="Xe2-fB-JEe">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FLb-T1-Ur4">
+                                            <rect key="frame" x="8" y="0.0" width="304" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="Em1-Ib-qh1" kind="showDetail" identifier="TeacherFavoriteSegueIdentifier" id="SxJ-b9-JVX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -468,7 +474,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="oog-rh-E9B">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
-                                <rect key="frame" x="252" y="3" width="52" height="44"/>
+                                <rect key="frame" x="307" y="3" width="52" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -501,13 +507,13 @@
         <scene sceneID="Xmi-1G-PbA">
             <objects>
                 <tableViewController id="Ztw-lA-hAe" customClass="TempTableViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6MM-PQ-K2W">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6MM-PQ-K2W">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reuseIdentifier" textLabel="uiq-9H-2L5" style="IBUITableViewCellStyleDefault" id="ZZi-NJ-mXZ">
-                                <rect key="frame" x="0.0" y="24.5" width="320" height="43.5"/>
+                                <rect key="frame" x="0.0" y="44.5" width="320" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZZi-NJ-mXZ" id="BbV-bJ-Bbn">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -546,7 +552,7 @@
                     </tabBarItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="NN6-cI-can">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -566,7 +572,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="8pB-YC-GFY">
-                            <rect key="frame" x="0.0" y="1349.0000003467908" width="320" height="1"/>
+                            <rect key="frame" x="0.0" y="1367" width="320" height="1"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -574,7 +580,7 @@
                             <tableViewSection id="fJj-Ky-fuR">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="Sy5-Nk-Sqp" detailTextLabel="WdW-Gw-cqM" style="IBUITableViewCellStyleValue1" id="qqR-Ko-iaW" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qqR-Ko-iaW" id="kvV-XA-Zwm">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -600,7 +606,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="vM1-hq-fsF" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="68.5" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="88.5" width="320" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vM1-hq-fsF" id="JWh-x4-A9P">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
@@ -627,7 +633,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="vGd-6B-aRJ" detailTextLabel="4OY-VW-rDa" style="IBUITableViewCellStyleValue1" id="PSZ-7U-Jn5" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="284.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="304.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PSZ-7U-Jn5" id="DIq-Fs-amC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -653,7 +659,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="D0L-YK-RZU" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="328.5" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="348.5" width="320" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D0L-YK-RZU" id="Qws-LU-a4I">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
@@ -680,7 +686,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="2Wd-dm-QiU" detailTextLabel="wSm-3j-3um" style="IBUITableViewCellStyleValue1" id="zlY-Sg-ANp" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="544.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="564.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zlY-Sg-ANp" id="Qll-df-aoS">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -706,7 +712,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="ORM-Ue-zgL" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="588.5" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="608.5" width="320" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ORM-Ue-zgL" id="Jea-cS-5UA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
@@ -733,7 +739,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="ECs-aH-4VN" detailTextLabel="QO8-iH-xvQ" style="IBUITableViewCellStyleValue1" id="KEs-FM-Auf" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="804.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="824.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KEs-FM-Auf" id="Rba-6W-n0F">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -759,7 +765,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="Wjy-a1-pcA" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="848.5" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="868.5" width="320" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wjy-a1-pcA" id="aMl-rI-FSH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
@@ -786,7 +792,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="uM8-rk-vuh" detailTextLabel="VPi-nz-HTR" style="IBUITableViewCellStyleValue1" id="CUf-UR-jdI" customClass="ScheduleOptionsFilterTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1064.5" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="1084.5" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CUf-UR-jdI" id="xlg-wD-J45">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -812,7 +818,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="216" id="taF-jd-LbV" customClass="PickerTableViewCell" customModule="grsu_schedule" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1108.5" width="320" height="216"/>
+                                        <rect key="frame" x="0.0" y="1128.5" width="320" height="216"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="taF-jd-LbV" id="ZSS-lj-vH4">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="216"/>
@@ -992,17 +998,17 @@
                         <viewControllerLayoutGuide type="bottom" id="ZPS-7c-QJI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" misplaced="YES" id="5ye-uu-VaJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pD2-Jd-lSc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <connections>
                                     <segue destination="VP5-YR-5pJ" kind="embed" id="TA2-6B-NXS"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOf-qf-Oua">
-                                <rect key="frame" x="0.0" y="930" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="232" width="320" height="44"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="47e-op-Xxt"/>
@@ -1047,7 +1053,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="20" navigationOrientation="horizontal" spineLocation="none" id="mEg-GV-wU8" customClass="StudentSchedulesPageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="6JS-Le-i3f">
                         <view key="titleView" contentMode="scaleToFill" id="emZ-lQ-gnS">
-                            <rect key="frame" x="88" y="0.0" width="144" height="44"/>
+                            <rect key="frame" x="280" y="6" width="144" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-gF-cey">
@@ -1057,7 +1063,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="20c-bt-Vcl">
-                                    <rect key="frame" x="-25.5" y="17" width="195" height="37"/>
+                                    <rect key="frame" x="-41" y="17" width="226" height="37"/>
                                     <color key="pageIndicatorTintColor" name="SchedulePageUnselectedColor"/>
                                     <color key="currentPageIndicatorTintColor" name="SchedulePageSelectedColor"/>
                                 </pageControl>
@@ -1073,7 +1079,7 @@
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="done" id="7m3-8E-ve7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LHe-ff-yK0">
-                                <rect key="frame" x="260" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="640" y="6" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="NavigationBarEmptyStar">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1111,7 +1117,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SdL-eB-GrC"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Xv0-5l-EwS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="470"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="476"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="3HM-qm-2ia" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
@@ -1247,7 +1253,7 @@
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3251.25" y="648.75"/>
+            <point key="canvasLocation" x="3249" y="674"/>
         </scene>
         <!--Карта-->
         <scene sceneID="t6M-le-azm">
@@ -1258,11 +1264,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Bkq-Fe-SY2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="DvF-yP-ANK" customClass="LessonLocationMapView" customModule="grsu_schedule" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J0r-1K-PAQ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -1302,7 +1308,7 @@
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="sZt-yt-p7r">
                         <barButtonItem key="backBarButtonItem" title="Back" id="bBk-mp-xvv"/>
                         <view key="titleView" contentMode="scaleToFill" id="z9U-hY-JSw">
-                            <rect key="frame" x="88" y="0.0" width="144" height="44"/>
+                            <rect key="frame" x="280" y="6" width="144" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeU-CI-dFd">
@@ -1312,7 +1318,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="dkC-FI-kXE">
-                                    <rect key="frame" x="-25.5" y="17" width="195" height="37"/>
+                                    <rect key="frame" x="-41" y="17" width="226" height="37"/>
                                     <color key="pageIndicatorTintColor" name="SchedulePageUnselectedColor"/>
                                     <color key="currentPageIndicatorTintColor" name="SchedulePageSelectedColor"/>
                                 </pageControl>
@@ -1328,7 +1334,7 @@
                         </view>
                         <barButtonItem key="rightBarButtonItem" style="done" id="3tD-Zd-zjD">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XM1-qf-lTG">
-                                <rect key="frame" x="260" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="640" y="6" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="NavigationBarEmptyStar">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1366,11 +1372,11 @@
                         <viewControllerLayoutGuide type="bottom" id="t2v-jp-Gng"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vNq-4O-8rg">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="131" sectionHeaderHeight="38" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="lTr-4E-IRX" customClass="ReachabilityTableView" customModule="grsu_schedule" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="436"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <color key="backgroundColor" name="BackgroundColor"/>
                                 <color key="separatorColor" red="0.75686274509999996" green="0.80000000000000004" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1530,7 +1536,7 @@
                 <pageViewController restorationIdentifier="MySchedule" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="20" navigationOrientation="horizontal" spineLocation="none" id="zqh-Wt-O1n" customClass="MySchedulesPageViewController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="shV-bh-36b">
                         <view key="titleView" contentMode="scaleToFill" id="ez8-fq-f4i">
-                            <rect key="frame" x="88" y="0.0" width="144" height="44"/>
+                            <rect key="frame" x="88" y="6" width="144" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 декабря" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7G-fT-Pu4">
@@ -1540,7 +1546,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="7" translatesAutoresizingMaskIntoConstraints="NO" id="Xpy-Jn-38k">
-                                    <rect key="frame" x="-25.5" y="17" width="195" height="37"/>
+                                    <rect key="frame" x="-41" y="17" width="226" height="25"/>
                                     <color key="pageIndicatorTintColor" red="0.16936616600000001" green="0.1693610847" blue="0.1693639606" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="currentPageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </pageControl>
@@ -1571,12 +1577,12 @@
             </objects>
             <point key="canvasLocation" x="-128" y="-1855"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--General Navigation Controller-->
         <scene sceneID="4UV-0K-Utl">
             <objects>
-                <navigationController id="eUr-LH-v08" sceneMemberID="viewController">
+                <navigationController id="eUr-LH-v08" customClass="GeneralNavigationController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9QP-xc-tkv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="NavigationBarColor"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1593,11 +1599,12 @@
             </objects>
             <point key="canvasLocation" x="1536" y="649"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--General Navigation Controller-->
         <scene sceneID="MEa-mk-h12">
             <objects>
-                <navigationController restorationIdentifier="StudentSchedule" automaticallyAdjustsScrollViewInsets="NO" id="Em1-Ib-qh1" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="StudentSchedule" automaticallyAdjustsScrollViewInsets="NO" id="Em1-Ib-qh1" customClass="GeneralNavigationController" customModule="grsu_schedule" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="0Fz-PH-NbF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wPh-dG-uNs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1718,10 +1725,12 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="DUk-e2-od2"/>
-        <segue reference="Ydr-vv-0vX"/>
+        <segue reference="3qf-ZN-3Yj"/>
+        <segue reference="SxJ-b9-JVX"/>
+        <segue reference="fM0-Ju-kzg"/>
+        <segue reference="oBu-gG-NXI"/>
         <segue reference="5hu-zp-bdB"/>
-        <segue reference="3cS-fO-x8u"/>
+        <segue reference="bVc-d5-06z"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="EditIcon" width="26" height="26"/>
@@ -1754,7 +1763,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SchedulePageUnselectedColor">
-            <color red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.16899999976158142" green="0.16899999976158142" blue="0.16899999976158142" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

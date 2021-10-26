@@ -106,6 +106,7 @@
 		444AAD84207185B500F7CF10 /* LocaleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444AAD83207185B500F7CF10 /* LocaleExtension.swift */; };
 		4450C1831DB6B22900EF2620 /* ParsableManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */; };
 		4452B4D91DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */; };
+		4463EB5E27283F97003F4737 /* GeneralNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4463EB5D27283F97003F4737 /* GeneralNavigationController.swift */; };
 		44641E551A5DC5E600AA46BB /* BaseLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */; };
 		44641E571A5DC67000AA46BB /* StudentLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E561A5DC67000AA46BB /* StudentLessonScheduleCell.swift */; };
 		44641E591A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */; };
@@ -256,6 +257,7 @@
 		444AAD83207185B500F7CF10 /* LocaleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleExtension.swift; sourceTree = "<group>"; };
 		4450C1821DB6B22900EF2620 /* ParsableManagedObjectExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParsableManagedObjectExtension.swift; sourceTree = "<group>"; };
 		4452B4D81DEF4CD800CD1A98 /* String+CapitalizingFirstLetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+CapitalizingFirstLetter.swift"; sourceTree = "<group>"; };
+		4463EB5D27283F97003F4737 /* GeneralNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralNavigationController.swift; sourceTree = "<group>"; };
 		44641E531A5DC5E600AA46BB /* BaseLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E561A5DC67000AA46BB /* StudentLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLessonScheduleCell.swift; sourceTree = "<group>"; };
 		44641E581A5DC69400AA46BB /* StudentActiveLessonScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentActiveLessonScheduleCell.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				2D08261E1A15299D008B504E /* Main.storyboard */,
 				440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */,
 				440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */,
+				4463EB5D27283F97003F4737 /* GeneralNavigationController.swift */,
 				44481072206FC5EE0044023E /* CustomSearchController.swift */,
 				440F2AE620684651006E3B9A /* FavoriteSplitViewController.swift */,
 				4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */,
@@ -864,6 +867,7 @@
 				2DDC788A1A2A1D7000C1D966 /* CoreData.xcdatamodeld in Sources */,
 				2DDC78B21A2B6DA900C1D966 /* DepartmentsEntity.swift in Sources */,
 				2DDC78B01A2B6DA800C1D966 /* FacultiesEntity.swift in Sources */,
+				4463EB5E27283F97003F4737 /* GeneralNavigationController.swift in Sources */,
 				44641E5B1A5DC83700AA46BB /* TeacherLessonScheduleCell.swift in Sources */,
 				4448107A20713D6B0044023E /* StringExtension.swift in Sources */,
 				443837492720BB8200971830 /* Strings.swift in Sources */,

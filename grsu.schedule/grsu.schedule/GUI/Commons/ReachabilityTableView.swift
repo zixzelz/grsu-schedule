@@ -46,7 +46,7 @@ class ReachabilityTableView: UITableView {
     func addUnavailableHeader(_ animated: Bool) {
         if (unavailableHeaderLabel != nil) { return }
 
-        let headerTop: CGFloat = 64.0
+        let headerTop: CGFloat = 0
 
         let headerLabel = UILabel()
         headerLabel.frame = CGRect(x: 0, y: headerTop - DefaultAvailabilityHeaderHeight, width: self.bounds.width, height: DefaultAvailabilityHeaderHeight)

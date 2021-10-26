@@ -76,6 +76,8 @@ class ListOfTeachersViewController: UITableViewController {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.subviews.first?.clipsToBounds = true
         }
+
+        navigationController?.applyStyle()
     }
 
     private func fetchData(_ useCache: Bool = true, animated: Bool) {

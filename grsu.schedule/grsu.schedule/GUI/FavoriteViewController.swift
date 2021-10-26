@@ -21,17 +21,18 @@ class FavoriteViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        applyLargeTitles()
+        setupNavigationController()
 
         navigationItem.title = L10n.favoriteNavigationBarTitle
         navigationController?.title = L10n.favoriteNavigationBarTitle
     }
 
-    private func applyLargeTitles() {
+    private func setupNavigationController() {
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+        navigationController?.applyStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
