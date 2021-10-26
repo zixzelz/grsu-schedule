@@ -37,15 +37,6 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
         schedules = daySchedule
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let rect = navigationController?.navigationBar.frame {
-            let y = rect.size.height + rect.origin.y
-            tableView.contentInset = UIEdgeInsetsMake(-y, 0, 0, 0)
-            tableView.separatorInset = UIEdgeInsetsMake(30, 0, 0, 0)
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 

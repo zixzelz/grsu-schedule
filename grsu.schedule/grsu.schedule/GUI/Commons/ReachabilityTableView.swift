@@ -17,7 +17,6 @@ class ReachabilityTableView: UITableView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { () -> Void in
             if (!GSReachability.sharedInstance.isHostAvailable()) {
                 self.addUnavailableHeader(true)

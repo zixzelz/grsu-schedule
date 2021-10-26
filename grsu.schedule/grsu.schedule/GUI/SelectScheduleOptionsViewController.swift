@@ -51,6 +51,7 @@ class SelectScheduleOptionsViewController: UIViewController, ScheduleOptionsTabl
 
     private func setupNavigationController() {
         if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.isTranslucent = false
             navigationController?.navigationBar.prefersLargeTitles = true
         }
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
