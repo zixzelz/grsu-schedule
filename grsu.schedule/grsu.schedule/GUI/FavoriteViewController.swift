@@ -17,14 +17,14 @@ class FavoriteViewController: UITableViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
         splitViewController?.tabBarItem?.title = L10n.favoriteTabbarTitle
+
+        navigationItem.title = L10n.favoriteNavigationBarTitle
+        navigationController?.title = L10n.favoriteNavigationBarTitle
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationController()
-
-        navigationItem.title = L10n.favoriteNavigationBarTitle
-        navigationController?.title = L10n.favoriteNavigationBarTitle
     }
 
     private func setupNavigationController() {

@@ -28,6 +28,9 @@ class ListOfTeachersViewController: UITableViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
         splitViewController?.tabBarItem?.title = L10n.teachersTabbarTitle
+
+        navigationItem.title = L10n.teachersNavigationBarTitle
+        navigationController?.title = L10n.teachersNavigationBarTitle
     }
 
     override func viewDidLoad() {
@@ -39,8 +42,6 @@ class ListOfTeachersViewController: UITableViewController {
         setupSearchController()
         fetchData(animated: true)
 
-        navigationItem.title = L10n.teachersNavigationBarTitle
-        navigationController?.title = L10n.teachersNavigationBarTitle
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
     }
 

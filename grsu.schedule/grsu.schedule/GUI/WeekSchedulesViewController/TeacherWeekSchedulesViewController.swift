@@ -45,14 +45,14 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
 
         let lesson = schedules![menuCellIndexPath!.section].lessons[menuCellIndexPath!.row - 1] as LessonScheduleEntity
 
-        if (lesson.groups.count == 1) {
-            self.presentGroupSchedule(lesson.groups.first!)
+        if let group = lesson.groups.first, lesson.groups.count == 1 {
+            self.presentGroupSchedule(group)
         } else {
-            chooseGroup(lesson.groups)
+            chooseGroup(lesson.groups, sender: sender)
         }
     }
 
-    func chooseGroup(_ groups: Set<GroupsEntity>) {
+    func chooseGroup(_ groups: Set<GroupsEntity>, sender: UIView) {
 
         let alert = UIAlertController(title: L10n.scheduleSelectGroupTitle, message: "", preferredStyle: .actionSheet)
 
@@ -64,6 +64,11 @@ class TeacherWeekSchedulesViewController: WeekSchedulesViewController {
                 self.presentGroupSchedule(group)
             }
             alert.addAction(action)
+        }
+
+        if let popoverController = alert.popoverPresentationController {
+            popoverController.sourceView = sender //to set the source of your alert
+//            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
         }
 
         present(alert, animated: true, completion: nil)
