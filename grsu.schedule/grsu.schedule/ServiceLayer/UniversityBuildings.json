@@ -20,7 +20,7 @@
  "lat": "53.706348",
  "lng": "23.824561",
  "photo": "EducationalBuilding_11",
- "address": "улица Курчатова, 1а, Гродно, Беларусь",
+ "address": "улица Курчатова, 1а, Гродно, Беларусь | Kurchatova, 1а",
  "faculties": [ {"title": "Инженерно-строительный факультет", "site": "http://fbt.grsu.by/"} ]
  },
  {
@@ -44,7 +44,7 @@
  "lat": "53.69569",
  "lng": "23.82636",
  "photo": "EducationalBuilding_4",
- "address": "переулок Доватора, 3/1, Гродно, Беларусь",
+ "address": "переулок Доватора, 3/1, Гродно, Беларусь | Dovatora ln., 3\/1",
  "faculties": [ {"title": "Факультет биологии и экологии", "site": "http://fbe.grsu.by/"}, {"title": "Юридический факультет", "site": "http://lf.grsu.by/"} ]
  },
  {
@@ -52,7 +52,7 @@
  "lat": "53.688702",
  "lng": "23.83508",
  "photo": "EducationalBuilding_10",
- "address": "улица Дзержинского, 28, Гродно, Беларусь",
+ "address": "улица Дзержинского, 28, Гродно, Беларусь | Dzierzhinskogo, 28",
  "faculties": [ {"title": "Факультет искусств и дизайна", "site": "http://art.grsu.by/"} ]
  },
  {
@@ -60,7 +60,7 @@
  "lat": "53.684914",
  "lng": "23.839661",
  "photo": "EducationalBuilding_1",
- "address": "улица Ожешко, 22, Гродно, Беларусь",
+ "address": "улица Ожешко, 22, Гродно, Беларусь | Ozheshko, 22",
  "faculties": [ {"title": "Факультет математики и информатики", "site": "http://mf.grsu.by/"} ]
  },
  {
@@ -68,7 +68,7 @@
  "lat": "53.68336",
  "lng": "23.83954",
  "photo": "EducationalBuilding_2",
- "address": "улица Ленина, 32, Гродно, Беларусь",
+ "address": "улица Ленина, 32, Гродно, Беларусь | Lenina, 32",
  "faculties": [ {"title": "Филологический факультет", "site": "http://phf.grsu.by/"} ]
  },
  {
@@ -76,7 +76,7 @@
  "lat": "53.68012",
  "lng": "23.82804",
  "photo": "EducationalBuilding_6",
- "address": "Октябрьская, 5, Гродно, Беларусь",
+ "address": "Октябрьская, 5, Гродно, Беларусь | Oktyabrskaya, 5",
  "faculties": [ {"title": "Факультет истории, коммуникации и туризма", "site": "http://fh.grsu.by/"}, {"title": "Факультет довузовской подготовки", "site": "http://ctest.grsu.by/"} ]
  },
  {
@@ -84,7 +84,7 @@
  "lat": "53.67883",
  "lng": "23.84685",
  "photo": "EducationalBuilding_5",
- "address": "улица Захарова, 32, Гродно, Беларусь ",
+ "address": "улица Захарова, 32, Гродно, Беларусь | Zakharova, 32",
  "faculties": [ {"title": "Педагогический факультет", "site": "http://fp.grsu.by/"}, {"title": "Факультет физической культуры", "site": "http://ffc.grsu.by/"} ]
  },
  {
@@ -92,7 +92,7 @@
  "lat": "53.666317",
  "lng": "23.776501",
  "photo": "EducationalBuilding_9",
- "address": "улица Фолюш, 15/189, Гродно, Беларусь",
+ "address": "улица Фолюш, 15/189, Гродно, Беларусь | Foliush, 15\/218",
  "faculties": [ {"title": "Военный факультет", "site": "http://mil.grsu.by/"} ]
  },
  {
