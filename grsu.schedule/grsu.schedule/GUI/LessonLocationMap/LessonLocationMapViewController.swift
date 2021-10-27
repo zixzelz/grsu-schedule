@@ -15,7 +15,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
     @IBOutlet var routeButton: UIBarButtonItem!
 
     var universityBuildings: [UniversityBuilding]?
-    var initAddress_: String?
+    private var initAddress_: String?
 
     fileprivate var selectedUniversityBuildingIndex: Int? {
         didSet {

@@ -19,7 +19,7 @@ import UIKit
 class OverlayTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
 
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return OverlayPresentationController(presentedViewController: presented, presenting: presenting!)
+        return OverlayPresentationController(presentedViewController: presented, presenting: presenting)
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
