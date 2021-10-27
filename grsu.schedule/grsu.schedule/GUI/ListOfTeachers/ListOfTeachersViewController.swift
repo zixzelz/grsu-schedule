@@ -43,6 +43,8 @@ class ListOfTeachersViewController: UITableViewController {
         fetchData(animated: true)
 
         navigationItem.backBarButtonItem = UIBarButtonItem(title: L10n.backBarButtonItemTitle, style: .plain, target: nil, action: nil)
+
+        self.extendedLayoutIncludesOpaqueBars = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,13 +53,10 @@ class ListOfTeachersViewController: UITableViewController {
     }
 
     private func setupSearchController() {
-
-//        if #available(iOS 9.1, *) {
-//            searchController.obscuresBackgroundDuringPresentation = false
-//        }
-
         searchController.searchResultsController?.extendedLayoutIncludesOpaqueBars = true
         searchController.searchResultsController?.edgesForExtendedLayout = .all
+
+        navigationController?.navigationBar.isTranslucent = false
 
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -101,8 +100,11 @@ class ListOfTeachersViewController: UITableViewController {
             }
 
             strongSelf.shouldShowRefreshControl = false
-            strongSelf.refreshControl?.endRefreshing()
             strongSelf.tableView.reloadData()
+
+            DispatchQueue.main.async {
+                strongSelf.refreshControl?.endRefreshing()
+            }
         })
     }
 
@@ -188,8 +190,12 @@ class ListOfTeachersViewController: UITableViewController {
     }
 
     private func scrollToTop() {
-        let top = self.tableView.contentInset.top
-        self.tableView.contentOffset = CGPoint(x: 0, y: -top)
+        let top = self.tableView.adjustedContentInset.top
+        let y = self.refreshControl!.frame.maxY + top
+        self.tableView.setContentOffset(CGPoint(x: 0, y: -y), animated:true)
+
+//        let top = self.tableView.contentInset.top
+//        self.tableView.contentOffset = CGPoint(x: 0, y: -top)
     }
 
     // MARK: - UITableViewDataSource

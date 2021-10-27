@@ -25,6 +25,7 @@ internal enum Asset {
     internal static let backgroundColor = ColorAsset(name: "BackgroundColor")
     internal static let lessonTitleColor = ColorAsset(name: "LessonTitleColor")
     internal static let navigationBarColor = ColorAsset(name: "NavigationBarColor")
+    internal static let refreshControlColor = ColorAsset(name: "RefreshControlColor")
     internal static let scheduleActiveLessonColor = ColorAsset(name: "ScheduleActiveLessonColor")
     internal static let schedulePageSelectedColor = ColorAsset(name: "SchedulePageSelectedColor")
     internal static let schedulePageUnselectedColor = ColorAsset(name: "SchedulePageUnselectedColor")

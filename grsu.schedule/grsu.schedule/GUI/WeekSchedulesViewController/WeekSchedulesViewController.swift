@@ -64,7 +64,7 @@ class WeekSchedulesViewController: UIViewController, UITableViewDataSource, UITa
     func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(WeekSchedulesViewController.refresh(_:)), for: UIControlEvents.valueChanged)
-        refreshControl.tintColor = UIColor.black
+        refreshControl.tintColor = Asset.Colors.refreshControlColor.color
 
         if #available(iOS 10.0, *) {
             tableView.refreshControl = refreshControl
