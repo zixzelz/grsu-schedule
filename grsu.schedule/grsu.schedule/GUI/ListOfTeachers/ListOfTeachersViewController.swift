@@ -51,12 +51,12 @@ class ListOfTeachersViewController: UITableViewController {
 
     private func setupSearchController() {
 
-        searchController.searchResultsUpdater = resultsTableController
-        searchController.searchBar.placeholder = L10n.searchBarPlaceholderTitle
-
 //        if #available(iOS 9.1, *) {
 //            searchController.obscuresBackgroundDuringPresentation = false
 //        }
+
+        searchController.searchResultsController?.extendedLayoutIncludesOpaqueBars = true
+        searchController.searchResultsController?.edgesForExtendedLayout = .all
 
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -68,14 +68,13 @@ class ListOfTeachersViewController: UITableViewController {
 
         definesPresentationContext = true
 
-        if let navigationBar = navigationController?.navigationBar {
-//            navigationBar.barTintColor = UIColor.navigationBar
-        }
-
         // Fix bug with a magic line between navigationBar and searchBar 🤬
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.subviews.first?.clipsToBounds = true
         }
+
+        searchController.searchResultsUpdater = resultsTableController
+        searchController.searchBar.placeholder = L10n.searchBarPlaceholderTitle
 
         navigationController?.applyStyle()
     }

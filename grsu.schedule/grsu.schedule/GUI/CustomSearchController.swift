@@ -26,22 +26,38 @@ class CustomSearchController: UISearchController {
     private func setup() {
         searchBar.tintColor = .white
         searchBar.barTintColor = UIColor.navigationBar.withAlphaComponent(0.85)
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.navigationBar
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.white]
 
-        if #available(iOS 11.0, *) {
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = .red
+            if let leftView = textfield.leftView as? UIImageView {
+//                leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
+                leftView.tintColor = UIColor.white.withAlphaComponent(0.8)
+            }
+        }
 
-            UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [NSAttributedStringKey.foregroundColor.rawValue: UIColor.black]
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+            if let backgroundview = textfield.subviews.first {
 
-            if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
-//                textfield.textColor = UIColor.blue
-                if let backgroundview = textfield.subviews.first {
+                backgroundview.backgroundColor = UIColor.red
 
-                    backgroundview.backgroundColor = UIColor.white
+                backgroundview.layer.cornerRadius = 30
+                backgroundview.clipsToBounds = true
+            }
+        }
+    }
 
-                    backgroundview.layer.cornerRadius = 10
-                    backgroundview.clipsToBounds = true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard #available(iOS 15.0, *) else {
+            if let presentingVC = presentingViewController {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.view.frame = presentingVC.view.frame
                 }
             }
+            return
         }
     }
 

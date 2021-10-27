@@ -437,6 +437,7 @@
 				2DBD4E9A1A4EDCEA0055EA3A /* LessonLocationMap */,
 				2DBD4EAF1A52D09C0055EA3A /* SchedulesPageViewController */,
 				2DBD4EBF1A5AF9660055EA3A /* WeekSchedulesViewController */,
+				44C3CAD627299D8300845CA3 /* ListOfTeachers */,
 				2D08261E1A15299D008B504E /* Main.storyboard */,
 				440F2AE4206806C3006E3B9A /* SupportStoryboard.storyboard */,
 				440F2AE22067EC8A006E3B9A /* GeneralSplitViewController.swift */,
@@ -446,8 +447,6 @@
 				4435EBC51E11CC6A005F43B5 /* MainTabBarController.swift */,
 				2DB233F61A1BD774005F1447 /* SelectScheduleOptionsViewController.swift */,
 				2D08261F1A15299D008B504E /* ScheduleOptionsTableViewController.swift */,
-				2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */,
-				2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */,
 				44F0DC981DFB50450048F3AE /* FavoriteViewController.swift */,
 				2D7B6E831A39F2CE002BC208 /* TeacherInfoViewController.swift */,
 				44B64E961E0B295900A09057 /* MyScheduleViewController.swift */,
@@ -626,6 +625,15 @@
 				44C3A96A209DACDC00ABDA66 /* TeacherMenuCellTableViewCell.swift */,
 			);
 			path = MenuCell;
+			sourceTree = "<group>";
+		};
+		44C3CAD627299D8300845CA3 /* ListOfTeachers */ = {
+			isa = PBXGroup;
+			children = (
+				2D716C3D1A38C5AA00CE7F27 /* ListOfTeachersViewController.swift */,
+				2DF35A901A40BA0B0010A2F3 /* ListOfTeachersSearchDataSource.swift */,
+			);
+			path = ListOfTeachers;
 			sourceTree = "<group>";
 		};
 		44C7AB0D2072DCD600D4EF32 /* Resources */ = {

@@ -51,6 +51,7 @@ class ListOfTeachersResultController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         paretViewController?.performSegue(withIdentifier: "SchedulePageIdentifier", sender: tableView.cellForRow(at: indexPath))
     }
 

@@ -341,11 +341,11 @@
                                 <rect key="frame" x="0.0" y="88.5" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kTB-eb-LgT" id="Kdp-bo-la0">
-                                    <rect key="frame" x="0.0" y="0.0" width="274" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="266" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cIh-IJ-ykM">
-                                            <rect key="frame" x="8" y="0.0" width="258" height="44"/>
+                                            <rect key="frame" x="16" y="0.0" width="242" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
@@ -427,7 +427,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pUW-pD-OPT">
-                                            <rect key="frame" x="16" y="0.0" width="288" height="44"/>
+                                            <rect key="frame" x="8" y="0.0" width="304" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -473,7 +473,7 @@
                             </view>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="oog-rh-E9B">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3sU-Tn-k8Z">
                                 <rect key="frame" x="307" y="3" width="52" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1706,7 +1706,7 @@
     </scenes>
     <designables>
         <designable name="ZZv-Ze-KcQ">
-            <size key="intrinsicContentSize" width="121" height="30"/>
+            <size key="intrinsicContentSize" width="116" height="25"/>
         </designable>
         <designable name="b7Z-Kv-NLo">
             <size key="intrinsicContentSize" width="66" height="66"/>
@@ -1715,13 +1715,13 @@
             <size key="intrinsicContentSize" width="83" height="25"/>
         </designable>
         <designable name="mJd-PI-YeT">
-            <size key="intrinsicContentSize" width="129" height="30"/>
+            <size key="intrinsicContentSize" width="124" height="25"/>
         </designable>
         <designable name="rFa-5N-RPv">
             <size key="intrinsicContentSize" width="83" height="25"/>
         </designable>
         <designable name="vm5-PN-Yqt">
-            <size key="intrinsicContentSize" width="108" height="30"/>
+            <size key="intrinsicContentSize" width="103" height="25"/>
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
@@ -1738,8 +1738,8 @@
         <image name="EmailIcon" width="30" height="30"/>
         <image name="Favorite" width="28" height="26"/>
         <image name="FavoriteSelected" width="28" height="26"/>
-        <image name="Lecturer" width="30" height="30"/>
-        <image name="LecturerSchedule" width="30" height="30"/>
+        <image name="Lecturer" width="25" height="25"/>
+        <image name="LecturerSchedule" width="25" height="25"/>
         <image name="LessonLocation" width="29" height="25"/>
         <image name="MapTabBar" width="34" height="34"/>
         <image name="MessageIcon" width="24.5" height="30"/>
@@ -1750,7 +1750,7 @@
         <image name="Student" width="20" height="25"/>
         <image name="Students" width="39" height="25"/>
         <image name="Teacher" width="45" height="25"/>
-        <image name="TeacherSchedule" width="30" height="30"/>
+        <image name="TeacherSchedule" width="25" height="25"/>
         <image name="UserPlaceholderIcon" width="66" height="66"/>
         <image name="UserTabBar" width="34" height="34"/>
         <namedColor name="BackgroundColor">
@@ -1763,7 +1763,7 @@
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SchedulePageUnselectedColor">
-            <color red="0.16899999976158142" green="0.16899999976158142" blue="0.16899999976158142" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="0.10000000149011612" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
