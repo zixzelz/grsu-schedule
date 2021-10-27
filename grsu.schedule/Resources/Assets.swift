@@ -23,6 +23,7 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 internal enum Asset {
   internal enum Colors {
     internal static let backgroundColor = ColorAsset(name: "BackgroundColor")
+    internal static let lessonTitleColor = ColorAsset(name: "LessonTitleColor")
     internal static let navigationBarColor = ColorAsset(name: "NavigationBarColor")
     internal static let scheduleActiveLessonColor = ColorAsset(name: "ScheduleActiveLessonColor")
     internal static let schedulePageSelectedColor = ColorAsset(name: "SchedulePageSelectedColor")
