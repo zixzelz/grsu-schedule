@@ -1,4 +1,4 @@
-platform:ios,'9.0'
+platform:ios,'11.0'
 use_frameworks!
 
 #set_arc_compatibility_flag!
@@ -9,8 +9,11 @@ pod 'GoogleMaps'
 pod 'Flurry-iOS-SDK/FlurrySDK'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'RAMAnimatedTabBarController', :git => 'https://github.com/zixzelz/animated-tab-bar.git', :branch => 'dev'
-pod 'Fabric'
-pod 'Crashlytics'
+
+pod 'Firebase/Crashlytics'
+
+# Recommended: Add the Firebase pod for Google Analytics
+pod 'Firebase/Analytics'
 
 #Localizable strings generation
 pod 'SwiftGen', '6.5.1'

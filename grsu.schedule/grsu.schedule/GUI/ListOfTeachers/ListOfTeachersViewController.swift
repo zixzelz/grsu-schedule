@@ -49,7 +49,7 @@ class ListOfTeachersViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Flurry.logEvent("List Of Teachers")
+        AnalyticsWrapper.logEvent(.listOfTeachers)
     }
 
     private func setupSearchController() {

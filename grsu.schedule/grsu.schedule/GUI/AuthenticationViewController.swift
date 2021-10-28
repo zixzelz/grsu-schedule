@@ -38,7 +38,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
             MBProgressHUD.hide(for: strongSelf.view, animated: true)
 
             switch result {
-            case .success(let student): strongSelf.authenticationCompleted(student)
+            case .success(let student): strongSelf.authenticationCompleted(student, login: login)
             case .failure(_):
                 strongSelf.showMessage(L10n.usernameNotFoundHeader, message: L10n.usernameNotFoundMessage)
             }
@@ -49,7 +49,12 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
 
-    fileprivate func authenticationCompleted(_ student: Student) {
+    fileprivate func authenticationCompleted(_ student: Student, login: String) {
+        AnalyticsWrapper.logEvent(.login, parameters: [
+            "login": login,
+            "groupTitle": student.groupTitle ?? "none",
+            "studentType": student.studentType ?? "none"
+        ])
 
         UserDefaults.student = student
         NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: Notification.authenticationStateChanged), object: student)

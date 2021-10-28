@@ -56,7 +56,7 @@ class TeacherInfoViewController: UITableViewController, MFMailComposeViewControl
         super.viewWillAppear(animated)
 
         if let title = teacherInfo?.title {
-            Flurry.logEvent("Teacher Info", withParameters: ["Teacher": title])
+            AnalyticsWrapper.logEvent(.teacherInfo, parameters: ["Teacher": title])
         }
     }
 

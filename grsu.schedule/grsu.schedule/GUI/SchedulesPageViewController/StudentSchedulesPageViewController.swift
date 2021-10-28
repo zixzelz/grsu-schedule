@@ -31,7 +31,7 @@ class StudentSchedulesPageViewController: BaseSchedulesPageViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let group = group {
-            Flurry.logEvent("open schedule for group", withParameters: ["group": group.title])
+            AnalyticsWrapper.logEvent(.openScheduleForGroup, parameters: ["group": group.title])
         }
     }
 

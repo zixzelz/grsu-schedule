@@ -9,9 +9,8 @@
 import UIKit
 import Flurry_iOS_SDK
 import GoogleMaps
-import Fabric
-import Crashlytics
 import Armchair
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         GMSServices.provideAPIKey("AIzaSyBSF-hRXIjTMwnB0vwWcaDX-aq7WSy2pAc")
         setupFlurry()
-        Fabric.with([Crashlytics.self])
+        FirebaseApp.configure()
 
         GSReachability.sharedInstance.startNotifier()
 

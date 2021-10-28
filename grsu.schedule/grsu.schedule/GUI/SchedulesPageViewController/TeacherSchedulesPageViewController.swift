@@ -26,7 +26,7 @@ class TeacherSchedulesPageViewController: BaseSchedulesPageViewController {
         super.viewWillAppear(animated)
 
         if let title = teacher?.displayTitle {
-            Flurry.logEvent("open schedule for teacher", withParameters: ["teacher": title])
+            AnalyticsWrapper.logEvent(.openScheduleForTeacher, parameters: ["teacher": title])
         }
     }
 

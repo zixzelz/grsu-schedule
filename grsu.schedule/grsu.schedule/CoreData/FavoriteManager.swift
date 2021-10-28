@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Flurry_iOS_SDK
+import FirebaseAnalytics
 
 let GSFavoriteManagerFavoritWillRemoveNotificationKey = "GSFavoriteManagerFavoritWillRemoveNotificationKey" // userInfo contains FavoriteEntity
 let GSFavoriteManagerFavoriteObjectKey = "GSFavoriteManagerFavoriteObjectKey"
@@ -41,7 +42,7 @@ class FavoriteManager: NSObject {
     }
 
     func addFavoriteWithGroup(_ group: GroupsEntity) {
-        Flurry.logEvent("add favorite group", withParameters: ["group": group.title])
+        AnalyticsWrapper.logEvent(.addFavoriteGroup, parameters: ["group": group.title])
 
         let context = CoreDataHelper.backgroundContext
         context.perform({
@@ -61,7 +62,7 @@ class FavoriteManager: NSObject {
     func addFavorite(_ teacher: TeacherInfoEntity) {
 
         // todo: make enum with type of events in a future
-        Flurry.logEvent("add favorite teacher", withParameters: ["teacher": teacher.displayTitle])
+        AnalyticsWrapper.logEvent(.addFavoriteTeacher, parameters: ["teacher": teacher.displayTitle])
 
         let context = CoreDataHelper.backgroundContext
         context.perform({
@@ -81,9 +82,9 @@ class FavoriteManager: NSObject {
     func removeFavorite(_ item: FavoriteEntity) {
 
         if let group = item.group {
-            Flurry.logEvent("remove favorite group", withParameters: ["group": group.title])
+            AnalyticsWrapper.logEvent(.removeFavoriteGroup, parameters: ["group": group.title])
         } else if let teacher = item.teacher {
-            Flurry.logEvent("remove favorite teacher", withParameters: ["teacher": teacher.title!])
+            AnalyticsWrapper.logEvent(.removeFavoriteTeacher, parameters: ["teacher": teacher.title!])
         }
 
         NotificationCenter.default.post(name: Foundation.Notification.Name(rawValue: GSFavoriteManagerFavoritWillRemoveNotificationKey), object: nil, userInfo: ["GSFavoriteManagerFavoriteObjectKey": item])

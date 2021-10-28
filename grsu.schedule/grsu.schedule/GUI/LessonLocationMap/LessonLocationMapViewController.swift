@@ -64,7 +64,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Flurry.logEvent("Lesson Location Map")
+        AnalyticsWrapper.logEvent(.lessonLocationMap)
     }
 
     func fetchData() {
@@ -144,7 +144,7 @@ class LessonLocationMapViewController: RYMapViewController, LessonLocationMapVie
         guard let urlForCheck = URL(string: "yandexmaps://") else { return }
         if UIApplication.shared.canOpenURL(urlForCheck) {
             UIApplication.shared.openURL(url)
-            Flurry.logEvent("route with yandex maps")
+            AnalyticsWrapper.logEvent(.routeWithYandexMaps)
         } else {
 
             let alertController = UIAlertController (title: "Приложение Яндекс.Карты не установлено", message: "Нажмите кнопку Установить для установки", preferredStyle: .alert)

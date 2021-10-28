@@ -60,7 +60,7 @@ class MySchedulesPageViewController: BaseSchedulesPageViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        Flurry.logEvent("open My schedule", withParameters: ["studentId": studentId ?? "nil"])
+        AnalyticsWrapper.logEvent(.openMySchedule, parameters: ["studentId": studentId ?? "nil"])
     }
 
     override func weekScheduleController(_ weekIndex: Int? = nil) -> UIViewController {
